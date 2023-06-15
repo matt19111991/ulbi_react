@@ -1,5 +1,11 @@
 import webpack from 'webpack';
 
+/* Без этого импорта devServer не запускает команду serve (Webpack 5). Ошибка:
+   Object literal may only specify known properties, and 'devServer' does not exist in type 'Configuration'.
+*/
+import 'webpack-dev-server';
+
+import { buildDevServer } from './buildDevServer';
 import { buildLoaders } from './buildLoaders';
 import { buildPlugins } from './buildPlugins';
 import { buildResolvers } from './buildResolvers';
@@ -7,7 +13,7 @@ import { buildResolvers } from './buildResolvers';
 import { BuildOptions } from './types/config';
 
 export function buildWebpackConfig(options: BuildOptions): webpack.Configuration {
-    const { mode, paths } = options;
+    const { isDev, mode, paths } = options;
 
     return {
         mode,
@@ -25,13 +31,18 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
 
         resolve: buildResolvers(),
 
+        devServer: isDev ? buildDevServer(options) : undefined,
+
+//      В production нужно отключать source-map для минимизации кода
+        devtool: isDev ? 'inline-source-map' : undefined,
+
         output: { // настройка конечной сборки
 /*          [name] для динамических названий (для кеширования уже загруженных файлов)
 
             [contenthash] - уникальный хэш. Браузер кеширует файлы с одинаковыми именами.
             Если будут изменения в закешированных файлах, то
             при сборке поменяется хэш и сгенерируется новое имя файла
-*/          filename: '[name].[contenthash].djs',
+*/          filename: '[name].[contenthash].js',
 
             path: paths.build,
 
