@@ -3,6 +3,6 @@
 .idea/modules.xml
 .idea/ulbi_react.iml
 .idea/vcs.xml
-build/
+/build/**
 node_modules/
 package-lock.json
