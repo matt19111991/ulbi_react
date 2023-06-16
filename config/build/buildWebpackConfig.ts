@@ -1,10 +1,5 @@
 import webpack from 'webpack';
 
-/* Без этого импорта devServer не запускает команду serve (Webpack 5). Ошибка:
-   Object literal may only specify known properties, and 'devServer' does not exist in type 'Configuration'.
-*/
-import 'webpack-dev-server';
-
 import { buildDevServer } from './buildDevServer';
 import { buildLoaders } from './buildLoaders';
 import { buildPlugins } from './buildPlugins';

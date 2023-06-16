@@ -24,7 +24,7 @@ export default (env: BuildEnv) => {
         // __dirname - папка, где находимся в данный момент. В текущем случае: корень
 
         build: path.resolve(__dirname, 'build'),
-        entry: path.resolve(__dirname, 'src', 'index.ts'),
+        entry: path.resolve(__dirname, 'src', 'index.tsx'),
         html: path.resolve(__dirname, 'public', 'index.html'),
     }
 
