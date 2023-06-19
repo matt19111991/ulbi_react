@@ -1,6 +1,6 @@
 import { FC, useMemo, useState } from 'react';
 
-import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext } from './ThemeContext';
+import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext } from '../lib/ThemeContext';
 
 // localStorage все типы приводит к 'string'. 'as' нужен, чтобы вместо типа 'string' был тип 'Theme'
 const defaultTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme || Theme.LIGHT;
