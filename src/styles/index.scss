@@ -13,12 +13,17 @@
     .WJfas66YqMo9vlVy3cDg и Xwga441YqMo9vXCy5tXb
 */
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+@import 'reset';
+
+@import 'themes/normal';
+@import 'themes/dark';
+
+@import 'variables/global';
 
 .app {
-  font-size: 30px;
+  background: var(--bg-color);
+  color: var(--primary-color);
+  font: var(--font-m);
+
+  min-height: 100vh;
 }

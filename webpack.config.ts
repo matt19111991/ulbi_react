@@ -2,7 +2,6 @@
 
 // @types/node, @types/webpack и ts-node нужны, чтобы использовать такой формат импортов. Иначе require
 // Благодаря модулям и типам выше можно перейти от webpack.config.js к webpack.config.ts
-
 import path from 'path';
 
 import webpack from 'webpack';

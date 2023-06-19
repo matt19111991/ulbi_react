@@ -15,6 +15,7 @@ export function buildPlugins({ paths }: BuildOptions): webpack.WebpackPluginInst
 */
             template: paths.html,
         }),
+
         new webpack.ProgressPlugin(),
 
 /*      MiniCssExtractPlugin создает CSS файл для каждого JS файла (который использует CSS)

@@ -14,8 +14,8 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
         mode,
 
 /*      entry: {
-             first_entry: path.resolve(__dirname, 'src', 'index1.js'), // несколько entry points
-             second_entry: path.resolve(__dirname, 'src', 'index2.js')
+             first_entry:  path.resolve(__dirname, 'src', 'index1.js'), // несколько entry points
+             second_entry: path.resolve(__dirname, 'src', 'index2.js'),
         },
 
 */      entry: paths.entry, // стартовая точка приложения
