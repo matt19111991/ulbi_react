@@ -31,6 +31,21 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
         ],
     };
 
+    const fileLoader = {
+//      если нужно будет добавить обработку шрифтов, достаточно расширить регулярку "/\.(png|jpe?g|gif|woff)$/i"
+        test: /\.(png|jpe?g|gif)$/i, // обрабатывает только PNG, JPG, JPEG и GIF изображения
+        use: [
+            {
+                loader: 'file-loader',
+            },
+        ],
+    };
+
+    const svgLoader = {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'], // обрабатывает только SVG
+    };
+
 //  ts-loader умеет обрабатывать JSX. Для нативного JS нужен дополнительно babel-loader
     const typeScriptLoader =  {
         test: /\.tsx?$/,
@@ -39,6 +54,8 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     };
 
     return [ // порядок лоадеров в массиве имеет значение
+        fileLoader,
+        svgLoader,
         typeScriptLoader,
         cssLoaders,
     ];
