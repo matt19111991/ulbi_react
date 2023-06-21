@@ -8,6 +8,7 @@ export function buildDevServer(options: BuildOptions): DevServerConfiguration {
         Иначе, если обновить страницу '/about', будет 'Cannot GET /about'
 */      historyApiFallback: true,
 
+        hot: true, // Hot Module Replacement включен
         port: options.port,
         open: false, // 'open: true' автоматически открывает страницу при запуске сервера
     };
