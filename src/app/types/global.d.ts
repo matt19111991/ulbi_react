@@ -28,3 +28,5 @@ declare module '*gif';
 declare module '*jpg';
 declare module '*jpeg';
 declare module '*png';
+
+declare const __IS_DEV__: boolean;

@@ -7,7 +7,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 import { BuildOptions } from './types/config';
 
-export function buildPlugins({ paths }: BuildOptions): webpack.WebpackPluginInstance[] {
+export function buildPlugins({ isDev, paths }: BuildOptions): webpack.WebpackPluginInstance[] {
     return [ // порядок плагинов не имеет значения
         new HTMLWebpackPlugin({
 /*          без опции 'template' в файле ./build/index.html не будет <div class='root'></div>
@@ -25,5 +25,10 @@ export function buildPlugins({ paths }: BuildOptions): webpack.WebpackPluginInst
             chunkFilename: 'css/[name].[contenthash:8].css',
             filename: 'css/[name].[contenthash:8].css',
         }),
-    ]
+
+//      DefinePlugin позволяет прокидывать глобальные переменные во всё приложение
+        new webpack.DefinePlugin({
+            __IS_DEV__: JSON.stringify(isDev),
+        }),
+    ];
 }
