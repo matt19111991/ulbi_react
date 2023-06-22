@@ -31,6 +31,9 @@ export function buildPlugins({ isDev, paths }: BuildOptions): webpack.WebpackPlu
             __IS_DEV__: JSON.stringify(isDev),
         }),
 
-        new webpack.HotModuleReplacementPlugin(),
-    ];
+/*      HotModuleReplacementPlugin позволяет применить правки в коде без перезагрузки страницы
+        Обеспечивает более стабильную работу, чем функционал 'webpack-dev-server' из коробки
+
+*/      new webpack.HotModuleReplacementPlugin(),
+  ];
 }
