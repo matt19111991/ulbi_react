@@ -1,8 +1,10 @@
 // const path = require('path'); // Webpack работает в среде Node.js. Есть доступ к 'path'
 
-// @types/node, @types/webpack и ts-node нужны, чтобы использовать такой формат импортов. Иначе require
-// Благодаря модулям и типам выше можно перейти от webpack.config.js к webpack.config.ts
-import path from 'path';
+/* @types/node, @types/webpack и ts-node нужны,
+   чтобы использовать такой формат импортов. Иначе require
+
+   Благодаря модулям и типам выше можно перейти от webpack.config.js к webpack.config.ts
+*/ import path from 'path';
 
 import webpack from 'webpack';
 
@@ -26,7 +28,7 @@ export default (env: BuildEnv) => {
         entry: path.resolve(__dirname, 'src', 'index.tsx'),
         html: path.resolve(__dirname, 'public', 'index.html'),
         src: path.resolve(__dirname, 'src'),
-    }
+    };
 
     const mode: BuildMode = env.mode || 'development';
     const isDev = mode === 'development';

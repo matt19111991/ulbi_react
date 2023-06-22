@@ -8,42 +8,42 @@ import { buildResolvers } from './buildResolvers';
 import { BuildOptions } from './types/config';
 
 export function buildWebpackConfig(options: BuildOptions): webpack.Configuration {
-    const { isDev, mode, paths } = options;
+  const { isDev, mode, paths } = options;
 
-    return {
-        mode,
+  return {
+    mode,
 
-/*      entry: {
-             first_entry:  path.resolve(__dirname, 'src', 'index1.js'), // несколько entry points
-             second_entry: path.resolve(__dirname, 'src', 'index2.js'),
-        },
+/*  entry: {
+      first_entry:  path.resolve(__dirname, 'src', 'index1.js'), // несколько entry points
+      second_entry: path.resolve(__dirname, 'src', 'index2.js'),
+    },
 
-*/      entry: paths.entry, // стартовая точка приложения
+*/  entry: paths.entry, // стартовая точка приложения
 
-        module: {
-            rules: buildLoaders(options),
-        },
+    module: {
+      rules: buildLoaders(options),
+    },
 
-        resolve: buildResolvers(options),
+    resolve: buildResolvers(options),
 
-        devServer: isDev ? buildDevServer(options) : undefined,
+    devServer: isDev ? buildDevServer(options) : undefined,
 
-//      В production нужно отключать source-map для минимизации кода
-        devtool: isDev ? 'inline-source-map' : undefined,
+//  В production нужно отключать source-map для минимизации кода
+    devtool: isDev ? 'inline-source-map' : undefined,
 
-        output: { // настройка конечной сборки
-/*          [name] для динамических названий (для кеширования уже загруженных файлов)
+    output: { // настройка конечной сборки
+/*    [name] для динамических названий (для кеширования уже загруженных файлов)
 
-            [contenthash] - уникальный хэш. Браузер кеширует файлы с одинаковыми именами.
-            Если будут изменения в закешированных файлах, то
-            при сборке поменяется хэш и сгенерируется новое имя файла
-*/          filename: '[name].[contenthash].js',
+      [contenthash] - уникальный хэш. Браузер кеширует файлы с одинаковыми именами.
+      Если будут изменения в закешированных файлах, то
+      при сборке поменяется хэш и сгенерируется новое имя файла
+*/    filename: '[name].[contenthash].js',
 
-            path: paths.build,
+      path: paths.build,
 
-            clean: true, // очистка ненужных файлов (например: файлов, в которых поменялся хэш)
-        },
+      clean: true, // очистка ненужных файлов (например: файлов, в которых поменялся хэш)
+    },
 
-        plugins: buildPlugins(options),
-    }
+    plugins: buildPlugins(options),
+  };
 }

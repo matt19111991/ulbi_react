@@ -7,15 +7,15 @@ const defaultTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme || T
 
 // В типе FC уже описан 'children' prop
 const ThemeProvider: FC = ({ children }) => {
-    const [theme, setTheme] = useState<Theme>(defaultTheme);
+  const [theme, setTheme] = useState<Theme>(defaultTheme);
 
-    const memoizedContext = useMemo(() => ({ setTheme, theme }),  [theme]);
+  const memoizedContext = useMemo(() => ({ setTheme, theme }),  [theme]);
 
-    return (
-        <ThemeContext.Provider value={memoizedContext}>
-            {children}
-        </ThemeContext.Provider>
-    );
+  return (
+    <ThemeContext.Provider value={memoizedContext}>
+      {children}
+    </ThemeContext.Provider>
+  );
 };
 
 export default ThemeProvider;
