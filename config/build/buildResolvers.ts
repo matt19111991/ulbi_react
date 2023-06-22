@@ -10,8 +10,8 @@ export function buildResolvers(options: BuildOptions): webpack.ResolveOptions {
             '@': options.paths.src, // для импортов вида '@/shared/Article'
         },
 
-        при импорте файлов с этими расширениями, можно указывать только название файла (component.tsx => component):
-        import Component from './component';
+        при импорте файлов с этими расширениями, можно указывать только название файла:
+        (component.tsx => component): import Component from './component';
 */      extensions: ['.tsx', '.ts', '.js'],
 
 //      главный файл для каждого модуля
@@ -23,5 +23,5 @@ export function buildResolvers(options: BuildOptions): webpack.ResolveOptions {
 */      modules: [options.paths.src, 'node_modules'],
 
         preferAbsolute: true, // предпочтение отдается абсолютным путям
-    }
+    };
 }

@@ -4,7 +4,10 @@ import webpack from 'webpack';
 import { BuildOptions } from './types/config';
 
 export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
-//  'babel-loader' нужно использовать для корретной работы React / JSX (сейчас это покрывается 'ts-loader')
+/*
+    'babel-loader' нужно использовать для корретной работы React / JSX
+    сейчас это покрывается 'ts-loader'
+*/
 
     const babelLoader = {
         test: /\.(js|jsx|ts|tsx)/,
@@ -25,15 +28,19 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
                         { // i18next-extract options
                             locales: ['ru', 'en'],
 
-                            // 'value' в переводах ("key": "value") по умолчанию будет равно 'key' (value = key)
-                            keyAsDefaultValue: true,
+                         /* 'value' в переводах ("key": "value") по умолчанию будет равно 'key':
+                             value = key
+                         */ keyAsDefaultValue: true,
                         },
                     ],
                 ],
 
 //              настройки для преобразования новых стандартов в старые (поддержка старых браузеров)
                 presets: ['@babel/preset-env'],
-//              presets: ['@babel/preset-env', '@babel/preset-react'], // для React / JSX (без 'ts-loader')
+
+/*              для React / JSX (без 'ts-loader')
+                presets: ['@babel/preset-env', '@babel/preset-react'],
+*/
             },
         },
     };
@@ -57,7 +64,7 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
                             : '[hash:base64:8]',
 
                     },
-                }
+                },
             },
 
             // 'css-loader', // 2. преобразовывает CSS в JS (CommonJS)
@@ -66,8 +73,9 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     };
 
     const fileLoader = {
-//      если нужно будет добавить обработку шрифтов, достаточно расширить регулярку "/\.(png|jpe?g|gif|woff)$/i"
-        test: /\.(png|jpe?g|gif)$/i, // обрабатывает только PNG, JPG, JPEG и GIF изображения
+/*      если нужно будет добавить обработку шрифтов,
+        достаточно расширить регулярку "/\.(png|jpe?g|gif|woff)$/i"
+*/      test: /\.(png|jpe?g|gif)$/i, // обрабатывает только PNG, JPG, JPEG и GIF изображения
         use: [
             {
                 loader: 'file-loader',
