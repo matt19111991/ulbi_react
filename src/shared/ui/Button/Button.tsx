@@ -5,26 +5,24 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import classes from './Button.module.scss';
 
 export enum ThemeButton {
-    CLEAR = 'clear',
+  CLEAR = 'clear',
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    className?: string;
-    theme?: string;
+  className?: string;
+  theme?: string;
 }
 
 export const Button: FC<ButtonProps> = ({
-    className,
-    children,
-    theme,
-    ...rest
-}) => {
-    return (
-        <button
-            className={classNames(classes.Button, {} , [className, classes[theme]])}
-            {...rest}
-        >
-            {children}
-        </button>
-    );
-};
+  className,
+  children,
+  theme,
+  ...rest
+}) => (
+  <button
+    className={classNames(classes.Button, {}, [className, classes[theme]])}
+    {...rest}
+  >
+    {children}
+  </button>
+);

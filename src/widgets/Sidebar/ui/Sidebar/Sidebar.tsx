@@ -7,30 +7,30 @@ import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher/ThemeSwitcher';
 import classes from './Sidebar.module.scss';
 
 interface SidebarProps {
-    className?: string;
+  className?: string;
 }
 
 export const Sidebar = ({ className }: SidebarProps) => {
-    const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
 
-    const onToggle = () => {
-        setCollapsed(prev => !prev);
-    };
+  const onToggle = () => {
+      setCollapsed((prev) => !prev);
+  };
 
-    return (
-        <div
-            className={classNames(
-                classes.Sidebar,
-                { [classes.collapsed]: collapsed },
-                [className],
-            )}
-        >
-            <button onClick={onToggle}>toggle</button>
+  return (
+    <div
+      className={classNames(
+        classes.Sidebar,
+        { [classes.collapsed]: collapsed },
+        [className],
+      )}
+    >
+      <button onClick={onToggle}>toggle</button>
 
-            <div className={classes.switchers}>
-                <ThemeSwitcher />
-                <LangSwitcher className={classes.lng} />
-            </div>
-        </div>
-    );
+      <div className={classes.switchers}>
+        <ThemeSwitcher />
+        <LangSwitcher className={classes.lng} />
+      </div>
+    </div>
+  );
 };

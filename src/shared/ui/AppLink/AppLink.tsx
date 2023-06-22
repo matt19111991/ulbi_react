@@ -6,36 +6,30 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import classes from './AppLink.module.scss';
 
 export enum AppLinkTheme {
-    PRIMARY = 'primary',
-    RED = 'red',
-    SECONDARY = 'secondary',
+  PRIMARY = 'primary',
+  RED = 'red',
+  SECONDARY = 'secondary',
 }
 
 interface AppLinkProps extends LinkProps {
-    className?: string;
-    invertedTheme?: AppLinkTheme;
+  className?: string;
+  invertedTheme?: AppLinkTheme;
 }
 
 export const AppLink: FC<AppLinkProps> = ({
-    className,
-    children,
-    invertedTheme = AppLinkTheme.PRIMARY,
-    to,
-    ...rest
-}) => {
-    return (
-        <Link
-            className={
-                classNames(
-                    classes.AppLink,
-                    {},
-                    [className, classes[invertedTheme]]
-                )
-            }
-            to={to}
-            {...rest}
-        >
-            {children}
-        </Link>
-    );
-};
+  className,
+  children,
+  invertedTheme = AppLinkTheme.PRIMARY,
+  to,
+  ...rest
+}) => (
+  <Link
+    className={
+      classNames(classes.AppLink, {}, [className, classes[invertedTheme]])
+    }
+    to={to}
+    {...rest}
+  >
+    {children}
+  </Link>
+);

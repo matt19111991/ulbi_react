@@ -14,7 +14,9 @@ export function classNames(
         ...Object.entries(mods)
             .filter(([, value]) => Boolean(value)) // оставляем только 'true' значения в 'mods'
             .map(([cls]) => cls), // возвращаем только названия ключей/классов (которые 'true')
-        ...additionalClasses.filter(Boolean) // отфильтровываем undefined и другие 'falsy' значения классов
+
+//          отфильтровываем undefined и другие 'falsy' значения классов
+            ...additionalClasses.filter(Boolean),
     ];
 
     return classesArray.join(' ');
