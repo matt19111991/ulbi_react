@@ -5,7 +5,7 @@
     "color-hex-case": "upper",
     "custom-property-empty-line-before": null,
     "declaration-empty-line-before": null,
-    "indentation": 2,
+    "indentation": [2],
     "number-leading-zero": "never",
     "selector-class-pattern": null,
     "string-quotes": "single",

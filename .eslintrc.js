@@ -5,6 +5,7 @@ module.exports = {
   },
   extends: [
     'airbnb',
+    'plugin:i18next/recommended',
     'plugin:react/recommended',
   ],
   globals: {
@@ -20,6 +21,10 @@ module.exports = {
   },
   plugins: [
     '@typescript-eslint',
+
+//  проверяет на указание i18next переводов для textNodes (не '<p>test</p>', а '<p>{t('test')}</p>')
+    'i18next',
+
     'react',
   ],
 /*
@@ -35,6 +40,9 @@ module.exports = {
 
 //  ключи enum are defined but never used (откл.)
     '@typescript-eslint/no-unused-vars': [2, { args: 'none' }],
+
+//   применять правило только для JSX (вкл.)
+    'i18next/no-literal-string': [2, { markupOnly: true }],
 
 //   в конце импортов нужно указывать расширения файлов .ts(x) (откл.)
     'import/extensions': [2, 'ignorePackages', { ts: 'never', tsx: 'never' }],
