@@ -29,8 +29,6 @@ module.exports = {
     2 === 'error'
 */
   rules: {
-    indent: 0,
-
 /*  запретить теневое копирование (вкл.)
     (переменная имеет то же имя, что и переменная в содержащей ее области)
 */  '@typescript-eslint/no-shadow': 2,
@@ -46,6 +44,9 @@ module.exports = {
 
 //  импорты вида 'export const Sidebar' запрещены, нужен export default (откл.)
     'import/prefer-default-export': 0,
+
+//  проверка отступов (откл.)
+    indent: 0,
 
 //  в JSX отдается предпочтение одиночным кавычкам (вкл.)
     'jsx-quotes': [2, 'prefer-single'],
@@ -65,25 +66,29 @@ module.exports = {
 //  определение функциональных компонентов только через стрелочные функции (вкл.)
     'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
 
+//  разрешить JSX в файлах .jsx и .tsx (вкл.)
+    'react/jsx-filename-extension': [2, { extensions: ['.jsx', '.tsx'] }],
+
+//  базовые отступы в JSX: 2 пробела (2-ой элемент массива)
+    'react/jsx-indent': [2, 2],
+
+//  отступы для props в JSX: 2 пробела (2-ой элемент массива)
+    'react/jsx-indent-props': [2, 2],
+
 //  нельзя оставить комментарий в JSX (откл.)
     'react/jsx-one-expression-per-line': 0,
 
 //  нельзя прокидывать {...rest} в JSX (откл.)
     'react/jsx-props-no-spreading': 0,
 
-//  Разрешить JSX в файлах .jsx и .tsx (вкл.)
-    'react/jsx-filename-extension': [2, { extensions: ['.jsx', '.tsx'] }],
-
-//  Необходим 'import React from "react"' в каждом файле с JSX (откл.)
+//  необходим 'import React from "react"' в каждом файле с JSX (откл.)
     'react/react-in-jsx-scope': 0,
 
-//  Необходимо задавать значения по умолчанию для необязательных props (откл.)
+//  необходимо задавать значения по умолчанию для необязательных props (откл.)
     'react/require-default-props': 0,
   },
 
-// Без 'settings': ошибка 'Unable to resolve path to module'
-
-   settings: {
+   settings: { // без 'settings': ошибка 'Unable to resolve path to module'
      'import/resolver': {
        node: {
          extensions: ['.ts', '.tsx'],
