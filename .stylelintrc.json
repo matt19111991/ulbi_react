@@ -1,6 +1,5 @@
 {
-  "extends": "stylelint-config-standard-scss",
-  "plugins": ["./stylelintCustomPlugin"],
+  "extends": "stylelint-config-recommended-scss",
   "rules": {
     "at-rule-empty-line-before": null,
     "color-hex-case": "upper",
@@ -10,7 +9,6 @@
     "number-leading-zero": "never",
     "selector-class-pattern": null,
     "string-quotes": "single",
-    "value-keyword-case": null,
-    "custom-property-no-missing-var-function": null
+    "value-keyword-case": null
   }
 }
