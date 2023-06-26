@@ -1,14 +1,19 @@
 /*
- * For a detailed explanation regarding each configuration property and type check, visit:
- * https://jestjs.io/docs/configuration
- */
-
-/*
    Установка '@babel/preset-typescript' исправляет ошибку "Jest encountered an unexpected token.
    Jest failed to parse a file. This happens e.g. when your code or its dependencies use
    non-standard JavaScript syntax, or when Jest is not configured to support such syntax."
 
-   @babel/preset-typescript нужно добавить в presets (babel.config.json)
+   @babel/preset-typescript нужно добавить в presets (babel.config.json) =>
+   пресета хватит для тестирования обычных функций
+*/
+
+/*
+   Установка '@babel/preset-react' исправляет ошибку "Jest encountered an unexpected token.
+   Jest failed to parse a file. This happens e.g. when your code or its dependencies use
+   non-standard JavaScript syntax, or when Jest is not configured to support such syntax."
+
+   @babel/preset-react нужно добавить в presets (babel.config.json) =>
+   пресет нужен при работе с React/JSX/DOM
 */
 
 /*
@@ -29,11 +34,23 @@ export default {
   // An array of file extensions your modules use
   moduleFileExtensions: ['js', 'mjs', 'cjs', 'jsx', 'ts', 'tsx', 'json', 'node'],
 
+  // A map from regular expressions to module names or to arrays of module names that
+  // allow to stub out resources with a single module;
+
+  // для корректной работы CSS модулей в тестах ('identity-obj-proxy' mocks CSS modules)
+  moduleNameMapper: {
+    '\\.s?css$': 'identity-obj-proxy',
+  },
+
   // настройка абсолютных импортов
   modulePaths: ['<rootDir>src'],
 
   // The root directory that Jest should scan for tests and modules within
   rootDir: '../../', // т.к. конфиг лежит не в корне проекта
+
+  // A list of paths to modules that run some code to configure or
+  // set up the testing framework before each test
+  setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
 
   // The test environment that will be used for testing
   testEnvironment: 'jsdom',
@@ -104,10 +121,6 @@ export default {
   // maxWorkers: 2 will use a maximum of 2 workers.
   // maxWorkers: "50%",
 
-  // A map from regular expressions to module names or to arrays of module names that
-  // allow to stub out resources with a single module
-  // moduleNameMapper: {},
-
   // An array of regexp pattern strings, matched against all module paths before
   // considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
@@ -150,10 +163,6 @@ export default {
   // The paths to modules that run some code to configure or
   // set up the testing environment before each test
   // setupFiles: [],
-
-  // A list of paths to modules that run some code to configure or
-  // set up the testing framework before each test
-  // setupFilesAfterEnv: [],
 
   // The number of seconds after which a test is considered
   // as slow and reported as such in the results.
