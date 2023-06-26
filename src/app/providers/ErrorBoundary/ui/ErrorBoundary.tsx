@@ -24,6 +24,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   static getDerivedStateFromError(error: Error) {
     // обновляем state и следующий рендер покажет резервный UI ошибки
 
+    // eslint-disable-next-line no-console
     console.log('getDerivedStateFromProps error:', error);
 
     return { hasError: true };
