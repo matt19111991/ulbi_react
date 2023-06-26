@@ -29,6 +29,9 @@ export default {
   // An array of file extensions your modules use
   moduleFileExtensions: ['js', 'mjs', 'cjs', 'jsx', 'ts', 'tsx', 'json', 'node'],
 
+  // настройка абсолютных импортов
+  modulePaths: ['<rootDir>src'],
+
   // The root directory that Jest should scan for tests and modules within
   rootDir: '../../', // т.к. конфиг лежит не в корне проекта
 
