@@ -1,5 +1,4 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-
 import { Loader } from 'shared/ui/Loader/Loader';
 
 import classes from './PageLoader.module.scss';
