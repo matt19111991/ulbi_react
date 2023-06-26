@@ -18,8 +18,8 @@ export function buildResolvers(options: BuildOptions): webpack.ResolveOptions {
         mainFiles: ['index'],
 
 /*      директория с модулями (по умолчанию только 'node_modules'):
-        задаем, чтобы была возможность пользоваться относительными импортами
-        должна быть консистентность с tsconfig.json
+        задаем, чтобы была возможность пользоваться абсолютными импортами;
+        должна быть консистентность с tsconfig.json (paths)
 */      modules: [options.paths.src, 'node_modules'],
 
         preferAbsolute: true, // предпочтение отдается абсолютным путям

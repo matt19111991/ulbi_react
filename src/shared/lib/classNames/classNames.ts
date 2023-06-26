@@ -11,12 +11,13 @@ export function classNames(
 ): string {
     const classesArray = [
         rootClass,
+
         ...Object.entries(mods)
             .filter(([, value]) => Boolean(value)) // оставляем только 'true' значения в 'mods'
             .map(([cls]) => cls), // возвращаем только названия ключей/классов (которые 'true')
 
-//          отфильтровываем undefined и другие 'falsy' значения классов
-            ...additionalClasses.filter(Boolean),
+//      отфильтровываем undefined и другие 'falsy' значения классов
+        ...additionalClasses.filter(Boolean),
     ];
 
     return classesArray.join(' ');

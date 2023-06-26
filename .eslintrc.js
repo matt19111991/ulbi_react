@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    jest: true,
   },
   extends: [
     'airbnb',
@@ -41,7 +42,7 @@ module.exports = {
 //  ключи enum are defined but never used (откл.)
     '@typescript-eslint/no-unused-vars': [2, { args: 'none' }],
 
-//   применять правило только для JSX (вкл.)
+//   переводы и "t('Главная страница')" должны быть только в JSX (вкл.)
     'i18next/no-literal-string': [2, { markupOnly: true }],
 
 //   в конце импортов нужно указывать расширения файлов .ts(x) (откл.)
@@ -50,14 +51,17 @@ module.exports = {
 //  webpack и плагины должны быть в dependencies (откл.), т.к. их место в devDependencies
     'import/no-extraneous-dependencies': 0,
 
-//  импорты вида 'export const Sidebar' запрещены, нужен export default (откл.)
+//  импорты вида 'export const Sidebar' запрещены; нужен export default (откл.)
     'import/prefer-default-export': 0,
 
 //  проверка отступов (откл.)
     indent: 0,
 
-//  в JSX отдается предпочтение одиночным кавычкам (вкл.)
+//  в JSX отдается предпочтение одинарным кавычкам (вкл.)
     'jsx-quotes': [2, 'prefer-single'],
+
+//  проверка на максимально допустимую длину строки (100 символов) (вкл. для всего, кроме комментариев)
+    'max-len': [2, { code: 100, ignoreComments: true }],
 
 //  множество пробелов запрещено (откл.)
     'no-multi-spaces': 0,
