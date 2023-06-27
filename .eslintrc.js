@@ -12,6 +12,14 @@ module.exports = {
   globals: {
     __IS_DEV__: 'readonly',
   },
+  overrides: [
+    {
+      files: ['*.test.*'],
+      rules: {
+        'i18next/no-literal-string': 0, // отключить правило для тестов
+      },
+    },
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
