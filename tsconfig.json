@@ -26,7 +26,15 @@
     import * as path from 'path'; => import path from 'path';
 */  "allowSyntheticDefaultImports": true
   },
- "include": ["./config/jest/setupTests.ts"],
+
+/* если поле 'includes' не указано: tsconfig работает для всех .ts(x) файлов
+   если указано: нужно перечислить все папки, которые должны проверяться TypeScript-ом
+*/"include": [
+    "./config/jest/setupTests.ts",
+    "./src/**/*.ts",
+    "./src/**/*.tsx"
+  ],
+
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS" // исправляет SyntaxError: Cannot use import statement outside a module для webpack.config

@@ -51,8 +51,8 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': [2, { args: 'none' }],
 
 /*   переводы и "t('Главная страница')" должны быть только в JSX (вкл.)
-     и должны игнорироваться атрибуты 'data-testid' (вкл.)
-*/   'i18next/no-literal-string': [2, { ignoreAttribute: ['data-testid'], markupOnly: true }],
+     и должны игнорироваться атрибуты 'data-testid' и 'to' (ссылки) (вкл.)
+*/   'i18next/no-literal-string': [2, { ignoreAttribute: ['data-testid', 'to'], markupOnly: true }],
 
 //   в конце импортов нужно указывать расширения файлов .ts(x) (откл.)
     'import/extensions': [2, 'ignorePackages', { ts: 'never', tsx: 'never' }],
