@@ -8,6 +8,7 @@ module.exports = {
     'airbnb',
     'plugin:i18next/recommended',
     'plugin:react/recommended',
+    'plugin:storybook/recommended',
   ],
   globals: {
     __IS_DEV__: 'readonly',
@@ -109,12 +110,12 @@ module.exports = {
     'react/require-default-props': 0,
   },
 
-   settings: { // без 'settings': ошибка 'Unable to resolve path to module'
-     'import/resolver': {
-       node: {
-         extensions: ['.ts', '.tsx'],
-         moduleDirectory: ['src', 'node_modules'],
+  settings: { // без 'settings': ошибка 'Unable to resolve path to module'
+    'import/resolver': {
+      node: {
+        extensions: ['.ts', '.tsx'],
+        moduleDirectory: ['src', 'node_modules'],
       },
-     },
-   },
+    },
+  },
 };
