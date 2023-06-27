@@ -7,6 +7,6 @@ import { Theme } from 'app/providers/ThemeProvider';
 
 export const ThemeDecorator = (theme: Theme) => (StoryComponent: StoryObj): JSX.Element => (
   <div className={`app ${theme}`}>
-    <StoryComponent />
+    {/* <StoryComponent /> */}
   </div>
 );
