@@ -21,6 +21,8 @@
    'jest-environment-jsdom' is no longer shipped by default, make sure to install it separately.'
 */
 
+import path from 'path';
+
 export default {
   // Automatically clear mock calls, instances, contexts and results before every test
   clearMocks: true,
@@ -37,9 +39,12 @@ export default {
   // A map from regular expressions to module names or to arrays of module names that
   // allow to stub out resources with a single module;
 
-  // для корректной работы CSS модулей в тестах ('identity-obj-proxy' mocks CSS modules)
   moduleNameMapper: {
+    // для корректной работы CSS модулей в тестах ('identity-obj-proxy' mocks CSS modules)
     '\\.s?css$': 'identity-obj-proxy',
+
+    // для корректной работы SVG файлов в тестах создаем заглушку
+    '\\.svg$': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
   },
 
   // настройка абсолютных импортов

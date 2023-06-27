@@ -14,7 +14,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*.test.*'],
+      files: ['**/src/**/*.test.{ts,tsx}'],
       rules: {
         'i18next/no-literal-string': 0, // отключить правило для тестов
       },
@@ -50,8 +50,9 @@ module.exports = {
 //  ключи enum are defined but never used (откл.)
     '@typescript-eslint/no-unused-vars': [2, { args: 'none' }],
 
-//   переводы и "t('Главная страница')" должны быть только в JSX (вкл.)
-    'i18next/no-literal-string': [2, { markupOnly: true }],
+/*   переводы и "t('Главная страница')" должны быть только в JSX (вкл.)
+     и должны игнорироваться атрибуты 'data-testid' (вкл.)
+*/   'i18next/no-literal-string': [2, { ignoreAttribute: ['data-testid'], markupOnly: true }],
 
 //   в конце импортов нужно указывать расширения файлов .ts(x) (откл.)
     'import/extensions': [2, 'ignorePackages', { ts: 'never', tsx: 'never' }],
