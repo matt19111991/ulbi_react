@@ -4,27 +4,27 @@ import { Theme } from 'app/providers/ThemeProvider';
 
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
-import { Sidebar } from './Sidebar';
+import { NotFoundPage } from './NotFoundPage';
 
 const meta = {
-  title: 'widgets/Sidebar',
-  component: Sidebar,
+  title: 'pages/NotFoundPage',
+  component: NotFoundPage,
   argTypes: {
     backgroundColor: {
       control: 'color',
     },
   },
-} as Meta<typeof Sidebar>;
+} as Meta<typeof NotFoundPage>;
 
 type Story = StoryObj<typeof meta>;
 
-// Light sidebar
+// Normal not found page
 
-export const Light: Story = {
+export const Normal: Story = {
   args: {},
 };
 
-// Dark sidebar
+// Dark not found page
 
 export const Dark: Story = {
   args: {},

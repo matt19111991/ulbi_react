@@ -4,27 +4,27 @@ import { Theme } from 'app/providers/ThemeProvider';
 
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
-import { Sidebar } from './Sidebar';
+import { Loader } from './Loader';
 
 const meta = {
-  title: 'widgets/Sidebar',
-  component: Sidebar,
+  title: 'shared/Loader',
+  component: Loader,
   argTypes: {
     backgroundColor: {
       control: 'color',
     },
   },
-} as Meta<typeof Sidebar>;
+} as Meta<typeof Loader>;
 
 type Story = StoryObj<typeof meta>;
 
-// Light sidebar
+// Normal loader
 
-export const Light: Story = {
+export const Normal: Story = {
   args: {},
 };
 
-// Dark sidebar
+// Dark loader
 
 export const Dark: Story = {
   args: {},

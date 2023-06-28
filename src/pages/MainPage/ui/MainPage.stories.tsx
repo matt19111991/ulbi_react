@@ -4,27 +4,27 @@ import { Theme } from 'app/providers/ThemeProvider';
 
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
-import { Sidebar } from './Sidebar';
+import MainPage from './MainPage';
 
 const meta = {
-  title: 'widgets/Sidebar',
-  component: Sidebar,
+  title: 'pages/MainPage',
+  component: MainPage,
   argTypes: {
     backgroundColor: {
       control: 'color',
     },
   },
-} as Meta<typeof Sidebar>;
+} as Meta<typeof MainPage>;
 
 type Story = StoryObj<typeof meta>;
 
-// Light sidebar
+// Normal main page
 
-export const Light: Story = {
+export const Normal: Story = {
   args: {},
 };
 
-// Dark sidebar
+// Dark main page
 
 export const Dark: Story = {
   args: {},
