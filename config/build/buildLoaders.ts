@@ -1,6 +1,7 @@
 import webpack from 'webpack';
 
 import { buildCssLoader } from './loaders/buildCssLoader';
+import { buildSvgLoader } from './loaders/buildSvgLoader';
 
 import { BuildOptions } from './types/config';
 
@@ -59,10 +60,7 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
         ],
     };
 
-    const svgLoader = {
-        test: /\.svg$/,
-        use: ['@svgr/webpack'], // обрабатывает только SVG
-    };
+    const svgLoader = buildSvgLoader();
 
 //  ts-loader умеет обрабатывать JSX. Для нативного JS нужен дополнительно babel-loader
     const typeScriptLoader =  {

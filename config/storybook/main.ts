@@ -1,7 +1,7 @@
 /*
-  Команда для инициализации Storybook v7.1.0-alpha.40 под Webpack 5:
-  npx sb@next init --builder webpack5
-  В остальных случаях ошибка "Error: Cannot find module './util'"
+  Перед инициализацией storybook, необходимо очистить npm cache при помощи команды:
+  rm -rf ~/.npm/_npx
+  Иначе ошибка "Error: Cannot find module './util'"
 */
 
 import type { StorybookConfig } from '@storybook/react-webpack5';
@@ -18,10 +18,6 @@ const config: StorybookConfig = {
   framework: {
     name: '@storybook/react-webpack5',
     options: {},
-  },
-
-  docs: {
-    autodocs: 'tag',
   },
 };
 

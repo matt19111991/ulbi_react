@@ -86,7 +86,13 @@ module.exports = {
     'react/button-has-type': 0,
 
 //  определение функциональных компонентов только через стрелочные функции (вкл.)
-    'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
+    'react/function-component-definition': [
+      2,
+      {
+        namedComponents: 'arrow-function',
+        unnamedComponents: 'arrow-function',
+      },
+    ],
 
 //  разрешить JSX в файлах .jsx и .tsx (вкл.)
     'react/jsx-filename-extension': [2, { extensions: ['.jsx', '.tsx'] }],

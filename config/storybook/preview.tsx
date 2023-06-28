@@ -8,7 +8,7 @@ import { ThemeDecorator } from '../../src/shared/config/storybook/ThemeDecorator
 
 import { Theme } from '../../src/app/providers/ThemeProvider';
 
-const preview: Preview = {
+export const preview: Preview = {
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
 
@@ -18,9 +18,11 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
-
-    decorators: [GlobalStyleDecorator, ThemeDecorator(Theme.DARK)],
   },
 };
 
-export default preview;
+/* добавление декораторов на глобальном уровне
+   по умолчанию добавлена светлая тема, локально можно переопределить на другую
+*/
+
+export const decorators = [GlobalStyleDecorator, ThemeDecorator(Theme.LIGHT)];
