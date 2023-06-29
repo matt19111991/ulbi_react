@@ -10,7 +10,7 @@ on:
 jobs:
   pipeline: # любое название для job
     runs-on: ubuntu-latest
-    stategy:
+    strategy:
       matrix:
         node-version: [ 17.x ] # задаем версию для Node.js
 
