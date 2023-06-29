@@ -3,3 +3,4 @@
 dist
 extractedTranslations
 node_modules
+storybook-static
