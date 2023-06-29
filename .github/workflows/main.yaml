@@ -46,3 +46,11 @@ jobs:
       # запускаем unit тестирование
       - name: Unit testing
         run: npm run test:unit
+
+      # собираем storybook build
+      - name: Build storybook
+        run: npm run storybook:build
+
+      # запускаем скриншотное тестирование (loki)
+      - name: Screenshot testing
+        run: npm run test:ui:ci
