@@ -1,17 +1,48 @@
-name: GitHub Actions Demo
-on: [push]
+name: linting, testing, building
+
+# запуск GitHub actions будет происходить на push и pull request (ветка 'master')
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
 jobs:
-  Explore-GitHub-Actions:
+  pipeline: # любое название для job
     runs-on: ubuntu-latest
+    stategy:
+      matrix:
+        node-version: [ 17.x ] # задаем версию для Node.js
+
     steps:
-      - run: echo "🎉The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "The name of your branch is ${{ github.ref }} and you repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v2
-      - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "This job's status is ${{ job.status }}."
+      - uses: actions/checkout@v2
+
+      # устанавливаем в среду, где будут запускаться GitHub Actions, заданную ранее версию Node.js
+      - name: Starting Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # устанавливаем node_modules
+      - name: Install modules
+        run: npm install
+
+      # собираем production build
+      - name: Build production project
+        run: npm run build:prod
+
+      # проверяем корректность CSS
+      - name: Linting CSS
+        run: npm run lint:scss
+
+      # проверяем корректность TypeScript
+      - name: Linting Typescript
+        run: npm run lint:ts
+
+      # проверяем корректность CSS
+      - name: Linting CSS
+        run: npm run lint:scss
+
+      # запускаем unit тесты
+      - name: Unit testing
+        run: npm run test:unit
