@@ -1,0 +1,19 @@
+loki - инструмент скриншотного тестирования storybook. Часть регрессионного тестирования.
+Позволяет сравнивать предыдущую верстку с текущей.
+
+Имеются проблемы с работой под Windows
+
+После установки loki как devDependency, необходима инициализация с указанием пути к конфигу storybook:
+    npx loki init --config ./config/storybook
+
+В package.json можно задавать:
+    - устройства
+        - 'chrome.laptop', 'chrome.iphone7'
+    - target (при помощи какого приложения будет запускаться):
+        - 'chrome.docker', 'chrome.app'
+
+Запуск скриншотного тестирования storybook (на выходе скриншоты в папке ./loki)
+    npx loki test
+
+Обновить скриншоты
+    loki update
