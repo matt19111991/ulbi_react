@@ -33,24 +33,31 @@ jobs:
 
       # собираем production build
       - name: Build production project
+        # запуск команды в любом случае (даже если завалилось выполнение предыдущей команды)
+        if: always()
         run: npm run build:prod
 
       # проверяем корректность TypeScript
       - name: Linting Typescript
+        if: always()
         run: npm run lint:ts
 
       # проверяем корректность CSS
       - name: Linting CSS
+        if: always()
         run: npm run lint:scss
 
       # запускаем unit тестирование
       - name: Unit testing
+        if: always()
         run: npm run test:unit
 
       # собираем storybook build
       - name: Build storybook
+        if: always()
         run: npm run storybook:build
 
       # запускаем скриншотное тестирование (loki)
       - name: Screenshot testing
         run: npm run test:ui:ci
+        if: always()
