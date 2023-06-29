@@ -4,7 +4,7 @@ import { Theme } from 'app/providers/ThemeProvider';
 
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
-import { Button, ThemeButton } from './Button';
+import { Button, ButtonSize, ButtonTheme } from './Button';
 
 const meta = {
   title: 'shared/Button',
@@ -29,7 +29,7 @@ export const PrimaryLight: Story = {
 export const ClearLight: Story = {
   args: {
     children: 'Text',
-    theme: ThemeButton.CLEAR,
+    theme: ButtonTheme.CLEAR,
   },
 };
 
@@ -38,7 +38,7 @@ export const ClearLight: Story = {
 export const OutlineLight: Story = {
   args: {
     children: 'Text',
-    theme: ThemeButton.OUTLINE,
+    theme: ButtonTheme.OUTLINE,
   },
 };
 
@@ -47,10 +47,80 @@ export const OutlineLight: Story = {
 export const OutlineDark: Story = {
   args: {
     children: 'Text',
-    theme: ThemeButton.OUTLINE,
+    theme: ButtonTheme.OUTLINE,
   },
 };
 
 OutlineDark.decorators = [ThemeDecorator(Theme.DARK)]; // добавление декораторов на локальном уровне
+
+// Outline large button
+
+export const OutlineLarge: Story = {
+  args: {
+    children: 'Text',
+    size: ButtonSize.L,
+    theme: ButtonTheme.OUTLINE,
+  },
+};
+
+// Outline extra large button
+
+export const OutlineExtraLarge: Story = {
+  args: {
+    children: 'Text',
+    size: ButtonSize.XL,
+    theme: ButtonTheme.OUTLINE,
+  },
+};
+
+// Background theme button
+
+export const BackgroundTheme: Story = {
+  args: {
+    children: 'Text',
+    theme: ButtonTheme.BACKGROUND,
+  },
+};
+
+// Background inverted theme button
+
+export const BackgroundInvertedTheme: Story = {
+  args: {
+    children: 'Text',
+    theme: ButtonTheme.BACKGROUND_INVERTED,
+  },
+};
+
+// Square medium button
+
+export const SquareMedium: Story = {
+  args: {
+    children: '>',
+    square: true,
+    theme: ButtonTheme.BACKGROUND_INVERTED,
+  },
+};
+
+// Square large button
+
+export const SquareLarge: Story = {
+  args: {
+    children: '>',
+    size: ButtonSize.L,
+    square: true,
+    theme: ButtonTheme.BACKGROUND_INVERTED,
+  },
+};
+
+// Square extra large button
+
+export const SquareExtraLarge: Story = {
+  args: {
+    children: '>',
+    size: ButtonSize.XL,
+    square: true,
+    theme: ButtonTheme.BACKGROUND_INVERTED,
+  },
+};
 
 export default meta;

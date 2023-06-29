@@ -6,8 +6,32 @@
   width: var(--sidebar-width);
 }
 
-.collapsed {
-  width: var(--sidebar-width-collapsed);
+.collapseBtn {
+  bottom: 32px;
+  position: absolute;
+  right: -32px;
+}
+
+.icon {
+  fill: var(--inverted-primary-color);
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+  margin-top: 20px;
+}
+
+.item {
+  align-items: center;
+  display: flex;
+  margin-top: 10px;
+}
+
+.link {
+  margin-left: 10px;
+  opacity: 1;
 }
 
 .lng {
@@ -20,4 +44,23 @@
   justify-content: center;
   position: absolute;
   width: 100%;
+}
+
+.collapsed {
+  width: var(--sidebar-width-collapsed);
+
+  .link {
+    opacity: 0;
+    transition: .2s opacity;
+    width: 0;
+  }
+
+  .lng {
+    margin-left: 0;
+  }
+
+  .switchers {
+    align-items: center;
+    flex-direction: column;
+  }
 }
