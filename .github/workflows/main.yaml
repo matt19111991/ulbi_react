@@ -25,7 +25,7 @@ jobs:
 
       # очищаем кэш
       - name: Cache clean
-        run: npm cache clean
+        run: npm cache clean --force
 
       # устанавливаем node_modules
       - name: Install modules
