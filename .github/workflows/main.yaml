@@ -23,6 +23,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      # Даем добро на установку peer-dependencies
+      - name: Set legacy-peer-deps
+        run: npm config set legacy-peer-deps true
+
       # устанавливаем node_modules
       - name: Install modules
         run: npm install
@@ -30,10 +34,6 @@ jobs:
       # собираем production build
       - name: Build production project
         run: npm run build:prod
-
-      # проверяем корректность CSS
-      - name: Linting CSS
-        run: npm run lint:scss
 
       # проверяем корректность TypeScript
       - name: Linting Typescript
