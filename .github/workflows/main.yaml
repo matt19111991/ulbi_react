@@ -23,10 +23,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      # очищаем кэш
-      - name: Cache clean
-        run: npm cache clean --force
-
       # устанавливаем node_modules
       - name: Install modules
         run: npm install

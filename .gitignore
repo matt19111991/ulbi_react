@@ -3,4 +3,5 @@
 dist
 extractedTranslations
 node_modules
+package-lock.json
 storybook-static
