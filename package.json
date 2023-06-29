@@ -52,6 +52,7 @@
     "@types/webpack": "^5.28.1",
     "@types/webpack-bundle-analyzer": "^4.6.0",
     "@typescript-eslint/eslint-plugin": "^5.60.0",
+    "@typescript-eslint/parser": "^5.60.1",
     "babel-loader": "^9.1.2",
     "babel-plugin-i18next-extract": "^0.9.0",
     "css-loader": "^6.8.1",
