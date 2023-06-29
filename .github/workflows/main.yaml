@@ -43,6 +43,6 @@ jobs:
       - name: Linting CSS
         run: npm run lint:scss
 
-      # запускаем unit тесты
+      # запускаем unit тестирование
       - name: Unit testing
         run: npm run test:unit
