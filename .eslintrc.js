@@ -8,6 +8,7 @@ module.exports = {
     'airbnb',
     'plugin:i18next/recommended',
     'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
     'plugin:storybook/recommended',
   ],
   globals: {
@@ -36,6 +37,7 @@ module.exports = {
     'i18next',
 
     'react',
+    'react-hooks',
   ],
 /*
   rules:
@@ -47,6 +49,9 @@ module.exports = {
 /*  запретить теневое копирование (вкл.)
     (переменная имеет то же имя, что и переменная в содержащей ее области)
 */  '@typescript-eslint/no-shadow': 2,
+
+//   в 'useEffect' должны использоваться стрелочные функции (откл.)
+    'arrow-body-style': 0,
 
 //  ключи enum are defined but never used (откл.)
     '@typescript-eslint/no-unused-vars': [2, { args: 'none' }],
@@ -66,6 +71,14 @@ module.exports = {
 
 //  проверка отступов (откл.)
     indent: 0,
+
+/*
+    проверка семантики (div помимо onClick обработчика
+    должен иметь хотя бы один keyboard обработчик) (откл.)
+*/ 'jsx-a11y/click-events-have-key-events': 0,
+
+//  проверка семантики (div не должен иметь onClick обработчиков или должна быть указана 'role') (откл.)
+    'jsx-a11y/no-static-element-interactions': 0,
 
 //  в JSX отдается предпочтение одинарным кавычкам (вкл.)
     'jsx-quotes': [2, 'prefer-single'],

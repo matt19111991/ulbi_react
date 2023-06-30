@@ -1,0 +1,44 @@
+.Modal {
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.content {
+  background: var(--bg-color);
+  border-radius: 12px;
+  max-width: 60%;
+  padding: 20px;
+  transform: scale(.5);
+  transition: .3s transform;
+}
+
+.isClosing { // класс для анимации закрытия модального окна
+  .content {
+    transform: scale(.2);
+  }
+}
+
+.opened {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: var(--modal-z-index);
+
+  .content {
+    transform: scale(1);
+  }
+}
+
+.overlay {
+  align-items: center;
+  background: var(--overlay-color);
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
