@@ -23,8 +23,8 @@ const ANIMATION_DELAY: number = 300;
 export const Modal = ({
   children,
   className,
-  onClose,
   isOpen,
+  onClose,
 }: ModalProps) => {
   const [isClosing, setIsClosing] = useState(false);
 
@@ -33,8 +33,6 @@ export const Modal = ({
 
   const closeHandler = useCallback(() => {
     if (onClose) {
-      onClose();
-
       setIsClosing(true); // при нажатии на зону backdrop-а: 'isClosing' становится 'true'
 
       timerRef.current = setTimeout(() => {
@@ -51,9 +49,10 @@ export const Modal = ({
   };
 
 /*
-  'useEffect' зависит от 'onKeyDown', поэтому 'onKeyDown' нужно мемоизировать:
-  иначе 'onKeyDown' будет пересоздаваться на каждый перерендер,
-  будет создаваться новая ссылка на функцию и циклично запускаться 'useEffect'
+  'useEffect' зависит от 'onKeyDown',
+  поэтому 'onKeyDown' нужно мемоизировать или описать внутри 'useEffect' как callback:
+  иначе 'onKeyDown' будет пересоздаваться на каждый перерендер и
+  будет создаваться новая ссылка на функцию и циклично запускать 'useEffect'
 */
   const onKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape') {
