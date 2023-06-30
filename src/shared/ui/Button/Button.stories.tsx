@@ -33,6 +33,15 @@ export const ClearLight: Story = {
   },
 };
 
+// Clear inverted button
+
+export const ClearInverted: Story = {
+  args: {
+    children: 'Text',
+    theme: ButtonTheme.CLEAR_INVERTED,
+  },
+};
+
 // Outline light button
 
 export const OutlineLight: Story = {

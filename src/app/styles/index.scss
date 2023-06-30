@@ -21,12 +21,12 @@
 @import 'variables/global';
 
 body {
-  background: var(--bg-color);
   color: var(--primary-color);
   font: var(--font-m);
 }
 
 .app {
+  background: var(--bg-color);
   min-height: 100vh;
 }
 

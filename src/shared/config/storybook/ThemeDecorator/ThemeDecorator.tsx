@@ -1,15 +1,17 @@
 import { ReactElement } from 'react';
 import type { StoryFn } from '@storybook/react';
 
-import { Theme } from 'app/providers/ThemeProvider';
+import { Theme, ThemeProvider } from 'app/providers/ThemeProvider';
 
 // через замыкания пробрасываем тему, затем функцию Story и вызываем её
 
 export const ThemeDecorator = (theme: Theme) => (Story: StoryFn): ReactElement<unknown> => {
   const getThemedStory = () => (
-    <div className={`app ${theme}`}>
-      <Story />
-    </div>
+    <ThemeProvider initialTheme={theme}>
+      <div className={`app ${theme}`}>
+        <Story />
+      </div>
+    </ThemeProvider>
   );
 
 /* Если вернуть JSX то будет ошибка ESLint:

@@ -5,9 +5,14 @@ import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext } from '../lib/ThemeContex
 // localStorage все типы приводит к 'string'. 'as' нужен, чтобы вместо типа 'string' был тип 'Theme'
 const defaultTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme || Theme.LIGHT;
 
+interface ThemeProviderProps {
+  initialTheme?: Theme;
+}
+
 // В типе FC уже описан 'children' prop
-const ThemeProvider: FC = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>(defaultTheme);
+const ThemeProvider: FC<ThemeProviderProps> = ({ children, initialTheme }) => {
+  // по умолчанию устанавливаем либо 'initialTheme' из props или 'defaultTheme' из localStorage
+  const [theme, setTheme] = useState<Theme>(initialTheme || defaultTheme);
 
   const memoizedContext = useMemo(() => ({ setTheme, theme }),  [theme]);
 

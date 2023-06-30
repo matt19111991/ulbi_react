@@ -7,6 +7,8 @@ import {
   useState,
 } from 'react';
 
+import { useTheme } from 'app/providers/ThemeProvider';
+
 import { classNames } from 'shared/lib/classNames/classNames';
 
 import { Portal } from 'shared/ui/Portal/Portal';
@@ -28,6 +30,8 @@ export const Modal = ({
   isOpen,
   onClose,
 }: ModalProps) => {
+  const { theme } = useTheme();
+
   const [isClosing, setIsClosing] = useState(false);
 
   // <ReturnType<typeof setTimeout>: получаем тип, который возвращает функция 'setTimeout'
@@ -77,6 +81,7 @@ export const Modal = ({
   const mods: Record<string, boolean> = {
     [classes.isClosing]: isClosing,
     [classes.opened]: isOpen,
+    [classes[theme]]: true,
   };
 
   return (
