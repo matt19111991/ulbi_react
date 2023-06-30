@@ -107,6 +107,14 @@ module.exports = {
       },
     ],
 
+/*
+    в массиве зависимостей хука должны быть указаны все переменные и функции,
+    которые используются в текущем хуке (вкл.)
+*/ 'react-hooks/exhaustive-deps': 2,
+
+//  проверка главных правил использования hooks (вкл.)
+    'react-hooks/rules-of-hooks': 2,
+
 //  разрешить JSX в файлах .jsx и .tsx (вкл.)
     'react/jsx-filename-extension': [2, { extensions: ['.jsx', '.tsx'] }],
 

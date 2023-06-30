@@ -10,8 +10,6 @@ import { Modal } from 'shared/ui/Modal/Modal';
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
 
-import './styles/index.scss';
-
 const App = () => {
   const { theme } = useTheme();
 

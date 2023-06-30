@@ -18,12 +18,6 @@
   transition: .3s transform;
 }
 
-.isClosing { // класс для анимации закрытия модального окна
-  .content {
-    transform: scale(.2);
-  }
-}
-
 .opened {
   opacity: 1;
   pointer-events: auto;
@@ -41,4 +35,14 @@
   height: 100%;
   justify-content: center;
   width: 100%;
+}
+
+/*
+  класс для анимации закрытия модального окна. должен быть в самом конце файла,
+  иначе свойство 'transform' перепишется и не будет анимации на закрытие окна
+*/
+.isClosing {
+  .content {
+    transform: scale(.2);
+  }
 }

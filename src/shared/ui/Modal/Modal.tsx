@@ -9,6 +9,8 @@ import {
 
 import { classNames } from 'shared/lib/classNames/classNames';
 
+import { Portal } from 'shared/ui/Portal/Portal';
+
 import classes from './Modal.module.scss';
 
 interface ModalProps {
@@ -51,8 +53,8 @@ export const Modal = ({
 /*
   'useEffect' зависит от 'onKeyDown',
   поэтому 'onKeyDown' нужно мемоизировать или описать внутри 'useEffect' как callback:
-  иначе 'onKeyDown' будет пересоздаваться на каждый перерендер и
-  будет создаваться новая ссылка на функцию и циклично запускать 'useEffect'
+  иначе 'onKeyDown' будет пересоздаваться на каждый перерендер,
+  будет создаваться новая ссылка на функцию и можно войти в бесконечный цикл перерендеринга
 */
   const onKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape') {
@@ -78,12 +80,14 @@ export const Modal = ({
   };
 
   return (
-    <div className={classNames(classes.Modal, mods, [className])}>
-      <div className={classes.overlay} onClick={closeHandler}>
-        <div className={classes.content} onClick={onContentClick}>
-          {children}
+    <Portal>
+      <div className={classNames(classes.Modal, mods, [className])}>
+        <div className={classes.overlay} onClick={closeHandler}>
+          <div className={classes.content} onClick={onContentClick}>
+            {children}
+          </div>
         </div>
       </div>
-    </div>
+    </Portal>
   );
 };
