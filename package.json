@@ -13,6 +13,7 @@
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
     "test:ui": "npx loki test",
     "test:ui:ok": "npx loki approve",
+    "test:ui:upd": "npx loki update",
     "test:ui:ci": "npx loki --requireReference --reactUri file:./storybook-static",
     "test:ui:json": "node scripts/generate-visual-json-report.js",
     "test:ui:html": "reg-cli --from .loki/report.json --report .loki/report.html",
