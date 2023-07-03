@@ -51,7 +51,9 @@ export default {
     // для корректной работы SVG файлов в тестах создаем заглушку
     '\\.svg$': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
 
-    // 'entities/(.*)': '<rootDir>/src/entities/$1',
+/*  Иначе ошибка 'Cannot find module 'entities/Counter'
+    from 'src/app/providers/StoreProvider/config/store.ts'
+*/  'entities/(.*)': '<rootDir>/src/entities/$1',
   },
 
   // настройка абсолютных импортов
