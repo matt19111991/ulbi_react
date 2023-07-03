@@ -3,12 +3,14 @@
   "Выбросить ошибку": "Throw an error",
   "Главная": "Main",
   "Главная страница": "Main page",
+  "Короткий язык": "En",
   "О сайте": "About us",
   "Обновить страницу": "Refresh page",
   "Перевод": "Translate",
   "Переключить": "Toggle",
   "Произошла непредвиденная ошибка": "An unexpected error occurred",
   "Страница не найдена": "Page not found",
-  "Язык": "English",
-  "Короткий язык": "En"
+  "Увеличить": "Increase",
+  "Уменьшить": "Decrease",
+  "Язык": "English"
 }

@@ -90,6 +90,9 @@ module.exports = {
 //  множество пробелов запрещено (откл.)
     'no-multi-spaces': 0,
 
+//  запрещена мутация данных (переназначение параметров функции) (откл.)
+    'no-param-reassign': 0,
+
 //  конфликт c TypeScript, поэтому делегируем в сам TypeScript (@typescript-eslint/no-shadow)
     'no-shadow': 0,
 
