@@ -7,6 +7,8 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
+import { buildDefinePlugin } from './plugins/buildDefinePlugin';
+
 import { BuildOptions } from './types/config';
 
 export function buildPlugins({ isDev, paths }: BuildOptions): webpack.WebpackPluginInstance[] {
@@ -28,6 +30,8 @@ export function buildPlugins({ isDev, paths }: BuildOptions): webpack.WebpackPlu
       chunkFilename: 'css/[name].[contenthash:8].css',
       filename: 'css/[name].[contenthash:8].css',
     }),
+
+    buildDefinePlugin(isDev),
 
 //  DefinePlugin позволяет прокидывать глобальные переменные во всё приложение
     new webpack.DefinePlugin({

@@ -4,6 +4,8 @@ import webpack from 'webpack';
 import { buildCssLoader } from '../build/loaders/buildCssLoader';
 import { buildSvgLoader } from '../build/loaders/buildSvgLoader';
 
+import { buildDefinePlugin } from '../build/plugins/buildDefinePlugin';
+
 import { BuildPaths } from '../build/types/config';
 
 /*
@@ -30,6 +32,12 @@ export default ({ config }: { config: webpack.Configuration }) => {
   });
 
   config.module.rules.push(buildSvgLoader()); // подключение '@svgr/webpack' лоадера
+
+  // плагины
+
+  const plugins = [buildDefinePlugin(true)]; // storybook используем только в режиме разработки
+
+  config.plugins.push(...plugins);
 
   // убираем указание расширения файлов
   config.resolve.extensions.push('.ts', '.tsx');
