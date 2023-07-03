@@ -39,6 +39,14 @@ export default ({ config }: { config: webpack.Configuration }) => {
 
   config.plugins.push(...plugins);
 
+/*
+  Иначе ошибка: 'Module not found: Error: Package path ./Counter is not exported from package
+   ../../entities (see exports field in /home/../../entities/package.json)'
+*/
+  config.resolve.alias = {
+    entities: path.resolve(__dirname, '..', '..', 'src', 'entities'),
+  };
+
   // убираем указание расширения файлов
   config.resolve.extensions.push('.ts', '.tsx');
 
