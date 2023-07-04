@@ -33,6 +33,13 @@ export default ({ config }: { config: webpack.Configuration }) => {
 
   config.module.rules.push(buildSvgLoader()); // подключение '@svgr/webpack' лоадера
 
+  const paths: BuildPaths = {
+    build: '',
+    entry: '',
+    html: '',
+    src: path.resolve(__dirname, '..', '..', 'src'), // единственный важный путь
+  };
+
   // плагины
 
   const plugins = [buildDefinePlugin(true)]; // storybook используем только в режиме разработки
@@ -44,18 +51,11 @@ export default ({ config }: { config: webpack.Configuration }) => {
    ../../entities (see exports field in /home/../../entities/package.json)'
 */
   config.resolve.alias = {
-    entities: path.resolve(__dirname, '..', '..', 'src', 'entities'),
+    entities: path.resolve(paths.src, 'entities'),
   };
 
   // убираем указание расширения файлов
   config.resolve.extensions.push('.ts', '.tsx');
-
-  const paths: BuildPaths = {
-    build: '',
-    entry: '',
-    html: '',
-    src: path.resolve(__dirname, '..', '..', 'src'), // единственный важный путь
-  };
 
   // задаем относительные пути
   config.resolve.modules.push(paths.src);
