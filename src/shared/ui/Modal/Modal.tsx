@@ -16,8 +16,9 @@ import classes from './Modal.module.scss';
 interface ModalProps {
   children?: ReactNode;
   className?: string;
-  onClose: () => void;
   isOpen?: boolean;
+  lazy?: boolean;
+  onClose: () => void;
 }
 
 const ANIMATION_DELAY: number = 300;
@@ -26,9 +27,11 @@ export const Modal = ({
   children,
   className,
   isOpen,
+  lazy,
   onClose,
 }: ModalProps) => {
   const [isClosing, setIsClosing] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   // <ReturnType<typeof setTimeout>: получаем тип, который возвращает функция 'setTimeout'
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
@@ -62,6 +65,16 @@ export const Modal = ({
     }
   }, [closeHandler]);
 
+/*
+  поскольку используем Portal для модалки (модалка изначально отрендерена в DOM),
+  то нужно по открытию модалки задавать флаг 'isMounted', чтобы была возможность лениво
+  подгрузить компонент в модалку или установить фокус на элементы внутри модалки
+*/useEffect(() => {
+    if (isOpen) {
+      setIsMounted(true);
+    }
+  }, [isOpen]);
+
   useEffect(() => {
     if (isOpen) {
       window.addEventListener('keydown', onKeyDown);
@@ -78,6 +91,11 @@ export const Modal = ({
     [classes.isClosing]: isClosing,
     [classes.opened]: isOpen,
   };
+
+  // если модалка лениво подгружается и её еще не открывали => возвращаем 'null'
+  if (lazy && !isMounted) {
+    return null;
+  }
 
   return (
     <Portal>
