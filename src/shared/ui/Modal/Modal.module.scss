@@ -10,11 +10,6 @@
   z-index: -1;
 }
 
-.Modal.dark {
-  --bg-color: #090949;
-  --primary-color: #04FF04;
-}
-
 .content {
   background: var(--bg-color);
   border-radius: 12px;
