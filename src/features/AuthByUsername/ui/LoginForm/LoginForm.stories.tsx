@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 // Primary Login Form
 
-export const PrimaryLoginForm: Story = {
+export const Primary: Story = {
   args: {},
 };
 
