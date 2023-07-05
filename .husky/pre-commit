@@ -3,6 +3,8 @@
 
 # husky позволяет запускать различные проверки/скрипты перед коммитом
 
+# необходимо запускать storybook перед коммитом
+
 npm run build:prod
 npm run lint:ts
 npm run lint:scss
