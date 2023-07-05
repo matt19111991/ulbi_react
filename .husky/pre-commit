@@ -5,6 +5,9 @@
 
 # необходимо запускать storybook перед коммитом
 
+# команду "npm run prepare" можно удалить из package.json после инициализации husky,
+# т.к. заново инициализировать husky незачем
+
 npm run build:prod
 npm run lint:ts
 npm run lint:scss
