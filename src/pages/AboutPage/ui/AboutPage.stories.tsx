@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Theme } from 'app/providers/ThemeProvider';
@@ -14,7 +15,7 @@ const meta = {
       control: 'color',
     },
   },
-} as Meta<typeof AboutPage>;
+} as unknown as Meta<typeof AboutPage>;
 
 type Story = StoryObj<typeof meta>;
 

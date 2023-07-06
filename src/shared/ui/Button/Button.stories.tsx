@@ -132,4 +132,14 @@ export const SquareExtraLarge: Story = {
   },
 };
 
+// Disabled button
+
+export const Disabled: Story = {
+  args: {
+    children: '>',
+    disabled: true,
+    theme: ButtonTheme.OUTLINE,
+  },
+};
+
 export default meta;

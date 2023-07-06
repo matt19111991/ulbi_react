@@ -3,6 +3,7 @@
   "Введите пароль": "Enter password",
   "Войти": "Login",
   "Выбросить ошибку": "Throw an error",
+  "Вы ввели неверный логин или пароль": "You've entered incorrect username or password",
   "Главная": "Main",
   "Главная страница": "Main page",
   "Короткий язык": "En",
@@ -14,5 +15,6 @@
   "Страница не найдена": "Page not found",
   "Увеличить": "Increase",
   "Уменьшить": "Decrease",
+  "Форма авторизации": "Authorization form",
   "Язык": "English"
 }
