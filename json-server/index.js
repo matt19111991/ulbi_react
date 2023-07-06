@@ -1,3 +1,4 @@
+const cors = require('cors');
 const fs = require('fs');
 const jsonServer = require('json-server');
 const path = require('path');
@@ -15,6 +16,9 @@ server.use(async (req, res, next) => {
   next();
 });
 
+// middleware для работы CORS
+server.use(cors());
+
 // middleware для проверки: авторизован ли пользователь
 server.use((req, res, next) => {
   if (!req.headers.authorization) {
@@ -26,7 +30,8 @@ server.use((req, res, next) => {
 
 server.use(jsonServer.defaults());
 
-server.use(router);
+// иначе в роутах 'req.body === undefined'
+server.use(jsonServer.bodyParser);
 
 // login endpoint (POST)
 server.post('/login', (req, res) => {
@@ -47,11 +52,12 @@ server.post('/login', (req, res) => {
 
     return res.status(403).json({ message: 'USER NOT FOUND' });
   } catch (e) {
-    console.log('e', e);
-
     return res.status(500).json({ message: e.message });
   }
 });
+
+// должно быть после описания всех роутов
+server.use(router);
 
 // запуск сервера
 server.listen(8000, () => {

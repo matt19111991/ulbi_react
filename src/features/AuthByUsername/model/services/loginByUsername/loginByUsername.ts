@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 import { User } from 'entities/User';
 
@@ -40,8 +40,18 @@ export const loginByUsername = createAsyncThunk<
   'login/loginByUsername',
   async (authData, thunkAPI) => {
     try {
+       const axiosConfig: AxiosRequestConfig = {
+           headers: {
+               authorization: true,
+           },
+       };
+
       // axios.post<User> // => типизация возвращаемого значения с сервера
-      const response = await axios.post<User>('http://localhost:8000/login', authData);
+      const response = await axios.post<User>(
+          'http://localhost:8000/login',
+          authData,
+          axiosConfig,
+      );
 
       if (!response.data) {
         throw new Error();
