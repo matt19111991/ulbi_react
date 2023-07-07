@@ -1,9 +1,9 @@
-import { Suspense } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Theme } from 'app/providers/ThemeProvider';
 
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { TranslationDecorator } from 'shared/config/storybook/TranslationDecorator/TranslationDecorator';
 
 import AboutPage from './AboutPage';
 
@@ -15,7 +15,7 @@ const meta = {
       control: 'color',
     },
   },
-} as unknown as Meta<typeof AboutPage>;
+} as Meta<typeof AboutPage>;
 
 type Story = StoryObj<typeof meta>;
 
@@ -25,12 +25,14 @@ export const Normal: Story = {
   args: {},
 };
 
+Normal.decorators = [TranslationDecorator];
+
 // Dark about page
 
 export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [ThemeDecorator(Theme.DARK), TranslationDecorator];
 
 export default meta;

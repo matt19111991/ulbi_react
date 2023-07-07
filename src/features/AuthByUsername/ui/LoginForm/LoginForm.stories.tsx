@@ -6,6 +6,7 @@ import { Theme } from 'app/providers/ThemeProvider';
 
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { TranslationDecorator } from 'shared/config/storybook/TranslationDecorator/TranslationDecorator';
 
 import { LoginForm } from './LoginForm';
 
@@ -37,7 +38,7 @@ export const Primary: Story = {
   args: {},
 };
 
-Primary.decorators = [StoreDecorator(options)];
+Primary.decorators = [StoreDecorator(options), TranslationDecorator];
 
 // Dark Login Form
 
@@ -45,6 +46,6 @@ export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [StoreDecorator(options), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [StoreDecorator(options), TranslationDecorator, ThemeDecorator(Theme.DARK)];
 
 export default meta;
