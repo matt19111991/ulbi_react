@@ -1,5 +1,5 @@
-import { userEvent } from '@storybook/testing-library';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { componentTestRenderer } from 'shared/lib/tests/componentTestRenderer/componentTestRenderer';
 
@@ -27,9 +27,11 @@ describe('Counter', () => {
       },
     });
 
-    userEvent.click(screen.getByTestId('decrement-btn'));
+    waitFor(() => {
+      userEvent.click(screen.getByTestId('decrement-btn'));
 
-    expect(screen.getByTestId('value-title')).toHaveTextContent('9');
+      expect(screen.getByTestId('value-title')).toHaveTextContent('9');
+    });
   });
 
   test('increment', () => {
@@ -41,8 +43,10 @@ describe('Counter', () => {
       },
     });
 
-    userEvent.click(screen.getByTestId('increment-btn'));
+    waitFor(() => {
+      userEvent.click(screen.getByTestId('increment-btn'));
 
-    expect(screen.getByTestId('value-title')).toHaveTextContent('11');
+      expect(screen.getByTestId('value-title')).toHaveTextContent('11');
+    });
   });
 });
