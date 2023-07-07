@@ -5,9 +5,9 @@ import type { StoryFn } from '@storybook/react';
 import i18nForStorybook from 'shared/config/i18n/i18nForStorybook';
 
 export const TranslationDecorator = (Story: StoryFn): ReactElement => (
-  <Suspense fallback=''>
-    <I18nextProvider i18n={i18nForStorybook}>
+  <I18nextProvider i18n={i18nForStorybook}>
+    <Suspense fallback=''> {/* <Suspense /> для переводов */}
       <Story />
-    </I18nextProvider>
-  </Suspense>
+    </Suspense>
+  </I18nextProvider>
 );

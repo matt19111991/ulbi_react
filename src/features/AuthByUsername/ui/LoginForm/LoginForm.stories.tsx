@@ -6,19 +6,15 @@ import { Theme } from 'app/providers/ThemeProvider';
 
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { TranslationDecorator } from 'shared/config/storybook/TranslationDecorator/TranslationDecorator';
 
 import { LoginForm } from './LoginForm';
 
-const initialState: DeepPartial<StateSchema> = {
+const stateBase: DeepPartial<StateSchema> = {
   loginForm: {
-    isLoading: false,
-    password: '',
-    username: '',
+    password: '123',
+    username: 'user',
   },
 };
-
-const options = { initialState };
 
 const meta = {
   title: 'features/LoginForm',
@@ -38,7 +34,7 @@ export const Primary: Story = {
   args: {},
 };
 
-Primary.decorators = [StoreDecorator(options), TranslationDecorator];
+Primary.decorators = [StoreDecorator(stateBase)];
 
 // Dark Login Form
 
@@ -46,6 +42,36 @@ export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [StoreDecorator(options), TranslationDecorator, ThemeDecorator(Theme.DARK)];
+Dark.decorators = [StoreDecorator(stateBase), ThemeDecorator(Theme.DARK)];
+
+// Loading Login Form
+
+const stateLoading: DeepPartial<StateSchema> = {
+  loginForm: {
+    isLoading: true,
+  },
+};
+
+export const Loading: Story = {
+  args: {},
+};
+
+Loading.decorators = [StoreDecorator(stateLoading)];
+
+// Login Form With Error
+
+const stateWithError: DeepPartial<StateSchema> = {
+  loginForm: {
+    error: 'ERROR',
+    password: '123',
+    username: 'user',
+  },
+};
+
+export const Error: Story = {
+  args: {},
+};
+
+Error.decorators = [StoreDecorator(stateWithError)];
 
 export default meta;

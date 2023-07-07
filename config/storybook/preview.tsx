@@ -7,6 +7,10 @@ import {
 import { RouterDecorator } from '../../src/shared/config/storybook/RouterDecorator/RouterDecorator';
 import { ThemeDecorator } from '../../src/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
+import {
+  TranslationDecorator,
+} from '../../src/shared/config/storybook/TranslationDecorator/TranslationDecorator';
+
 import { Theme } from '../../src/app/providers/ThemeProvider';
 
 export const preview: Preview = {
@@ -26,4 +30,9 @@ export const preview: Preview = {
    по умолчанию добавлена светлая тема, локально можно переопределить на другую
 */
 
-export const decorators = [GlobalStyleDecorator, RouterDecorator, ThemeDecorator(Theme.LIGHT)];
+export const decorators = [
+  GlobalStyleDecorator,
+  RouterDecorator,
+  ThemeDecorator(Theme.LIGHT),
+  TranslationDecorator,
+];

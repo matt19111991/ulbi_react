@@ -4,15 +4,11 @@ import type { StoryFn } from '@storybook/react';
 
 import { StateSchema, StoreProvider } from 'app/providers/StoreProvider';
 
-export interface StoreDecoratorOptions {
-  initialState?: DeepPartial<StateSchema>;
-}
-
 export const StoreDecorator = (
-  options: StoreDecoratorOptions = {},
+  state: DeepPartial<StateSchema>,
 ) => (Story: StoryFn): ReactElement<unknown> => {
   const getStoreProvider = () => (
-    <StoreProvider initialState={options.initialState}>
+    <StoreProvider initialState={state}>
       <Story />
     </StoreProvider>
   );

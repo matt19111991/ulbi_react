@@ -16,9 +16,10 @@ import classes from './LoginForm.module.scss';
 
 interface LoginFormProps {
   className?: string;
+  onCloseModal: () => void;
 }
 
-export const LoginForm = memo(({ className }: LoginFormProps) => {
+export const LoginForm = memo(({ className, onCloseModal }: LoginFormProps) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
@@ -37,9 +38,16 @@ export const LoginForm = memo(({ className }: LoginFormProps) => {
     dispatch(loginActions.setUsername(value));
   }, [dispatch]);
 
-  const onLoginClick = useCallback(() => {
-    dispatch<any>(loginByUsername({ password, username }));
-  }, [dispatch, password, username]);
+  const onLoginClick = useCallback(async () => {
+    try {
+      await dispatch<any>(loginByUsername({ password, username }));
+
+      onCloseModal();
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log(`Error: ${e}`);
+    }
+  }, [dispatch, onCloseModal, password, username]);
 
   return (
     <div className={classNames(classes.LoginForm, {}, [className])}>

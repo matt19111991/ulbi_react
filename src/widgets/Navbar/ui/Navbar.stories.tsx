@@ -1,11 +1,20 @@
+import { DeepPartial } from '@reduxjs/toolkit';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { StateSchema } from 'app/providers/StoreProvider';
 import { Theme } from 'app/providers/ThemeProvider';
 
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { TranslationDecorator } from 'shared/config/storybook/TranslationDecorator/TranslationDecorator';
 
 import { Navbar } from './Navbar';
+
+const state: DeepPartial<StateSchema> = {
+  loginForm: {
+    password: '123',
+    username: 'user',
+  },
+};
 
 const meta = {
   title: 'widgets/Navbar',
@@ -25,7 +34,7 @@ export const Light: Story = {
   args: {},
 };
 
-Light.decorators = [TranslationDecorator];
+Light.decorators = [StoreDecorator(state)];
 
 // Dark navbar
 
@@ -33,6 +42,6 @@ export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK), TranslationDecorator];
+Dark.decorators = [StoreDecorator(state), ThemeDecorator(Theme.DARK)];
 
 export default meta;
