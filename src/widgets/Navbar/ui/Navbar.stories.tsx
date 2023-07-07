@@ -9,12 +9,7 @@ import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDeco
 
 import { Navbar } from './Navbar';
 
-const state: DeepPartial<StateSchema> = {
-  loginForm: {
-    password: '123',
-    username: 'user',
-  },
-};
+const stateBase: DeepPartial<StateSchema> = {};
 
 const meta = {
   title: 'widgets/Navbar',
@@ -34,7 +29,7 @@ export const Light: Story = {
   args: {},
 };
 
-Light.decorators = [StoreDecorator(state)];
+Light.decorators = [StoreDecorator(stateBase)];
 
 // Dark navbar
 
@@ -42,6 +37,20 @@ export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [StoreDecorator(state), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [StoreDecorator(stateBase), ThemeDecorator(Theme.DARK)];
+
+// Auth navbar
+
+const stateAuth: DeepPartial<StateSchema> = {
+  user: {
+    authData: {},
+  },
+};
+
+export const Authorized: Story = {
+  args: {},
+};
+
+Authorized.decorators = [StoreDecorator(stateAuth)];
 
 export default meta;

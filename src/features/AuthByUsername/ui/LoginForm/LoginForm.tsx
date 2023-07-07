@@ -40,9 +40,11 @@ export const LoginForm = memo(({ className, onCloseModal }: LoginFormProps) => {
 
   const onLoginClick = useCallback(async () => {
     try {
-      await dispatch<any>(loginByUsername({ password, username }));
+      const response = await dispatch<any>(loginByUsername({ password, username }));
 
-      onCloseModal();
+      if (response.meta.requestStatus === 'fulfilled') {
+        onCloseModal(); // закрываем модалку только на успешный респонс
+      }
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log(`Error: ${e}`);
@@ -52,7 +54,13 @@ export const LoginForm = memo(({ className, onCloseModal }: LoginFormProps) => {
   return (
     <div className={classNames(classes.LoginForm, {}, [className])}>
       <Text title={t('Форма авторизации')} />
-      {error && <Text text={error} theme={TextTheme.ERROR} />}
+
+      {error && (
+        <Text
+          text={t('Вы ввели неверный логин или пароль')}
+          theme={TextTheme.ERROR}
+        />
+      )}
 
       <Input
         autoFocus
