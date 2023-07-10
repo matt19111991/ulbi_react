@@ -6,12 +6,18 @@ import { LoginSchema } from '../types/loginSchema';
 
 import { loginActions, loginReducer } from './loginSlice';
 
+/*
+   expect(...).toBe();    => для сравнения примитивов
+   expect(...).toEqual(); => для сравнения вложенных структур (объектов)
+*/
+
 describe('loginSlice', () => {
   test('test set username', () => {
     const state: DeepPartial<LoginSchema> = {};
 
     const reducer = loginReducer(state as LoginSchema, loginActions.setUsername('Jack'));
 
+    // expect(reducer).toBe({ username: 'Jack' }); => Ошибка 'Received: serializes to the same string'
     expect(reducer).toEqual({ username: 'Jack' });
   });
 
