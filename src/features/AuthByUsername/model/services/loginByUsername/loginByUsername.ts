@@ -22,7 +22,7 @@ interface LoginByUsernameProps {
       - объект 'thunkAPI'
 */
 
-export const loginByUsername = createAsyncThunk<
+export const loginByUsername = createAsyncThunk< // 1-ый вызов 'dispatch-а': 'loginByUsername();'
   User,                     // ЧТО_ВЕРНЕТСЯ_ИЗ_РЕСПОНСА_ТИП
   LoginByUsernameProps,     // ЧТО_ПРИНИМАЕТ_ФУНКЦИЯ_ТИП
   { rejectValue: string }   // THUNK_КОНФИГ_ТИП
@@ -61,13 +61,15 @@ export const loginByUsername = createAsyncThunk<
 
       localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(response.data));
 
+      // 2-ой вызов 'dispatch-а'
       thunkAPI.dispatch(userActions.setAuthData(response.data));
 
+      // 3-ий вызов 'dispatch-а': 'thunkAPI.fulfillWithValue(response.data)'
       return response.data; // аналог: thunkAPI.fulfillWithValue(response.data);
     } catch (e) {
 /*      здесь переводы можно использовать только импортировав 'i18n' напрямую:
         "import i18n from 'shared/config/i18n/i18n';"
-*/      return thunkAPI.rejectWithValue('error');
+*/      return thunkAPI.rejectWithValue('error'); // 2-ой вызов 'dispatch-а'
     }
   },
 );
