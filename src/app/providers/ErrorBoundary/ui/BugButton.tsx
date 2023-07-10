@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Button } from 'shared/ui/Button/Button';
 
 // BugButton - компонент для тестирования ErrorBoundary
 
-export const BugButton = () => {
+export const BugButton = memo(() => {
   const { t } = useTranslation();
 
   const [error, setError] = useState(false);
@@ -25,4 +25,6 @@ export const BugButton = () => {
       {t('Выбросить ошибку')}
     </Button>
   );
-};
+});
+
+BugButton.displayName = 'BugButton';

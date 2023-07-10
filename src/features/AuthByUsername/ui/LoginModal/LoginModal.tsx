@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { memo, Suspense } from 'react';
 
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Loader } from 'shared/ui/Loader/Loader';
@@ -12,7 +12,7 @@ interface LoginModalProps {
   onClose: () => void;
 }
 
-export const LoginModal = ({ className, isOpen, onClose }: LoginModalProps) => (
+export const LoginModal = memo(({ className, isOpen, onClose }: LoginModalProps) => (
   <Modal
     className={classNames('', {}, [className])}
     isOpen={isOpen}
@@ -23,4 +23,6 @@ export const LoginModal = ({ className, isOpen, onClose }: LoginModalProps) => (
       <LoginFormAsync onSuccess={onClose} />
     </Suspense>
   </Modal>
-);
+));
+
+LoginModal.displayName = 'LoginModal';

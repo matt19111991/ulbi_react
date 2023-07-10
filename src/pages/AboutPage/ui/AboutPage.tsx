@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const AboutPage = () => {
+const AboutPage = memo(() => {
 /*
     передаем название namespace => /public/locales/[lng]/about.json
 
@@ -10,6 +11,8 @@ const AboutPage = () => {
 */  const { t } = useTranslation('about');
 
     return <div>{t('О сайте')}</div>;
-};
+});
+
+AboutPage.displayName = 'AboutPage';
 
 export default AboutPage;

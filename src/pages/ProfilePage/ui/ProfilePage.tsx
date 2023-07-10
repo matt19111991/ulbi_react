@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { classNames } from 'shared/lib/classNames/classNames';
@@ -6,7 +7,7 @@ interface ProfilePageProps {
   className?: string;
 }
 
-const Profile = ({ className }: ProfilePageProps) => {
+const ProfilePage = memo(({ className }: ProfilePageProps) => {
   const { t } = useTranslation();
 
   return (
@@ -14,6 +15,8 @@ const Profile = ({ className }: ProfilePageProps) => {
       {t('Profile page')}
     </div>
   );
-};
+});
 
-export default Profile;
+ProfilePage.displayName = 'ProfilePage';
+
+export default ProfilePage;
