@@ -12,10 +12,6 @@
   right: -32px;
 }
 
-.icon {
-  fill: var(--inverted-primary-color);
-}
-
 .items {
   display: flex;
   flex-direction: column;
@@ -23,18 +19,7 @@
   margin-top: 20px;
 }
 
-.item {
-  align-items: center;
-  display: flex;
-  margin-top: 10px;
-}
-
-.link {
-  margin-left: 10px;
-  opacity: 1;
-}
-
-.lng {
+.lang {
   margin-left: 20px;
 }
 
@@ -49,13 +34,7 @@
 .collapsed {
   width: var(--sidebar-width-collapsed);
 
-  .link {
-    opacity: 0;
-    transition: .2s opacity;
-    width: 0;
-  }
-
-  .lng {
+  .lang {
     margin-left: 0;
   }
 

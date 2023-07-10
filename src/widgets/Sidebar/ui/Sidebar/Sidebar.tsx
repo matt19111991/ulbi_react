@@ -1,17 +1,13 @@
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-
-import AboutIcon from 'shared/assets/icons/about-20-20.svg';
-import MainIcon from 'shared/assets/icons/main-20-20.svg';
-
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { memo, useState } from 'react';
 
 import { classNames } from 'shared/lib/classNames/classNames';
 
-import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
 import { LangSwitcher } from 'shared/ui/LangSwitcher/LangSwitcher';
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher/ThemeSwitcher';
+
+import { SidebarItemsList } from '../../model/items';
+import { SidebarItem } from '../SidebarItem/SidebarItem';
 
 import classes from './Sidebar.module.scss';
 
@@ -19,9 +15,7 @@ interface SidebarProps {
   className?: string;
 }
 
-export const Sidebar = ({ className }: SidebarProps) => {
-  const { t } = useTranslation();
-
+export const Sidebar = memo(({ className }: SidebarProps) => {
   const [collapsed, setCollapsed] = useState(false);
 
   const onToggle = () => {
@@ -49,29 +43,17 @@ export const Sidebar = ({ className }: SidebarProps) => {
       </Button>
 
       <div className={classes.items}>
-        <AppLink
-          className={classes.item}
-          invertedTheme={AppLinkTheme.SECONDARY}
-          to={RoutePath.main}
-        >
-          <MainIcon className={classes.icon} />
-          <span className={classes.link}>{t('Главная')}</span>
-        </AppLink>
-
-        <AppLink
-          className={classes.item}
-          invertedTheme={AppLinkTheme.SECONDARY}
-          to={RoutePath.about}
-        >
-          <AboutIcon className={classes.icon} />
-          <span className={classes.link}>{t('О сайте')}</span>
-        </AppLink>
+        {SidebarItemsList.map((item) => (
+          <SidebarItem collapsed={collapsed} key={item.path} item={item} />
+        ))}
       </div>
 
       <div className={classes.switchers}>
         <ThemeSwitcher />
-        <LangSwitcher className={classes.lng} short={collapsed} />
+        <LangSwitcher className={classes.lang} short={collapsed} />
       </div>
     </div>
   );
-};
+});
+
+Sidebar.displayName = 'Sidebar';

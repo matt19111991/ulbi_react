@@ -1,5 +1,5 @@
 import { memo, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import { classNames } from 'shared/lib/classNames/classNames';
@@ -8,6 +8,8 @@ import {
   DynamicModuleLoader,
   ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
@@ -24,15 +26,15 @@ import classes from './LoginForm.module.scss';
 
 export interface LoginFormProps {
   className?: string;
-  onCloseModal: () => void;
+  onSuccess?: () => void;
 }
 
 const initialReducers: ReducersList = {
   loginForm: loginReducer,
 };
 
-const LoginForm = memo(({ className, onCloseModal }: LoginFormProps) => {
-  const dispatch = useDispatch();
+const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
+  const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
   const error = useSelector(getLoginError);
@@ -53,13 +55,13 @@ const LoginForm = memo(({ className, onCloseModal }: LoginFormProps) => {
       const response = await dispatch<any>(loginByUsername({ password, username }));
 
       if (response.meta.requestStatus === 'fulfilled') {
-        onCloseModal(); // закрываем модалку только на успешный респонс
+        onSuccess(); // закрываем модалку только на успешный респонс
       }
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log(`Error: ${e}`);
     }
-  }, [dispatch, onCloseModal, password, username]);
+  }, [dispatch, onSuccess, password, username]);
 
   return (
     <DynamicModuleLoader
