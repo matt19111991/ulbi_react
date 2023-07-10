@@ -1,3 +1,6 @@
+import { AxiosInstance } from 'axios';
+import { NavigateOptions, To } from 'react-router-dom';
+
 import {
   AnyAction,
   CombinedState,
@@ -34,4 +37,9 @@ export interface ReducerManager {
 // расширение дефолтного типа для 'store'
 export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
   reducerManager: ReducerManager;
+}
+
+export interface ThunkExtraArg {
+  api: AxiosInstance;
+  navigate: (to: To, options?: NavigateOptions) => void;
 }

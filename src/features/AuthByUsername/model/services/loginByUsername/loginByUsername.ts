@@ -1,5 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios, { AxiosRequestConfig } from 'axios';
+import { AxiosRequestConfig } from 'axios';
+
+import { ThunkExtraArg } from 'app/providers/StoreProvider';
 
 import { User, userActions } from 'entities/User';
 
@@ -23,9 +25,9 @@ interface LoginByUsernameProps {
 */
 
 export const loginByUsername = createAsyncThunk< // 1-ый вызов 'dispatch-а': 'loginByUsername();'
-  User,                     // ЧТО_ВЕРНЕТСЯ_ИЗ_РЕСПОНСА_ТИП
-  LoginByUsernameProps,     // ЧТО_ПРИНИМАЕТ_ФУНКЦИЯ_ТИП
-  { rejectValue: string }   // THUNK_КОНФИГ_ТИП
+  User,                                           // ЧТО_ВЕРНЕТСЯ_ИЗ_РЕСПОНСА_ТИП
+  LoginByUsernameProps,                           // ЧТО_ПРИНИМАЕТ_ФУНКЦИЯ_ТИП
+  { extra: ThunkExtraArg, rejectValue: string }   // THUNK_КОНФИГ_ТИП
 /*
   type THUNK_КОНФИГ_ТИП = {
     state?: unknown
@@ -48,12 +50,14 @@ export const loginByUsername = createAsyncThunk< // 1-ый вызов 'dispatch-
            },
        };
 
-      // axios.post<User> // => типизация возвращаемого значения с сервера
-      const response = await axios.post<User>(
-          'http://localhost:8000/login',
-          authData,
-          axiosConfig,
-      );
+/*    axios.post<User> => типизация возвращаемого значения с сервера
+
+      в 'thunkAPI' в 'extraArgument' можно записать любые данные, инстансы и т.д. через middleware:
+      'app/providers/StoreProvider/config/store.js'
+
+      вызываем вместо базового 'axios' свой кастомный инстанс 'api' (axios):
+      thunkAPI.extra.api.post === axios.post
+*/    const response = await thunkAPI.extra.api.post<User>('/login', authData, axiosConfig);
 
       if (!response.data) {
         throw new Error();
@@ -63,6 +67,8 @@ export const loginByUsername = createAsyncThunk< // 1-ый вызов 'dispatch-
 
       // 2-ой вызов 'dispatch-а'
       thunkAPI.dispatch(userActions.setAuthData(response.data));
+
+      thunkAPI.extra.navigate('/about');
 
       // 3-ий вызов 'dispatch-а': 'thunkAPI.fulfillWithValue(response.data)'
       return response.data; // аналог: thunkAPI.fulfillWithValue(response.data);

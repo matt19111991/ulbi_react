@@ -14,15 +14,20 @@ import App from 'app/App';
 
 import './app/styles/index.scss';
 
+/* Ошибка 'Uncaught Error: useNavigate() may be used only in the context of a <Router> component.',
+   если 'StoreProvider' находится в дереве выше чем 'BrowserRouter' и попытаться использовать навигацию в
+   'async thunks'
+*/
+
 render(
-  <StoreProvider>
-    <BrowserRouter>
+  <BrowserRouter>
+    <StoreProvider>
       <ErrorBoundary>
         <ThemeProvider>
           <App />
         </ThemeProvider>
       </ErrorBoundary>
-    </BrowserRouter>
-  </StoreProvider>,
+    </StoreProvider>
+  </BrowserRouter>,
   document.getElementById('root'),
 );

@@ -1,7 +1,10 @@
 import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
+import { NavigateOptions, To } from 'react-router-dom';
 
 import { counterReducer } from 'entities/Counter';
 import { userReducer } from 'entities/User';
+
+import { $api } from 'shared/api/api';
 
 import { createReducerManager } from './reducerManager';
 import { StateSchema } from './StateSchema';
@@ -10,6 +13,7 @@ import { StateSchema } from './StateSchema';
 export const createReduxStore = (
   initialState?: StateSchema,
   asyncReducers?: ReducersMapObject<StateSchema>,
+  navigate?: (to: To, options?: NavigateOptions) => void,
 ) => {
   const rootReducers: ReducersMapObject<StateSchema> = {
     counter: counterReducer,
@@ -21,8 +25,17 @@ export const createReduxStore = (
   // для возможности использования асинхронных редюсеров
   const reducerManager = createReducerManager(rootReducers);
 
-  const store = configureStore<StateSchema>({
+  const store = configureStore({
     devTools: __IS_DEV__,
+
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+      thunk: {
+        extraArgument: {
+          api: $api, // добавляем в 'RTK' возможность использовать кастомный инстанс 'axios'
+          navigate,  // можно пользоваться навигацией внутри 'async thunks'
+        },
+      },
+    }),
 
     // инициализация 'store' заранее подготовленными данными для тестов, storybook и т.д.
     preloadedState: initialState,
