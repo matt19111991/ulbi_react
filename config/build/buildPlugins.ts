@@ -11,7 +11,11 @@ import { buildDefinePlugin } from './plugins/buildDefinePlugin';
 
 import { BuildOptions } from './types/config';
 
-export function buildPlugins({ isDev, paths }: BuildOptions): webpack.WebpackPluginInstance[] {
+export function buildPlugins({
+  apiUrl,
+  isDev,
+  paths,
+}: BuildOptions): webpack.WebpackPluginInstance[] {
   const plugins = [ // порядок плагинов не имеет значения
     new HTMLWebpackPlugin({
 /*    без опции 'template' в файле ./build/index.html не будет <div class='root'></div>
@@ -31,12 +35,7 @@ export function buildPlugins({ isDev, paths }: BuildOptions): webpack.WebpackPlu
       filename: 'css/[name].[contenthash:8].css',
     }),
 
-    buildDefinePlugin(isDev),
-
-//  DefinePlugin позволяет прокидывать глобальные переменные во всё приложение
-    new webpack.DefinePlugin({
-      __IS_DEV__: JSON.stringify(isDev),
-    }),
+    buildDefinePlugin(apiUrl, isDev),
   ];
 
   if (isDev) {

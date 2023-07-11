@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosRequestConfig } from 'axios';
 
-import { ThunkExtraArg } from 'app/providers/StoreProvider';
+import { ThunkConfig } from 'app/providers/StoreProvider';
 
 import { User, userActions } from 'entities/User';
 
@@ -25,14 +25,14 @@ interface LoginByUsernameProps {
 */
 
 export const loginByUsername = createAsyncThunk< // 1-ый вызов 'dispatch-а': 'loginByUsername();'
-  User,                                           // ЧТО_ВЕРНЕТСЯ_ИЗ_РЕСПОНСА_ТИП
-  LoginByUsernameProps,                           // ЧТО_ПРИНИМАЕТ_ФУНКЦИЯ_ТИП
-  { extra: ThunkExtraArg, rejectValue: string }   // THUNK_КОНФИГ_ТИП
+  User,                 // ЧТО_ВЕРНЕТСЯ_ИЗ_РЕСПОНСА_ТИП
+  LoginByUsernameProps, // ЧТО_ПРИНИМАЕТ_ФУНКЦИЯ_ТИП
+  ThunkConfig<string>   // THUNK_КОНФИГ_ТИП
 /*
   type THUNK_КОНФИГ_ТИП = {
     state?: unknown
     dispatch?: Dispatch
-    extra?: unknown
+    extra?: unknown       // => можно расширять 'extra' дополнительными свойствами и методами
     rejectValue?: unknown // => можно задавать свои собственные типы для ошибки
     serializedErrorType?: unknown
     pendingMeta?: unknown

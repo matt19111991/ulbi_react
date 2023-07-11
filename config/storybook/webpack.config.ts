@@ -42,7 +42,8 @@ export default ({ config }: { config: webpack.Configuration }) => {
 
   // плагины
 
-  const plugins = [buildDefinePlugin(true)]; // storybook используем только в режиме разработки
+  // storybook используем только в режиме разработки, API не используем
+  const plugins = [buildDefinePlugin('', true)];
 
   config.plugins.push(...plugins);
 

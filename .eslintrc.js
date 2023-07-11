@@ -12,6 +12,7 @@ module.exports = {
     'plugin:storybook/recommended',
   ],
   globals: {
+    __API__: 'readonly',
     __IS_DEV__: 'readonly',
   },
   overrides: [
@@ -100,7 +101,7 @@ module.exports = {
     'no-shadow': 0,
 
 //  запрет на нижнее подчеркивание в переменных(вкл.)
-    'no-underscore-dangle': [2, { allow: ['__IS_DEV__'] }],
+    'no-underscore-dangle': [2, { allow: ['__API__', '__IS_DEV__'] }],
 
 //  нужно явно указывать атрибут 'type' для <button /> (откл.)
     'react/button-has-type': 0,

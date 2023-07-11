@@ -2,7 +2,7 @@ import type {
   StateSchema,
   StateSchemaKey,
   ReduxStoreWithManager,
-  ThunkExtraArg,
+  ThunkConfig,
 } from './config/StateSchema';
 
 import { AppDispatch, createReduxStore } from './config/store';
@@ -16,5 +16,5 @@ export {
   StateSchema,
   StateSchemaKey,
   StoreProvider,
-  ThunkExtraArg,
+  ThunkConfig,
 };
