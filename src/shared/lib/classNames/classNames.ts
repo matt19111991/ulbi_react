@@ -7,7 +7,7 @@ type Mods = Record<string, boolean | string>;
 export function classNames(
     rootClass: string,
     mods: Mods = {},
-    additionalClasses: string[] = [],
+    additionalClasses: Array<string | undefined> = [],
 ): string {
     const classesArray = [
         rootClass,
