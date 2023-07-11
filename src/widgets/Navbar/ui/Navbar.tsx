@@ -1,5 +1,5 @@
 import { memo, useCallback, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import { getUserAuthData, userActions } from 'entities/User';
@@ -7,6 +7,8 @@ import { getUserAuthData, userActions } from 'entities/User';
 import { LoginModal } from 'features/AuthByUsername';
 
 import { classNames } from 'shared/lib/classNames/classNames';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 
 import classes from './Navbar.module.scss';
@@ -16,7 +18,7 @@ interface NavbarProps {
 }
 
 export const Navbar = memo(({ className }: NavbarProps) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
   const authData = useSelector(getUserAuthData);

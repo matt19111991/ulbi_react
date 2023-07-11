@@ -26,10 +26,9 @@ i18n
         чтобы избежать ошибок TS (в global.d.ts)
 
         В логи пишется подгрузка переводов, отсутствующие ключи и т.д.
-
- */     debug: __IS_DEV__, // __IS_DEV__ ? true : false
-
-        interpolation: {
+        debug: __IS_DEV__ ? true : false
+*/
+      interpolation: {
             escapeValue: false, // not needed for react as it escapes by default
         },
     });

@@ -1,8 +1,10 @@
 import { JSX, useEffect } from 'react';
-import { useDispatch, useStore } from 'react-redux';
+import { useStore } from 'react-redux';
 import { Reducer } from '@reduxjs/toolkit';
 
 import { ReduxStoreWithManager, StateSchemaKey } from 'app/providers/StoreProvider';
+
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 // на случай подгрузки сразу нескольких редюсеров
 export type ReducersList = {
@@ -22,7 +24,7 @@ export const DynamicModuleLoader = ({
   reducers,
   removeAfterUnmount,
 }: DynamicModuleLoaderProps) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const store = useStore() as ReduxStoreWithManager;
 
