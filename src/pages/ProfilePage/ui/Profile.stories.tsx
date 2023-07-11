@@ -1,4 +1,3 @@
-import { DeepPartial } from '@reduxjs/toolkit';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from 'app/providers/StoreProvider';

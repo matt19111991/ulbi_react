@@ -11,8 +11,6 @@ export type ReducersList = {
   [name in StateSchemaKey]?: Reducer; // ключ: StateSchemaKey, значение: редюсер
 };
 
-type ReducersListEntry = [StateSchemaKey, Reducer]; // entry редюсера при переборе в Object.entries
-
 interface DynamicModuleLoaderProps {
   children: JSX.Element;
   reducers: ReducersList;
@@ -31,18 +29,26 @@ export const DynamicModuleLoader = ({
   useEffect(() => {
     // пробегаемся по всем редюсерам
 
-    Object.entries(reducers).forEach(([name, reducer]: ReducersListEntry) => {
+    Object.entries(reducers).forEach(([name, reducer]) => {
       // асинхронно подгружаем редюсер при монтировании компонента
-      store.reducerManager.add(name, reducer);
+
+      /* без 'name as StateSchemaKey' => ошибка "Argument of type 'string' is not assignable
+         to parameter of type 'keyof StateSchema'"
+      */
+      store.reducerManager.add(name as StateSchemaKey, reducer);
 
       dispatch({ type: `@INIT ${name} reducer` }); // для индикации подгрузки редюсера
     });
 
     return () => {
       if (removeAfterUnmount) {
-        Object.keys(reducers).forEach((name: StateSchemaKey) => {
+        Object.keys(reducers).forEach((name) => {
           // удаляем редюсер при демонтировании компонента
-          store.reducerManager.remove(name);
+
+          /* без 'name as StateSchemaKey' => ошибка "Argument of type 'string' is not assignable
+             to parameter of type 'keyof StateSchema'"
+          */
+          store.reducerManager.remove(name as StateSchemaKey);
 
           dispatch({ type: `@DESTROY ${name} reducer` }); // для индикации удаления редюсера
         });

@@ -13,7 +13,7 @@ export function useTheme(): UseThemeResults {
   const toggleTheme = () => {
     const newTheme = theme === Theme.DARK ? Theme.LIGHT : Theme.DARK;
 
-    setTheme(newTheme);
+    setTheme?.(newTheme); // иначе ошибка "Cannot invoke an object which is possibly 'undefined'"
 
 //  чтобы не вешать дополнительные классы `${theme}` для 'App.tsx' и порталов
     document.body.className = newTheme;
@@ -21,5 +21,8 @@ export function useTheme(): UseThemeResults {
     localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
   };
 
-  return { theme, toggleTheme };
+  return {
+    theme: theme || Theme.LIGHT,
+    toggleTheme,
+  };
 }

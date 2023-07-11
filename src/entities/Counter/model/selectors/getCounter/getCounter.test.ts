@@ -1,12 +1,11 @@
-// DeepPartial - тип для отдельного участка 'state', чаще всего используется в тестах
-import { DeepPartial } from '@reduxjs/toolkit';
-
 import { StateSchema } from 'app/providers/StoreProvider';
 
 import { getCounter } from './getCounter';
 
 describe('getCounter', () => {
   test('should return counter state', () => {
+    // DeepPartial - тип для отдельного участка 'state', чаще всего используется в тестах
+
     const state: DeepPartial<StateSchema> = {
       counter: {
         value: 10,

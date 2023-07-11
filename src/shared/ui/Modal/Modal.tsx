@@ -1,5 +1,7 @@
 import {
   MouseEvent,
+  MutableRefObject, // ref, который можно менять
+  // RefObject,     // ref, который нельзя менять
   ReactNode,
   useCallback,
   useEffect,
@@ -7,7 +9,7 @@ import {
   useState,
 } from 'react';
 
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 
 import { Portal } from 'shared/ui/Portal/Portal';
 
@@ -34,7 +36,7 @@ export const Modal = ({
   const [isMounted, setIsMounted] = useState(false);
 
   // <ReturnType<typeof setTimeout>: получаем тип, который возвращает функция 'setTimeout'
-  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+  const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
 
   const closeHandler = useCallback(() => {
     if (onClose) {
@@ -87,7 +89,7 @@ export const Modal = ({
     };
   }, [isOpen, onKeyDown]);
 
-  const mods: Record<string, boolean> = {
+  const mods: Mods = {
     [classes.isClosing]: isClosing,
     [classes.opened]: isOpen,
   };

@@ -1,6 +1,6 @@
-//                  ключ   возможные значения
-//                   v        v         v
-type Mods = Record<string, boolean | string>;
+//                         ключ         возможные значения
+//                          v                 v
+export type Mods = Record<string, boolean | string | undefined>;
 
 // classNames() позволяет избежать '<div className={`${isOpened ? '.opened' : ''}`} />'
 
