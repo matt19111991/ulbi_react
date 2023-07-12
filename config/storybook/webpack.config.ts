@@ -17,13 +17,13 @@ import { BuildPaths } from '../build/types/config';
 
 export default ({ config }: { config: webpack.Configuration }) => {
   // настройка CSS модулей
-  config.module.rules.push(buildCssLoader(true)); // storybook используем только в режиме разработки
+  config.module!.rules!.push(buildCssLoader(true)); // storybook используем только в режиме разработки
 
 /* отключение обработки SVG файлов через дефолтные лоадеры storybook-a ('file-loader') и
    подключение '@svgr/webpack' лоадера
 */
   // eslint-disable-next-line no-param-reassign
-  config.module.rules = config.module.rules.map((rule: webpack.RuleSetRule) => {
+  config.module!.rules = config.module!.rules!.map((rule: webpack.RuleSetRule) => {
     if (/svg/.test(rule.test as string)) { // если в поле 'test' для лоадера есть совпадение по 'svg'
       return { ...rule, exclude: /\.svg$/i }; // исключаем обработку SVG файлов
     }
@@ -31,7 +31,7 @@ export default ({ config }: { config: webpack.Configuration }) => {
     return rule;
   });
 
-  config.module.rules.push(buildSvgLoader()); // подключение '@svgr/webpack' лоадера
+  config.module!.rules.push(buildSvgLoader()); // подключение '@svgr/webpack' лоадера
 
   const paths: BuildPaths = {
     build: '',
@@ -45,21 +45,21 @@ export default ({ config }: { config: webpack.Configuration }) => {
   // storybook используем только в режиме разработки, API не используем
   const plugins = [buildDefinePlugin('', true)];
 
-  config.plugins.push(...plugins);
+  config.plugins!.push(...plugins);
 
 /*
   Иначе ошибка: 'Module not found: Error: Package path ./Counter is not exported from package
    ../../entities (see exports field in /home/../../entities/package.json)'
 */
-  config.resolve.alias = {
+  config.resolve!.alias = {
     entities: path.resolve(paths.src, 'entities'),
   };
 
   // убираем указание расширения файлов
-  config.resolve.extensions.push('.ts', '.tsx');
+  config.resolve!.extensions!.push('.ts', '.tsx');
 
   // задаем относительные пути
-  config.resolve.modules.push(paths.src);
+  config.resolve!.modules!.push(paths.src);
 
   return config;
 };

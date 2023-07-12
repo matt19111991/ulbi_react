@@ -68,7 +68,7 @@ export const loginByUsername = createAsyncThunk< // 1-ый вызов 'dispatch-
       // 2-ой вызов 'dispatch-а'
       thunkAPI.dispatch(userActions.setAuthData(response.data));
 
-      thunkAPI.extra.navigate('/about');
+      thunkAPI.extra.navigate?.('/about');
 
       // 3-ий вызов 'dispatch-а': 'thunkAPI.fulfillWithValue(response.data)'
       return response.data; // аналог: thunkAPI.fulfillWithValue(response.data);

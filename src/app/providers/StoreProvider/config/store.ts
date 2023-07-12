@@ -1,4 +1,4 @@
-import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
+import { CombinedState, configureStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 import { NavigateOptions, To } from 'react-router-dom';
 
 import { counterReducer } from 'entities/Counter';
@@ -7,7 +7,7 @@ import { userReducer } from 'entities/User';
 import { $api } from 'shared/api/api';
 
 import { createReducerManager } from './reducerManager';
-import { StateSchema } from './StateSchema';
+import { StateSchema, ThunkExtraArg } from './StateSchema';
 
 // оборачиваем в дополнительную функцию для переиспользования 'store' в 'jest', 'storybook' и других местах
 export const createReduxStore = (
@@ -25,23 +25,29 @@ export const createReduxStore = (
   // для возможности использования асинхронных редюсеров
   const reducerManager = createReducerManager(rootReducers);
 
+  const extraArgument: ThunkExtraArg = {
+    api: $api, // добавляем в 'RTK' возможность использовать кастомный инстанс 'axios'
+    navigate,  // можно пользоваться навигацией внутри 'async thunks'
+  };
+
   const store = configureStore({
     devTools: __IS_DEV__,
 
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+/*  'reducerManager.reduce as ReducersMapObject<StateSchema>' в поле 'reducer' помогает избежать
+    ошибки типов в поле 'middleware', которая возникает из-за использования 'reducerManager'
+*/  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
       thunk: {
-        extraArgument: {
-          api: $api, // добавляем в 'RTK' возможность использовать кастомный инстанс 'axios'
-          navigate,  // можно пользоваться навигацией внутри 'async thunks'
-        },
+        extraArgument,
       },
     }),
 
     // инициализация 'store' заранее подготовленными данными для тестов, storybook и т.д.
     preloadedState: initialState,
 
-    // reducer: rootReducers,       // по умолчанию, когда все редюсеры синхронные
-    reducer: reducerManager.reduce, // для работы с асинхронными редюсерами
+    // reducer: rootReducers, // по умолчанию, когда все редюсеры синхронные
+
+    // для работы с асинхронными редюсерами
+    reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
   });
 
   // для возможности использования асинхронных редюсеров
