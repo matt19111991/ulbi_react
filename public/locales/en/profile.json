@@ -1,6 +1,8 @@
 {
   "Ваше имя": "Enter first name",
   "Ваша фамилия": "Enter last name",
+  "Попробуйте обновить страницу": "Try to refresh page",
+  "Произошла ошибка при загрузке профиля": "Profile loading error",
   "Профиль": "Profile",
   "Редактировать": "Edit"
 }
