@@ -9,18 +9,22 @@ import {
   useState,
 } from 'react';
 
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 
 import classes from './Input.module.scss';
 
-// без 'Omit' будет конфликт типов: 'onChange' принимает 'event', а не 'string'
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'>;
+/* без 'Omit' будет конфликт типов: 'onChange' принимает 'event', а не 'string',
+   а в InputHTMLAttributes<HTMLInputElement есть свое 'readOnly' свойство
+*/
+type HTMLInputProps =
+  Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'readOnly' | 'value'>;
 
 interface InputProps extends HTMLInputProps {
   autoFocus?: boolean;
   className?: string;
   onChange?: (value: string) => void;
   placeholder?: string;
+  readOnly?: boolean;
   type?: HTMLInputTypeAttribute;
   value?: string;
 }
@@ -30,6 +34,7 @@ export const Input = memo(({
   className,
   onChange,
   placeholder,
+  readOnly,
   type = 'text',
   value,
   ...rest
@@ -70,8 +75,14 @@ export const Input = memo(({
     }
   }, [autoFocus]);
 
+  console.log('readOnly', readOnly);
+
+  const mods: Mods = {
+    [classes.readonly]: readOnly,
+  };
+
   return (
-    <div className={classNames(classes.InputWrapper, {}, [className])}>
+    <div className={classNames(classes.InputWrapper, mods, [className])}>
       {placeholder && (
         <div className={classes.placeholder}>
           {`${placeholder}>`}
@@ -85,6 +96,7 @@ export const Input = memo(({
           onChange={onChangeHandler}
           onFocus={onFocus}
           onSelect={onSelect}
+          readOnly={readOnly}
           ref={ref}
           type={type}
           value={value}

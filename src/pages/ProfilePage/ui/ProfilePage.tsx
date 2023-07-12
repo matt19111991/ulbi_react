@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import {
@@ -7,6 +7,7 @@ import {
   getProfileError,
   getProfileIsLoading,
   ProfileCard,
+  profileActions,
   profileReducer,
 } from 'entities/Profile';
 
@@ -18,6 +19,8 @@ import {
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+
+import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
 
 interface ProfilePageProps {
   className?: string;
@@ -38,13 +41,25 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
     dispatch(fetchProfileData());
   }, [dispatch]);
 
+  const onChangeFirstName = useCallback((value?: string) => {
+    dispatch(profileActions.updateProfile({ first: value || '' }));
+  }, [dispatch]);
+
+  const onChangeLastName = useCallback((value?: string) => {
+    dispatch(profileActions.updateProfile({ lastname: value || '' }));
+  }, [dispatch]);
+
   return (
     <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
       <div className={classNames('', {}, [className])}>
+        <ProfilePageHeader />
+
         <ProfileCard
           data={data}
           error={error}
           isLoading={isLoading}
+          onChangeFirstName={onChangeFirstName}
+          onChangeLastName={onChangeLastName}
         />
       </div>
     </DynamicModuleLoader>
