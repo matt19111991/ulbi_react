@@ -9,8 +9,8 @@ import { Input } from 'shared/ui/Input/Input';
 import { Text } from 'shared/ui/Text/Text';
 
 import { getProfileData } from '../../model/selectors/getProfileData/getProfileData';
-import { getProfileError } from '../../model/selectors/getProfileError/getProfileError';
-import { getProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading';
+// import { getProfileError } from '../../model/selectors/getProfileError/getProfileError';
+// import { getProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading';
 
 import classes from './ProfileCard.module.scss';
 
@@ -22,8 +22,8 @@ export const ProfileCard = memo(({ className }: ProfileCardProps) => {
   const { t } = useTranslation('profile');
 
   const data = useSelector(getProfileData);
-  const error = useSelector(getProfileError);
-  const isLoading = useSelector(getProfileIsLoading);
+  // const error = useSelector(getProfileError);
+  // const isLoading = useSelector(getProfileIsLoading);
 
   return (
     <div className={classNames(classes.ProfileCard, {}, [className])}>

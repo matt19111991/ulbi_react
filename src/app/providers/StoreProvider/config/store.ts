@@ -1,4 +1,10 @@
-import { CombinedState, configureStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
+import {
+  CombinedState,
+  configureStore,
+  Reducer,
+  ReducersMapObject,
+} from '@reduxjs/toolkit';
+
 import { NavigateOptions, To } from 'react-router-dom';
 
 import { counterReducer } from 'entities/Counter';

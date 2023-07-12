@@ -66,7 +66,7 @@ export const Input = memo(({
     if (autoFocus) {
       setIsFocused(true);
 
-      ref.current.focus();
+      ref.current?.focus();
     }
   }, [autoFocus]);
 
