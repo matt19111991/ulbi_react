@@ -15,6 +15,8 @@ import { BuildPaths } from '../build/types/config';
     - использовать CSS модули
 */
 
+type Rule = webpack.RuleSetRule | string | 0 | false | undefined | null;
+
 export default ({ config }: { config: webpack.Configuration }) => {
   // настройка CSS модулей
   config.module!.rules!.push(buildCssLoader(true)); // storybook используем только в режиме разработки
@@ -23,15 +25,17 @@ export default ({ config }: { config: webpack.Configuration }) => {
    подключение '@svgr/webpack' лоадера
 */
   // eslint-disable-next-line no-param-reassign
-  config.module!.rules = config.module!.rules!.map((rule: webpack.RuleSetRule) => {
-    if (/svg/.test(rule.test as string)) { // если в поле 'test' для лоадера есть совпадение по 'svg'
-      return { ...rule, exclude: /\.svg$/i }; // исключаем обработку SVG файлов
+  config.module!.rules = config.module!.rules!.map((rule: Rule) => {
+    const iteratedRule = rule as webpack.RuleSetRule;
+
+    if (/svg/.test(iteratedRule.test as string)) { // если в поле 'test' для лоадера есть совпадение по 'svg'
+      return { ...iteratedRule, exclude: /\.svg$/i }; // исключаем обработку SVG файлов
     }
 
-    return rule;
+    return iteratedRule;
   });
 
-  config.module!.rules.push(buildSvgLoader()); // подключение '@svgr/webpack' лоадера
+  config.module!.rules!.push(buildSvgLoader()); // подключение '@svgr/webpack' лоадера
 
   const paths: BuildPaths = {
     build: '',
