@@ -1,6 +1,9 @@
 import { memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
+import { Country } from 'entities/Country';
+import { Currency } from 'entities/Currency';
+
 import {
   fetchProfileData,
   getProfileError,
@@ -57,6 +60,14 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
     dispatch(profileActions.updateProfile({ city: value || '' }));
   }, [dispatch]);
 
+  const onChangeCountry = useCallback((country: Country) => {
+    dispatch(profileActions.updateProfile({ country }));
+  }, [dispatch]);
+
+  const onChangeCurrency = useCallback((currency: Currency) => {
+    dispatch(profileActions.updateProfile({ currency }));
+  }, [dispatch]);
+
   const onChangeFirstName = useCallback((value?: string) => {
     dispatch(profileActions.updateProfile({ first: value || '' }));
   }, [dispatch]);
@@ -81,6 +92,8 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
           onChangeAge={onChangeAge}
           onChangeAvatar={onChangeAvatar}
           onChangeCity={onChangeCity}
+          onChangeCountry={onChangeCountry}
+          onChangeCurrency={onChangeCurrency}
           onChangeFirstName={onChangeFirstName}
           onChangeLastName={onChangeLastName}
           onChangeUserName={onChangeUserName}

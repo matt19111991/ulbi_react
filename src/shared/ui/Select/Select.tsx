@@ -57,6 +57,7 @@ export const Select = memo(({
 
       <select
         className={classes.select}
+        disabled={readOnly}
         onChange={onChangeHandler}
         value={value}
       >

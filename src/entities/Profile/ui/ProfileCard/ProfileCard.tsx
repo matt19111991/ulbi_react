@@ -1,7 +1,8 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { CurrencySelect } from 'entities/Currency';
+import { Country, CountrySelect } from 'entities/Country';
+import { Currency, CurrencySelect } from 'entities/Currency';
 
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 
@@ -22,6 +23,8 @@ interface ProfileCardProps {
   onChangeAge?: (value?: string) => void;
   onChangeAvatar?: (value?: string) => void;
   onChangeCity?: (value?: string) => void;
+  onChangeCountry?: (country: Country) => void;
+  onChangeCurrency?: (currency: Currency) => void;
   onChangeFirstName?: (value?: string) => void;
   onChangeLastName?: (value?: string) => void;
   onChangeUserName?: (value?: string) => void;
@@ -36,6 +39,8 @@ export const ProfileCard = memo(({
   onChangeAge,
   onChangeAvatar,
   onChangeCity,
+  onChangeCountry,
+  onChangeCurrency,
   onChangeFirstName,
   onChangeLastName,
   onChangeUserName,
@@ -126,7 +131,19 @@ export const ProfileCard = memo(({
           value={data?.avatar}
         />
 
-        <CurrencySelect readOnly={readOnly} />
+        <CurrencySelect
+          className={classes.input}
+          onChange={onChangeCurrency}
+          readOnly={readOnly}
+          value={data?.currency}
+        />
+
+        <CountrySelect
+          className={classes.input}
+          onChange={onChangeCountry}
+          readOnly={readOnly}
+          value={data?.country}
+        />
       </div>
     </div>
   );
