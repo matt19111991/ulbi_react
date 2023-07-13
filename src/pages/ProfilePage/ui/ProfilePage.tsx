@@ -49,6 +49,10 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
     }
   }, [dispatch]);
 
+  const onChangeAvatar = useCallback((value?: string) => {
+    dispatch(profileActions.updateProfile({ avatar: value || '' }));
+  }, [dispatch]);
+
   const onChangeCity = useCallback((value?: string) => {
     dispatch(profileActions.updateProfile({ city: value || '' }));
   }, [dispatch]);
@@ -61,6 +65,10 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
     dispatch(profileActions.updateProfile({ lastname: value || '' }));
   }, [dispatch]);
 
+  const onChangeUserName = useCallback((value?: string) => {
+    dispatch(profileActions.updateProfile({ username: value || '' }));
+  }, [dispatch]);
+
   return (
     <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
       <div className={classNames('', {}, [className])}>
@@ -71,9 +79,11 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
           error={error}
           isLoading={isLoading}
           onChangeAge={onChangeAge}
+          onChangeAvatar={onChangeAvatar}
           onChangeCity={onChangeCity}
           onChangeFirstName={onChangeFirstName}
           onChangeLastName={onChangeLastName}
+          onChangeUserName={onChangeUserName}
           readOnly={readOnly}
         />
       </div>

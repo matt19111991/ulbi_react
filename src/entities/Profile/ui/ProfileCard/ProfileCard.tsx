@@ -17,9 +17,11 @@ interface ProfileCardProps {
   error?: string;
   isLoading?: boolean;
   onChangeAge?: (value?: string) => void;
+  onChangeAvatar?: (value?: string) => void;
   onChangeCity?: (value?: string) => void;
   onChangeFirstName?: (value?: string) => void;
   onChangeLastName?: (value?: string) => void;
+  onChangeUserName?: (value?: string) => void;
   readOnly?: boolean;
 }
 
@@ -29,9 +31,11 @@ export const ProfileCard = memo(({
   isLoading,
   error,
   onChangeAge,
+  onChangeAvatar,
   onChangeCity,
   onChangeFirstName,
   onChangeLastName,
+  onChangeUserName,
   readOnly,
 }: ProfileCardProps) => {
   const { t } = useTranslation('profile');
@@ -60,6 +64,8 @@ export const ProfileCard = memo(({
   return (
     <div className={classNames(classes.ProfileCard, {}, [className])}>
       <div className={classes.data}>
+        {data?.avatar && <img src={data?.avatar} alt='avatar' />}
+
         <Input
           className={classes.input}
           onChange={onChangeFirstName}
@@ -90,6 +96,22 @@ export const ProfileCard = memo(({
           placeholder={t('Выберите город')}
           readOnly={readOnly}
           value={data?.city}
+        />
+
+        <Input
+          className={classes.input}
+          onChange={onChangeUserName}
+          placeholder={t('Введите имя пользователя')}
+          readOnly={readOnly}
+          value={data?.username}
+        />
+
+        <Input
+          className={classes.input}
+          onChange={onChangeAvatar}
+          placeholder={t('Введите ссылку на аватар')}
+          readOnly={readOnly}
+          value={data?.avatar}
         />
       </div>
     </div>

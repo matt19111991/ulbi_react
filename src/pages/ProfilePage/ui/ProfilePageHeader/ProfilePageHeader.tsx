@@ -8,7 +8,7 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Text } from 'shared/ui/Text/Text';
 
-import { getProfileReadOnly, profileActions } from 'entities/Profile';
+import { getProfileReadOnly, profileActions, updateProfileData } from 'entities/Profile';
 
 import classes from './ProfilePageHeader.module.scss';
 
@@ -31,7 +31,7 @@ export const ProfilePageHeader = memo(({ className }: ProfilePageHeaderProps) =>
   }, [dispatch]);
 
   const onSave = useCallback(() => {
-    dispatch(profileActions.cancelEdit());
+    dispatch(updateProfileData());
   }, [dispatch]);
 
   return (

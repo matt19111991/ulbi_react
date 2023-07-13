@@ -5,6 +5,7 @@ export { getProfileIsLoading } from './model/selectors/getProfileIsLoading/getPr
 export { getProfileReadOnly } from './model/selectors/getProfileReadOnly/getProfileReadOnly';
 
 export { fetchProfileData } from './model/services/fetchProfileData/fetchProfileData';
+export { updateProfileData } from './model/services/updateProfileData/updateProfileData';
 
 export { profileActions, profileReducer } from './model/slice/profileSlice';
 
