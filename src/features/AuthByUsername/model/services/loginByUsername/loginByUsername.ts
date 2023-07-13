@@ -68,6 +68,7 @@ export const loginByUsername = createAsyncThunk< // 1-ый вызов 'dispatch-
       // 2-ой вызов 'dispatch-а'
       thunkAPI.dispatch(userActions.setAuthData(response.data));
 
+      // TODO: изучить, почему очищается 'store' при использовании навигации
       // thunkAPI.extra.navigate?.('/about'); // есть возможность использовать навигацию
 
       // 3-ий вызов 'dispatch-а': 'thunkAPI.fulfillWithValue(response.data)'

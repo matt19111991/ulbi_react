@@ -44,7 +44,9 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
   }, [dispatch]);
 
   const onChangeAge = useCallback((value?: string) => {
-    dispatch(profileActions.updateProfile({ age: Number(value || 0) }));
+    if (value && /^\d+$/.test(value)) { // валидация только на числа
+      dispatch(profileActions.updateProfile({ age: Number(value || 0) }));
+    }
   }, [dispatch]);
 
   const onChangeCity = useCallback((value?: string) => {
