@@ -26,7 +26,7 @@ interface InputProps extends HTMLInputProps {
   placeholder?: string;
   readOnly?: boolean;
   type?: HTMLInputTypeAttribute;
-  value?: string;
+  value?: string | number;
 }
 
 export const Input = memo(({
@@ -43,6 +43,8 @@ export const Input = memo(({
   const [isFocused, setIsFocused] = useState(false);
 
   const ref = useRef<HTMLInputElement>(null);
+
+  const isCaretVisible = isFocused && !readOnly;
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.value); // 'onChange?.()' => функция не будет вызвана, если не будет передана
@@ -75,8 +77,6 @@ export const Input = memo(({
     }
   }, [autoFocus]);
 
-  console.log('readOnly', readOnly);
-
   const mods: Mods = {
     [classes.readonly]: readOnly,
   };
@@ -103,7 +103,7 @@ export const Input = memo(({
           {...rest}
         />
 
-        {isFocused && (
+        {isCaretVisible && (
           <span
             className={classes.caret}
             style={{

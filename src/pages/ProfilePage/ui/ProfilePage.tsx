@@ -3,9 +3,10 @@ import { useSelector } from 'react-redux';
 
 import {
   fetchProfileData,
-  getProfileData,
   getProfileError,
+  getProfileForm,
   getProfileIsLoading,
+  getProfileReadOnly,
   ProfileCard,
   profileActions,
   profileReducer,
@@ -33,12 +34,21 @@ const initialReducers: ReducersList = {
 const ProfilePage = memo(({ className }: ProfilePageProps) => {
   const dispatch = useAppDispatch();
 
-  const data = useSelector(getProfileData);
   const error = useSelector(getProfileError);
+  const formData = useSelector(getProfileForm);
   const isLoading = useSelector(getProfileIsLoading);
+  const readOnly = useSelector(getProfileReadOnly);
 
   useEffect(() => {
     dispatch(fetchProfileData());
+  }, [dispatch]);
+
+  const onChangeAge = useCallback((value?: string) => {
+    dispatch(profileActions.updateProfile({ age: Number(value || 0) }));
+  }, [dispatch]);
+
+  const onChangeCity = useCallback((value?: string) => {
+    dispatch(profileActions.updateProfile({ city: value || '' }));
   }, [dispatch]);
 
   const onChangeFirstName = useCallback((value?: string) => {
@@ -55,11 +65,14 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
         <ProfilePageHeader />
 
         <ProfileCard
-          data={data}
+          data={formData}
           error={error}
           isLoading={isLoading}
+          onChangeAge={onChangeAge}
+          onChangeCity={onChangeCity}
           onChangeFirstName={onChangeFirstName}
           onChangeLastName={onChangeLastName}
+          readOnly={readOnly}
         />
       </div>
     </DynamicModuleLoader>

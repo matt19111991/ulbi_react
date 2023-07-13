@@ -16,8 +16,11 @@ interface ProfileCardProps {
   data?: Profile;
   error?: string;
   isLoading?: boolean;
+  onChangeAge?: (value?: string) => void;
+  onChangeCity?: (value?: string) => void;
   onChangeFirstName?: (value?: string) => void;
   onChangeLastName?: (value?: string) => void;
+  readOnly?: boolean;
 }
 
 export const ProfileCard = memo(({
@@ -25,8 +28,11 @@ export const ProfileCard = memo(({
   data,
   isLoading,
   error,
+  onChangeAge,
+  onChangeCity,
   onChangeFirstName,
   onChangeLastName,
+  readOnly,
 }: ProfileCardProps) => {
   const { t } = useTranslation('profile');
 
@@ -58,6 +64,7 @@ export const ProfileCard = memo(({
           className={classes.input}
           onChange={onChangeFirstName}
           placeholder={t('Ваше имя')}
+          readOnly={readOnly}
           value={data?.first}
         />
 
@@ -65,7 +72,24 @@ export const ProfileCard = memo(({
           className={classes.input}
           onChange={onChangeLastName}
           placeholder={t('Ваша фамилия')}
+          readOnly={readOnly}
           value={data?.lastname}
+        />
+
+        <Input
+          className={classes.input}
+          onChange={onChangeAge}
+          placeholder={t('Ваш возраст')}
+          readOnly={readOnly}
+          value={data?.age}
+        />
+
+        <Input
+          className={classes.input}
+          onChange={onChangeCity}
+          placeholder={t('Выберите город')}
+          readOnly={readOnly}
+          value={data?.city}
         />
       </div>
     </div>

@@ -14,6 +14,7 @@ export interface Profile {
 export interface ProfileSchema {
   data?: Profile;
   error?: string;
+  form?: Profile; // изменения пользователя после получения 'data' с сервера
   isLoading: boolean;
   readonly: boolean;
 }

@@ -1,9 +1,12 @@
 {
+  "Ваш возраст": "Enter your age",
   "Ваше имя": "Enter first name",
   "Ваша фамилия": "Enter last name",
+  "Выберите город": "Select city",
   "Отменить": "Cancel",
   "Попробуйте обновить страницу": "Try to refresh page",
   "Произошла ошибка при загрузке профиля": "Profile loading error",
   "Профиль": "Profile",
-  "Редактировать": "Edit"
+  "Редактировать": "Edit",
+  "Сохранить": "Save"
 }
