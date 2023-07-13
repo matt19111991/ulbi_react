@@ -1,8 +1,9 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 
+import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Input } from 'shared/ui/Input/Input';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
@@ -61,10 +62,18 @@ export const ProfileCard = memo(({
     );
   }
 
+  const mods: Mods = {
+    [classes.editing]: !readOnly,
+  };
+
   return (
-    <div className={classNames(classes.ProfileCard, {}, [className])}>
+    <div className={classNames(classes.ProfileCard, mods, [className])}>
       <div className={classes.data}>
-        {data?.avatar && <img src={data?.avatar} alt='avatar' />}
+        {data?.avatar && (
+          <div className={classes.avatarWrapper}>
+            <Avatar alt='avatar' src={data?.avatar} />
+          </div>
+        )}
 
         <Input
           className={classes.input}
@@ -108,6 +117,7 @@ export const ProfileCard = memo(({
 
         <Input
           className={classes.input}
+          fullWidth
           onChange={onChangeAvatar}
           placeholder={t('Введите ссылку на аватар')}
           readOnly={readOnly}

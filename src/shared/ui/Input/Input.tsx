@@ -22,6 +22,7 @@ type HTMLInputProps =
 interface InputProps extends HTMLInputProps {
   autoFocus?: boolean;
   className?: string;
+  fullWidth?: boolean;
   onChange?: (value: string) => void;
   placeholder?: string;
   readOnly?: boolean;
@@ -32,6 +33,7 @@ interface InputProps extends HTMLInputProps {
 export const Input = memo(({
   autoFocus,
   className,
+  fullWidth,
   onChange,
   placeholder,
   readOnly,
@@ -77,12 +79,16 @@ export const Input = memo(({
     }
   }, [autoFocus]);
 
-  const mods: Mods = {
+  const wrapperMods: Mods = {
     [classes.readonly]: readOnly,
   };
 
+  const inputMods: Mods = {
+    [classes.fullWidth]: fullWidth,
+  };
+
   return (
-    <div className={classNames(classes.InputWrapper, mods, [className])}>
+    <div className={classNames(classes.InputWrapper, wrapperMods, [className])}>
       {placeholder && (
         <div className={classes.placeholder}>
           {`${placeholder}>`}
@@ -91,7 +97,7 @@ export const Input = memo(({
 
       <div className={classes.caretWrapper}>
         <input
-          className={classes.input}
+          className={classNames(classes.input, inputMods, [])}
           onBlur={onBlur}
           onChange={onChangeHandler}
           onFocus={onFocus}

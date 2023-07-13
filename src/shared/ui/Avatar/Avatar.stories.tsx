@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { Avatar } from './Avatar';
 
+import AvatarImg from './storybook.jpg';
+
 const meta = {
   title: 'shared/Avatar',
   component: Avatar,
@@ -14,12 +16,21 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Normal avatar
+// Primary avatar
 
-export const NormalAvatar: Story = {
+export const Primary: Story = {
   args: {
-    alt: 'avatar',
-    src: '',
+    size: 150,
+    src: AvatarImg,
+  },
+};
+
+// Small avatar
+
+export const Small: Story = {
+  args: {
+    size: 50,
+    src: AvatarImg,
   },
 };
 

@@ -18,8 +18,9 @@ export const Avatar = memo(({
   src,
 }: AvatarProps) => {
   const styles = useMemo<CSSProperties>(() => ({ // избегаем лишних перерендеров с 'useMemo'
-    height: size,
-    width: size,
+    height: size || 100,
+    lineHeight: size || '100px',
+    width: size || 100,
   }), [size]);
 
   return (
@@ -27,7 +28,7 @@ export const Avatar = memo(({
       alt={alt}
       className={classNames(classes.Avatar, {}, [className])}
       src={src}
-      style={styles}
+      style={styles} /* у 'style' приоритет над 'className' */
     />
   );
 });

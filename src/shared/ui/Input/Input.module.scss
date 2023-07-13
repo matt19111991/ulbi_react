@@ -17,6 +17,12 @@
   width: 9px;
 }
 
+.fullWidth {
+  display: inline-block;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
 .input {
   background: transparent;
   border: none;
