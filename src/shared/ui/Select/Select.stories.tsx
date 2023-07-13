@@ -19,6 +19,11 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     label: 'Укажите значение',
+    options: [
+      { content: 'Первый пункт', value: '123' },
+      { content: 'Второй пункт', value: '456' },
+      { content: 'Третий пункт', value: '789' },
+    ],
   },
 };
 

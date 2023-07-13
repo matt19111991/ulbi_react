@@ -1,6 +1,8 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { CurrencySelect } from 'entities/Currency';
+
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 
 import { Avatar } from 'shared/ui/Avatar/Avatar';
@@ -123,6 +125,8 @@ export const ProfileCard = memo(({
           readOnly={readOnly}
           value={data?.avatar}
         />
+
+        <CurrencySelect readOnly={readOnly} />
       </div>
     </div>
   );
