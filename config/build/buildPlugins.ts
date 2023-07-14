@@ -15,6 +15,7 @@ export function buildPlugins({
   apiUrl,
   isDev,
   paths,
+  project,
 }: BuildOptions): webpack.WebpackPluginInstance[] {
   const plugins = [ // порядок плагинов не имеет значения
     new HTMLWebpackPlugin({
@@ -35,7 +36,7 @@ export function buildPlugins({
       filename: 'css/[name].[contenthash:8].css',
     }),
 
-    buildDefinePlugin(apiUrl, isDev),
+    buildDefinePlugin(apiUrl, isDev, project),
   ];
 
   if (isDev) {

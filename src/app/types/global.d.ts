@@ -31,6 +31,7 @@ declare module '*png';
 
 declare const __API__: string;
 declare const __IS_DEV__: boolean;
+declare const __PROJECT__: 'front-end' | 'jest' | 'storybook';
 
 /* 'DeepPartial' из '@reduxjs/toolkit' подразумевает, что вся поля будут необязательными;
     нужна возможность задавать частичный 'store' с обязательными полями (взято из интернета)

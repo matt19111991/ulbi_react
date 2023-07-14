@@ -14,6 +14,7 @@ module.exports = {
   globals: {
     __API__: 'readonly',
     __IS_DEV__: 'readonly',
+    __PROJECT__: 'readonly',
   },
   overrides: [
     {
@@ -101,7 +102,7 @@ module.exports = {
     'no-shadow': 0,
 
 //  запрет на нижнее подчеркивание в переменных(вкл.)
-    'no-underscore-dangle': [2, { allow: ['__API__', '__IS_DEV__'] }],
+    'no-underscore-dangle': [2, { allow: ['__API__', '__IS_DEV__', '__PROJECT__'] }],
 
 /*  чтобы была возможность использовать кастомный 'DeepPartial' и TypeScript не ругался
     на объявление глобальных переменных, var и т.д.

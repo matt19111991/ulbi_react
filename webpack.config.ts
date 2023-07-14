@@ -44,6 +44,7 @@ export default (env: BuildEnv) => {
     mode,
     paths,
     port,
+    project: 'front-end',
   });
 
   return config;

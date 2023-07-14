@@ -19,4 +19,5 @@ export interface BuildOptions {
   mode: BuildMode;
   paths: BuildPaths;
   port: number;
+  project: 'front-end' | 'jest' | 'storybook';  // запущенная среда
 }
