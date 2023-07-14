@@ -28,12 +28,12 @@ export const validateProfileData = (profile?: Profile) => {
     errors.push(ValidateProfileError.INCORRECT_AVATAR);
   }
 
-  if (!country) {
-    errors.push(ValidateProfileError.INCORRECT_COUNTRY);
-  }
-
   if (!city) {
     errors.push(ValidateProfileError.INCORRECT_CITY);
+  }
+
+  if (!country) {
+    errors.push(ValidateProfileError.INCORRECT_COUNTRY);
   }
 
   if (!currency) {
