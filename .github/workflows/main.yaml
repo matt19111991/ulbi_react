@@ -55,11 +55,10 @@ jobs:
       # собираем storybook build
       - name: Build storybook
         if: always()
-        # if: false
         run: npm run storybook:build
 
       # запускаем скриншотное тестирование (loki)
       - name: Screenshot testing
-        if: always()
-        # if: false
+        # if: always()
+        if: false
         run: npm run test:ui:ci

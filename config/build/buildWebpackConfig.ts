@@ -42,6 +42,12 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
       path: paths.build,
 
       clean: true, // очистка ненужных файлов (например: файлов, в которых поменялся хэш)
+
+/*    Все статические файлы должны запрашиваться из корня (/build), иначе
+      ломаются роуты вида '/articles/:id'. publicPath('/') => корень '/build' + '/'
+
+      В dev режиме папки '/build' нет, как и папки '/articles', все хранится в памяти
+*/    publicPath: '/',
     },
 
     plugins: buildPlugins(options),
