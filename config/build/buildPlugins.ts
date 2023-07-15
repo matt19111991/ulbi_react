@@ -5,6 +5,8 @@ import HTMLWebpackPlugin from 'html-webpack-plugin';
 
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
+// import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 import { buildDefinePlugin } from './plugins/buildDefinePlugin';
@@ -42,6 +44,9 @@ export function buildPlugins({
   if (isDev) {
 /*  HotModuleReplacementPlugin позволяет применить правки в коде без перезагрузки страницы
     Обеспечивает более стабильную работу, чем функционал 'webpack-dev-server' из коробки
+
+    Если 'HotModuleReplacementPlugin' будет работать нестабильно, можно использовать 'react-refresh-webpack-plugin'
+    plugins.push(new ReactRefreshWebpackPlugin());
 
 */  plugins.push(new webpack.HotModuleReplacementPlugin());
 
