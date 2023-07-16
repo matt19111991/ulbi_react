@@ -9,6 +9,7 @@ import {
   ReducersMapObject,
 } from '@reduxjs/toolkit';
 
+import { ArticleDetailsSchema } from 'entities/Article';
 import { CounterSchema } from 'entities/Counter';
 import { ProfileSchema } from 'entities/Profile';
 import { UserSchema } from 'entities/User';
@@ -21,6 +22,7 @@ export interface StateSchema {
   user: UserSchema;
 
   // Асинхронные редюсеры
+  articleDetails?: ArticleDetailsSchema;
   loginForm?: LoginSchema;
   profile?: ProfileSchema;
 }

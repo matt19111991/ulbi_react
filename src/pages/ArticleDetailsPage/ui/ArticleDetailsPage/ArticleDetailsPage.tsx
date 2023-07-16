@@ -1,5 +1,7 @@
 import { memo } from 'react';
 
+import { ArticleDetails } from 'entities/Article';
+
 import { classNames } from 'shared/lib/classNames/classNames';
 
 interface ArticleDetailsPageProps {
@@ -7,9 +9,8 @@ interface ArticleDetailsPageProps {
 }
 
 const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => (
-  // eslint-disable-next-line i18next/no-literal-string
   <div className={classNames('', {}, [className])}>
-    Article Details Page
+    <ArticleDetails />
   </div>
 );
 
