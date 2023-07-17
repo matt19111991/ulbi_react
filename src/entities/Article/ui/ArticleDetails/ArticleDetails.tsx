@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
@@ -29,6 +29,16 @@ import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArt
 
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
 
+import { ArticleBlock, ArticleBlockType } from '../../model/types/article';
+
+import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
+
+import {
+  ArticleImageBlockComponent,
+} from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
+
+import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
+
 import classes from './ArticleDetails.module.scss';
 
 interface ArticleDetailsProps {
@@ -51,6 +61,19 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
   useEffect(() => {
     dispatch(fetchArticleById(id));
   }, [dispatch, id]);
+
+  const renderBlock = useCallback((block: ArticleBlock) => {
+    switch (block.type) {
+      case ArticleBlockType.CODE:
+        return <ArticleCodeBlockComponent block={block} className={classes.block} />;
+      case ArticleBlockType.IMAGE:
+        return <ArticleImageBlockComponent block={block} className={classes.block} />;
+      case ArticleBlockType.TEXT:
+        return <ArticleTextBlockComponent block={block} className={classes.block} />;
+      default:
+        return null;
+    }
+  }, []);
 
   let content;
 
@@ -91,6 +114,8 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
 
           <Text text={article?.createdAt} />
         </div>
+
+        {article?.blocks.map(renderBlock)}
       </>
     );
   }
