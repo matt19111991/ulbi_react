@@ -1,26 +1,31 @@
-import { memo, ReactNode } from 'react';
-import { useTranslation } from 'react-i18next';
+import { memo, useCallback } from 'react';
+
+import CopyIcon from 'shared/assets/icons/copy-22-22.svg';
 
 import { classNames } from 'shared/lib/classNames/classNames';
 
-import { Button } from 'shared/ui/Button/Button';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 
 import classes from './Code.module.scss';
 
 interface CodeProps {
-  children: ReactNode;
   className?: string;
+  text: string;
 }
 
-export const Code = memo(({ children, className }: CodeProps) => {
-  const { t } = useTranslation('article-details');
+export const Code = memo(({ className, text }: CodeProps) => {
+  const onCopy = useCallback(() => {
+    navigator.clipboard.writeText(text);
+  }, [text]);
 
   return (
     // <pre> сохраняет все пробелы, переносы внутри текста
     <pre className={classNames(classes.Code, {}, [className])}>
-      <Button className={classes.copyBtn}>{t('Копировать')}</Button>
+      <Button className={classes.copyBtn} onClick={onCopy} theme={ButtonTheme.CLEAR}>
+        <CopyIcon className={classes.copyIcon} />
+      </Button>
 
-      <code>{children}</code>
+      <code>{text}</code>
     </pre>
   );
 });

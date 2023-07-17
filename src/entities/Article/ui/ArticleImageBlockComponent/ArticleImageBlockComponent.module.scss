@@ -1,0 +1,8 @@
+.ArticleImageBlockComponent {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.img {
+  max-width: 100%; // чтобы большая картинка не вылезала за пределы страницы
+}

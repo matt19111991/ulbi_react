@@ -5,11 +5,13 @@ import { StateSchema, StoreProvider } from 'app/providers/StoreProvider';
 
 import { loginReducer } from 'features/AuthByUsername/model/slice/loginSlice';
 
+import { articleDetailsReducer } from 'entities/Article';
 import { profileReducer } from 'entities/Profile';
 
 import { ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
 const defaultReducers: ReducersList = {
+  articleDetails: articleDetailsReducer,
   loginForm: loginReducer,
   profile: profileReducer,
 };
