@@ -2,8 +2,8 @@ import { memo, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-// import ArticleIcon from 'shared/assets/icons/eye-20-20.svg';
-// import CalendarIcon from 'shared/assets/icons/calendar-20-20.svg';
+import CalendarIcon from 'shared/assets/icons/calendar-20-20.svg';
+import EyeIcon from 'shared/assets/icons/eye-20-20.svg';
 
 import { classNames } from 'shared/lib/classNames/classNames';
 
@@ -15,8 +15,9 @@ import {
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 import { Avatar } from 'shared/ui/Avatar/Avatar';
+import { Icon } from 'shared/ui/Icon/Icon';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
-import { Text, TextAlign } from 'shared/ui/Text/Text';
+import { Text, TextAlign, TextSize } from 'shared/ui/Text/Text';
 
 import {
   getArticleDetailsData,
@@ -68,8 +69,28 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
   } else {
     content = (
       <>
-        <Avatar className={classes.avatar} size={200} src={article?.img} />
-        <Text className={classes.title} text={article?.subtitle} title={article?.title} />
+        <div className={classes.avatarWrapper}>
+          <Avatar className={classes.avatar} size={200} src={article?.img} />
+        </div>
+
+        <Text
+          className={classes.title}
+          size={TextSize.L}
+          text={article?.subtitle}
+          title={article?.title}
+        />
+
+        <div className={classes.articleInfo}>
+          <Icon className={classes.icon} Svg={EyeIcon} />
+
+          <Text text={String(article?.views)} />
+        </div>
+
+        <div className={classes.articleInfo}>
+          <Icon className={classes.icon} Svg={CalendarIcon} />
+
+          <Text text={article?.createdAt} />
+        </div>
       </>
     );
   }

@@ -2,8 +2,23 @@
   min-height: 100%;
 }
 
+.articleInfo {
+  align-items: center;
+  display: flex;
+}
+
+.avatarWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .avatar {
   margin: 0 auto;
+}
+
+.icon {
+  margin-right: 8px;
 }
 
 .skeleton {

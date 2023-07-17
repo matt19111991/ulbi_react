@@ -4,7 +4,7 @@ import { Theme } from 'app/providers/ThemeProvider';
 
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
-import { Text, TextTheme } from './Text';
+import { Text, TextSize, TextTheme } from './Text';
 
 const meta = {
   title: 'shared/Text',
@@ -79,6 +79,16 @@ export const ErrorText: Story = {
     title: 'Title lorem ipsun',
     text: 'Description Description Description Description',
     theme: TextTheme.ERROR,
+  },
+};
+
+// Large size
+
+export const SizeLarge: Story = {
+  args: {
+    size: TextSize.L,
+    title: 'Title lorem ipsun',
+    text: 'Description Description Description Description',
   },
 };
 
