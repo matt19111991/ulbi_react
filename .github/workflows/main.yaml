@@ -60,5 +60,4 @@ jobs:
       # запускаем скриншотное тестирование (loki)
       - name: Screenshot testing
         if: always()
-        # if: false
         run: npm run test:ui:ci
