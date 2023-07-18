@@ -16,6 +16,8 @@ import { UserSchema } from 'entities/User';
 
 import { LoginSchema } from 'features/AuthByUsername';
 
+import { ArticleDetailsCommentsSchema } from 'pages/ArticleDetailsPage';
+
 export interface StateSchema {
   // Синхронные редюсеры
   counter: CounterSchema;
@@ -23,6 +25,7 @@ export interface StateSchema {
 
   // Асинхронные редюсеры
   articleDetails?: ArticleDetailsSchema;
+  articleDetailsComments?: ArticleDetailsCommentsSchema;
   loginForm?: LoginSchema;
   profile?: ProfileSchema;
 }
