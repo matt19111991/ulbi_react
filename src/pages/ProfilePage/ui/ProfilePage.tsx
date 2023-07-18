@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect } from 'react';
+import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
@@ -26,6 +26,7 @@ import {
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 
@@ -61,11 +62,9 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
     [ValidateProfileError.SERVER_ERROR]: t('Серверная ошибка при сохранении'),
   };
 
-  useEffect(() => {
-    if (__PROJECT__ !== 'storybook') {
-      dispatch(fetchProfileData());
-    }
-  }, [dispatch]);
+  useInitialEffect(() => {
+    dispatch(fetchProfileData());
+  });
 
   const onChangeAge = useCallback((value?: string) => {
     if (!value?.length || /^\d+$/.test(value)) { // валидация только на числа и пустую строку

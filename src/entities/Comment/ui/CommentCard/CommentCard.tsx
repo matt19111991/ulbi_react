@@ -12,7 +12,7 @@ import classes from './CommentCard.module.scss';
 
 interface CommentCardProps {
   className?: string;
-  comment: Comment;
+  comment?: Comment;
   isLoading?: boolean;
 }
 
@@ -30,25 +30,29 @@ export const CommentCard = memo(({ className, comment, isLoading }: CommentCardP
     );
   }
 
-  return (
-    <div className={classNames(classes.CommentCard, {}, [className])}>
-      <div className={classes.header}>
-        {comment.user.avatar
-          ? (
-            <Avatar
-              className={classes.avatar}
-              size={30}
-              src={comment.user.avatar}
-            />
-          )
-          : null}
+  if (comment) {
+    return (
+      <div className={classNames(classes.CommentCard, {}, [className])}>
+        <div className={classes.header}>
+          {comment.user.avatar
+            ? (
+              <Avatar
+                className={classes.avatar}
+                size={30}
+                src={comment.user.avatar}
+              />
+            )
+            : null}
 
-        <Text title={comment.user.username} />
+          <Text title={comment.user.username} />
+        </div>
+
+        <Text className={classes.text} text={comment.text} />
       </div>
+    );
+  }
 
-      <Text className={classes.text} text={comment.text} />
-    </div>
-  );
+  return null;
 });
 
 CommentCard.displayName = 'CommentCard';

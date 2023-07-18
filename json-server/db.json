@@ -82,19 +82,19 @@
     {
       "id": "1",
       "articleId": "1",
-      "text": "some comment",
+      "text": "Ortum tandem ducunt ad teres ignigena. Peritus, grandis amors cito contactus de teres, placidus galatae.",
       "userId": "1"
     },
     {
       "id": "2",
       "articleId": "1",
-      "text": "some comment 2",
-      "userId": "1"
+      "text": "Talis valebat satis imitaris fluctus est. A falsis, racana clemens mons.",
+      "userId": "2"
     },
     {
       "id": "3",
       "articleId": "1",
-      "text": "some comment 3",
+      "text": "Ubi est rusticus eleates? Fluctui, resistentia, et amicitia.",
       "userId": "1"
     }
   ],
@@ -136,14 +136,14 @@
       "avatar": "https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg",
       "password": "12345",
       "role": "ADMIN",
-      "username": "admin"
+      "username": "Jack"
     },
     {
       "id": "2",
       "avatar": "https://img.freepik.com/premium-photo/man-stands-ledge-looking-cityscape_529521-762.jpg",
       "password": "12345",
       "role": "USER",
-      "username": "user"
+      "username": "Mary"
     }
   ]
 }
