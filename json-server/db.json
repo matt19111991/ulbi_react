@@ -133,12 +133,14 @@
   "users": [
     {
       "id": "1",
+      "avatar": "https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg",
       "password": "12345",
       "role": "ADMIN",
       "username": "admin"
     },
     {
       "id": "2",
+      "avatar": "https://img.freepik.com/premium-photo/man-stands-ledge-looking-cityscape_529521-762.jpg",
       "password": "12345",
       "role": "USER",
       "username": "user"

@@ -19,12 +19,18 @@ interface CommentListProps {
 
 export const CommentList = memo(({ className, comments, isLoading }: CommentListProps) => {
   const { t } = useTranslation();
-  console.log('isLoading', isLoading);
 
   return (
-    <div className={classNames(classes.CommentList, {}, [className])}>
+    <div className={classNames('', {}, [className])}>
       {comments?.length
-        ? comments.map((comment) => <CommentCard comment={comment} key={comment.id} />)
+        ? comments.map((comment) => (
+          <CommentCard
+            className={classes.comment}
+            comment={comment}
+            key={comment.id}
+            isLoading={isLoading}
+          />
+        ))
         : <Text text={t('Комментарии отсутствуют')} />}
     </div>
   );
