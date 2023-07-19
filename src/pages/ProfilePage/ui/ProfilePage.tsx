@@ -1,5 +1,6 @@
 import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { Country } from 'entities/Country';
@@ -42,6 +43,7 @@ const initialReducers: ReducersList = {
 
 const ProfilePage = memo(({ className }: ProfilePageProps) => {
   const dispatch = useAppDispatch();
+  const { id } = useParams<{ id: string; }>();
   const { t } = useTranslation('profile');
 
   const error = useSelector(getProfileError);
@@ -63,7 +65,9 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
   };
 
   useInitialEffect(() => {
-    dispatch(fetchProfileData());
+    if (id) {
+      dispatch(fetchProfileData(id));
+    }
   });
 
   const onChangeAge = useCallback((value?: string) => {

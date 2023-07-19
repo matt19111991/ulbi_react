@@ -25,7 +25,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.ABOUT]: '/about',
   [AppRoutes.ARTICLE_DETAILS]: '/articles/', // + :id
   [AppRoutes.ARTICLES]: '/articles',
-  [AppRoutes.PROFILE]: '/profile',
+  [AppRoutes.PROFILE]: '/profile/', // + :id
 
   // должен идти последним
   [AppRoutes.NOT_FOUND]: '*', // охватывает все маршруты, кроме указанных выше
@@ -53,7 +53,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.PROFILE]: {
     authOnly: true,
     element: <ProfilePage />,
-    path: RoutePath.profile,
+    path: `${RoutePath.profile}:id`,
   },
   [AppRoutes.NOT_FOUND]: {
     element: <NotFoundPage />,

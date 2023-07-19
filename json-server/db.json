@@ -120,16 +120,30 @@
       "title": "json-server 4"
     }
   ],
-  "profile": {
-    "age": 22,
-    "avatar": "https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg",
-    "city": "New-York",
-    "country": "USA",
-    "currency": "USD",
-    "first": "Jack",
-    "lastname": "Smith",
-    "username": "admin"
-  },
+  "profile": [
+    {
+      "id": "1",
+      "age": 22,
+      "avatar": "https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg",
+      "city": "New-York",
+      "country": "USA",
+      "currency": "USD",
+      "first": "Jack",
+      "lastname": "Smith",
+      "username": "Jack"
+    },
+    {
+      "id": "2",
+      "age": 31,
+      "avatar": "https://img.freepik.com/premium-photo/man-stands-ledge-looking-cityscape_529521-762.jpg",
+      "city": "Berlin",
+      "country": "Germany",
+      "currency": "EUR",
+      "first": "Mary",
+      "lastname": "Rude",
+      "username": "Mary"
+    }
+  ],
   "users": [
     {
       "id": "1",

@@ -1,7 +1,10 @@
 import { memo } from 'react';
 
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+
 import { classNames } from 'shared/lib/classNames/classNames';
 
+import { AppLink } from 'shared/ui/AppLink/AppLink';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { Text } from 'shared/ui/Text/Text';
@@ -33,7 +36,10 @@ export const CommentCard = memo(({ className, comment, isLoading }: CommentCardP
   if (comment) {
     return (
       <div className={classNames(classes.CommentCard, {}, [className])}>
-        <div className={classes.header}>
+        <AppLink
+          className={classes.header}
+          to={`${RoutePath.profile}${comment?.user.id}`}
+        >
           {comment.user.avatar
             ? (
               <Avatar
@@ -45,7 +51,7 @@ export const CommentCard = memo(({ className, comment, isLoading }: CommentCardP
             : null}
 
           <Text title={comment.user.username} />
-        </div>
+        </AppLink>
 
         <Text className={classes.text} text={comment.text} />
       </div>
