@@ -56,4 +56,12 @@ export const Dark: Story = {
 
 Dark.decorators = [StoreDecorator(stateProfile), ThemeDecorator(Theme.DARK)];
 
+// Orange profile page
+
+export const Orange: Story = {
+  args: {},
+};
+
+Orange.decorators = [StoreDecorator(stateProfile), ThemeDecorator(Theme.ORANGE)];
+
 export default meta;

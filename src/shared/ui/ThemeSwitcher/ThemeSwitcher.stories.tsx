@@ -18,9 +18,9 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Normal theme switcher
+// Primary theme switcher
 
-export const Normal: Story = {
+export const Primary: Story = {
   args: {},
 };
 
@@ -31,5 +31,13 @@ export const Dark: Story = {
 };
 
 Dark.decorators = [ThemeDecorator(Theme.DARK)];
+
+// Orange theme switcher
+
+export const Orange: Story = {
+  args: {},
+};
+
+Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
 
 export default meta;

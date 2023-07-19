@@ -72,6 +72,39 @@ export const DarkOnlyText: Story = {
   },
 };
 
+DarkOnlyText.decorators = [ThemeDecorator(Theme.DARK)];
+
+// Orange Title & Text
+
+export const OrangeTitleAndText: Story = {
+  args: {
+    title: 'Title lorem ipsun',
+    text: 'Description Description Description Description',
+  },
+};
+
+OrangeTitleAndText.decorators = [ThemeDecorator(Theme.ORANGE)];
+
+// Orange Only Title
+
+export const OrangeOnlyTitle: Story = {
+  args: {
+    title: 'Title lorem ipsun',
+  },
+};
+
+OrangeOnlyTitle.decorators = [ThemeDecorator(Theme.ORANGE)];
+
+// Orange Only Text
+
+export const OrangeOnlyText: Story = {
+  args: {
+    text: 'Description Description Description Description',
+  },
+};
+
+OrangeOnlyText.decorators = [ThemeDecorator(Theme.ORANGE)];
+
 // Error Text
 
 export const ErrorText: Story = {

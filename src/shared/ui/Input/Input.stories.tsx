@@ -1,5 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { Theme } from 'app/providers/ThemeProvider';
+
+import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
+
 import { Input } from './Input';
 
 const meta = {
@@ -14,13 +18,35 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Primary Input
+// Primary input
 
-export const PrimaryInput: Story = {
+export const Primary: Story = {
   args: {
     placeholder: 'Type text',
     value: '12345',
   },
 };
+
+// Dark input
+
+export const Dark: Story = {
+  args: {
+    placeholder: 'Type text',
+    value: '12345',
+  },
+};
+
+Dark.decorators = [ThemeDecorator(Theme.DARK)];
+
+// Orange input
+
+export const Orange: Story = {
+  args: {
+    placeholder: 'Type text',
+    value: '12345',
+  },
+};
+
+Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
 
 export default meta;

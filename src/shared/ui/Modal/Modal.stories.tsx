@@ -18,9 +18,9 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Light modal
+// Primary modal
 
-export const Light: Story = {
+export const Primary: Story = {
   args: {
     // eslint-disable-next-line i18next/no-literal-string
     children: <>Modal content text</>,
@@ -39,5 +39,17 @@ export const Dark: Story = {
 };
 
 Dark.decorators = [ThemeDecorator(Theme.DARK)];
+
+// Orange modal
+
+export const Orange: Story = {
+  args: {
+    // eslint-disable-next-line i18next/no-literal-string
+    children: <>Modal content text</>,
+    isOpen: true,
+  },
+};
+
+Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
 
 export default meta;

@@ -18,9 +18,9 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Light page error
+// Primary page error
 
-export const Light: Story = {
+export const Primary: Story = {
   args: {},
 };
 
@@ -31,5 +31,13 @@ export const Dark: Story = {
 };
 
 Dark.decorators = [ThemeDecorator(Theme.DARK)];
+
+// Orange page error
+
+export const Orange: Story = {
+  args: {},
+};
+
+Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
 
 export default meta;

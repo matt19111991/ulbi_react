@@ -8,13 +8,13 @@ import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDeco
 
 import { Sidebar } from './Sidebar';
 
-const authorizedState: DeepPartial<StateSchema> = {
+const stateAuthorized: DeepPartial<StateSchema> = {
   user: {
     authData: {},
   },
 };
 
-const unAuthorizedState: DeepPartial<StateSchema> = {
+const stateUnAuthorized: DeepPartial<StateSchema> = {
   user: {},
 };
 
@@ -30,13 +30,13 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Light sidebar
+// Primary sidebar
 
-export const Light: Story = {
+export const Primary: Story = {
   args: {},
 };
 
-Light.decorators = [StoreDecorator(authorizedState)];
+Primary.decorators = [StoreDecorator(stateAuthorized)];
 
 // Dark sidebar
 
@@ -44,7 +44,15 @@ export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [StoreDecorator(authorizedState), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [StoreDecorator(stateAuthorized), ThemeDecorator(Theme.DARK)];
+
+// Orange sidebar
+
+export const Orange: Story = {
+  args: {},
+};
+
+Orange.decorators = [StoreDecorator(stateAuthorized), ThemeDecorator(Theme.ORANGE)];
 
 // Unauthorized sidebar
 
@@ -52,6 +60,6 @@ export const Unauthorized: Story = {
   args: {},
 };
 
-Unauthorized.decorators = [StoreDecorator(unAuthorizedState)];
+Unauthorized.decorators = [StoreDecorator(stateUnAuthorized)];
 
 export default meta;

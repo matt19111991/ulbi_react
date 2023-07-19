@@ -1,5 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { Theme } from 'app/providers/ThemeProvider';
+
+import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
+
 import { Select } from './Select';
 
 const meta = {
@@ -26,5 +30,35 @@ export const Primary: Story = {
     ],
   },
 };
+
+// Dark select
+
+export const Dark: Story = {
+  args: {
+    label: 'Укажите значение',
+    options: [
+      { content: 'Первый пункт', value: '123' },
+      { content: 'Второй пункт', value: '456' },
+      { content: 'Третий пункт', value: '789' },
+    ],
+  },
+};
+
+Dark.decorators = [ThemeDecorator(Theme.DARK)];
+
+// Orange select
+
+export const Orange: Story = {
+  args: {
+    label: 'Укажите значение',
+    options: [
+      { content: 'Первый пункт', value: '123' },
+      { content: 'Второй пункт', value: '456' },
+      { content: 'Третий пункт', value: '789' },
+    ],
+  },
+};
+
+Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
 
 export default meta;

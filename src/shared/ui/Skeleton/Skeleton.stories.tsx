@@ -18,18 +18,18 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Normal light skeleton
+// Normal primary skeleton
 
-export const NormalLight: Story = {
+export const NormalPrimary: Story = {
   args: {
     height: 200,
     width: '100%',
   },
 };
 
-// Circle light skeleton
+// Circle primary skeleton
 
-export const CircleLight: Story = {
+export const CirclePrimary: Story = {
   args: {
     border: '50%',
     height: 100,
@@ -59,5 +59,28 @@ export const CircleDark: Story = {
 };
 
 CircleDark.decorators = [ThemeDecorator(Theme.DARK)];
+
+// Normal orange skeleton
+
+export const NormalOrange: Story = {
+  args: {
+    height: 200,
+    width: '100%',
+  },
+};
+
+NormalOrange.decorators = [ThemeDecorator(Theme.ORANGE)];
+
+// Circle orange skeleton
+
+export const CircleOrange: Story = {
+  args: {
+    border: '50%',
+    height: 100,
+    width: 100,
+  },
+};
+
+CircleOrange.decorators = [ThemeDecorator(Theme.ORANGE)];
 
 export default meta;

@@ -104,13 +104,13 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Light article details page
+// Primary article details page
 
-export const Normal: Story = {
+export const Primary: Story = {
   args: {},
 };
 
-Normal.decorators = [StoreDecorator(stateArticleDetails)];
+Primary.decorators = [StoreDecorator(stateArticleDetails)];
 
 // Dark article details page
 

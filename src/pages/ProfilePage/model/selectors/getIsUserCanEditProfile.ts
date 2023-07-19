@@ -6,5 +6,11 @@ import { getUserAuthData } from 'entities/User';
 export const getIsUserCanEditProfile = createSelector(
   getUserAuthData,
   getProfileData,
-  (user, profile): boolean => user?.id === profile?.id,
+  (user, profile): boolean => {
+    if (!user || !profile) {
+      return false;
+    }
+
+    return user.id === profile.id;
+  },
 );

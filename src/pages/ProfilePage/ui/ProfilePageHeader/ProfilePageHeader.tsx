@@ -10,7 +10,7 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Text } from 'shared/ui/Text/Text';
 
-import { getIsUserCanEditProfile } from '../../model/selectors/permissions';
+import { getIsUserCanEditProfile } from '../../model/selectors/getIsUserCanEditProfile';
 
 import classes from './ProfilePageHeader.module.scss';
 

@@ -38,6 +38,14 @@ export const Dark: Story = {
 
 Dark.decorators = [StoreDecorator(stateBase), ThemeDecorator(Theme.DARK)];
 
+// Orange navbar
+
+export const Orange: Story = {
+  args: {},
+};
+
+Orange.decorators = [StoreDecorator(stateBase), ThemeDecorator(Theme.ORANGE)];
+
 // Auth navbar
 
 const stateAuth: DeepPartial<StateSchema> = {

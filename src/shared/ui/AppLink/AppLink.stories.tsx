@@ -81,4 +81,37 @@ export const RedDark: Story = {
 
 RedDark.decorators = [ThemeDecorator(Theme.DARK)];
 
+// Primary orange app link
+
+export const PrimaryOrange: Story = {
+  args: {
+    children: 'Text',
+    invertedTheme: AppLinkTheme.PRIMARY,
+  },
+};
+
+PrimaryOrange.decorators = [ThemeDecorator(Theme.ORANGE)];
+
+// Secondary orange app link
+
+export const SecondaryOrange: Story = {
+  args: {
+    children: 'Text',
+    invertedTheme: AppLinkTheme.SECONDARY,
+  },
+};
+
+SecondaryOrange.decorators = [ThemeDecorator(Theme.ORANGE)];
+
+// Red orange app link
+
+export const RedOrange: Story = {
+  args: {
+    children: 'Text',
+    invertedTheme: AppLinkTheme.RED,
+  },
+};
+
+RedOrange.decorators = [ThemeDecorator(Theme.ORANGE)];
+
 export default meta;
