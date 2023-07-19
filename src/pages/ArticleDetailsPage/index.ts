@@ -1,3 +1,5 @@
+export { articleDetailsCommentsReducer } from './model/slice/articleDetailsCommentsSlice';
+
 export { ArticleDetailsCommentsSchema } from './model/types/ArticleDetailsCommentsSchema';
 
 export {

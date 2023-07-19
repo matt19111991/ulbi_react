@@ -23,7 +23,9 @@ export const CommentList = memo(({ className, comments, isLoading }: CommentList
   if (isLoading) {
     return (
       <div className={classNames('', {}, [className])}>
-        <CommentCard className={classes.comment} isLoading={isLoading} />
+        <CommentCard className={classes.comment} isLoading />
+        <CommentCard className={classes.comment} isLoading />
+        <CommentCard className={classes.comment} isLoading />
       </div>
     );
   }

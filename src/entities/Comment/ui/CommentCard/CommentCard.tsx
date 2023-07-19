@@ -22,7 +22,11 @@ interface CommentCardProps {
 export const CommentCard = memo(({ className, comment, isLoading }: CommentCardProps) => {
   if (isLoading) {
     return (
-      <div className={classNames(classes.CommentCard, {}, [className])}>
+      <div
+        className={
+          classNames(classes.CommentCard, {}, [className, classes.loading])
+        }
+      >
         <div className={classes.header}>
           <Skeleton border='50%' className={classes.avatar} height={30} width={30} />
           <Skeleton height={16} width={100} />

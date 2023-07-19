@@ -37,8 +37,8 @@ body {
 
 .page-wrapper {
   flex-grow: 1;
+  flex-shrink: 100; // иначе sidebar скачет при загрузке или вытесняется страницей на малых экранах
   height: calc(100vh - var(--navbar-height));
   padding: 20px 20px 20px 45px;
   overflow-y: auto;
-  width: 100%;
 }

@@ -15,6 +15,7 @@ export const updateProfileData = createAsyncThunk<
 >(
   'profile/updateProfileData',
   async (_, thunkAPI) => {
+    // '_' - заглушка (ничего не передаем при вызове updateProfileData()
     try {
       // в 'async thunks' можно использовать 'thunkAPI.getState()'
       const formData = getProfileForm(thunkAPI.getState());
@@ -25,7 +26,7 @@ export const updateProfileData = createAsyncThunk<
         return thunkAPI.rejectWithValue(errors);
       }
 
-      const response = await thunkAPI.extra.api.put('/profile', formData);
+      const response = await thunkAPI.extra.api.put(`/profile/${formData?.id}`, formData);
 
       if (!response.data) {
         throw new Error();
