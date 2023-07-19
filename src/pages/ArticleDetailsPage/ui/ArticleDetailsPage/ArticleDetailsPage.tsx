@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -22,7 +22,13 @@ import { Text } from 'shared/ui/Text/Text';
 
 import { getArticleCommentsAreLoading } from '../../model/selectors/comments';
 
-import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId';
+import {
+  addCommentForArticle,
+} from '../../model/services/addCommentForArticle/addCommentForArticle';
+
+import {
+  fetchCommentsByArticleId,
+} from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 
 import {
   articleDetailsCommentsReducer,
@@ -55,6 +61,10 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
     dispatch(fetchCommentsByArticleId(id));
   });
 
+  const onSendComment = useCallback((text: string) => {
+    dispatch(addCommentForArticle(text));
+  }, [dispatch]);
+
   if (!id) {
     return (
       <div className={classNames(classes.ArticleDetailsPage, {}, [className])}>
@@ -70,7 +80,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
 
         <Text className={classes.commentTitle} title={t('Комментарии')} />
 
-        <AddCommentForm />
+        <AddCommentForm onSendComment={onSendComment} />
 
         <CommentList comments={comments} isLoading={commentsAreLoading} />
       </div>

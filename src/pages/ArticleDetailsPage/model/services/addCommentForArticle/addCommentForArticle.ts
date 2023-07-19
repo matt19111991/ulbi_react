@@ -6,17 +6,15 @@ import { getArticleDetailsData } from 'entities/Article';
 import { Comment } from 'entities/Comment';
 import { getUserAuthData } from 'entities/User';
 
-import { getAddCommentFormText } from '../selectors/addCommentFormSelectors';
+import { fetchCommentsByArticleId } from '../fetchCommentsByArticleId/fetchCommentsByArticleId';
 
-export const sendComment = createAsyncThunk<Comment, void, ThunkConfig<string>>(
-  'addCommentForm/sendComment',
-  async (_, thunkApi) => {
-//  '_' - заглушка, ничего не передаем в sendComment() при вызове
+export const addCommentForArticle = createAsyncThunk<Comment, string, ThunkConfig<string>>(
+  'articleDetails/addCommentForArticle',
+  async (commentFormText, thunkApi) => {
     try {
       const state = thunkApi.getState();
 
       const article = getArticleDetailsData(state);
-      const commentFormText = getAddCommentFormText(state);
       const userData = getUserAuthData(state);
 
       if (!userData || !article || !commentFormText) {
@@ -34,6 +32,10 @@ export const sendComment = createAsyncThunk<Comment, void, ThunkConfig<string>>(
       if (!response.data) {
         throw new Error();
       }
+
+/*    вместо запроса на получение обновленной статьи, можно добавлять созданный комментарий,
+      который вернулся в респонсе, в список уже существующих комментариев
+*/    thunkApi.dispatch(fetchCommentsByArticleId(article.id));
 
       return response.data;
     } catch (e) {

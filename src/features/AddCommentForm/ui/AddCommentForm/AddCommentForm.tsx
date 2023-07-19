@@ -19,8 +19,6 @@ import {
   getAddCommentFormText,
 } from '../../model/selectors/addCommentFormSelectors';
 
-import { sendComment } from '../../model/services/sendComment';
-
 import {
   addCommentFormActions,
   addCommentFormReducer,
@@ -28,15 +26,16 @@ import {
 
 import classes from './AddCommentForm.module.scss';
 
-interface AddCommentFormProps {
+export interface AddCommentFormProps {
   className?: string;
+  onSendComment: (text: string) => void;
 }
 
 const reducers: ReducersList = {
   addCommentForm: addCommentFormReducer,
 };
 
-const AddCommentForm = ({ className }: AddCommentFormProps) => {
+const AddCommentForm = ({ className, onSendComment }: AddCommentFormProps) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
@@ -49,9 +48,11 @@ const AddCommentForm = ({ className }: AddCommentFormProps) => {
     dispatch(addCommentFormActions.setText(value));
   }, [dispatch]);
 
-  const onSendComment = useCallback(() => {
-    dispatch(sendComment());
-  }, [dispatch]);
+  const onSendHandler = useCallback(() => {
+    onSendComment(text || '');
+
+    onCommentTextChange('');
+  }, [onCommentTextChange, onSendComment, text]);
 
   return (
     <DynamicModuleLoader reducers={reducers}>
@@ -61,10 +62,10 @@ const AddCommentForm = ({ className }: AddCommentFormProps) => {
           fullWidth
           onChange={onCommentTextChange}
           placeholder={t('Введите текст комментария')}
-          value={text}
+          value={text || ''}
         />
 
-        <Button onClick={onSendComment} theme={ButtonTheme.OUTLINE}>
+        <Button onClick={onSendHandler} theme={ButtonTheme.OUTLINE}>
           {t('Отправить')}
         </Button>
       </div>

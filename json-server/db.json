@@ -74,7 +74,9 @@
       "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
       "subtitle": "Что нового в JS за 2023 год?",
       "title": "Javascript news",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "views": 1022
     }
   ],
