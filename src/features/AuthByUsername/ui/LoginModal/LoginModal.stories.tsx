@@ -6,9 +6,9 @@ import { Theme } from 'app/providers/ThemeProvider';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
-import LoginForm from './LoginForm';
+import { LoginModal } from './LoginModal';
 
-const stateLoginForm: DeepPartial<StateSchema> = {
+const stateLoginModal: DeepPartial<StateSchema> = {
   loginForm: {
     password: '123',
     username: 'user',
@@ -16,42 +16,48 @@ const stateLoginForm: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'features/LoginForm',
-  component: LoginForm,
+  title: 'features/LoginModal',
+  component: LoginModal,
   argTypes: {
     backgroundColor: {
       control: 'color',
     },
   },
-} as Meta<typeof LoginForm>;
+} as Meta<typeof LoginModal>;
 
 type Story = StoryObj<typeof meta>;
 
-// Primary login form
+// Primary login modal
 
 export const Primary: Story = {
-  args: {},
+  args: {
+    isOpen: true,
+  },
 };
 
-Primary.decorators = [StoreDecorator(stateLoginForm)];
+Primary.decorators = [StoreDecorator(stateLoginModal)];
 
-// Dark login form
+// Dark login modal
 
 export const Dark: Story = {
-  args: {},
+  args: {
+    isOpen: true,
+  },
 };
 
-Dark.decorators = [StoreDecorator(stateLoginForm), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [StoreDecorator(stateLoginModal), ThemeDecorator(Theme.DARK)];
 
-// Orange login form
+// Orange login modal
 
 export const Orange: Story = {
-  args: {},
+  args: {
+    isOpen: true,
+  },
 };
 
-Orange.decorators = [StoreDecorator(stateLoginForm), ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [StoreDecorator(stateLoginModal), ThemeDecorator(Theme.ORANGE)];
 
-// Loading login form
+// Loading login modal
 
 const stateLoading: DeepPartial<StateSchema> = {
   loginForm: {
@@ -60,12 +66,14 @@ const stateLoading: DeepPartial<StateSchema> = {
 };
 
 export const Loading: Story = {
-  args: {},
+  args: {
+    isOpen: true,
+  },
 };
 
 Loading.decorators = [StoreDecorator(stateLoading)];
 
-// Error login form
+// Error login modal
 
 const stateError: DeepPartial<StateSchema> = {
   loginForm: {
@@ -76,7 +84,9 @@ const stateError: DeepPartial<StateSchema> = {
 };
 
 export const Error: Story = {
-  args: {},
+  args: {
+    isOpen: true,
+  },
 };
 
 Error.decorators = [StoreDecorator(stateError)];

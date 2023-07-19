@@ -65,7 +65,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
     dispatch(addCommentForArticle(text));
   }, [dispatch]);
 
-  if (!id) {
+  if (__PROJECT__ !== 'storybook' && !id) {
     return (
       <div className={classNames(classes.ArticleDetailsPage, {}, [className])}>
         {t('Статья не найдена')}
@@ -76,7 +76,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
   return (
     <DynamicModuleLoader reducers={reducers}>
       <div className={classNames(classes.ArticleDetailsPage, {}, [className])}>
-        <ArticleDetails id={id} />
+        <ArticleDetails id={id!} />
 
         <Text className={classes.commentTitle} title={t('Комментарии')} />
 

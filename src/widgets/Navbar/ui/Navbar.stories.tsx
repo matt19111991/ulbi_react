@@ -8,7 +8,7 @@ import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDeco
 
 import { Navbar } from './Navbar';
 
-const stateBase: DeepPartial<StateSchema> = {};
+const stateNavbar: DeepPartial<StateSchema> = {};
 
 const meta = {
   title: 'widgets/Navbar',
@@ -22,13 +22,13 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Light navbar
+// Primary navbar
 
-export const Light: Story = {
+export const Primary: Story = {
   args: {},
 };
 
-Light.decorators = [StoreDecorator(stateBase)];
+Primary.decorators = [StoreDecorator(stateNavbar)];
 
 // Dark navbar
 
@@ -36,7 +36,7 @@ export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [StoreDecorator(stateBase), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [StoreDecorator(stateNavbar), ThemeDecorator(Theme.DARK)];
 
 // Orange navbar
 
@@ -44,7 +44,7 @@ export const Orange: Story = {
   args: {},
 };
 
-Orange.decorators = [StoreDecorator(stateBase), ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [StoreDecorator(stateNavbar), ThemeDecorator(Theme.ORANGE)];
 
 // Auth navbar
 

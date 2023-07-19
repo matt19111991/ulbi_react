@@ -6,6 +6,7 @@ import { Theme } from 'app/providers/ThemeProvider';
 import { ArticleBlockType, ArticleType } from 'entities/Article';
 
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
+import { SuspenseDecorator } from 'shared/config/storybook/SuspenseDecorator/SuspenseDecorator';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import ArticleDetailsPage from './ArticleDetailsPage';
@@ -110,7 +111,7 @@ export const Primary: Story = {
   args: {},
 };
 
-Primary.decorators = [StoreDecorator(stateArticleDetails)];
+Primary.decorators = [StoreDecorator(stateArticleDetails), SuspenseDecorator];
 
 // Dark article details page
 
@@ -118,7 +119,11 @@ export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [StoreDecorator(stateArticleDetails), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+  StoreDecorator(stateArticleDetails),
+  SuspenseDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange article details page
 
@@ -126,6 +131,38 @@ export const Orange: Story = {
   args: {},
 };
 
-Orange.decorators = [StoreDecorator(stateArticleDetails), ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  StoreDecorator(stateArticleDetails),
+  SuspenseDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
+
+// Loading article details page
+
+export const Loading: Story = {
+  args: {},
+};
+
+const stateArticleLoading: DeepPartial<StateSchema> = {
+  articleDetails: {
+    isLoading: true,
+  },
+};
+
+Loading.decorators = [StoreDecorator(stateArticleLoading), SuspenseDecorator];
+
+// Error article details page
+
+export const Error: Story = {
+  args: {},
+};
+
+const stateArticleError: DeepPartial<StateSchema> = {
+  articleDetails: {
+    error: 'Error',
+  },
+};
+
+Error.decorators = [StoreDecorator(stateArticleError), SuspenseDecorator];
 
 export default meta;

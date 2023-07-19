@@ -13,19 +13,29 @@ import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDeco
 
 import { ProfilePageHeader } from './ProfilePageHeader';
 
-const stateProfile: DeepPartial<StateSchema> = {
-   profile: {
-     form: {
-       age: 22,
-       avatar: Avatar,
-       city: 'New-York',
-       country: Country.USA,
-       currency: Currency.USD,
-       first: 'Jack',
-       lastname: 'Smith',
-       username: 'admin',
-     },
-   },
+const stateProfileHeader: DeepPartial<StateSchema> = {
+  profile: {
+    data: {
+      id: '1',
+      username: 'Jack',
+    },
+    form: {
+      age: 22,
+      avatar: Avatar,
+      city: 'New-York',
+      country: Country.USA,
+      currency: Currency.USD,
+      first: 'Jack',
+      lastname: 'Smith',
+      username: 'Jack',
+    },
+  },
+  user: {
+    authData: {
+      id: '1',
+      username: 'Jack',
+    },
+  },
 };
 
 const meta = {
@@ -46,7 +56,7 @@ export const Primary: Story = {
   args: {},
 };
 
-Primary.decorators = [StoreDecorator(stateProfile)];
+Primary.decorators = [StoreDecorator(stateProfileHeader)];
 
 // Dark profile page header
 
@@ -54,7 +64,7 @@ export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [StoreDecorator(stateProfile), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [StoreDecorator(stateProfileHeader), ThemeDecorator(Theme.DARK)];
 
 // Orange profile page header
 
@@ -62,7 +72,7 @@ export const Orange: Story = {
   args: {},
 };
 
-Orange.decorators = [StoreDecorator(stateProfile), ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [StoreDecorator(stateProfileHeader), ThemeDecorator(Theme.ORANGE)];
 
 // Read only profile page header
 
@@ -70,8 +80,12 @@ export const ReadOnly: Story = {
   args: {},
 };
 
-const stateProfileReadOnly: DeepPartial<StateSchema> = {
+const stateProfileHeaderReadOnly: DeepPartial<StateSchema> = {
   profile: {
+    data: {
+      id: '1',
+      username: 'Jack',
+    },
     form: {
       age: 22,
       avatar: Avatar,
@@ -80,13 +94,19 @@ const stateProfileReadOnly: DeepPartial<StateSchema> = {
       currency: Currency.USD,
       first: 'Jack',
       lastname: 'Smith',
-      username: 'admin',
+      username: 'Jack',
     },
     readonly: true,
   },
+  user: {
+    authData: {
+      id: '1',
+      username: 'Jack',
+    },
+  },
 };
 
-ReadOnly.decorators = [StoreDecorator(stateProfileReadOnly)];
+ReadOnly.decorators = [StoreDecorator(stateProfileHeaderReadOnly)];
 
 // Not editable profile page header
 
@@ -94,8 +114,12 @@ export const NotEditable: Story = {
   args: {},
 };
 
-const stateProfileNotEditable: DeepPartial<StateSchema> = {
+const stateProfileHeaderNotEditable: DeepPartial<StateSchema> = {
   profile: {
+    data: {
+      id: '1',
+      username: 'Jack',
+    },
     form: {
       age: 22,
       avatar: Avatar,
@@ -104,17 +128,17 @@ const stateProfileNotEditable: DeepPartial<StateSchema> = {
       currency: Currency.USD,
       first: 'Jack',
       lastname: 'Smith',
-      username: 'admin',
+      username: 'Jack',
     },
   },
   user: {
     authData: {
-      id: '1',
-      username: 'admin',
+      id: '2',
+      username: 'Mary',
     },
   },
 };
 
-NotEditable.decorators = [StoreDecorator(stateProfileNotEditable)];
+NotEditable.decorators = [StoreDecorator(stateProfileHeaderNotEditable)];
 
 export default meta;

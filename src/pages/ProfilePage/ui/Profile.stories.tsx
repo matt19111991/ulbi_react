@@ -14,18 +14,28 @@ import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDeco
 import ProfilePage from './ProfilePage';
 
 const stateProfile: DeepPartial<StateSchema> = {
-   profile: {
-     form: {
-       age: 22,
-       avatar: Avatar,
-       city: 'New-York',
-       country: Country.USA,
-       currency: Currency.USD,
-       first: 'Jack',
-       lastname: 'Smith',
-       username: 'admin',
-     },
-   },
+  profile: {
+    data: {
+      id: '1',
+      username: 'Jack',
+    },
+    form: {
+      age: 22,
+      avatar: Avatar,
+      city: 'New-York',
+      country: Country.USA,
+      currency: Currency.USD,
+      first: 'Jack',
+      lastname: 'Smith',
+      username: 'Jack',
+    },
+  },
+  user: {
+    authData: {
+      id: '1',
+      username: 'Jack',
+    },
+  },
 };
 
 const meta = {
