@@ -1,3 +1,5 @@
+export { getArticleDetailsData } from './model/selectors/articleDetails';
+
 export { articleDetailsReducer } from './model/slice/articleDetailsSlice';
 
 export { Article, ArticleBlockType, ArticleType } from './model/types/article';

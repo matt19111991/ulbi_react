@@ -1,6 +1,7 @@
 {
   "Введите имя пользователя": "Enter username",
   "Введите пароль": "Enter password",
+  "Введите текст комментария": "Enter comment text",
   "Войти": "Login",
   "Выбросить ошибку": "Throw an error",
   "Вы ввели неверный логин или пароль": "You've entered incorrect username or password",
@@ -11,6 +12,7 @@
   "Короткий язык": "En",
   "О сайте": "About us",
   "Обновить страницу": "Refresh page",
+  "Отправить": "Send",
   "Перевод": "Translate",
   "Переключить": "Toggle",
   "Произошла непредвиденная ошибка": "An unexpected error occurred",

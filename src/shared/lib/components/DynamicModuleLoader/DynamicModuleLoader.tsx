@@ -20,7 +20,7 @@ interface DynamicModuleLoaderProps {
 export const DynamicModuleLoader = ({
   children,
   reducers,
-  removeAfterUnmount,
+  removeAfterUnmount = true,
 }: DynamicModuleLoaderProps) => {
   const dispatch = useAppDispatch();
 

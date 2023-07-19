@@ -6,6 +6,8 @@ import { useTranslation } from 'react-i18next';
 import { ArticleDetails } from 'entities/Article';
 import { CommentList } from 'entities/Comment';
 
+import { AddCommentForm } from 'features/AddCommentForm';
+
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 
@@ -62,11 +64,13 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
   }
 
   return (
-    <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
+    <DynamicModuleLoader reducers={reducers}>
       <div className={classNames(classes.ArticleDetailsPage, {}, [className])}>
         <ArticleDetails id={id} />
 
         <Text className={classes.commentTitle} title={t('Комментарии')} />
+
+        <AddCommentForm />
 
         <CommentList comments={comments} isLoading={commentsAreLoading} />
       </div>

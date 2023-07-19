@@ -68,7 +68,6 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
 /*    плохой вариант (пересоздание объекта на каждый ререндер)
       reducers={{ loginForm: loginReducer }}                */
       reducers={initialReducers} // 'initialReducers' ссылка меняться не будет
-      removeAfterUnmount
     >
       <div className={classNames(classes.LoginForm, {}, [className])}>
         <Text title={t('Форма авторизации')} />
