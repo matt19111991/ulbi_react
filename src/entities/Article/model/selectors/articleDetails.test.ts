@@ -49,7 +49,7 @@ describe('articleDetails', () => {
   test('should work with empty state isLoading', () => {
     const state: DeepPartial<StateSchema> = {};
 
-    expect(getArticleDetailsIsLoading(state as StateSchema)).toBe(false);
+    expect(getArticleDetailsIsLoading(state as StateSchema)).toBeFalsy();
   });
 
   test('should work with empty state error', () => {

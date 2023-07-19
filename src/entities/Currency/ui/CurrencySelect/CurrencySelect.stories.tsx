@@ -1,5 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { Theme } from 'app/providers/ThemeProvider';
+
+import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
+
 import { CurrencySelect } from './CurrencySelect';
 
 const meta = {
@@ -12,12 +16,28 @@ const meta = {
   },
 } as Meta<typeof CurrencySelect>;
 
-// Primary currency select
-
 type Story = StoryObj<typeof meta>;
+
+// Primary currency select
 
 export const Primary: Story = {
   args: {},
 };
+
+// Dark currency select
+
+export const Dark: Story = {
+  args: {},
+};
+
+Dark.decorators = [ThemeDecorator(Theme.DARK)];
+
+// Orange currency select
+
+export const Orange: Story = {
+  args: {},
+};
+
+Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
 
 export default meta;

@@ -1,28 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from 'app/providers/StoreProvider';
+import { Theme } from 'app/providers/ThemeProvider';
 
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
+import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { ArticleBlockType, ArticleType } from '../../model/types/article';
 
 import { ArticleDetails } from './ArticleDetails';
 
-const meta = {
-  title: 'entities/ArticleDetails',
-  component: ArticleDetails,
-  argTypes: {
-    backgroundColor: {
-      control: 'color',
-    },
-  },
-} as Meta<typeof ArticleDetails>;
-
-type Story = StoryObj<typeof meta>;
-
-// Normal article details
-
-const stateArticleDetailsNormal: DeepPartial<StateSchema> = {
+const stateArticleDetails: DeepPartial<StateSchema> = {
   articleDetails: {
     data: {
       id: '1',
@@ -104,11 +92,41 @@ const stateArticleDetailsNormal: DeepPartial<StateSchema> = {
   },
 };
 
-export const Normal: Story = {
+const meta = {
+  title: 'entities/ArticleDetails',
+  component: ArticleDetails,
+  argTypes: {
+    backgroundColor: {
+      control: 'color',
+    },
+  },
+} as Meta<typeof ArticleDetails>;
+
+type Story = StoryObj<typeof meta>;
+
+// Primary article details
+
+export const Primary: Story = {
   args: {},
 };
 
-Normal.decorators = [StoreDecorator(stateArticleDetailsNormal)];
+Primary.decorators = [StoreDecorator(stateArticleDetails)];
+
+// Dark article details
+
+export const Dark: Story = {
+  args: {},
+};
+
+Dark.decorators = [StoreDecorator(stateArticleDetails), ThemeDecorator(Theme.DARK)];
+
+// Orange article details
+
+export const Orange: Story = {
+  args: {},
+};
+
+Orange.decorators = [StoreDecorator(stateArticleDetails), ThemeDecorator(Theme.ORANGE)];
 
 // Loading article details
 
