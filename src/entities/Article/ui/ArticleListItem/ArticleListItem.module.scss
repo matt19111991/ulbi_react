@@ -1,0 +1,95 @@
+.ArticleListItem {
+  display: flex;
+}
+
+.list {
+  .date {
+    display: flex;
+  }
+
+  .imageWrapper {
+    display: flex;
+  }
+
+  .image {
+    display: flex;
+  }
+
+  .infoWrapper {
+    display: flex;
+  }
+
+  .title {
+    display: flex;
+  }
+
+  .types {
+    display: flex;
+  }
+
+  .views {
+    display: flex;
+  }
+}
+
+.plate {
+  cursor: pointer;
+  transition: .2s; // плавный переход при увеличении карточки при наведении
+  width: 230px;
+
+  .date {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &:hover {
+    opacity: .8;
+    transform: scale(1.01); // увеличение карточки при наведении
+
+    .date {
+      display: block;
+    }
+  }
+
+  .imageWrapper {
+    height: 200px;
+    position: relative;
+    width: 200px;
+  }
+
+  .image {
+    height: 200px;
+    width: 200px;
+  }
+
+  .infoWrapper {
+    align-items: center;
+    display: flex;
+    margin-top: 8px;
+  }
+
+  .title {
+    margin-top: 8px;
+  }
+
+  .title p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 200px;
+  }
+
+  .types p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 115px;
+  }
+
+  .views {
+    margin-left: auto;
+    margin-right: 8px;
+  }
+}

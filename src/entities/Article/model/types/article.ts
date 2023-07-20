@@ -44,3 +44,8 @@ export interface Article {
   type: Array<ArticleType>;
   views: number;
 }
+
+export enum ArticleView {
+  LIST = 'list', // BIG
+  PLATE = 'plate', // SMALL
+}
