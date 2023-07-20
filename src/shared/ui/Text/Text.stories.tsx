@@ -18,7 +18,7 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Primary Title & Text
+// Primary title & text
 
 export const PrimaryTitleAndText: Story = {
   args: {
@@ -27,7 +27,7 @@ export const PrimaryTitleAndText: Story = {
   },
 };
 
-// Primary Only Title
+// Primary only title
 
 export const PrimaryOnlyTitle: Story = {
   args: {
@@ -35,7 +35,7 @@ export const PrimaryOnlyTitle: Story = {
   },
 };
 
-// Primary Only Text
+// Primary only text
 
 export const PrimaryOnlyText: Story = {
   args: {
@@ -43,7 +43,7 @@ export const PrimaryOnlyText: Story = {
   },
 };
 
-// Dark Title & Text
+// Dark title & text
 
 export const DarkTitleAndText: Story = {
   args: {
@@ -54,7 +54,7 @@ export const DarkTitleAndText: Story = {
 
 DarkTitleAndText.decorators = [ThemeDecorator(Theme.DARK)];
 
-// Dark Only Title
+// Dark only title
 
 export const DarkOnlyTitle: Story = {
   args: {
@@ -64,7 +64,7 @@ export const DarkOnlyTitle: Story = {
 
 DarkOnlyTitle.decorators = [ThemeDecorator(Theme.DARK)];
 
-// Dark Only Text
+// Dark only text
 
 export const DarkOnlyText: Story = {
   args: {
@@ -74,7 +74,7 @@ export const DarkOnlyText: Story = {
 
 DarkOnlyText.decorators = [ThemeDecorator(Theme.DARK)];
 
-// Orange Title & Text
+// Orange title & text
 
 export const OrangeTitleAndText: Story = {
   args: {
@@ -85,7 +85,7 @@ export const OrangeTitleAndText: Story = {
 
 OrangeTitleAndText.decorators = [ThemeDecorator(Theme.ORANGE)];
 
-// Orange Only Title
+// Orange only title
 
 export const OrangeOnlyTitle: Story = {
   args: {
@@ -95,7 +95,7 @@ export const OrangeOnlyTitle: Story = {
 
 OrangeOnlyTitle.decorators = [ThemeDecorator(Theme.ORANGE)];
 
-// Orange Only Text
+// Orange only text
 
 export const OrangeOnlyText: Story = {
   args: {
@@ -105,7 +105,7 @@ export const OrangeOnlyText: Story = {
 
 OrangeOnlyText.decorators = [ThemeDecorator(Theme.ORANGE)];
 
-// Error Text
+// Error text
 
 export const ErrorText: Story = {
   args: {
@@ -115,7 +115,7 @@ export const ErrorText: Story = {
   },
 };
 
-// Large size
+// Large size text
 
 export const SizeLarge: Story = {
   args: {

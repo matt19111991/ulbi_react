@@ -16,7 +16,7 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Primary button
+// Primary light button
 
 export const PrimaryLight: Story = {
   args: {
@@ -24,7 +24,7 @@ export const PrimaryLight: Story = {
   },
 };
 
-// Clear button
+// Clear light button
 
 export const ClearLight: Story = {
   args: {

@@ -19,7 +19,7 @@ const block: ArticleTextBlock = {
 };
 
 const meta = {
-  title: 'entities/ArticleDetails/TextBlockComponent',
+  title: 'entities/ArticleDetails/blocks/Text',
   component: ArticleTextBlockComponent,
   argTypes: {
     backgroundColor: {

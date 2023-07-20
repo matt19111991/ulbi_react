@@ -16,4 +16,10 @@ describe('getCounter', () => {
     type 'DeepPartial<CounterSchema>' but required in type 'CounterSchema'.
 */  expect(getCounter(state as StateSchema)).toEqual({ value: 10 });
   });
+
+  test('should work with empty state', () => {
+    const state: DeepPartial<StateSchema> = {};
+
+    expect(getCounter(state as StateSchema)).toBe(undefined);
+  });
 });

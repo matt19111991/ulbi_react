@@ -3,11 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { StateSchema } from 'app/providers/StoreProvider';
 import { Theme } from 'app/providers/ThemeProvider';
 
-import { Country } from 'entities/Country';
-import { Currency } from 'entities/Currency';
-
-import Avatar from 'shared/assets/tests/storybook.jpg';
-
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -17,16 +12,6 @@ const stateProfileHeader: DeepPartial<StateSchema> = {
   profile: {
     data: {
       id: '1',
-      username: 'Jack',
-    },
-    form: {
-      age: 22,
-      avatar: Avatar,
-      city: 'New-York',
-      country: Country.USA,
-      currency: Currency.USD,
-      first: 'Jack',
-      lastname: 'Smith',
       username: 'Jack',
     },
   },
@@ -39,7 +24,7 @@ const stateProfileHeader: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'pages/ProfilePage/ProfilePageHeader',
+  title: 'pages/ProfilePageHeader',
   component: ProfilePageHeader,
   argTypes: {
     background: {
@@ -86,16 +71,6 @@ const stateProfileHeaderReadOnly: DeepPartial<StateSchema> = {
       id: '1',
       username: 'Jack',
     },
-    form: {
-      age: 22,
-      avatar: Avatar,
-      city: 'New-York',
-      country: Country.USA,
-      currency: Currency.USD,
-      first: 'Jack',
-      lastname: 'Smith',
-      username: 'Jack',
-    },
     readonly: true,
   },
   user: {
@@ -118,16 +93,6 @@ const stateProfileHeaderNotEditable: DeepPartial<StateSchema> = {
   profile: {
     data: {
       id: '1',
-      username: 'Jack',
-    },
-    form: {
-      age: 22,
-      avatar: Avatar,
-      city: 'New-York',
-      country: Country.USA,
-      currency: Currency.USD,
-      first: 'Jack',
-      lastname: 'Smith',
       username: 'Jack',
     },
   },

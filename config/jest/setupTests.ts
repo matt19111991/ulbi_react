@@ -5,6 +5,8 @@
 
 import '@testing-library/jest-dom';
 
+import './jestLocalStorage';
+
 /* Поддержка
    React v.18+ <=> @testing-library/react v.13+
    React v.17- <=> @testing-library/react v.12.1.5-

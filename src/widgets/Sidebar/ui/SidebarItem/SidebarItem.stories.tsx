@@ -13,7 +13,7 @@ import { SidebarItem } from './SidebarItem';
 const stateSidebarItem: DeepPartial<StateSchema> = {};
 
 const meta = {
-  title: 'widgets/Sidebar/SidebarItem',
+  title: 'widgets/SidebarItem',
   component: SidebarItem,
   argTypes: {
     backgroundColor: {

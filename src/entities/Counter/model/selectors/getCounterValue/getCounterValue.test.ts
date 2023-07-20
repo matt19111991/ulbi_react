@@ -12,4 +12,12 @@ describe('getCounterValue.test', () => {
 
     expect(getCounterValue(state as StateSchema)).toEqual(10);
   });
+
+  test('should work with empty state', () => {
+    const state: DeepPartial<StateSchema> = {
+      counter: {},
+    };
+
+    expect(getCounterValue(state as StateSchema)).toBe(undefined);
+  });
 });

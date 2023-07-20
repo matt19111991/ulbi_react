@@ -36,4 +36,14 @@ describe('loginSlice', () => {
 
     expect(reducer).toEqual({ isLoading: true });
   });
+
+  test('test set is fulfilled', () => {
+    const state: DeepPartial<LoginSchema> = {
+      isLoading: true,
+    };
+
+    const reducer = loginReducer(state as LoginSchema, loginByUsername.fulfilled);
+
+    expect(reducer).toEqual({ isLoading: false });
+  });
 });

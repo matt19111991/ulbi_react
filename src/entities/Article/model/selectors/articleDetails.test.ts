@@ -7,54 +7,60 @@ import {
 } from './articleDetails';
 
 describe('articleDetails', () => {
-  test('should return data', () => {
-    const data = {
-      id: '1',
-      title: 'Test title',
-    };
+  describe('getArticleDetailsData', () => {
+    test('should return data', () => {
+      const data = {
+        id: '1',
+        title: 'Test title',
+      };
 
-    const state: DeepPartial<StateSchema> = {
-      articleDetails: { data },
-    };
+      const state: DeepPartial<StateSchema> = {
+        articleDetails: { data },
+      };
 
-    expect(getArticleDetailsData(state as StateSchema)).toEqual(data);
+      expect(getArticleDetailsData(state as StateSchema)).toEqual(data);
+    });
+
+    test('should work with empty state data', () => {
+      const state: DeepPartial<StateSchema> = {};
+
+      expect(getArticleDetailsData(state as StateSchema)).toBe(undefined);
+    });
   });
 
-  test('should return loading state', () => {
-    const state: DeepPartial<StateSchema> = {
-      articleDetails: {
-        isLoading: true,
-      },
-    };
+  describe('getArticleDetailsError', () => {
+    test('should return error', () => {
+      const state: DeepPartial<StateSchema> = {
+        articleDetails: {
+          error: 'Error',
+        },
+      };
 
-    expect(getArticleDetailsIsLoading(state as StateSchema)).toBeTruthy();
+      expect(getArticleDetailsError(state as StateSchema)).toBe('Error');
+    });
+
+    test('should work with empty state error', () => {
+      const state: DeepPartial<StateSchema> = {};
+
+      expect(getArticleDetailsError(state as StateSchema)).toBe(undefined);
+    });
   });
 
-  test('should return error', () => {
-    const state: DeepPartial<StateSchema> = {
-      articleDetails: {
-        error: 'Error',
-      },
-    };
+  describe('getArticleDetailsIsLoading', () => {
+    test('should return loading state', () => {
+      const state: DeepPartial<StateSchema> = {
+        articleDetails: {
+          isLoading: true,
+        },
+      };
 
-    expect(getArticleDetailsError(state as StateSchema)).toBe('Error');
-  });
+      expect(getArticleDetailsIsLoading(state as StateSchema)).toBeTruthy();
+    });
 
-  test('should work with empty state data', () => {
-    const state: DeepPartial<StateSchema> = {};
+    test('should work with empty state isLoading', () => {
+      const state: DeepPartial<StateSchema> = {};
 
-    expect(getArticleDetailsData(state as StateSchema)).toBe(undefined);
-  });
-
-  test('should work with empty state isLoading', () => {
-    const state: DeepPartial<StateSchema> = {};
-
-    expect(getArticleDetailsIsLoading(state as StateSchema)).toBeFalsy();
-  });
-
-  test('should work with empty state error', () => {
-    const state: DeepPartial<StateSchema> = {};
-
-    expect(getArticleDetailsError(state as StateSchema)).toBe(undefined);
+      expect(getArticleDetailsIsLoading(state as StateSchema)).toBeFalsy();
+    });
   });
 });
