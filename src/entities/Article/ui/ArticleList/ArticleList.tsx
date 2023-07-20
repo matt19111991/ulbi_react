@@ -5,7 +5,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Article, ArticleView } from '../../model/types/article';
 
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
-import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
+import { ArticleListItemSkeleton } from '../ArticleListItemSkeleton/ArticleListItemSkeleton';
 
 import classes from './ArticleList.module.scss';
 
