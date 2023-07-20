@@ -5,6 +5,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Article, ArticleView } from '../../model/types/article';
 
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
+import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
 
 import classes from './ArticleList.module.scss';
 
@@ -15,13 +16,30 @@ interface ArticleListProps {
   view?: ArticleView,
 }
 
+const getSkeletons = (view: ArticleView) => new Array(view === ArticleView.PLATE ? 9 : 3)
+  .fill(0)
+  .map((_, idx) => (
+    <ArticleListItemSkeleton
+      className={classes.card}
+      // eslint-disable-next-line react/no-array-index-key
+      key={idx}
+      view={view}
+    />
+  ));
+
 export const ArticleList = memo(({
   articles,
   className,
   isLoading,
   view = ArticleView.PLATE,
 }: ArticleListProps) => {
-  console.log('isLoading', isLoading);
+  if (isLoading) {
+    return (
+      <div className={classNames('', {}, [className, classes[view]])}>
+        {getSkeletons(view)}
+      </div>
+    );
+  }
 
   const renderArticle = (article: Article) => (
     <ArticleListItem
@@ -33,7 +51,7 @@ export const ArticleList = memo(({
   );
 
   return (
-    <div className={classNames(classes.ArticleList, {}, [className])}>
+    <div className={classNames('', {}, [className, classes[view]])}>
       {articles.length ? articles.map(renderArticle) : null}
     </div>
   );

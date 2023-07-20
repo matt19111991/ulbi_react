@@ -34,6 +34,10 @@ const article: Article = {
   subtitle: 'Что нового в JS за 2023 год?',
   title: 'Javascript news',
   type: [ArticleType.IT],
+  user: {
+    id: '1',
+    username: 'Jack',
+  },
   views: 1022,
 };
 

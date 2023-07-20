@@ -1,0 +1,54 @@
+.list {
+  .date {
+    margin-left: auto;
+  }
+
+  .footer {
+    align-items: center;
+    display: flex;
+    margin-top: 16px;
+  }
+
+  .header {
+    align-items: center;
+    display: flex;
+  }
+
+  .image {
+    margin: 16px 0;
+    width: 100%;
+  }
+
+  .title {
+    margin-top: 8px;
+  }
+
+  .username {
+    margin-left: 8px;
+  }
+}
+
+.plate {
+  width: 230px;
+
+  .imageWrapper {
+    height: 200px;
+    position: relative;
+    width: 200px;
+  }
+
+  .image {
+    height: 200px;
+    width: 200px;
+  }
+
+  .infoWrapper {
+    align-items: center;
+    display: flex;
+    margin-top: 8px;
+  }
+
+  .title {
+    margin-top: 8px;
+  }
+}

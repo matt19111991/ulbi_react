@@ -1,16 +1,14 @@
 import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { ArticleDetails } from 'entities/Article';
 import { CommentList } from 'entities/Comment';
-
 import { AddCommentForm } from 'features/AddCommentForm';
-
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
-
 import { classNames } from 'shared/lib/classNames/classNames';
 
 import {
@@ -18,6 +16,7 @@ import {
   ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Text } from 'shared/ui/Text/Text';
 
 import { getArticleCommentsAreLoading } from '../../model/selectors/comments';
@@ -47,6 +46,7 @@ const reducers: ReducersList = {
 
 const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const { t } = useTranslation('article-details');
 /*
@@ -60,6 +60,10 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
   useInitialEffect(() => {
     dispatch(fetchCommentsByArticleId(id));
   });
+
+  const onBackToList = useCallback(() => {
+    navigate(RoutePath.articles);
+  }, [navigate]);
 
   const onSendComment = useCallback((text: string) => {
     dispatch(addCommentForArticle(text));
@@ -76,6 +80,10 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
   return (
     <DynamicModuleLoader reducers={reducers}>
       <div className={classNames(classes.ArticleDetailsPage, {}, [className])}>
+        <Button onClick={onBackToList} theme={ButtonTheme.OUTLINE}>
+          {t('Назад к списку')}
+        </Button>
+
         <ArticleDetails id={id!} />
 
         <Text className={classes.commentTitle} title={t('Комментарии')} />

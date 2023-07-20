@@ -1,34 +1,48 @@
-.ArticleListItem {
-  display: flex;
-}
-
 .list {
   .date {
-    display: flex;
+    margin-left: auto;
   }
 
-  .imageWrapper {
+  .footer {
+    align-items: center;
+    display: flex;
+    margin-top: 16px;
+  }
+
+  .header {
+    align-items: center;
     display: flex;
   }
 
   .image {
-    display: flex;
+    margin: 16px;
+    max-height: 250px;
+    object-fit: contain;
+    width: 100%;
   }
 
-  .infoWrapper {
-    display: flex;
+  .textBlock {
+    max-height: 208px;
+    overflow-y: hidden;
   }
 
   .title {
-    display: flex;
+    margin-top: 8px;
   }
 
-  .types {
-    display: flex;
+  .types p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 115px;
+  }
+
+  .username {
+    margin-left: 8px;
   }
 
   .views {
-    display: flex;
+    margin-left: auto;
   }
 }
 
@@ -61,6 +75,7 @@
 
   .image {
     height: 200px;
+    object-fit: contain;
     width: 200px;
   }
 

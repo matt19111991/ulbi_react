@@ -5,6 +5,7 @@ import {
   ArticleBlockType,
   ArticleList,
   ArticleType,
+  ArticleView,
 } from 'entities/Article';
 
 import { classNames } from 'shared/lib/classNames/classNames';
@@ -151,6 +152,12 @@ const article = {
   subtitle: 'Что нового в JS за 2023 год?',
   title: 'Javascript news',
   type: [ArticleType.IT],
+  user: {
+    // eslint-disable-next-line max-len
+    avatar: 'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
+    id: '1',
+    username: 'Jack',
+  },
   views: 1022,
 } as Article;
 
@@ -160,8 +167,9 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => (
       articles={
         new Array(16)
           .fill(0)
-          .map((_, idx) => ({ ...article, id: String(idx) }))
+          .map((_, idx) => ({ ...article, id: String(idx + 1) }))
       }
+      view={ArticleView.LIST}
     />
   </div>
 );
