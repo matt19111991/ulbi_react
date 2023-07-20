@@ -14,10 +14,7 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
 
-import {
-  getAddCommentFormError,
-  getAddCommentFormText,
-} from '../../model/selectors/addCommentFormSelectors';
+import { getAddCommentFormText } from '../../model/selectors/addCommentFormSelectors';
 
 import {
   addCommentFormActions,
@@ -38,9 +35,6 @@ const reducers: ReducersList = {
 const AddCommentForm = ({ className, onSendComment }: AddCommentFormProps) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
-
-  const error = useSelector(getAddCommentFormError);
-  console.log('error', error);
 
   const text = useSelector(getAddCommentFormText);
 

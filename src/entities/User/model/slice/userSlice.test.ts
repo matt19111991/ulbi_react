@@ -30,10 +30,7 @@ describe('userSlice', () => {
 
     expect(
       userReducer(state as UserSchema, userActions.initAuthData()),
-    ).toEqual({
-      authData: JSON.stringify(authData),
-      mounted: true,
-    });
+    ).toEqual({ authData, mounted: true });
   });
 
   test('test init auth data (no user in localStorage)', () => {
@@ -58,6 +55,6 @@ describe('userSlice', () => {
       authData: undefined,
     });
 
-    expect(window.localStorage.get(USER_LOCALSTORAGE_KEY)).toBe(undefined);
+    expect(window.localStorage.getItem(USER_LOCALSTORAGE_KEY)).toBe(undefined);
   });
 });
