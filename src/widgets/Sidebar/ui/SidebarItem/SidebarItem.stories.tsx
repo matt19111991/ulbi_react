@@ -1,16 +1,24 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import Icon from 'shared/assets/tests/storybook3.svg';
+
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+
 import { StateSchema } from 'app/providers/StoreProvider';
 import { Theme } from 'app/providers/ThemeProvider';
 
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
-import { SidebarItemsList } from '../../model/items';
-
 import { SidebarItem } from './SidebarItem';
 
 const stateSidebarItem: DeepPartial<StateSchema> = {};
+
+const sidebarItem = {
+  Icon,
+  path: RoutePath.main,
+  text: 'Главная',
+};
 
 const meta = {
   title: 'widgets/SidebarItem',
@@ -28,7 +36,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    item: SidebarItemsList.at(0),
+    item: sidebarItem,
   },
 };
 
@@ -38,7 +46,7 @@ Primary.decorators = [StoreDecorator(stateSidebarItem)];
 
 export const Dark: Story = {
   args: {
-    item: SidebarItemsList.at(0),
+    item: sidebarItem,
   },
 };
 
@@ -48,7 +56,7 @@ Dark.decorators = [StoreDecorator(stateSidebarItem), ThemeDecorator(Theme.DARK)]
 
 export const Orange: Story = {
   args: {
-    item: SidebarItemsList.at(0),
+    item: sidebarItem,
   },
 };
 
