@@ -16,6 +16,7 @@ const stateSidebarItem: DeepPartial<StateSchema> = {};
 
 const sidebarItem = {
   Icon,
+  order: 1,
   path: RoutePath.main,
   text: 'Главная',
 };

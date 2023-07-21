@@ -17,11 +17,13 @@ export const getSidebarItems = createSelector(
     const sidebarItemsList: SidebarItemType[] = [
       {
         Icon: MainIcon,
+        order: 1,
         path: RoutePath.main,
         text: 'Главная',
       },
       {
         Icon: AboutIcon,
+        order: 4,
         path: RoutePath.about,
         text: 'О сайте',
       },
@@ -32,18 +34,20 @@ export const getSidebarItems = createSelector(
         {
           authOnly: true,
           Icon: ProfileIcon,
+          order: 2,
           path: `${RoutePath.profile}${userData.id}`,
           text: 'Профиль',
         },
         {
           authOnly: true,
           Icon: ArticleIcon,
+          order: 3,
           path: RoutePath.articles,
           text: 'Статьи',
         },
       );
     }
 
-    return sidebarItemsList;
+    return sidebarItemsList.sort((a, b) => a.order - b.order);
   },
 );
