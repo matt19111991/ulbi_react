@@ -4,13 +4,27 @@ import { ThunkConfig } from 'app/providers/StoreProvider';
 
 import { Article } from 'entities/Article';
 
-export const fetchArticlesList = createAsyncThunk<Article[], void, ThunkConfig<string>>(
+import { getArticlesPageLimit } from '../selectors/articlesPageSelectors';
+
+interface FetchArticlesListProps {
+  page?: number;
+}
+
+export const fetchArticlesList = createAsyncThunk<
+  Article[],
+  FetchArticlesListProps,
+  ThunkConfig<string>
+>(
   'articlesPage/fetchArticlesList',
-  async (_, thunkApi) => {
+  async ({ page = 1 }, thunkApi) => {
+    const limit = getArticlesPageLimit(thunkApi.getState());
+
     try {
       const response = await thunkApi.extra.api.get<Article[]>('/articles', {
         params: {
           _expand: 'user', // чтобы отрисовывать аватар пользователя для статьи (ArticleView.List)
+          _limit: limit,
+          _page: page,
         },
       });
 

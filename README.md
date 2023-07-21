@@ -3,3 +3,4 @@
 - articlesPageSelectors
 - ArticlesPage
 - ArticleViewSelector
+- Page stories

@@ -29,6 +29,7 @@ import {
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 
+import { Page } from 'shared/ui/Page/Page';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
@@ -41,7 +42,7 @@ const reducers: ReducersList = {
   profile: profileReducer,
 };
 
-const ProfilePage = memo(({ className }: ProfilePageProps) => {
+const ProfilePage = ({ className }: ProfilePageProps) => {
   const dispatch = useAppDispatch();
   const { id } = useParams<{ id: string; }>();
   const { t } = useTranslation('profile');
@@ -106,7 +107,7 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
 
   return (
     <DynamicModuleLoader reducers={reducers}>
-      <div className={classNames('', {}, [className])}>
+      <Page className={classNames('', {}, [className])}>
         <ProfilePageHeader />
 
         {validateErrors?.length && validateErrors.map((validateError) => (
@@ -131,11 +132,9 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
           onChangeUserName={onChangeUserName}
           readOnly={readOnly}
         />
-      </div>
+      </Page>
     </DynamicModuleLoader>
   );
-});
+};
 
-ProfilePage.displayName = 'ProfilePage';
-
-export default ProfilePage;
+export default memo(ProfilePage);

@@ -1,12 +1,12 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const MainPage = memo(() => {
+import { Page } from 'shared/ui/Page/Page';
+
+const MainPage = () => {
   const { t } = useTranslation();
 
-  return <div>{t('Главная страница')}</div>;
-});
+  return <Page>{t('Главная страница')}</Page>;
+};
 
-MainPage.displayName = 'MainPage';
-
-export default MainPage;
+export default memo(MainPage);

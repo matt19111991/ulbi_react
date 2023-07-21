@@ -17,6 +17,7 @@ import {
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { Page } from 'shared/ui/Page/Page';
 import { Text } from 'shared/ui/Text/Text';
 
 import { getArticleCommentsAreLoading } from '../../model/selectors/comments';
@@ -79,7 +80,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
 
   return (
     <DynamicModuleLoader reducers={reducers}>
-      <div className={classNames(classes.ArticleDetailsPage, {}, [className])}>
+      <Page className={classNames(classes.ArticleDetailsPage, {}, [className])}>
         <Button onClick={onBackToList} theme={ButtonTheme.OUTLINE}>
           {t('Назад к списку')}
         </Button>
@@ -91,7 +92,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
         <AddCommentForm onSendComment={onSendComment} />
 
         <CommentList comments={comments} isLoading={commentsAreLoading} />
-      </div>
+      </Page>
     </DynamicModuleLoader>
   );
 };
