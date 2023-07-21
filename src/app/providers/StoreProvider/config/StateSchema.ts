@@ -18,6 +18,7 @@ import { AddCommentFormSchema } from 'features/AddCommentForm';
 import { LoginSchema } from 'features/AuthByUsername';
 
 import { ArticleDetailsCommentsSchema } from 'pages/ArticleDetailsPage';
+import { ArticlesPageSchema } from 'pages/ArticlesPage';
 
 export interface StateSchema {
   // Синхронные редюсеры
@@ -28,6 +29,7 @@ export interface StateSchema {
   addCommentForm?: AddCommentFormSchema;
   articleDetails?: ArticleDetailsSchema;
   articleDetailsComments?: ArticleDetailsCommentsSchema;
+  articlesPage?: ArticlesPageSchema;
   loginForm?: LoginSchema;
   profile?: ProfileSchema;
 }
