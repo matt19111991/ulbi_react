@@ -1,5 +1,6 @@
 import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import { ArticleList, ArticleView } from 'entities/Article';
 
@@ -16,15 +17,19 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 
 import { Page } from 'shared/ui/Page/Page';
+import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
 
 import {
   getArticlesPageAreLoading,
-  getArticlesPageHasMore,
-  getArticlesPageNumber,
+  getArticlesPageError,
   getArticlesPageView,
 } from '../../model/selectors/articlesPageSelectors';
 
-import { fetchArticlesList } from '../../model/services/fetchArticlesList';
+import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList';
+
+import {
+  fetchNextArticlesPage,
+} from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 
 import {
   articlesPageActions,
@@ -44,11 +49,11 @@ const reducers: ReducersList = {
 
 const ArticlesPage = ({ className }: ArticlesPageProps) => {
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
 
   const articles = useSelector(getArticles.selectAll);
-  const hasMore = useSelector(getArticlesPageHasMore);
+  const error = useSelector(getArticlesPageError);
   const isLoading = useSelector(getArticlesPageAreLoading);
-  const page = useSelector(getArticlesPageNumber);
   const view = useSelector(getArticlesPageView);
 
   useInitialEffect(() => {
@@ -59,18 +64,24 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
   });
 
   const onLoadNextPart = useCallback(() => {
-    if (hasMore && !isLoading) {
-      const nextPage = page + 1;
-
-      dispatch(articlesPageActions.setPage(nextPage));
-
-      dispatch(fetchArticlesList({ page: nextPage }));
-    }
-  }, [dispatch, hasMore, isLoading, page]);
+    dispatch(fetchNextArticlesPage());
+  }, [dispatch]);
 
   const onChangeView = useCallback((newView: ArticleView) => {
     dispatch(articlesPageActions.setView(newView));
   }, [dispatch]);
+
+  if (error) {
+    return (
+      <Page className={classNames(classes.ArticlesPage, {}, [className])}>
+        <Text
+          align={TextAlign.CENTER}
+          theme={TextTheme.ERROR}
+          title={t('Ошибка при загрузке статей')}
+        />
+      </Page>
+    );
+  }
 
   return (
     <DynamicModuleLoader reducers={reducers}>

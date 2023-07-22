@@ -6,7 +6,7 @@ import { Article, ArticleView } from 'entities/Article';
 
 import { ARTICLE_VIEW_LOCALSTORAGE_KEY } from 'shared/const/localstorage';
 
-import { fetchArticlesList } from '../services/fetchArticlesList';
+import { fetchArticlesList } from '../services/fetchArticlesList/fetchArticlesList';
 
 import { ArticlesPageSchema } from '../types/articlesPageSchema';
 
@@ -60,8 +60,8 @@ export const articlesPageSlice = createSlice({
 /*    вызывается множество запросов, если доскроллить до конца любой страницы из-за 'IntersectionObserver'
 
       в этом случае нужно:
-      - добавить в передаваемый callback 'onLoadNextPart()' в 'IntersectionObserver' условие
-        на подгрузку только в случае, если 'hasMore === true' && 'isLoading === false'
+      - добавить в передаваемый callback 'fetchNextArticlesPage()' в 'IntersectionObserver' условие
+        на подгрузку только в случае, если 'hasMore === true' && 'areLoading === false'
 
       - не полностью перезатирать данные:
       articlesAdapter.setAll(state, action.payload);

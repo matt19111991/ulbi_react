@@ -14,9 +14,19 @@ export const useInfiniteScroll = ({
   useEffect(() => {
     let observer: IntersectionObserver | null = null;
 
+/*  Нужно изолировать (замкнуть) 'triggerRef' и 'wrapperRef' внутри 'useEffect', иначе ошибка:
+    'Uncaught TypeError: Failed to execute 'unobserve' on 'IntersectionObserver':
+    parameter 1 is not of type 'Element' при переходе на 'ArticleDetailsPage'
+    (клик на 'Читать далее...')
+
+    Используем 'triggerElement' и 'wrapperElement' внутри 'if (callback)' условия
+
+*/  const triggerElement = triggerRef.current;
+    const wrapperElement = wrapperRef.current;
+
     if (callback) {
       const options: IntersectionObserverInit = {
-        root: wrapperRef.current,
+        root: wrapperElement,
         rootMargin: '0px',
         threshold: 1.0,
       };
@@ -29,12 +39,12 @@ export const useInfiniteScroll = ({
         }
       }, options);
 
-      observer.observe(triggerRef.current);
+      observer.observe(triggerElement);
     }
 
     return () => {
-      if (observer) {
-        observer.unobserve(triggerRef!.current);
+      if (observer && triggerElement) {
+        observer.unobserve(wrapperElement);
       }
     };
   }, [callback, triggerRef, wrapperRef]);
