@@ -1,4 +1,3 @@
-- articlesPageSlice
 - fetchArticlesList
 - articlesPageSelectors
 - ArticlesPage
