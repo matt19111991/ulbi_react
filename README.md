@@ -1,4 +1,3 @@
-- fetchArticlesList
 - articlesPageSelectors
 - ArticlesPage
 - ArticleViewSelector
