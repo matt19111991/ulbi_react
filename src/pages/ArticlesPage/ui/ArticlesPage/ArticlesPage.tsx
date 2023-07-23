@@ -64,7 +64,9 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
   });
 
   const onLoadNextPart = useCallback(() => {
-    dispatch(fetchNextArticlesPage());
+    if (__PROJECT__ !== 'storybook') { // иначе в 'storybook' одновременно улетает множество запросов
+      dispatch(fetchNextArticlesPage());
+    }
   }, [dispatch]);
 
   const onChangeView = useCallback((newView: ArticleView) => {

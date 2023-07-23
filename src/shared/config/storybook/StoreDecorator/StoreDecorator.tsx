@@ -10,6 +10,7 @@ import { addCommentFormReducer } from 'features/AddCommentForm';
 import { loginReducer } from 'features/AuthByUsername';
 
 import { articleDetailsCommentsReducer } from 'pages/ArticleDetailsPage';
+import { articlesPageReducer } from 'pages/ArticlesPage';
 
 import { ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
@@ -17,6 +18,7 @@ const defaultReducers: ReducersList = {
   addCommentForm: addCommentFormReducer,
   articleDetails: articleDetailsReducer,
   articleDetailsComments: articleDetailsCommentsReducer,
+  articlesPage: articlesPageReducer,
   loginForm: loginReducer,
   profile: profileReducer,
 };
