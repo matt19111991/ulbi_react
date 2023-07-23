@@ -19,6 +19,8 @@ export const getArticles = articlesAdapter.getSelectors<StateSchema>(
 );
 
 const initialState: ArticlesPageSchema = {
+  inited: false,
+
   areLoading: false,
   entities: {},
   error: undefined,
@@ -36,6 +38,7 @@ export const articlesPageSlice = createSlice({
     initState: (state) => {
       const storedView = localStorage.getItem(ARTICLE_VIEW_LOCALSTORAGE_KEY) as ArticleView;
 
+      state.inited = true;
       state.limit = storedView === ArticleView.LIST ? 4 : 9;
       state.view = storedView;
     },

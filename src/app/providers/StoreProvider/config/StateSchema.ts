@@ -1,5 +1,4 @@
 import { AxiosInstance } from 'axios';
-import { NavigateOptions, To } from 'react-router-dom';
 
 import {
   AnyAction,
@@ -36,11 +35,18 @@ export interface StateSchema {
 
 export type StateSchemaKey = keyof StateSchema; // ['counter', 'loginForm, 'user']
 
+// используем 'OptionalRecord', т.к. не все редюсеры обязательные
+export type MountedReducers = OptionalRecord<StateSchemaKey, boolean>;
+
 export interface ReducerManager {
   getReducerMap: () => ReducersMapObject<StateSchema>;
   reduce: (s: StateSchema, a: AnyAction) => CombinedState<StateSchema>,
   add: (k: StateSchemaKey, r: Reducer) => void,
   remove: (k: StateSchemaKey) => void,
+/*
+  'getMountedReducers'() - чтобы не монтировать заново уже смонтированные редюсеры
+  (true - вмонтирован, false - демонтирован)
+*/getMountedReducers: () => MountedReducers;
 }
 
 // расширение дефолтного типа для 'store'
@@ -50,7 +56,6 @@ export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
 
 export interface ThunkExtraArg {
   api: AxiosInstance;
-  navigate?: (to: To, options?: NavigateOptions) => void;
 }
 
 export interface ThunkConfig<T> {

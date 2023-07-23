@@ -25,11 +25,11 @@ import {
   getArticlesPageView,
 } from '../../model/selectors/articlesPageSelectors';
 
-import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList';
-
 import {
   fetchNextArticlesPage,
 } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
+
+import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
 
 import {
   articlesPageActions,
@@ -57,10 +57,7 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
   const view = useSelector(getArticlesPageView);
 
   useInitialEffect(() => {
-    // должно быть раньше запроса, чтобы передать правильный 'limit' в запрос
-    dispatch(articlesPageActions.initState());
-
-    dispatch(fetchArticlesList({ page: 1 }));
+    dispatch(initArticlesPage());
   });
 
   const onLoadNextPart = useCallback(() => {
@@ -86,7 +83,7 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
   }
 
   return (
-    <DynamicModuleLoader reducers={reducers}>
+    <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
       <Page
         className={classNames(classes.ArticlesPage, {}, [className])}
         onScrollEnd={onLoadNextPart}

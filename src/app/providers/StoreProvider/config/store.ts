@@ -5,8 +5,6 @@ import {
   ReducersMapObject,
 } from '@reduxjs/toolkit';
 
-import { NavigateOptions, To } from 'react-router-dom';
-
 import { counterReducer } from 'entities/Counter';
 import { userReducer } from 'entities/User';
 
@@ -19,7 +17,6 @@ import { StateSchema, ThunkExtraArg } from './StateSchema';
 export const createReduxStore = (
   initialState?: StateSchema,
   asyncReducers?: ReducersMapObject<StateSchema>,
-  navigate?: (to: To, options?: NavigateOptions) => void,
 ) => {
   const rootReducers: ReducersMapObject<StateSchema> = {
     counter: counterReducer,
@@ -33,7 +30,6 @@ export const createReduxStore = (
 
   const extraArgument: ThunkExtraArg = {
     api: $api, // добавляем в 'RTK' возможность использовать кастомный инстанс 'axios'
-    navigate,  // можно пользоваться навигацией внутри 'async thunks'
   };
 
   const store = configureStore({

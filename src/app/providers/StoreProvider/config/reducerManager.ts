@@ -5,7 +5,12 @@ import {
   ReducersMapObject,
 } from '@reduxjs/toolkit';
 
-import { ReducerManager, StateSchema, StateSchemaKey } from './StateSchema';
+import {
+  MountedReducers,
+  ReducerManager,
+  StateSchema,
+  StateSchemaKey,
+} from './StateSchema';
 
 // для асинхронной подгрузки редюсеров, 'createReducerManager' взят из документации
 
@@ -21,8 +26,13 @@ export const createReducerManager = (
   // Названия редюсеров, которые хотим удалить (которые будут асинхронными)
   let keysToRemove: StateSchemaKey[] = [];
 
+  const mountedReducers: MountedReducers = {};
+
   return {
     getReducerMap: () => reducers,
+
+    // Можно было обойтись 'getReducerMap()', по сути 'getMountedReducers()' дублирующий функционал
+    getMountedReducers: () => mountedReducers,
 
     // Root reducer без редюсеров, указанных в 'keysToRemove'
     reduce: (state: StateSchema, action: AnyAction) => {
@@ -49,6 +59,9 @@ export const createReducerManager = (
       // По ключу добавляем редюсер
       reducers[key] = reducer;
 
+      // и отмечаем, что редюсер был вмонтирован
+      mountedReducers[key] = true;
+
       // Создаем новый 'combinedReducer'
       combinedReducer = combineReducers(reducers);
     },
@@ -63,6 +76,9 @@ export const createReducerManager = (
 
       // Добавляем ключ в список ключей для очистки
       keysToRemove.push(key);
+
+      // и отмечаем, что редюсер был демонтирован
+      mountedReducers[key] = false;
 
       // Создаем новый 'combinedReducer'
       combinedReducer = combineReducers(reducers);

@@ -15,8 +15,6 @@ export const userSlice = createSlice({
 //  сохраняем данные о пользователе после успешного логина
     setAuthData: (state, action: PayloadAction<User>) => {
       state.authData = action.payload;
-
-      window.location.reload(); // хак для обновления информации о пользователе
     },
 //  достаем сохраненные данные о пользователе из localStorage (на случай закрытия вкладки)
     initAuthData: (state) => {
@@ -32,8 +30,6 @@ export const userSlice = createSlice({
       state.authData = undefined;
 
       localStorage.removeItem(USER_LOCALSTORAGE_KEY);
-
-      window.location.reload(); // хак для обновления информации о пользователе
     },
   },
 });

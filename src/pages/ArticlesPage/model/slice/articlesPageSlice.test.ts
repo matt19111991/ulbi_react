@@ -63,6 +63,7 @@ describe('articlesPageSlice', () => {
       );
 
       expect(reducer).toEqual({
+        inited: true,
         limit: 4,
         view: ArticleView.LIST,
       });
@@ -79,6 +80,7 @@ describe('articlesPageSlice', () => {
       );
 
       expect(reducer).toEqual({
+        inited: true,
         limit: 9,
         view: ArticleView.PLATE,
       });

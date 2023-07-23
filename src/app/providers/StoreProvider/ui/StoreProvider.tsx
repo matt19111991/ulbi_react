@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 import { Provider } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { ReducersMapObject } from '@reduxjs/toolkit';
 
 import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
@@ -13,12 +12,9 @@ interface StoreProviderProps {
 }
 
 export const StoreProvider = ({ asyncReducers, children, initialState }: StoreProviderProps) => {
-  const navigate = useNavigate(); // чтобы была возможность использовать навигацию в 'createAsyncThunk'
-
   const store = createReduxStore(
     initialState as StateSchema,
     asyncReducers as ReducersMapObject<StateSchema>,
-    navigate,
   );
 
   return (

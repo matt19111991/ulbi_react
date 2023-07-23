@@ -27,17 +27,23 @@ export const DynamicModuleLoader = ({
   const store = useStore() as ReduxStoreWithManager;
 
   useEffect(() => {
+    const mountedReducers = store.reducerManager.getMountedReducers();
+
     // пробегаемся по всем редюсерам
 
     Object.entries(reducers).forEach(([name, reducer]) => {
-      // асинхронно подгружаем редюсер при монтировании компонента
+      const mounted = mountedReducers[name as StateSchemaKey];
 
-      /* без 'name as StateSchemaKey' => ошибка "Argument of type 'string' is not assignable
-         to parameter of type 'keyof StateSchema'"
-      */
-      store.reducerManager.add(name as StateSchemaKey, reducer);
+      if (!mounted) {
+        // асинхронно подгружаем редюсер при монтировании компонента
 
-      dispatch({ type: `@INIT ${name} reducer` }); // для индикации подгрузки редюсера
+        /* без 'name as StateSchemaKey' => ошибка "Argument of type 'string' is not assignable
+           to parameter of type 'keyof StateSchema'"
+        */
+        store.reducerManager.add(name as StateSchemaKey, reducer);
+
+        dispatch({ type: `@INIT ${name} reducer` }); // для индикации подгрузки редюсера
+      }
     });
 
     return () => {

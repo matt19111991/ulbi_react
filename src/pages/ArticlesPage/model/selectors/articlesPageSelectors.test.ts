@@ -6,6 +6,7 @@ import {
   getArticlesPageAreLoading,
   getArticlesPageError,
   getArticlesPageHasMore,
+  getArticlesPageInited,
   getArticlesPageLimit,
   getArticlesPageNumber,
   getArticlesPageView,
@@ -63,6 +64,24 @@ describe('articlesPageSelectors', () => {
       const state: DeepPartial<StateSchema> = {};
 
       expect(getArticlesPageHasMore(state as StateSchema)).toBeFalsy();
+    });
+  });
+
+  describe('getArticlesPageInited', () => {
+    test('should return true', () => {
+      const state: DeepPartial<StateSchema> = {
+        articlesPage: {
+          inited: true,
+        },
+      };
+
+      expect(getArticlesPageInited(state as StateSchema)).toBeTruthy();
+    });
+
+    test('should work with empty state', () => {
+      const state: DeepPartial<StateSchema> = {};
+
+      expect(getArticlesPageInited(state as StateSchema)).toBeFalsy();
     });
   });
 

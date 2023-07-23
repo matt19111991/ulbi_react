@@ -8,6 +8,8 @@ export const getArticlesPageError = (state: StateSchema) => state.articlesPage?.
 
 export const getArticlesPageHasMore = (state: StateSchema) => state.articlesPage?.hasMore;
 
+export const getArticlesPageInited = (state: StateSchema) => state.articlesPage?.inited;
+
 export const getArticlesPageLimit = (state: StateSchema) => state.articlesPage?.limit;
 
 export const getArticlesPageNumber = (state: StateSchema) => state.articlesPage?.page || 1;
