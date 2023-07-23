@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import Image1 from 'shared/assets/tests/storybook.jpg';
+import Image2 from 'shared/assets/tests/storybook2.jpg';
+
 import { StateSchema } from 'app/providers/StoreProvider';
 import { Theme } from 'app/providers/ThemeProvider';
 
@@ -31,7 +34,7 @@ const articles: Article[] = [
       },
       {
         id: '2',
-        src: 'https://hsto.org/r/w1560/getpro/habr/post_images/d56/a02/ffc/d56a02ffc62949b42904ca00c63d8cc1.png',
+        src: Image1,
         title: 'Рисунок 1 - скриншот сайта',
         type: ArticleBlockType.IMAGE,
       },
@@ -65,7 +68,7 @@ const articles: Article[] = [
       },
       {
         id: '7',
-        src: 'https://hsto.org/r/w1560/getpro/habr/post_images/d56/a02/ffc/d56a02ffc62949b42904ca00c63d8cc1.png',
+        src: Image1,
         title: 'Рисунок 1 - скриншот сайта',
         type: ArticleBlockType.IMAGE,
       },
@@ -87,12 +90,12 @@ const articles: Article[] = [
       },
     ],
     createdAt: '26.02.2023',
-    img: 'https://teknotower.com/wp-content/uploads/2020/11/js.png',
+    img: Image1,
     subtitle: 'Что нового в JS за 2023 год?',
     title: 'Javascript news',
     type: [ArticleType.IT],
     user: {
-      avatar: 'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
+      avatar: Image1,
       id: '1',
       username: 'Jack',
     },
@@ -113,7 +116,7 @@ const articles: Article[] = [
       },
       {
         id: '2',
-        src: 'https://hsto.org/r/w1560/getpro/habr/post_images/d56/a02/ffc/d56a02ffc62949b42904ca00c63d8cc1.png',
+        src: Image1,
         title: 'Рисунок 1 - скриншот сайта',
         type: ArticleBlockType.IMAGE,
       },
@@ -147,7 +150,7 @@ const articles: Article[] = [
       },
       {
         id: '7',
-        src: 'https://hsto.org/r/w1560/getpro/habr/post_images/d56/a02/ffc/d56a02ffc62949b42904ca00c63d8cc1.png',
+        src: Image1,
         title: 'Рисунок 1 - скриншот сайта',
         type: ArticleBlockType.IMAGE,
       },
@@ -169,12 +172,12 @@ const articles: Article[] = [
       },
     ],
     createdAt: '19.01.2023',
-    img: 'https://w7.pngwing.com/pngs/234/329/png-transparent-python-logo-thumbnail.png',
+    img: Image1,
     subtitle: 'Что нового у Python за 2023 год?',
     title: 'Python news',
     type: [ArticleType.IT],
     user: {
-      avatar: 'https://img.freepik.com/premium-photo/man-stands-ledge-looking-cityscape_529521-762.jpg',
+      avatar: Image2,
       id: '2',
       username: 'Mary',
     },
@@ -195,7 +198,7 @@ const articles: Article[] = [
       },
       {
         id: '2',
-        src: 'https://hsto.org/r/w1560/getpro/habr/post_images/d56/a02/ffc/d56a02ffc62949b42904ca00c63d8cc1.png',
+        src: Image1,
         title: 'Рисунок 1 - скриншот сайта',
         type: ArticleBlockType.IMAGE,
       },
@@ -229,7 +232,7 @@ const articles: Article[] = [
       },
       {
         id: '7',
-        src: 'https://hsto.org/r/w1560/getpro/habr/post_images/d56/a02/ffc/d56a02ffc62949b42904ca00c63d8cc1.png',
+        src: Image1,
         title: 'Рисунок 1 - скриншот сайта',
         type: ArticleBlockType.IMAGE,
       },
@@ -251,12 +254,12 @@ const articles: Article[] = [
       },
     ],
     createdAt: '13.04.2023',
-    img: 'https://w7.pngwing.com/pngs/314/161/png-transparent-kotlin-android-software-development-anonymous-function-programming-language-android-blue-angle-text-thumbnail.png',
+    img: Image1,
     subtitle: 'Что нового у Kotlin за 2023 год?',
     title: 'Kotlin news',
     type: [ArticleType.IT],
     user: {
-      avatar: 'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
+      avatar: Image1,
       id: '1',
       username: 'Jack',
     },
