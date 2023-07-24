@@ -39,7 +39,7 @@ const articles: Article[] = [
 
 const initialState: DeepPartial<StateSchema> = {
   articlesPage: {
-    limit: 5,
+    limit: 4,
   },
 };
 

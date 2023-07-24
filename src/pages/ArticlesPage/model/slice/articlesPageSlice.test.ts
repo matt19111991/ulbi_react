@@ -136,7 +136,7 @@ describe('articlesPageSlice', () => {
       },
       hasMore: true,
       ids: [firstArticle.id],
-      limit: 1,
+      limit: 4,
       page: 1,
       view: ArticleView.PLATE,
     };
@@ -151,7 +151,7 @@ describe('articlesPageSlice', () => {
       entities: normalizedEntities,
       ids: normalizedIds,
       hasMore: true,
-      limit: 1,
+      limit: 4,
       page: 1,
       view: ArticleView.PLATE,
     });

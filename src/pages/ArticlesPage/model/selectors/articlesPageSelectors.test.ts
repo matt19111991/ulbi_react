@@ -89,11 +89,11 @@ describe('articlesPageSelectors', () => {
     test('should return limit value', () => {
       const state: DeepPartial<StateSchema> = {
         articlesPage: {
-          limit: 5,
+          limit: 4,
         },
       };
 
-      expect(getArticlesPageLimit(state as StateSchema)).toBe(5);
+      expect(getArticlesPageLimit(state as StateSchema)).toBe(4);
     });
 
     test('should work with empty state', () => {
