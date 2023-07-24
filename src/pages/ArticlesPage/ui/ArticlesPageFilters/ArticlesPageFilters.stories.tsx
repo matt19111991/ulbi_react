@@ -17,7 +17,7 @@ import {
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
-import ArticlesPage from './ArticlesPage';
+import { ArticlesPageFilters } from './ArticlesPageFilters';
 
 const articles: Article[] = [
   {
@@ -288,18 +288,18 @@ const stateArticles: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'pages/ArticlesPage',
-  component: ArticlesPage,
+  title: 'pages/ArticlesPage/Filters',
+  component: ArticlesPageFilters,
   argTypes: {
     backgroundColor: {
       control: 'color',
     },
   },
-} as Meta<typeof ArticlesPage>;
+} as Meta<typeof ArticlesPageFilters>;
 
 type Story = StoryObj<typeof meta>;
 
-// Primary articles page
+// Primary articles page filters
 
 export const Primary: Story = {
   args: {},
@@ -307,7 +307,7 @@ export const Primary: Story = {
 
 Primary.decorators = [StoreDecorator(stateArticles)];
 
-// Dark articles page
+// Dark articles page filters
 
 export const Dark: Story = {
   args: {},
@@ -315,7 +315,7 @@ export const Dark: Story = {
 
 Dark.decorators = [StoreDecorator(stateArticles), ThemeDecorator(Theme.DARK)];
 
-// Orange articles page
+// Orange articles page filters
 
 export const Orange: Story = {
   args: {},
@@ -323,7 +323,7 @@ export const Orange: Story = {
 
 Orange.decorators = [StoreDecorator(stateArticles), ThemeDecorator(Theme.ORANGE)];
 
-// Loading articles page
+// Loading articles page filters
 
 const stateArticlesLoading = {
   articlesPage: {
@@ -344,21 +344,5 @@ export const Loading: Story = {
 };
 
 Loading.decorators = [StoreDecorator(stateArticlesLoading)];
-
-// Error articles page
-
-const stateArticlesError = {
-  ...stateArticles,
-  articlesPage: {
-    ...stateArticles.articlesPage,
-    error: 'Error',
-  },
-};
-
-export const Error: Story = {
-  args: {},
-};
-
-Error.decorators = [StoreDecorator(stateArticlesError)];
 
 export default meta;

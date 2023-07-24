@@ -13,6 +13,7 @@ import { Card } from 'shared/ui/Card/Card';
 import { Input } from 'shared/ui/Input/Input';
 
 import {
+  getArticlesPageAreLoading,
   getArticlesPageOrder,
   getArticlesPageSearch,
   getArticlesPageSort,
@@ -31,6 +32,7 @@ export const ArticlesPageFilters = memo(({ className }: ArticlesPageFiltersProps
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
+  const areLoading = useSelector(getArticlesPageAreLoading);
   const order = useSelector(getArticlesPageOrder);
   const search = useSelector(getArticlesPageSearch);
   const sort = useSelector(getArticlesPageSort);
@@ -56,6 +58,7 @@ export const ArticlesPageFilters = memo(({ className }: ArticlesPageFiltersProps
     <div className={classNames('', {}, [className])}>
       <div className={classes.sortWrapper}>
         <ArticleSortSelector
+          className={classNames('', { [classes.loading]: areLoading })}
           onChangeOrder={onChangeOrder}
           onChangeSort={onChangeSort}
           order={order}
@@ -67,6 +70,7 @@ export const ArticlesPageFilters = memo(({ className }: ArticlesPageFiltersProps
 
       <Card className={classes.search}>
         <Input
+          className={classNames('', { [classes.loading]: areLoading })}
           onChange={onChangeSearch}
           placeholder={t('Поиск')}
           value={search}

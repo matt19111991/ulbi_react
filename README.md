@@ -1,3 +1,0 @@
-- ArticleSortSelector stories
-- ArticlesPage stories
-- ArticlesPageFilters stories
