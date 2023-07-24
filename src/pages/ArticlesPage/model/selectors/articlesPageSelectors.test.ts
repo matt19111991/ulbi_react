@@ -1,6 +1,6 @@
 import { StateSchema } from 'app/providers/StoreProvider';
 
-import { ArticleView } from 'entities/Article';
+import { ArticleSortField, ArticleView } from 'entities/Article';
 
 import {
   getArticlesPageAreLoading,
@@ -9,6 +9,9 @@ import {
   getArticlesPageInited,
   getArticlesPageLimit,
   getArticlesPageNumber,
+  getArticlesPageOrder,
+  getArticlesPageSearch,
+  getArticlesPageSort,
   getArticlesPageView,
 } from './articlesPageSelectors';
 
@@ -121,6 +124,60 @@ describe('articlesPageSelectors', () => {
     });
   });
 
+  describe('getArticlesPageOrder', () => {
+    test('should return order', () => {
+      const state: DeepPartial<StateSchema> = {
+        articlesPage: {
+          order: 'desc',
+        },
+      };
+
+      expect(getArticlesPageOrder(state as StateSchema)).toBe('desc');
+    });
+
+    test('should work with empty state', () => {
+      const state: DeepPartial<StateSchema> = {};
+
+      expect(getArticlesPageOrder(state as StateSchema)).toBe('asc');
+    });
+  });
+
+  describe('getArticlesPageSearch', () => {
+    test('should return search value', () => {
+      const state: DeepPartial<StateSchema> = {
+        articlesPage: {
+          search: 'search_value',
+        },
+      };
+
+      expect(getArticlesPageSearch(state as StateSchema)).toBe('search_value');
+    });
+
+    test('should work with empty state', () => {
+      const state: DeepPartial<StateSchema> = {};
+
+      expect(getArticlesPageSearch(state as StateSchema)).toBe('');
+    });
+  });
+
+  describe('getArticlesPageSort', () => {
+    test('should return sort', () => {
+      const state: DeepPartial<StateSchema> = {
+        articlesPage: {
+          sort: ArticleSortField.TITLE,
+        },
+      };
+
+      expect(getArticlesPageSort(state as StateSchema)).toBe(ArticleSortField.TITLE);
+    });
+
+    test('should work with empty state', () => {
+      const state: DeepPartial<StateSchema> = {};
+
+      expect(getArticlesPageSort(state as StateSchema)).toBe(ArticleSortField.CREATED);
+    });
+  });
+
   describe('getArticlesPageView', () => {
     test('should return page view value', () => {
       const state: DeepPartial<StateSchema> = {
@@ -135,7 +192,7 @@ describe('articlesPageSelectors', () => {
     test('should work with empty state', () => {
       const state: DeepPartial<StateSchema> = {};
 
-      expect(getArticlesPageView(state as StateSchema)).toBe(undefined);
+      expect(getArticlesPageView(state as StateSchema)).toBe(ArticleView.PLATE);
     });
   });
 });

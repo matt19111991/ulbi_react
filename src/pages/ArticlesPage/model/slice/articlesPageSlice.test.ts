@@ -1,4 +1,9 @@
-import { Article, ArticleType, ArticleView } from 'entities/Article';
+import {
+  Article,
+  ArticleSortField,
+  ArticleType,
+  ArticleView,
+} from 'entities/Article';
 
 import { ARTICLE_VIEW_LOCALSTORAGE_KEY } from 'shared/const/localstorage';
 
@@ -96,6 +101,45 @@ describe('articlesPageSlice', () => {
     );
 
     expect(reducer).toEqual({ page: 5 });
+  });
+
+  test('test set order', () => {
+    const state: DeepPartial<ArticlesPageSchema> = {
+      order: 'asc',
+    };
+
+    const reducer = articlesPageReducer(
+      state as ArticlesPageSchema,
+      articlesPageActions.setOrder('desc'),
+    );
+
+    expect(reducer).toEqual({ order: 'desc' });
+  });
+
+  test('test set search', () => {
+    const state: DeepPartial<ArticlesPageSchema> = {
+      search: '',
+    };
+
+    const reducer = articlesPageReducer(
+      state as ArticlesPageSchema,
+      articlesPageActions.setSearch('search_value'),
+    );
+
+    expect(reducer).toEqual({ search: 'search_value' });
+  });
+
+  test('test set sort', () => {
+    const state: DeepPartial<ArticlesPageSchema> = {
+      sort: ArticleSortField.CREATED,
+    };
+
+    const reducer = articlesPageReducer(
+      state as ArticlesPageSchema,
+      articlesPageActions.setSort(ArticleSortField.TITLE),
+    );
+
+    expect(reducer).toEqual({ sort: ArticleSortField.TITLE });
   });
 
   test('test set view', () => {

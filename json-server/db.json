@@ -73,7 +73,7 @@
       "createdAt": "26.02.2023",
       "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
       "subtitle": "Что нового в JS за 2023 год?",
-      "title": "Javascript news",
+      "title": "Javascript updated news",
       "type": [
         "IT"
       ],
@@ -153,7 +153,7 @@
       "createdAt": "19.01.2023",
       "img": "https://w7.pngwing.com/pngs/234/329/png-transparent-python-logo-thumbnail.png",
       "subtitle": "Что нового у Python за 2023 год?",
-      "title": "Python news",
+      "title": "Python updated news",
       "type": [
         "IT"
       ],
@@ -233,7 +233,7 @@
       "createdAt": "13.04.2023",
       "img": "https://w7.pngwing.com/pngs/314/161/png-transparent-kotlin-android-software-development-anonymous-function-programming-language-android-blue-angle-text-thumbnail.png",
       "subtitle": "Что нового у Kotlin за 2023 год?",
-      "title": "Kotlin news",
+      "title": "Kotlin updated news",
       "type": [
         "IT"
       ],
@@ -310,15 +310,15 @@
           "type": "TEXT"
         }
       ],
-      "createdAt": "26.02.2023",
+      "createdAt": "28.06.2023",
       "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
       "subtitle": "Что нового в JS за 2023 год?",
-      "title": "Javascript news",
+      "title": "Javascript fresh news",
       "type": [
         "IT"
       ],
       "userId": "1",
-      "views": 1022
+      "views": 284
     },
     {
       "id": "5",
@@ -390,15 +390,15 @@
           "type": "TEXT"
         }
       ],
-      "createdAt": "19.01.2023",
+      "createdAt": "22.07.2023",
       "img": "https://w7.pngwing.com/pngs/234/329/png-transparent-python-logo-thumbnail.png",
       "subtitle": "Что нового у Python за 2023 год?",
-      "title": "Python news",
+      "title": "Python fresh news",
       "type": [
         "IT"
       ],
       "userId": "1",
-      "views": 845
+      "views": 659
     },
     {
       "id": "6",
@@ -470,15 +470,15 @@
           "type": "TEXT"
         }
       ],
-      "createdAt": "13.04.2023",
+      "createdAt": "21.07.2023",
       "img": "https://w7.pngwing.com/pngs/314/161/png-transparent-kotlin-android-software-development-anonymous-function-programming-language-android-blue-angle-text-thumbnail.png",
       "subtitle": "Что нового у Kotlin за 2023 год?",
-      "title": "Kotlin news",
+      "title": "Kotlin fresh news",
       "type": [
         "IT"
       ],
       "userId": "1",
-      "views": 566
+      "views": 655
     },
     {
       "id": "7",
@@ -550,15 +550,15 @@
           "type": "TEXT"
         }
       ],
-      "createdAt": "26.02.2023",
+      "createdAt": "22.05.2022",
       "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
       "subtitle": "Что нового в JS за 2023 год?",
-      "title": "Javascript news",
+      "title": "Javascript old news",
       "type": [
         "IT"
       ],
       "userId": "1",
-      "views": 1022
+      "views": 1123
     },
     {
       "id": "8",
@@ -630,15 +630,15 @@
           "type": "TEXT"
         }
       ],
-      "createdAt": "19.01.2023",
+      "createdAt": "29.03.2022",
       "img": "https://w7.pngwing.com/pngs/234/329/png-transparent-python-logo-thumbnail.png",
       "subtitle": "Что нового у Python за 2023 год?",
-      "title": "Python news",
+      "title": "Python old news",
       "type": [
         "IT"
       ],
       "userId": "1",
-      "views": 845
+      "views": 1341
     },
     {
       "id": "9",
@@ -710,15 +710,15 @@
           "type": "TEXT"
         }
       ],
-      "createdAt": "13.04.2023",
+      "createdAt": "17.01.2022",
       "img": "https://w7.pngwing.com/pngs/314/161/png-transparent-kotlin-android-software-development-anonymous-function-programming-language-android-blue-angle-text-thumbnail.png",
       "subtitle": "Что нового у Kotlin за 2023 год?",
-      "title": "Kotlin news",
+      "title": "Kotlin old news",
       "type": [
         "IT"
       ],
       "userId": "1",
-      "views": 566
+      "views": 1812
     },
     {
       "id": "10",
@@ -790,15 +790,15 @@
           "type": "TEXT"
         }
       ],
-      "createdAt": "26.02.2023",
+      "createdAt": "04.05.2023",
       "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
       "subtitle": "Что нового в JS за 2023 год?",
-      "title": "Javascript news",
+      "title": "Javascript not sorted news",
       "type": [
         "IT"
       ],
       "userId": "1",
-      "views": 1022
+      "views": 122
     },
     {
       "id": "11",
@@ -870,15 +870,15 @@
           "type": "TEXT"
         }
       ],
-      "createdAt": "19.01.2023",
+      "createdAt": "01.05.2023",
       "img": "https://w7.pngwing.com/pngs/234/329/png-transparent-python-logo-thumbnail.png",
       "subtitle": "Что нового у Python за 2023 год?",
-      "title": "Python news",
+      "title": "Python not sorted news",
       "type": [
         "IT"
       ],
       "userId": "1",
-      "views": 845
+      "views": 54
     },
     {
       "id": "12",
@@ -950,15 +950,15 @@
           "type": "TEXT"
         }
       ],
-      "createdAt": "13.04.2023",
+      "createdAt": "01.01.2023",
       "img": "https://w7.pngwing.com/pngs/314/161/png-transparent-kotlin-android-software-development-anonymous-function-programming-language-android-blue-angle-text-thumbnail.png",
       "subtitle": "Что нового у Kotlin за 2023 год?",
-      "title": "Kotlin news",
+      "title": "Kotlin not sorted news",
       "type": [
         "IT"
       ],
       "userId": "1",
-      "views": 566
+      "views": 69
     },
     {
       "id": "13",
@@ -1030,15 +1030,15 @@
           "type": "TEXT"
         }
       ],
-      "createdAt": "19.01.2023",
+      "createdAt": "28.11.2022",
       "img": "https://w7.pngwing.com/pngs/234/329/png-transparent-python-logo-thumbnail.png",
       "subtitle": "Что нового у Python за 2023 год?",
-      "title": "Python news",
+      "title": "Python test news",
       "type": [
         "IT"
       ],
       "userId": "1",
-      "views": 845
+      "views": 4
     },
     {
       "id": "14",
@@ -1110,15 +1110,15 @@
           "type": "TEXT"
         }
       ],
-      "createdAt": "13.04.2023",
+      "createdAt": "14.12.2022",
       "img": "https://w7.pngwing.com/pngs/314/161/png-transparent-kotlin-android-software-development-anonymous-function-programming-language-android-blue-angle-text-thumbnail.png",
       "subtitle": "Что нового у Kotlin за 2023 год?",
-      "title": "Kotlin news",
+      "title": "Kotlin test news",
       "type": [
         "IT"
       ],
       "userId": "1",
-      "views": 566
+      "views": 6
     },
     {
       "id": "15",
@@ -1190,15 +1190,15 @@
           "type": "TEXT"
         }
       ],
-      "createdAt": "26.02.2023",
+      "createdAt": "21.08.2022",
       "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
       "subtitle": "Что нового в JS за 2023 год?",
-      "title": "Javascript news",
+      "title": "Javascript custom news",
       "type": [
         "IT"
       ],
       "userId": "1",
-      "views": 1022
+      "views": 22
     },
     {
       "id": "16",
@@ -1270,15 +1270,15 @@
           "type": "TEXT"
         }
       ],
-      "createdAt": "19.01.2023",
+      "createdAt": "19.10.2022",
       "img": "https://w7.pngwing.com/pngs/234/329/png-transparent-python-logo-thumbnail.png",
       "subtitle": "Что нового у Python за 2023 год?",
-      "title": "Python news",
+      "title": "Python custom news",
       "type": [
         "IT"
       ],
       "userId": "1",
-      "views": 845
+      "views": 47
     },
     {
       "id": "17",
@@ -1350,15 +1350,15 @@
           "type": "TEXT"
         }
       ],
-      "createdAt": "13.04.2023",
+      "createdAt": "15.11.2022",
       "img": "https://w7.pngwing.com/pngs/314/161/png-transparent-kotlin-android-software-development-anonymous-function-programming-language-android-blue-angle-text-thumbnail.png",
       "subtitle": "Что нового у Kotlin за 2023 год?",
-      "title": "Kotlin news",
+      "title": "Kotlin custom news",
       "type": [
         "IT"
       ],
       "userId": "1",
-      "views": 566
+      "views": 61
     }
   ],
   "comments": [

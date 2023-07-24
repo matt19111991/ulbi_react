@@ -1,36 +1,33 @@
-import {
-  ChangeEvent,
-  JSX,
-  memo,
-  useMemo,
-} from 'react';
+import { ChangeEvent, JSX, useMemo } from 'react';
 
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 
+import { genericMemo } from 'shared/lib/components/genericMemo/genericMemo';
+
 import classes from './Select.module.scss';
 
-interface SelectOption {
+export interface SelectOption<T extends string> {
   content: string;
-  value: string;
+  value: T;
 }
 
-interface SelectProps {
+interface SelectProps<T extends string> {
   className?: string;
   label?: string;
-  onChange?: (value: string) => void;
-  options?: SelectOption[];
+  onChange?: (value: T) => void;
+  options?: SelectOption<T>[];
   readOnly?: boolean;
-  value?: string;
+  value?: T;
 }
 
-export const Select = memo(({
+const Select = <T extends string>({
   className,
   label,
   onChange,
   options,
   readOnly,
   value,
-}: SelectProps) => {
+}: SelectProps<T>) => {
   const optionsList = useMemo<JSX.Element[] | undefined>(() => {
     return options?.map((option) => (
       <option
@@ -44,7 +41,7 @@ export const Select = memo(({
   }, [options]);
 
   const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>): void => {
-    onChange?.(e.target.value);
+    onChange?.(e.target.value as T);
   };
 
   const mods: Mods = {
@@ -65,6 +62,8 @@ export const Select = memo(({
       </select>
     </div>
   );
-});
+};
 
-Select.displayName = 'Select';
+const MemoizedSelect = genericMemo(Select);
+
+export { MemoizedSelect as Select };

@@ -2,9 +2,7 @@ import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { ArticleList, ArticleView } from 'entities/Article';
-
-import { ArticleViewSelector } from 'features/ArticleViewSelector';
+import { ArticleList } from 'entities/Article';
 
 import { classNames } from 'shared/lib/classNames/classNames';
 
@@ -20,6 +18,8 @@ import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
 
 import { Page } from 'widgets/Page';
 
+import { ArticlesPageFilters } from '../ArticlesPageFilters/ArticlesPageFilters';
+
 import {
   getArticlesPageAreLoading,
   getArticlesPageError,
@@ -32,11 +32,7 @@ import {
 
 import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
 
-import {
-  articlesPageActions,
-  articlesPageReducer,
-  getArticles,
-} from '../../model/slice/articlesPageSlice';
+import { articlesPageReducer, getArticles } from '../../model/slice/articlesPageSlice';
 
 import classes from './ArticlesPage.module.scss';
 
@@ -67,10 +63,6 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
     }
   }, [dispatch]);
 
-  const onChangeView = useCallback((newView: ArticleView) => {
-    dispatch(articlesPageActions.setView(newView));
-  }, [dispatch]);
-
   if (error) {
     return (
       <Page className={classNames(classes.ArticlesPage, {}, [className])}>
@@ -89,10 +81,11 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
         className={classNames(classes.ArticlesPage, {}, [className])}
         onScrollEnd={onLoadNextPart}
       >
-        <ArticleViewSelector onViewClick={onChangeView} selectedView={view} />
+        <ArticlesPageFilters />
 
         <ArticleList
           articles={articles}
+          className={classes.list}
           isLoading={isLoading}
           view={view}
         />
