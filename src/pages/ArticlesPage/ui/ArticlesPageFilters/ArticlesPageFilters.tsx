@@ -8,6 +8,7 @@ import { ArticleViewSelector } from 'features/ArticleViewSelector';
 
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useDebounce } from 'shared/lib/hooks/useDebounce/useDebounce';
 import { SortOrder } from 'shared/types/sort';
 import { Card } from 'shared/ui/Card/Card';
 import { Input } from 'shared/ui/Input/Input';
@@ -44,6 +45,8 @@ export const ArticlesPageFilters = memo(({ className }: ArticlesPageFiltersProps
     dispatch(fetchArticlesList({ replace: true }));
   }, [dispatch]);
 
+  const debouncedFetchData = useDebounce(fetchData, 500);
+
   const onChangeOrder = useCallback((newOrder: SortOrder) => {
     dispatch(articlesPageActions.setOrder(newOrder));
 
@@ -57,8 +60,8 @@ export const ArticlesPageFilters = memo(({ className }: ArticlesPageFiltersProps
 
     dispatch(articlesPageActions.setPage(1));
 
-    fetchData();
-  }, [dispatch, fetchData]);
+    debouncedFetchData();
+  }, [dispatch, debouncedFetchData]);
 
   const onChangeSort = useCallback((newSort: ArticleSortField) => {
     dispatch(articlesPageActions.setSort(newSort));
@@ -89,6 +92,7 @@ export const ArticlesPageFilters = memo(({ className }: ArticlesPageFiltersProps
       <Card className={classes.search}>
         <Input
           className={classNames('', { [classes.loading]: areLoading })}
+          fullWidth
           onChange={onChangeSearch}
           placeholder={t('Поиск')}
           value={search}
