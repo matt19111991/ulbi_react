@@ -159,15 +159,69 @@ describe('articlesPageSlice', () => {
     expect(window.localStorage.getItem(ARTICLE_VIEW_LOCALSTORAGE_KEY)).toBe(ArticleView.LIST);
   });
 
-  test('test fetch articles list pending', () => {
-    const state: DeepPartial<ArticlesPageSchema> = {
-      areLoading: false,
-      error: 'Error',
-    };
+  describe('test fetch articles list pending', () => {
+    test('replace true', () => {
+      const state: DeepPartial<ArticlesPageSchema> = {
+        areLoading: false,
+        entities: {},
+        error: 'Error',
+        ids: [],
+      };
 
-    expect(
-      articlesPageReducer(state as ArticlesPageSchema, fetchArticlesList.pending),
-    ).toEqual({ areLoading: true, error: undefined });
+      expect(
+        articlesPageReducer(
+          state as ArticlesPageSchema,
+          fetchArticlesList.pending('', { replace: true }),
+        ),
+      ).toEqual({
+        areLoading: true,
+        entities: {},
+        error: undefined,
+        ids: [],
+      });
+    });
+
+    test('replace false', () => {
+      const state: DeepPartial<ArticlesPageSchema> = {
+        areLoading: false,
+        entities: {},
+        error: 'Error',
+        ids: [],
+      };
+
+      expect(
+        articlesPageReducer(
+          state as ArticlesPageSchema,
+          fetchArticlesList.pending('', { replace: false }),
+        ),
+      ).toEqual({
+        areLoading: true,
+        entities: {},
+        error: undefined,
+        ids: [],
+      });
+    });
+
+    test('empty replace argument', () => {
+      const state: DeepPartial<ArticlesPageSchema> = {
+        areLoading: false,
+        entities: {},
+        error: 'Error',
+        ids: [],
+      };
+
+      expect(
+        articlesPageReducer(
+          state as ArticlesPageSchema,
+          fetchArticlesList.pending('', {}),
+        ),
+      ).toEqual({
+        areLoading: true,
+        entities: {},
+        error: undefined,
+        ids: [],
+      });
+    });
   });
 
   test('test fetch articles list fulfilled', () => {
@@ -188,7 +242,7 @@ describe('articlesPageSlice', () => {
     expect(
       articlesPageReducer(
         state as ArticlesPageSchema,
-        fetchArticlesList.fulfilled([secondArticle], '', { page: 1 }),
+        fetchArticlesList.fulfilled([secondArticle], '', undefined),
       ),
     ).toEqual({
       areLoading: false,

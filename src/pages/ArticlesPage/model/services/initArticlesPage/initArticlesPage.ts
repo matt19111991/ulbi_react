@@ -23,7 +23,7 @@ export const initArticlesPage = createAsyncThunk<
       // должно быть раньше запроса, чтобы передать правильный 'limit' в запрос
       thunkApi.dispatch(articlesPageActions.initState());
 
-      thunkApi.dispatch(fetchArticlesList({ page: 1 }));
+      thunkApi.dispatch(fetchArticlesList());
     }
   },
 );

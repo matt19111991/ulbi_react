@@ -49,7 +49,7 @@ describe('fetchArticlesList', () => {
 
     thunk.api.get.mockReturnValue(Promise.resolve({ data: articles }));
 
-    const result = await thunk.callThunk({ page: 1 });
+    const result = await thunk.callThunk();
 
     expect(thunk.dispatch).toHaveBeenCalledTimes(2);
 
@@ -64,7 +64,7 @@ describe('fetchArticlesList', () => {
 
     thunk.api.get.mockReturnValue(Promise.resolve({ status: 403 }));
 
-    const result = await thunk.callThunk({ page: 1 });
+    const result = await thunk.callThunk();
 
     expect(thunk.dispatch).toHaveBeenCalledTimes(2);
 

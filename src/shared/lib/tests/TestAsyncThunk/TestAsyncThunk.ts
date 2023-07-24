@@ -38,9 +38,9 @@ export class TestAsyncThunk<Return, Arg, RejectedValue> {
     this.navigate = jest.fn();
   }
 
-  async callThunk(arg: Arg) {
+  async callThunk(arg?: Arg) {
 //  'this.actionCreator' это 'createAsyncThunk', возвращает 'action' после вызова
-    const action = this.actionCreator(arg);
+    const action = this.actionCreator(arg!);
 
     const extra = {
       api: this.api,

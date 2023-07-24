@@ -30,7 +30,7 @@ export const fetchNextArticlesPage = createAsyncThunk<
 
       thunkApi.dispatch(articlesPageActions.setPage(nextPage));
 
-      thunkApi.dispatch(fetchArticlesList({ page: nextPage }));
+      thunkApi.dispatch(fetchArticlesList());
     }
   },
 );

@@ -66,25 +66,34 @@ export const articlesPageSlice = createSlice({
     },
   },
   extraReducers: (builder) => builder
-    .addCase(fetchArticlesList.pending, (state) => {
+    .addCase(fetchArticlesList.pending, (state, action) => {
       state.areLoading = true;
       state.error = undefined;
+
+      if (action.meta.arg?.replace) {
+        // для фильтров всегда получаем новое состояние и обнуляем старое при 'pending'
+        articlesAdapter.removeAll(state);
+      }
     })
-    .addCase(fetchArticlesList.fulfilled, (state, action: PayloadAction<Article[]>) => {
+    .addCase(fetchArticlesList.fulfilled, (state, action) => {
       state.areLoading = false;
       state.hasMore = action.payload.length > 0;
 
-/*    вызывается множество запросов, если доскроллить до конца любой страницы из-за 'IntersectionObserver'
+      if (action.meta.arg?.replace) { // для фильтров
+        articlesAdapter.setAll(state, action.payload);
+      } else { // для ленивой подгрузки
+/*      вызывается множество запросов, если доскроллить до конца любой страницы из-за 'IntersectionObserver'
 
-      в этом случае нужно:
-      - добавить в передаваемый callback 'fetchNextArticlesPage()' в 'IntersectionObserver' условие
-        на подгрузку только в случае, если 'hasMore === true' && 'areLoading === false'
+        в этом случае нужно:
+        - добавить в передаваемый callback 'fetchNextArticlesPage()' в 'IntersectionObserver' условие
+          на подгрузку только в случае, если 'hasMore === true' && 'areLoading === false'
 
-      - не полностью перезатирать данные:
-      articlesAdapter.setAll(state, action.payload);
+        - не полностью перезатирать данные:
+        articlesAdapter.setAll(state, action.payload);
 
-      а добавлять в конец:
-*/    articlesAdapter.addMany(state, action.payload);
+        а добавлять в конец:
+  */    articlesAdapter.addMany(state, action.payload);
+      }
     })
     .addCase(fetchArticlesList.rejected, (state, action) => {
       state.areLoading = false;

@@ -25,7 +25,7 @@ describe('initArticlesPage', () => {
 
     expect(thunk.dispatch).toHaveBeenCalledTimes(4);
     expect(articlesPageActions.initState).toHaveBeenCalled();
-    expect(fetchArticlesList).toHaveBeenCalledWith({ page: 1 });
+    expect(fetchArticlesList).toHaveBeenCalled();
     expect(result.meta.requestStatus).toBe('fulfilled');
   });
 
