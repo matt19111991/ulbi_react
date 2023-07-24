@@ -8,7 +8,11 @@ import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDeco
 
 import { Page } from './Page';
 
-const statePage: DeepPartial<StateSchema> = {};
+const statePage: DeepPartial<StateSchema> = {
+  pageScroll: {
+    scroll: {},
+  },
+};
 
 const content = new Array(100)
   .fill(0)

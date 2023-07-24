@@ -1,10 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { StateSchema } from 'app/providers/StoreProvider';
 import { Theme } from 'app/providers/ThemeProvider';
 
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import MainPage from './MainPage';
+
+const stateMainPage: DeepPartial<StateSchema> = {};
 
 const meta = {
   title: 'pages/MainPage',
@@ -24,13 +28,15 @@ export const Primary: Story = {
   args: {},
 };
 
+Primary.decorators = [StoreDecorator(stateMainPage)];
+
 // Dark main page
 
 export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [StoreDecorator(stateMainPage), ThemeDecorator(Theme.DARK)];
 
 // Orange main page
 
@@ -38,6 +44,6 @@ export const Orange: Story = {
   args: {},
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [StoreDecorator(stateMainPage), ThemeDecorator(Theme.ORANGE)];
 
 export default meta;
