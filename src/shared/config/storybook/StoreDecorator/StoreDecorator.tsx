@@ -12,6 +12,8 @@ import { loginReducer } from 'features/AuthByUsername';
 import { articleDetailsCommentsReducer } from 'pages/ArticleDetailsPage';
 import { articlesPageReducer } from 'pages/ArticlesPage';
 
+import { pageScrollReducer } from 'widgets/Page';
+
 import { ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
 const defaultReducers: ReducersList = {
@@ -20,6 +22,7 @@ const defaultReducers: ReducersList = {
   articleDetailsComments: articleDetailsCommentsReducer,
   articlesPage: articlesPageReducer,
   loginForm: loginReducer,
+  pageScroll: pageScrollReducer,
   profile: profileReducer,
 };
 
