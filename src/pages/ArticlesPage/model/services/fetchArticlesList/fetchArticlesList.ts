@@ -4,6 +4,8 @@ import { ThunkConfig } from 'app/providers/StoreProvider';
 
 import { Article } from 'entities/Article';
 
+import { addQueryParams } from 'shared/lib/url/addQueryParams/addQueryParams';
+
 import {
   getArticlesPageLimit,
   getArticlesPageNumber,
@@ -39,6 +41,8 @@ export const fetchArticlesList = createAsyncThunk<
     const sort = getArticlesPageSort(state);
 
     try {
+      addQueryParams({ order, search, sort });
+
       const response = await thunkApi.extra.api.get<Article[]>('/articles', {
         params: {
           q: search,
