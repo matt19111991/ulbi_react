@@ -16,8 +16,9 @@ import {
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 
-import { Page } from 'shared/ui/Page/Page';
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
+
+import { Page } from 'widgets/Page';
 
 import {
   getArticlesPageAreLoading,

@@ -12,7 +12,7 @@ const content = new Array(100)
   .map((_, idx) => (<div key={idx}>Test block {idx}</div>));
 
 const meta = {
-  title: 'shared/Page',
+  title: 'widgets/Page',
   component: Page,
   argTypes: {
     backgroundColor: {

@@ -17,8 +17,9 @@ import {
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { Page } from 'shared/ui/Page/Page';
 import { Text } from 'shared/ui/Text/Text';
+
+import { Page } from 'widgets/Page';
 
 import { getArticleCommentsAreLoading } from '../../model/selectors/comments';
 

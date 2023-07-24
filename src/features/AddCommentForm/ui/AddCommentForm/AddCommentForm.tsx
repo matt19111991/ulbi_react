@@ -56,7 +56,7 @@ const AddCommentForm = ({ className, onSendComment }: AddCommentFormProps) => {
           fullWidth
           onChange={onCommentTextChange}
           placeholder={t('Введите текст комментария')}
-          value={text || ''}
+          value={text}
         />
 
         <Button onClick={onSendHandler} theme={ButtonTheme.OUTLINE}>

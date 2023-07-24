@@ -19,9 +19,12 @@ import { LoginSchema } from 'features/AuthByUsername';
 import { ArticleDetailsCommentsSchema } from 'pages/ArticleDetailsPage';
 import { ArticlesPageSchema } from 'pages/ArticlesPage';
 
+import { PageScrollSchema } from 'widgets/Page';
+
 export interface StateSchema {
   // Синхронные редюсеры
   counter: CounterSchema;
+  pageScroll: PageScrollSchema,
   user: UserSchema;
 
   // Асинхронные редюсеры

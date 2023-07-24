@@ -10,6 +10,8 @@ import { userReducer } from 'entities/User';
 
 import { $api } from 'shared/api/api';
 
+import { pageScrollReducer } from 'widgets/Page';
+
 import { createReducerManager } from './reducerManager';
 import { StateSchema, ThunkExtraArg } from './StateSchema';
 
@@ -20,6 +22,7 @@ export const createReduxStore = (
 ) => {
   const rootReducers: ReducersMapObject<StateSchema> = {
     counter: counterReducer,
+    pageScroll: pageScrollReducer,
     user: userReducer,
 
     ...asyncReducers,
