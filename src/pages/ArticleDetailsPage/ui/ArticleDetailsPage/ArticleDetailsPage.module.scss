@@ -2,6 +2,15 @@
   min-height: 100%;
 }
 
-.commentTitle {
+.commentTitle,
+.recommendationTitle {
   margin-top: 20px;
+}
+
+.recommendations {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-top: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
 }

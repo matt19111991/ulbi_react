@@ -1,4 +1,4 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { ActionCreatorWithPayload, createAsyncThunk, Dispatch } from '@reduxjs/toolkit';
 
 import { ThunkConfig } from 'app/providers/StoreProvider';
 
@@ -11,6 +11,16 @@ import { getArticlesPageInited } from '../../selectors/articlesPageSelectors';
 import { articlesPageActions } from '../../slice/articlesPageSlice';
 
 import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
+
+const setSearchParam = <T>(
+  param: T,
+  action: ActionCreatorWithPayload<T>,
+  dispatch: Dispatch,
+): void => {
+  if (param) {
+    dispatch(action(param));
+  }
+};
 
 export const initArticlesPage = createAsyncThunk<
   void,
@@ -29,21 +39,10 @@ export const initArticlesPage = createAsyncThunk<
       const sortFromUrl = searchParams.get('sort') as ArticleSortField;
       const typeFromUrl = searchParams.get('type') as ArticleType;
 
-      if (orderFromUrl) {
-        thunkApi.dispatch(articlesPageActions.setOrder(orderFromUrl));
-      }
-
-      if (searchFromUrl) {
-        thunkApi.dispatch(articlesPageActions.setSearch(searchFromUrl));
-      }
-
-      if (sortFromUrl) {
-        thunkApi.dispatch(articlesPageActions.setSort(sortFromUrl));
-      }
-
-      if (typeFromUrl) {
-        thunkApi.dispatch(articlesPageActions.setType(typeFromUrl));
-      }
+      setSearchParam(orderFromUrl, articlesPageActions.setOrder, thunkApi.dispatch);
+      setSearchParam(searchFromUrl as string, articlesPageActions.setSearch, thunkApi.dispatch);
+      setSearchParam(sortFromUrl, articlesPageActions.setSort, thunkApi.dispatch);
+      setSearchParam(typeFromUrl, articlesPageActions.setType, thunkApi.dispatch);
 
       // должно быть раньше запроса, чтобы передать правильный 'limit' в запрос
       thunkApi.dispatch(articlesPageActions.initState());

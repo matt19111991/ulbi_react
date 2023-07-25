@@ -16,7 +16,11 @@ import { UserSchema } from 'entities/User';
 import { AddCommentFormSchema } from 'features/AddCommentForm';
 import { LoginSchema } from 'features/AuthByUsername';
 
-import { ArticleDetailsCommentsSchema } from 'pages/ArticleDetailsPage';
+import {
+  ArticleDetailsCommentsSchema,
+  ArticleDetailsRecommendationsSchema,
+} from 'pages/ArticleDetailsPage';
+
 import { ArticlesPageSchema } from 'pages/ArticlesPage';
 
 import { PageScrollSchema } from 'widgets/Page';
@@ -31,6 +35,7 @@ export interface StateSchema {
   addCommentForm?: AddCommentFormSchema;
   articleDetails?: ArticleDetailsSchema;
   articleDetailsComments?: ArticleDetailsCommentsSchema;
+  articleDetailsRecommendations?: ArticleDetailsRecommendationsSchema;
   articlesPage?: ArticlesPageSchema;
   loginForm?: LoginSchema;
   profile?: ProfileSchema;
