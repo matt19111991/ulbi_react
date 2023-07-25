@@ -1,3 +1,0 @@
-- добавить тесты в initArticlesPage (на параметры)
-- добавить тесты в fetchArticlesList (на addQueryParams)
-- исправить тесты initArticlesPage

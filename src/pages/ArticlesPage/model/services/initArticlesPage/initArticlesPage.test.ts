@@ -1,5 +1,7 @@
 import { StateSchema } from 'app/providers/StoreProvider';
 
+import { ArticleSortField } from 'entities/Article';
+
 import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 
 import { articlesPageActions } from '../../slice/articlesPageSlice';
@@ -12,21 +14,100 @@ jest.mock('../fetchArticlesList/fetchArticlesList');
 jest.mock('../../slice/articlesPageSlice');
 
 describe('initArticlesPage', () => {
-  test('success', async () => {
-    const state: DeepPartial<StateSchema> = {
-      articlesPage: {
-        inited: false,
-      },
-    };
+  describe('success', () => {
+    test('all params', async () => {
+      const state: DeepPartial<StateSchema> = {
+        articlesPage: {
+          inited: false,
+        },
+      };
 
-    const thunk = new TestAsyncThunk(initArticlesPage, state);
+      const searchParams = new URLSearchParams({
+        order: 'asc',
+        search: 'search_value',
+        sort: ArticleSortField.CREATED,
+      });
 
-    const result = await thunk.callThunk();
+      const thunk = new TestAsyncThunk(initArticlesPage, state);
 
-    expect(thunk.dispatch).toHaveBeenCalledTimes(4);
-    expect(articlesPageActions.initState).toHaveBeenCalled();
-    expect(fetchArticlesList).toHaveBeenCalled();
-    expect(result.meta.requestStatus).toBe('fulfilled');
+      const result = await thunk.callThunk(searchParams);
+
+      expect(thunk.dispatch).toHaveBeenCalledTimes(7);
+      expect(articlesPageActions.initState).toHaveBeenCalled();
+      expect(fetchArticlesList).toHaveBeenCalled();
+      expect(result.meta.requestStatus).toBe('fulfilled');
+    });
+
+    test('set order param', async () => {
+      const state: DeepPartial<StateSchema> = {
+        articlesPage: {
+          inited: false,
+        },
+      };
+
+      const searchParams = new URLSearchParams({ order: 'asc' });
+
+      const thunk = new TestAsyncThunk(initArticlesPage, state);
+
+      await thunk.callThunk(searchParams);
+
+      expect(articlesPageActions.setOrder).toHaveBeenCalled();
+      expect(articlesPageActions.setOrder).toHaveBeenCalledWith('asc');
+    });
+
+    test('set search param', async () => {
+      const state: DeepPartial<StateSchema> = {
+        articlesPage: {
+          inited: false,
+        },
+      };
+
+      const searchParams = new URLSearchParams({ search: 'search_value' });
+
+      const thunk = new TestAsyncThunk(initArticlesPage, state);
+
+      await thunk.callThunk(searchParams);
+
+      expect(articlesPageActions.setSearch).toHaveBeenCalled();
+      expect(articlesPageActions.setSearch).toHaveBeenCalledWith('search_value');
+    });
+
+    test('set sort param', async () => {
+      const state: DeepPartial<StateSchema> = {
+        articlesPage: {
+          inited: false,
+        },
+      };
+
+      const searchParams = new URLSearchParams({ sort: ArticleSortField.CREATED });
+
+      const thunk = new TestAsyncThunk(initArticlesPage, state);
+
+      await thunk.callThunk(searchParams);
+
+      expect(articlesPageActions.setSort).toHaveBeenCalled();
+      expect(articlesPageActions.setSort).toHaveBeenCalledWith('createdAt');
+    });
+
+    test('no params', async () => {
+      const state: DeepPartial<StateSchema> = {
+        articlesPage: {
+          inited: false,
+        },
+      };
+
+      const searchParams = new URLSearchParams({});
+
+      const thunk = new TestAsyncThunk(initArticlesPage, state);
+
+      await thunk.callThunk(searchParams);
+
+      expect(thunk.dispatch).toHaveBeenCalledTimes(4);
+      expect(articlesPageActions.setOrder).not.toHaveBeenCalled();
+      expect(articlesPageActions.setSearch).not.toHaveBeenCalled();
+      expect(articlesPageActions.setSort).not.toHaveBeenCalled();
+      expect(fetchArticlesList).toHaveBeenCalled();
+    });
   });
 
   test('not called', async () => {

@@ -1,6 +1,6 @@
 import { StateSchema } from 'app/providers/StoreProvider';
 
-import { Article, ArticleType } from 'entities/Article';
+import { Article, ArticleSortField, ArticleType } from 'entities/Article';
 
 import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 
@@ -37,30 +37,73 @@ const articles: Article[] = [
   },
 ];
 
-const initialState: DeepPartial<StateSchema> = {
-  articlesPage: {
-    limit: 4,
-  },
-};
-
 describe('fetchArticlesList', () => {
-  test('success', async () => {
-    const thunk = new TestAsyncThunk(fetchArticlesList, initialState);
+  describe('success', () => {
+    test('with params', async () => {
+      const state: DeepPartial<StateSchema> = {
+        articlesPage: {
+          limit: 4,
+          order: 'asc',
+          page: 1,
+          search: 'search_value',
+          sort: ArticleSortField.CREATED,
+        },
+      };
 
-    thunk.api.get.mockReturnValue(Promise.resolve({ data: articles }));
+      const thunk = new TestAsyncThunk(fetchArticlesList, state);
 
-    const result = await thunk.callThunk();
+      thunk.api.get.mockReturnValue(Promise.resolve({ data: articles }));
 
-    expect(thunk.dispatch).toHaveBeenCalledTimes(2);
+      const result = await thunk.callThunk();
 
-    expect(thunk.api.get).toHaveBeenCalled();
+      expect(thunk.dispatch).toHaveBeenCalledTimes(2);
+      expect(thunk.api.get).toHaveBeenCalled();
 
-    expect(result.meta.requestStatus).toBe('fulfilled');
-    expect(result.payload).toEqual(articles);
+      expect(thunk.api.get).toHaveBeenCalledWith('/articles', {
+        params: {
+          q: 'search_value',
+          _expand: 'user',
+          _limit: 4,
+          _order: 'asc',
+          _page: 1,
+          _sort: 'createdAt',
+        },
+      });
+
+      expect(result.meta.requestStatus).toBe('fulfilled');
+      expect(result.payload).toEqual(articles);
+    });
+
+    test('no params', async () => {
+      const state: DeepPartial<StateSchema> = {
+        articlesPage: {
+          limit: 4,
+        },
+      };
+
+      const thunk = new TestAsyncThunk(fetchArticlesList, state);
+
+      thunk.api.get.mockReturnValue(Promise.resolve({ data: articles }));
+
+      const result = await thunk.callThunk();
+
+      expect(thunk.dispatch).toHaveBeenCalledTimes(2);
+
+      expect(thunk.api.get).toHaveBeenCalled();
+
+      expect(result.meta.requestStatus).toBe('fulfilled');
+      expect(result.payload).toEqual(articles);
+    });
   });
 
   test('error', async () => {
-    const thunk = new TestAsyncThunk(fetchArticlesList, initialState);
+    const state: DeepPartial<StateSchema> = {
+      articlesPage: {
+        limit: 4,
+      },
+    };
+
+    const thunk = new TestAsyncThunk(fetchArticlesList, state);
 
     thunk.api.get.mockReturnValue(Promise.resolve({ status: 403 }));
 
