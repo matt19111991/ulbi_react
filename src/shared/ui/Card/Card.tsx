@@ -4,15 +4,26 @@ import { classNames } from 'shared/lib/classNames/classNames';
 
 import classes from './Card.module.scss';
 
+export enum CardTheme {
+  NORMAL =  'normal',
+  OUTLINED =  'outlined',
+}
+
 // расширяем интерфейс, чтобы TS понимал 'props', если мы захотим пробросить данные из 'useHover' и т.п.
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode;
   className?: string;
+  theme?: CardTheme;
 }
 
-export const Card = memo(({ className, children, ...rest }: CardProps) => (
+export const Card = memo(({
+  className,
+  children,
+  theme = CardTheme.NORMAL,
+  ...rest
+}: CardProps) => (
   <div
-    className={classNames(classes.Card, {}, [className])}
+    className={classNames(classes.Card, {}, [className, classes[theme]])}
     {...rest}
   >
     {children}

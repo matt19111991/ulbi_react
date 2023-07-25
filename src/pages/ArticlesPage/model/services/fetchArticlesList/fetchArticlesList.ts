@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { ThunkConfig } from 'app/providers/StoreProvider';
 
-import { Article } from 'entities/Article';
+import { Article, ArticleType } from 'entities/Article';
 
 import { addQueryParams } from 'shared/lib/url/addQueryParams/addQueryParams';
 
@@ -12,6 +12,7 @@ import {
   getArticlesPageOrder,
   getArticlesPageSearch,
   getArticlesPageSort,
+  getArticlesPageType,
 } from '../../selectors/articlesPageSelectors';
 
 interface FetchArticlesListProps {
@@ -39,13 +40,19 @@ export const fetchArticlesList = createAsyncThunk<
     const page = getArticlesPageNumber(state);
     const search = getArticlesPageSearch(state);
     const sort = getArticlesPageSort(state);
+    const type = getArticlesPageType(state);
 
     try {
-      addQueryParams({ order, search, sort });
+      addQueryParams({
+        order, search, sort, type,
+      });
 
       const response = await thunkApi.extra.api.get<Article[]>('/articles', {
         params: {
           q: search,
+
+          // отправляем 'undefined', если хотим отменить фильтрацию по типу
+          type: type === ArticleType.ALL ? undefined : type,
 
           _expand: 'user', // чтобы отрисовывать аватар пользователя для статьи (ArticleView.List)
           _limit: limit,

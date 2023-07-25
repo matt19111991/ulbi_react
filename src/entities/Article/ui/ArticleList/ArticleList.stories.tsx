@@ -141,6 +141,7 @@ OrangePlates.decorators = [ThemeDecorator(Theme.ORANGE)];
 
 export const LoadingList: Story = {
   args: {
+    articles: [],
     isLoading: true,
     view: ArticleView.LIST,
   },
@@ -150,8 +151,18 @@ export const LoadingList: Story = {
 
 export const LoadingPlates: Story = {
   args: {
+    articles: [],
     isLoading: true,
     view: ArticleView.PLATE,
+  },
+};
+
+// Empty article list
+
+export const Empty: Story = {
+  args: {
+    articles: [],
+    isLoading: false,
   },
 };
 

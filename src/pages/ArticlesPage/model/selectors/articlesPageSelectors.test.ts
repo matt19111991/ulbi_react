@@ -1,6 +1,6 @@
 import { StateSchema } from 'app/providers/StoreProvider';
 
-import { ArticleSortField, ArticleView } from 'entities/Article';
+import { ArticleSortField, ArticleType, ArticleView } from 'entities/Article';
 
 import {
   getArticlesPageAreLoading,
@@ -12,6 +12,7 @@ import {
   getArticlesPageOrder,
   getArticlesPageSearch,
   getArticlesPageSort,
+  getArticlesPageType,
   getArticlesPageView,
 } from './articlesPageSelectors';
 
@@ -175,6 +176,24 @@ describe('articlesPageSelectors', () => {
       const state: DeepPartial<StateSchema> = {};
 
       expect(getArticlesPageSort(state as StateSchema)).toBe(ArticleSortField.CREATED);
+    });
+  });
+
+  describe('getArticlesPageType', () => {
+    test('should return type', () => {
+      const state: DeepPartial<StateSchema> = {
+        articlesPage: {
+          type: ArticleType.SCIENCE,
+        },
+      };
+
+      expect(getArticlesPageType(state as StateSchema)).toBe(ArticleType.SCIENCE);
+    });
+
+    test('should work with empty state', () => {
+      const state: DeepPartial<StateSchema> = {};
+
+      expect(getArticlesPageType(state as StateSchema)).toBe(ArticleType.ALL);
     });
   });
 

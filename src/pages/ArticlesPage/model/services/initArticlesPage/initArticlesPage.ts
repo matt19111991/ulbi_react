@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { ThunkConfig } from 'app/providers/StoreProvider';
 
-import { ArticleSortField } from 'entities/Article';
+import { ArticleSortField, ArticleType } from 'entities/Article';
 
 import { SortOrder } from 'shared/types/sort';
 
@@ -27,6 +27,7 @@ export const initArticlesPage = createAsyncThunk<
       const orderFromUrl = searchParams.get('order') as SortOrder;
       const searchFromUrl = searchParams.get('search');
       const sortFromUrl = searchParams.get('sort') as ArticleSortField;
+      const typeFromUrl = searchParams.get('type') as ArticleType;
 
       if (orderFromUrl) {
         thunkApi.dispatch(articlesPageActions.setOrder(orderFromUrl));
@@ -38,6 +39,10 @@ export const initArticlesPage = createAsyncThunk<
 
       if (sortFromUrl) {
         thunkApi.dispatch(articlesPageActions.setSort(sortFromUrl));
+      }
+
+      if (typeFromUrl) {
+        thunkApi.dispatch(articlesPageActions.setType(typeFromUrl));
       }
 
       // должно быть раньше запроса, чтобы передать правильный 'limit' в запрос

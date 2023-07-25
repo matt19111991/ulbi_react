@@ -142,6 +142,19 @@ describe('articlesPageSlice', () => {
     expect(reducer).toEqual({ sort: ArticleSortField.TITLE });
   });
 
+  test('test set type', () => {
+    const state: DeepPartial<ArticlesPageSchema> = {
+      type: ArticleType.ECONOMICS,
+    };
+
+    const reducer = articlesPageReducer(
+      state as ArticlesPageSchema,
+      articlesPageActions.setType(ArticleType.SCIENCE),
+    );
+
+    expect(reducer).toEqual({ type: ArticleType.SCIENCE });
+  });
+
   test('test set view', () => {
     window.localStorage.setItem(ARTICLE_VIEW_LOCALSTORAGE_KEY, ArticleView.PLATE);
 

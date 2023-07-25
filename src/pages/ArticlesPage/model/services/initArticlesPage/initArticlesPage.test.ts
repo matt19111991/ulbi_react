@@ -1,6 +1,6 @@
 import { StateSchema } from 'app/providers/StoreProvider';
 
-import { ArticleSortField } from 'entities/Article';
+import { ArticleSortField, ArticleType } from 'entities/Article';
 
 import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 
@@ -26,13 +26,14 @@ describe('initArticlesPage', () => {
         order: 'asc',
         search: 'search_value',
         sort: ArticleSortField.CREATED,
+        type: ArticleType.SCIENCE,
       });
 
       const thunk = new TestAsyncThunk(initArticlesPage, state);
 
       const result = await thunk.callThunk(searchParams);
 
-      expect(thunk.dispatch).toHaveBeenCalledTimes(7);
+      expect(thunk.dispatch).toHaveBeenCalledTimes(8);
       expect(articlesPageActions.initState).toHaveBeenCalled();
       expect(fetchArticlesList).toHaveBeenCalled();
       expect(result.meta.requestStatus).toBe('fulfilled');
@@ -89,6 +90,23 @@ describe('initArticlesPage', () => {
       expect(articlesPageActions.setSort).toHaveBeenCalledWith('createdAt');
     });
 
+    test('set type param', async () => {
+      const state: DeepPartial<StateSchema> = {
+        articlesPage: {
+          inited: false,
+        },
+      };
+
+      const searchParams = new URLSearchParams({ type: ArticleType.ECONOMICS });
+
+      const thunk = new TestAsyncThunk(initArticlesPage, state);
+
+      await thunk.callThunk(searchParams);
+
+      expect(articlesPageActions.setType).toHaveBeenCalled();
+      expect(articlesPageActions.setType).toHaveBeenCalledWith('ECONOMICS');
+    });
+
     test('no params', async () => {
       const state: DeepPartial<StateSchema> = {
         articlesPage: {
@@ -106,6 +124,7 @@ describe('initArticlesPage', () => {
       expect(articlesPageActions.setOrder).not.toHaveBeenCalled();
       expect(articlesPageActions.setSearch).not.toHaveBeenCalled();
       expect(articlesPageActions.setSort).not.toHaveBeenCalled();
+      expect(articlesPageActions.setType).not.toHaveBeenCalled();
       expect(fetchArticlesList).toHaveBeenCalled();
     });
   });

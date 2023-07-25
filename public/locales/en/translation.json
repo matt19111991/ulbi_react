@@ -1,9 +1,11 @@
 {
+  "Айти": "IT",
   "Введите имя пользователя": "Enter username",
   "Введите пароль": "Enter password",
   "Введите текст комментария": "Enter comment text",
   "Возрастанию": "Asc",
   "Войти": "Login",
+  "Все статьи": "All articles",
   "Выбросить ошибку": "Throw an error",
   "Вы ввели неверный логин или пароль": "You've entered incorrect username or password",
   "Выйти": "Logout",
@@ -13,6 +15,7 @@
   "Комментарии отсутствуют": "No comments",
   "Короткий язык": "En",
   "Названию": "Title",
+  "Наука": "Science",
   "О сайте": "About us",
   "Обновить страницу": "Refresh page",
   "Отправить": "Send",
@@ -24,11 +27,13 @@
   "Произошла непредвиденная ошибка": "An unexpected error occurred",
   "Просмотрам": "Views",
   "Сортировать по": "Sort by",
+  "Статьи не найдены": "Articles not found",
   "Страница не найдена": "Page not found",
   "Убыванию": "Desc",
   "Увеличить": "Increase",
   "Уменьшить": "Decrease",
   "Форма авторизации": "Authorization form",
   "Читать далее": "Read more",
+  "Экономика": "Economics",
   "Язык": "English"
 }

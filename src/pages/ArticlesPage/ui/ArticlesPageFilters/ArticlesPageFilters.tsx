@@ -2,8 +2,14 @@ import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { ArticleSortField, ArticleSortSelector, ArticleView } from 'entities/Article';
+import {
+  ArticleSortField,
+  ArticleSortSelector,
+  ArticleType,
+  ArticleView,
+} from 'entities/Article';
 
+import { ArticleTypeTabs } from 'features/ArticleTypeTabs';
 import { ArticleViewSelector } from 'features/ArticleViewSelector';
 
 import { classNames } from 'shared/lib/classNames/classNames';
@@ -18,6 +24,7 @@ import {
   getArticlesPageOrder,
   getArticlesPageSearch,
   getArticlesPageSort,
+  getArticlesPageType,
   getArticlesPageView,
 } from '../../model/selectors/articlesPageSelectors';
 
@@ -39,6 +46,7 @@ export const ArticlesPageFilters = memo(({ className }: ArticlesPageFiltersProps
   const order = useSelector(getArticlesPageOrder);
   const search = useSelector(getArticlesPageSearch);
   const sort = useSelector(getArticlesPageSort);
+  const type = useSelector(getArticlesPageType);
   const view = useSelector(getArticlesPageView);
 
   const fetchData = useCallback(() => {
@@ -65,6 +73,14 @@ export const ArticlesPageFilters = memo(({ className }: ArticlesPageFiltersProps
 
   const onChangeSort = useCallback((newSort: ArticleSortField) => {
     dispatch(articlesPageActions.setSort(newSort));
+
+    dispatch(articlesPageActions.setPage(1));
+
+    fetchData();
+  }, [dispatch, fetchData]);
+
+  const onChangeType = useCallback((value: ArticleType) => {
+    dispatch(articlesPageActions.setType(value));
 
     dispatch(articlesPageActions.setPage(1));
 
@@ -98,6 +114,12 @@ export const ArticlesPageFilters = memo(({ className }: ArticlesPageFiltersProps
           value={search}
         />
       </Card>
+
+      <ArticleTypeTabs
+        className={classNames(classes.tabs, { [classes.loading]: areLoading })}
+        onChangeType={onChangeType}
+        value={type}
+      />
     </div>
   );
 });
