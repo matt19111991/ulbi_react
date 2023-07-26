@@ -2,6 +2,8 @@ import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
+import { getArticleCommentsAreLoading } from 'pages/ArticleDetailsPage';
+
 import { classNames } from 'shared/lib/classNames/classNames';
 
 import {
@@ -36,6 +38,7 @@ const AddCommentForm = ({ className, onSendComment }: AddCommentFormProps) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
+  const isLoading = useSelector(getArticleCommentsAreLoading);
   const text = useSelector(getAddCommentFormText);
 
   const onCommentTextChange = useCallback((value: string) => {
@@ -50,7 +53,15 @@ const AddCommentForm = ({ className, onSendComment }: AddCommentFormProps) => {
 
   return (
     <DynamicModuleLoader reducers={reducers}>
-      <div className={classNames(classes.AddCommentForm, {}, [className])}>
+      <div
+        className={
+          classNames(
+            classes.AddCommentForm,
+            { [classes.loading]: isLoading },
+            [className],
+          )
+        }
+      >
         <Input
           className={classes.input}
           fullWidth

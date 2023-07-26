@@ -40,15 +40,15 @@ import {
 } from '../../model/services/fetchArticleRecommendations/fetchArticleRecommendations';
 
 import {
-  articleDetailsCommentsReducer,
   getArticleComments,
 } from '../../model/slices/articleDetailsCommentsSlice/articleDetailsCommentsSlice';
 
 import {
-  articleDetailsPageRecommendationsReducer,
   getArticleRecommendations,
-// eslint-disable-next-line max-len
+  // eslint-disable-next-line max-len
 } from '../../model/slices/articleDetailsPageRecommendationsSlice/articleDetailsPageRecommendationsSlice';
+
+import { articleDetailsPageReducer } from '../../model/slices';
 
 import classes from './ArticleDetailsPage.module.scss';
 
@@ -57,8 +57,7 @@ interface ArticleDetailsPageProps {
 }
 
 const reducers: ReducersList = {
-  articleDetailsComments: articleDetailsCommentsReducer,
-  articleDetailsRecommendations: articleDetailsPageRecommendationsReducer,
+  articleDetailsPage: articleDetailsPageReducer,
 };
 
 const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
@@ -117,6 +116,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
           articles={recommendations}
           className={classes.recommendations}
           isLoading={recommendationsAreLoading}
+          target='_blank'
         />
 
         <Text

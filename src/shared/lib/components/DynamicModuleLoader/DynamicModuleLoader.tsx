@@ -2,13 +2,22 @@ import { JSX, useEffect } from 'react';
 import { useStore } from 'react-redux';
 import { Reducer } from '@reduxjs/toolkit';
 
-import { ReduxStoreWithManager, StateSchemaKey } from 'app/providers/StoreProvider';
+import { ReduxStoreWithManager, StateSchema, StateSchemaKey } from 'app/providers/StoreProvider';
 
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 // на случай подгрузки сразу нескольких редюсеров
 export type ReducersList = {
-  [name in StateSchemaKey]?: Reducer; // ключ: StateSchemaKey, значение: редюсер
+/* ключ: StateSchemaKey, значение: редюсер
+
+   Reducer => редюсер типа 'any' (без уточнений, без переданной схемы). Принимает любой редюсер
+
+   Reducer<NonNullable<StateSchema[name]>> => принимает редюсер, основываясь на
+   названии поля из 'StateSchema'. Достаем из 'StateSchema' конкретную часть 'state'.
+   Если в 'store' мы перепутаем редюсер и присвоим не под тем ключом => TS выдаст ошибку, т.к.
+   'StateSchema' не соответствует созданному 'store'
+*/
+  [name in StateSchemaKey]?: Reducer<NonNullable<StateSchema[name]>>;
 };
 
 interface DynamicModuleLoaderProps {

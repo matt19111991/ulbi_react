@@ -102,7 +102,7 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
   if (isLoading) {
     content = (
       <>
-        <Skeleton border='50' className={classes.avatar} height={200} width={200} />
+        <Skeleton border='50%' className={classes.avatar} height={200} width={200} />
         <Skeleton className={classes.title} height={32} width={300} />
         <Skeleton className={classes.skeleton} height={24} width={600} />
         <Skeleton className={classes.skeleton} height={200} width='100%' />
@@ -128,7 +128,7 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
         <div className={classes.articleInfo}>
           <Icon className={classes.icon} Svg={EyeIcon} />
 
-          <Text text={String(article?.views)} />
+          <Text text={String(article?.views || 0)} />
         </div>
 
         <div className={classes.articleInfo}>

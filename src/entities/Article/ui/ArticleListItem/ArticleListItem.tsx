@@ -1,5 +1,4 @@
-import { memo, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { HTMLAttributeAnchorTarget, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import EyeIcon from 'shared/assets/icons/eye-20-20.svg';
@@ -10,6 +9,7 @@ import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
+import { AppLink } from 'shared/ui/AppLink/AppLink';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Card } from 'shared/ui/Card/Card';
 import { Icon } from 'shared/ui/Icon/Icon';
@@ -29,22 +29,19 @@ import classes from './ArticleListItem.module.scss';
 interface ArticleListItemProps {
   article: Article;
   className?: string;
+  target?: HTMLAttributeAnchorTarget;
   view: ArticleView;
 }
 
 export const ArticleListItem = memo(({
-  className,
   article,
+  className,
+  target,
   view,
 }: ArticleListItemProps) => {
   // const [isHover, hoverHandlers] = useHover();
 
-  const navigate = useNavigate();
   const { t } = useTranslation();
-
-  const onOpenArticle = useCallback((): void => {
-    navigate(`${RoutePath.article_details}${article.id}`);
-  }, [article.id, navigate]);
 
   if (view === ArticleView.LIST) {
     const firstTextBlock = article.blocks.find(
@@ -80,11 +77,21 @@ export const ArticleListItem = memo(({
           )}
 
           <div className={classes.footer}>
-            <Button onClick={onOpenArticle} theme={ButtonTheme.OUTLINE}>
-              {t('Читать далее')}...
-            </Button>
+            {/*
+              Для доступности лучше использовать 'AppLink' чем вешать 'onClick' на кнопку
+              Если кликнуть средней кнопкой мыши на кнопку, то в случае с 'onClick' перехода
+              по ссылке не будет. С 'AppLink' переход по ссылке отработает
+            */}
+            <AppLink
+              target={target}
+              to={`${RoutePath.article_details}${article.id}`}
+            >
+              <Button theme={ButtonTheme.OUTLINE}>
+                {t('Читать далее')}...
+              </Button>
+            </AppLink>
 
-            <Text className={classes.views} text={String(article.views)} />
+            <Text className={classes.views} text={String(article.views || 0)} />
             <Icon Svg={EyeIcon} />
           </div>
         </Card>
@@ -92,12 +99,20 @@ export const ArticleListItem = memo(({
     );
   }
 
+/*
+  Для доступности лучше использовать 'AppLink' чем вешать 'onClick' на 'Card'
+  Если кликнуть средней кнопкой мыши на карточку, то в случае с 'onClick' перехода
+  по ссылке не будет. С 'AppLink' переход по ссылке отработает
+*/
+
   return (
-    <div
+    <AppLink
       className={classNames('', {}, [className, classes[view]])}
+      target={target}
+      to={`${RoutePath.article_details}${article.id}`}
       /* {...hoverHandlers} */
     >
-      <Card onClick={onOpenArticle}>
+      <Card>
         <div className={classes.imageWrapper}>
           <img
             alt={article.title}
@@ -111,14 +126,14 @@ export const ArticleListItem = memo(({
         <div className={classes.infoWrapper}>
           <Text className={classes.types} text={article.type.join(', ')} />
 
-          <Text className={classes.views} text={String(article.views)} />
+          <Text className={classes.views} text={String(article.views || 0)} />
 
           <Icon Svg={EyeIcon} />
         </div>
 
         <Text className={classes.title} text={article.title} />
       </Card>
-    </div>
+    </AppLink>
   );
 });
 

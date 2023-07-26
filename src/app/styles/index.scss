@@ -38,16 +38,15 @@ body {
 // Scroll bar
 
 *::-webkit-scrollbar {
-  height: 8px; // высота скролл бара
-  width: 12px; // ширина скролл бара
+  height: 6px; // высота скролл бара
+  width: 6px;  // ширина скролл бара
 }
 
 *::-webkit-scrollbar-track {
-  background: var(--card-bg); // цвет дорожки
+  background: var(--scroll-track-color); // цвет дорожки
 }
-
 *::-webkit-scrollbar-thumb {
-  background-color: var(--inverted-primary-color); // цвет ползунка
-  border: 2px solid var(--primary-color);          // закругления для ползунка
-  border-radius: 20px;                             // padding вокруг ползунка
+  background-color: var(--scroll-thumb-color);  // цвет ползунка
+  border: 1px solid var(--scroll-border-color); // закругления для ползунка
+  border-radius: 20px;                          // padding вокруг ползунка
 }

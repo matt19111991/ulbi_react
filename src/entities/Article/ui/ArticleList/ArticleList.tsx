@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { HTMLAttributeAnchorTarget, memo, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { classNames } from 'shared/lib/classNames/classNames';
@@ -16,24 +16,38 @@ interface ArticleListProps {
   articles: Article[];
   className?: string;
   isLoading?: boolean;
+  target?: HTMLAttributeAnchorTarget;
   view?: ArticleView,
 }
 
-const getSkeletons = (view: ArticleView) => new Array(view === ArticleView.PLATE ? 9 : 4)
-  .fill(0)
-  .map((_, idx) => (
-    <ArticleListItemSkeleton
-      className={classes.card}
-      // eslint-disable-next-line react/no-array-index-key
-      key={idx}
-      view={view}
-    />
-  ));
+const getSkeletons = (target: HTMLAttributeAnchorTarget, view: ArticleView): ReactNode => {
+  let skeletonsAmount = 0;
+
+  if (target === '_blank') { // check on recommendations
+    skeletonsAmount = 3;
+  } else if (view === ArticleView.PLATE) {
+    skeletonsAmount = 9;
+  } else {
+    skeletonsAmount = 4;
+  }
+
+  return new Array(skeletonsAmount)
+    .fill(0)
+    .map((_, idx) => (
+      <ArticleListItemSkeleton
+        className={classes.card}
+        // eslint-disable-next-line react/no-array-index-key
+        key={idx}
+        view={view}
+      />
+    ));
+};
 
 export const ArticleList = memo(({
   articles,
   className,
   isLoading,
+  target,
   view = ArticleView.PLATE,
 }: ArticleListProps) => {
   const { t } = useTranslation();
@@ -43,6 +57,7 @@ export const ArticleList = memo(({
       article={article}
       className={classes.card}
       key={article.id}
+      target={target}
       view={view}
     />
   );
@@ -59,7 +74,7 @@ export const ArticleList = memo(({
     <div className={classNames('', {}, [className, classes[view]])}>
       {articles.length ? articles.map(renderArticle) : null}
 
-      {isLoading && getSkeletons(view)}
+      {isLoading && getSkeletons(target!, view)}
     </div>
   );
 });

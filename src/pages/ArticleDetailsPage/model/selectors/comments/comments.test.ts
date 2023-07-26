@@ -6,8 +6,10 @@ describe('comments selectors', () => {
   describe('getArticleCommentsAreLoading', () => {
     test('should return true', () => {
       const state: DeepPartial<StateSchema> = {
-        articleDetailsComments: {
-          areLoading: true,
+        articleDetailsPage: {
+          comments: {
+            areLoading: true,
+          },
         },
       };
 
@@ -24,8 +26,10 @@ describe('comments selectors', () => {
   describe('getArticleCommentsError', () => {
     test('should return error', () => {
       const state: DeepPartial<StateSchema> = {
-        articleDetailsComments: {
-          error: 'Error',
+        articleDetailsPage: {
+          comments: {
+            error: 'Error',
+          },
         },
       };
 

@@ -5,6 +5,9 @@ import { Theme } from 'app/providers/ThemeProvider';
 
 import { ArticleBlockType, ArticleType } from 'entities/Article';
 
+import Image1 from 'shared/assets/tests/storybook.jpg';
+import Image2 from 'shared/assets/tests/storybook2.jpg';
+
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { SuspenseDecorator } from 'shared/config/storybook/SuspenseDecorator/SuspenseDecorator';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -28,7 +31,7 @@ const stateArticleDetails: DeepPartial<StateSchema> = {
         },
         {
           id: '2',
-          src: 'https://hsto.org/r/w1560/getpro/habr/post_images/d56/a02/ffc/d56a02ffc62949b42904ca00c63d8cc1.png',
+          src: Image1,
           title: 'Рисунок 1 - скриншот сайта',
           type: ArticleBlockType.IMAGE,
         },
@@ -62,7 +65,7 @@ const stateArticleDetails: DeepPartial<StateSchema> = {
         },
         {
           id: '7',
-          src: 'https://hsto.org/r/w1560/getpro/habr/post_images/d56/a02/ffc/d56a02ffc62949b42904ca00c63d8cc1.png',
+          src: Image2,
           title: 'Рисунок 1 - скриншот сайта',
           type: ArticleBlockType.IMAGE,
         },
@@ -84,7 +87,7 @@ const stateArticleDetails: DeepPartial<StateSchema> = {
         },
       ],
       createdAt: '26.02.2023',
-      img: 'https://teknotower.com/wp-content/uploads/2020/11/js.png',
+      img: Image2,
       subtitle: 'Что нового в JS за 2023 год?',
       title: 'Javascript news',
       type: [ArticleType.IT],
@@ -93,6 +96,61 @@ const stateArticleDetails: DeepPartial<StateSchema> = {
         username: 'Jack',
       },
       views: 1022,
+    },
+  },
+  articleDetailsPage: {
+    comments: {
+      entities: {
+        1: {
+          id: '1',
+          text: 'First comment',
+          user: {
+            avatar: Image1,
+            id: '1',
+            username: 'Jack',
+          },
+        },
+        2: {
+          id: '1',
+          text: 'Nice article!',
+          user: {
+            avatar: Image2,
+            id: '2',
+            username: 'Mary',
+          },
+        },
+      },
+      ids: ['1', '2'],
+    },
+    recommendations: {
+      entities: {
+        1: {
+          createdAt: '11.07.2022',
+          id: '1',
+          img: Image2,
+          title: 'First recommended article',
+          type: [ArticleType.ECONOMICS],
+          user: {
+            avatar: Image1,
+            id: '1',
+            username: 'Jack',
+          },
+        },
+        2: {
+          createdAt: '22.05.2023',
+          id: '1',
+          img: Image1,
+          title: 'Next recommended article',
+          type: [ArticleType.IT],
+          views: 213,
+          user: {
+            avatar: Image2,
+            id: '2',
+            username: 'Mary',
+          },
+        },
+      },
+      ids: ['1', '2'],
     },
   },
 };
@@ -150,6 +208,18 @@ export const Loading: Story = {
 const stateArticleLoading: DeepPartial<StateSchema> = {
   articleDetails: {
     isLoading: true,
+  },
+  articleDetailsPage: {
+    comments: {
+      areLoading: true,
+      entities: {},
+      ids: [],
+    },
+    recommendations: {
+      areLoading: true,
+      entities: {},
+      ids: [],
+    },
   },
 };
 

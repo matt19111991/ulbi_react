@@ -16,11 +16,7 @@ import { UserSchema } from 'entities/User';
 import { AddCommentFormSchema } from 'features/AddCommentForm';
 import { LoginSchema } from 'features/AuthByUsername';
 
-import {
-  ArticleDetailsCommentsSchema,
-  ArticleDetailsRecommendationsSchema,
-} from 'pages/ArticleDetailsPage';
-
+import { ArticleDetailsPageSchema } from 'pages/ArticleDetailsPage';
 import { ArticlesPageSchema } from 'pages/ArticlesPage';
 
 import { PageScrollSchema } from 'widgets/Page';
@@ -34,8 +30,7 @@ export interface StateSchema {
   // Асинхронные редюсеры
   addCommentForm?: AddCommentFormSchema;
   articleDetails?: ArticleDetailsSchema;
-  articleDetailsComments?: ArticleDetailsCommentsSchema;
-  articleDetailsRecommendations?: ArticleDetailsRecommendationsSchema;
+  articleDetailsPage?: ArticleDetailsPageSchema;
   articlesPage?: ArticlesPageSchema;
   loginForm?: LoginSchema;
   profile?: ProfileSchema;

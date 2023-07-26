@@ -37,7 +37,9 @@ const commentsAdapter = createEntityAdapter<Comment>({
 
 // селектор для части стейта, которую хотим нормализовать
 export const getArticleComments = commentsAdapter.getSelectors<StateSchema>(
-  (state) => state.articleDetailsComments || commentsAdapter.getInitialState(),
+  (
+    state,
+  ) => state.articleDetailsPage?.comments || commentsAdapter.getInitialState(),
 );
 
 const initialState: ArticleDetailsCommentsSchema = {
