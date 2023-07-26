@@ -25,7 +25,8 @@ module.exports = { // аналог экспорта для Node.js
 
 export default (env: BuildEnv) => {
   const dotEnvVars = dotenv.config().parsed; // извлекам переменные из '.env' файла
-  console.log('dotEnvVars?.API_URL', dotEnvVars?.API_URL);
+  console.log('dotEnvVars', dotEnvVars);
+  console.log('process.env', process.env);
 
   const apiUrl = dotEnvVars?.API_URL || 'http://localhost:8000';
 
