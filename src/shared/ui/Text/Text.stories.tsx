@@ -105,9 +105,9 @@ export const OrangeOnlyText: Story = {
 
 OrangeOnlyText.decorators = [ThemeDecorator(Theme.ORANGE)];
 
-// Error text
+// Error
 
-export const ErrorText: Story = {
+export const Error: Story = {
   args: {
     title: 'Title lorem ipsun',
     text: 'Description Description Description Description',
@@ -115,7 +115,41 @@ export const ErrorText: Story = {
   },
 };
 
-// Large size text
+// Inverted primary
+
+export const InvertedPrimary: Story = {
+  args: {
+    title: 'Title lorem ipsun',
+    text: 'Description Description Description Description',
+    theme: TextTheme.INVERTED,
+  },
+};
+
+// Inverted dark
+
+export const InvertedDark: Story = {
+  args: {
+    title: 'Title lorem ipsun',
+    text: 'Description Description Description Description',
+    theme: TextTheme.INVERTED,
+  },
+};
+
+InvertedDark.decorators = [ThemeDecorator(Theme.DARK)];
+
+// Inverted orange
+
+export const InvertedOrange: Story = {
+  args: {
+    title: 'Title lorem ipsun',
+    text: 'Description Description Description Description',
+    theme: TextTheme.INVERTED,
+  },
+};
+
+InvertedOrange.decorators = [ThemeDecorator(Theme.ORANGE)];
+
+// Large size
 
 export const SizeLarge: Story = {
   args: {

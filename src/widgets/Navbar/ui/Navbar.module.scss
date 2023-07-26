@@ -3,10 +3,42 @@
   background-color: var(--inverted-bg-color);
   display: flex;
   height: var(--navbar-height);
-  padding: 20px;
+  padding: 20px 20px 20px 14px;
   width: 100%;
+}
+
+.createLink {
+  margin-right: 24px;
 }
 
 .links {
   margin-left: auto;
 }
+
+.logoWrapper {
+  display: flex;
+  flex-grow: 1;
+}
+
+.logo {
+  fill: var(--inverted-primary-color);
+  height: 40px;
+  pointer-events: none;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
