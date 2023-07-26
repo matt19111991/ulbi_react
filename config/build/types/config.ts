@@ -8,8 +8,10 @@ export interface BuildEnv {
 
 export interface BuildPaths {
   build: string;
+  buildLocales: string; // куда складывать файлы переводов для билда
   entry: string;
   html: string;
+  locales: string; // где лежат файлы переводов
   src: string;
 }
 

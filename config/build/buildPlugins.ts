@@ -1,5 +1,8 @@
 import webpack from 'webpack';
 
+// плагин, чтобы в папку /build/locales попадали файлы переводов из /public/locales
+import CopyPlugin from 'copy-webpack-plugin';
+
 // плагин, чтобы в папку /build попадали помимо JS файлов еще и HTML файлы
 import HTMLWebpackPlugin from 'html-webpack-plugin';
 
@@ -39,6 +42,12 @@ export function buildPlugins({
     }),
 
     buildDefinePlugin(apiUrl, isDev, project),
+
+    new CopyPlugin({
+      patterns: [
+        { from: paths.locales, to: paths.buildLocales },
+      ],
+    }),
   ];
 
   if (isDev) {
