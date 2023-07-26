@@ -6,10 +6,13 @@
    Благодаря модулям и типам выше можно перейти от webpack.config.js к webpack.config.ts
 */ import path from 'path';
 
+import dotenv from 'dotenv';
 import webpack from 'webpack';
 
 import { buildWebpackConfig } from './config/build/buildWebpackConfig';
 import { BuildEnv, BuildMode, BuildPaths } from './config/build/types/config';
+
+dotenv.config({ path: './.env' }); // используем переменные из '.env' файла
 
 /*
 module.exports = { // аналог экспорта для Node.js
