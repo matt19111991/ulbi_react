@@ -12,7 +12,8 @@ import webpack from 'webpack';
 import { buildWebpackConfig } from './config/build/buildWebpackConfig';
 import { BuildEnv, BuildMode, BuildPaths } from './config/build/types/config';
 
-dotenv.config({ path: './.env' }); // используем переменные из '.env' файла
+// используем переменные из '.env' файла; будут доступны в 'process.env.API_URL'
+dotenv.config({ path: './.env' });
 
 /*
 module.exports = { // аналог экспорта для Node.js
@@ -24,8 +25,6 @@ module.exports = { // аналог экспорта для Node.js
 // export default config; // если не нужны переменные окружения env, можно вернуть просто config
 
 export default (env: BuildEnv) => {
-  console.log('process.env', process.env);
-
   const apiUrl = process.env.API_URL || 'http://localhost:8000';
 
   const mode: BuildMode = env.mode || 'development';
