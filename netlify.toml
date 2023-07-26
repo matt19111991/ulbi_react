@@ -1,0 +1,6 @@
+# Нужно указать редиректы, т.к. у нас Sinle Page Application
+
+[[redirects]]
+  from = "/*"        # c любого маршрута
+  to = "/index.html" # переводим на index.html, где подгрузится SPA, у которого свой механизм роутинга
+  status = 200
