@@ -12,7 +12,8 @@ export const $api = axios.create({
   значения заголовка 'Authorization'
 */
 $api.interceptors.request.use((config) => {
-  if (config.headers) {
+  // не передаем 'Authorization' заголовок для '/login' эндпоинта
+  if (config.headers && config.url !== '/login') {
     // проверяется только наличие заголовка
     config.headers.Authorization = localStorage.getItem(USER_LOCALSTORAGE_KEY) || '';
   }

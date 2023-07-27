@@ -46,7 +46,7 @@ export const loginByUsername = createAsyncThunk< // 1-ый вызов 'dispatch-
     try {
        const axiosConfig: AxiosRequestConfig = {
            headers: {
-               authorization: true,
+               Authorization: true,
            },
        };
 
