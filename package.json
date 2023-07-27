@@ -6,7 +6,7 @@
   "scripts": {
     "start:client": "webpack serve --env port=3000",
     "start:server": "node ./json-server/index.js",
-    "start": "concurrently 'npm run start:client' 'npm run start:server'",
+    "start": "concurrently \"npm run start:client\" \"npm run start:server\"",
     "build:dev": "webpack --env mode=development",
     "build:prod": "webpack --env mode=production",
     "lint:ts": "eslint \"**/*.{ts,tsx}\"",
@@ -40,7 +40,7 @@
     "react-i18next": "^13.0.0",
     "react-redux": "^8.1.1",
     "react-router-dom": "^6.13.0",
-    "react-virtualized": "^9.22.5"
+    "react-virtualized": "^9.22.4"
   },
   "devDependencies": {
     "@babel/core": "^7.22.5",
@@ -64,7 +64,7 @@
     "@types/react": "^17.0.62",
     "@types/react-dom": "^17.0.20",
     "@types/react-router-dom": "^5.3.3",
-    "@types/react-virtualized": "^9.22.22",
+    "@types/react-virtualized": "^9.21.22",
     "@types/webpack": "^5.28.1",
     "@types/webpack-bundle-analyzer": "^4.6.0",
     "@typescript-eslint/eslint-plugin": "^5.60.0",

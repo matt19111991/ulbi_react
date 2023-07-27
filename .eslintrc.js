@@ -103,6 +103,9 @@ module.exports = {
 //  запрещена мутация данных (переназначение параметров функции) (откл.)
     'no-param-reassign': 0,
 
+//  запрещен инкремент (i++) (откл.)
+    'no-plusplus': 0,
+
 //  конфликт c TypeScript, поэтому делегируем в сам TypeScript (@typescript-eslint/no-shadow)
     'no-shadow': 0,
 

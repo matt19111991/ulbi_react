@@ -1,10 +1,5 @@
 .list {
-  display: flex;
-  height: calc(100% - 30px);
-
-  .card {
-    width: calc(100% - 6px);
-  }
+  margin-right: 5.5px;
 
   .date {
     margin-left: auto;
@@ -29,7 +24,8 @@
   }
 
   .textBlock {
-    max-height: 208px;
+    max-height: 205px;
+    min-height: 205px;
     overflow-y: hidden;
   }
 
