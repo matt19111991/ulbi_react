@@ -1,4 +1,11 @@
 .list {
+  display: flex;
+  height: calc(100% - 30px);
+
+  .card {
+    width: calc(100% - 6px);
+  }
+
   .date {
     margin-left: auto;
   }

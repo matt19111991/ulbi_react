@@ -1,9 +1,12 @@
 import { HTMLAttributeAnchorTarget, memo, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
+import { List, ListRowProps, WindowScroller } from 'react-virtualized';
 
 import { classNames } from 'shared/lib/classNames/classNames';
 
 import { Text } from 'shared/ui/Text/Text';
+
+import { PAGE_ID } from 'widgets/Page/ui/Page';
 
 import { Article, ArticleView } from '../../model/types/article';
 
@@ -52,14 +55,18 @@ export const ArticleList = memo(({
 }: ArticleListProps) => {
   const { t } = useTranslation();
 
-  const renderArticle = (article: Article) => (
-    <ArticleListItem
-      article={article}
-      className={classes.card}
-      key={article.id}
-      target={target}
-      view={view}
-    />
+  // const itemsPerRow = view === ArticleView.LIST ? 1 : 3;
+  // const rowCount = view === ArticleView.LIST ? 1 : 3;
+
+  const rowRenderer = ({ index, key, style }: ListRowProps): ReactNode => (
+    <div key={key} style={style}>
+      <ArticleListItem
+        article={articles[index]}
+        className={classes.card}
+        target={target}
+        view={view}
+      />
+    </div>
   );
 
   if (!isLoading && !articles.length) {
@@ -71,11 +78,48 @@ export const ArticleList = memo(({
   }
 
   return (
-    <div className={classNames('', {}, [className, classes[view]])}>
-      {articles.length ? articles.map(renderArticle) : null}
+    <WindowScroller
+      // убираем собственный скролл у списка, скролл будет только у страницы
+      scrollElement={document.getElementById(PAGE_ID) as Element}
+    >
+      {({
+          height,
+          width,
 
-      {isLoading && getSkeletons(target!, view)}
-    </div>
+//        Used by the 'Table' or "List's" onScroll prop to 'scroll' the list
+          // onChildScroll,
+
+//        Specify grid container deeper in layout (by default uses ReactDOM.findDOMNode function)
+          // registerChild,
+
+          // без 'scrollTop' с каждой подгрузкой все больше увеличивается пустое пространство снизу
+          scrollTop,
+      }) => (
+        <div
+          className={classNames('', {}, [className, classes[view]])}
+          // ref={registerChild}
+        >
+          {articles.length
+            ? (
+              <List
+                autoHeight // без 'autoHeight' у списка будет собственный скролл
+                height={height ?? 700}
+                rowCount={articles.length}
+                rowHeight={700}
+                rowRenderer={rowRenderer}
+                scrollTop={scrollTop}
+                // у '.Page' класса нужно учитывать 'padding' в 40px слева и справа
+                width={width ? width - 65 : 700}
+
+                // onChildScroll={onChildScroll}
+              />
+            )
+            : null}
+
+          {isLoading && getSkeletons(target!, view)}
+        </div>
+      )}
+    </WindowScroller>
   );
 });
 
