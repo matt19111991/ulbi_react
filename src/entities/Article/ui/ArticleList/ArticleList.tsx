@@ -77,10 +77,16 @@ export const ArticleList = memo(({
     ? 1 // один элемент на строку
     : Math.floor(pageNodeWidthWithoutIndents / 230); // страница без paddings / размер карточки
 
-  const rowCount = view === ArticleView.LIST
-    ? articles.length
+  let rowCount = 0;
+
+  if (target === '_blank') { // check on recommendations
+    rowCount = 1;
+  } else if (view === ArticleView.LIST) {
+    rowCount = articles.length;
+  } else {
     // количество всех статей делим на количество статей в строку
-    : Math.ceil(articles.length / itemsPerRow);
+    rowCount = Math.ceil(articles.length / itemsPerRow);
+  }
 
   const rowRenderer = ({ index, key, style }: ListRowProps): ReactNode => {
     const items = [];
