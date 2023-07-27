@@ -66,24 +66,26 @@ export const ArticleList = memo(({
   const pageNode = document.getElementById(PAGE_ID) as Element;
 
   const pageNodeWidthWithIndents = useMemo<number>(
-    () => pageNode?.getBoundingClientRect().width || 105, // страница с paddings
+    () => pageNode?.getBoundingClientRect().width || 105, // страница с padding
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [pageNode, windowWidth],
   );
 
-  const pageNodeWidthWithoutIndents = pageNodeWidthWithIndents - 40 - 65; // страница без paddings
+  const pageNodeWidthWithoutIndents = pageNodeWidthWithIndents - 20 - 45; // страница без padding
 
   const itemsPerRow = view === ArticleView.LIST
-    ? 1 // один элемент на строку
-    : Math.floor(pageNodeWidthWithoutIndents / 230); // страница без paddings / размер карточки
+    // один элемент на строку
+    ? 1
+    // страница без padding / (размер карточки + gap между карточками)
+    : Math.floor(pageNodeWidthWithoutIndents / (230 + 30));
 
-  let rowCount = 0;
+  let rowCount = 1; // всегда отрисовывается как минимум одна строка
 
   if (target === '_blank') { // check on recommendations
     rowCount = 1;
-  } else if (view === ArticleView.LIST) {
+  } else if (view === ArticleView.LIST) { // list view
     rowCount = articles.length;
-  } else {
+  } else if (itemsPerRow) { // plate view
     // количество всех статей делим на количество статей в строку
     rowCount = Math.ceil(articles.length / itemsPerRow);
   }
