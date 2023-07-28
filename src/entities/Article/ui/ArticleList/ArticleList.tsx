@@ -2,18 +2,23 @@ import {
   HTMLAttributeAnchorTarget,
   memo,
   ReactNode,
+  useEffect,
   useMemo,
 } from 'react';
 
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { useTranslation  } from 'react-i18next';
 import { List, ListRowProps, WindowScroller } from 'react-virtualized';
+
+import { StateSchema } from 'app/providers/StoreProvider';
 
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useWindowWidth } from 'shared/lib/hooks/useWindowWidth/useWindowWidth';
 
 import { Text } from 'shared/ui/Text/Text';
 
-import { PAGE_ID } from 'widgets/Page/ui/Page';
+import { PAGE_ID, getPageScrollByPath } from 'widgets/Page';
 
 import { Article, ArticleView } from '../../model/types/article';
 
@@ -60,8 +65,13 @@ export const ArticleList = memo(({
   target,
   view = ArticleView.PLATE,
 }: ArticleListProps) => {
+  const location = useLocation();
   const { t } = useTranslation();
   const windowWidth = useWindowWidth();
+
+  const scrollPosition = useSelector(
+    (state: StateSchema) => getPageScrollByPath(state, location.pathname),
+  );
 
   const pageNode = document.getElementById(PAGE_ID) as Element;
 
@@ -89,6 +99,16 @@ export const ArticleList = memo(({
     // количество всех статей делим на количество статей в строку
     rowCount = Math.ceil(articles.length / itemsPerRow);
   }
+
+  useEffect(() => {
+    // if (pageNode && scrollPosition) {
+    if (pageNode) {
+      console.log('scrollPosition mounted', scrollPosition);
+      console.log('pageNode', pageNode);
+      pageNode.scrollTo(0, 3290);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pageNode]);
 
   const rowRenderer = ({ index, key, style }: ListRowProps): ReactNode => {
     const items = [];
@@ -133,10 +153,10 @@ export const ArticleList = memo(({
       scrollElement={pageNode}
     >
       {({
-          height,
-          width,
-          // без 'scrollTop' с каждой подгрузкой все больше увеличивается пустое пространство снизу
-          scrollTop,
+        height,
+        width,
+        // без 'scrollTop' с каждой подгрузкой все больше увеличивается пустое пространство снизу
+        scrollTop,
       }) => (
         <div
           className={classNames('', {}, [className, classes[view]])}
