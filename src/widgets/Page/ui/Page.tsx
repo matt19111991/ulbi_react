@@ -52,10 +52,13 @@ export const Page = ({ children, className, onScrollEnd }: PageProps) => {
 
   const onScroll = useThrottle(
     (e: UIEvent<HTMLDivElement>) => {
-      dispatch(pageScrollActions.setScrollPosition({
-        path: location.pathname,
-        position: e.currentTarget.scrollTop,
-      }));
+      // избегаем очистки скролла при возврате на страницу, где скролл уже был выставлен
+      if (!scrollPosition || (e.currentTarget.scrollTop && scrollPosition)) {
+        dispatch(pageScrollActions.setScrollPosition({
+          path: location.pathname,
+          position: e.currentTarget.scrollTop,
+        }));
+      }
     },
     500,
   );
