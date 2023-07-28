@@ -135,7 +135,7 @@ export const ArticleList = memo(({
         items.push(
           <ArticleListItemSkeleton
             className={classes.card}
-            key={`${articleItem.id}${i}`}
+            key={`${articleItem.id}${i}`} // иначе ошибки в режиме 'плитки'
             view={view}
           />,
         );
