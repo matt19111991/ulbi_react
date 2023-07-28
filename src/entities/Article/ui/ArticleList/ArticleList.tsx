@@ -70,7 +70,7 @@ export const ArticleList = memo(({
       }
 
       const skeletons: ArticleSkeleton[] = new Array(skeletonsAmount).fill(0).map((_, idx) => ({
-        id: String(idx),
+        id: String(`skeleton-${idx}`),
       }));
 
       setArticleItems((prev) => ([...prev, ...skeletons]));
@@ -119,7 +119,7 @@ export const ArticleList = memo(({
 */  const toIndex = Math.min(fromIndex + itemsPerRow, articleItems.length);
 
     for (let i = fromIndex; i < toIndex; i++) {
-      const articleItem = articleItems[index];
+      const articleItem = articleItems[i];
 
       if ('title' in articleItem) {
         items.push(
