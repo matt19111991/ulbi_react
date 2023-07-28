@@ -110,6 +110,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
           className={classes.recommendations}
           isLoading={recommendationsAreLoading}
           target='_blank'
+          virtualized={false}
         />
 
         <Text

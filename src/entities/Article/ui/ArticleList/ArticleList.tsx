@@ -27,13 +27,14 @@ interface ArticleListProps {
   className?: string;
   isLoading?: boolean;
   target?: HTMLAttributeAnchorTarget;
-  view?: ArticleView,
+  view?: ArticleView;
+  virtualized?: boolean;
 }
 
 const getSkeletons = (target: HTMLAttributeAnchorTarget, view: ArticleView): ReactNode => {
   let skeletonsAmount = 0;
 
-  if (target === '_blank') { // check on recommendations
+  if (target === '_blank') { // recommendations block
     skeletonsAmount = 3;
   } else if (view === ArticleView.PLATE) {
     skeletonsAmount = 9;
@@ -59,6 +60,7 @@ export const ArticleList = memo(({
   isLoading,
   target,
   view = ArticleView.PLATE,
+  virtualized = true,
 }: ArticleListProps) => {
   const { t } = useTranslation();
   const windowWidth = useWindowWidth();
@@ -81,7 +83,7 @@ export const ArticleList = memo(({
 
   let rowCount = 1; // всегда отрисовывается как минимум одна строка
 
-  if (target === '_blank') { // check on recommendations
+  if (target === '_blank') { // recommendations block
     rowCount = 1;
   } else if (view === ArticleView.LIST) { // list view
     rowCount = articles.length;
@@ -127,6 +129,26 @@ export const ArticleList = memo(({
     );
   }
 
+  if (!virtualized) { // recommendations block
+    const renderArticle = (article: Article) => (
+      <ArticleListItem
+        article={article}
+        className={classes.card}
+        key={article.id}
+        target={target}
+        view={view}
+      />
+    );
+
+    return (
+      <div className={classNames('', {}, [className, classes[view]])}>
+        {articles.length ? articles.map(renderArticle) : null}
+
+        {isLoading && getSkeletons(target!, view)}
+      </div>
+    );
+  }
+
   return (
     <WindowScroller
       // убираем собственный скролл у списка, скролл будет только у страницы
@@ -150,7 +172,7 @@ export const ArticleList = memo(({
                 rowHeight={view === ArticleView.LIST ? 700 : 330}
                 rowRenderer={rowRenderer}
                 scrollTop={scrollTop}
-                // у '.Page' класса нужно учитывать 'padding' в 40px слева и справа
+                // у '.Page' класса нужно учитывать 'padding' в 45px слева и 20px справа
                 width={width ? width - 65 : 700}
               />
             )
