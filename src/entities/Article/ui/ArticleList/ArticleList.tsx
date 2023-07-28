@@ -2,7 +2,9 @@ import {
   HTMLAttributeAnchorTarget,
   memo,
   ReactNode,
+  useEffect,
   useMemo,
+  useState,
 } from 'react';
 
 import { useTranslation  } from 'react-i18next';
@@ -22,6 +24,12 @@ import { ArticleListItemSkeleton } from '../ArticleListItemSkeleton/ArticleListI
 
 import classes from './ArticleList.module.scss';
 
+interface ArticleSkeleton {
+  id: string;
+}
+
+type ArticleBlock = Article | ArticleSkeleton;
+
 interface ArticleListProps {
   articles: Article[];
   className?: string;
@@ -30,29 +38,6 @@ interface ArticleListProps {
   view?: ArticleView;
   virtualized?: boolean;
 }
-
-const getSkeletons = (target: HTMLAttributeAnchorTarget, view: ArticleView): ReactNode => {
-  let skeletonsAmount = 0;
-
-  if (target === '_blank') { // recommendations block
-    skeletonsAmount = 3;
-  } else if (view === ArticleView.PLATE) {
-    skeletonsAmount = 9;
-  } else {
-    skeletonsAmount = 4;
-  }
-
-  return new Array(skeletonsAmount)
-    .fill(0)
-    .map((_, idx) => (
-      <ArticleListItemSkeleton
-        className={classes.card}
-        // eslint-disable-next-line react/no-array-index-key
-        key={idx}
-        view={view}
-      />
-    ));
-};
 
 export const ArticleList = memo(({
   articles,
@@ -65,7 +50,38 @@ export const ArticleList = memo(({
   const { t } = useTranslation();
   const windowWidth = useWindowWidth();
 
+  const [articleItems, setArticleItems] = useState<ArticleBlock[]>(articles);
+  const [skeletonsAmount, setSkeletonsAmount] = useState<number>(0);
+
   const pageNode = document.getElementById(PAGE_ID) as Element;
+
+  useEffect(() => {
+    setArticleItems(articles);
+  }, [articles]);
+
+  useEffect(() => {
+    if (isLoading) {
+      if (target === '_blank') { // recommendations block
+        setSkeletonsAmount(3);
+      } else if (view === ArticleView.PLATE) {
+        setSkeletonsAmount(9);
+      } else {
+        setSkeletonsAmount(1);
+      }
+
+      const skeletons: ArticleSkeleton[] = new Array(skeletonsAmount).fill(0).map((_, idx) => ({
+        id: String(idx),
+      }));
+
+      setArticleItems((prev) => ([...prev, ...skeletons]));
+    } else {
+      setSkeletonsAmount(0);
+
+      setArticleItems(
+        (prev) => prev.filter((articleBlock) => 'title' in articleBlock),
+      );
+    }
+  }, [isLoading, skeletonsAmount, target, view]);
 
   const pageNodeWidthWithIndents = useMemo<number>(
     () => pageNode?.getBoundingClientRect().width || 105, // страница с padding
@@ -86,10 +102,10 @@ export const ArticleList = memo(({
   if (target === '_blank') { // recommendations block
     rowCount = 1;
   } else if (view === ArticleView.LIST) { // list view
-    rowCount = articles.length;
+    rowCount = articleItems.length;
   } else if (itemsPerRow) { // plate view
     // количество всех статей делим на количество статей в строку
-    rowCount = Math.ceil(articles.length / itemsPerRow);
+    rowCount = Math.ceil(articleItems.length / itemsPerRow);
   }
 
   const rowRenderer = ({ index, key, style }: ListRowProps): ReactNode => {
@@ -97,21 +113,33 @@ export const ArticleList = memo(({
     // от какого и до какого индекса рендерим элементы
     const fromIndex = index * itemsPerRow;
 
-/*  articles.length: 100, itemsPerRow: 10, fromIndex: 0 * 10  (0)   => toIndex: 0   + 10 (10)
-    articles.length: 100, itemsPerRow: 10, fromIndex: 4 * 10  (40)  => toIndex: 40  + 10 (50)
-    articles.length: 105, itemsPerRow: 10, fromIndex: 10 * 10 (100) => toIndex: 100 + 10 (110 > articles.length)
-*/  const toIndex = Math.min(fromIndex + itemsPerRow, articles.length);
+/*  articleItems.length: 100, itemsPerRow: 10, fromIndex: 0 * 10  (0)   => toIndex: 0   + 10 (10)
+    articleItems.length: 100, itemsPerRow: 10, fromIndex: 4 * 10  (40)  => toIndex: 40  + 10 (50)
+    articleItems.length: 105, itemsPerRow: 10, fromIndex: 10 * 10 (100) => toIndex: 100 + 10 (110 > articleItems.length)
+*/  const toIndex = Math.min(fromIndex + itemsPerRow, articleItems.length);
 
     for (let i = fromIndex; i < toIndex; i++) {
-      items.push(
-        <ArticleListItem
-          article={articles[index]}
-          className={classes.card}
-          key={`${articles[index].id}${i}`} // иначе ошибки в режиме 'плитки'
-          target={target}
-          view={view}
-        />,
-      );
+      const articleItem = articleItems[index];
+
+      if ('title' in articleItem) {
+        items.push(
+          <ArticleListItem
+            article={articleItem}
+            className={classes.card}
+            key={`${articleItem.id}${i}`} // иначе ошибки в режиме 'плитки'
+            target={target}
+            view={view}
+          />,
+        );
+      } else {
+        items.push(
+          <ArticleListItemSkeleton
+            className={classes.card}
+            key={`${articleItem.id}${i}`}
+            view={view}
+          />,
+        );
+      }
     }
 
     return (
@@ -140,11 +168,22 @@ export const ArticleList = memo(({
       />
     );
 
+    const renderSkeletons = () => new Array(skeletonsAmount)
+      .fill(0)
+      .map((_, idx) => (
+        <ArticleListItemSkeleton
+          className={classes.card}
+          // eslint-disable-next-line react/no-array-index-key
+          key={idx}
+          view={view}
+        />
+      ));
+
     return (
       <div className={classNames('', {}, [className, classes[view]])}>
         {articles.length ? articles.map(renderArticle) : null}
 
-        {isLoading && getSkeletons(target!, view)}
+        {isLoading && renderSkeletons()}
       </div>
     );
   }
@@ -163,7 +202,7 @@ export const ArticleList = memo(({
         <div
           className={classNames('', {}, [className, classes[view]])}
         >
-          {articles.length
+          {articleItems.length
             ? (
               <List
                 autoHeight // без 'autoHeight' у списка будет собственный скролл
@@ -177,8 +216,6 @@ export const ArticleList = memo(({
               />
             )
             : null}
-
-          {isLoading && getSkeletons(target!, view)}
         </div>
       )}
     </WindowScroller>
