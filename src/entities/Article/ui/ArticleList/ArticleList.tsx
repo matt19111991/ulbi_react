@@ -8,7 +8,13 @@ import {
 } from 'react';
 
 import { useTranslation  } from 'react-i18next';
-import { List, ListRowProps, WindowScroller } from 'react-virtualized';
+
+import {
+  AutoSizer,
+  List,
+  ListRowProps,
+  WindowScroller,
+} from 'react-virtualized';
 
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useWindowWidth } from 'shared/lib/hooks/useWindowWidth/useWindowWidth';
@@ -194,8 +200,6 @@ export const ArticleList = memo(({
       scrollElement={pageNode}
     >
       {({
-        height,
-        width,
         // без 'scrollTop' с каждой подгрузкой все больше увеличивается пустое пространство снизу
         scrollTop,
       }) => (
@@ -204,16 +208,27 @@ export const ArticleList = memo(({
         >
           {articleItems.length
             ? (
-              <List
-                autoHeight // без 'autoHeight' у списка будет собственный скролл
-                height={height ?? 700}
-                rowCount={rowCount}
-                rowHeight={view === ArticleView.LIST ? 700 : 330}
-                rowRenderer={rowRenderer}
-                scrollTop={scrollTop}
-                // у '.Page' класса нужно учитывать 'padding' в 45px слева и 20px справа
-                width={width ? width - 65 : 700}
-              />
+
+/*            'AutoSizer' сохраняет высоту и ширину виртуализированного списка
+              Можно проскроллить список, уйти со страницы со списком и вернуться обратно на последнюю
+              позицию в списке
+
+              'disableHeight' - отключаем динамическую высоту
+*/
+              <AutoSizer disableHeight>
+                {({ height, width }) => (
+                  <List
+                    autoHeight // без 'autoHeight' у списка будет собственный скролл
+                    height={height ?? 700}
+                    rowCount={rowCount}
+                    rowHeight={view === ArticleView.LIST ? 700 : 330}
+                    rowRenderer={rowRenderer}
+                    scrollTop={scrollTop}
+                    // у '.Page' класса нужно учитывать 'padding' в 45px слева и 20px справа
+                    width={width ? width - 65 : 700}
+                  />
+                )}
+              </AutoSizer>
             )
             : null}
         </div>

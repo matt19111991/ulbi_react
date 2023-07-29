@@ -48,6 +48,11 @@ export const Page = ({ children, className, onScrollEnd }: PageProps) => {
 
   useInitialEffect(() => {
     wrapperRef.current.scrollTop = scrollPosition;
+
+    dispatch(pageScrollActions.setScrollPosition({
+      path: location.pathname,
+      position: 0,
+    }));
   });
 
   const onScroll = useThrottle(
