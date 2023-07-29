@@ -11,7 +11,7 @@ import {
 
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 
-import { Portal } from 'shared/ui/Portal/Portal';
+import { Portal } from '../Portal/Portal';
 
 import classes from './Modal.module.scss';
 

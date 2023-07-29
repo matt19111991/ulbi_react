@@ -4,7 +4,7 @@ import {
   componentTestRenderer,
 } from 'shared/lib/tests/componentTestRenderer/componentTestRenderer';
 
-import { Sidebar } from 'widgets/Sidebar/ui/Sidebar/Sidebar';
+import { Sidebar } from './Sidebar';
 
 describe('Sidebar', () => {
   test('Test render', () => {
