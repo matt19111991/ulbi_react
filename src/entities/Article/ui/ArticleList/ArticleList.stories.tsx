@@ -110,6 +110,7 @@ export const PrimaryPlates: Story = {
     articles: generateArticles(12),
     isLoading: false,
     view: ArticleView.PLATE,
+    virtualized: false,
   },
 };
 
@@ -120,6 +121,7 @@ export const DarkPlates: Story = {
     articles: generateArticles(12),
     isLoading: false,
     view: ArticleView.PLATE,
+    virtualized: false,
   },
 };
 
@@ -132,6 +134,7 @@ export const OrangePlates: Story = {
     articles: generateArticles(12),
     isLoading: false,
     view: ArticleView.PLATE,
+    virtualized: false,
   },
 };
 
@@ -154,6 +157,7 @@ export const LoadingPlates: Story = {
     articles: [],
     isLoading: true,
     view: ArticleView.PLATE,
+    virtualized: false,
   },
 };
 
