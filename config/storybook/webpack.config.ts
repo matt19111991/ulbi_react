@@ -39,8 +39,10 @@ export default ({ config }: { config: webpack.Configuration }) => {
 
   const paths: BuildPaths = {
     build: '',
+    buildLocales: '',
     entry: '',
     html: '',
+    locales: '',
     src: path.resolve(__dirname, '..', '..', 'src'), // единственный важный путь
   };
 

@@ -15,6 +15,7 @@ import {
   ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
+import { VStack } from 'shared/ui/Stack';
 import { Text, TextSize } from 'shared/ui/Text/Text';
 
 import { Page } from 'widgets/Page';
@@ -95,33 +96,35 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
   return (
     <DynamicModuleLoader reducers={reducers}>
       <Page className={classNames(classes.ArticleDetailsPage, {}, [className])}>
-        <ArticleDetailsPageHeader />
+        <VStack gap='16' max>
+          <ArticleDetailsPageHeader />
 
-        <ArticleDetails id={id!} />
+          <ArticleDetails id={id!} />
 
-        <Text
-          className={classes.recommendationTitle}
-          size={TextSize.L}
-          title={t('Рекомендуем')}
-        />
+          <Text
+            className={classes.recommendationTitle}
+            size={TextSize.L}
+            title={t('Рекомендуем')}
+          />
 
-        <ArticleList
-          articles={recommendations}
-          className={classes.recommendations}
-          isLoading={recommendationsAreLoading}
-          target='_blank'
-          virtualized={false}
-        />
+          <ArticleList
+            articles={recommendations}
+            className={classes.recommendations}
+            isLoading={recommendationsAreLoading}
+            target='_blank'
+            virtualized={false}
+          />
 
-        <Text
-          className={classes.commentTitle}
-          size={TextSize.L}
-          title={t('Комментарии')}
-        />
+          <Text
+            className={classes.commentTitle}
+            size={TextSize.L}
+            title={t('Комментарии')}
+          />
 
-        <AddCommentForm onSendComment={onSendComment} />
+          <AddCommentForm onSendComment={onSendComment} />
 
-        <CommentList comments={comments} isLoading={commentsAreLoading} />
+          <CommentList comments={comments} isLoading={commentsAreLoading} />
+        </VStack>
       </Page>
     </DynamicModuleLoader>
   );

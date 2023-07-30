@@ -29,6 +29,7 @@ import {
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 
+import { VStack } from 'shared/ui/Stack';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 
 import { Page } from 'widgets/Page';
@@ -109,30 +110,32 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
   return (
     <DynamicModuleLoader reducers={reducers}>
       <Page className={classNames('', {}, [className])}>
-        <ProfilePageHeader />
+        <VStack gap='16' max>
+          <ProfilePageHeader />
 
-        {validateErrors?.length && validateErrors.map((validateError) => (
-          <Text
-            key={validateError}
-            text={validateErrorsTranslates[validateError]}
-            theme={TextTheme.ERROR}
+          {validateErrors?.length && validateErrors.map((validateError) => (
+            <Text
+              key={validateError}
+              text={validateErrorsTranslates[validateError]}
+              theme={TextTheme.ERROR}
+            />
+          ))}
+
+          <ProfileCard
+            data={formData}
+            error={error}
+            isLoading={isLoading}
+            onChangeAge={onChangeAge}
+            onChangeAvatar={onChangeAvatar}
+            onChangeCity={onChangeCity}
+            onChangeCountry={onChangeCountry}
+            onChangeCurrency={onChangeCurrency}
+            onChangeFirstName={onChangeFirstName}
+            onChangeLastName={onChangeLastName}
+            onChangeUserName={onChangeUserName}
+            readOnly={readOnly}
           />
-        ))}
-
-        <ProfileCard
-          data={formData}
-          error={error}
-          isLoading={isLoading}
-          onChangeAge={onChangeAge}
-          onChangeAvatar={onChangeAvatar}
-          onChangeCity={onChangeCity}
-          onChangeCountry={onChangeCountry}
-          onChangeCurrency={onChangeCurrency}
-          onChangeFirstName={onChangeFirstName}
-          onChangeLastName={onChangeLastName}
-          onChangeUserName={onChangeUserName}
-          readOnly={readOnly}
-        />
+        </VStack>
       </Page>
     </DynamicModuleLoader>
   );

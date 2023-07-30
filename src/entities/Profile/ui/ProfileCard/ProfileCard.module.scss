@@ -3,24 +3,11 @@
   padding: 20px;
 }
 
-.avatarWrapper {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
 .editing {
   border: 2px solid var(--inverted-primary-color);
 }
 
-.input {
-  margin-top: 10px;
-}
-
 .error,
 .loading {
-  align-items: center;
-  display: flex;
   height: 300px;
-  justify-content: center;
 }

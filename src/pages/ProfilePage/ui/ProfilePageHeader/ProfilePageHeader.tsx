@@ -8,11 +8,10 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { HStack } from 'shared/ui/Stack';
 import { Text } from 'shared/ui/Text/Text';
 
 import { getIsUserCanEditProfile } from '../../model/selectors/getIsUserCanEditProfile';
-
-import classes from './ProfilePageHeader.module.scss';
 
 interface ProfilePageHeaderProps {
   className?: string;
@@ -39,41 +38,33 @@ export const ProfilePageHeader = memo(({ className }: ProfilePageHeaderProps) =>
   }, [dispatch]);
 
   return (
-    <div className={classNames(classes.ProfilePageHeader, {}, [className])}>
+    <HStack
+      className={classNames('', {}, [className])}
+      justify='between'
+      max
+    >
       <Text title={t('Профиль')} />
 
       {canEdit && (
-        <div className={classes.btnsWrapper}>
+        <div>
           {readOnly ? (
-            <Button
-              className={classes.editBtn}
-              onClick={onEdit}
-              theme={ButtonTheme.OUTLINE}
-            >
+            <Button onClick={onEdit} theme={ButtonTheme.OUTLINE}>
               {t('Редактировать')}
             </Button>
           ) : (
-            <>
-              <Button
-                className={classes.editBtn}
-                onClick={onCancelEdit}
-                theme={ButtonTheme.OUTLINE_RED}
-              >
+            <HStack gap='8'>
+              <Button onClick={onCancelEdit} theme={ButtonTheme.OUTLINE_RED}>
                 {t('Отменить')}
               </Button>
 
-              <Button
-                className={classes.saveBtn}
-                onClick={onSave}
-                theme={ButtonTheme.OUTLINE}
-              >
+              <Button onClick={onSave} theme={ButtonTheme.OUTLINE}>
                 {t('Сохранить')}
               </Button>
-            </>
+            </HStack>
           )}
         </div>
       )}
-    </div>
+    </HStack>
   );
 });
 
