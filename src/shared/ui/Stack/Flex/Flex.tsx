@@ -1,4 +1,9 @@
-import { memo, ReactNode } from 'react';
+import {
+  DetailedHTMLProps,
+  HTMLAttributes,
+  memo,
+  ReactNode,
+} from 'react';
 
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 
@@ -34,7 +39,10 @@ const justifyClasses: Record<FlexJustify, string> = {
   between: classes.justifyBetween,
 };
 
-export interface FlexProps {
+type DivProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+
+// в 'HStack' и 'VStack' можно использовать нативные атрибуты от 'div' ('role' и т.д.)
+export interface FlexProps extends DivProps {
   align?: FlexAlign;
   children: ReactNode;
   className?: string;

@@ -69,7 +69,7 @@ export const Page = ({ children, className, onScrollEnd }: PageProps) => {
   );
 
   return (
-    <section
+    <main
       className={classNames(classes.Page, {}, [className])}
       id={PAGE_ID}
       onScroll={onScroll}
@@ -79,6 +79,6 @@ export const Page = ({ children, className, onScrollEnd }: PageProps) => {
 
       {/* невидимый элемент внизу страницы, который будет запускать callback в 'useInfiniteScroll' */}
       {onScrollEnd ? <div className={classes.trigger} ref={triggerRef} /> : null}
-    </section>
+    </main>
   );
 };

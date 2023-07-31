@@ -159,4 +159,24 @@ export const SizeLarge: Story = {
   },
 };
 
+// Medium size
+
+export const SizeMedium: Story = {
+  args: {
+    size: TextSize.M,
+    title: 'Title lorem ipsun',
+    text: 'Description Description Description Description',
+  },
+};
+
+// Small size
+
+export const SizeSmall: Story = {
+  args: {
+    size: TextSize.S,
+    title: 'Title lorem ipsun',
+    text: 'Description Description Description Description',
+  },
+};
+
 export default meta;

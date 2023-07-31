@@ -1,9 +1,13 @@
+import { forwardRef } from 'react';
+
 import { Flex, FlexProps } from '../Flex/Flex';
 
 type VStackProps = Omit<FlexProps, 'direction'>;
 
-export const VStack = ({ align, children, ...rest }: VStackProps) => (
-  <Flex align='start' direction='column' {...rest}>
+export const VStack = forwardRef(({ align, children, ...rest }: VStackProps, ref: any) => (
+  <Flex align='start' direction='column' ref={ref} {...rest}>
     {children}
   </Flex>
-);
+));
+
+VStack.displayName = 'VStack';
