@@ -54,6 +54,11 @@
   transition: .2s; // плавный переход при увеличении карточки при наведении
   width: 230px;
 
+  .card {
+    display: inline-flex;
+    flex-direction: column;
+  }
+
   .date {
     display: none;
     position: absolute;

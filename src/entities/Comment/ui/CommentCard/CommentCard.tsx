@@ -23,10 +23,12 @@ interface CommentCardProps {
 export const CommentCard = memo(({ className, comment, isLoading }: CommentCardProps) => {
   if (isLoading) {
     return (
-      <div
+      <VStack
         className={
           classNames(classes.CommentCard, {}, [className, classes.loading])
         }
+        gap='8'
+        max
       >
         <div className={classes.header}>
           <Skeleton border='50%' className={classes.avatar} height={30} width={30} />
@@ -34,7 +36,7 @@ export const CommentCard = memo(({ className, comment, isLoading }: CommentCardP
         </div>
 
         <Skeleton className={classes.text} height={50} width='100%' />
-      </div>
+      </VStack>
     );
   }
 

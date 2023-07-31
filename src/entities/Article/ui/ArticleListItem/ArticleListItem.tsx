@@ -112,7 +112,7 @@ export const ArticleListItem = memo(({
       to={`${RoutePath.article_details}${article.id}`}
       /* {...hoverHandlers} */
     >
-      <Card>
+      <Card className={classes.card}>
         <div className={classes.imageWrapper}>
           <img
             alt={article.title}
