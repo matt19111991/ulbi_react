@@ -150,12 +150,14 @@ export const ProfileCard = memo(({
       />
 
       <CurrencySelect
+        direction='top'
         onChange={onChangeCurrency}
         readOnly={readOnly}
         value={data?.currency}
       />
 
       <CountrySelect
+        direction='top'
         onChange={onChangeCountry}
         readOnly={readOnly}
         value={data?.country}

@@ -3,20 +3,21 @@ import { useTranslation } from 'react-i18next';
 
 import { classNames } from 'shared/lib/classNames/classNames';
 
-import { Select } from 'shared/ui/Select/Select';
+import { DropdownDirection, ListBox } from 'shared/ui/ListBox/ListBox';
 
 import { Currency } from '../../model/types/currency';
 
 interface CurrencySelectProps {
   className?: string;
+  direction?: DropdownDirection;
   onChange?: (value: Currency) => void;
   readOnly?: boolean;
   value?: Currency;
 }
 
-/* Если 'options' определить в 'JSX' разметке, то при изменении 'CurrencySelect', дочерний 'Select'
+/* Если 'options' определить в 'JSX' разметке, то при изменении 'CurrencySelect', дочерний 'ListBox'
    будет перендериваться каждый раз, т.к. ссылка на массив каждый раз будет создаваться новая:
-   '<Select options={[{ content: '', value: '' }, ...]} />'
+   '<ListBox items={[{ content: '', value: '' }, ...]} />'
 
    Чтобы избежать лишних перерендеров, можно:
    - обернуть 'options' в 'useMemo'
@@ -31,6 +32,7 @@ const options = [
 
 export const CurrencySelect = memo(({
   className,
+  direction = 'bottom',
   onChange,
   readOnly,
   value,
@@ -42,12 +44,14 @@ export const CurrencySelect = memo(({
   }, [onChange]);
 
   return (
-    <Select
+    <ListBox
       className={classNames('', {}, [className])}
+      defaultValue={t('Укажите валюту')}
+      direction={direction}
+      items={options}
       label={t('Укажите валюту')}
       onChange={onChangeHandler}
-      options={options}
-      readOnly={readOnly}
+      readonly={readOnly}
       value={value}
     />
   );

@@ -3,12 +3,13 @@ import { useTranslation } from 'react-i18next';
 
 import { classNames } from 'shared/lib/classNames/classNames';
 
-import { Select } from 'shared/ui/Select/Select';
+import { DropdownDirection, ListBox } from 'shared/ui/ListBox/ListBox';
 
 import { Country } from '../../model/types/country';
 
 interface CountrySelectProps {
   className?: string;
+  direction?: DropdownDirection;
   onChange?: (value: Country) => void;
   readOnly?: boolean;
   value?: Country;
@@ -24,6 +25,7 @@ const options = [
 
 export const CountrySelect = memo(({
   className,
+  direction = 'bottom',
   onChange,
   readOnly,
   value,
@@ -35,12 +37,14 @@ export const CountrySelect = memo(({
   }, [onChange]);
 
   return (
-    <Select
+    <ListBox
       className={classNames('', {}, [className])}
+      defaultValue={t('Укажите страну')}
+      direction={direction}
+      items={options}
       label={t('Укажите страну')}
       onChange={onChangeHandler}
-      options={options}
-      readOnly={readOnly}
+      readonly={readOnly}
       value={value}
     />
   );
