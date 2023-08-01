@@ -5,6 +5,8 @@ import { classNames } from 'shared/lib/classNames/classNames';
 
 import { DropdownDirection } from 'shared/types/ui';
 
+import { AppLink } from '../AppLink/AppLink';
+
 import classes from './DropDown.module.scss';
 
 const mapDirectionClass: Record<DropdownDirection, string> = {
@@ -56,28 +58,46 @@ export const DropDown = memo(({
         classNames(classes.menu, {}, [mapDirectionClass[direction]])
       }
     >
-      {items.map((item) => (
-        <Menu.Item
-          as={Fragment}
-          disabled={item.disabled}
-          key={String(item.content)}
-        >
-          {({ active }) => (
-            <button
-              className={
-                classNames(
-                  classes.item,
-                  { [classes.active]: active },
-                  [mapOptionSizeClass[optionSize]],
-                )
-              }
-              onClick={item.onClick}
+      {items.map((item) => {
+        const content = ({ active }: { active: boolean }) => (
+          <button
+            className={
+              classNames(
+                classes.item,
+                { [classes.active]: active },
+                [mapOptionSizeClass[optionSize]],
+              )
+            }
+            disabled={item.disabled}
+            onClick={item.onClick}
+          >
+            {item.content}
+          </button>
+        );
+
+        if (item.href) {
+          return (
+            <Menu.Item
+              as={AppLink}
+              disabled={item.disabled}
+              key={String(item.content)}
+              to={item.href}
             >
-              {item.content}
-            </button>
-          )}
-        </Menu.Item>
-      ))}
+              {content}
+            </Menu.Item>
+          );
+        }
+
+        return (
+          <Menu.Item
+            as={Fragment}
+            disabled={item.disabled}
+            key={String(item.content)}
+          >
+            {content}
+          </Menu.Item>
+        );
+      })}
     </Menu.Items>
   </Menu>
 ));

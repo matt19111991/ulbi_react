@@ -3,7 +3,7 @@
 }
 
 .active {
-  background-color: var(--inverted-primary-color);
+  background: var(--inverted-primary-color) !important;
 }
 
 .btn {
@@ -13,6 +13,10 @@
   margin: 0;
   outline: none;
   padding: 0;
+}
+
+.disabled {
+  opacity: .8;
 }
 
 .item {
@@ -28,10 +32,10 @@
 
 .menu {
   background-color: var(--card-bg);
-  border: 1px solid var(--primary-color);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
+  outline: 1px solid var(--primary-color);
   position: absolute;
   z-index: 10000;
 }
