@@ -6,16 +6,18 @@ import CheckIcon from 'shared/assets/icons/check-16-12.svg';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { genericMemo } from 'shared/lib/components/genericMemo/genericMemo';
 
+import { DropdownDirection } from 'shared/types/ui';
+
 import { Button } from '../Button/Button';
 import { HStack, VStack } from '../Stack';
 
 import classes from './ListBox.module.scss';
 
-export type DropdownDirection = 'bottom' | 'top';
-
 const mapDirectionClass: Record<DropdownDirection, string> = {
-  bottom: classes.optionsBottom,
-  top: classes.optionsTop,
+  'bottom-left': classes.optionsBottomLeft,
+  'bottom-right': classes.optionsBottomRight,
+  'top-left': classes.optionsTopLeft,
+  'top-right': classes.optionsTopRight,
 };
 
 export interface ListBoxItem {
@@ -38,7 +40,7 @@ interface ListBoxProps {
 const ListBox =  ({
   className,
   defaultValue,
-  direction = 'bottom',
+  direction = 'bottom-left',
   items,
   label,
   onChange,

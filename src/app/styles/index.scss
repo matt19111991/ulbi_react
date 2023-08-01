@@ -35,6 +35,14 @@ body {
   display: flex;
 }
 
+.sb-show-main {
+  overflow-y: hidden;
+}
+
+.sb-container {
+  padding: 16px;
+}
+
 // Scroll bar
 
 *::-webkit-scrollbar {

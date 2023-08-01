@@ -3,7 +3,9 @@ import { useTranslation } from 'react-i18next';
 
 import { classNames } from 'shared/lib/classNames/classNames';
 
-import { DropdownDirection, ListBox } from 'shared/ui/ListBox/ListBox';
+import { DropdownDirection } from 'shared/types/ui';
+
+import { ListBox } from 'shared/ui/ListBox/ListBox';
 
 import { Currency } from '../../model/types/currency';
 
@@ -32,7 +34,7 @@ const options = [
 
 export const CurrencySelect = memo(({
   className,
-  direction = 'bottom',
+  direction = 'bottom-left',
   onChange,
   readOnly,
   value,

@@ -61,9 +61,11 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 
         <DropDown
           className={classes.dropdown}
+          direction='bottom-right'
           items={[
             { content: t('Выйти'), onClick: onLogout },
           ]}
+          optionSize='S'
           trigger={<Avatar size={30} src={authData.avatar} />}
         />
       </header>
