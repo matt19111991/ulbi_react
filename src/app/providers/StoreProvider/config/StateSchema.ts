@@ -8,6 +8,8 @@ import {
   ReducersMapObject,
 } from '@reduxjs/toolkit';
 
+import { rtkApi } from 'shared/api/rtkApi';
+
 import { ArticleDetailsSchema } from 'entities/Article';
 import { CounterSchema } from 'entities/Counter';
 import { ProfileSchema } from 'entities/Profile';
@@ -24,8 +26,10 @@ import { PageScrollSchema } from 'widgets/Page';
 export interface StateSchema {
   // Синхронные редюсеры
   counter: CounterSchema;
-  pageScroll: PageScrollSchema,
+  pageScroll: PageScrollSchema;
   user: UserSchema;
+
+  [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
   // Асинхронные редюсеры
   addCommentForm?: AddCommentFormSchema;

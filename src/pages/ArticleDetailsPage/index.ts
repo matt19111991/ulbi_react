@@ -4,6 +4,10 @@ export {
   getArticleRecommendationsAreLoading,
 } from './model/selectors/recommendations/recommendations';
 
+export {
+  fetchArticleRecommendations,
+} from './model/services/fetchArticleRecommendations/fetchArticleRecommendations';
+
 export { articleDetailsPageReducer } from './model/slices';
 
 export { ArticleDetailsPageSchema } from './model/types';
