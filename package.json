@@ -9,6 +9,7 @@
     "start": "concurrently \"npm run start:client\" \"npm run start:server\"",
     "build:dev": "webpack --env mode=development",
     "build:prod": "webpack --env mode=production",
+    "generate:template": "node ./scripts/createSlice/index.js",
     "lint:ts": "eslint \"**/*.{ts,tsx}\"",
     "lint:ts:fix": "eslint \"**/*.{ts,tsx}\"",
     "lint:scss": "npx stylelint \"**/*.scss\"",
