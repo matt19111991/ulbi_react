@@ -37,6 +37,7 @@ export default (env: BuildEnv) => {
     build: path.resolve(__dirname, 'build'),
     buildLocales: path.resolve(__dirname, 'build', 'locales'),
     entry: path.resolve(__dirname, 'src', 'index.tsx'),
+    favicon: path.resolve(__dirname, 'src', 'shared', 'assets', 'favicon.ico'),
     html: path.resolve(__dirname, 'public', 'index.html'),
     locales: path.resolve(__dirname, 'public', 'locales'),
     src: path.resolve(__dirname, 'src'),

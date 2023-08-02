@@ -45,6 +45,7 @@ export function buildPlugins({
 
     new CopyPlugin({
       patterns: [
+        { from: paths.favicon, to: paths.build },
         { from: paths.locales, to: paths.buildLocales },
       ],
     }),

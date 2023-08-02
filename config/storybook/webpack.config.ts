@@ -41,6 +41,7 @@ export default ({ config }: { config: webpack.Configuration }) => {
     build: '',
     buildLocales: '',
     entry: '',
+    favicon: '',
     html: '',
     locales: '',
     src: path.resolve(__dirname, '..', '..', 'src'), // единственный важный путь
