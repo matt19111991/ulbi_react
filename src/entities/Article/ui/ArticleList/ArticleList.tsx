@@ -39,6 +39,7 @@ type ArticleBlock = Article | ArticleSkeleton;
 interface ArticleListProps {
   articles: Article[];
   className?: string;
+  inline?: boolean;
   isLoading?: boolean;
   target?: HTMLAttributeAnchorTarget;
   view?: ArticleView;
@@ -48,6 +49,7 @@ interface ArticleListProps {
 export const ArticleList = memo(({
   articles,
   className,
+  inline = false,
   isLoading,
   target,
   view = ArticleView.PLATE,
@@ -186,7 +188,15 @@ export const ArticleList = memo(({
       ));
 
     return (
-      <div className={classNames('', {}, [className, classes[view]])}>
+      <div
+        className={
+          classNames(
+            '',
+            { [classes.inline]: inline },
+          [className, classes[view]],
+          )
+        }
+      >
         {articles.length ? articles.map(renderArticle) : null}
 
         {isLoading && renderSkeletons()}

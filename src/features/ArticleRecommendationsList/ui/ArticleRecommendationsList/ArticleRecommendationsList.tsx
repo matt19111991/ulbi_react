@@ -59,6 +59,7 @@ export const ArticleRecommendationsList = memo(({
 
       <ArticleList
         articles={articles}
+        inline
         isLoading={isLoading}
         target='_blank'
         virtualized={false}
