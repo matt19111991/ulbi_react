@@ -3,3 +3,6 @@
 
 Исправить ArticleDetailsComments stories
 Исправить ArticleRecommendationsList stories
+Исправить ArticleInfiniteList stories
+Выставление list-plate view по умолчанию исправить
+Загружаются все статьи сразу. Нужно исправить на порции
