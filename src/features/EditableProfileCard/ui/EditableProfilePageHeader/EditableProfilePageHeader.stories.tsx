@@ -6,7 +6,7 @@ import { Theme } from 'app/providers/ThemeProvider';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
-import { ProfilePageHeader } from './ProfilePageHeader';
+import { EditableProfilePageHeader } from './EditableProfilePageHeader';
 
 const stateProfileHeader: DeepPartial<StateSchema> = {
   profile: {
@@ -25,13 +25,13 @@ const stateProfileHeader: DeepPartial<StateSchema> = {
 
 const meta = {
   title: 'pages/ProfilePageHeader',
-  component: ProfilePageHeader,
+  component: EditableProfilePageHeader,
   argTypes: {
     background: {
       control: 'color',
     },
   },
-} as Meta<typeof ProfilePageHeader>;
+} as Meta<typeof EditableProfilePageHeader>;
 
 type Story = StoryObj<typeof meta>;
 

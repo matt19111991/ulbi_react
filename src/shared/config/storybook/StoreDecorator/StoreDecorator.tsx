@@ -4,10 +4,10 @@ import type { StoryFn } from '@storybook/react';
 import { StateSchema, StoreProvider } from 'app/providers/StoreProvider';
 
 import { articleDetailsReducer } from 'entities/Article';
-import { profileReducer } from 'entities/Profile';
 
 import { addCommentFormReducer } from 'features/AddCommentForm';
 import { loginReducer } from 'features/AuthByUsername';
+import { profileReducer } from 'features/EditableProfileCard';
 
 import { articleDetailsPageReducer } from 'pages/ArticleDetailsPage';
 import { articlesPageReducer } from 'pages/ArticlesPage';

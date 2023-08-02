@@ -67,7 +67,7 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
       >
         <ArticlesPageFilters />
 
-        <ArticleInfiniteList />
+        <ArticleInfiniteList className={classes.list} />
       </Page>
     </DynamicModuleLoader>
   );

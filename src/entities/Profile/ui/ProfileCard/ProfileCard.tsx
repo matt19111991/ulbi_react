@@ -12,7 +12,7 @@ import { Loader } from 'shared/ui/Loader/Loader';
 import { HStack, VStack } from 'shared/ui/Stack';
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
 
-import { Profile } from '../../model/types/Profile';
+import { Profile } from '../../model/types/profile';
 
 import classes from './ProfileCard.module.scss';
 

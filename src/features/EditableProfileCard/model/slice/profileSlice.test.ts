@@ -4,7 +4,7 @@ import { Currency } from 'entities/Currency';
 import { fetchProfileData } from '../services/fetchProfileData/fetchProfileData';
 import { updateProfileData } from '../services/updateProfileData/updateProfileData';
 
-import { ProfileSchema, ValidateProfileError } from '../types/Profile';
+import { ProfileSchema, ValidateProfileError } from '../types/editableProfileCardSchema';
 
 import { profileActions, profileReducer } from './profileSlice';
 

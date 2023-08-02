@@ -1,5 +1,4 @@
-import { Country } from 'entities/Country';
-import { Currency } from 'entities/Currency';
+import { Profile } from 'entities/Profile';
 
 export enum ValidateProfileError {
   INCORRECT_AGE = 'INCORRECT_AGE',
@@ -11,18 +10,6 @@ export enum ValidateProfileError {
   INCORRECT_USERNAME = 'INCORRECT_USERNAME',
   NO_DATA = 'NO_DATA',
   SERVER_ERROR = 'SERVER_ERROR',
-}
-
-export interface Profile {
-  id?: string;
-  age?: number;
-  avatar?: string;
-  city?: string;
-  country?: Country;
-  currency?: Currency;
-  first?: string;
-  lastname?: string;
-  username?: string;
 }
 
 export interface ProfileSchema {
