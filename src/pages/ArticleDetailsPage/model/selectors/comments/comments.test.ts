@@ -19,7 +19,7 @@ describe('comments selectors', () => {
     test('should work with empty state', () => {
       const state: DeepPartial<StateSchema> = {};
 
-      expect(getArticleCommentsAreLoading(state as StateSchema)).toBe(undefined);
+      expect(getArticleCommentsAreLoading(state as StateSchema)).toBe(true);
     });
   });
 

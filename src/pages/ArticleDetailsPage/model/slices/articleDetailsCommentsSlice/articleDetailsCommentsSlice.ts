@@ -43,7 +43,7 @@ export const getArticleComments = commentsAdapter.getSelectors<StateSchema>(
 );
 
 const initialState: ArticleDetailsCommentsSchema = {
-  areLoading: false,
+  areLoading: true,
   error: undefined,
   entities: {},
   ids: [],
