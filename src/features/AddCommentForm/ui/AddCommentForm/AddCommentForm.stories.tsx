@@ -9,7 +9,13 @@ import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDeco
 
 import AddCommentForm from './AddCommentForm';
 
-const stateAddCommentForm: DeepPartial<StateSchema> = {};
+const stateAddCommentFormActive: DeepPartial<StateSchema> = {
+  articleDetailsPage: {
+    comments: {
+      areLoading: false,
+    },
+  },
+};
 
 const meta = {
   title: 'features/AddCommentForm',
@@ -31,7 +37,7 @@ export const Primary: Story = {
   },
 };
 
-Primary.decorators = [StoreDecorator(stateAddCommentForm)];
+Primary.decorators = [StoreDecorator(stateAddCommentFormActive)];
 
 // Dark add comment form
 
@@ -41,7 +47,10 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [StoreDecorator(stateAddCommentForm), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+  StoreDecorator(stateAddCommentFormActive),
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange add comment form
 
@@ -51,6 +60,27 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [StoreDecorator(stateAddCommentForm), ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  StoreDecorator(stateAddCommentFormActive),
+  ThemeDecorator(Theme.ORANGE),
+];
+
+// Disabled add comment form
+
+const stateAddCommentFormDisabled: DeepPartial<StateSchema> = {
+  articleDetailsPage: {
+    comments: {
+      areLoading: true,
+    },
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    onSendComment: action('onSendComment'),
+  },
+};
+
+Disabled.decorators = [StoreDecorator(stateAddCommentFormDisabled)];
 
 export default meta;
