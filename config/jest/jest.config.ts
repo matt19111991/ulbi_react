@@ -61,6 +61,24 @@ export default {
   // настройка абсолютных импортов
   modulePaths: ['<rootDir>src'],
 
+  // Use this configuration option to add custom reporters to Jest
+  reporters: [
+    'default',
+    [
+      'jest-html-reporters',
+      {
+        fileName: 'report.html',
+
+        // не будут создаваться отдельные js файлы, весь отчет в одном html файле
+        inlineSource: true,
+
+        openReport: false, // по завершению тестов не открывать новую вкладку с отчетом
+
+        publicPath: '<rootDir>/reports/unit',
+      }
+    ],
+  ],
+
   // The root directory that Jest should scan for tests and modules within
   rootDir: '../../', // т.к. конфиг лежит не в корне проекта
 
@@ -149,9 +167,6 @@ export default {
 
   // Run tests from one or more projects
   // projects: undefined,
-
-  // Use this configuration option to add custom reporters to Jest
-  // reporters: undefined,
 
   // Automatically reset mock state before every test
   // resetMocks: false,
