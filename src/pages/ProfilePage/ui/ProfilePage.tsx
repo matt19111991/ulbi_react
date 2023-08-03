@@ -6,7 +6,7 @@ import { EditableProfileCard } from 'features/EditableProfileCard';
 
 import { classNames } from 'shared/lib/classNames/classNames';
 
-import { VStack } from 'shared/ui/Stack';
+import { HStack, VStack } from 'shared/ui/Stack';
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
 
 import { Page } from 'widgets/Page';
@@ -25,13 +25,13 @@ const ProfilePage = ({ className, storybookUserId }: ProfilePageProps) => {
   if (!userId) {
     return (
       <Page className={classNames('', {}, [className])}>
-        <VStack gap='16' max>
+        <HStack justify='center' max>
           <Text
             align={TextAlign.CENTER}
             theme={TextTheme.ERROR}
             title={t('Профиль не найден')}
           />
-        </VStack>
+        </HStack>
       </Page>
     );
   }
