@@ -7,7 +7,7 @@ import {
   useState,
 } from 'react';
 
-import { useTranslation  } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 import {
   AutoSizer,
@@ -19,7 +19,8 @@ import {
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useWindowWidth } from 'shared/lib/hooks/useWindowWidth/useWindowWidth';
 
-import { Text } from 'shared/ui/Text/Text';
+import { HStack } from 'shared/ui/Stack';
+import { Text, TextTheme } from 'shared/ui/Text/Text';
 
 import { PAGE_ID } from 'widgets/Page';
 
@@ -157,9 +158,15 @@ export const ArticleList = memo(({
 
   if (!isLoading && !articles.length) {
     return (
-      <div className={classNames('', {}, [className, classes[view]])}>
-        <Text title={t('Статьи не найдены')} />
-      </div>
+      <HStack
+        className={
+          classNames('', {}, [className, classes[view]])
+        }
+        justify='center'
+        max
+      >
+        <Text theme={TextTheme.ERROR} title={t('Статьи не найдены')} />
+      </HStack>
     );
   }
 
