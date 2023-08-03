@@ -19,11 +19,13 @@ import { updateProfileData } from '../../model/services/updateProfileData/update
 
 import { profileActions } from '../../model/slice/profileSlice';
 
-interface ProfilePageHeaderProps {
+interface EditableProfilePageHeaderProps {
   className?: string;
 }
 
-export const EditableProfilePageHeader = memo(({ className }: ProfilePageHeaderProps) => {
+export const EditableProfilePageHeader = memo(({
+  className,
+}: EditableProfilePageHeaderProps) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation('profile');
 

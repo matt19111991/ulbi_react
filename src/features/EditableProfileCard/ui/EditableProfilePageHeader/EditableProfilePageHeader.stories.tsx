@@ -8,7 +8,7 @@ import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDeco
 
 import { EditableProfilePageHeader } from './EditableProfilePageHeader';
 
-const stateProfileHeader: DeepPartial<StateSchema> = {
+const stateEditableProfileHeader: DeepPartial<StateSchema> = {
   profile: {
     data: {
       id: '1',
@@ -24,7 +24,7 @@ const stateProfileHeader: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'pages/ProfilePageHeader',
+  title: 'pages/EditableProfilePageHeader',
   component: EditableProfilePageHeader,
   argTypes: {
     background: {
@@ -35,37 +35,43 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Primary profile page header
+// Primary editing editable profile page header
 
-export const Primary: Story = {
+export const PrimaryEditing: Story = {
   args: {},
 };
 
-Primary.decorators = [StoreDecorator(stateProfileHeader)];
+PrimaryEditing.decorators = [StoreDecorator(stateEditableProfileHeader)];
 
-// Dark profile page header
+// Dark editing editable profile page header
 
-export const Dark: Story = {
+export const DarkEditing: Story = {
   args: {},
 };
 
-Dark.decorators = [StoreDecorator(stateProfileHeader), ThemeDecorator(Theme.DARK)];
+DarkEditing.decorators = [
+  StoreDecorator(stateEditableProfileHeader),
+  ThemeDecorator(Theme.DARK),
+];
 
-// Orange profile page header
+// Orange editing editable profile page header
 
-export const Orange: Story = {
+export const OrangeEditing: Story = {
   args: {},
 };
 
-Orange.decorators = [StoreDecorator(stateProfileHeader), ThemeDecorator(Theme.ORANGE)];
+OrangeEditing.decorators = [
+  StoreDecorator(stateEditableProfileHeader),
+  ThemeDecorator(Theme.ORANGE),
+];
 
-// Read only profile page header
+// Not editing editable profile page header
 
-export const ReadOnly: Story = {
+export const NotEditing: Story = {
   args: {},
 };
 
-const stateProfileHeaderReadOnly: DeepPartial<StateSchema> = {
+const stateEditableProfileHeaderNotEditing: DeepPartial<StateSchema> = {
   profile: {
     data: {
       id: '1',
@@ -81,7 +87,9 @@ const stateProfileHeaderReadOnly: DeepPartial<StateSchema> = {
   },
 };
 
-ReadOnly.decorators = [StoreDecorator(stateProfileHeaderReadOnly)];
+NotEditing.decorators = [
+  StoreDecorator(stateEditableProfileHeaderNotEditing),
+];
 
 // Not editable profile page header
 
@@ -89,7 +97,7 @@ export const NotEditable: Story = {
   args: {},
 };
 
-const stateProfileHeaderNotEditable: DeepPartial<StateSchema> = {
+const stateEditableProfileHeaderNotEditable: DeepPartial<StateSchema> = {
   profile: {
     data: {
       id: '1',
@@ -104,6 +112,8 @@ const stateProfileHeaderNotEditable: DeepPartial<StateSchema> = {
   },
 };
 
-NotEditable.decorators = [StoreDecorator(stateProfileHeaderNotEditable)];
+NotEditable.decorators = [
+  StoreDecorator(stateEditableProfileHeaderNotEditable),
+];
 
 export default meta;
