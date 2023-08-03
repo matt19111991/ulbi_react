@@ -19,7 +19,7 @@ import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Icon } from 'shared/ui/Icon/Icon';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { HStack, VStack } from 'shared/ui/Stack';
-import { Text, TextAlign, TextSize } from 'shared/ui/Text/Text';
+import { Text, TextSize, TextTheme } from 'shared/ui/Text/Text';
 
 import {
   getArticleDetailsData,
@@ -99,7 +99,12 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
       </>
     );
   } else if (error) {
-    content = <Text align={TextAlign.CENTER} title={t('Произошла ошибка при загрузке статьи')} />;
+    content = (
+      <Text
+        theme={TextTheme.ERROR}
+        title={t('Произошла ошибка при загрузке статьи')}
+      />
+    );
   } else {
     content = (
       <>

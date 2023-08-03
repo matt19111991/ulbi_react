@@ -100,6 +100,7 @@ const stateArticleDetails: DeepPartial<StateSchema> = {
   },
   articleDetailsPage: {
     comments: {
+      areLoading: false,
       entities: {
         1: {
           id: '1',
@@ -170,7 +171,9 @@ type Story = StoryObj<typeof meta>;
 // Primary article details page
 
 export const Primary: Story = {
-  args: {},
+  args: {
+    storybookId: '1',
+  },
 };
 
 Primary.decorators = [StoreDecorator(stateArticleDetails), SuspenseDecorator];
@@ -178,7 +181,9 @@ Primary.decorators = [StoreDecorator(stateArticleDetails), SuspenseDecorator];
 // Dark article details page
 
 export const Dark: Story = {
-  args: {},
+  args: {
+    storybookId: '1',
+  },
 };
 
 Dark.decorators = [
@@ -190,7 +195,9 @@ Dark.decorators = [
 // Orange article details page
 
 export const Orange: Story = {
-  args: {},
+  args: {
+    storybookId: '1',
+  },
 };
 
 Orange.decorators = [
@@ -202,7 +209,9 @@ Orange.decorators = [
 // Loading article details page
 
 export const Loading: Story = {
-  args: {},
+  args: {
+    storybookId: '1',
+  },
 };
 
 const stateArticleLoading: DeepPartial<StateSchema> = {
@@ -228,15 +237,36 @@ Loading.decorators = [StoreDecorator(stateArticleLoading), SuspenseDecorator];
 // Error article details page
 
 export const Error: Story = {
-  args: {},
+  args: {
+    storybookId: '1',
+  },
 };
 
 const stateArticleError: DeepPartial<StateSchema> = {
   articleDetails: {
     error: 'Error',
   },
+  articleDetailsPage: {
+    comments: {
+      areLoading: false,
+      entities: {},
+      ids: [],
+    },
+  },
 };
 
 Error.decorators = [StoreDecorator(stateArticleError), SuspenseDecorator];
+
+// Not found article details page
+
+export const NotFound: Story = {
+  args: {},
+};
+
+const stateArticleNotFound: DeepPartial<StateSchema> = {
+  articleDetails: {},
+};
+
+NotFound.decorators = [StoreDecorator(stateArticleNotFound), SuspenseDecorator];
 
 export default meta;

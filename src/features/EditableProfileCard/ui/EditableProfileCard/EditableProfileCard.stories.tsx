@@ -22,7 +22,7 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Primary EditableProfileCard
+// Primary editable profile card
 
 export const Primary: Story = {
   args: {},
@@ -30,20 +30,26 @@ export const Primary: Story = {
 
 Primary.decorators = [StoreDecorator(stateEditableProfileCard)];
 
-// Dark EditableProfileCard
+// Dark editable profile card
 
 export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [StoreDecorator(stateEditableProfileCard), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+  StoreDecorator(stateEditableProfileCard),
+  ThemeDecorator(Theme.DARK),
+];
 
-// Orange EditableProfileCard
+// Orange editable profile card
 
 export const Orange: Story = {
   args: {},
 };
 
-Orange.decorators = [StoreDecorator(stateEditableProfileCard), ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  StoreDecorator(stateEditableProfileCard),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 export default meta;

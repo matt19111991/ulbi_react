@@ -110,7 +110,7 @@ export const PrimaryPlates: Story = {
     articles: generateArticles(12),
     isLoading: false,
     view: ArticleView.PLATE,
-    virtualized: false,
+    virtualized: true,
   },
 };
 
@@ -121,7 +121,7 @@ export const DarkPlates: Story = {
     articles: generateArticles(12),
     isLoading: false,
     view: ArticleView.PLATE,
-    virtualized: false,
+    virtualized: true,
   },
 };
 
@@ -134,11 +134,22 @@ export const OrangePlates: Story = {
     articles: generateArticles(12),
     isLoading: false,
     view: ArticleView.PLATE,
-    virtualized: false,
+    virtualized: true,
   },
 };
 
 OrangePlates.decorators = [ThemeDecorator(Theme.ORANGE)];
+
+// Horizontally scrollable articles
+
+export const HorizontallyScrollable: Story = {
+  args: {
+    articles: generateArticles(12),
+    isLoading: false,
+    view: ArticleView.PLATE,
+    virtualized: false,
+  },
+};
 
 // Loading article list
 
@@ -147,6 +158,7 @@ export const LoadingList: Story = {
     articles: [],
     isLoading: true,
     view: ArticleView.LIST,
+    virtualized: true,
   },
 };
 
@@ -157,7 +169,7 @@ export const LoadingPlates: Story = {
     articles: [],
     isLoading: true,
     view: ArticleView.PLATE,
-    virtualized: false,
+    virtualized: true,
   },
 };
 

@@ -107,6 +107,7 @@ export const ProfileCard = memo(({
       )}
 
       <Input
+        className={classes.fullWidth}
         onChange={onChangeFirstName}
         placeholder={t('Ваше имя')}
         readOnly={readOnly}
@@ -114,6 +115,7 @@ export const ProfileCard = memo(({
       />
 
       <Input
+        className={classes.fullWidth}
         onChange={onChangeLastName}
         placeholder={t('Ваша фамилия')}
         readOnly={readOnly}
@@ -121,6 +123,7 @@ export const ProfileCard = memo(({
       />
 
       <Input
+        className={classes.fullWidth}
         onChange={onChangeAge}
         placeholder={t('Ваш возраст')}
         readOnly={readOnly}
@@ -128,6 +131,7 @@ export const ProfileCard = memo(({
       />
 
       <Input
+        className={classes.fullWidth}
         onChange={onChangeCity}
         placeholder={t('Выберите город')}
         readOnly={readOnly}
@@ -135,6 +139,7 @@ export const ProfileCard = memo(({
       />
 
       <Input
+        className={classes.fullWidth}
         onChange={onChangeUserName}
         placeholder={t('Введите имя пользователя')}
         readOnly={readOnly}
@@ -142,6 +147,7 @@ export const ProfileCard = memo(({
       />
 
       <Input
+        className={classes.fullWidth}
         fullWidth
         onChange={onChangeAvatar}
         placeholder={t('Введите ссылку на аватар')}
@@ -150,6 +156,7 @@ export const ProfileCard = memo(({
       />
 
       <CurrencySelect
+        className={classes.fullWidth}
         direction='top-left'
         onChange={onChangeCurrency}
         readOnly={readOnly}
@@ -157,6 +164,7 @@ export const ProfileCard = memo(({
       />
 
       <CountrySelect
+        className={classes.fullWidth}
         direction='top-left'
         onChange={onChangeCountry}
         readOnly={readOnly}

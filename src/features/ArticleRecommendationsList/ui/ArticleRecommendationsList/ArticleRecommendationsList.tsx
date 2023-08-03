@@ -5,33 +5,41 @@ import { ArticleList } from 'entities/Article';
 
 import { classNames } from 'shared/lib/classNames/classNames';
 
-import { VStack } from 'shared/ui/Stack';
+import { HStack, VStack } from 'shared/ui/Stack';
 import { Text, TextSize, TextTheme } from 'shared/ui/Text/Text';
 
 import { useGetArticleRecommendationsListQuery } from '../../api/articleRecommedationsApi';
 
 interface ArticleRecommendationsListProps {
   className?: string;
+  storybookError?: string;
 }
 
 export const ArticleRecommendationsList = memo(({
   className,
+  storybookError,
 }: ArticleRecommendationsListProps) => {
   const { t } = useTranslation('article-details');
 
-  const { data: articles = [], error, isLoading } = useGetArticleRecommendationsListQuery(4);
+  const {
+    data: articles = [],
+    error: queryError,
+    isLoading,
+  } = useGetArticleRecommendationsListQuery(4);
+
+  const error = __PROJECT__ === 'storybook' ? storybookError : queryError;
 
   if (error) {
     return (
-      <VStack
+      <HStack
         className={classNames('', {}, [className])}
-        gap='8'
+        max
       >
         <Text
           theme={TextTheme.ERROR}
           title={t('Ошибка при загрузке рекоммендаций')}
         />
-      </VStack>
+      </HStack>
     );
   }
 
