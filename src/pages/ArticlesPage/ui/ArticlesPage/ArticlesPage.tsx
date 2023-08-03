@@ -1,5 +1,6 @@
 import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { classNames } from 'shared/lib/classNames/classNames';
@@ -10,6 +11,8 @@ import {
   ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
+
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
 
 import { Page } from 'widgets/Page';
@@ -19,6 +22,8 @@ import { getArticlesPageError } from '../../model/selectors/articlesPageSelector
 import {
   fetchNextArticlesPage,
 } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
+
+import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
 
 import { articlesPageReducer } from '../../model/slice/articlesPageSlice';
 
@@ -37,6 +42,7 @@ const reducers: ReducersList = {
 
 const ArticlesPage = ({ className }: ArticlesPageProps) => {
   const dispatch = useAppDispatch();
+  const [searchParams] = useSearchParams();
   const { t } = useTranslation();
 
   const error = useSelector(getArticlesPageError);
@@ -46,6 +52,10 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
       dispatch(fetchNextArticlesPage());
     }
   }, [dispatch]);
+
+  useInitialEffect(() => {
+    dispatch(initArticlesPage(searchParams));
+  });
 
   if (error) {
     return (
