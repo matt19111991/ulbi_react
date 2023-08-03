@@ -3,5 +3,4 @@
 
 Исправить ArticleDetailsComments stories
 Исправить ArticleRecommendationsList stories
-Исправить ArticleInfiniteList stories
 Исправить EditableProfileCard stories

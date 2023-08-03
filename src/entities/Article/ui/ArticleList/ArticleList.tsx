@@ -60,7 +60,9 @@ export const ArticleList = memo(({
   const [articleItems, setArticleItems] = useState<ArticleBlock[]>(articles);
   const [skeletonsAmount, setSkeletonsAmount] = useState<number>(0);
 
-  const pageNode = document.getElementById(PAGE_ID) as Element;
+  const pageNodeId = __PROJECT__ === 'storybook' ? 'storybook-root' : PAGE_ID;
+
+  const pageNode = document.getElementById(pageNodeId) as Element;
 
   useEffect(() => {
     setArticleItems(articles);

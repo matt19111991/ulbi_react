@@ -14,10 +14,7 @@ interface ArticleInfiniteListProps {
   className?: string;
 }
 
-export const ArticleInfiniteList = memo(({
-  className,
-}: ArticleInfiniteListProps) => {
-
+export const ArticleInfiniteList = memo(({ className }: ArticleInfiniteListProps) => {
   const articles = useSelector(getArticles.selectAll);
   const isLoading = useSelector(getArticlesPageAreLoading);
   const view = useSelector(getArticlesPageView);
