@@ -53,9 +53,13 @@ const generateArticles = (amount: number): Article[] => new Array(amount)
 
 const recommendationsApi = rtkApi.injectEndpoints({
   endpoints: (build) => ({
-/*  build.query    - для GET запросов
+/*
+    build.query    - для GET запросов
     build.mutation - для POST, PUT, DELETE, ... запросов
-*/  getArticleRecommendationsList: build.query({ // 'getArticleRecommendationsList' - название эндпоинта
+
+         название эндпоинта                     ReturnType  args
+                v                                   v        v
+*/  getArticleRecommendationsList: build.query<Article[], number>({
       queryFn: (limit, api, extraOptions, baseQuery) => {
         if (__PROJECT__ === 'storybook') {
           return { data: generateArticles(4) };
