@@ -13,21 +13,25 @@ import { useGetArticleRecommendationsListQuery } from '../../api/articleRecommed
 interface ArticleRecommendationsListProps {
   className?: string;
   storybookError?: string;
+  storybookLoading?: boolean;
 }
 
 export const ArticleRecommendationsList = memo(({
   className,
   storybookError,
+  storybookLoading,
 }: ArticleRecommendationsListProps) => {
   const { t } = useTranslation('article-details');
 
   const {
-    data: articles = [],
+    data = [],
     error: queryError,
-    isLoading,
+    isLoading: queryLoading,
   } = useGetArticleRecommendationsListQuery(4);
 
+  const articles = __PROJECT__ === 'storybook' && (storybookLoading || storybookError) ? [] : data;
   const error = __PROJECT__ === 'storybook' ? storybookError : queryError;
+  const isLoading = __PROJECT__ === 'storybook' ? storybookLoading : queryLoading;
 
   if (error) {
     return (

@@ -27,14 +27,21 @@ import classes from './ArticleDetailsPage.module.scss';
 
 interface ArticleDetailsPageProps {
   className?: string;
+  storybookError?: string;
   storybookId?: string;
+  storybookLoading?: boolean;
 }
 
 const reducers: ReducersList = {
   articleDetailsPage: articleDetailsPageReducer,
 };
 
-const ArticleDetailsPage = ({ className, storybookId }: ArticleDetailsPageProps) => {
+const ArticleDetailsPage = ({
+  className,
+  storybookError,
+  storybookId,
+  storybookLoading,
+}: ArticleDetailsPageProps) => {
   const { id } = useParams<{ id: string }>();
   const { t } = useTranslation('article-details');
 
@@ -62,7 +69,10 @@ const ArticleDetailsPage = ({ className, storybookId }: ArticleDetailsPageProps)
 
           <ArticleDetails id={articleId!} />
 
-          <ArticleRecommendationsList />
+          <ArticleRecommendationsList
+            storybookError={storybookError}
+            storybookLoading={storybookLoading}
+          />
 
           <ArticleDetailsComments id={articleId!} />
         </VStack>

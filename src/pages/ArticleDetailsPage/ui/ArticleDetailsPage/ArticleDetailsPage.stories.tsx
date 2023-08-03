@@ -211,6 +211,7 @@ Orange.decorators = [
 export const Loading: Story = {
   args: {
     storybookId: '1',
+    storybookLoading: true,
   },
 };
 
@@ -224,11 +225,6 @@ const stateArticleLoading: DeepPartial<StateSchema> = {
       entities: {},
       ids: [],
     },
-    recommendations: {
-      areLoading: true,
-      entities: {},
-      ids: [],
-    },
   },
 };
 
@@ -238,6 +234,7 @@ Loading.decorators = [StoreDecorator(stateArticleLoading), SuspenseDecorator];
 
 export const Error: Story = {
   args: {
+    storybookError: 'Error',
     storybookId: '1',
   },
 };

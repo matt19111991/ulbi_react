@@ -3,12 +3,30 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { StateSchema } from 'app/providers/StoreProvider';
 import { Theme } from 'app/providers/ThemeProvider';
 
+import { Country } from 'entities/Country';
+import { Currency } from 'entities/Currency';
+
+import Avatar from 'shared/assets/tests/storybook.jpg';
+
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { EditableProfileCard } from './EditableProfileCard';
 
-const stateEditableProfileCard: DeepPartial<StateSchema> = {};
+const stateEditableProfileCard: DeepPartial<StateSchema> = {
+  profile: {
+    form: {
+      age: 22,
+      avatar: Avatar,
+      city: 'New-York',
+      country: Country.USA,
+      currency: Currency.USD,
+      first: 'Jack',
+      lastname: 'Smith',
+      username: 'Jack',
+    },
+  },
+};
 
 const meta = {
   title: 'features/EditableProfileCard',

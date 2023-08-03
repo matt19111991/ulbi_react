@@ -24,7 +24,7 @@ const stateEditableProfileHeader: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'pages/EditableProfilePageHeader',
+  title: 'features/EditableProfilePageHeader',
   component: EditableProfilePageHeader,
   argTypes: {
     background: {
