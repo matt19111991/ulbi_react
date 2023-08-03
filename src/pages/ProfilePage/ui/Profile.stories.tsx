@@ -53,7 +53,9 @@ type Story = StoryObj<typeof meta>;
 // Primary profile page
 
 export const Primary: Story = {
-  args: {},
+  args: {
+    storybookUserId: '1',
+  },
 };
 
 Primary.decorators = [StoreDecorator(stateProfile)];
@@ -61,7 +63,9 @@ Primary.decorators = [StoreDecorator(stateProfile)];
 // Dark profile page
 
 export const Dark: Story = {
-  args: {},
+  args: {
+    storybookUserId: '1',
+  },
 };
 
 Dark.decorators = [StoreDecorator(stateProfile), ThemeDecorator(Theme.DARK)];
@@ -69,9 +73,19 @@ Dark.decorators = [StoreDecorator(stateProfile), ThemeDecorator(Theme.DARK)];
 // Orange profile page
 
 export const Orange: Story = {
-  args: {},
+  args: {
+    storybookUserId: '1',
+  },
 };
 
 Orange.decorators = [StoreDecorator(stateProfile), ThemeDecorator(Theme.ORANGE)];
+
+// Error profile page
+
+export const Error: Story = {
+  args: {},
+};
+
+Error.decorators = [StoreDecorator(stateProfile)];
 
 export default meta;

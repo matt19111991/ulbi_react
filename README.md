@@ -5,4 +5,3 @@
 Исправить ArticleRecommendationsList stories
 Исправить ArticleInfiniteList stories
 Исправить EditableProfileCard stories
-Исправить ProfilePage stories

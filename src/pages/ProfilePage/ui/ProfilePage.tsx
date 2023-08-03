@@ -13,13 +13,16 @@ import { Page } from 'widgets/Page';
 
 interface ProfilePageProps {
   className?: string;
+  storybookUserId?: string;
 }
 
-const ProfilePage = ({ className }: ProfilePageProps) => {
+const ProfilePage = ({ className, storybookUserId }: ProfilePageProps) => {
   const { id } = useParams<{ id: string; }>();
   const { t } = useTranslation('profile');
 
-  if (!id) {
+  const userId = __PROJECT__ === 'storybook' ? storybookUserId : id;
+
+  if (!userId) {
     return (
       <Page className={classNames('', {}, [className])}>
         <VStack gap='16' max>
