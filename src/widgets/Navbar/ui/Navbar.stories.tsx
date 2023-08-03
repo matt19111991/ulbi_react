@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { StateSchema } from 'app/providers/StoreProvider';
 import { Theme } from 'app/providers/ThemeProvider';
 
+import Avatar from 'shared/assets/tests/storybook.jpg';
+
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -55,7 +57,9 @@ const stateAuth: DeepPartial<StateSchema> = {
 };
 
 export const Authorized: Story = {
-  args: {},
+  args: {
+    storybookAvatar: Avatar,
+  },
 };
 
 Authorized.decorators = [StoreDecorator(stateAuth)];

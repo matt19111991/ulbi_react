@@ -22,9 +22,10 @@ import classes from './Navbar.module.scss';
 
 interface NavbarProps {
   className?: string;
+  storybookAvatar?: string;
 }
 
-export const Navbar = memo(({ className }: NavbarProps) => {
+export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
@@ -43,6 +44,8 @@ export const Navbar = memo(({ className }: NavbarProps) => {
   const onLogout = useCallback((): void => {
     dispatch(userActions.logout());
   }, [dispatch]);
+
+  const avatarSrc = __PROJECT__ === 'storybook' ? storybookAvatar : authData?.avatar;
 
   if (authData) {
     return (
@@ -73,7 +76,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
             },
           ]}
           optionSize='S'
-          trigger={<Avatar size={30} src={authData.avatar} />}
+          trigger={<Avatar size={30} src={avatarSrc} />}
         />
       </header>
     );
