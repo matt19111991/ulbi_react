@@ -167,7 +167,9 @@ module.exports = {
   settings: { // без 'settings': ошибка 'Unable to resolve path to module'
     'import/resolver': {
       node: {
-        extensions: ['.ts', '.tsx'],
+/*      если не указать '.js{x}' расширения (['.ts', '.tsx']), получим ошибку:
+        'ESLint: Unable to resolve path to module 'react-dom/client'.(import/no-unresolved)'
+*/      extensions: ['.js', '.jsx', '.ts', '.tsx'],
         moduleDirectory: ['src', 'node_modules'],
       },
     },

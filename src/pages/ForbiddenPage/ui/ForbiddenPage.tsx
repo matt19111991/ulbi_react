@@ -11,7 +11,7 @@ interface ForbiddenPageProps {
   className?: string;
 }
 
-const ForbiddenPage = ({ className }: ForbiddenPageProps) => {
+export const ForbiddenPage = memo(({ className }: ForbiddenPageProps) => {
   const { t } = useTranslation();
 
   return (
@@ -23,6 +23,6 @@ const ForbiddenPage = ({ className }: ForbiddenPageProps) => {
       {t('У вас нет доступа к этой странице')}
     </Page>
   );
-};
+});
 
-export default memo(ForbiddenPage);
+ForbiddenPage.displayName = 'ForbiddenPage';

@@ -6,7 +6,7 @@ import { Theme } from 'app/providers/ThemeProvider';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
-import ForbiddenPage from './ForbiddenPage';
+import { ForbiddenPage } from './ForbiddenPage';
 
 const stateForbiddenPage: DeepPartial<StateSchema> = {};
 

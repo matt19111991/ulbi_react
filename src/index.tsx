@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-unresolved
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
