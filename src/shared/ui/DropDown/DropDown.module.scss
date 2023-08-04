@@ -27,7 +27,20 @@
   cursor: pointer;
   display: flex;
   outline: none;
+  white-space: nowrap;
   width: 100%;
+}
+
+.justifyLeft {
+  justify-content: flex-start;
+}
+
+.justifyCenter {
+  justify-content: center;
+}
+
+.justifyRight {
+  justify-content: flex-end;
 }
 
 .menu {

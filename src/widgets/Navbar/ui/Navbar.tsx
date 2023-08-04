@@ -1,8 +1,19 @@
-import { memo, useCallback, useState } from 'react';
+import {
+  memo,
+  useCallback,
+  useMemo,
+  useState,
+} from 'react';
+
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { getUserAuthData, userActions } from 'entities/User';
+import {
+  getUserAuthData,
+  isUserAdmin,
+  isUserManager,
+  userActions,
+} from 'entities/User';
 
 import { LoginModal } from 'features/AuthByUsername';
 
@@ -30,6 +41,8 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
   const { t } = useTranslation();
 
   const authData = useSelector(getUserAuthData);
+  const isAdmin = useSelector(isUserAdmin);
+  const isManager = useSelector(isUserManager);
 
   const [isAuthModal, setIsAuthModal] = useState(false);
 
@@ -44,6 +57,28 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
   const onLogout = useCallback((): void => {
     dispatch(userActions.logout());
   }, [dispatch]);
+
+  const menuItems = useMemo(() => {
+    const items = [
+      {
+        content: t('Профиль'),
+        href: `${RoutePath.profile}${authData?.id}`,
+      },
+      {
+        content: t('Выйти'),
+        onClick: onLogout,
+      },
+    ];
+
+    if (isAdmin || isManager) {
+      items.unshift({
+        content: t('Панель администратора'),
+        href: RoutePath.admin_panel,
+      });
+    }
+
+    return items;
+  }, [authData?.id, isAdmin, isManager, onLogout, t]);
 
   const avatarSrc = __PROJECT__ === 'storybook' ? storybookAvatar : authData?.avatar;
 
@@ -65,16 +100,8 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
         <DropDown
           className={classes.dropdown}
           direction='bottom-right'
-          items={[
-            {
-              content: t('Профиль'),
-              href: `${RoutePath.profile}${authData.id}`,
-            },
-            {
-              content: t('Выйти'),
-              onClick: onLogout,
-            },
-          ]}
+          items={menuItems}
+          justify='right'
           optionSize='S'
           trigger={<Avatar size={30} src={avatarSrc} />}
         />

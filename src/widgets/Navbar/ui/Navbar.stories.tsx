@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { StateSchema } from 'app/providers/StoreProvider';
 import { Theme } from 'app/providers/ThemeProvider';
 
+import { UserRole } from 'entities/User';
+
 import Avatar from 'shared/assets/tests/storybook.jpg';
 
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
@@ -48,20 +50,64 @@ export const Orange: Story = {
 
 Orange.decorators = [StoreDecorator(stateNavbar), ThemeDecorator(Theme.ORANGE)];
 
-// Auth navbar
+// Authorized user navbar
 
-const stateAuth: DeepPartial<StateSchema> = {
+const stateAuthUser: DeepPartial<StateSchema> = {
   user: {
-    authData: {},
+    authData: {
+      id: '1',
+      roles: [UserRole.USER],
+      username: 'Jack',
+    },
   },
 };
 
-export const Authorized: Story = {
+export const AuthorizedUser: Story = {
   args: {
     storybookAvatar: Avatar,
   },
 };
 
-Authorized.decorators = [StoreDecorator(stateAuth)];
+AuthorizedUser.decorators = [StoreDecorator(stateAuthUser)];
+
+// Authorized manager navbar
+
+const stateAuthManager: DeepPartial<StateSchema> = {
+  user: {
+    authData: {
+      id: '1',
+      roles: [UserRole.MANAGER],
+      username: 'Mary',
+    },
+  },
+};
+
+export const AuthorizedManager: Story = {
+  args: {
+    storybookAvatar: Avatar,
+  },
+};
+
+AuthorizedManager.decorators = [StoreDecorator(stateAuthManager)];
+
+// Authorized admin navbar
+
+const stateAuthAdmin: DeepPartial<StateSchema> = {
+  user: {
+    authData: {
+      id: '1',
+      roles: [UserRole.ADMIN],
+      username: 'Tom',
+    },
+  },
+};
+
+export const AuthorizedAdmin: Story = {
+  args: {
+    storybookAvatar: Avatar,
+  },
+};
+
+AuthorizedAdmin.decorators = [StoreDecorator(stateAuthAdmin)];
 
 export default meta;

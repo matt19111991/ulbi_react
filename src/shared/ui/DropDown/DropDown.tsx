@@ -16,6 +16,14 @@ const mapDirectionClass: Record<DropdownDirection, string> = {
   'top-right': classes.optionsTopRight,
 };
 
+type DropdownJustify = 'left' | 'center' | 'right';
+
+const mapJustifyClass: Record<DropdownJustify, string> = {
+  left: classes.justifyLeft,
+  center: classes.justifyCenter,
+  right: classes.justifyRight,
+};
+
 type DropdownOptionSize = 'S' | 'M';
 
 const mapOptionSizeClass: Record<DropdownOptionSize, string> = {
@@ -34,6 +42,7 @@ interface DropDownProps {
   className?: string;
   direction?: DropdownDirection;
   items: DropDownItem[];
+  justify?: DropdownJustify;
   optionSize?: DropdownOptionSize;
   trigger: ReactNode;
 }
@@ -42,6 +51,7 @@ export const DropDown = memo(({
   className,
   direction = 'bottom-left',
   items,
+  justify = 'left',
   optionSize = 'S',
   trigger,
 }: DropDownProps) => (
@@ -65,7 +75,7 @@ export const DropDown = memo(({
               classNames(
                 classes.item,
                 { [classes.active]: active },
-                [mapOptionSizeClass[optionSize]],
+                [mapJustifyClass[justify], mapOptionSizeClass[optionSize]],
               )
             }
             disabled={item.disabled}
