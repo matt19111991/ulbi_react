@@ -75,7 +75,7 @@ export default {
         openReport: false, // по завершению тестов не открывать новую вкладку с отчетом
 
         publicPath: '<rootDir>/reports/unit',
-      }
+      },
     ],
   ],
 

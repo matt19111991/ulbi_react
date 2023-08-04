@@ -108,6 +108,7 @@ export const ProfileCard = memo(({
 
       <Input
         className={classes.fullWidth}
+        data-testid='ProfileCard.firstName'
         onChange={onChangeFirstName}
         placeholder={t('Ваше имя')}
         readOnly={readOnly}
@@ -116,6 +117,7 @@ export const ProfileCard = memo(({
 
       <Input
         className={classes.fullWidth}
+        data-testid='ProfileCard.lastName'
         onChange={onChangeLastName}
         placeholder={t('Ваша фамилия')}
         readOnly={readOnly}
@@ -124,6 +126,7 @@ export const ProfileCard = memo(({
 
       <Input
         className={classes.fullWidth}
+        data-testid='ProfileCard.age'
         onChange={onChangeAge}
         placeholder={t('Ваш возраст')}
         readOnly={readOnly}
@@ -132,6 +135,7 @@ export const ProfileCard = memo(({
 
       <Input
         className={classes.fullWidth}
+        data-testid='ProfileCard.city'
         onChange={onChangeCity}
         placeholder={t('Выберите город')}
         readOnly={readOnly}
@@ -140,6 +144,7 @@ export const ProfileCard = memo(({
 
       <Input
         className={classes.fullWidth}
+        data-testid='ProfileCard.username'
         onChange={onChangeUserName}
         placeholder={t('Введите имя пользователя')}
         readOnly={readOnly}
@@ -148,6 +153,7 @@ export const ProfileCard = memo(({
 
       <Input
         className={classes.fullWidth}
+        data-testid='ProfileCard.avatar'
         fullWidth
         onChange={onChangeAvatar}
         placeholder={t('Введите ссылку на аватар')}
@@ -157,6 +163,7 @@ export const ProfileCard = memo(({
 
       <CurrencySelect
         className={classes.fullWidth}
+        data-testid='ProfileCard.currency'
         direction='top-left'
         onChange={onChangeCurrency}
         readOnly={readOnly}
@@ -165,6 +172,7 @@ export const ProfileCard = memo(({
 
       <CountrySelect
         className={classes.fullWidth}
+        data-testid='ProfileCard.country'
         direction='top-left'
         onChange={onChangeCountry}
         readOnly={readOnly}
