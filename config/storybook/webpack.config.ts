@@ -50,7 +50,7 @@ export default ({ config }: { config: webpack.Configuration }) => {
   // плагины
 
   // storybook используем только в режиме разработки, API не используем
-  const plugins = [buildDefinePlugin('', true, 'storybook')];
+  const plugins = [buildDefinePlugin('https://testapi.com', true, 'storybook')];
 
   config.plugins!.push(...plugins);
 
