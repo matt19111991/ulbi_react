@@ -11,11 +11,11 @@ export const fetchCommentsByArticleId = createAsyncThunk<
 >(
   'articleDetails/fetchCommentsByArticleId',
   async (articleId, thunkApi) => {
-    if (!articleId) {
-      return thunkApi.rejectWithValue('error');
-    }
-
     try {
+      if (!articleId) {
+        return thunkApi.rejectWithValue('error');
+      }
+
       const response = await thunkApi.extra.api.get<Comment[]>('/comments', {
         params: { // query параметры
 //        подробнее: https://www.npmjs.com/package/json-server#relationships

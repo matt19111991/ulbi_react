@@ -1,4 +1,5 @@
-import { render } from 'react-dom';
+// eslint-disable-next-line import/no-unresolved
+import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
 import { ErrorBoundary } from 'app/providers/ErrorBoundary';
@@ -19,7 +20,20 @@ import './app/styles/index.scss';
    'async thunks'
 */
 
-render(
+const container = document.getElementById('root');
+
+if (!container) {
+  throw new Error('Контейнер root не найден. Не удалось вмонтировать React приложение');
+}
+
+/*
+  Ошибка при деструктуризации: 'const { render } = createRoot(container);'
+  'Uncaught TypeError: Cannot read properties of undefined (reading '_internalRoot')'
+*/
+
+const root = createRoot(container);
+
+root.render(
   <BrowserRouter>
     <StoreProvider>
       <ErrorBoundary>
@@ -29,5 +43,4 @@ render(
       </ErrorBoundary>
     </StoreProvider>
   </BrowserRouter>,
-  document.getElementById('root'),
 );

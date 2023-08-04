@@ -9,7 +9,6 @@ import Image1 from 'shared/assets/tests/storybook.jpg';
 import Image2 from 'shared/assets/tests/storybook2.jpg';
 
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
-import { SuspenseDecorator } from 'shared/config/storybook/SuspenseDecorator/SuspenseDecorator';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import ArticleDetailsPage from './ArticleDetailsPage';
@@ -176,7 +175,7 @@ export const Primary: Story = {
   },
 };
 
-Primary.decorators = [StoreDecorator(stateArticleDetails), SuspenseDecorator];
+Primary.decorators = [StoreDecorator(stateArticleDetails)];
 
 // Dark article details page
 
@@ -186,11 +185,7 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [
-  StoreDecorator(stateArticleDetails),
-  SuspenseDecorator,
-  ThemeDecorator(Theme.DARK),
-];
+Dark.decorators = [StoreDecorator(stateArticleDetails), ThemeDecorator(Theme.DARK)];
 
 // Orange article details page
 
@@ -200,11 +195,7 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [
-  StoreDecorator(stateArticleDetails),
-  SuspenseDecorator,
-  ThemeDecorator(Theme.ORANGE),
-];
+Orange.decorators = [StoreDecorator(stateArticleDetails), ThemeDecorator(Theme.ORANGE)];
 
 // Loading article details page
 
@@ -228,7 +219,7 @@ const stateArticleLoading: DeepPartial<StateSchema> = {
   },
 };
 
-Loading.decorators = [StoreDecorator(stateArticleLoading), SuspenseDecorator];
+Loading.decorators = [StoreDecorator(stateArticleLoading)];
 
 // Error article details page
 
@@ -252,7 +243,7 @@ const stateArticleError: DeepPartial<StateSchema> = {
   },
 };
 
-Error.decorators = [StoreDecorator(stateArticleError), SuspenseDecorator];
+Error.decorators = [StoreDecorator(stateArticleError)];
 
 // Not found article details page
 
@@ -264,6 +255,6 @@ const stateArticleNotFound: DeepPartial<StateSchema> = {
   articleDetails: {},
 };
 
-NotFound.decorators = [StoreDecorator(stateArticleNotFound), SuspenseDecorator];
+NotFound.decorators = [StoreDecorator(stateArticleNotFound)];
 
 export default meta;

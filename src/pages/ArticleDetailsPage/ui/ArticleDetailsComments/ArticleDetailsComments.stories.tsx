@@ -7,7 +7,6 @@ import Image1 from 'shared/assets/tests/storybook.jpg';
 import Image2 from 'shared/assets/tests/storybook2.jpg';
 
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
-import { SuspenseDecorator } from 'shared/config/storybook/SuspenseDecorator/SuspenseDecorator';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { ArticleDetailsComments } from './ArticleDetailsComments';
@@ -59,10 +58,7 @@ export const Primary: Story = {
   args: {},
 };
 
-Primary.decorators = [
-  StoreDecorator(stateArticleDetailsComments),
-  SuspenseDecorator,
-];
+Primary.decorators = [StoreDecorator(stateArticleDetailsComments)];
 
 // Dark article details comments
 
@@ -72,7 +68,6 @@ export const Dark: Story = {
 
 Dark.decorators = [
   StoreDecorator(stateArticleDetailsComments),
-  SuspenseDecorator,
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -84,7 +79,6 @@ export const Orange: Story = {
 
 Orange.decorators = [
   StoreDecorator(stateArticleDetailsComments),
-  SuspenseDecorator,
   ThemeDecorator(Theme.ORANGE),
 ];
 

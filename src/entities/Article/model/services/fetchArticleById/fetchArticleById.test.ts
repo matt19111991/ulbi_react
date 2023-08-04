@@ -71,4 +71,15 @@ describe('fetchArticleById', () => {
     expect(result.meta.requestStatus).toBe('rejected');
     expect(result.payload).toEqual('error');
   });
+
+  test('no article id error', async () => {
+    const thunk = new TestAsyncThunk(fetchArticleById);
+
+    const result = await thunk.callThunk(undefined);
+
+    expect(thunk.api.get).not.toHaveBeenCalled();
+
+    expect(result.meta.requestStatus).toBe('rejected');
+    expect(result.payload).toEqual('error');
+  });
 });
