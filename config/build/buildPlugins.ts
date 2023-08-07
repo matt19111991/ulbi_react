@@ -10,6 +10,9 @@ import CircularDependencyPlugin from 'circular-dependency-plugin'; // анало
 // плагин, чтобы в папку /build/locales попадали файлы переводов из /public/locales
 import CopyPlugin from 'copy-webpack-plugin';
 
+// плагин, для проверки типов в отдельном процессе в runtime при использовании 'babel-loader'
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+
 // плагин, чтобы в папку /build попадали помимо JS файлов еще и HTML файлы
 import HTMLWebpackPlugin from 'html-webpack-plugin';
 
@@ -60,6 +63,16 @@ export function buildPlugins({
     new CircularDependencyPlugin({
       exclude: /node_modules/,
       failOnError: true,
+    }),
+
+    new ForkTsCheckerWebpackPlugin({
+      typescript: {
+        diagnosticOptions: {
+          semantic: true,
+          syntactic: true,
+        },
+        mode: 'write-references',
+      },
     }),
   ];
 

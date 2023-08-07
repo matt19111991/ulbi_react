@@ -1,7 +1,9 @@
 import webpack from 'webpack';
 
-export const buildBabelLoader = (/* isDev: boolean */): webpack.RuleSetRule => ({
-  test: /\.(js|jsx|ts|tsx)/,
+import babelRemovePropsPlugin from '../babel/babelRemovePropsPlugin';
+
+export const buildBabelLoader = (isTsx?: boolean/* ,isDev: boolean, */): webpack.RuleSetRule => ({
+  test: isTsx ? /\.(jsx|tsx)$/ : /\.(js|ts)$/,
   exclude: /node_modules/,
   use: {
     loader: 'babel-loader',
@@ -24,13 +26,39 @@ export const buildBabelLoader = (/* isDev: boolean */): webpack.RuleSetRule => (
 */          keyAsDefaultValue: true,
           },
         ],
+
+        [
+          '@babel/plugin-transform-typescript',
+          { isTsx }, // отвечает за парсинг .tsx
+        ],
+
+/*      смотрит код на наличие ES6 фич и если они есть, трансформирует код так,
+        чтобы эти фичи брались не из глобального скоупа, а импортировались из 'babel-runtime'
+*/      '@babel/plugin-transform-runtime',
+
+//      для '.tsx' удаляем все 'data-testid' из финальной сборки
+        isTsx && [
+          babelRemovePropsPlugin,
+          {
+            props: ['data-testid'],
+          },
+        ],
+
 /*       Если 'HotModuleReplacementPlugin' будет работать нестабильно,
          можно использовать 'react-refresh-webpack-plugin':
 */       // isDev && require.resolve('react-refresh/babel'),
-      ], // .filter(Boolean), // фильтр для 'react-refresh-webpack-plugin'
+      ].filter(Boolean), // отфильтровываем неактивные плагины
 
 //    настройки для преобразования новых стандартов в старые (поддержка старых браузеров)
-      presets: ['@babel/preset-env'],
+      presets: [
+        '@babel/preset-env',
+        '@babel/preset-typescript',
+        [
+          '@babel/preset-react', {
+            runtime: 'automatic',
+          },
+        ],
+      ],
 
 /*    для React / JSX (без 'ts-loader')
       presets: ['@babel/preset-env', '@babel/preset-react'],

@@ -1,5 +1,9 @@
 {
-  "plugins": ["i18next-extract"],
+  "plugins": [
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-transform-typescript",
+    "i18next-extract"
+  ],
   "presets": [
    "@babel/preset-env",
    "@babel/preset-typescript",
