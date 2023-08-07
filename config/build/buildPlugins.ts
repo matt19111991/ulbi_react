@@ -1,5 +1,12 @@
 import webpack from 'webpack';
 
+/* плагин позволяет избавиться от кольцевых зависимостей:
+   модуль 'A' использует модуль 'B', а модуль 'B' использует модуль 'A'
+   чтобы от этого избавиться, нужно создать модуль 'С' и вынести туда то,
+   что используется в двух других модулях
+*/
+import CircularDependencyPlugin from 'circular-dependency-plugin'; // аналог 'dependency-cruiser'
+
 // плагин, чтобы в папку /build/locales попадали файлы переводов из /public/locales
 import CopyPlugin from 'copy-webpack-plugin';
 
@@ -48,6 +55,11 @@ export function buildPlugins({
         { from: paths.favicon, to: paths.build },
         { from: paths.locales, to: paths.buildLocales },
       ],
+    }),
+
+    new CircularDependencyPlugin({
+      exclude: /node_modules/,
+      failOnError: true,
     }),
   ];
 

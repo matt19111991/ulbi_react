@@ -10,7 +10,7 @@ import { loginReducer } from 'features/AuthByUsername';
 import { profileReducer } from 'features/EditableProfileCard';
 
 import { articleDetailsPageReducer } from 'pages/ArticleDetailsPage';
-import { articlesPageReducer } from 'pages/ArticlesPage';
+import { articlesPageReducer } from 'pages/ArticlesPage/model/slice/articlesPageSlice';
 
 import { pageScrollReducer } from 'widgets/Page';
 
