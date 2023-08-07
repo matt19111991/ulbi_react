@@ -19,6 +19,8 @@ import { Text, TextTheme } from 'shared/ui/Text/Text';
 
 import { EditableProfilePageHeader } from '../EditableProfilePageHeader/EditableProfilePageHeader';
 
+import { ValidateProfileError } from '../../model/consts/consts';
+
 import { getProfileError } from '../../model/selectors/getProfileError/getProfileError';
 import { getProfileForm } from '../../model/selectors/getProfileForm/getProfileForm';
 import { getProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading';
@@ -31,8 +33,6 @@ import {
 import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData';
 
 import { profileActions, profileReducer } from '../../model/slice/profileSlice';
-
-import { ValidateProfileError } from '../../model/types/editableProfileCardSchema';
 
 interface EditableProfileCardProps {
   className?: string;

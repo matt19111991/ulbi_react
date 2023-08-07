@@ -1,6 +1,6 @@
 import { Profile } from 'entities/Profile';
 
-import { ValidateProfileError } from '../../types/editableProfileCardSchema';
+import { ValidateProfileError } from '../../consts/consts';
 
 // можно еще провалидировать через 'async thunk', который через 'getState()' достает данные профиля из 'state'
 

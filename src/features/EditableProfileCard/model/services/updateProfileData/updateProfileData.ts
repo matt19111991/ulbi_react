@@ -4,9 +4,9 @@ import { ThunkConfig } from 'app/providers/StoreProvider';
 
 import { Profile } from 'entities/Profile';
 
-import { getProfileForm } from '../../selectors/getProfileForm/getProfileForm';
+import { ValidateProfileError } from '../../consts/consts';
 
-import { ValidateProfileError } from '../../types/editableProfileCardSchema';
+import { getProfileForm } from '../../selectors/getProfileForm/getProfileForm';
 
 import { validateProfileData } from '../validateProfileData/validateProfileData';
 

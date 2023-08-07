@@ -7,7 +7,7 @@ import { SortOrder } from 'shared/types/sort';
 
 import { Select, SelectOption } from 'shared/ui/Select/Select';
 
-import { ArticleSortField } from '../../model/types/article';
+import { ArticleSortField } from '../../model/consts/articleConsts';
 
 import classes from './ArticleSortSelector.module.scss';
 

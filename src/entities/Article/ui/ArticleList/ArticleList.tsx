@@ -24,7 +24,9 @@ import { Text, TextTheme } from 'shared/ui/Text/Text';
 
 import { PAGE_ID } from 'widgets/Page';
 
-import { Article, ArticleView } from '../../model/types/article';
+import { ArticleView } from '../../model/consts/articleConsts';
+
+import { Article } from '../../model/types/article';
 
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { ArticleListItemSkeleton } from '../ArticleListItemSkeleton/ArticleListItemSkeleton';

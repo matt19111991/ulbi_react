@@ -1,6 +1,6 @@
 import { StateSchema } from 'app/providers/StoreProvider';
 
-import { UserRole } from '../../types/user';
+import { UserRole } from '../../consts/userConsts';
 
 import { getUserRoles, isUserAdmin, isUserManager } from './getUserRoleSelectors';
 

@@ -4,7 +4,9 @@ import { Theme } from 'app/providers/ThemeProvider';
 
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
-import { ArticleBlockType, ArticleCodeBlock } from '../../model/types/article';
+import { ArticleBlockType } from '../../model/consts/articleConsts';
+
+import { ArticleCodeBlock } from '../../model/types/article';
 
 import { ArticleCodeBlockComponent } from './ArticleCodeBlockComponent';
 

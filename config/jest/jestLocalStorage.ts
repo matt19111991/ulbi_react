@@ -1,4 +1,4 @@
-const localStorageMock = (function localStorage() {
+export const localStorageMock = (function localStorage() {
   let store: Record<string, string> = {};
 
   return {

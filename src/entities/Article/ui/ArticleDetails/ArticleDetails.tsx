@@ -21,6 +21,8 @@ import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { HStack, VStack } from 'shared/ui/Stack';
 import { Text, TextSize, TextTheme } from 'shared/ui/Text/Text';
 
+import { ArticleBlockType } from '../../model/consts/articleConsts';
+
 import {
   getArticleDetailsData,
   getArticleDetailsError,
@@ -31,7 +33,7 @@ import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArt
 
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
 
-import { ArticleBlock, ArticleBlockType } from '../../model/types/article';
+import { ArticleBlock } from '../../model/types/article';
 
 import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
 

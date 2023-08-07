@@ -6,7 +6,9 @@ import Image from 'shared/assets/tests/storybook.jpg';
 
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
-import { ArticleBlockType, ArticleImageBlock } from '../../model/types/article';
+import { ArticleBlockType } from '../../model/consts/articleConsts';
+
+import { ArticleImageBlock } from '../../model/types/article';
 
 import { ArticleImageBlockComponent } from './ArticleImageBlockComponent';
 
