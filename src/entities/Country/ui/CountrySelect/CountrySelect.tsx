@@ -5,7 +5,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 
 import { DropdownDirection } from 'shared/types/ui';
 
-import { ListBox } from 'shared/ui/ListBox/ListBox';
+import { ListBox } from 'shared/ui/Popups';
 
 import { Country } from '../../model/types/country';
 

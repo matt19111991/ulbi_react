@@ -5,16 +5,12 @@ import { classNames } from 'shared/lib/classNames/classNames';
 
 import { DropdownDirection } from 'shared/types/ui';
 
-import { AppLink } from '../AppLink/AppLink';
+import { AppLink } from '../../../AppLink/AppLink';
 
+import { mapDirectionClass } from '../../styles/consts';
+
+import popupClasses from '../../styles/popup.module.scss';
 import classes from './DropDown.module.scss';
-
-const mapDirectionClass: Record<DropdownDirection, string> = {
-  'bottom-left': classes.optionsBottomLeft,
-  'bottom-right': classes.optionsBottomRight,
-  'top-left': classes.optionsTopLeft,
-  'top-right': classes.optionsTopRight,
-};
 
 type DropdownJustify = 'left' | 'center' | 'right';
 
@@ -57,7 +53,7 @@ export const DropDown = memo(({
 }: DropDownProps) => (
   <Menu
     as='div'
-    className={classNames(classes.DropDown, {}, [className])}
+    className={classNames(popupClasses.popup, {}, [className])}
   >
     <Menu.Button className={classes.btn}>
       {trigger}
@@ -74,7 +70,7 @@ export const DropDown = memo(({
             className={
               classNames(
                 classes.item,
-                { [classes.active]: active },
+                { [popupClasses.active]: active },
                 [mapJustifyClass[justify], mapOptionSizeClass[optionSize]],
               )
             }

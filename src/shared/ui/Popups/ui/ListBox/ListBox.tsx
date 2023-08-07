@@ -8,17 +8,13 @@ import { genericMemo } from 'shared/lib/components/genericMemo/genericMemo';
 
 import { DropdownDirection } from 'shared/types/ui';
 
-import { Button } from '../Button/Button';
-import { HStack, VStack } from '../Stack';
+import { Button } from '../../../Button/Button';
+import { HStack, VStack } from '../../../Stack';
 
+import { mapDirectionClass } from '../../styles/consts';
+
+import popupClasses from '../../styles/popup.module.scss';
 import classes from './ListBox.module.scss';
-
-const mapDirectionClass: Record<DropdownDirection, string> = {
-  'bottom-left': classes.optionsBottomLeft,
-  'bottom-right': classes.optionsBottomRight,
-  'top-left': classes.optionsTopLeft,
-  'top-right': classes.optionsTopRight,
-};
 
 export interface ListBoxItem {
   content: ReactNode;
@@ -52,7 +48,7 @@ const ListBox =  ({
 
     <HeadlessListBox
       as='div'
-      className={classNames(classes.ListBox, {}, [className])}
+      className={classNames(popupClasses.popup, {}, [className])}
       disabled={readonly}
       onChange={onChange}
       value={value}
@@ -85,8 +81,8 @@ const ListBox =  ({
                   classNames(
                     classes.item,
                     {
-                      [classes.active]: active,
-                      [classes.disabled]: item.disabled,
+                      [popupClasses.active]: active,
+                      [popupClasses.disabled]: item.disabled,
                     },
                     [],
                   )

@@ -28,8 +28,8 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { DropDown } from 'shared/ui/DropDown/DropDown';
 import { Icon } from 'shared/ui/Icon/Icon';
+import { DropDown } from 'shared/ui/Popups';
 import { HStack } from 'shared/ui/Stack';
 
 import classes from './Navbar.module.scss';

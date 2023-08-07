@@ -1,0 +1,32 @@
+.check {
+  fill: var(--primary-color);
+  font-size: 12px;
+}
+
+.disabled {
+  opacity: .8;
+}
+
+.item {
+  padding: 10px 20px;
+}
+
+.options {
+  background-color: var(--listbox-bg);
+  border-radius: 12px;
+  box-shadow: 4px 4px 8px var(--listbox-bg);
+  position: absolute;
+  z-index: 10000;
+}
+
+.trigger {
+  background: none;
+  border: none;
+  margin: 0;
+  outline: none;
+  padding: 0;
+
+  :hover {
+    opacity: .7;
+  }
+}
