@@ -55,7 +55,7 @@ export const DropDown = memo(({
     as='div'
     className={classNames(popupClasses.popup, {}, [className])}
   >
-    <Menu.Button className={classes.btn}>
+    <Menu.Button className={popupClasses.trigger}>
       {trigger}
     </Menu.Button>
 
