@@ -18,6 +18,7 @@ import {
 import { LoginModal } from 'features/AuthByUsername';
 
 import Logo from 'shared/assets/icons/logo.svg';
+import NotificationIcon from 'shared/assets/icons/notification-20-20.svg';
 
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 
@@ -28,6 +29,8 @@ import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { DropDown } from 'shared/ui/DropDown/DropDown';
+import { Icon } from 'shared/ui/Icon/Icon';
+import { HStack } from 'shared/ui/Stack';
 
 import classes from './Navbar.module.scss';
 
@@ -97,14 +100,19 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
           {t('Создать статью')}
         </AppLink>
 
-        <DropDown
-          className={classes.dropdown}
-          direction='bottom-right'
-          items={menuItems}
-          justify='right'
-          optionSize='S'
-          trigger={<Avatar size={30} src={avatarSrc} />}
-        />
+        <HStack className={classes.actions} gap='16'>
+          <Button theme={ButtonTheme.CLEAR}>
+            <Icon inverted Svg={NotificationIcon} />
+          </Button>
+
+          <DropDown
+            direction='bottom-right'
+            items={menuItems}
+            justify='right'
+            optionSize='S'
+            trigger={<Avatar size={30} src={avatarSrc} />}
+          />
+        </HStack>
       </header>
     );
   }

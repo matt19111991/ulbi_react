@@ -48,4 +48,13 @@ export const Orange: Story = {
 
 Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
 
+// Inverted icon
+
+export const Inverted: Story = {
+  args: {
+    inverted: true,
+    Svg: IconSvg,
+  },
+};
+
 export default meta;
