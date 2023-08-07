@@ -29,7 +29,6 @@ interface ArticleDetailsPageProps {
   className?: string;
   storybookError?: string;
   storybookId?: string;
-  storybookLoading?: boolean;
 }
 
 const reducers: ReducersList = {
@@ -40,7 +39,6 @@ const ArticleDetailsPage = ({
   className,
   storybookError,
   storybookId,
-  storybookLoading,
 }: ArticleDetailsPageProps) => {
   const { id } = useParams<{ id: string }>();
   const { t } = useTranslation('article-details');
@@ -69,10 +67,7 @@ const ArticleDetailsPage = ({
 
           <ArticleDetails id={articleId!} />
 
-          <ArticleRecommendationsList
-            storybookError={storybookError}
-            storybookLoading={storybookLoading}
-          />
+          <ArticleRecommendationsList storybookError={storybookError} />
 
           <ArticleDetailsComments id={articleId!} />
         </VStack>

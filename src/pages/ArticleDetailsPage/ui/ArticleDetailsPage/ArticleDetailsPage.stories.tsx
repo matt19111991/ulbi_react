@@ -202,7 +202,6 @@ Orange.decorators = [StoreDecorator(stateArticleDetails), ThemeDecorator(Theme.O
 export const Loading: Story = {
   args: {
     storybookId: '1',
-    storybookLoading: true,
   },
 };
 
