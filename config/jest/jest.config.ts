@@ -50,8 +50,8 @@ export default {
     // для корректной работы CSS модулей в тестах ('identity-obj-proxy' mocks CSS modules)
     '\\.s?css$': 'identity-obj-proxy',
 
-    // для корректной работы SVG файлов в тестах создаем заглушку
-    '\\.svg$': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+    // для корректной работы изображений в тестах создаем заглушку
+    '\\.(jpg|svg)$': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
 
 /*  Иначе ошибка 'Cannot find module 'entities/Counter'
     from 'src/app/providers/StoreProvider/config/store.ts'

@@ -1,3 +1,3 @@
-const JestEmptyComponent = () => <div />; // достаточно <div />, т.к. SVG не тестируем
+const JestEmptyComponent = () => <div />; // достаточно <div />, т.к. изображения не тестируем
 
 export default JestEmptyComponent;

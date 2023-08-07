@@ -1,11 +1,7 @@
-import {
-  Article,
-  ArticleSortField,
-  ArticleType,
-  ArticleView,
-} from 'entities/Article';
+import { ArticleSortField, ArticleType, ArticleView } from 'entities/Article';
 
 import { ARTICLE_VIEW_LOCALSTORAGE_KEY } from 'shared/const/localstorage';
+import { generateNormalizedArticles } from 'shared/lib/generateArticles/generateArticles';
 
 import { fetchArticlesList } from '../services/fetchArticlesList/fetchArticlesList';
 
@@ -13,43 +9,7 @@ import { ArticlesPageSchema } from '../types/articlesPageSchema';
 
 import { articlesPageActions, articlesPageReducer } from './articlesPageSlice';
 
-const articles: Article[] = [
-  {
-    id: '1',
-    blocks: [],
-    createdAt: '26.02.2023',
-    img: 'https://teknotower.com/wp-content/uploads/2020/11/js.png',
-    subtitle: 'Что нового в S за 2023 год?',
-    title: 'Javascript news',
-    type: [ArticleType.IT],
-    user: {
-      id: '1',
-      username: 'Jack',
-    },
-    views: 1022,
-  },
-  {
-    id: '2',
-    blocks: [],
-    createdAt: '19.01.2023',
-    img: 'https://w7.pngwing.com/pngs/234/329/png-transparent-python-logo-thumbnail.png',
-    subtitle: 'Что нового у Python за 2023 год?',
-    title: 'Python news',
-    type: [ArticleType.IT],
-    user: {
-      id: '1',
-      username: 'Jack',
-    },
-    views: 845,
-  },
-];
-
-const normalizedEntities = {
-  1: articles.at(0),
-  2: articles.at(1),
-};
-
-const normalizedIds = ['1', '2'];
+const articles = generateNormalizedArticles(2);
 
 describe('articlesPageSlice', () => {
   beforeEach(() => {
@@ -238,15 +198,13 @@ describe('articlesPageSlice', () => {
   });
 
   test('test fetch articles list fulfilled', () => {
-    const [firstArticle, secondArticle] = articles;
-
     const state: DeepPartial<ArticlesPageSchema> = {
       areLoading: true,
       entities: {
-        [firstArticle.id]: firstArticle,
+        [articles.entities['1'].id]: articles.entities['1'],
       },
       hasMore: true,
-      ids: [firstArticle.id],
+      ids: [articles.ids.at(0)],
       limit: 1,
       page: 1,
       view: ArticleView.PLATE,
@@ -255,12 +213,12 @@ describe('articlesPageSlice', () => {
     expect(
       articlesPageReducer(
         state as ArticlesPageSchema,
-        fetchArticlesList.fulfilled([secondArticle], '', undefined),
+        fetchArticlesList.fulfilled([articles.entities['2']], '', undefined),
       ),
     ).toEqual({
       areLoading: false,
-      entities: normalizedEntities,
-      ids: normalizedIds,
+      entities: articles.entities,
+      ids: articles.ids,
       hasMore: true,
       limit: 1,
       page: 1,

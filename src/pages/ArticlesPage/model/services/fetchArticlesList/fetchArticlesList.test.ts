@@ -1,41 +1,13 @@
 import { StateSchema } from 'app/providers/StoreProvider';
 
-import { Article, ArticleSortField, ArticleType } from 'entities/Article';
+import { ArticleSortField, ArticleType } from 'entities/Article';
 
+import { generateArticles } from 'shared/lib/generateArticles/generateArticles';
 import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 
 import { fetchArticlesList } from './fetchArticlesList';
 
-const articles: Article[] = [
-  {
-    id: '1',
-    blocks: [],
-    createdAt: '26.02.2023',
-    img: 'https://teknotower.com/wp-content/uploads/2020/11/js.png',
-    subtitle: 'Что нового в S за 2023 год?',
-    title: 'Javascript news',
-    type: [ArticleType.IT],
-    user: {
-      id: '1',
-      username: 'Jack',
-    },
-    views: 1022,
-  },
-  {
-    id: '2',
-    blocks: [],
-    createdAt: '19.01.2023',
-    img: 'https://w7.pngwing.com/pngs/234/329/png-transparent-python-logo-thumbnail.png',
-    subtitle: 'Что нового у Python за 2023 год?',
-    title: 'Python news',
-    type: [ArticleType.IT],
-    user: {
-      id: '1',
-      username: 'Jack',
-    },
-    views: 845,
-  },
-];
+const articles = generateArticles(2);
 
 describe('fetchArticlesList', () => {
   describe('success', () => {

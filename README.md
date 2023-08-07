@@ -1,4 +1,4 @@
 Добавить функционал создания статьи (widget)
 Добавить функционал редактирования статьи (widget)
 
-Добавить storybook-addon-mock для ArticleRecommendationsList
+Исправить 'Статьи не найдены' при первом рендере в ArticleRecommendationsList
