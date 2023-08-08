@@ -1353,26 +1353,40 @@
       "userId": "1"
     }
   ],
-  "posts": [
+  "notifications": [
     {
       "id": "1",
-      "author": "typicode",
-      "title": "json-server 1"
+      "description": "Произошло какое-то событие",
+      "title": "Уведомление 1",
+      "userId": "1"
     },
     {
       "id": "2",
-      "author": "typicode",
-      "title": "json-server 2"
+      "description": "Произошло какое-то событие",
+      "href": "https://localhost:3000/admin",
+      "title": "Уведомление 2",
+      "userId": "1"
     },
     {
       "id": "3",
-      "author": "typicode",
-      "title": "json-server 3"
+      "description": "Произошло какое-то событие",
+      "href": "https://localhost:3000/admin",
+      "title": "Уведомление 3",
+      "userId": "1"
     },
     {
       "id": "4",
-      "author": "typicode",
-      "title": "json-server 4"
+      "description": "Произошло какое-то событие",
+      "href": "https://localhost:3000/admin",
+      "title": "Уведомление 4",
+      "userId": "1"
+    },
+    {
+      "id": "5",
+      "description": "Произошло какое-то событие",
+      "href": "https://localhost:3000/admin",
+      "title": "Уведомление 1",
+      "userId": "2"
     }
   ],
   "profile": [

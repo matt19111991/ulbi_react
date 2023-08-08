@@ -2,7 +2,7 @@ import { Article } from 'entities/Article';
 
 import { rtkApi } from 'shared/api/rtkApi';
 
-import { generateArticles } from 'shared/lib/generateArticles/generateArticles';
+import { generateArticles } from 'shared/lib/generators/articles';
 
 interface RecommendationsResponse {
   data: Article[];

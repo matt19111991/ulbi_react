@@ -1,4 +1,4 @@
-import { generateArticles, generateNormalizedArticles } from 'shared/lib/generateArticles/generateArticles';
+import { generateArticles, generateNormalizedArticles } from 'shared/lib/generators/articles';
 
 import { fetchArticleRecommendations } from '../../services/fetchArticleRecommendations/fetchArticleRecommendations';
 

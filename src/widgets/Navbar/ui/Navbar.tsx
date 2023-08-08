@@ -8,6 +8,8 @@ import {
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
+import { NotificationList } from 'entities/Notification';
+
 import {
   getUserAuthData,
   isUserAdmin,
@@ -108,9 +110,8 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
                 <Icon inverted Svg={NotificationIcon} />
               </Button>
             )}
-            /* eslint-disable-next-line i18next/no-literal-string */
           >
-            Open
+            <NotificationList className={classes.notifications} />
           </Popover>
 
           <DropDown

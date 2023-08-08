@@ -1,7 +1,7 @@
 import { ArticleSortField, ArticleType, ArticleView } from 'entities/Article';
 
 import { ARTICLE_VIEW_LOCALSTORAGE_KEY } from 'shared/const/localstorage';
-import { generateNormalizedArticles } from 'shared/lib/generateArticles/generateArticles';
+import { generateNormalizedArticles } from 'shared/lib/generators/articles';
 
 import { fetchArticlesList } from '../services/fetchArticlesList/fetchArticlesList';
 

@@ -1,4 +1,4 @@
-import { generateArticles } from 'shared/lib/generateArticles/generateArticles';
+import { generateArticles } from 'shared/lib/generators/articles';
 import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 
 import { fetchArticleRecommendations } from './fetchArticleRecommendations';

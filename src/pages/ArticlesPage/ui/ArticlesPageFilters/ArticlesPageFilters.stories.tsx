@@ -8,7 +8,7 @@ import { ArticleSortField, ArticleView } from 'entities/Article';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
-import { generateNormalizedArticles } from 'shared/lib/generateArticles/generateArticles';
+import { generateNormalizedArticles } from 'shared/lib/generators/articles';
 
 import { ArticlesPageFilters } from './ArticlesPageFilters';
 

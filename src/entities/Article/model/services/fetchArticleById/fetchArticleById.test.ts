@@ -1,6 +1,6 @@
 import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 
-import { article } from 'shared/lib/generateArticles/generateArticles';
+import { article } from 'shared/lib/generators/articles';
 
 import { fetchArticleById } from './fetchArticleById';
 
