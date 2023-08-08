@@ -3,55 +3,26 @@
   bottom: 0;
   display: flex;
   left: 0;
-  opacity: 0;
-  pointer-events: none;
   position: fixed;
   right: 0;
   top: 0;
-  z-index: -1;
-}
-
-.content {
-  background-color: var(--bg-color);
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  bottom: 0;
-  height: 78%;
-  min-height: 100px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 20px;
-  position: relative;
-  transition: .3s transform;
-  transform: translateY(100%);
-  width: 100%;
-  z-index: 10000;
-}
-
-.content::before {
-  background-color: var(--bg-color);
-  border-radius: 12px;
-  bottom: 40px;
-  content: '';
-  display: block;
-  height: 100px;
-  margin: auto;
-  position: relative;
-  width: 100px;
+  z-index: 1;
 }
 
 .opened {
   opacity: 1;
   pointer-events: auto;
   z-index: var(--modal-z-index);
-
-  .content {
-    transform: translateY(0%);
-  }
 }
 
-.isClosing {
-  .content {
-    transform: translateY(100%);
-  }
+.sheet {
+  background-color: var(--bg-color);
+  border-radius: 12px 12px 0;
+  height: calc(100vh + 100px);
+  left: 2vw;
+  padding: 15px;
+  position: fixed;
+  touch-action: none; // иначе 'warnings' в консоли
+  width: 96vw;
+  z-index: 100;
 }
