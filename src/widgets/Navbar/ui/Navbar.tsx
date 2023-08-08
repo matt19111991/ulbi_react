@@ -1,37 +1,22 @@
-import {
-  memo,
-  useCallback,
-  useMemo,
-  useState,
-} from 'react';
+import { memo, useCallback, useState } from 'react';
 
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { NotificationList } from 'entities/Notification';
-
-import {
-  getUserAuthData,
-  isUserAdmin,
-  isUserManager,
-  userActions,
-} from 'entities/User';
+import { getUserAuthData } from 'entities/User';
 
 import { LoginModal } from 'features/AuthByUsername';
+import { AvatarDropdown } from 'features/AvatarDropdown';
+import { NotificationButton } from 'features/NotificationButton';
 
 import Logo from 'shared/assets/icons/logo.svg';
-import NotificationIcon from 'shared/assets/icons/notification-20-20.svg';
 
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 
 import { classNames } from 'shared/lib/classNames/classNames';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
-import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { Icon } from 'shared/ui/Icon/Icon';
-import { DropDown, Popover } from 'shared/ui/Popups';
 import { HStack } from 'shared/ui/Stack';
 
 import classes from './Navbar.module.scss';
@@ -42,12 +27,9 @@ interface NavbarProps {
 }
 
 export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
-  const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
   const authData = useSelector(getUserAuthData);
-  const isAdmin = useSelector(isUserAdmin);
-  const isManager = useSelector(isUserManager);
 
   const [isAuthModal, setIsAuthModal] = useState(false);
 
@@ -58,34 +40,6 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
   const onShowModal = useCallback((): void => {
     setIsAuthModal(true);
   }, []);
-
-  const onLogout = useCallback((): void => {
-    dispatch(userActions.logout());
-  }, [dispatch]);
-
-  const menuItems = useMemo(() => {
-    const items = [
-      {
-        content: t('Профиль'),
-        href: `${RoutePath.profile}${authData?.id}`,
-      },
-      {
-        content: t('Выйти'),
-        onClick: onLogout,
-      },
-    ];
-
-    if (isAdmin || isManager) {
-      items.unshift({
-        content: t('Панель администратора'),
-        href: RoutePath.admin_panel,
-      });
-    }
-
-    return items;
-  }, [authData?.id, isAdmin, isManager, onLogout, t]);
-
-  const avatarSrc = __PROJECT__ === 'storybook' ? storybookAvatar : authData?.avatar;
 
   if (authData) {
     return (
@@ -103,24 +57,9 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
         </AppLink>
 
         <HStack className={classes.actions} gap='16'>
-          <Popover
-            direction='bottom-right'
-            trigger={(
-              <Button theme={ButtonTheme.CLEAR}>
-                <Icon inverted Svg={NotificationIcon} />
-              </Button>
-            )}
-          >
-            <NotificationList className={classes.notifications} />
-          </Popover>
+          <NotificationButton />
 
-          <DropDown
-            direction='bottom-right'
-            items={menuItems}
-            justify='right'
-            optionSize='S'
-            trigger={<Avatar size={30} src={avatarSrc} />}
-          />
+          <AvatarDropdown storybookAvatar={storybookAvatar} />
         </HStack>
       </header>
     );

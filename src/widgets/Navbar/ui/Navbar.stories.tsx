@@ -50,9 +50,9 @@ export const Orange: Story = {
 
 Orange.decorators = [StoreDecorator(stateNavbar), ThemeDecorator(Theme.ORANGE)];
 
-// Authorized user navbar
+// Authorized navbar
 
-const stateAuthUser: DeepPartial<StateSchema> = {
+const stateAuthorized: DeepPartial<StateSchema> = {
   user: {
     authData: {
       id: '1',
@@ -62,52 +62,12 @@ const stateAuthUser: DeepPartial<StateSchema> = {
   },
 };
 
-export const AuthorizedUser: Story = {
+export const Authorized: Story = {
   args: {
     storybookAvatar: Avatar,
   },
 };
 
-AuthorizedUser.decorators = [StoreDecorator(stateAuthUser)];
-
-// Authorized manager navbar
-
-const stateAuthManager: DeepPartial<StateSchema> = {
-  user: {
-    authData: {
-      id: '1',
-      roles: [UserRole.MANAGER],
-      username: 'Mary',
-    },
-  },
-};
-
-export const AuthorizedManager: Story = {
-  args: {
-    storybookAvatar: Avatar,
-  },
-};
-
-AuthorizedManager.decorators = [StoreDecorator(stateAuthManager)];
-
-// Authorized admin navbar
-
-const stateAuthAdmin: DeepPartial<StateSchema> = {
-  user: {
-    authData: {
-      id: '1',
-      roles: [UserRole.ADMIN],
-      username: 'Tom',
-    },
-  },
-};
-
-export const AuthorizedAdmin: Story = {
-  args: {
-    storybookAvatar: Avatar,
-  },
-};
-
-AuthorizedAdmin.decorators = [StoreDecorator(stateAuthAdmin)];
+Authorized.decorators = [StoreDecorator(stateAuthorized)];
 
 export default meta;

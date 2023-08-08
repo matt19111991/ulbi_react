@@ -30,7 +30,7 @@ export const NotificationList = memo(({
     data: notifications = [],
     error: queryError,
     isLoading: queryLoading,
-  } = useGetNotificationsQuery();
+  } = useGetNotificationsQuery({}, { pollingInterval: 5000 });
 
   const isLoading = __PROJECT__ === 'storybook' ? storybookLoading : queryLoading;
   const error = __PROJECT__ === 'storybook' ? storybookError : queryError;
