@@ -1,3 +1,4 @@
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from 'app/providers/StoreProvider';
@@ -25,38 +26,97 @@ const meta = {
       </div>
     ),
   ],
+  parameters: {
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
+    },
+  },
 } as Meta<typeof NotificationButton>;
 
 type Story = StoryObj<typeof meta>;
 
-// Primary notification button
+// Primary desktop notification button
 
-export const Primary: Story = {
+export const PrimaryDesktop: Story = {
   args: {},
 };
 
-Primary.decorators = [StoreDecorator(stateNotificationButton)];
+PrimaryDesktop.decorators = [StoreDecorator(stateNotificationButton)];
 
-// Dark notification button
+// Dark desktop notification button
 
-export const Dark: Story = {
+export const DarkDesktop: Story = {
   args: {},
 };
 
-Dark.decorators = [
+DarkDesktop.decorators = [
   StoreDecorator(stateNotificationButton),
   ThemeDecorator(Theme.DARK),
 ];
 
-// Orange notification button
+// Orange desktop notification button
 
-export const Orange: Story = {
+export const OrangeDesktop: Story = {
   args: {},
 };
 
-Orange.decorators = [
+OrangeDesktop.decorators = [
   StoreDecorator(stateNotificationButton),
   ThemeDecorator(Theme.ORANGE),
 ];
+
+// Primary mobile notification button
+
+export const PrimaryMobile: Story = {
+  args: {
+    storybookMobile: true,
+  },
+};
+
+PrimaryMobile.decorators = [StoreDecorator(stateNotificationButton)];
+
+PrimaryMobile.parameters = {
+  viewport: {
+    defaultViewport: 'iphone6',
+  },
+};
+
+// Dark mobile notification button
+
+export const DarkMobile: Story = {
+  args: {
+    storybookMobile: true,
+  },
+};
+
+DarkMobile.decorators = [
+  StoreDecorator(stateNotificationButton),
+  ThemeDecorator(Theme.DARK),
+];
+
+DarkMobile.parameters = {
+  viewport: {
+    defaultViewport: 'iphone6',
+  },
+};
+
+// Orange mobile notification button
+
+export const OrangeMobile: Story = {
+  args: {
+    storybookMobile: true,
+  },
+};
+
+OrangeMobile.decorators = [
+  StoreDecorator(stateNotificationButton),
+  ThemeDecorator(Theme.ORANGE),
+];
+
+OrangeMobile.parameters = {
+  viewport: {
+    defaultViewport: 'iphone6',
+  },
+};
 
 export default meta;

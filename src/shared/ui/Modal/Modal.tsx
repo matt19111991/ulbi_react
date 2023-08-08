@@ -1,5 +1,4 @@
 import {
-  MouseEvent,
   MutableRefObject, // ref, который можно менять
   // RefObject,     // ref, который нельзя менять
   ReactNode,
@@ -11,6 +10,7 @@ import {
 
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 
+import { Overlay } from '../Overlay/Overlay';
 import { Portal } from '../Portal/Portal';
 
 import classes from './Modal.module.scss';
@@ -50,10 +50,6 @@ export const Modal = ({
       }, ANIMATION_DELAY);
     }
   }, [onClose]);
-
-  const onContentClick = (e: MouseEvent) => {
-    e.stopPropagation();
-  };
 
 /*
   'useEffect' зависит от 'onKeyDown',
@@ -102,11 +98,9 @@ export const Modal = ({
   return (
     <Portal>
       <div className={classNames(classes.Modal, mods, [className])}>
-        <div className={classes.overlay} onClick={closeHandler}>
-          <div className={classes.content} onClick={onContentClick}>
-            {children}
-          </div>
-        </div>
+        <Overlay onClick={closeHandler} />
+
+        <div className={classes.content}>{children}</div>
       </div>
     </Portal>
   );
