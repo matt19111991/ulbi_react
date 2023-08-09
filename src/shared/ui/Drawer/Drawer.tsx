@@ -49,7 +49,7 @@ export const Drawer = ({
     api.start({ // запускаем анимацию при закрытии 'drawer'
       config: {
         ...config.stiff, // вид анимации: { tension: 210, friction: 20 }
-        velocity: 0, // скорость (0 по умолчанию)
+        velocity: 0, // скорость ('0' по умолчанию)
       },
       onResolve: onClose, // по окончанию анимации вызываем 'onClose();'
       y: height,
@@ -65,14 +65,14 @@ export const Drawer = ({
       velocity: [, vy],
     }) => {
       if (my < -70) { // смещение текущего жеста < -70
-        cancel(); // отменяем перетаскивание
+        cancel(); // отменяем закрытие 'drawer'
       }
 
       if (last) { // это последнее событие активного жеста
         if (my > height * 0.5 || (vy > 0.5 && dy > 0)) { // достаточное смещение для закрытия
-          close(); // закрываем 'drawer'
+          close(); // закрываем 'drawer' с анимацией
         } else {
-          openDrawer(); // без этого повторно не откроется 'drawer'
+          openDrawer(); // без этого 'drawer' повторно откроется со второго клика на 'trigger'
         }
       } else { // это не последнее событие активного жеста
         api.start({ y: my, immediate: true }); // без анимации выставляем 'y'
@@ -111,8 +111,11 @@ export const Drawer = ({
           className={classes.sheet}
           style={{
             bottom: `calc(-100vh) + ${height - 100}px)`,
+
+            // без 'display: none' 'drawer' задерживается внизу экрана при свайпе вниз
             display: y.to((py) => (py < height ? 'block' : 'none')),
-            y,
+
+            y, // без этого параметра анимация не работает
           }}
           {...bind()}
         >

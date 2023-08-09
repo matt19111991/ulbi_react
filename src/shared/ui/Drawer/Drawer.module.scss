@@ -18,11 +18,10 @@
 .sheet {
   background-color: var(--bg-color);
   border-radius: 12px 12px 0;
-  height: calc(100vh + 100px);
   left: 2vw;
   padding: 15px;
   position: fixed;
-  touch-action: none; // иначе 'warnings' в консоли
+  touch-action: none; // отключаем обработку в браузере всех жестов панорамирования и масштабирования
   width: 96vw;
   z-index: 100;
 }
