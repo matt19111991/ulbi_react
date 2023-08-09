@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { Theme } from 'app/providers/ThemeProvider';
 
+import { AnimationDecorator } from 'shared/config/storybook/AnimationDecorator/AnimationDecorator';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Text, TextAlign } from '../Text/Text';
@@ -17,6 +18,7 @@ const meta = {
       control: 'color',
     },
   },
+  decorators: [AnimationDecorator],
 } as Meta<typeof Drawer>;
 
 type Story = StoryObj<typeof meta>;

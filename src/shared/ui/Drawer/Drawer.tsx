@@ -1,10 +1,15 @@
-import { ReactNode, useCallback, useEffect } from 'react';
-import { a, config, useSpring } from '@react-spring/web'; // библиотека для анимаций
-import { useDrag } from '@use-gesture/react'; // библиотека для свайпов, тача, drag'n'drop
+import {
+  memo,
+  ReactNode,
+  useCallback,
+  useEffect,
+} from 'react';
 
 import { useTheme } from 'app/providers/ThemeProvider';
 
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
+import { useAnimationLibraries } from 'shared/lib/components/AnimationProvider';
+
 import { useModal } from 'shared/lib/hooks/useModal/useModal';
 
 import { Overlay } from '../Overlay/Overlay';
@@ -22,16 +27,18 @@ interface DrawerProps {
 
 const height = window.innerHeight - 100; // общая высота окна - 100px
 
-export const Drawer = ({
+export const DrawerContent = ({
   children,
   className,
   isOpen,
   lazy,
   onClose,
 }: DrawerProps) => {
+  const { Gesture, Spring } = useAnimationLibraries();
+
   const { isMounted, onCloseModal } = useModal({ animationDelay: 300, isOpen, onClose });
 
-  const [{ y }, api] = useSpring(() => ({ y: height }));
+  const [{ y }, api] = Spring.useSpring(() => ({ y: height }));
 
   const { theme } = useTheme();
 
@@ -48,7 +55,7 @@ export const Drawer = ({
   const close = () => {
     api.start({ // запускаем анимацию при закрытии 'drawer'
       config: {
-        ...config.stiff, // вид анимации: { tension: 210, friction: 20 }
+        ...Spring.config.stiff, // вид анимации: { tension: 210, friction: 20 }
         velocity: 0, // скорость ('0' по умолчанию)
       },
       onResolve: onClose, // по окончанию анимации вызываем 'onClose();'
@@ -56,7 +63,7 @@ export const Drawer = ({
     });
   };
 
-  const bind = useDrag(
+  const bind = Gesture.useDrag(
     ({
       cancel,
       last,
@@ -86,17 +93,13 @@ export const Drawer = ({
       },
   );
 
-  if (!isOpen) {
+  if (!isOpen || (lazy && !isMounted)) {
     return null;
   }
 
   const mods: Mods = {
     [classes.opened]: isOpen,
   };
-
-  if (lazy && !isMounted) {
-    return null;
-  }
 
   return (
     <Portal>
@@ -107,7 +110,7 @@ export const Drawer = ({
       >
         <Overlay onClick={onCloseModal} />
 
-        <a.div // анимированный 'div'
+        <Spring.a.div // анимированный 'div'
           className={classes.sheet}
           style={{
             bottom: `calc(-100vh) + ${height - 100}px)`,
@@ -120,8 +123,20 @@ export const Drawer = ({
           {...bind()}
         >
           {children}
-        </a.div>
+        </Spring.a.div>
       </div>
     </Portal>
   );
 };
+
+export const Drawer = memo(({ children, ...rest }: DrawerProps) => {
+  const { isLoaded } = useAnimationLibraries();
+
+  if (!isLoaded) {
+    return null;
+  }
+
+  return <DrawerContent {...rest}>{children}</DrawerContent>;
+});
+
+Drawer.displayName = 'Drawer';
