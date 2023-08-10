@@ -16,7 +16,7 @@
   border-radius: 12px;
   box-shadow: 4px 4px 8px var(--listbox-bg);
   position: absolute;
-  z-index: 10000;
+  z-index: var(--menu-z-index);
 }
 
 .trigger {

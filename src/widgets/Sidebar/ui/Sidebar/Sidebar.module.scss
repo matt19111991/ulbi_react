@@ -10,7 +10,7 @@
   bottom: 32px;
   position: absolute;
   right: -32px;
-  z-index: 10;
+  z-index: var(--sidebar-btn-z-index);
 }
 
 .items {

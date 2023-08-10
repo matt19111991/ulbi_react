@@ -29,7 +29,7 @@
   flex-direction: column;
   outline: 1px solid var(--primary-color);
   position: absolute;
-  z-index: 10000;
+  z-index: var(--menu-z-index);
 }
 
 .size_s {

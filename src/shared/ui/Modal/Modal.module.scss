@@ -10,7 +10,7 @@
   position: fixed;
   right: 0;
   top: 0;
-  z-index: 100;
+  z-index: var(--overlay-z-index);
 }
 
 .content {
@@ -20,6 +20,7 @@
   padding: 20px;
   transform: scale(.5);
   transition: .3s transform;
+  z-index: var(--modal-z-index);
 }
 
 .opened {
