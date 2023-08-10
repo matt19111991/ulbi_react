@@ -1,14 +1,13 @@
-import {
-  memo,
-  ReactNode,
-  useCallback,
-  useEffect,
-} from 'react';
+import { ReactNode, useCallback, useEffect } from 'react';
 
 import { useTheme } from '@/app/providers/ThemeProvider';
 
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
-import { useAnimationLibraries } from '@/shared/lib/components/AnimationProvider';
+
+import {
+  AnimationProvider,
+  useAnimationLibraries,
+} from '@/shared/lib/components/AnimationProvider';
 
 import { useModal } from '@/shared/lib/hooks/useModal/useModal';
 
@@ -129,7 +128,7 @@ export const DrawerContent = ({
   );
 };
 
-export const Drawer = memo(({ children, ...rest }: DrawerProps) => {
+const DrawerAsync = ({ children, ...rest }: DrawerProps) => {
   const { isLoaded } = useAnimationLibraries();
 
   if (!isLoaded) {
@@ -137,6 +136,10 @@ export const Drawer = memo(({ children, ...rest }: DrawerProps) => {
   }
 
   return <DrawerContent {...rest}>{children}</DrawerContent>;
-});
+};
 
-Drawer.displayName = 'Drawer';
+export const Drawer = ({ children, ...rest }: DrawerProps) => (
+  <AnimationProvider>
+    <DrawerAsync {...rest}>{children}</DrawerAsync>
+  </AnimationProvider>
+);

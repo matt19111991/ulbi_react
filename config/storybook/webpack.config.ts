@@ -54,12 +54,9 @@ export default ({ config }: { config: webpack.Configuration }) => {
 
   config.plugins!.push(...plugins);
 
-/*
-  Иначе ошибка: 'Module not found: Error: Package path ./Counter is not exported from package
-   ../../entities (see exports field in /home/../../entities/package.json)'
-*/
+  // настройка 'alias' для 'Storybook' среды
   config.resolve!.alias = {
-    entities: path.resolve(paths.src, 'entities'),
+    '@': paths.src,
   };
 
   // убираем указание расширения файлов
