@@ -1,0 +1,5 @@
+# Позволяет уменьшить бандл, избавляясь от ненужных полифиллов от babel
+
+# Browsers that we support
+defaults
+not IE 11
