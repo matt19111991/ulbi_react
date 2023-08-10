@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import type { StoryFn } from '@storybook/react';
 
-import { Theme, ThemeProvider } from 'app/providers/ThemeProvider';
+import { Theme, ThemeProvider } from '@/app/providers/ThemeProvider';
 
 // через замыкания пробрасываем тему, затем функцию Story и вызываем её
 

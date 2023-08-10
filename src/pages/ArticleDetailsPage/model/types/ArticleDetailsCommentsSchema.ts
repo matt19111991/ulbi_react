@@ -1,6 +1,6 @@
 import { EntityState } from '@reduxjs/toolkit';
 
-import { Comment } from 'entities/Comment';
+import { Comment } from '@/entities/Comment';
 
 /* 'EntityState' добавляет поля 'ids' и 'entities' к 'ArticleDetailsCommentsSchema'
 

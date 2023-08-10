@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { StateSchema } from 'app/providers/StoreProvider';
-import { Theme } from 'app/providers/ThemeProvider';
+import { StateSchema } from '@/app/providers/StoreProvider';
+import { Theme } from '@/app/providers/ThemeProvider';
 
-import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import LoginForm from './LoginForm';
 

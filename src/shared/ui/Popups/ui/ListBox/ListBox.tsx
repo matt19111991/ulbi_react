@@ -1,12 +1,12 @@
 import { Fragment, ReactNode } from 'react';
 import { Listbox as HeadlessListBox } from '@headlessui/react';
 
-import CheckIcon from 'shared/assets/icons/check-16-12.svg';
+import CheckIcon from '@/shared/assets/icons/check-16-12.svg';
 
-import { classNames } from 'shared/lib/classNames/classNames';
-import { genericMemo } from 'shared/lib/components/genericMemo/genericMemo';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { genericMemo } from '@/shared/lib/components/genericMemo/genericMemo';
 
-import { DropdownDirection } from 'shared/types/ui';
+import { DropdownDirection } from '@/shared/types/ui';
 
 import { Button } from '../../../Button/Button';
 import { HStack, VStack } from '../../../Stack';

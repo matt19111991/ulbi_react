@@ -1,7 +1,7 @@
-import { Article } from 'entities/Article';
-import { Comment } from 'entities/Comment';
+import { Article } from '@/entities/Article';
+import { Comment } from '@/entities/Comment';
 
-import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
+import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 
 import { fetchCommentsByArticleId } from './fetchCommentsByArticleId';
 

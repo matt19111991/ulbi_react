@@ -1,10 +1,10 @@
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Theme } from 'app/providers/ThemeProvider';
+import { Theme } from '@/app/providers/ThemeProvider';
 
-import { AnimationDecorator } from 'shared/config/storybook/AnimationDecorator/AnimationDecorator';
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { AnimationDecorator } from '@/shared/config/storybook/AnimationDecorator/AnimationDecorator';
+import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Text, TextAlign } from '../Text/Text';
 

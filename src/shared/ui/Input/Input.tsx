@@ -9,7 +9,7 @@ import {
   useState,
 } from 'react';
 
-import { classNames, Mods } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 
 import classes from './Input.module.scss';
 

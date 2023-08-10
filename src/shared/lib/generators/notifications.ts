@@ -1,4 +1,4 @@
-import { Notification } from 'entities/Notification';
+import { Notification } from '@/entities/Notification';
 
 export const notification: Notification = {
   id: '1',

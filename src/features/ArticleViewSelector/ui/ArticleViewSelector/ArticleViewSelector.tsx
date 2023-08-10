@@ -5,15 +5,15 @@ import {
   VFC,
 } from 'react';
 
-import { ArticleView } from 'entities/Article';
+import { ArticleView } from '@/entities/Article';
 
-import ListIcon from 'shared/assets/icons/list-24-24.svg';
-import PlaceIcon from 'shared/assets/icons/plate-24-24.svg';
+import ListIcon from '@/shared/assets/icons/list-24-24.svg';
+import PlaceIcon from '@/shared/assets/icons/plate-24-24.svg';
 
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
 
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { Icon } from 'shared/ui/Icon/Icon';
+import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import { Icon } from '@/shared/ui/Icon/Icon';
 
 import classes from './ArticleViewSelector.module.scss';
 

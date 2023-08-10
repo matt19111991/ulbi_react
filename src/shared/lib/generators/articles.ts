@@ -1,6 +1,6 @@
-import { Article, ArticleBlockType, ArticleType } from 'entities/Article';
+import { Article, ArticleBlockType, ArticleType } from '@/entities/Article';
 
-import UserAvatar from 'shared/assets/tests/storybook.jpg';
+import UserAvatar from '@/shared/assets/tests/storybook.jpg';
 
 export const article: Article = {
   id: '1',

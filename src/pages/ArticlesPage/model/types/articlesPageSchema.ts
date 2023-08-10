@@ -5,9 +5,9 @@ import {
   ArticleSortField,
   ArticleType,
   ArticleView,
-} from 'entities/Article';
+} from '@/entities/Article';
 
-import { SortOrder } from 'shared/types/sort';
+import { SortOrder } from '@/shared/types/sort';
 
 export interface ArticlesPageSchema extends EntityState<Article> {
 /* загрузили список статей => перешли на конкретную статью => вернулись обратно к списку =>

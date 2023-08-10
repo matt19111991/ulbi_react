@@ -7,15 +7,15 @@ import {
   isUserAdmin,
   isUserManager,
   userActions,
-} from 'entities/User';
+} from '@/entities/User';
 
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
 
-import { classNames } from 'shared/lib/classNames/classNames';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
-import { Avatar } from 'shared/ui/Avatar/Avatar';
-import { DropDown } from 'shared/ui/Popups';
+import { Avatar } from '@/shared/ui/Avatar/Avatar';
+import { DropDown } from '@/shared/ui/Popups';
 
 interface NotificationButtonProps {
   className?: string;

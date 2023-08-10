@@ -53,9 +53,7 @@ export default {
     // для корректной работы изображений в тестах создаем заглушку
     '\\.(jpg|svg)$': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
 
-/*  Иначе ошибка 'Cannot find module 'entities/Counter'
-    from 'src/app/providers/StoreProvider/config/store.ts'
-*/  'entities/(.*)': '<rootDir>/src/entities/$1',
+    '^@/(.*)': '<rootDir>/src/$1', // настройка 'alias' для Jest среды
   },
 
   // настройка абсолютных импортов

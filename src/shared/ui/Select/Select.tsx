@@ -1,8 +1,8 @@
 import { ChangeEvent, JSX, useMemo } from 'react';
 
-import { classNames, Mods } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 
-import { genericMemo } from 'shared/lib/components/genericMemo/genericMemo';
+import { genericMemo } from '@/shared/lib/components/genericMemo/genericMemo';
 
 import classes from './Select.module.scss';
 

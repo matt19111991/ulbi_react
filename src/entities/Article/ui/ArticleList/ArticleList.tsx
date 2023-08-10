@@ -16,13 +16,13 @@ import {
   WindowScroller,
 } from 'react-virtualized';
 
-import { classNames } from 'shared/lib/classNames/classNames';
-import { useWindowWidth } from 'shared/lib/hooks/useWindowWidth/useWindowWidth';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { useWindowWidth } from '@/shared/lib/hooks/useWindowWidth/useWindowWidth';
 
-import { HStack } from 'shared/ui/Stack';
-import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { HStack } from '@/shared/ui/Stack';
+import { Text, TextTheme } from '@/shared/ui/Text/Text';
 
-import { PAGE_ID } from 'widgets/Page';
+import { PAGE_ID } from '@/widgets/Page';
 
 import { ArticleView } from '../../model/consts/articleConsts';
 

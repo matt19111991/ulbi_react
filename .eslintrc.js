@@ -163,14 +163,19 @@ module.exports = {
 //  необходимо задавать значения по умолчанию для необязательных props (откл.)
     'react/require-default-props': 0,
   },
-
-  settings: { // без 'settings': ошибка 'Unable to resolve path to module'
+/*
+  для работы абсолютных импортов вида '@/*' и чтобы не указывать расширения для файлов,
+  нужно установить 'eslint-import-resolver-alias' и добавить 'settings', иначе ошибки:
+      - 'Missing file extension for "@/shared/lib/..." (import/extensions)'
+      - 'Unable to resolve path to module "@/shared/lib/..." (import/no-unresolved)'
+*/
+  settings: {
     'import/resolver': {
-      node: {
-/*      если не указать '.js{x}' расширения (['.ts', '.tsx']), получим ошибку:
-        'ESLint: Unable to resolve path to module 'react-dom/client'.(import/no-unresolved)'
-*/      extensions: ['.js', '.jsx', '.ts', '.tsx'],
-        moduleDirectory: ['src', 'node_modules'],
+      alias: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        map: [
+          ['@', './src'],
+        ],
       },
     },
   },

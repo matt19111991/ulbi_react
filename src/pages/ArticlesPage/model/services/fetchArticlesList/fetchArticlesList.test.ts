@@ -1,9 +1,9 @@
-import { StateSchema } from 'app/providers/StoreProvider';
+import { StateSchema } from '@/app/providers/StoreProvider';
 
-import { ArticleSortField, ArticleType } from 'entities/Article';
+import { ArticleSortField, ArticleType } from '@/entities/Article';
 
-import { generateArticles } from 'shared/lib/generators/articles';
-import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
+import { generateArticles } from '@/shared/lib/generators/articles';
+import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 
 import { fetchArticlesList } from './fetchArticlesList';
 

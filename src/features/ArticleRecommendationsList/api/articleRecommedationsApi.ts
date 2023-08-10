@@ -1,8 +1,8 @@
-import { Article } from 'entities/Article';
+import { Article } from '@/entities/Article';
 
-import { rtkApi } from 'shared/api/rtkApi';
+import { rtkApi } from '@/shared/api/rtkApi';
 
-import { generateArticles } from 'shared/lib/generators/articles';
+import { generateArticles } from '@/shared/lib/generators/articles';
 
 interface RecommendationsResponse {
   data: Article[];

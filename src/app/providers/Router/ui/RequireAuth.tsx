@@ -7,9 +7,9 @@ import {
   getUserMounted,
   getUserRoles,
   UserRole,
-} from 'entities/User';
+} from '@/entities/User';
 
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
 
 interface RequireAuthProps {
   children: JSX.Element;

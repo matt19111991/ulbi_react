@@ -5,13 +5,13 @@ import {
   ReducersMapObject,
 } from '@reduxjs/toolkit';
 
-import { counterReducer } from 'entities/Counter';
-import { userReducer } from 'entities/User';
+import { counterReducer } from '@/entities/Counter';
+import { userReducer } from '@/entities/User';
 
-import { $api } from 'shared/api/api';
-import { rtkApi } from 'shared/api/rtkApi';
+import { $api } from '@/shared/api/api';
+import { rtkApi } from '@/shared/api/rtkApi';
 
-import { pageScrollReducer } from 'widgets/Page';
+import { pageScrollReducer } from '@/widgets/Page';
 
 import { createReducerManager } from './reducerManager';
 import { StateSchema, ThunkExtraArg } from './StateSchema';

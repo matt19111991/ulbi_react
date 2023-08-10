@@ -1,4 +1,4 @@
-import { article } from 'shared/lib/generators/articles';
+import { article } from '@/shared/lib/generators/articles';
 
 import { fetchArticleById } from '../services/fetchArticleById/fetchArticleById';
 

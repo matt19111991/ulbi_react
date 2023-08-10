@@ -1,7 +1,7 @@
 import axios, { AxiosStatic } from 'axios';
 import { AsyncThunkAction, Dispatch } from '@reduxjs/toolkit';
 
-import { StateSchema } from 'app/providers/StoreProvider';
+import { StateSchema } from '@/app/providers/StoreProvider';
 
 /* Return        - ЧТО_ВЕРНЕТСЯ_ИЗ_THUNKA_ТИП
    Arg           - ЧТО_ПРИХОДИТ_В_КОНСТРУКТОР_ТИП

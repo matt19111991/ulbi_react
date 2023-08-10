@@ -1,10 +1,10 @@
 import { ActionCreatorWithPayload, createAsyncThunk, Dispatch } from '@reduxjs/toolkit';
 
-import { ThunkConfig } from 'app/providers/StoreProvider';
+import { ThunkConfig } from '@/app/providers/StoreProvider';
 
-import { ArticleSortField, ArticleType } from 'entities/Article';
+import { ArticleSortField, ArticleType } from '@/entities/Article';
 
-import { SortOrder } from 'shared/types/sort';
+import { SortOrder } from '@/shared/types/sort';
 
 import { getArticlesPageInited } from '../../selectors/articlesPageSelectors';
 

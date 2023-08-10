@@ -1,6 +1,6 @@
-import { rtkApi } from 'shared/api/rtkApi';
+import { rtkApi } from '@/shared/api/rtkApi';
 
-import { generateNotifications } from 'shared/lib/generators/notifications';
+import { generateNotifications } from '@/shared/lib/generators/notifications';
 
 import { Notification } from '../model/types/notification';
 

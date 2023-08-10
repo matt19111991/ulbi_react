@@ -3,12 +3,12 @@ import { screen } from '@testing-library/react';
 // userEvent должен быть асинхронным: 'await userEvent.click(...);'
 import userEvent from '@testing-library/user-event';
 
-import { Country } from 'entities/Country';
-import { Currency } from 'entities/Currency';
-import { Profile } from 'entities/Profile';
+import { Country } from '@/entities/Country';
+import { Currency } from '@/entities/Currency';
+import { Profile } from '@/entities/Profile';
 
-import { $api } from 'shared/api/api';
-import { componentTestRenderer } from 'shared/lib/tests/componentTestRenderer/componentTestRenderer';
+import { $api } from '@/shared/api/api';
+import { componentTestRenderer } from '@/shared/lib/tests/componentTestRenderer/componentTestRenderer';
 
 import { profileReducer } from '../../model/slice/profileSlice';
 
