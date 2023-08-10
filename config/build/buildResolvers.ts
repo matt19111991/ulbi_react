@@ -4,13 +4,13 @@ import { BuildOptions } from './types/config';
 
 export function buildResolvers(options: BuildOptions): webpack.ResolveOptions {
     return {
-        alias: {}, // для импортов вида 'shared/Article'
+        // alias: {}, // для импортов вида 'shared/Article'
 
-/*      alias: {
+        alias: {
             '@': options.paths.src, // для импортов вида '@/shared/Article'
         },
 
-        при импорте файлов с этими расширениями, можно указывать только название файла:
+/*      при импорте файлов с этими расширениями, можно указывать только название файла:
         (component.tsx => component): import Component from './component';
 */      extensions: ['.tsx', '.ts', '.js'],
 
