@@ -1,7 +1,7 @@
 module.exports = (sliceName, service) => {
-  return `import { StateSchema } from 'app/providers/StoreProvider';
+  return `import { StateSchema } from '@/app/providers/StoreProvider';
 
-import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
+import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 
 import { ${service} } from './${service}';
 

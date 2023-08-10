@@ -1,7 +1,7 @@
 module.exports = (sliceName, service) => {
   return `import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { ThunkConfig } from 'app/providers/StoreProvider';
+import { ThunkConfig } from '@/app/providers/StoreProvider';
 
 export const ${service} = createAsyncThunk<ResponseEntity, RequestArguments, ThunkConfig<string>>(
   '${sliceName}/${service}',

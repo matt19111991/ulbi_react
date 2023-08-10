@@ -2,7 +2,7 @@ const interfaceConst = 'interface';
 
 module.exports = (componentName) => `import { memo } from 'react';
 
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
 
 import classes from './${componentName}.module.scss';
 
