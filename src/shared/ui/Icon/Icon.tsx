@@ -4,7 +4,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 
 import classes from './Icon.module.scss';
 
-interface IconProps {
+interface IconProps extends SVGProps<SVGSVGElement> {
   className?: string;
   inverted?: boolean;
   Svg: VFC<SVGProps<SVGSVGElement>>;
@@ -12,7 +12,12 @@ interface IconProps {
 
 // Обёртка для SVG (чтобы применялся цвет соответствующей темы к SVG)
 
-export const Icon = memo(({ className, inverted, Svg }: IconProps) => (
+export const Icon = memo(({
+  className,
+  inverted,
+  Svg,
+  ...rest
+}: IconProps) => (
   <Svg
     className={
       classNames(
@@ -21,6 +26,7 @@ export const Icon = memo(({ className, inverted, Svg }: IconProps) => (
         [className],
       )
     }
+    {...rest}
   />
 ));
 

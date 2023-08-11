@@ -5,7 +5,7 @@ import { Flex, FlexProps } from '../Flex/Flex';
 type VStackProps = Omit<FlexProps, 'direction'>;
 
 export const VStack = forwardRef(({ align, children, ...rest }: VStackProps, ref: any) => (
-  <Flex align='start' direction='column' ref={ref} {...rest}>
+  <Flex align={align} direction='column' ref={ref} {...rest}>
     {children}
   </Flex>
 ));

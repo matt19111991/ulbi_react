@@ -142,4 +142,14 @@ export const Disabled: Story = {
   },
 };
 
+// Full width button
+
+export const FullWidth: Story = {
+  args: {
+    children: '>',
+    fullWidth: true,
+    theme: ButtonTheme.OUTLINE,
+  },
+};
+
 export default meta;

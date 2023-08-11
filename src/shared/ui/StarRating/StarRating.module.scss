@@ -1,0 +1,15 @@
+.starIcon {
+  cursor: pointer;
+}
+
+.normal {
+  fill: none; // не закрашиваем звезды
+}
+
+.hovered {
+  fill: var(--primary-color); // закрашиваем звезды
+}
+
+.selected {
+  cursor: auto;
+}
