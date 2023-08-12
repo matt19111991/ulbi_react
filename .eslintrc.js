@@ -120,7 +120,7 @@ module.exports = {
 */  'no-undef': 0,
 
 //  кастомное правило для проверки относительных путей (вкл.)
-    'path-checker-1911/path-checker': 2,
+    'path-checker-1911/path-checker': [2, { alias: '@' }],
 
 //  нужно явно указывать атрибут 'type' для <button /> (откл.)
     'react/button-has-type': 0,

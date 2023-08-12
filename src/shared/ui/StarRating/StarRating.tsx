@@ -4,7 +4,7 @@ import StarIcon from '@/shared/assets/icons/star-24-22.svg';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
-import { Icon } from '@/shared/ui/Icon/Icon';
+import { Icon } from '../Icon/Icon';
 
 import classes from './StarRating.module.scss';
 
