@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { ArticleDetails } from '@/entities/Article';
 
+import { ArticleRating } from '@/features/ArticleRating';
 import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -66,6 +67,8 @@ const ArticleDetailsPage = ({
           <ArticleDetailsPageHeader />
 
           <ArticleDetails id={articleId!} />
+
+          <ArticleRating articleId={articleId} />
 
           <ArticleRecommendationsList storybookError={storybookError} />
 

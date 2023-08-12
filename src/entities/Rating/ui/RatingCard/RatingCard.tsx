@@ -21,6 +21,7 @@ interface RatingCardProps {
   hasFeedback?: boolean;
   onAccept?: (starsCount: number, feedback?: string) => void;
   onCancel?: (starsCount: number) => void;
+  rate?: number; // существующая оценка пользователя
   storybookMobile?: boolean;
   title?: string;
 }
@@ -31,6 +32,7 @@ export const RatingCard = memo(({
   hasFeedback,
   onAccept,
   onCancel,
+  rate = 0,
   storybookMobile,
   title,
 }: RatingCardProps) => {
@@ -38,7 +40,7 @@ export const RatingCard = memo(({
 
   const [feedback, setFeedback] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [starsCount, setStarsCount] = useState(0);
+  const [starsCount, setStarsCount] = useState(rate);
 
   const onSelectStars = useCallback((selectedStarsCount: number) => {
     setStarsCount(selectedStarsCount);
@@ -99,7 +101,7 @@ export const RatingCard = memo(({
       lazy
       onClose={cancelHandler}
     >
-      <VStack align='start' gap='32'>
+      <VStack align='start' gap='32' max>
         {modalContent}
 
         <Button fullWidth onClick={acceptHandler} size={ButtonSize.L}>
@@ -111,11 +113,18 @@ export const RatingCard = memo(({
 
   if (storybookMobile) {
     return (
-      <Card className={classNames('', {}, [className])}>
-        <VStack align='center' gap='8'>
-          <Text title={title} />
+      <Card
+        className={classNames('', {}, [className])}
+        max
+      >
+        <VStack align='center' gap='8' max>
+          <Text title={starsCount ? `${t('Спасибо за оценку')}!` : title} />
 
-          <StarRating onSelect={onSelectStars} size={40} />
+          <StarRating
+            onSelect={onSelectStars}
+            selectedStars={starsCount}
+            size={40}
+          />
 
           {mobileContent}
         </VStack>
@@ -124,11 +133,18 @@ export const RatingCard = memo(({
   }
 
   return (
-    <Card className={classNames('', {}, [className])}>
-      <VStack align='center' gap='8'>
-        <Text title={title} />
+    <Card
+      className={classNames('', {}, [className])}
+      max
+    >
+      <VStack align='center' gap='8' max>
+        <Text title={starsCount ? `${t('Спасибо за оценку')}!` : title} />
 
-        <StarRating onSelect={onSelectStars} size={40} />
+        <StarRating
+          onSelect={onSelectStars}
+          selectedStars={starsCount}
+          size={40}
+        />
 
         <BrowserView>{browserContent}</BrowserView>
 

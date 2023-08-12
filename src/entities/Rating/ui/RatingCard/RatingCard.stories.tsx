@@ -78,6 +78,16 @@ export const Feedback: Story = {
   },
 };
 
+// With rate rating card
+
+export const WithRate: Story = {
+  args: {
+    onAccept: action('onAccept'),
+    onCancel: action('onCancel'),
+    rate: 4,
+  },
+};
+
 // Primary mobile rating card
 
 export const PrimaryMobile: Story = {

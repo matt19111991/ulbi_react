@@ -53,6 +53,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
       </Button>
 
       <VStack
+        align='start'
         className={classes.items}
         gap='8'
         role='navigation' // для семантики

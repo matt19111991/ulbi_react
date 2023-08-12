@@ -97,4 +97,16 @@ export const OrangeOutlined: Story = {
 
 OrangeOutlined.decorators = [ThemeDecorator(Theme.ORANGE)];
 
+// Full width card
+
+export const FullWidth: Story = {
+  args: {
+    children: <Text
+      text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
+      title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
+    />,
+    max: true,
+  },
+};
+
 export default meta;

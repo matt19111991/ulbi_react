@@ -1309,6 +1309,22 @@
       "views": 61
     }
   ],
+  "article-ratings": [
+    {
+      "id": "1",
+      "articleId": "1",
+      "feedback": "Хорошая статья",
+      "rate": 4,
+      "userId": "1"
+    },
+    {
+      "id": "2",
+      "articleId": "2",
+      "feedback": "Плохая статья",
+      "rate": 1,
+      "userId": "1"
+    }
+  ],
   "comments": [
     {
       "id": "1",
@@ -1411,6 +1427,22 @@
       "first": "Mary",
       "lastname": "Rude",
       "username": "Mary"
+    }
+  ],
+  "profile-ratings": [
+    {
+      "id": "1",
+      "feedback": "Хороший профиль",
+      "profileId": "1",
+      "rate": 4,
+      "userId": "1"
+    },
+    {
+      "id": "2",
+      "feedback": "Плохой профиль",
+      "profileId": "2",
+      "rate": 1,
+      "userId": "1"
     }
   ],
   "users": [
