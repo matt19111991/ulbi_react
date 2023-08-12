@@ -64,4 +64,26 @@ Orange.decorators = [
   ThemeDecorator(Theme.ORANGE),
 ];
 
+// Loading article rating
+
+export const Loading: Story = {
+  args: {
+    articleId: '1',
+    storybookLoading: true,
+  },
+};
+
+Loading.decorators = [StoreDecorator(stateArticleRating)];
+
+// Empty article rating
+
+export const Empty: Story = {
+  args: {
+    articleId: '1',
+    storybookRatingEmpty: true,
+  },
+};
+
+Empty.decorators = [StoreDecorator(stateArticleRating)];
+
 export default meta;

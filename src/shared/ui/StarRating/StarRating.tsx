@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 
 import StarIcon from '@/shared/assets/icons/star-24-22.svg';
 
@@ -27,6 +27,10 @@ export const StarRating = memo(({
   const [currentStarsCount, setCurrentStarsCount] = useState(selectedStars);
 
   const [isSelected, setIsSelected] = useState(Boolean(selectedStars));
+
+  useEffect(() => {
+    setCurrentStarsCount(selectedStars);
+  }, [selectedStars]);
 
   const onHover = (starsCount: number) => () => {
     if (!isSelected) {

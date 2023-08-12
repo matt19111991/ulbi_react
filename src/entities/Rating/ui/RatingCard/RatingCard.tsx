@@ -1,4 +1,10 @@
-import { memo, useCallback, useState } from 'react';
+import {
+  memo,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
+
 import { useTranslation } from 'react-i18next';
 import { BrowserView, MobileView } from 'react-device-detect';
 
@@ -63,6 +69,10 @@ export const RatingCard = memo(({
 
     onCancel?.(starsCount);
   }, [onCancel, starsCount]);
+
+  useEffect(() => {
+    setStarsCount(rate);
+  }, [rate]);
 
   const modalContent = (
     <>

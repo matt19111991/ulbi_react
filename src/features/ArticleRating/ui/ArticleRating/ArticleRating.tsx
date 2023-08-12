@@ -12,16 +12,28 @@ import { useGetArticleRatingQuery, useRateArticleMutation } from '../../api/arti
 export interface ArticleRatingProps {
   articleId: string;
   className?: string;
+  storybookLoading?: boolean;
+  storybookRatingEmpty?: boolean;
 }
 
-const ArticleRating = ({ articleId, className }: ArticleRatingProps) => {
+const ArticleRating = ({
+  articleId,
+  className,
+  storybookLoading,
+  storybookRatingEmpty,
+}: ArticleRatingProps) => {
   const { t } = useTranslation();
 
   const userData  = useSelector(getUserAuthData);
 
-  const { data, isLoading } = useGetArticleRatingQuery({ articleId, userId: userData?.id ?? '' });
+  const {
+    data,
+    isLoading: queryLoading,
+  } = useGetArticleRatingQuery({ articleId, userId: userData?.id ?? '' });
 
   const [rateArticleMutation] = useRateArticleMutation();
+
+  const isLoading = __PROJECT__ === 'storybook' ? storybookLoading : queryLoading;
 
   const handleRateArticle = useCallback((starsCount: number, feedback?: string) => {
     try {
@@ -49,7 +61,7 @@ const ArticleRating = ({ articleId, className }: ArticleRatingProps) => {
     return <Skeleton height={120} width='100%' />;
   }
 
-  const rating = data?.at(0);
+  const rating = storybookRatingEmpty ? { rate: 0 } : data?.at(0);
 
   return (
     <RatingCard

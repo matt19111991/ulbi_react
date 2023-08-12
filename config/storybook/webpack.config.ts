@@ -56,6 +56,7 @@ export default ({ config }: { config: webpack.Configuration }) => {
 
   // настройка 'alias' для 'Storybook' среды
   config.resolve!.alias = {
+    ...config.resolve!.alias,
     '@': paths.src,
   };
 
