@@ -122,6 +122,9 @@ module.exports = {
 //  кастомное правило для проверки относительных путей (вкл.)
     'path-checker-1911/path-checker': [2, { alias: '@' }],
 
+//  кастомное правило для проверки импортов из 'publicApi' (вкл.)
+    'path-checker-1911/public-api-imports': [2, { alias: '@' }],
+
 //  нужно явно указывать атрибут 'type' для <button /> (откл.)
     'react/button-has-type': 0,
 
