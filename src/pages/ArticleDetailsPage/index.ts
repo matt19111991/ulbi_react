@@ -8,8 +8,6 @@ export {
   fetchArticleRecommendations,
 } from './model/services/fetchArticleRecommendations/fetchArticleRecommendations';
 
-export { articleDetailsPageReducer } from './model/slices';
-
 export type { ArticleDetailsPageSchema } from './model/types';
 
 export {

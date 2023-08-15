@@ -3,14 +3,14 @@ import type { StoryFn } from '@storybook/react';
 
 import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider';
 
-import { articleDetailsReducer } from '@/entities/Article';
+import { articleDetailsReducer } from '@/entities/Article/testing';
 
-import { addCommentFormReducer } from '@/features/AddCommentForm';
-import { loginReducer } from '@/features/AuthByUsername';
-import { profileReducer } from '@/features/EditableProfileCard';
+import { addCommentFormReducer } from '@/features/AddCommentForm/testing';
+import { loginReducer } from '@/features/AuthByUsername/testing';
+import { profileReducer } from '@/features/EditableProfileCard/testing';
 
-import { articleDetailsPageReducer } from '@/pages/ArticleDetailsPage';
-import { articlesPageReducer } from '@/pages/ArticlesPage/model/slice/articlesPageSlice';
+import { articleDetailsPageReducer } from '@/pages/ArticleDetailsPage/testing';
+import { articlesPageReducer } from '@/pages/ArticlesPage/testing';
 
 import { pageScrollReducer } from '@/widgets/Page';
 

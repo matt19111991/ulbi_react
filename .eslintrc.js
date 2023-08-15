@@ -123,7 +123,15 @@ module.exports = {
     'path-checker-1911/path-checker': [2, { alias: '@' }],
 
 //  кастомное правило для проверки импортов из 'publicApi' (вкл.)
-    'path-checker-1911/public-api-imports': [2, { alias: '@' }],
+    'path-checker-1911/public-api-imports': [
+      2,
+      {
+        alias: '@',
+
+        // игнорируем правило для тестовых файлов, файлов storybook и StoreDecorator
+        testFilesPatterns: ['**/*.test.*', '**/*.stories.*', '**/StoreDecorator.tsx'],
+      },
+    ],
 
 //  нужно явно указывать атрибут 'type' для <button /> (откл.)
     'react/button-has-type': 0,
