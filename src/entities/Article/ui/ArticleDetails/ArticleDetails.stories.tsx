@@ -83,7 +83,7 @@ const stateArticleDetails: DeepPartial<StateSchema> = {
         },
       ],
       createdAt: '26.02.2023',
-      img: 'https://teknotower.com/wp-content/uploads/2020/11/js.png',
+      img: 'https://www.freepnglogos.com/uploads/javascript-png/javascript-vector-logo-yellow-png-transparent-javascript-vector-12.png',
       subtitle: 'Что нового в JS за 2023 год?',
       title: 'Javascript news',
       type: [ArticleType.IT],

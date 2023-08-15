@@ -43,7 +43,7 @@ const ListBox =  ({
   readonly,
   value,
 }: ListBoxProps) => (
-  <VStack gap='4'>
+  <VStack align='start' gap='4'>
     {label && <span>{`${label} >`}</span>}
 
     <HeadlessListBox

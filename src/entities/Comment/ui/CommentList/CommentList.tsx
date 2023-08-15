@@ -22,6 +22,7 @@ export const CommentList = memo(({ className, comments, isLoading }: CommentList
   if (isLoading) {
     return (
       <VStack
+        align='start'
         className={classNames('', {}, [className])}
         gap='16'
         max
@@ -35,6 +36,7 @@ export const CommentList = memo(({ className, comments, isLoading }: CommentList
 
   return (
     <VStack
+      align='start'
       className={classNames('', {}, [className])}
       gap='16'
       max

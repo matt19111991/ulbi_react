@@ -54,6 +54,7 @@ export const ArticleDetailsComments = memo(({
 
   return (
     <VStack
+      align='start'
       className={classNames('', {}, [className])}
       gap='16'
       max

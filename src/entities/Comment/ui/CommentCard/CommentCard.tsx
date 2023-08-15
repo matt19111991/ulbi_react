@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import { RoutePath } from '@/shared/const/router';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
@@ -24,6 +24,7 @@ export const CommentCard = memo(({ className, comment, isLoading }: CommentCardP
   if (isLoading) {
     return (
       <VStack
+        align='start'
         className={
           classNames(classes.CommentCard, {}, [className, classes.loading])
         }
@@ -43,6 +44,7 @@ export const CommentCard = memo(({ className, comment, isLoading }: CommentCardP
   if (comment) {
     return (
       <VStack
+        align='start'
         className={
           classNames(classes.CommentCard, {}, [className])
         }

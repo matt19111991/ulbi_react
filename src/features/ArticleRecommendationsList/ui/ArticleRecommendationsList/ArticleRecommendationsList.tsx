@@ -42,6 +42,7 @@ export const ArticleRecommendationsList = memo(({
 
   return (
     <VStack
+      align='start'
       className={classNames('', {}, [className])}
       gap='8'
       max

@@ -11,7 +11,7 @@ import { NotificationButton } from '@/features/NotificationButton';
 
 import Logo from '@/shared/assets/icons/logo.svg';
 
-import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import { RoutePath } from '@/shared/const/router';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 

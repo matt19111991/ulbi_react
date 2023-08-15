@@ -114,7 +114,7 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
           <Avatar className={classes.avatar} size={200} src={article?.img} />
         </HStack>
 
-        <VStack gap='4' max>
+        <VStack align='start' gap='4' max>
           <Text
             size={TextSize.L}
             text={article?.subtitle}
@@ -142,6 +142,7 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
   return (
     <DynamicModuleLoader reducers={reducers}>
       <VStack
+        align='start'
         className={classNames(classes.ArticleDetails, {}, [className])}
         gap='16'
         max

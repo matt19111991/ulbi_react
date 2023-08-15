@@ -96,6 +96,7 @@ export const ProfileCard = memo(({
 
   return (
     <VStack
+      align='start'
       className={classNames(classes.ProfileCard, mods, [className])}
       gap='8'
       max

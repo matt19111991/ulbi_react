@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
 
-import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import { RoutePath } from '@/shared/const/router';
 
 // import { useHover } from 'shared/lib/hooks/useHover/useHover';
 
