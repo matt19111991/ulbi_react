@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
-import { Theme } from '@/app/providers/ThemeProvider';
 
 import { Country } from '@/entities/Country';
 import { Currency } from '@/entities/Currency';
@@ -10,6 +9,8 @@ import Avatar from '@/shared/assets/tests/storybook.jpg';
 
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
+
+import { Theme } from '@/shared/const/theme';
 
 import { EditableProfileCard } from './EditableProfileCard';
 

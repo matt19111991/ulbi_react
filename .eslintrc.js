@@ -133,6 +133,17 @@ module.exports = {
       },
     ],
 
+//  кастомное правило для проверки вложенности импортов (вкл.)
+    'path-checker-1911/layer-imports': [
+      2,
+      {
+        alias: '@',
+
+        // игнорируем правило для: 'StateSchema' (внутри 'StoreProvider') и 'Testing Public API'
+        ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
+      },
+    ],
+
 //  нужно явно указывать атрибут 'type' для <button /> (откл.)
     'react/button-has-type': 0,
 

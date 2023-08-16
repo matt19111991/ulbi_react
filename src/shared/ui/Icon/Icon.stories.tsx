@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Theme } from '@/app/providers/ThemeProvider';
-
 import IconSvg from '@/shared/assets/tests/storybook3.svg';
 
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
+
+import { Theme } from '@/shared/const/theme';
 
 import { Icon } from './Icon';
 

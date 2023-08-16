@@ -7,9 +7,6 @@
     Внутри модулей лучше использовать относительные пути
 */
 
-import { Theme } from './lib/ThemeContext';
-import { useTheme } from './lib/useTheme';
-
 import ThemeProvider from './ui/ThemeProvider';
 
-export { Theme, ThemeProvider, useTheme };
+export { ThemeProvider };

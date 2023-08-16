@@ -1,7 +1,10 @@
 import { ReactElement } from 'react';
 import type { StoryFn } from '@storybook/react';
 
-import { Theme, ThemeProvider } from '@/app/providers/ThemeProvider';
+// eslint-disable-next-line path-checker-1911/layer-imports
+import { ThemeProvider } from '@/app/providers/ThemeProvider';
+
+import { Theme } from '@/shared/const/theme';
 
 // через замыкания пробрасываем тему, затем функцию Story и вызываем её
 

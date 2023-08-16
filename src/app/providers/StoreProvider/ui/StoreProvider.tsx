@@ -2,8 +2,9 @@ import { ReactNode } from 'react';
 import { Provider } from 'react-redux';
 import { ReducersMapObject } from '@reduxjs/toolkit';
 
-import { StateSchema } from '@/app/providers/StoreProvider/config/StateSchema';
-import { createReduxStore } from '@/app/providers/StoreProvider/config/store';
+import { StateSchema } from '../config/StateSchema';
+
+import { createReduxStore } from '../config/store';
 
 interface StoreProviderProps {
   asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>

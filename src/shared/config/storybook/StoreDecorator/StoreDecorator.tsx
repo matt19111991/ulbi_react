@@ -12,6 +12,7 @@ import { profileReducer } from '@/features/EditableProfileCard/testing';
 import { articleDetailsPageReducer } from '@/pages/ArticleDetailsPage/testing';
 import { articlesPageReducer } from '@/pages/ArticlesPage/testing';
 
+// eslint-disable-next-line path-checker-1911/layer-imports
 import { pageScrollReducer } from '@/widgets/Page';
 
 import { ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';

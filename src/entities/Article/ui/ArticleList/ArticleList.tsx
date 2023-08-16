@@ -22,6 +22,7 @@ import { useWindowWidth } from '@/shared/lib/hooks/useWindowWidth/useWindowWidth
 import { HStack } from '@/shared/ui/Stack';
 import { Text, TextTheme } from '@/shared/ui/Text/Text';
 
+// eslint-disable-next-line path-checker-1911/layer-imports
 import { PAGE_ID } from '@/widgets/Page';
 
 import { ArticleView } from '../../model/consts/articleConsts';

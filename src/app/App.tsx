@@ -1,8 +1,6 @@
 import { Suspense, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import { AppRouter } from '@/app/providers/Router';
-
 import { getUserMounted, userActions } from '@/entities/User';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -10,6 +8,8 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 
 import { Navbar } from '@/widgets/Navbar';
 import { Sidebar } from '@/widgets/Sidebar';
+
+import { AppRouter } from './providers/Router';
 
 /*
     В большинстве случаев не стоит оборачивать в 'memo' компоненты с 'children':

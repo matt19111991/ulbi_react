@@ -1,3 +1,4 @@
+// eslint-disable-next-line path-checker-1911/layer-imports
 import { Article, ArticleBlockType, ArticleType } from '@/entities/Article';
 
 import UserAvatar from '@/shared/assets/tests/storybook.jpg';

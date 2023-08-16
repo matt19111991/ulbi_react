@@ -1,30 +1,30 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Theme } from '@/app/providers/ThemeProvider';
-
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
-import { LangSwitcher } from './LangSwitcher';
+import { Theme } from '@/shared/const/theme';
+
+import { ThemeSwitcher } from './ThemeSwitcher';
 
 const meta = {
-  title: 'shared/LangSwitcher',
-  component: LangSwitcher,
+  title: 'widgets/ThemeSwitcher',
+  component: ThemeSwitcher,
   argTypes: {
     backgroundColor: {
       control: 'color',
     },
   },
-} as Meta<typeof LangSwitcher>;
+} as Meta<typeof ThemeSwitcher>;
 
 type Story = StoryObj<typeof meta>;
 
-// Primary lang switcher
+// Primary theme switcher
 
 export const Primary: Story = {
   args: {},
 };
 
-// Dark lang switcher
+// Dark theme switcher
 
 export const Dark: Story = {
   args: {},
@@ -32,7 +32,7 @@ export const Dark: Story = {
 
 Dark.decorators = [ThemeDecorator(Theme.DARK)];
 
-// Orange lang switcher
+// Orange theme switcher
 
 export const Orange: Story = {
   args: {},

@@ -2,6 +2,7 @@ import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
+// eslint-disable-next-line path-checker-1911/layer-imports
 import { getArticleCommentsAreLoading } from '@/pages/ArticleDetailsPage';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
