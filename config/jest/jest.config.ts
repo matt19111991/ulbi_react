@@ -53,7 +53,7 @@ export default {
     // для корректной работы изображений в тестах создаем заглушку
     '\\.(jpg|svg)$': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
 
-    '^@/(.*)': '<rootDir>/src/$1', // настройка 'alias' для Jest среды
+    '^@/(.*)$': '<rootDir>/src/$1', // настройка 'alias' для Jest среды
   },
 
   // настройка абсолютных импортов

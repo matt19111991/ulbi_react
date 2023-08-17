@@ -28,6 +28,7 @@ export const preview: Preview = {
         date: /Date$/,
       },
     },
+    layout: 'fullscreen',
   },
 };
 
