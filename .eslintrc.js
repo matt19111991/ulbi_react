@@ -7,6 +7,7 @@ module.exports = {
   extends: [
     'airbnb',
     'plugin:i18next/recommended',
+    'plugin:import/recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:storybook/recommended',
@@ -44,6 +45,8 @@ module.exports = {
 
 // кастомный плагин на проверку относительных путей (указываем без префикса 'eslint-plugin')
     'path-checker-1911',
+
+    'unused-imports', // проверяет неиспользуемые импорты
   ],
 /*
   rules:
@@ -184,6 +187,9 @@ module.exports = {
 
 //  необходимо задавать значения по умолчанию для необязательных props (откл.)
     'react/require-default-props': 0,
+
+//  ошибка при нахождении неиспользуемых импортов (вкл.)
+    'unused-imports/no-unused-imports': 2,
   },
 /*
   для работы абсолютных импортов вида '@/*' и чтобы не указывать расширения для файлов,
