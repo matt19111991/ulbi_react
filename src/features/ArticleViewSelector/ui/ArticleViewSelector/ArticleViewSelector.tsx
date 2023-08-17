@@ -12,8 +12,8 @@ import PlaceIcon from '@/shared/assets/icons/plate-24-24.svg';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
-import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
-import { Icon } from '@/shared/ui/Icon/Icon';
+import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { Icon } from '@/shared/ui/Icon';
 
 import classes from './ArticleViewSelector.module.scss';
 

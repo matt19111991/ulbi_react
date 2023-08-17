@@ -10,14 +10,14 @@ import { BrowserView, MobileView } from 'react-device-detect';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
-import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/Button/Button';
-import { Card } from '@/shared/ui/Card/Card';
-import { Drawer } from '@/shared/ui/Drawer/Drawer';
-import { Input } from '@/shared/ui/Input/Input';
-import { Modal } from '@/shared/ui/Modal/Modal';
+import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/Button';
+import { Card } from '@/shared/ui/Card';
+import { Drawer } from '@/shared/ui/Drawer';
+import { Input } from '@/shared/ui/Input';
+import { Modal } from '@/shared/ui/Modal';
 import { HStack, VStack } from '@/shared/ui/Stack';
-import { StarRating } from '@/shared/ui/StarRating/StarRating';
-import { Text } from '@/shared/ui/Text/Text';
+import { StarRating } from '@/shared/ui/StarRating';
+import { Text } from '@/shared/ui/Text';
 
 import classes from './RatingCard.module.scss';
 

@@ -7,7 +7,7 @@ import { EditableProfileCard } from '@/features/EditableProfileCard';
 import { classNames } from '@/shared/lib/classNames/classNames';
 
 import { HStack, VStack } from '@/shared/ui/Stack';
-import { Text, TextAlign, TextTheme } from '@/shared/ui/Text/Text';
+import { Text, TextAlign, TextTheme } from '@/shared/ui/Text';
 
 import { Page } from '@/widgets/Page';
 
