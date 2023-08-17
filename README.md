@@ -6,6 +6,8 @@
 - Добавить документацию и README.md для всех файлов
 - Исправить все закомментированные 'eslint-disable-next-line path-checker-1911' правила
 
+---- 
+
 ## Запуск проекта
 - `npm install` - устанавливаем зависимости
 - `npm run start:vite` - запуск сервера + frontend проекта в development режиме (Vite сборщик)
