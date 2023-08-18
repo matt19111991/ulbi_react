@@ -18,8 +18,6 @@
 
 `ArticleListItemSkeleton` - компонент-элемент списка статей (состояние загрузки)
 
-`ArticleSortSelector` - компонент с выбором сортировки списка статьей
-
 `ArticleTextBlockComponent` - компонент с блоком, содержащим текст
 
 - Selectors

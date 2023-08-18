@@ -160,6 +160,7 @@
 - [AddCommentForm](/src/features/AddCommentForm)
 - [ArticleRating](/src/features/ArticleRating)
 - [ArticleRecommendationsList](/src/features/ArticleRecommendationsList)
+- [ArticleSortSelector](/src/features/ArticleSortSelector)
 - [ArticleTypeTabs](/src/features/ArticleTypeTabs)
 - [ArticleViewSelector](/src/features/ArticleViewSelector)
 - [AuthByUsername](/src/features/AuthByUsername)
