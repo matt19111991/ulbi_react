@@ -7,7 +7,7 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
-import { RoutePath } from '@/shared/const/router';
+import { getRouteMain } from '@/shared/const/router';
 import { Theme } from '@/shared/const/theme';
 
 import { SidebarItem } from './SidebarItem';
@@ -17,7 +17,7 @@ const stateSidebarItem: DeepPartial<StateSchema> = {};
 const sidebarItem = {
   Icon,
   order: 1,
-  path: RoutePath.main,
+  path: getRouteMain(),
   text: 'Главная',
 };
 

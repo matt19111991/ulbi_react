@@ -9,7 +9,7 @@ import {
   userActions,
 } from '@/entities/User';
 
-import { RoutePath } from '@/shared/const/router';
+import { getRouteAdmin, getRouteProfile } from '@/shared/const/router';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -41,7 +41,7 @@ export const AvatarDropdown = memo(({
     const items = [
       {
         content: t('Профиль'),
-        href: `${RoutePath.profile}${authData?.id}`,
+        href: getRouteProfile(authData?.id || ''),
       },
       {
         content: t('Выйти'),
@@ -52,7 +52,7 @@ export const AvatarDropdown = memo(({
     if (isAdmin || isManager) {
       items.unshift({
         content: t('Панель администратора'),
-        href: RoutePath.admin_panel,
+        href: getRouteAdmin(),
       });
     }
 

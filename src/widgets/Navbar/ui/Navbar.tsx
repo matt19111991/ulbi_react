@@ -11,7 +11,7 @@ import { NotificationButton } from '@/features/NotificationButton';
 
 import Logo from '@/shared/assets/icons/logo.svg';
 
-import { RoutePath } from '@/shared/const/router';
+import { getRouteArticleCreate } from '@/shared/const/router';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
@@ -51,7 +51,7 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
         <AppLink
           className={classes.createLink}
           invertedTheme={AppLinkTheme.SECONDARY}
-          to={RoutePath.article_create}
+          to={getRouteArticleCreate()}
         >
           {t('Создать статью')}
         </AppLink>

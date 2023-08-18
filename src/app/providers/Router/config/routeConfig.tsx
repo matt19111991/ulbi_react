@@ -10,18 +10,30 @@ import { MainPage } from '@/pages/MainPage';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 
-import { AppRoutes, RoutePath } from '@/shared/const/router';
+import {
+  AppRoutes,
+  getRouteAbout,
+  getRouteAdmin,
+  getRouteArticleCreate,
+  getRouteArticleDetails,
+  getRouteArticleEdit,
+  getRouteArticles,
+  getRouteForbidden,
+  getRouteMain,
+  getRouteProfile,
+} from '@/shared/const/router';
+
 import { AppRoutesProps } from '@/shared/types/router';
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.ABOUT]: {
     element: <AboutPage />,
-    path: RoutePath.about,
+    path: getRouteAbout(),
   },
   [AppRoutes.ADMIN_PANEL]: {
     authOnly: true,
     element: <AdminPanelPage />,
-    path: RoutePath.admin_panel,
+    path: getRouteAdmin(),
     roles: [UserRole.ADMIN, UserRole.MANAGER], // каким ролям доступен роут
   },
   [AppRoutes.ARTICLE_CREATE]: {
@@ -29,38 +41,40 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 /*  можно создать отдельно <ArticleCreatePage />,
     но скорее всего она будет не сильно отличаться от <ArticleEditPage />
 */  element: <ArticleEditPage />,
-    path: RoutePath.article_create,
+    path: getRouteArticleCreate(),
   },
   [AppRoutes.ARTICLE_DETAILS]: {
     authOnly: true,
     element: <ArticleDetailsPage />,
-    path: `${RoutePath.article_details}:id`,
+    path: getRouteArticleDetails(':id'),
   },
   [AppRoutes.ARTICLE_EDIT]: {
     authOnly: true,
     element: <ArticleEditPage />,
-    path: RoutePath.article_edit,
+    path: getRouteArticleEdit(':id'),
   },
   [AppRoutes.ARTICLES]: {
     authOnly: true,
     element: <ArticlesPage />,
-    path: RoutePath.articles,
+    path: getRouteArticles(),
   },
   [AppRoutes.MAIN]: {
     element: <MainPage />,
-    path: RoutePath.main,
+    path: getRouteMain(),
   },
   [AppRoutes.FORBIDDEN]: {
     element: <ForbiddenPage />,
-    path: RoutePath.forbidden,
+    path: getRouteForbidden(),
   },
   [AppRoutes.PROFILE]: {
     authOnly: true,
     element: <ProfilePage />,
-    path: `${RoutePath.profile}:id`,
+    path: getRouteProfile(':id'),
   },
-  [AppRoutes.NOT_FOUND]: {
+
+  // должен идти последним
+  [AppRoutes.NOT_FOUND]: { // охватывает все маршруты, кроме указанных выше
     element: <NotFoundPage />,
-    path: RoutePath.notFound,
+    path: '*',
   },
 };

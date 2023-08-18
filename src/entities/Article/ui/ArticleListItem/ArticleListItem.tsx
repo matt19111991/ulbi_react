@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
 
-import { RoutePath } from '@/shared/const/router';
+import { getRouteArticleDetails } from '@/shared/const/router';
 
 // import { useHover } from 'shared/lib/hooks/useHover/useHover';
 
@@ -82,7 +82,7 @@ export const ArticleListItem = memo(({
             */}
             <AppLink
               target={target}
-              to={`${RoutePath.article_details}${article.id}`}
+              to={getRouteArticleDetails(article.id)}
             >
               <Button theme={ButtonTheme.OUTLINE}>
                 {t('Читать далее')}...
@@ -107,7 +107,7 @@ export const ArticleListItem = memo(({
     <AppLink
       className={classNames('', {}, [className, classes[view]])}
       target={target}
-      to={`${RoutePath.article_details}${article.id}`}
+      to={getRouteArticleDetails(article.id)}
       /* {...hoverHandlers} */
     >
       <Card className={classes.card}>

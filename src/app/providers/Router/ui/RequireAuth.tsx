@@ -9,7 +9,7 @@ import {
   UserRole,
 } from '@/entities/User';
 
-import { RoutePath } from '@/shared/const/router';
+import { getRouteForbidden, getRouteMain } from '@/shared/const/router';
 
 interface RequireAuthProps {
   children: JSX.Element;
@@ -39,7 +39,13 @@ export const RequireAuth = ({ children, roles }: RequireAuthProps) => {
        просто захардкодить '/' - не лучший user experience
     */
 
-    return <Navigate to={RoutePath.main} state={{ from: location }} replace />;
+    return (
+      <Navigate
+        to={getRouteMain()}
+        state={{ from: location }}
+        replace
+      />
+    );
   }
 
 /*
@@ -47,7 +53,13 @@ export const RequireAuth = ({ children, roles }: RequireAuthProps) => {
   находясь на странице с панелью администратора и нажав 'Logout()', получим 'Forbidden' страницу
 */
   if (!hasRequiredRoles && mounted) {
-    return <Navigate to={RoutePath.forbidden} state={{ from: location }} replace />;
+    return (
+      <Navigate
+        to={getRouteForbidden()}
+        state={{ from: location }}
+        replace
+      />
+    );
   }
 
   return children;
