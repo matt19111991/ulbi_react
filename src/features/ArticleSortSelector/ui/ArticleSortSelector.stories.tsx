@@ -7,7 +7,7 @@ import { Theme } from '@/shared/const/theme';
 import { ArticleSortSelector } from './ArticleSortSelector';
 
 const meta = {
-  title: 'entities/ArticleSortSelector',
+  title: 'features/ArticleSortSelector',
   component: ArticleSortSelector,
   argTypes: {
     backgroundColor: {
