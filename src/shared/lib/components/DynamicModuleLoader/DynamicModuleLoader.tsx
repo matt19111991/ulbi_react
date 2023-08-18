@@ -12,8 +12,8 @@ export type ReducersList = {
 
    Reducer => редюсер типа 'any' (без уточнений, без переданной схемы). Принимает любой редюсер
 
-   Reducer<NonNullable<StateSchema[name]>> => принимает редюсер, основываясь на
-   названии поля из 'StateSchema'. Достаем из 'StateSchema' конкретную часть 'state'.
+   Reducer<NonNullable<StateSchema[name]>> => принимает NonNullable редюсер (не null и не undefined),
+   основываясь на названии поля из 'StateSchema'. Достаем из 'StateSchema' конкретную часть 'state'.
    Если в 'store' мы перепутаем редюсер и присвоим не под тем ключом => TS выдаст ошибку, т.к.
    'StateSchema' не соответствует созданному 'store'
 */
