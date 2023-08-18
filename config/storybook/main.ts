@@ -10,10 +10,18 @@ const config: StorybookConfig = {
   stories: ['../../src/**/*.stories.@(js|jsx|ts|tsx)'],
 
   addons: [
-    '@storybook/addon-essentials',
+    {
+      name: '@storybook/addon-essentials',
+      options: {
+        // у нас свое переключение темы, 'backgrounds' не будет работать, поэтому отключаем это свойство
+        backgrounds: false,
+      },
+    },
     '@storybook/addon-interactions',
     '@storybook/addon-links',
     '@storybook/addon-viewport',
+
+    // storybook-addon-themes не совместим с Storybook v.7+
   ],
 
   framework: {
