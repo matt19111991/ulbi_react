@@ -1,36 +1,36 @@
 import { memo } from 'react';
-import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button } from '@/shared/ui/Button';
 
-import { getCounterValue } from '../model/selectors/getCounterValue/getCounterValue';
-import { counterActions } from '../model/slice/counterSlice';
+import { useCounterValue } from '../model/selectors/getCounterValue/getCounterValue';
+
+import { useCounterActions } from '../model/slice/counterSlice';
 
 export const Counter = memo(() => {
-  const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
-  const counterValue = useSelector(getCounterValue);
+  const { decrement, increment } = useCounterActions();
 
-  const decrement = () => {
-    dispatch(counterActions.decrement());
+  const counterValue = useCounterValue();
+
+  const onDecrementHandler = () => {
+    decrement();
   };
 
-  const increment = () => {
-    dispatch(counterActions.increment());
+  const onIncrementHandler = () => {
+    increment();
   };
 
   return (
     <div>
       <h1 data-testid='value-title'>{counterValue}</h1>
 
-      <Button data-testid='increment-btn' onClick={increment}>
+      <Button data-testid='increment-btn' onClick={onIncrementHandler}>
         {t('Увеличить')}
       </Button>
 
-      <Button data-testid='decrement-btn' onClick={decrement}>
+      <Button data-testid='decrement-btn' onClick={onDecrementHandler}>
         {t('Уменьшить')}
       </Button>
     </div>
