@@ -5,6 +5,7 @@
 - Добавить unit тесты для всех rtkApi.injectEndpoints 
 - Добавить документацию и README.md для всех файлов
 - Исправить все закомментированные 'eslint-disable-next-line path-checker-1911' правила
+- Добавить script npm run postinstall и clearCache.js
 
 ---- 
 
@@ -27,7 +28,8 @@
 - `npm run lint:ts:fix` - Исправление TS файлов линтером
 - `npm run lint:scss` - Проверка SCSS файлов style линтером
 - `npm run lint:scss:fix` - Исправление SCSS файлов style линтером
-- `npm run storybook` - запуск Storybook
+- `npm run postinstall` - Очистка кэша после установки новых модулей
+- `npm run storybook` - Запуск Storybook
 - `npm run storybook:build` - Сборка storybook билда
 - `npm run test:ui` - Запуск скриншотных тестов с Loki
 - `npm run test:ui:ok` - Подтверждение новых скриншотов Loki

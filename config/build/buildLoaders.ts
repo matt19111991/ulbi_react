@@ -14,8 +14,8 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
   Нужно вынести проверку типов в отдельный процесс ('fork-ts-checker-webpack-plugin')
 */
 
-  const tsBabelLoader = buildBabelLoader(false);
-  const tsxBabelLoader = buildBabelLoader(true);
+  const tsBabelLoader = buildBabelLoader(false, options.isDev);
+  const tsxBabelLoader = buildBabelLoader(true, options.isDev);
 
   const cssLoaders = buildCssLoader(options.isDev);
 

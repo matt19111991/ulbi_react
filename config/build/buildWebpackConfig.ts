@@ -28,8 +28,9 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
 
     devServer: isDev ? buildDevServer(options) : undefined,
 
-//  В production нужно отключать source-map для минимизации кода
-    devtool: isDev ? 'inline-source-map' : undefined,
+    devtool: isDev
+      ? 'eval-cheap-module-source-map' // build slow, rebuild fast - best practice
+      : undefined, // в production нужно отключать source-map для минимизации кода
 
     output: { // настройка конечной сборки
 /*    [name] для динамических названий (для кеширования уже загруженных файлов)

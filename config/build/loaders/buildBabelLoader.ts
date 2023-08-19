@@ -2,13 +2,15 @@ import webpack from 'webpack';
 
 import babelRemovePropsPlugin from '../babel/babelRemovePropsPlugin';
 
-export const buildBabelLoader = (isTsx?: boolean/* ,isDev: boolean, */): webpack.RuleSetRule => ({
+export const buildBabelLoader = (isTsx?: boolean, isDev?: boolean): webpack.RuleSetRule => ({
   test: isTsx ? /\.(jsx|tsx)$/ : /\.(js|ts)$/,
   exclude: /node_modules/,
   use: {
     loader: 'babel-loader',
     options: {
 //    должна быть консистентность между 'buildLoaders' в webpack и 'babel.config.json
+
+      cacheDirectory: true, // разрешаем кеширование
 
       plugins: [
         [
@@ -37,7 +39,7 @@ export const buildBabelLoader = (isTsx?: boolean/* ,isDev: boolean, */): webpack
 */      '@babel/plugin-transform-runtime',
 
 //      для '.tsx' удаляем все 'data-testid' из финальной сборки
-        isTsx && [
+        isTsx && !isDev && [
           babelRemovePropsPlugin,
           {
             props: ['data-testid'],

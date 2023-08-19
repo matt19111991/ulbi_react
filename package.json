@@ -16,6 +16,7 @@
     "lint:ts:fix": "eslint \"**/*.{ts,tsx}\"",
     "lint:scss": "npx stylelint \"**/*.scss\"",
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
+    "postinstall": "node ./scripts/clearCache.js",
     "storybook": "storybook dev -p 6006 -c ./config/storybook",
     "storybook:build": "storybook build -c ./config/storybook",
     "test:ui": "npx loki test",

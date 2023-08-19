@@ -43,22 +43,7 @@ export function buildPlugins({
 //  ProgressPlugin отображает прогресс компиляции
     new webpack.ProgressPlugin(),
 
-/*  MiniCssExtractPlugin создает CSS файл для каждого JS файла (который использует CSS)
-    В то время, как style-loader пишет стили в DOM как инлайн стили
-*/
-    new MiniCssExtractPlugin({
-      chunkFilename: 'css/[name].[contenthash:8].css',
-      filename: 'css/[name].[contenthash:8].css',
-    }),
-
     buildDefinePlugin(apiUrl, isDev, project),
-
-    new CopyPlugin({
-      patterns: [
-        { from: paths.favicon, to: paths.build },
-        { from: paths.locales, to: paths.buildLocales },
-      ],
-    }),
 
     new CircularDependencyPlugin({
       exclude: /node_modules/,
@@ -89,6 +74,27 @@ export function buildPlugins({
     plugins.push(new BundleAnalyzerPlugin({
       openAnalyzer: false, // не открывать страницу с BundleAnalyzerPlugin при каждом запуске приложения
     }));
+  }
+
+  if (!isDev) {
+    /*  MiniCssExtractPlugin создает CSS файл для каждого JS файла (который использует CSS)
+        В то время, как style-loader пишет стили в DOM как инлайн стили
+    */
+    plugins.push(
+      new MiniCssExtractPlugin({
+        chunkFilename: 'css/[name].[contenthash:8].css',
+        filename: 'css/[name].[contenthash:8].css',
+      }),
+    );
+
+    plugins.push(
+      new CopyPlugin({
+        patterns: [
+          { from: paths.favicon, to: paths.build },
+          { from: paths.locales, to: paths.buildLocales },
+        ],
+      }),
+    );
   }
 
   return plugins;

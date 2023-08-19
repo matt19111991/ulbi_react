@@ -3,6 +3,7 @@ import webpack from 'webpack';
 
 export const buildCssLoader = (isDev: boolean): webpack.RuleSetRule => ({
     test: /\.s[ac]ss$/i,
+    exclude: /node_modules/,
     use: [ // cssLoaders работают в определенном порядке:
       isDev
         ? 'style-loader'               // 3. создает стили из JS строк и помещает их DOM
