@@ -9,11 +9,13 @@ import { getRouteArticleDetails } from '@/shared/const/router';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
+import { AppImage } from '@/shared/ui/AppImage';
 import { Avatar } from '@/shared/ui/Avatar';
 import { AppLink } from '@/shared/ui/AppLink';
 import { Button, ButtonTheme } from '@/shared/ui/Button';
 import { Card } from '@/shared/ui/Card';
 import { Icon } from '@/shared/ui/Icon';
+import { Skeleton } from '@/shared/ui/Skeleton';
 import { Text } from '@/shared/ui/Text';
 
 import { ArticleBlockType, ArticleView } from '../../model/consts/articleConsts';
@@ -61,9 +63,10 @@ export const ArticleListItem = memo(({
 
           <Text className={classes.types} text={article.type.join(', ')} />
 
-          <img
+          <AppImage
             alt={article.title}
             className={classes.image}
+            loadingFallback={<Skeleton height={250} width='100%' />}
             src={article.img}
           />
 
@@ -112,9 +115,10 @@ export const ArticleListItem = memo(({
     >
       <Card className={classes.card}>
         <div className={classes.imageWrapper}>
-          <img
+          <AppImage
             alt={article.title}
             className={classes.image}
+            loadingFallback={<Skeleton height={200} width={200} />}
             src={article.img}
           />
 

@@ -68,7 +68,7 @@ export const AvatarDropdown = memo(({
       items={menuItems}
       justify='right'
       optionSize='S'
-      trigger={<Avatar size={30} src={avatarSrc} />}
+      trigger={<Avatar fallbackInverted size={30} src={avatarSrc} />}
     />
   );
 });

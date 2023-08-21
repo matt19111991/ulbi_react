@@ -34,4 +34,21 @@ export const Small: Story = {
   },
 };
 
+// Fallback primary avatar
+
+export const FallbackPrimary: Story = {
+  args: {
+    src: '',
+  },
+};
+
+// Fallback inverted avatar
+
+export const FallbackInverted: Story = {
+  args: {
+    fallbackInverted: true,
+    src: '',
+  },
+};
+
 export default meta;
