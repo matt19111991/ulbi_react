@@ -7,9 +7,25 @@ on:
   pull_request:
     branches: [ master ]
 
+permissions:
+  contents: write
+  id-token: write
+  pages: write
+
+concurrency:
+  cancel-in-progress: true
+  group: "pages"
+
 jobs:
-  pipeline: # любое название для job
+  build-and-ui-testing: # требует сборку
     runs-on: ubuntu-latest
+
+    concurrency: ci-${{ github.ref }}
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     strategy:
       matrix:
         node-version: [ 17.x ] # задаем версию для Node.js
@@ -23,34 +39,17 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      # Даем добро на установку peer-dependencies
-      - name: Set legacy-peer-deps
-        run: npm config set legacy-peer-deps true
-
       # устанавливаем node_modules
       - name: Install modules
-        run: npm install
+        # аналог 'npm install', только более быстрая версия для CI:
+          # не создается новый 'package-lock.json файл', а используется существующий
+        run: npm ci --force
 
       # собираем production build
       - name: Build production project
         # запуск команды в любом случае (даже если завалилось выполнение предыдущей команды)
         if: always()
         run: npm run build:prod
-
-      # проверяем корректность TypeScript
-      - name: Linting Typescript
-        if: always()
-        run: npm run lint:ts
-
-      # проверяем корректность CSS
-      - name: Linting CSS
-        if: always()
-        run: npm run lint:scss
-
-      # запускаем unit тестирование
-      - name: Unit testing
-        if: always()
-        run: npm run test:unit
 
       # собираем storybook build
       - name: Build storybook
@@ -61,3 +60,59 @@ jobs:
       - name: Screenshot testing
         if: always()
         run: npm run test:ui:ci
+
+      # генерируем отчет по скриншотному тестированию (loki)
+      - name: Generate HTML report
+        if: always()
+        run: npm run test:ui:report
+
+      - name: Setup Pages
+        if: always()
+        uses: actions/configure-pages@v2
+
+      - name: Upload artifact
+        if: always()
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: '.loki'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        if: always()
+        uses: actions/deploy-pages@v1
+
+  checks: # не требует сборку
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 17.x ] # задаем версию для Node.js
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # устанавливаем в среду, где будут запускаться GitHub Actions, заданную выше версию Node.js
+      - name: Staring Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # устанавливаем node_modules
+      - name: install modules
+        # аналог 'npm install', только более быстрая версия для CI:
+          # не создается новый 'package-lock.json файл', а используется существующий
+        run: npm ci --force
+
+      # проверяем корректность TypeScript
+      - name: Linting typescript
+        if: always()
+        run: npm run lint:ts
+
+      # проверяем корректность CSS
+      - name: Linting CSS
+        run: npm run lint:scss
+
+      # запускаем unit тестирование
+      - name: Unit testing
+        if: always()
+        run: npm run test:unit

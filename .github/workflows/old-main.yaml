@@ -1,0 +1,65 @@
+name: linting, testing, building
+
+# запуск GitHub actions будет происходить на push и pull request (ветка 'master')
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  pipeline: # любое название для job
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 17.x ] # задаем версию для Node.js
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # устанавливаем в среду, где будут запускаться GitHub Actions, заданную выше версию Node.js
+      - name: Starting Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # даем добро на установку peer-dependencies
+      - name: Set legacy-peer-deps
+        run: npm config set legacy-peer-deps true
+
+      # устанавливаем node_modules
+      - name: Install modules
+        # аналог 'npm install', только более быстрая версия для CI:
+          # не создается новый 'package-lock.json файл', а используется существующий
+        run: npm ci
+
+      # собираем production build
+      - name: Build production project
+        # запуск команды в любом случае (даже если завалилось выполнение предыдущей команды)
+        if: always()
+        run: npm run build:prod
+
+      # проверяем корректность TypeScript
+      - name: Linting Typescript
+        if: always()
+        run: npm run lint:ts
+
+      # проверяем корректность CSS
+      - name: Linting CSS
+        if: always()
+        run: npm run lint:scss
+
+      # запускаем unit тестирование
+      - name: Unit testing
+        if: always()
+        run: npm run test:unit
+
+      # собираем storybook build
+      - name: Build storybook
+        if: always()
+        run: npm run storybook:build
+
+      # запускаем скриншотное тестирование (loki)
+      - name: Screenshot testing
+        if: always()
+        run: npm run test:ui:ci
