@@ -39,6 +39,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      # даем добро на установку peer-dependencies
+      - name: Set legacy-peer-deps
+        run: npm config set legacy-peer-deps true
+
       # устанавливаем node_modules
       - name: Install modules
         # аналог 'npm install', только более быстрая версия для CI:
@@ -96,6 +100,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+
+      # даем добро на установку peer-dependencies
+      - name: Set legacy-peer-deps
+        run: npm config set legacy-peer-deps true
 
       # устанавливаем node_modules
       - name: install modules
