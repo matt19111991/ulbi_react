@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: true
   group: "pages"
 
-jobs:
+jobs: # 'build-and-ui-testing' и 'checks' jobs запускаются параллельно
   build-and-ui-testing: # требует сборку
     runs-on: ubuntu-latest
 
@@ -46,7 +46,8 @@ jobs:
       # устанавливаем node_modules
       - name: Install modules
         # аналог 'npm install', только более быстрая версия для CI:
-          # не создается новый 'package-lock.json файл', а используется существующий
+          # не создается новый 'package-lock.json' файл, а используется существующий
+          # нужно добавить 'package-lock.json' в репозиторий
         run: npm ci --force
 
       # собираем production build
@@ -70,16 +71,19 @@ jobs:
         if: always()
         run: npm run test:ui:report
 
+      # извлекаем метаданные
       - name: Setup Pages
         if: always()
         uses: actions/configure-pages@v2
 
+      # упаковываем и загружаем артефакты, которые можно развернуть на страницах GitHub
       - name: Upload artifact
         if: always()
         uses: actions/upload-pages-artifact@v1
         with:
           path: '.loki'
 
+      # публикуем артефакты на страницах GitHub для деплоя
       - name: Deploy to GitHub Pages
         id: deployment
         if: always()
@@ -87,6 +91,9 @@ jobs:
 
   checks: # не требует сборку
     runs-on: ubuntu-latest
+
+    # пока не выполнятся 'build' и 'linting' jobs, текущая 'checks' job не запустится
+    # needs: [build, linting]
 
     strategy:
       matrix:
@@ -108,7 +115,8 @@ jobs:
       # устанавливаем node_modules
       - name: install modules
         # аналог 'npm install', только более быстрая версия для CI:
-          # не создается новый 'package-lock.json файл', а используется существующий
+          # не создается новый 'package-lock.json' файл, а используется существующий
+          # нужно добавить 'package-lock.json' в репозиторий
         run: npm ci --force
 
       # проверяем корректность TypeScript
