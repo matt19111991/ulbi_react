@@ -66,10 +66,20 @@ jobs: # 'build-and-ui-testing' и 'checks' jobs запускаются пара�
         if: always()
         run: npm run test:ui:ci
 
+      # запускаем unit тестирование
+      - name: Unit testing
+        if: always()
+        run: npm run test:unit
+
       # генерируем отчет по скриншотному тестированию (loki)
       - name: Generate HTML report
         if: always()
         run: npm run test:ui:report
+
+      # перемещаем отчеты loki в папку 'reports'
+      - name: Move loki reports
+        if: always()
+        run: mv .loki reports/
 
       # извлекаем метаданные
       - name: Setup Pages
@@ -81,7 +91,7 @@ jobs: # 'build-and-ui-testing' и 'checks' jobs запускаются пара�
         if: always()
         uses: actions/upload-pages-artifact@v1
         with:
-          path: '.loki'
+          path: 'reports' # все отчеты сохраняются в папку 'reports'
 
       # публикуем артефакты на страницах GitHub для деплоя
       - name: Deploy to GitHub Pages

@@ -4,5 +4,5 @@
 dist
 extractedTranslations
 node_modules
-reports
+reports/unit
 storybook-static
