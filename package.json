@@ -108,6 +108,7 @@
     "jest-environment-jsdom": "^29.5.0",
     "jest-html-reporters": "^3.1.4",
     "json-server": "^0.17.3",
+    "lint-staged": "^14.0.1",
     "loki": "^0.32.0",
     "mini-css-extract-plugin": "^2.7.6",
     "reg-cli": "^0.17.7",
@@ -129,6 +130,9 @@
     "webpack-bundle-analyzer": "^4.9.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": "eslint"
   },
   "loki": {
     "looks-same": {
