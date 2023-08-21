@@ -16,12 +16,14 @@ import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfin
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
 
+import { TestProps } from '@/shared/types/tests';
+
 import { getPageScrollByPath } from '../model/selectors/pageScrollSelectors';
 import { pageScrollActions } from '../model/slice/pageScrollSlice';
 
 import classes from './Page.module.scss';
 
-interface PageProps {
+interface PageProps extends TestProps {
   children: ReactNode;
   className?: string;
   onScrollEnd?: () => void;
@@ -29,7 +31,12 @@ interface PageProps {
 
 export const PAGE_ID = 'PAGE_ID';
 
-export const Page = ({ children, className, onScrollEnd }: PageProps) => {
+export const Page = ({
+  children,
+  className,
+  onScrollEnd,
+  ...rest
+}: PageProps) => {
   const dispatch = useAppDispatch();
   const location = useLocation();
 
@@ -71,6 +78,7 @@ export const Page = ({ children, className, onScrollEnd }: PageProps) => {
   return (
     <main
       className={classNames(classes.Page, {}, [className])}
+      data-testid={rest['data-testid'] ?? 'Page'}
       id={PAGE_ID}
       onScroll={onScroll}
       ref={wrapperRef}

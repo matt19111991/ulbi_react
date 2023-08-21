@@ -11,6 +11,7 @@ interface AdminPanelPageProps {
 const AdminPanelPage = ({ className }: AdminPanelPageProps) => (
   <Page
     className={classNames('', {}, [className])}
+    data-testid='AdminPanelPage'
     /* eslint-disable-next-line i18next/no-literal-string */
   >
     Admin panel page
