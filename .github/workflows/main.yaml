@@ -45,7 +45,7 @@ jobs: # 'build-and-ui-testing' и 'checks' jobs запускаются пара�
 
       # удаляем package-lock.json от предыдущей установки
       - name: Remove package-lock.json
-         run: rm package-lock.json
+        command: ["rm","package-lock.json"]
 
       # устанавливаем node_modules
       - name: Install modules
