@@ -48,12 +48,7 @@ jobs: # 'build-and-ui-testing' и 'checks' jobs запускаются пара�
         # аналог 'npm install', только более быстрая версия для CI:
           # не создается новый 'package-lock.json' файл, а используется существующий
           # нужно добавить 'package-lock.json' в репозиторий
-        run: |
-          if [ -e package-lock.json ]; then
-            npm ci
-          else
-            npm i
-          fi
+        run: npm ci
 
       # собираем production build
       - name: Build production project
