@@ -30,6 +30,16 @@ const config: StorybookConfig = {
   },
 
   staticDirs: ['../../public'],
+
+  /*
+    При ошибке 'Invalid configuration object. Webpack has been initialised using a configuration
+    object that does not match the API schema', нужно перенести содержимое файла 'webpack.config.ts'
+    в свойство 'webpackFinal':
+
+    webpackFinal: async (config, { configType }) => {
+      ...
+    };
+ */
 };
 
 export default config;
