@@ -1,3 +1,5 @@
+// Eslint v.8+ работает с WebStorm 2022.2.2+, поэтому используем v.7
+
 module.exports = {
   env: {
     browser: true,
