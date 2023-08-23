@@ -88,7 +88,7 @@
     "copy-webpack-plugin": "^11.0.0",
     "cors": "^2.8.5",
     "css-loader": "^6.8.1",
-    "eslint": "^8.22.0",
+    "eslint": "^8.47.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-i18next": "^6.0.3",
