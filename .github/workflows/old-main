@@ -24,8 +24,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       # даем добро на установку peer-dependencies
-      - name: Set legacy-peer-deps
-        run: npm config set legacy-peer-deps true
+      # - name: Set legacy-peer-deps
+        # run: npm config set legacy-peer-deps true
 
       # устанавливаем node_modules
       - name: Install modules
