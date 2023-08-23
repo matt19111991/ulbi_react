@@ -24,15 +24,15 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       # даем добро на установку peer-dependencies
-      - name: Set legacy-peer-deps
-        run: npm config set legacy-peer-deps true
+      # - name: Set legacy-peer-deps
+        # run: npm config set legacy-peer-deps true
 
       # устанавливаем node_modules
       - name: Install modules
         # аналог 'npm install', только более быстрая версия для CI:
           # не создается новый 'package-lock.json' файл, а используется существующий
           # нужно добавить 'package-lock.json' в репозиторий
-        run: npm ci --force
+        run: npm ci
 
       # собираем production build
       - name: Build production project
