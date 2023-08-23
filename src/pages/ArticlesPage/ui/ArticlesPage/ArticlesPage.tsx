@@ -73,6 +73,7 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
       <Page
         className={classNames(classes.ArticlesPage, {}, [className])}
+        data-testid='ArticlesPage'
         onScrollEnd={onLoadNextPart}
       >
         <ArticlesPageFilters />

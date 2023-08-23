@@ -31,6 +31,7 @@
 - `npm run postinstall` - Очистка кэша после установки новых модулей
 - `npm run storybook` - Запуск Storybook
 - `npm run storybook:build` - Сборка storybook билда
+- `npm run test:e2e` - Запуск интеграционных тестов с Сypress
 - `npm run test:ui` - Запуск скриншотных тестов с Loki
 - `npm run test:ui:ok` - Подтверждение новых скриншотов Loki
 - `npm run test:ui:ci` - Запуск скриншотных тестов Loki в CI
