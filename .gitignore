@@ -5,4 +5,5 @@ dist
 extractedTranslations
 node_modules
 reports/unit
+package-lock.json
 storybook-static

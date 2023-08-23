@@ -43,16 +43,13 @@ jobs: # 'build-and-ui-testing' и 'checks' jobs запускаются пара�
       # - name: Set legacy-peer-deps
         # run: npm config set legacy-peer-deps true
 
-      # удаляем package-lock.json от предыдущей установки
-      - name: Remove package-lock.json
-        command: ["rm","package-lock.json"]
-
       # устанавливаем node_modules
       - name: Install modules
-        # аналог 'npm install', только более быстрая версия для CI:
+        # есть аналог 'npm install' => 'npm ci' (более быстрая версия для CI):
           # не создается новый 'package-lock.json' файл, а используется существующий
           # нужно добавить 'package-lock.json' в репозиторий
-        run: npm ci
+          # но, используем 'npm i', т.к. иначе возникают конфликты для deprecated библиотек
+        run: npm i
 
       # собираем production build
       - name: Build production project
