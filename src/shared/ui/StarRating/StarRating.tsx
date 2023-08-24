@@ -61,7 +61,7 @@ export const StarRating = memo(({
             classNames(
               classes.starIcon,
               {
-                // закрашиваем текущую и все предыдующие звезды
+                // закрашиваем текущую и все предыдущие звезды
                 [classes.hovered]: starNumber <= currentStarsCount,
 
                 [classes.normal]: starNumber > currentStarsCount,
@@ -71,6 +71,8 @@ export const StarRating = memo(({
               [],
             )
           }
+          data-selected={starNumber <= currentStarsCount}
+          data-testid={`StarRating.${starNumber}`}
           height={size}
           key={starNumber}
           onClick={onClick(starNumber)}

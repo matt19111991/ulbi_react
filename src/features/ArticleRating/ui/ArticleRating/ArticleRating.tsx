@@ -66,6 +66,7 @@ const ArticleRating = ({
   return (
     <RatingCard
       className={className}
+      data-testid='ArticleRating'
       feedbackTitle={t('Оставьте свой отзыв о статье, это поможет улучшить качество')}
       hasFeedback
       onAccept={onAccept}

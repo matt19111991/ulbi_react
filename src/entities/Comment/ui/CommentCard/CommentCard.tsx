@@ -28,6 +28,7 @@ export const CommentCard = memo(({ className, comment, isLoading }: CommentCardP
         className={
           classNames(classes.CommentCard, {}, [className, classes.loading])
         }
+        data-testid='CommentCard.Loading'
         gap='8'
         max
       >
@@ -48,6 +49,7 @@ export const CommentCard = memo(({ className, comment, isLoading }: CommentCardP
         className={
           classNames(classes.CommentCard, {}, [className])
         }
+        data-testid='CommentCard.Content'
         gap='8'
         max
       >

@@ -49,7 +49,10 @@ export const ArticleListItem = memo(({
     ) as ArticleTextBlock;
 
     return (
-      <div className={classNames('', {}, [className, classes[view]])}>
+      <div
+        className={classNames('', {}, [className, classes[view]])}
+        data-testid='ArticleListItem'
+      >
         <Card>
           <div className={classes.header}>
             <Avatar size={30} src={article.user.avatar} />
@@ -109,6 +112,7 @@ export const ArticleListItem = memo(({
   return (
     <AppLink
       className={classNames('', {}, [className, classes[view]])}
+      data-testid='ArticleListItem'
       target={target}
       to={getRouteArticleDetails(article.id)}
       /* {...hoverHandlers} */

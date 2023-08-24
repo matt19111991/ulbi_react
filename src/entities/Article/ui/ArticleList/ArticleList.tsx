@@ -221,6 +221,7 @@ export const ArticleList = memo(({
       }) => (
         <div
           className={classNames('', {}, [className, classes[view]])}
+          data-testid='ArticleList'
         >
           {articleItems.length
             ? (

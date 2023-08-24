@@ -60,6 +60,7 @@ export const Flex = memo(({
   gap,
   justify = 'start',
   max,
+  ...rest
 }: FlexProps) => {
   const additionalClasses = [
     className,
@@ -74,7 +75,10 @@ export const Flex = memo(({
   };
 
   return (
-    <div className={classNames(classes.Flex, mods, additionalClasses)}>
+    <div
+      className={classNames(classes.Flex, mods, additionalClasses)}
+      {...rest}
+    >
       {children}
     </div>
   );

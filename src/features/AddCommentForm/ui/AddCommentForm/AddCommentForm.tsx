@@ -63,18 +63,24 @@ const AddCommentForm = ({ className, onSendComment }: AddCommentFormProps) => {
             [className],
           )
         }
+        data-testid='AddCommentForm'
         justify='between'
         max
       >
         <Input
           className={classes.input}
+          data-testid='AddCommentForm.Input'
           fullWidth
           onChange={onCommentTextChange}
           placeholder={t('Введите текст комментария')}
           value={text}
         />
 
-        <Button onClick={onSendHandler} theme={ButtonTheme.OUTLINE}>
+        <Button
+          data-testid='AddCommentForm.Button'
+          onClick={onSendHandler}
+          theme={ButtonTheme.OUTLINE}
+        >
           {t('Отправить')}
         </Button>
       </HStack>
