@@ -17,15 +17,15 @@ describe('Пользователь заходит на страницу стат
     cy.removeArticle(currentArticleId);
   });
 
-  it('Статья успешно загружена и отображается', () => {
+  it('Статья успешно загружена с сервера и отображается', () => {
     cy.getByTestId('ArticleDetails.Info').should('exist');
   });
 
-  it('Список рекомендаций успешно загружен и отображается', () => {
+  it('Список рекомендаций успешно загружен с сервера и отображается', () => {
     cy.getByTestId('ArticleRecommendationsList').should('exist');
   });
 
-  it('Комментарии добавляются успешно', () => {
+  it('Комментарии добавляются успешно на сервер', () => {
     cy.getByTestId('ArticleDetails.Info').should('exist'); // статья уже загрузилась
 
     cy.getByTestId('AddCommentForm').scrollIntoView();
@@ -35,7 +35,7 @@ describe('Пользователь заходит на страницу стат
     cy.getByTestId('CommentCard.Content').should('have.length', 1);
   });
 
-  it('Оценка выставляется успешно', () => {
+  it('Оценка выставляется успешно на стабах (фикстурах)', () => {
     // перехватываем запрос совпадающий с '**/articles/*' и подставляем моковые данные из 'fixtures'
     cy.intercept('GET', '**/articles/*', { fixture: 'article-details.json' });
 
