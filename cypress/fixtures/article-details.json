@@ -1,0 +1,22 @@
+{
+  "blocks": [],
+  "createdAt": "26.02.2023",
+  "img": "https://www.freepnglogos.com/uploads/javascript-png/javascript-vector-logo-yellow-png-transparent-javascript-vector-12.png",
+  "subtitle": "Testing article description",
+  "title": "Testing article",
+  "type": [
+    "IT"
+  ],
+  "userId": "1",
+  "views": 1022,
+  "id": "1",
+  "user": {
+    "id": "1",
+    "avatar": "https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg",
+    "password": "12345",
+    "roles": [
+      "ADMIN"
+    ],
+    "username": "Jack"
+  }
+}

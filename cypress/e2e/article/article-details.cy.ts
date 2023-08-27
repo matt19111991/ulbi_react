@@ -36,6 +36,9 @@ describe('Пользователь заходит на страницу стат
   });
 
   it('Оценка выставляется успешно', () => {
+    // перехватываем запрос совпадающий с '**/articles/*' и подставляем моковые данные из 'fixtures'
+    cy.intercept('GET', '**/articles/*', { fixture: 'article-details.json' });
+
     cy.getByTestId('ArticleDetails.Info').should('exist'); // статья уже загрузилась
 
     cy.getByTestId('RatingCard').scrollIntoView();
