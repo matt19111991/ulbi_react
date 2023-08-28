@@ -3,23 +3,23 @@
 // Типизация css-modules для файлов вида '*.module.scss'
 
 declare module '*.scss' {
-    interface IClassNames {
-        [className: string] : string;
-    }
+  interface IClassNames {
+    [className: string]: string;
+  }
 
-    const classNames: IClassNames;
+  const classNames: IClassNames;
 
-    export = classNames;
+  export = classNames;
 }
 
 // По умолчанию TypeScript не понимает импортируемые SVG изображения
 
 declare module '*svg' {
-    import React from 'react';
+  import React from 'react';
 
-    const SVG: React.VFC<React.SVGProps<SVGSVGElement>>;
+  const SVG: React.VFC<React.SVGProps<SVGSVGElement>>;
 
-    export default SVG;
+  export default SVG;
 }
 
 // для следующих типов достаточно заглушек

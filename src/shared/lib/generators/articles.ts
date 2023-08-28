@@ -66,7 +66,7 @@ export const generateArticles = (amount: number): Article[] => new Array(amount)
 
 export const generateNormalizedArticles = (
   amount: number,
-): { entities: Record<string, Article>, ids: Array<string> } => {
+): { entities: Record<string, Article>; ids: Array<string> } => {
   const entities: Record<string, Article> = {};
   const ids: Array<string> = [];
 

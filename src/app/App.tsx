@@ -27,7 +27,7 @@ const App = () => {
     dispatch(userActions.initAuthData());
   }, [dispatch]);
 
-  return  (
+  return (
     <div className={classNames('app', {}, [])}>
       <Suspense fallback=''> {/* <Suspense /> для переводов */}
         <Navbar />

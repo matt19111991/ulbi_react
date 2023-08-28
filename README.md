@@ -31,6 +31,7 @@
 - `npm run lint:scss` - Проверка SCSS файлов style линтером
 - `npm run lint:scss:fix` - Исправление SCSS файлов style линтером
 - `npm run postinstall` - Очистка кэша после установки новых модулей
+- `npm run prettify` - Выравнивание кода при помощи Prettier
 - `npm run storybook` - Запуск Storybook
 - `npm run storybook:build` - Сборка storybook билда
 - `npm run test:e2e` - Запуск интеграционных тестов с Сypress

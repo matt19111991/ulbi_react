@@ -13,6 +13,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:storybook/recommended',
+    'prettier',
   ],
   globals: {
     __API__: 'readonly',
@@ -80,8 +81,9 @@ module.exports = {
 //  импорты вида 'export const Sidebar' запрещены; нужен export default (откл.)
     'import/prefer-default-export': 0,
 
-//  проверка отступов (откл.)
+/*  проверка отступов (откл.)
     indent: 0,
+*/
 
 /*
     проверка семантики (div помимо onClick обработчика
@@ -155,6 +157,10 @@ module.exports = {
 //  нужно явно указывать атрибут 'type' для <button /> (откл.)
     'react/button-has-type': 0,
 
+/*  задаем максимально допустимое количество пропсов в одну строку в JSX (вкл.),
+    если пропсов больше => каждый проп будет на новой строке
+*/  'react/jsx-max-props-per-line': [2, { maximum: 4 }],
+
 //  определение функциональных компонентов только через стрелочные функции (вкл.)
     'react/function-component-definition': [
       2,
@@ -175,11 +181,13 @@ module.exports = {
 //  разрешить JSX в файлах .jsx и .tsx (вкл.)
     'react/jsx-filename-extension': [2, { extensions: ['.jsx', '.tsx'] }],
 
-//  базовые отступы в JSX: 2 пробела (2-ой элемент массива)
-    'react/jsx-indent': [2, 2],
+/*  базовые отступы в JSX: 2 пробела (2-ой элемент массива)
+   'react/jsx-indent': [2, 2],
+*/
 
-//  отступы для props в JSX: 2 пробела (2-ой элемент массива)
+/*  отступы для props в JSX: 2 пробела (2-ой элемент массива)
     'react/jsx-indent-props': [2, 2],
+*/
 
 //  нельзя оставить комментарий в JSX (откл.)
     'react/jsx-one-expression-per-line': 0,

@@ -3,12 +3,12 @@ import { UserRole } from '../consts/userConsts';
 export interface User {
   id: string;
   avatar?: string;
-  roles?: UserRole[],
+  roles?: UserRole[];
   username: string;
 }
 
 export interface UserSchema {
-   authData?: User;
+  authData?: User;
 
 /* AppRouter отрисовывается быстрее, чем инициализируются данные о пользователя из 'Store':
 

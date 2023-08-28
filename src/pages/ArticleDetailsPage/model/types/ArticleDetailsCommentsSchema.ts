@@ -10,7 +10,7 @@ import { Comment } from '@/entities/Comment';
    }
 */
 
-export interface ArticleDetailsCommentsSchema extends EntityState<Comment>{
+export interface ArticleDetailsCommentsSchema extends EntityState<Comment> {
   areLoading?: boolean;
   error?: string;
 }

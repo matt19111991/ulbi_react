@@ -12,7 +12,7 @@ export const pageScrollSlice = createSlice({
   reducers: {
     setScrollPosition: (
       state,
-      action: PayloadAction<{ path: string; position: number; }>,
+      action: PayloadAction<{ path: string; position: number }>,
     ) => {
       state.scroll[action.payload.path] = action.payload.position;
     },

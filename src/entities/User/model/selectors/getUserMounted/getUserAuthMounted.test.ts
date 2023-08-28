@@ -15,9 +15,9 @@ describe('getUserMounted', () => {
 
   test('should work with empty state', () => {
     const state: DeepPartial<StateSchema> = {
-        user: {},
+      user: {},
     };
 
     expect(getUserMounted(state as StateSchema)).toBeFalsy();
- });
+  });
 });

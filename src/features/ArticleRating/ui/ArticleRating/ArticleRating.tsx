@@ -24,7 +24,7 @@ const ArticleRating = ({
 }: ArticleRatingProps) => {
   const { t } = useTranslation();
 
-  const userData  = useSelector(getUserAuthData);
+  const userData = useSelector(getUserAuthData);
 
   const {
     data,

@@ -11,16 +11,16 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 // .use() => подключение различных плагинов
 
 i18n
-    .use(Backend)
-    .use(LanguageDetector)
-    .use(initReactI18next) // pass the i18next instance to react-i18next
+  .use(Backend)
+  .use(LanguageDetector)
+  .use(initReactI18next) // pass the i18next instance to react-i18next
 
-    .init({
+  .init({
 /*      backend: {
             loadPath: '/locales/{{lng}}/{{ns}}.json',
         },
 */
-        fallbackLng: 'ru',
+    fallbackLng: 'ru',
 
 /*      Необходимо глобальное объявление переменной __IS_DEV__,
         чтобы избежать ошибок TS (в global.d.ts)
@@ -28,9 +28,9 @@ i18n
         В логи пишется подгрузка переводов, отсутствующие ключи и т.д.
         debug: __IS_DEV__ ? true : false
 */
-      interpolation: {
-            escapeValue: false, // not needed for react as it escapes by default
-        },
-    });
+    interpolation: {
+      escapeValue: false, // not needed for react as it escapes by default
+    },
+  });
 
 export default i18n;

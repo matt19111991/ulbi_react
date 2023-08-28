@@ -18,7 +18,7 @@ const ThemeProvider = ({ children, initialTheme }: ThemeProviderProps) => {
   // по умолчанию устанавливаем либо 'initialTheme' из props или 'defaultTheme' из localStorage
   const [theme, setTheme] = useState<Theme>(initialTheme || defaultTheme);
 
-  const memoizedContext = useMemo(() => ({ setTheme, theme }),  [theme]);
+  const memoizedContext = useMemo(() => ({ setTheme, theme }), [theme]);
 
   return (
     <ThemeContext.Provider value={memoizedContext}>

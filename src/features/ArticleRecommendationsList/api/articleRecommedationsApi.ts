@@ -24,8 +24,8 @@ const recommendationsApi = rtkApi.injectEndpoints({
 
         return baseQuery({
           params: {
-              _limit: limit,
-            },
+            _limit: limit,
+          },
           url: '/articles',
         }) as RecommendationsResponse;
       },

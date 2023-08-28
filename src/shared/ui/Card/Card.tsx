@@ -5,8 +5,8 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './Card.module.scss';
 
 export enum CardTheme {
-  NORMAL =  'normal',
-  OUTLINED =  'outlined',
+  NORMAL = 'normal',
+  OUTLINED = 'outlined',
 }
 
 // расширяем интерфейс, чтобы TS понимал 'props', если мы захотим пробросить данные из 'useHover' и т.п.

@@ -17,7 +17,7 @@ interface ProfilePageProps {
 }
 
 const ProfilePage = ({ className, storybookUserId }: ProfilePageProps) => {
-  const { id } = useParams<{ id: string; }>();
+  const { id } = useParams<{ id: string }>();
   const { t } = useTranslation('profile');
 
   const userId = __PROJECT__ === 'storybook' ? storybookUserId : id;

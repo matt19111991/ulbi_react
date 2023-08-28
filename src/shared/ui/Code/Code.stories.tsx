@@ -22,7 +22,7 @@ type Story = StoryObj<typeof meta>;
 
 // Primary code
 
-export const Primary: Story =  {
+export const Primary: Story = {
   args: {
     text: codeText,
   },
@@ -30,7 +30,7 @@ export const Primary: Story =  {
 
 // Dark code
 
-export const Dark: Story =  {
+export const Dark: Story = {
   args: {
     text: codeText,
   },
@@ -40,7 +40,7 @@ Dark.decorators = [ThemeDecorator(Theme.DARK)];
 
 // Orange code
 
-export const Orange: Story =  {
+export const Orange: Story = {
   args: {
     text: codeText,
   },
