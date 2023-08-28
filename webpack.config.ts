@@ -25,9 +25,9 @@ module.exports = { // аналог экспорта для Node.js
 // export default config; // если не нужны переменные окружения env, можно вернуть просто config
 
 export default (env: BuildEnv) => {
-  const apiUrl = process.env.API_URL || 'http://localhost:8000';
+  const apiUrl = process.env?.API_URL || 'http://localhost:8000';
 
-  const mode: BuildMode = env.mode || 'development';
+  const mode: BuildMode = env?.mode || 'development';
 
   const isDev = mode === 'development';
 
@@ -43,7 +43,7 @@ export default (env: BuildEnv) => {
     src: path.resolve(__dirname, 'src'),
   };
 
-  const port = env.port || 3000;
+  const port = env?.port || 3000;
 
   const config: webpack.Configuration = buildWebpackConfig({
     apiUrl,
