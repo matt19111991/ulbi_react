@@ -17,4 +17,4 @@
 
 # 'lint-staged' запускает проверки только для измененных файлов, а не для всех
 # настройки 'lint-staged' в 'package.json'
-# npx lint-staged
+npx lint-staged

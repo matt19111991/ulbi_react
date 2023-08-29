@@ -1,19 +1,9 @@
 import type { Preview } from '@storybook/react';
 
-import {
-  GlobalStyleDecorator,
-} from '../../src/shared/config/storybook/GlobalStyleDecorator/GlobalStyleDecorator';
-
-import {
-  IndentsDecorator,
-} from '../../src/shared/config/storybook/IndentsDecorator/IndentsDecorator';
-
+import { GlobalStyleDecorator } from '../../src/shared/config/storybook/GlobalStyleDecorator/GlobalStyleDecorator';
+import { IndentsDecorator } from '../../src/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { RouterDecorator } from '../../src/shared/config/storybook/RouterDecorator/RouterDecorator';
-
-import {
-  SuspenseDecorator,
-} from '../../src/shared/config/storybook/SuspenseDecorator/SuspenseDecorator';
-
+import { SuspenseDecorator } from '../../src/shared/config/storybook/SuspenseDecorator/SuspenseDecorator';
 import { ThemeDecorator } from '../../src/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '../../src/shared/const/theme';

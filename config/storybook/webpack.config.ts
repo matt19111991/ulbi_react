@@ -21,14 +21,17 @@ export default ({ config }: { config: webpack.Configuration }) => {
   // настройка CSS модулей
   config.module!.rules!.push(buildCssLoader(true)); // storybook используем только в режиме разработки
 
-/* отключение обработки SVG файлов через дефолтные лоадеры storybook-a ('file-loader') и
-   подключение '@svgr/webpack' лоадера
-*/
+  /*
+    отключение обработки SVG файлов через дефолтные лоадеры storybook-a ('file-loader') и
+    подключение '@svgr/webpack' лоадера
+  */
+
   // eslint-disable-next-line no-param-reassign
   config.module!.rules = config.module!.rules!.map((rule: Rule) => {
     const iteratedRule = rule as webpack.RuleSetRule;
 
-    if (/svg/.test(iteratedRule.test as string)) { // если в поле 'test' для лоадера есть совпадение по 'svg'
+    // если в поле 'test' для лоадера есть совпадение по 'svg'
+    if (/svg/.test(iteratedRule.test as string)) {
       return { ...iteratedRule, exclude: /\.svg$/i }; // исключаем обработку SVG файлов
     }
 
