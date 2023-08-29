@@ -25,15 +25,15 @@ const reactVirtualizedHack = (): PluginOption => {
 
       const reactVirtualizedPath = require.resolve('react-virtualized');
 
-      const {
-        pathname: reactVirtualizedFilePath,
-      } = new url.URL(reactVirtualizedPath, import.meta.url);
+      const { pathname: reactVirtualizedFilePath } = new url.URL(
+        reactVirtualizedPath,
+        import.meta.url,
+      );
 
-      const file = reactVirtualizedFilePath
-        .replace(
-          path.join('dist', 'commonjs', 'index.js'),
-          path.join('dist', 'es', 'WindowScroller', 'utils', 'onScroll.js'),
-        );
+      const file = reactVirtualizedFilePath.replace(
+        path.join('dist', 'commonjs', 'index.js'),
+        path.join('dist', 'es', 'WindowScroller', 'utils', 'onScroll.js'),
+      );
 
       const code = await fs.readFile(file, 'utf-8');
 
@@ -50,15 +50,9 @@ export default defineConfig({
     __IS_DEV__: JSON.stringify(true),
     __PROJECT__: JSON.stringify('front-end'),
   },
-  plugins: [
-    react(),
-    reactVirtualizedHack(),
-    svgr({ exportAsDefault: true }),
-  ],
+  plugins: [react(), reactVirtualizedHack(), svgr({ exportAsDefault: true })],
   resolve: {
-    alias: [
-      { find: '@', replacement: '/src' },
-    ],
+    alias: [{ find: '@', replacement: '/src' }],
   },
   server: {
     port: 3000,
