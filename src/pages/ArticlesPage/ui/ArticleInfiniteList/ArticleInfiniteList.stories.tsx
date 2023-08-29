@@ -46,10 +46,7 @@ export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [
-  StoreDecorator(stateArticleInfiniteList),
-  ThemeDecorator(Theme.DARK),
-];
+Dark.decorators = [StoreDecorator(stateArticleInfiniteList), ThemeDecorator(Theme.DARK)];
 
 // Orange article infinite list
 
@@ -57,9 +54,6 @@ export const Orange: Story = {
   args: {},
 };
 
-Orange.decorators = [
-  StoreDecorator(stateArticleInfiniteList),
-  ThemeDecorator(Theme.ORANGE),
-];
+Orange.decorators = [StoreDecorator(stateArticleInfiniteList), ThemeDecorator(Theme.ORANGE)];
 
 export default meta;

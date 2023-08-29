@@ -26,14 +26,8 @@ const ArticleDetailsPage = ({ className, idFromStorybook }: ArticleDetailsPagePr
   const isEdit = Boolean(articleId);
 
   return (
-    <Page
-      className={
-        classNames(classes.ArticleEditPage, {}, [className])
-      }
-    >
-      {isEdit
-        ? `${t('Редактирование статьи с ID')} = ${articleId}`
-        : t('Создание новой статьи')}
+    <Page className={classNames(classes.ArticleEditPage, {}, [className])}>
+      {isEdit ? `${t('Редактирование статьи с ID')} = ${articleId}` : t('Создание новой статьи')}
     </Page>
   );
 };

@@ -37,10 +37,7 @@ export const DarkCreate: Story = {
   args: {},
 };
 
-DarkCreate.decorators = [
-  StoreDecorator(stateArticleEditPage),
-  ThemeDecorator(Theme.DARK),
-];
+DarkCreate.decorators = [StoreDecorator(stateArticleEditPage), ThemeDecorator(Theme.DARK)];
 
 // Orange article create page
 
@@ -48,10 +45,7 @@ export const OrangeCreate: Story = {
   args: {},
 };
 
-OrangeCreate.decorators = [
-  StoreDecorator(stateArticleEditPage),
-  ThemeDecorator(Theme.ORANGE),
-];
+OrangeCreate.decorators = [StoreDecorator(stateArticleEditPage), ThemeDecorator(Theme.ORANGE)];
 
 // Primary article edit page
 
@@ -71,10 +65,7 @@ export const DarkEdit: Story = {
   },
 };
 
-DarkEdit.decorators = [
-  StoreDecorator(stateArticleEditPage),
-  ThemeDecorator(Theme.DARK),
-];
+DarkEdit.decorators = [StoreDecorator(stateArticleEditPage), ThemeDecorator(Theme.DARK)];
 
 // Orange article edit page
 
@@ -84,9 +75,6 @@ export const OrangeEdit: Story = {
   },
 };
 
-OrangeEdit.decorators = [
-  StoreDecorator(stateArticleEditPage),
-  ThemeDecorator(Theme.ORANGE),
-];
+OrangeEdit.decorators = [StoreDecorator(stateArticleEditPage), ThemeDecorator(Theme.ORANGE)];
 
 export default meta;

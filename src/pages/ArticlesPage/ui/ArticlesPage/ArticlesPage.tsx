@@ -19,10 +19,7 @@ import { Page } from '@/widgets/Page';
 
 import { getArticlesPageError } from '../../model/selectors/articlesPageSelectors';
 
-import {
-  fetchNextArticlesPage,
-} from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
-
+import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
 
 import { articlesPageReducer } from '../../model/slice/articlesPageSlice';
@@ -48,7 +45,8 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
   const error = useSelector(getArticlesPageError);
 
   const onLoadNextPart = useCallback(() => {
-    if (__PROJECT__ !== 'storybook') { // иначе в 'storybook' одновременно улетает множество запросов
+    // иначе в 'storybook' одновременно улетает множество запросов
+    if (__PROJECT__ !== 'storybook') {
       dispatch(fetchNextArticlesPage());
     }
   }, [dispatch]);

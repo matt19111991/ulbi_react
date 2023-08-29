@@ -18,9 +18,7 @@ interface ArticleDetailsPageHeaderProps {
   className?: string;
 }
 
-export const ArticleDetailsPageHeader = memo(({
-  className,
-}: ArticleDetailsPageHeaderProps) => {
+export const ArticleDetailsPageHeader = memo(({ className }: ArticleDetailsPageHeaderProps) => {
   const navigate = useNavigate();
   const { t } = useTranslation('article-details');
 
@@ -38,11 +36,7 @@ export const ArticleDetailsPageHeader = memo(({
   }, [article, navigate]);
 
   return (
-    <HStack
-      className={classNames('', {}, [className])}
-      justify='between'
-      max
-    >
+    <HStack className={classNames('', {}, [className])} justify='between' max>
       <Button onClick={onBackToList} theme={ButtonTheme.OUTLINE}>
         {t('Назад к списку')}
       </Button>

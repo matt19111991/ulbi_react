@@ -4,9 +4,7 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 
 import { Comment } from '@/entities/Comment';
 
-import {
-  fetchCommentsByArticleId,
-} from '../../services/fetchCommentsByArticleId/fetchCommentsByArticleId';
+import { fetchCommentsByArticleId } from '../../services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 
 import { ArticleDetailsCommentsSchema } from '../../types/ArticleDetailsCommentsSchema';
 
@@ -28,18 +26,18 @@ import { ArticleDetailsCommentsSchema } from '../../types/ArticleDetailsComments
 
 // адаптер с настройками для нормализации данных
 const commentsAdapter = createEntityAdapter<Comment>({
-  /* если уникальное значение комментария будет не 'id', а 'commentId':
-     selectId: (comment) => comment.commentId, */
+  /*
+    если уникальное значение комментария будет не 'id', а 'commentId':
+    selectId: (comment) => comment.commentId,
 
-  /* массив с айдишниками будет отсортирован на основе поля 'title':
-     sortComparer: (a, b) => a.title.localeCompare(b.title), */
+    массив с айдишниками будет отсортирован на основе поля 'title':
+    sortComparer: (a, b) => a.title.localeCompare(b.title),
+  */
 });
 
 // селектор для части стейта, которую хотим нормализовать
 export const getArticleComments = commentsAdapter.getSelectors<StateSchema>(
-  (
-    state,
-  ) => state.articleDetailsPage?.comments || commentsAdapter.getInitialState(),
+  (state) => state.articleDetailsPage?.comments || commentsAdapter.getInitialState(),
 );
 
 const initialState: ArticleDetailsCommentsSchema = {
@@ -53,23 +51,21 @@ const articleDetailsCommentsSlice = createSlice({
   name: 'articleDetailsComments',
   initialState: commentsAdapter.getInitialState<ArticleDetailsCommentsSchema>(initialState),
   reducers: {},
-  extraReducers: (builder) => builder
-    .addCase(fetchCommentsByArticleId.pending, (state) => {
-      state.areLoading = true;
-      state.error = undefined;
-    })
-    .addCase(
-      fetchCommentsByArticleId.fulfilled,
-      (state, action: PayloadAction<Comment[]>) => {
+  extraReducers: (builder) =>
+    builder
+      .addCase(fetchCommentsByArticleId.pending, (state) => {
+        state.areLoading = true;
+        state.error = undefined;
+      })
+      .addCase(fetchCommentsByArticleId.fulfilled, (state, action: PayloadAction<Comment[]>) => {
         state.areLoading = false;
 
         commentsAdapter.setAll(state, action.payload); // адаптер сам установит 'ids' и 'entities'
-      },
-    )
-    .addCase(fetchCommentsByArticleId.rejected, (state, action) => {
+      })
+      .addCase(fetchCommentsByArticleId.rejected, (state, action) => {
         state.areLoading = false;
         state.error = action.payload;
-    }),
+      }),
 });
 
 export const { actions: articleDetailsCommentsActions } = articleDetailsCommentsSlice;

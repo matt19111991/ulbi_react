@@ -20,12 +20,7 @@ export const ArticleInfiniteList = memo(({ className }: ArticleInfiniteListProps
   const view = useSelector(getArticlesPageView);
 
   return (
-    <ArticleList
-      articles={articles}
-      className={className}
-      isLoading={isLoading}
-      view={view}
-    />
+    <ArticleList articles={articles} className={className} isLoading={isLoading} view={view} />
   );
 });
 

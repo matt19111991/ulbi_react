@@ -184,10 +184,7 @@ describe('articlesPageSlice', () => {
       };
 
       expect(
-        articlesPageReducer(
-          state as ArticlesPageSchema,
-          fetchArticlesList.pending('', {}),
-        ),
+        articlesPageReducer(state as ArticlesPageSchema, fetchArticlesList.pending('', {})),
       ).toEqual({
         areLoading: true,
         entities: {},

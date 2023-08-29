@@ -49,9 +49,7 @@ const ArticleDetailsPage = ({
   if (!articleId) {
     return (
       <HStack
-        className={
-          classNames(classes.ArticleDetailsPage, {}, [className])
-        }
+        className={classNames(classes.ArticleDetailsPage, {}, [className])}
         justify='center'
         max
       >

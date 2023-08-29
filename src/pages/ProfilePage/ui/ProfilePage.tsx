@@ -26,21 +26,14 @@ const ProfilePage = ({ className, storybookUserId }: ProfilePageProps) => {
     return (
       <Page className={classNames('', {}, [className])}>
         <HStack justify='center' max>
-          <Text
-            align={TextAlign.CENTER}
-            theme={TextTheme.ERROR}
-            title={t('Профиль не найден')}
-          />
+          <Text align={TextAlign.CENTER} theme={TextTheme.ERROR} title={t('Профиль не найден')} />
         </HStack>
       </Page>
     );
   }
 
   return (
-    <Page
-      className={classNames('', {}, [className])}
-      data-testid='ProfilePage'
-    >
+    <Page className={classNames('', {}, [className])} data-testid='ProfilePage'>
       <VStack gap='16' max>
         <EditableProfileCard id={id} />
       </VStack>

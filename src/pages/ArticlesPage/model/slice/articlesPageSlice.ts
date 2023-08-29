@@ -2,12 +2,7 @@ import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolki
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
-import {
-  Article,
-  ArticleSortField,
-  ArticleType,
-  ArticleView,
-} from '@/entities/Article';
+import { Article, ArticleSortField, ArticleType, ArticleView } from '@/entities/Article';
 
 import { ARTICLE_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 
@@ -74,43 +69,52 @@ export const articlesPageSlice = createSlice({
       localStorage.setItem(ARTICLE_VIEW_LOCALSTORAGE_KEY, action.payload);
     },
   },
-  extraReducers: (builder) => builder
-    .addCase(fetchArticlesList.pending, (state, action) => {
-      state.areLoading = true;
-      state.error = undefined;
+  extraReducers: (builder) =>
+    builder
+      .addCase(fetchArticlesList.pending, (state, action) => {
+        state.areLoading = true;
+        state.error = undefined;
 
-      if (action.meta.arg?.replace) {
-        // для фильтров всегда получаем новое состояние и обнуляем старое при 'pending'
-        articlesAdapter.removeAll(state);
-      }
-    })
-    .addCase(fetchArticlesList.fulfilled, (state, action) => {
-      state.areLoading = false;
+        if (action.meta.arg?.replace) {
+          // для фильтров всегда получаем новое состояние и обнуляем старое при 'pending'
+          articlesAdapter.removeAll(state);
+        }
+      })
+      .addCase(fetchArticlesList.fulfilled, (state, action) => {
+        state.areLoading = false;
 
-/*    limit: 5, action.payload.length: 5 => (возможно) есть еще
-      limit: 10, action.payload.length: 5 => больше нет
-*/    state.hasMore = action.payload.length >= state.limit;
+        /*
+          limit: 5, action.payload.length: 5 => (возможно) есть еще
+          limit: 10, action.payload.length: 5 => больше нет
+        */
 
-      if (action.meta.arg?.replace) { // для фильтров
-        articlesAdapter.setAll(state, action.payload);
-      } else { // для ленивой подгрузки
-/*      вызывается множество запросов, если доскроллить до конца любой страницы из-за 'IntersectionObserver'
+        state.hasMore = action.payload.length >= state.limit;
 
-        в этом случае нужно:
-        - добавить в передаваемый callback 'fetchNextArticlesPage()' в 'IntersectionObserver' условие
-          на подгрузку только в случае, если 'hasMore === true' && 'areLoading === false'
+        // для фильтров
+        if (action.meta.arg?.replace) {
+          articlesAdapter.setAll(state, action.payload);
+          // для ленивой подгрузки
+        } else {
+          /*
+            вызывается множество запросов, если доскроллить до конца любой страницы из-за 'IntersectionObserver'
 
-        - не полностью перезатирать данные:
-        articlesAdapter.setAll(state, action.payload);
+            в этом случае нужно:
+              - добавить в передаваемый callback 'fetchNextArticlesPage()' в 'IntersectionObserver' условие
+                на подгрузку только в случае, если 'hasMore === true' && 'areLoading === false'
 
-        а добавлять в конец:
-  */    articlesAdapter.addMany(state, action.payload);
-      }
-    })
-    .addCase(fetchArticlesList.rejected, (state, action) => {
-      state.areLoading = false;
-      state.error = action.payload;
-    }),
+              - не полностью перезатирать данные:
+                articlesAdapter.setAll(state, action.payload);
+
+                а добавлять в конец:
+          */
+
+          articlesAdapter.addMany(state, action.payload);
+        }
+      })
+      .addCase(fetchArticlesList.rejected, (state, action) => {
+        state.areLoading = false;
+        state.error = action.payload;
+      }),
 });
 
 export const { actions: articlesPageActions } = articlesPageSlice;

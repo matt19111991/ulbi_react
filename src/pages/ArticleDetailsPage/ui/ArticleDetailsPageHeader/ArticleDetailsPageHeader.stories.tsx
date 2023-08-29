@@ -55,10 +55,7 @@ export const DarkNotEditable: Story = {
   args: {},
 };
 
-DarkNotEditable.decorators = [
-  StoreDecorator(stateNotEditable),
-  ThemeDecorator(Theme.DARK),
-];
+DarkNotEditable.decorators = [StoreDecorator(stateNotEditable), ThemeDecorator(Theme.DARK)];
 
 // Orange not editable
 
@@ -66,10 +63,7 @@ export const OrangeNotEditable: Story = {
   args: {},
 };
 
-OrangeNotEditable.decorators = [
-  StoreDecorator(stateNotEditable),
-  ThemeDecorator(Theme.ORANGE),
-];
+OrangeNotEditable.decorators = [StoreDecorator(stateNotEditable), ThemeDecorator(Theme.ORANGE)];
 
 // Primary editable
 
@@ -85,10 +79,7 @@ export const DarkEditable: Story = {
   args: {},
 };
 
-DarkEditable.decorators = [
-  StoreDecorator(stateEditable),
-  ThemeDecorator(Theme.DARK),
-];
+DarkEditable.decorators = [StoreDecorator(stateEditable), ThemeDecorator(Theme.DARK)];
 
 // Orange editable
 
@@ -96,9 +87,6 @@ export const OrangeEditable: Story = {
   args: {},
 };
 
-OrangeEditable.decorators = [
-  StoreDecorator(stateEditable),
-  ThemeDecorator(Theme.ORANGE),
-];
+OrangeEditable.decorators = [StoreDecorator(stateEditable), ThemeDecorator(Theme.ORANGE)];
 
 export default meta;

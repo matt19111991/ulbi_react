@@ -51,41 +51,56 @@ export const ArticlesPageFilters = memo(({ className }: ArticlesPageFiltersProps
 
   const debouncedFetchData = useDebounce(fetchData, 500);
 
-  const onChangeOrder = useCallback((newOrder: SortOrder) => {
-    dispatch(articlesPageActions.setOrder(newOrder));
+  const onChangeOrder = useCallback(
+    (newOrder: SortOrder) => {
+      dispatch(articlesPageActions.setOrder(newOrder));
 
-    dispatch(articlesPageActions.setPage(1));
+      dispatch(articlesPageActions.setPage(1));
 
-    fetchData();
-  }, [dispatch, fetchData]);
+      fetchData();
+    },
+    [dispatch, fetchData],
+  );
 
-  const onChangeSearch = useCallback((searchValue: string) => {
-    dispatch(articlesPageActions.setSearch(searchValue));
+  const onChangeSearch = useCallback(
+    (searchValue: string) => {
+      dispatch(articlesPageActions.setSearch(searchValue));
 
-    dispatch(articlesPageActions.setPage(1));
+      dispatch(articlesPageActions.setPage(1));
 
-    debouncedFetchData();
-  }, [dispatch, debouncedFetchData]);
+      debouncedFetchData();
+    },
+    [dispatch, debouncedFetchData],
+  );
 
-  const onChangeSort = useCallback((newSort: ArticleSortField) => {
-    dispatch(articlesPageActions.setSort(newSort));
+  const onChangeSort = useCallback(
+    (newSort: ArticleSortField) => {
+      dispatch(articlesPageActions.setSort(newSort));
 
-    dispatch(articlesPageActions.setPage(1));
+      dispatch(articlesPageActions.setPage(1));
 
-    fetchData();
-  }, [dispatch, fetchData]);
+      fetchData();
+    },
+    [dispatch, fetchData],
+  );
 
-  const onChangeType = useCallback((value: ArticleType) => {
-    dispatch(articlesPageActions.setType(value));
+  const onChangeType = useCallback(
+    (value: ArticleType) => {
+      dispatch(articlesPageActions.setType(value));
 
-    dispatch(articlesPageActions.setPage(1));
+      dispatch(articlesPageActions.setPage(1));
 
-    fetchData();
-  }, [dispatch, fetchData]);
+      fetchData();
+    },
+    [dispatch, fetchData],
+  );
 
-  const onChangeView = useCallback((newView: ArticleView) => {
-    dispatch(articlesPageActions.setView(newView));
-  }, [dispatch]);
+  const onChangeView = useCallback(
+    (newView: ArticleView) => {
+      dispatch(articlesPageActions.setView(newView));
+    },
+    [dispatch],
+  );
 
   return (
     <div className={classNames('', {}, [className])}>

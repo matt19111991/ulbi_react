@@ -33,9 +33,10 @@ export const addCommentForArticle = createAsyncThunk<Comment, string, ThunkConfi
         throw new Error();
       }
 
-/*    вместо запроса на получение обновленной статьи, можно добавлять созданный комментарий,
-      который вернулся в респонсе, в список уже существующих комментариев
-*/    thunkApi.dispatch(fetchCommentsByArticleId(article.id));
+      // вместо запроса на получение обновленной статьи, можно добавлять созданный комментарий,
+      // который вернулся в респонсе, в список уже существующих комментариев
+
+      thunkApi.dispatch(fetchCommentsByArticleId(article.id));
 
       return response.data;
     } catch (e) {

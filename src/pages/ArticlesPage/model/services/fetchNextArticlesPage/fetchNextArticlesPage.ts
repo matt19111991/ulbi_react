@@ -12,11 +12,7 @@ import { articlesPageActions } from '../../slice/articlesPageSlice';
 
 import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
 
-export const fetchNextArticlesPage = createAsyncThunk<
-  void,
-  void,
-  ThunkConfig<string>
->(
+export const fetchNextArticlesPage = createAsyncThunk<void, void, ThunkConfig<string>>(
   'articlesPage/fetchNextArticlesPage',
   async (_, thunkApi) => {
     const state = thunkApi.getState();

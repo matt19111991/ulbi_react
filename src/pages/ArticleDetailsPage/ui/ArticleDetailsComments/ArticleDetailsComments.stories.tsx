@@ -67,10 +67,7 @@ export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [
-  StoreDecorator(stateArticleDetailsComments),
-  ThemeDecorator(Theme.DARK),
-];
+Dark.decorators = [StoreDecorator(stateArticleDetailsComments), ThemeDecorator(Theme.DARK)];
 
 // Orange article details comments
 
@@ -78,9 +75,6 @@ export const Orange: Story = {
   args: {},
 };
 
-Orange.decorators = [
-  StoreDecorator(stateArticleDetailsComments),
-  ThemeDecorator(Theme.ORANGE),
-];
+Orange.decorators = [StoreDecorator(stateArticleDetailsComments), ThemeDecorator(Theme.ORANGE)];
 
 export default meta;
