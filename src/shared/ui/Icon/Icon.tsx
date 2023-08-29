@@ -12,20 +12,9 @@ interface IconProps extends SVGProps<SVGSVGElement> {
 
 // Обёртка для SVG (чтобы применялся цвет соответствующей темы к SVG)
 
-export const Icon = memo(({
-  className,
-  inverted,
-  Svg,
-  ...rest
-}: IconProps) => (
+export const Icon = memo(({ className, inverted, Svg, ...rest }: IconProps) => (
   <Svg
-    className={
-      classNames(
-        inverted ? classes.inverted : classes.Icon,
-        {},
-        [className],
-      )
-    }
+    className={classNames(inverted ? classes.inverted : classes.Icon, {}, [className])}
     {...rest}
   />
 ));

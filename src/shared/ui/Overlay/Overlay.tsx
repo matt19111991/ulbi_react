@@ -10,10 +10,7 @@ interface OverlayProps {
 }
 
 export const Overlay = memo(({ className, onClick }: OverlayProps) => (
-  <div
-    className={classNames(classes.Overlay, {}, [className])}
-    onClick={onClick}
-  />
+  <div className={classNames(classes.Overlay, {}, [className])} onClick={onClick} />
 ));
 
 Overlay.displayName = 'Overlay';

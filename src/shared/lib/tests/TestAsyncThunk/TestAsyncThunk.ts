@@ -8,8 +8,9 @@ import { StateSchema } from '@/app/providers/StoreProvider';
    RejectedValue - ЧТО_ВЕРНЕТСЯ_ИЗ_THUNKA_В_СЛУЧАЕ_ОШИБКИ_ТИП
  */
 
-type ActionCreatorType<Return, Arg, RejectedValue> =
-  (arg: Arg) => AsyncThunkAction<Return, Arg, { rejectValue: RejectedValue }>
+type ActionCreatorType<Return, Arg, RejectedValue> = (
+  arg: Arg,
+) => AsyncThunkAction<Return, Arg, { rejectValue: RejectedValue }>;
 
 jest.mock('axios'); // при помощи Jest делаем заглушку для 'axios'
 
@@ -39,7 +40,7 @@ export class TestAsyncThunk<Return, Arg, RejectedValue> {
   }
 
   async callThunk(arg?: Arg) {
-//  'this.actionCreator' это 'createAsyncThunk', возвращает 'action' после вызова
+    // 'this.actionCreator' это 'createAsyncThunk', возвращает 'action' после вызова
     const action = this.actionCreator(arg!);
 
     const extra = {

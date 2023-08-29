@@ -4,7 +4,8 @@ import { useEffect } from 'react';
 
 export const useInitialEffect = (callback: () => void) => {
   useEffect(() => {
-    if (__PROJECT__ === 'front-end') { // игнорируем запуск в 'storybook' или 'jest' средах
+    // игнорируем запуск в 'storybook' или 'jest' средах
+    if (__PROJECT__ === 'front-end') {
       callback();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

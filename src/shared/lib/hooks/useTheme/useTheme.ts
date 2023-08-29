@@ -36,7 +36,7 @@ export function useTheme(): UseThemeResults {
 
     setTheme?.(newTheme); // иначе ошибка "Cannot invoke an object which is possibly 'undefined'"
 
-//  чтобы не вешать дополнительные классы `${theme}` для 'App.tsx' и порталов
+    // чтобы не вешать дополнительные классы `${theme}` для 'App.tsx' и порталов
     document.body.className = newTheme;
 
     localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);

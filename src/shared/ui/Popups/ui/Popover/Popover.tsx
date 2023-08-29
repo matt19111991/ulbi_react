@@ -23,20 +23,13 @@ export const Popover = ({
   direction = 'bottom-left',
   trigger,
 }: PopoverProps) => (
-  <HeadlessPopover
-    className={classNames('', {}, [className, popupClasses.popup])}
-  >
-    <HeadlessPopover.Button
-      as='div'
-      className={popupClasses.trigger}
-    >
+  <HeadlessPopover className={classNames('', {}, [className, popupClasses.popup])}>
+    <HeadlessPopover.Button as='div' className={popupClasses.trigger}>
       {trigger}
     </HeadlessPopover.Button>
 
     <HeadlessPopover.Panel
-      className={
-        classNames(classes.panel, {}, [mapDirectionClass[direction]])
-      }
+      className={classNames(classes.panel, {}, [mapDirectionClass[direction]])}
     >
       {children}
     </HeadlessPopover.Panel>

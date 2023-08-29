@@ -40,44 +40,40 @@ interface TextProps {
   title?: string;
 }
 
-export const Text = memo(({
-  align = TextAlign.LEFT,
-  className,
-  'data-testid': dataTestId = 'Text',
-  size = TextSize.M,
-  text,
-  theme = TextTheme.PRIMARY,
-  title,
-}: TextProps) => {
-  const HeaderTag = mapSizeToHeaderTag[size];
+export const Text = memo(
+  ({
+    align = TextAlign.LEFT,
+    className,
+    'data-testid': dataTestId = 'Text',
+    size = TextSize.M,
+    text,
+    theme = TextTheme.PRIMARY,
+    title,
+  }: TextProps) => {
+    const HeaderTag = mapSizeToHeaderTag[size];
 
-  const mods: Mods = {
-    [classes[align]]: true,
-    [classes[size]]: true,
-    [classes[theme]]: true,
-  };
+    const mods: Mods = {
+      [classes[align]]: true,
+      [classes[size]]: true,
+      [classes[theme]]: true,
+    };
 
-  return (
-    <div className={classNames('', mods, [className])}>
-      {title && (
-        <HeaderTag
-          className={classes.title}
-          data-testid={`${dataTestId}.Header`}
-        >
-          {title}
-        </HeaderTag>
-      )}
+    return (
+      <div className={classNames('', mods, [className])}>
+        {title && (
+          <HeaderTag className={classes.title} data-testid={`${dataTestId}.Header`}>
+            {title}
+          </HeaderTag>
+        )}
 
-      {text && (
-        <p
-          className={classes.text}
-          data-testid={`${dataTestId}.Paragraph`}
-        >
-          {text}
-        </p>
-      )}
-    </div>
-  );
-});
+        {text && (
+          <p className={classes.text} data-testid={`${dataTestId}.Paragraph`}>
+            {text}
+          </p>
+        )}
+      </div>
+    );
+  },
+);
 
 Text.displayName = 'Text';

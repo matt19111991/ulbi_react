@@ -24,10 +24,12 @@ type Story = StoryObj<typeof meta>;
 
 export const PrimaryNormal: Story = {
   args: {
-    children: <Text
-      text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-      title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-    />,
+    children: (
+      <Text
+        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
+        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
+      />
+    ),
   },
 };
 
@@ -35,10 +37,12 @@ export const PrimaryNormal: Story = {
 
 export const DarkNormal: Story = {
   args: {
-    children: <Text
-      text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-      title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-    />,
+    children: (
+      <Text
+        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
+        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
+      />
+    ),
   },
 };
 
@@ -48,10 +52,12 @@ DarkNormal.decorators = [ThemeDecorator(Theme.DARK)];
 
 export const OrangeNormal: Story = {
   args: {
-    children: <Text
-      text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-      title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-    />,
+    children: (
+      <Text
+        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
+        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
+      />
+    ),
   },
 };
 
@@ -61,10 +67,12 @@ OrangeNormal.decorators = [ThemeDecorator(Theme.ORANGE)];
 
 export const PrimaryOutlined: Story = {
   args: {
-    children: <Text
-      text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-      title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-    />,
+    children: (
+      <Text
+        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
+        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
+      />
+    ),
     theme: CardTheme.OUTLINED,
   },
 };
@@ -73,10 +81,12 @@ export const PrimaryOutlined: Story = {
 
 export const DarkOutlined: Story = {
   args: {
-    children: <Text
-      text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-      title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-    />,
+    children: (
+      <Text
+        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
+        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
+      />
+    ),
     theme: CardTheme.OUTLINED,
   },
 };
@@ -87,10 +97,12 @@ DarkOutlined.decorators = [ThemeDecorator(Theme.DARK)];
 
 export const OrangeOutlined: Story = {
   args: {
-    children: <Text
-      text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-      title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-    />,
+    children: (
+      <Text
+        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
+        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
+      />
+    ),
     theme: CardTheme.OUTLINED,
   },
 };
@@ -101,10 +113,12 @@ OrangeOutlined.decorators = [ThemeDecorator(Theme.ORANGE)];
 
 export const FullWidth: Story = {
   args: {
-    children: <Text
-      text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-      title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-    />,
+    children: (
+      <Text
+        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
+        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
+      />
+    ),
     max: true,
   },
 };

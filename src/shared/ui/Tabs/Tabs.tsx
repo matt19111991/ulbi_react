@@ -18,15 +18,13 @@ interface TabsProps {
   value: string;
 }
 
-export const Tabs = memo(({
-  className,
-  onTabClick,
-  tabs,
-  value,
-}: TabsProps) => {
-  const onClickHandler = useCallback((tab: TabItem) => () => {
-    onTabClick(tab);
-  }, [onTabClick]);
+export const Tabs = memo(({ className, onTabClick, tabs, value }: TabsProps) => {
+  const onClickHandler = useCallback(
+    (tab: TabItem) => () => {
+      onTabClick(tab);
+    },
+    [onTabClick],
+  );
 
   return (
     <div className={classNames(classes.Tabs, {}, [className])}>

@@ -16,7 +16,7 @@ export function classNames(
       .filter(([, value]) => Boolean(value)) // оставляем только 'true' значения в 'mods'
       .map(([cls]) => cls), // возвращаем только названия ключей/классов (которые 'true')
 
-//      отфильтровываем undefined и другие 'falsy' значения классов
+    // отфильтровываем undefined и другие 'falsy' значения классов
     ...additionalClasses.filter(Boolean),
   ];
 

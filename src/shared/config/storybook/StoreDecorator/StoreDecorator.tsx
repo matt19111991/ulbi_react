@@ -27,18 +27,17 @@ const defaultReducers: ReducersList = {
   profile: profileReducer,
 };
 
-export const StoreDecorator = (
-  state: DeepPartial<StateSchema>,
-  additionalAsyncReducers?: ReducersList,
-) => (Story: StoryFn): ReactElement<unknown> => {
-  const getStoreProvider = () => (
-    <StoreProvider
-      initialState={state}
-      asyncReducers={{ ...defaultReducers, ...additionalAsyncReducers }}
-    >
-      <Story />
-    </StoreProvider>
-  );
+export const StoreDecorator =
+  (state: DeepPartial<StateSchema>, additionalAsyncReducers?: ReducersList) =>
+  (Story: StoryFn): ReactElement<unknown> => {
+    const getStoreProvider = () => (
+      <StoreProvider
+        initialState={state}
+        asyncReducers={{ ...defaultReducers, ...additionalAsyncReducers }}
+      >
+        <Story />
+      </StoreProvider>
+    );
 
-  return getStoreProvider();
-};
+    return getStoreProvider();
+  };

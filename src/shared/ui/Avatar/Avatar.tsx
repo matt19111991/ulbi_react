@@ -18,26 +18,19 @@ interface AvatarProps {
   src?: string;
 }
 
-export const Avatar = memo(({
-  alt,
-  className,
-  fallbackInverted,
-  size = 100,
-  src,
-}: AvatarProps) => {
-  const styles = useMemo<CSSProperties>(() => ({ // избегаем лишних перерендеров с 'useMemo'
-    height: size,
-    lineHeight: size || '100px',
-    width: size,
-  }), [size]);
+export const Avatar = memo(({ alt, className, fallbackInverted, size = 100, src }: AvatarProps) => {
+  // избегаем лишних перерендеров с 'useMemo'
+  const styles = useMemo<CSSProperties>(
+    () => ({
+      height: size,
+      lineHeight: size || '100px',
+      width: size,
+    }),
+    [size],
+  );
 
   const errorFallback = (
-    <Icon
-      height={size}
-      inverted={fallbackInverted}
-      Svg={UserIcon}
-      width={size}
-    />
+    <Icon height={size} inverted={fallbackInverted} Svg={UserIcon} width={size} />
   );
 
   const loadingFallback = <Skeleton border='50%' height={size} width={size} />;

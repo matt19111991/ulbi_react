@@ -30,11 +30,7 @@ const Select = <T extends string>({
 }: SelectProps<T>) => {
   const optionsList = useMemo<JSX.Element[] | undefined>(() => {
     return options?.map((option) => (
-      <option
-        className={classes.option}
-        key={option.value}
-        value={option.value}
-      >
+      <option className={classes.option} key={option.value} value={option.value}>
         {option.content}
       </option>
     ));

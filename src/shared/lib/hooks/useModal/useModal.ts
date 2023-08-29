@@ -1,10 +1,10 @@
 import {
-// RefObject,        // ref, который нельзя менять
-   MutableRefObject, // ref, который можно менять
-   useCallback,
-   useEffect,
-   useRef,
-   useState,
+  // RefObject,     // ref, который нельзя менять
+  MutableRefObject, // ref, который можно менять
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
 } from 'react';
 
 interface UseModalProps {
@@ -40,23 +40,29 @@ export const useModal = ({ animationDelay, isOpen, onClose }: UseModalProps) => 
     }
   }, [animationDelay, onClose]);
 
-/*
-  'useEffect' зависит от 'onKeyDown',
-  поэтому 'onKeyDown' нужно мемоизировать или описать внутри 'useEffect' как callback:
-  иначе 'onKeyDown' будет пересоздаваться на каждый перерендер,
-  будет создаваться новая ссылка на функцию и можно войти в бесконечный цикл перерендеринга
-*/
-  const onKeyDown = useCallback((e: KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      onCloseModal();
-    }
-  }, [onCloseModal]);
+  /*
+    'useEffect' зависит от 'onKeyDown',
+    поэтому 'onKeyDown' нужно мемоизировать или описать внутри 'useEffect' как callback:
+    иначе 'onKeyDown' будет пересоздаваться на каждый перерендер,
+    будет создаваться новая ссылка на функцию и можно войти в бесконечный цикл перерендеринга
+  */
 
-/*
-  поскольку используем Portal для модалки (модалка изначально отрендерена в DOM),
-  то нужно по открытию модалки задавать флаг 'isMounted', чтобы была возможность лениво
-  подгрузить компонент в модалку или установить фокус на элементы внутри модалки
-*/useEffect(() => {
+  const onKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onCloseModal();
+      }
+    },
+    [onCloseModal],
+  );
+
+  /*
+    поскольку используем Portal для модалки (модалка изначально отрендерена в DOM),
+    то нужно по открытию модалки задавать флаг 'isMounted', чтобы была возможность лениво
+    подгрузить компонент в модалку или установить фокус на элементы внутри модалки
+  */
+
+  useEffect(() => {
     if (isOpen) {
       setIsMounted(true);
     }

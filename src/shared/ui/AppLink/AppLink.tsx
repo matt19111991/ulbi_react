@@ -1,10 +1,4 @@
-import {
-  forwardRef,
-  ForwardedRef,
-  memo,
-  ReactNode,
-} from 'react';
-
+import { forwardRef, ForwardedRef, memo, ReactNode } from 'react';
 import { Link, LinkProps } from 'react-router-dom';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -23,24 +17,21 @@ interface AppLinkProps extends LinkProps {
   invertedTheme?: AppLinkTheme;
 }
 
-const ForwardedAppLink = forwardRef(({
-  className,
-  children,
-  invertedTheme = AppLinkTheme.PRIMARY,
-  to,
-  ...rest
-}: AppLinkProps, ref: ForwardedRef<HTMLAnchorElement>) => (
-  <Link
-    className={
-      classNames(classes.AppLink, {}, [className, classes[invertedTheme]])
-    }
-    ref={ref}
-    to={to}
-    {...rest}
-  >
-    {children}
-  </Link>
-));
+const ForwardedAppLink = forwardRef(
+  (
+    { className, children, invertedTheme = AppLinkTheme.PRIMARY, to, ...rest }: AppLinkProps,
+    ref: ForwardedRef<HTMLAnchorElement>,
+  ) => (
+    <Link
+      className={classNames(classes.AppLink, {}, [className, classes[invertedTheme]])}
+      ref={ref}
+      to={to}
+      {...rest}
+    >
+      {children}
+    </Link>
+  ),
+);
 
 ForwardedAppLink.displayName = 'ForwardedAppLink';
 

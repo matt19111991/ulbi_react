@@ -25,13 +25,7 @@ interface DrawerProps {
 
 const height = window.innerHeight - 100; // общая высота окна - 100px
 
-export const DrawerContent = ({
-  children,
-  className,
-  isOpen,
-  lazy,
-  onClose,
-}: DrawerProps) => {
+export const DrawerContent = ({ children, className, isOpen, lazy, onClose }: DrawerProps) => {
   const { Gesture, Spring } = useAnimationLibraries();
 
   const { isMounted, onCloseModal } = useModal({ animationDelay: 300, isOpen, onClose });
@@ -51,7 +45,8 @@ export const DrawerContent = ({
   }, [isOpen, openDrawer]);
 
   const close = () => {
-    api.start({ // запускаем анимацию при закрытии 'drawer'
+    // запускаем анимацию при закрытии 'drawer'
+    api.start({
       config: {
         ...Spring.config.stiff, // вид анимации: { tension: 210, friction: 20 }
         velocity: 0, // скорость ('0' по умолчанию)
@@ -62,33 +57,31 @@ export const DrawerContent = ({
   };
 
   const bind = Gesture.useDrag(
-    ({
-      cancel,
-      last,
-      direction: [, dy],
-      movement: [, my],
-      velocity: [, vy],
-    }) => {
-      if (my < -70) { // смещение текущего жеста < -70
+    ({ cancel, last, direction: [, dy], movement: [, my], velocity: [, vy] }) => {
+      // смещение текущего жеста < -70
+      if (my < -70) {
         cancel(); // отменяем закрытие 'drawer'
       }
 
-      if (last) { // это последнее событие активного жеста
-        if (my > height * 0.5 || (vy > 0.5 && dy > 0)) { // достаточное смещение для закрытия
+      // это последнее событие активного жеста
+      if (last) {
+        // достаточное смещение для закрытия
+        if (my > height * 0.5 || (vy > 0.5 && dy > 0)) {
           close(); // закрываем 'drawer' с анимацией
         } else {
           openDrawer(); // без этого 'drawer' повторно откроется со второго клика на 'trigger'
         }
-      } else { // это не последнее событие активного жеста
+      } else {
+        // это не последнее событие активного жеста
         api.start({ y: my, immediate: true }); // без анимации выставляем 'y'
       }
     },
     {
-        bounds: { top: 0 }, // границы смещения жеста, может быть 'ref' или DOM узлом
-        from: () => [0, y.get()], // смещение положения начнется с этого значения
-        filterTaps: true, // перетаскивания не будет, если пользователь только что щелкнул компонент
-        rubberband: true, // коэффициент эластичности жеста при выходе за пределы (при 'true' === 0,15)
-      },
+      bounds: { top: 0 }, // границы смещения жеста, может быть 'ref' или DOM узлом
+      from: () => [0, y.get()], // смещение положения начнется с этого значения
+      filterTaps: true, // перетаскивания не будет, если пользователь только что щелкнул компонент
+      rubberband: true, // коэффициент эластичности жеста при выходе за пределы (при 'true' === 0,15)
+    },
   );
 
   if (!isOpen || (lazy && !isMounted)) {
@@ -101,11 +94,7 @@ export const DrawerContent = ({
 
   return (
     <Portal>
-      <div
-        className={
-          classNames(classes.Drawer, mods, [className, theme])
-        }
-      >
+      <div className={classNames(classes.Drawer, mods, [className, theme])}>
         <Overlay onClick={onCloseModal} />
 
         <Spring.a.div // анимированный 'div'

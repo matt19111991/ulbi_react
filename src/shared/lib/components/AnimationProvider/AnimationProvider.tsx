@@ -1,12 +1,4 @@
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { createContext, ReactNode, useContext, useEffect, useMemo, useRef, useState } from 'react';
 
 // для корректной типизации библиотек
 type GestureType = typeof import('@use-gesture/react'); // библиотека для свайпов, тача, drag'n'drop
@@ -25,10 +17,8 @@ const AnimationContext = createContext<AnimationContextPayload>({});
    Обе библиотеки зависят друг от друга и подгружаются лениво
    Функция завершится, когда подгрузятся обе библиотеки параллельно
 */
-const getAsyncAnimationModules = async () => Promise.all([
-  import('@react-spring/web'),
-  import('@use-gesture/react'),
-]);
+const getAsyncAnimationModules = async () =>
+  Promise.all([import('@react-spring/web'), import('@use-gesture/react')]);
 
 export const useAnimationLibraries = () => {
   // 'as', чтобы избежать ошибок "'Spring' is possibly 'undefined'" при использовании библиотек
@@ -52,15 +42,14 @@ export const AnimationProvider = ({ children }: { children: ReactNode }) => {
     });
   }, []);
 
-  const memoizedValue = useMemo(() => ({
-    Gesture: GestureRef.current,
-    Spring: SpringRef.current,
-    isLoaded,
-  }), [isLoaded]);
-
-  return (
-    <AnimationContext.Provider value={memoizedValue}>
-      {children}
-    </AnimationContext.Provider>
+  const memoizedValue = useMemo(
+    () => ({
+      Gesture: GestureRef.current,
+      Spring: SpringRef.current,
+      isLoaded,
+    }),
+    [isLoaded],
   );
+
+  return <AnimationContext.Provider value={memoizedValue}>{children}</AnimationContext.Provider>;
 };

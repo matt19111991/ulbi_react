@@ -1,7 +1,7 @@
 import { MutableRefObject, useEffect } from 'react';
 
 interface UseInfiniteScrollOptions {
-  callback?: () => void, // функция, которая вызывается, когда пересекли элемент
+  callback?: () => void; // функция, которая вызывается, когда пересекли элемент
   triggerRef: MutableRefObject<HTMLElement>; // элемент, при пересечении которого вызывается callback
   wrapperRef: MutableRefObject<HTMLElement>; // элемент, внутри которого находится scroll
 }
@@ -14,14 +14,16 @@ export const useInfiniteScroll = ({
   useEffect(() => {
     let observer: IntersectionObserver | null = null;
 
-/*  Нужно изолировать (замкнуть) 'triggerRef' и 'wrapperRef' внутри 'useEffect', иначе ошибка:
-    'Uncaught TypeError: Failed to execute 'unobserve' on 'IntersectionObserver':
-    parameter 1 is not of type 'Element' при переходе на 'ArticleDetailsPage'
-    (клик на 'Читать далее...')
+    /*
+      Нужно изолировать (замкнуть) 'triggerRef' и 'wrapperRef' внутри 'useEffect', иначе ошибка:
+      'Uncaught TypeError: Failed to execute 'unobserve' on 'IntersectionObserver':
+      parameter 1 is not of type 'Element' при переходе на 'ArticleDetailsPage'
+      (клик на 'Читать далее...')
 
-    Используем 'triggerElement' и 'wrapperElement' внутри 'if (callback)' условия
+      Используем 'triggerElement' и 'wrapperElement' внутри 'if (callback)' условия
+    */
 
-*/  const triggerElement = triggerRef.current;
+    const triggerElement = triggerRef.current;
     const wrapperElement = wrapperRef.current;
 
     if (callback) {
@@ -31,10 +33,11 @@ export const useInfiniteScroll = ({
         threshold: 1.0,
       };
 
-      observer = new IntersectionObserver((entries/* , observer */) => {
+      observer = new IntersectionObserver((entries /* , observer */) => {
         const [firstEntry] = entries; // наблюдаем всего за одним элементом
 
-        if (firstEntry.isIntersecting) { // реагируем только на появление в зоне видимости
+        // реагируем только на появление в зоне видимости
+        if (firstEntry.isIntersecting) {
           callback();
         }
       }, options);

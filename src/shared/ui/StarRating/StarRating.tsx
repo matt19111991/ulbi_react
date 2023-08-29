@@ -17,48 +17,43 @@ interface StarRatingProps {
 
 const stars = [1, 2, 3, 4, 5];
 
-export const StarRating = memo(({
-  className,
-  onSelect,
-  selectedStars = 0,
-  size = 30,
-}: StarRatingProps) => {
-  // подсвечиваем текущую и все предыдующие звезды
-  const [currentStarsCount, setCurrentStarsCount] = useState(selectedStars);
+export const StarRating = memo(
+  ({ className, onSelect, selectedStars = 0, size = 30 }: StarRatingProps) => {
+    // подсвечиваем текущую и все предыдующие звезды
+    const [currentStarsCount, setCurrentStarsCount] = useState(selectedStars);
 
-  const [isSelected, setIsSelected] = useState(Boolean(selectedStars));
+    const [isSelected, setIsSelected] = useState(Boolean(selectedStars));
 
-  useEffect(() => {
-    setCurrentStarsCount(selectedStars);
-  }, [selectedStars]);
+    useEffect(() => {
+      setCurrentStarsCount(selectedStars);
+    }, [selectedStars]);
 
-  const onHover = (starsCount: number) => () => {
-    if (!isSelected) {
-      setCurrentStarsCount(starsCount);
-    }
-  };
+    const onHover = (starsCount: number) => () => {
+      if (!isSelected) {
+        setCurrentStarsCount(starsCount);
+      }
+    };
 
-  const onLeave = () => {
-    if (!isSelected) {
-      setCurrentStarsCount(0);
-    }
-  };
+    const onLeave = () => {
+      if (!isSelected) {
+        setCurrentStarsCount(0);
+      }
+    };
 
-  const onClick = (starsCount: number) => () => {
-    if (!isSelected) {
-      onSelect?.(starsCount);
+    const onClick = (starsCount: number) => () => {
+      if (!isSelected) {
+        onSelect?.(starsCount);
 
-      setCurrentStarsCount(starsCount);
-      setIsSelected(true);
-    }
-  };
+        setCurrentStarsCount(starsCount);
+        setIsSelected(true);
+      }
+    };
 
-  return (
-    <div className={classNames('', {}, [className])}>
-      {stars.map((starNumber) => (
-        <Icon
-          className={
-            classNames(
+    return (
+      <div className={classNames('', {}, [className])}>
+        {stars.map((starNumber) => (
+          <Icon
+            className={classNames(
               classes.starIcon,
               {
                 // закрашиваем текущую и все предыдущие звезды
@@ -69,21 +64,21 @@ export const StarRating = memo(({
                 [classes.selected]: isSelected,
               },
               [],
-            )
-          }
-          data-selected={starNumber <= currentStarsCount}
-          data-testid={`StarRating.${starNumber}`}
-          height={size}
-          key={starNumber}
-          onClick={onClick(starNumber)}
-          onMouseEnter={onHover(starNumber)}
-          onMouseLeave={onLeave}
-          Svg={StarIcon}
-          width={size}
-        />
-      ))}
-    </div>
-  );
-});
+            )}
+            data-selected={starNumber <= currentStarsCount}
+            data-testid={`StarRating.${starNumber}`}
+            height={size}
+            key={starNumber}
+            onClick={onClick(starNumber)}
+            onMouseEnter={onHover(starNumber)}
+            onMouseLeave={onLeave}
+            Svg={StarIcon}
+            width={size}
+          />
+        ))}
+      </div>
+    );
+  },
+);
 
 StarRating.displayName = 'StarRating';

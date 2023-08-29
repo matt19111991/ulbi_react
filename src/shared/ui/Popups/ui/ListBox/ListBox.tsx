@@ -33,7 +33,7 @@ interface ListBoxProps {
   value?: string;
 }
 
-const ListBox =  ({
+const ListBox = ({
   className,
   defaultValue,
   direction = 'bottom-left',
@@ -54,19 +54,11 @@ const ListBox =  ({
       value={value}
     >
       <HeadlessListBox.Button as='div' className={classes.trigger}>
-        <Button disabled={readonly}>
-          {value ?? defaultValue}
-        </Button>
+        <Button disabled={readonly}>{value ?? defaultValue}</Button>
       </HeadlessListBox.Button>
 
       <HeadlessListBox.Options
-        className={
-          classNames(
-            classes.options,
-            {},
-            [mapDirectionClass[direction]],
-          )
-        }
+        className={classNames(classes.options, {}, [mapDirectionClass[direction]])}
       >
         {items?.map((item) => (
           <HeadlessListBox.Option
@@ -77,16 +69,14 @@ const ListBox =  ({
           >
             {({ active, selected }) => (
               <li
-                className={
-                  classNames(
-                    classes.item,
-                    {
-                      [popupClasses.active]: active,
-                      [popupClasses.disabled]: item.disabled,
-                    },
-                    [],
-                  )
-                }
+                className={classNames(
+                  classes.item,
+                  {
+                    [popupClasses.active]: active,
+                    [popupClasses.disabled]: item.disabled,
+                  },
+                  [],
+                )}
               >
                 <HStack gap='4'>
                   {item.content}

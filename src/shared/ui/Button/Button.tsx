@@ -53,33 +53,35 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   theme?: string;
 }
 
-export const Button = memo(({
-  className,
-  children,
-  disabled,
-  fullWidth,
-  size = ButtonSize.M,
-  square,
-  theme = ButtonTheme.OUTLINE,
-  ...rest
-}: ButtonProps) => {
-  const mods: Mods = {
-    [classes.disabled]: disabled,
-    [classes.fullWidth]: fullWidth,
-    [classes[size]]: true,
-    [classes.square]: square,
-    [classes[theme]]: true,
-  };
+export const Button = memo(
+  ({
+    className,
+    children,
+    disabled,
+    fullWidth,
+    size = ButtonSize.M,
+    square,
+    theme = ButtonTheme.OUTLINE,
+    ...rest
+  }: ButtonProps) => {
+    const mods: Mods = {
+      [classes.disabled]: disabled,
+      [classes.fullWidth]: fullWidth,
+      [classes[size]]: true,
+      [classes.square]: square,
+      [classes[theme]]: true,
+    };
 
-  return (
-    <button
-      className={classNames(classes.Button, mods, [className])}
-      disabled={disabled}
-      {...rest}
-    >
-      {children}
-    </button>
-  );
-});
+    return (
+      <button
+        className={classNames(classes.Button, mods, [className])}
+        disabled={disabled}
+        {...rest}
+      >
+        {children}
+      </button>
+    );
+  },
+);
 
 Button.displayName = 'Button';

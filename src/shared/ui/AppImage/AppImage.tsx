@@ -1,10 +1,4 @@
-import {
-  ImgHTMLAttributes,
-  memo,
-  ReactElement,
-  useLayoutEffect,
-  useState,
-} from 'react';
+import { ImgHTMLAttributes, memo, ReactElement, useLayoutEffect, useState } from 'react';
 
 interface AppImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   className?: string;
@@ -13,47 +7,49 @@ interface AppImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   storybookLoading?: boolean;
 }
 
-export const AppImage = memo(({
-  alt = 'image',
-  className,
-  errorFallback,
-  loadingFallback,
-  src,
-  storybookLoading,
-  ...rest
-}: AppImageProps) => {
-  const [hasError, setHasError] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+export const AppImage = memo(
+  ({
+    alt = 'image',
+    className,
+    errorFallback,
+    loadingFallback,
+    src,
+    storybookLoading,
+    ...rest
+  }: AppImageProps) => {
+    const [hasError, setHasError] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
-/*
-  'useEffect' - асинхронный, срабатывает после монтирования компонента
-  'useLayoutEffect' - синхронный, срабатывает до монтирования компонента
-*/
-  useLayoutEffect(() => { // проверяем, доступно ли изображение
-    const img = new Image();
+    // 'useEffect' - асинхронный, срабатывает после монтирования компонента
+    // 'useLayoutEffect' - синхронный, срабатывает до монтирования компонента
 
-    img.src = src ?? '';
+    // проверяем, доступно ли изображение
+    useLayoutEffect(() => {
+      const img = new Image();
 
-    img.onload = () => {
-      setIsLoading(false);
-    };
+      img.src = src ?? '';
 
-    img.onerror = () => {
-      setIsLoading(false);
+      img.onload = () => {
+        setIsLoading(false);
+      };
 
-      setHasError(true);
-    };
-  }, [src]);
+      img.onerror = () => {
+        setIsLoading(false);
 
-  if ((isLoading || storybookLoading) && loadingFallback) {
-    return loadingFallback;
-  }
+        setHasError(true);
+      };
+    }, [src]);
 
-  if (hasError && errorFallback) {
-    return errorFallback;
-  }
+    if ((isLoading || storybookLoading) && loadingFallback) {
+      return loadingFallback;
+    }
 
-  return <img alt={alt} className={className} src={src} {...rest} />;
-});
+    if (hasError && errorFallback) {
+      return errorFallback;
+    }
+
+    return <img alt={alt} className={className} src={src} {...rest} />;
+  },
+);
 
 AppImage.displayName = 'AppImage';

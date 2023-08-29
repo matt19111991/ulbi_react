@@ -141,7 +141,13 @@ export const BottomRightDirection: Story = {
     ],
     value: '123',
   },
-  decorators: [(Story) => <div style={{ padding: '20px 70px' }}><Story /></div>],
+  decorators: [
+    (Story) => (
+      <div style={{ padding: '20px 70px' }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 // Top left direction list box
@@ -157,7 +163,13 @@ export const TopLeftDirection: Story = {
     ],
     value: '123',
   },
-  decorators: [(Story) => <div style={{ padding: '200px 100px' }}><Story /></div>],
+  decorators: [
+    (Story) => (
+      <div style={{ padding: '200px 100px' }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 // Top right direction list box
@@ -173,7 +185,13 @@ export const TopRightDirection: Story = {
     ],
     value: '123',
   },
-  decorators: [(Story) => <div style={{ padding: '200px 100px' }}><Story /></div>],
+  decorators: [
+    (Story) => (
+      <div style={{ padding: '200px 100px' }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;

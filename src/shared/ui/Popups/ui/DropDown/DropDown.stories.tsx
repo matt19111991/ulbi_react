@@ -24,11 +24,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    items: [
-      { content: 'First item' },
-      { content: 'Second item' },
-      { content: 'Third item' },
-    ],
+    items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
     trigger: <Button>Open</Button>,
   },
 };
@@ -37,11 +33,7 @@ export const Primary: Story = {
 
 export const Dark: Story = {
   args: {
-    items: [
-      { content: 'First item' },
-      { content: 'Second item' },
-      { content: 'Third item' },
-    ],
+    items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
     trigger: <Button>Open</Button>,
   },
 };
@@ -52,11 +44,7 @@ Dark.decorators = [ThemeDecorator(Theme.DARK)];
 
 export const Orange: Story = {
   args: {
-    items: [
-      { content: 'First item' },
-      { content: 'Second item' },
-      { content: 'Third item' },
-    ],
+    items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
     trigger: <Button>Open</Button>,
   },
 };
@@ -68,33 +56,35 @@ Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
 export const TopLeft: Story = {
   args: {
     direction: 'top-left',
-    items: [
-      { content: 'First item' },
-      { content: 'Second item' },
-      { content: 'Third item' },
-    ],
+    items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
     trigger: <Button>Open</Button>,
   },
 };
 
-TopLeft.decorators = [(Story) => <div style={{ padding: '150px 20px' }}><Story /></div>];
+TopLeft.decorators = [
+  (Story) => (
+    <div style={{ padding: '150px 20px' }}>
+      <Story />
+    </div>
+  ),
+];
 
 // Top-right dropdown
 
 export const TopRight: Story = {
   args: {
     direction: 'top-right',
-    items: [
-      { content: 'First item' },
-      { content: 'Second item' },
-      { content: 'Third item' },
-    ],
+    items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
     trigger: <Button>Open</Button>,
   },
 };
 
 TopRight.decorators = [
-  (Story) => <div style={{ display: 'flex', padding: '150px 70px' }}><Story /></div>,
+  (Story) => (
+    <div style={{ display: 'flex', padding: '150px 70px' }}>
+      <Story />
+    </div>
+  ),
 ];
 
 // Bottom-left dropdown
@@ -102,11 +92,7 @@ TopRight.decorators = [
 export const BottomLeft: Story = {
   args: {
     direction: 'bottom-left',
-    items: [
-      { content: 'First item' },
-      { content: 'Second item' },
-      { content: 'Third item' },
-    ],
+    items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
     trigger: <Button>Open</Button>,
   },
 };
@@ -116,28 +102,24 @@ export const BottomLeft: Story = {
 export const BottomRight: Story = {
   args: {
     direction: 'bottom-right',
-    items: [
-      { content: 'First item' },
-      { content: 'Second item' },
-      { content: 'Third item' },
-    ],
+    items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
     trigger: <Button>Open</Button>,
   },
 };
 
 BottomRight.decorators = [
-  (Story) => <div style={{ display: 'flex', padding: '0 70px' }}><Story /></div>,
+  (Story) => (
+    <div style={{ display: 'flex', padding: '0 70px' }}>
+      <Story />
+    </div>
+  ),
 ];
 
 // Justify left dropdown
 
 export const JustifyLeft: Story = {
   args: {
-    items: [
-      { content: 'First item' },
-      { content: 'Second item' },
-      { content: 'Third item' },
-    ],
+    items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
     justify: 'left',
     trigger: <Button>Open</Button>,
   },
@@ -147,11 +129,7 @@ export const JustifyLeft: Story = {
 
 export const JustifyCenter: Story = {
   args: {
-    items: [
-      { content: 'First item' },
-      { content: 'Second item' },
-      { content: 'Third item' },
-    ],
+    items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
     justify: 'center',
     trigger: <Button>Open</Button>,
   },
@@ -161,11 +139,7 @@ export const JustifyCenter: Story = {
 
 export const JustifyRight: Story = {
   args: {
-    items: [
-      { content: 'First item' },
-      { content: 'Second item' },
-      { content: 'Third item' },
-    ],
+    items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
     justify: 'right',
     trigger: <Button>Open</Button>,
   },
@@ -175,11 +149,7 @@ export const JustifyRight: Story = {
 
 export const Small: Story = {
   args: {
-    items: [
-      { content: 'First item' },
-      { content: 'Second item' },
-      { content: 'Third item' },
-    ],
+    items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
     optionSize: 'S',
     trigger: <Button>Open</Button>,
   },
@@ -189,11 +159,7 @@ export const Small: Story = {
 
 export const Medium: Story = {
   args: {
-    items: [
-      { content: 'First item' },
-      { content: 'Second item' },
-      { content: 'Third item' },
-    ],
+    items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
     optionSize: 'M',
     trigger: <Button>Open</Button>,
   },

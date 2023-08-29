@@ -9,9 +9,8 @@ export const notification: Notification = {
   userId: '1',
 };
 
-export const generateNotifications = (amount: number): Notification[] => new Array(amount)
-  .fill(amount)
-  .map((_, idx) => ({
+export const generateNotifications = (amount: number): Notification[] =>
+  new Array(amount).fill(amount).map((_, idx) => ({
     ...notification,
     id: String(idx + 1),
     title: `${notification.title.split('Уведомление').at(0)} ${idx + 1}`,

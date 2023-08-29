@@ -13,8 +13,10 @@ import {
 export const buildSlice = <
   State,
   CaseReducers extends SliceCaseReducers<State>,
-  Name extends string = string
->(options: CreateSliceOptions<State, CaseReducers, Name>) => {
+  Name extends string = string,
+>(
+  options: CreateSliceOptions<State, CaseReducers, Name>,
+) => {
   const slice = createSlice(options);
 
   // 'typeof slice.actions' для корректной типизации

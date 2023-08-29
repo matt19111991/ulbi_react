@@ -1,9 +1,4 @@
-import {
-  DetailedHTMLProps,
-  HTMLAttributes,
-  memo,
-  ReactNode,
-} from 'react';
+import { DetailedHTMLProps, HTMLAttributes, memo, ReactNode } from 'react';
 
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 
@@ -52,36 +47,35 @@ export interface FlexProps extends DivProps {
   max?: boolean;
 }
 
-export const Flex = memo(({
-  align = 'center',
-  className,
-  children,
-  direction = 'row',
-  gap,
-  justify = 'start',
-  max,
-  ...rest
-}: FlexProps) => {
-  const additionalClasses = [
+export const Flex = memo(
+  ({
+    align = 'center',
     className,
-    alignClasses[align],
-    directionClasses[direction],
-    gap && gapClasses[gap],
-    justifyClasses[justify],
-  ];
+    children,
+    direction = 'row',
+    gap,
+    justify = 'start',
+    max,
+    ...rest
+  }: FlexProps) => {
+    const additionalClasses = [
+      className,
+      alignClasses[align],
+      directionClasses[direction],
+      gap && gapClasses[gap],
+      justifyClasses[justify],
+    ];
 
-  const mods: Mods = {
-    [classes.max]: max,
-  };
+    const mods: Mods = {
+      [classes.max]: max,
+    };
 
-  return (
-    <div
-      className={classNames(classes.Flex, mods, additionalClasses)}
-      {...rest}
-    >
-      {children}
-    </div>
-  );
-});
+    return (
+      <div className={classNames(classes.Flex, mods, additionalClasses)} {...rest}>
+        {children}
+      </div>
+    );
+  },
+);
 
 Flex.displayName = 'Flex';
