@@ -93,8 +93,7 @@ describe('getUserRoleSelectors', () => {
         },
       };
 
-      expect(getUserRoles(state as StateSchema))
-        .toEqual([UserRole.ADMIN, UserRole.MANAGER]);
+      expect(getUserRoles(state as StateSchema)).toEqual([UserRole.ADMIN, UserRole.MANAGER]);
     });
 
     test('should work with empty state data', () => {

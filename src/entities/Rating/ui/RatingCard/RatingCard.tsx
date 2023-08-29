@@ -1,10 +1,4 @@
-import {
-  memo,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react';
-
+import { memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BrowserView, MobileView } from 'react-device-detect';
 
@@ -32,150 +26,132 @@ interface RatingCardProps {
   title?: string;
 }
 
-export const RatingCard = memo(({
-  className,
-  feedbackTitle,
-  hasFeedback,
-  onAccept,
-  onCancel,
-  rate = 0,
-  storybookMobile,
-  title,
-}: RatingCardProps) => {
-  const { t } = useTranslation();
+export const RatingCard = memo(
+  ({
+    className,
+    feedbackTitle,
+    hasFeedback,
+    onAccept,
+    onCancel,
+    rate = 0,
+    storybookMobile,
+    title,
+  }: RatingCardProps) => {
+    const { t } = useTranslation();
 
-  const [feedback, setFeedback] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [starsCount, setStarsCount] = useState(rate);
+    const [feedback, setFeedback] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [starsCount, setStarsCount] = useState(rate);
 
-  const onSelectStars = useCallback((selectedStarsCount: number) => {
-    setStarsCount(selectedStarsCount);
+    const onSelectStars = useCallback(
+      (selectedStarsCount: number) => {
+        setStarsCount(selectedStarsCount);
 
-    if (hasFeedback) {
-      setIsModalOpen(true);
-    } else {
-      onAccept?.(selectedStarsCount);
-    }
-  }, [hasFeedback, onAccept]);
+        if (hasFeedback) {
+          setIsModalOpen(true);
+        } else {
+          onAccept?.(selectedStarsCount);
+        }
+      },
+      [hasFeedback, onAccept],
+    );
 
-  const acceptHandler = useCallback(() => {
-    setIsModalOpen(false);
+    const acceptHandler = useCallback(() => {
+      setIsModalOpen(false);
 
-    onAccept?.(starsCount, feedback);
-  }, [feedback, onAccept, starsCount]);
+      onAccept?.(starsCount, feedback);
+    }, [feedback, onAccept, starsCount]);
 
-  const cancelHandler = useCallback(() => {
-    setIsModalOpen(false);
+    const cancelHandler = useCallback(() => {
+      setIsModalOpen(false);
 
-    onCancel?.(starsCount);
-  }, [onCancel, starsCount]);
+      onCancel?.(starsCount);
+    }, [onCancel, starsCount]);
 
-  useEffect(() => {
-    setStarsCount(rate);
-  }, [rate]);
+    useEffect(() => {
+      setStarsCount(rate);
+    }, [rate]);
 
-  const modalContent = (
-    <>
-      <Text title={feedbackTitle} />
+    const modalContent = (
+      <>
+        <Text title={feedbackTitle} />
 
-      <Input
-        data-testid='RatingCard.Input'
-        onChange={setFeedback}
-        placeholder={t('Ваш отзыв')}
-        value={feedback}
-      />
-    </>
-  );
+        <Input
+          data-testid='RatingCard.Input'
+          onChange={setFeedback}
+          placeholder={t('Ваш отзыв')}
+          value={feedback}
+        />
+      </>
+    );
 
-  const browserContent = (
-    <Modal isOpen={isModalOpen} lazy onClose={cancelHandler}>
-      <VStack align='start' gap='32' max>
-        {modalContent}
+    const browserContent = (
+      <Modal isOpen={isModalOpen} lazy onClose={cancelHandler}>
+        <VStack align='start' gap='32' max>
+          {modalContent}
 
-        <HStack gap='16' justify='end' max>
-          <Button
-            data-testid='RatingCard.Close'
-            onClick={cancelHandler}
-            theme={ButtonTheme.OUTLINE_RED}
-          >
-            {t('Закрыть')}
-          </Button>
+          <HStack gap='16' justify='end' max>
+            <Button
+              data-testid='RatingCard.Close'
+              onClick={cancelHandler}
+              theme={ButtonTheme.OUTLINE_RED}
+            >
+              {t('Закрыть')}
+            </Button>
+
+            <Button data-testid='RatingCard.Send' onClick={acceptHandler}>
+              {t('Отправить')}
+            </Button>
+          </HStack>
+        </VStack>
+      </Modal>
+    );
+
+    const mobileContent = (
+      <Drawer className={classes.mobile} isOpen={isModalOpen} lazy onClose={cancelHandler}>
+        <VStack align='start' gap='32' max>
+          {modalContent}
 
           <Button
             data-testid='RatingCard.Send'
+            fullWidth
             onClick={acceptHandler}
+            size={ButtonSize.L}
           >
             {t('Отправить')}
           </Button>
-        </HStack>
-      </VStack>
-    </Modal>
-  );
+        </VStack>
+      </Drawer>
+    );
 
-  const mobileContent = (
-    <Drawer
-      className={classes.mobile}
-      isOpen={isModalOpen}
-      lazy
-      onClose={cancelHandler}
-    >
-      <VStack align='start' gap='32' max>
-        {modalContent}
+    if (storybookMobile) {
+      return (
+        <Card className={classNames('', {}, [className])} max>
+          <VStack align='center' gap='8' max>
+            <Text title={starsCount ? `${t('Спасибо за оценку')}!` : title} />
 
-        <Button
-          data-testid='RatingCard.Send'
-          fullWidth
-          onClick={acceptHandler}
-          size={ButtonSize.L}
-        >
-          {t('Отправить')}
-        </Button>
-      </VStack>
-    </Drawer>
-  );
+            <StarRating onSelect={onSelectStars} selectedStars={starsCount} size={40} />
 
-  if (storybookMobile) {
+            {mobileContent}
+          </VStack>
+        </Card>
+      );
+    }
+
     return (
-      <Card
-        className={classNames('', {}, [className])}
-        max
-      >
+      <Card className={classNames('', {}, [className])} data-testid='RatingCard' max>
         <VStack align='center' gap='8' max>
           <Text title={starsCount ? `${t('Спасибо за оценку')}!` : title} />
 
-          <StarRating
-            onSelect={onSelectStars}
-            selectedStars={starsCount}
-            size={40}
-          />
+          <StarRating onSelect={onSelectStars} selectedStars={starsCount} size={40} />
 
-          {mobileContent}
+          <BrowserView>{browserContent}</BrowserView>
+
+          <MobileView>{mobileContent}</MobileView>
         </VStack>
       </Card>
     );
-  }
-
-  return (
-    <Card
-      className={classNames('', {}, [className])}
-      data-testid='RatingCard'
-      max
-    >
-      <VStack align='center' gap='8' max>
-        <Text title={starsCount ? `${t('Спасибо за оценку')}!` : title} />
-
-        <StarRating
-          onSelect={onSelectStars}
-          selectedStars={starsCount}
-          size={40}
-        />
-
-        <BrowserView>{browserContent}</BrowserView>
-
-        <MobileView>{mobileContent}</MobileView>
-      </VStack>
-    </Card>
-  );
-});
+  },
+);
 
 RatingCard.displayName = 'RatingCard';

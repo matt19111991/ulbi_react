@@ -10,18 +10,20 @@ export interface User {
 export interface UserSchema {
   authData?: User;
 
-/* AppRouter отрисовывается быстрее, чем инициализируются данные о пользователя из 'Store':
+  /*
+    AppRouter отрисовывается быстрее, чем инициализируются данные о пользователя из 'Store':
 
-   useEffect(() => {
+    useEffect(() => {
       dispatch(userActions.initAuthData());
-   }, [dispatch]);
+    }, [dispatch]);
 
-   <BrowserRouter>
+    <BrowserRouter>
       <StoreProvider />
-   </BrowserRouter>
+    </BrowserRouter>
 
-   Поэтому после успешной авторизации недоступна защищенная страница '/profile'
-   Для корректной работы нужен флаг 'mounted'
+    Поэтому после успешной авторизации недоступна защищенная страница '/profile'
+    Для корректной работы нужен флаг 'mounted'
+  */
 
-*/ mounted: boolean;
+  mounted: boolean;
 }

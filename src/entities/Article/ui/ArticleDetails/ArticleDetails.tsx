@@ -36,11 +36,7 @@ import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
 import { ArticleBlock } from '../../model/types/article';
 
 import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
-
-import {
-  ArticleImageBlockComponent,
-} from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
-
+import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 
 import classes from './ArticleDetails.module.scss';
@@ -69,19 +65,13 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
   const renderBlock = useCallback((block: ArticleBlock) => {
     switch (block.type) {
       case ArticleBlockType.CODE:
-        return (
-          <ArticleCodeBlockComponent block={block} key={block.id} />
-        );
+        return <ArticleCodeBlockComponent block={block} key={block.id} />;
 
       case ArticleBlockType.IMAGE:
-        return (
-          <ArticleImageBlockComponent block={block} key={block.id} />
-        );
+        return <ArticleImageBlockComponent block={block} key={block.id} />;
 
       case ArticleBlockType.TEXT:
-        return (
-          <ArticleTextBlockComponent block={block} key={block.id} />
-        );
+        return <ArticleTextBlockComponent block={block} key={block.id} />;
 
       default:
         return null;
@@ -101,12 +91,7 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
       </>
     );
   } else if (error) {
-    content = (
-      <Text
-        theme={TextTheme.ERROR}
-        title={t('Произошла ошибка при загрузке статьи')}
-      />
-    );
+    content = <Text theme={TextTheme.ERROR} title={t('Произошла ошибка при загрузке статьи')} />;
   } else {
     content = (
       <>
@@ -114,17 +99,8 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
           <Avatar className={classes.avatar} size={200} src={article?.img} />
         </HStack>
 
-        <VStack
-          align='start'
-          data-testid='ArticleDetails.Info'
-          gap='4'
-          max
-        >
-          <Text
-            size={TextSize.L}
-            text={article?.subtitle}
-            title={article?.title}
-          />
+        <VStack align='start' data-testid='ArticleDetails.Info' gap='4' max>
+          <Text size={TextSize.L} text={article?.subtitle} title={article?.title} />
 
           <HStack gap='8'>
             <Icon Svg={EyeIcon} />

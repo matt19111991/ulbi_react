@@ -4,11 +4,7 @@ import { ThunkConfig } from '@/app/providers/StoreProvider';
 
 import { Article } from '../../types/article';
 
-export const fetchArticleById = createAsyncThunk<
-  Article,
-  string | undefined,
-  ThunkConfig<string>
->(
+export const fetchArticleById = createAsyncThunk<Article, string | undefined, ThunkConfig<string>>(
   'articleDetails/fetchArticleById',
   async (articleId, thunkApi) => {
     try {

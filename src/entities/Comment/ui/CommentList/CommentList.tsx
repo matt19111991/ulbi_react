@@ -21,12 +21,7 @@ export const CommentList = memo(({ className, comments, isLoading }: CommentList
 
   if (isLoading) {
     return (
-      <VStack
-        align='start'
-        className={classNames('', {}, [className])}
-        gap='16'
-        max
-      >
+      <VStack align='start' className={classNames('', {}, [className])} gap='16' max>
         <CommentCard isLoading />
         <CommentCard isLoading />
         <CommentCard isLoading />
@@ -35,21 +30,14 @@ export const CommentList = memo(({ className, comments, isLoading }: CommentList
   }
 
   return (
-    <VStack
-      align='start'
-      className={classNames('', {}, [className])}
-      gap='16'
-      max
-    >
-      {comments?.length
-        ? comments.map((comment) => (
-          <CommentCard
-            comment={comment}
-            key={comment.id}
-            isLoading={isLoading}
-          />
+    <VStack align='start' className={classNames('', {}, [className])} gap='16' max>
+      {comments?.length ? (
+        comments.map((comment) => (
+          <CommentCard comment={comment} key={comment.id} isLoading={isLoading} />
         ))
-        : <Text text={t('Комментарии отсутствуют')} />}
+      ) : (
+        <Text text={t('Комментарии отсутствуют')} />
+      )}
     </VStack>
   );
 });

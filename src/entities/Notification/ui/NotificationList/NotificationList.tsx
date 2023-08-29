@@ -19,63 +19,45 @@ interface NotificationListProps {
   storybookLoading?: boolean;
 }
 
-export const NotificationList = memo(({
-  className,
-  storybookError,
-  storybookLoading,
-}: NotificationListProps) => {
-  const { t } = useTranslation();
+export const NotificationList = memo(
+  ({ className, storybookError, storybookLoading }: NotificationListProps) => {
+    const { t } = useTranslation();
 
-  const {
-    data: notifications = [],
-    error: queryError,
-    isLoading: queryLoading,
-  } = useGetNotificationsQuery({}, { pollingInterval: 5000 });
+    const {
+      data: notifications = [],
+      error: queryError,
+      isLoading: queryLoading,
+    } = useGetNotificationsQuery({}, { pollingInterval: 5000 });
 
-  const isLoading = __PROJECT__ === 'storybook' ? storybookLoading : queryLoading;
-  const error = __PROJECT__ === 'storybook' ? storybookError : queryError;
+    const isLoading = __PROJECT__ === 'storybook' ? storybookLoading : queryLoading;
+    const error = __PROJECT__ === 'storybook' ? storybookError : queryError;
 
-  if (isLoading) {
+    if (isLoading) {
+      return (
+        <VStack className={classNames('', {}, [className])} gap='16' max>
+          <Skeleton border='8px' height='80px' width='100%' />
+          <Skeleton border='8px' height='80px' width='100%' />
+          <Skeleton border='8px' height='80px' width='100%' />
+        </VStack>
+      );
+    }
+
+    if (error) {
+      return (
+        <HStack className={classNames(classes.error, {}, [className])}>
+          <Text theme={TextTheme.ERROR} text={t('Ошибка при загрузке уведомлений')} />
+        </HStack>
+      );
+    }
+
     return (
-      <VStack
-        className={classNames('', {}, [className])}
-        gap='16'
-        max
-      >
-        <Skeleton border='8px' height='80px' width='100%' />
-        <Skeleton border='8px' height='80px' width='100%' />
-        <Skeleton border='8px' height='80px' width='100%' />
+      <VStack className={classNames('', {}, [className])} gap='16' max>
+        {notifications?.map((notification) => (
+          <NotificationItem key={notification.id} notification={notification} />
+        ))}
       </VStack>
     );
-  }
-
-  if (error) {
-    return (
-      <HStack
-        className={classNames(classes.error, {}, [className])}
-      >
-        <Text
-          theme={TextTheme.ERROR}
-          text={t('Ошибка при загрузке уведомлений')}
-        />
-      </HStack>
-    );
-  }
-
-  return (
-    <VStack
-      className={classNames('', {}, [className])}
-      gap='16'
-      max
-    >
-      {notifications?.map((notification) => (
-        <NotificationItem
-          key={notification.id}
-          notification={notification}
-        />
-      ))}
-    </VStack>
-  );
-});
+  },
+);
 
 NotificationList.displayName = 'NotificationList';

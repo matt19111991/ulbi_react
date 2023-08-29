@@ -17,13 +17,14 @@ interface CurrencySelectProps {
   value?: Currency;
 }
 
-/* Если 'options' определить в 'JSX' разметке, то при изменении 'CurrencySelect', дочерний 'ListBox'
-   будет перендериваться каждый раз, т.к. ссылка на массив каждый раз будет создаваться новая:
-   '<ListBox items={[{ content: '', value: '' }, ...]} />'
+/*
+  Если 'options' определить в 'JSX' разметке, то при изменении 'CurrencySelect', дочерний 'ListBox'
+  будет перендериваться каждый раз, т.к. ссылка на массив каждый раз будет создаваться новая:
+  '<ListBox items={[{ content: '', value: '' }, ...]} />'
 
-   Чтобы избежать лишних перерендеров, можно:
-   - обернуть 'options' в 'useMemo'
-   - вынести 'options' вне компонента (т.к. 'options' статичны и не будут изменяться)
+  Чтобы избежать лишних перерендеров, можно:
+    - обернуть 'options' в 'useMemo'
+    - вынести 'options' вне компонента (т.к. 'options' статичны и не будут изменяться)
 */
 
 const options = [
@@ -32,31 +33,30 @@ const options = [
   { content: Currency.RUB, value: Currency.RUB },
 ];
 
-export const CurrencySelect = memo(({
-  className,
-  direction = 'bottom-left',
-  onChange,
-  readOnly,
-  value,
-}: CurrencySelectProps) => {
-  const { t } = useTranslation('profile');
+export const CurrencySelect = memo(
+  ({ className, direction = 'bottom-left', onChange, readOnly, value }: CurrencySelectProps) => {
+    const { t } = useTranslation('profile');
 
-  const onChangeHandler = useCallback((currencyValue: string) => {
-    onChange?.(currencyValue as Currency);
-  }, [onChange]);
+    const onChangeHandler = useCallback(
+      (currencyValue: string) => {
+        onChange?.(currencyValue as Currency);
+      },
+      [onChange],
+    );
 
-  return (
-    <ListBox
-      className={classNames('', {}, [className])}
-      defaultValue={t('Укажите валюту')}
-      direction={direction}
-      items={options}
-      label={t('Укажите валюту')}
-      onChange={onChangeHandler}
-      readonly={readOnly}
-      value={value}
-    />
-  );
-});
+    return (
+      <ListBox
+        className={classNames('', {}, [className])}
+        defaultValue={t('Укажите валюту')}
+        direction={direction}
+        items={options}
+        label={t('Укажите валюту')}
+        onChange={onChangeHandler}
+        readonly={readOnly}
+        value={value}
+      />
+    );
+  },
+);
 
 CurrencySelect.displayName = 'CurrencySelect';

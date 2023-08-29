@@ -12,11 +12,12 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-//  сохраняем данные о пользователе после успешного логина
+    // сохраняем данные о пользователе после успешного логина
     setAuthData: (state, action: PayloadAction<User>) => {
       state.authData = action.payload;
     },
-//  достаем сохраненные данные о пользователе из localStorage (на случай закрытия вкладки)
+
+    // достаем сохраненные данные о пользователе из localStorage (на случай закрытия вкладки)
     initAuthData: (state) => {
       const user = localStorage.getItem(USER_LOCALSTORAGE_KEY);
 

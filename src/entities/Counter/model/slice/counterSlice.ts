@@ -14,15 +14,17 @@ export const counterSlice = buildSlice({
   name: 'counter',
   initialState,
   reducers: {
-    decrement: ((state) => {
-/*    в '@reduxjs/toolkit' можно делать изменения напрямую (мутировать данные), т.к. под капотом
-      используется Immer.js библиотека, которая все мутации переводит в иммутабельный стиль
+    decrement: (state) => {
+      /*
+        в '@reduxjs/toolkit' можно делать изменения напрямую (мутировать данные), т.к. под капотом
+        используется Immer.js библиотека, которая все мутации переводит в иммутабельный стиль
+      */
 
-*/    state.value -= 1;
-    }),
-    increment: ((state) => {
+      state.value -= 1;
+    },
+    increment: (state) => {
       state.value += 1;
-    }),
+    },
   },
 });
 

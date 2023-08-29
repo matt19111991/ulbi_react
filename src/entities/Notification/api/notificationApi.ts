@@ -9,7 +9,7 @@ interface NotificationsResponse {
 }
 
 const notificationApi = rtkApi.injectEndpoints({
-  endpoints: ((build) => ({
+  endpoints: (build) => ({
     getNotifications: build.query<Notification[], object>({
       queryFn: (args, api, extraOptions, baseQuery) => {
         if (__PROJECT__ === 'storybook') {
@@ -21,7 +21,7 @@ const notificationApi = rtkApi.injectEndpoints({
         }) as NotificationsResponse;
       },
     }),
-  })),
+  }),
 });
 
 export const { useGetNotificationsQuery } = notificationApi;

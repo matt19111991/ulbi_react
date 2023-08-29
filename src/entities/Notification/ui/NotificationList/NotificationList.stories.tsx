@@ -37,10 +37,7 @@ export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [
-  StoreDecorator(stateNotificationList),
-  ThemeDecorator(Theme.DARK),
-];
+Dark.decorators = [StoreDecorator(stateNotificationList), ThemeDecorator(Theme.DARK)];
 
 // Orange notification list
 
@@ -48,10 +45,7 @@ export const Orange: Story = {
   args: {},
 };
 
-Orange.decorators = [
-  StoreDecorator(stateNotificationList),
-  ThemeDecorator(Theme.ORANGE),
-];
+Orange.decorators = [StoreDecorator(stateNotificationList), ThemeDecorator(Theme.ORANGE)];
 
 // Loading notification list
 

@@ -33,114 +33,103 @@ interface ArticleListItemProps {
   view: ArticleView;
 }
 
-export const ArticleListItem = memo(({
-  article,
-  className,
-  target,
-  view,
-}: ArticleListItemProps) => {
-  // const [isHover, hoverHandlers] = useHover();
+export const ArticleListItem = memo(
+  ({ article, className, target, view }: ArticleListItemProps) => {
+    // const [isHover, hoverHandlers] = useHover();
 
-  const { t } = useTranslation();
+    const { t } = useTranslation();
 
-  if (view === ArticleView.LIST) {
-    const firstTextBlock = article.blocks.find(
-      (block) => block.type === ArticleBlockType.TEXT,
-    ) as ArticleTextBlock;
+    if (view === ArticleView.LIST) {
+      const firstTextBlock = article.blocks.find(
+        (block) => block.type === ArticleBlockType.TEXT,
+      ) as ArticleTextBlock;
+
+      return (
+        <div
+          className={classNames('', {}, [className, classes[view]])}
+          data-testid='ArticleListItem'
+        >
+          <Card>
+            <div className={classes.header}>
+              <Avatar size={30} src={article.user.avatar} />
+
+              <Text className={classes.username} text={article.user.username} />
+
+              <Text className={classes.date} text={article.createdAt} />
+            </div>
+
+            <Text className={classes.title} title={article.title} />
+
+            <Text className={classes.types} text={article.type.join(', ')} />
+
+            <AppImage
+              alt={article.title}
+              className={classes.image}
+              loadingFallback={<Skeleton height={250} width='100%' />}
+              src={article.img}
+            />
+
+            {firstTextBlock && (
+              <ArticleTextBlockComponent block={firstTextBlock} className={classes.textBlock} />
+            )}
+
+            <div className={classes.footer}>
+              {/*
+                Для доступности лучше использовать 'AppLink' чем вешать 'onClick' на кнопку
+                Если кликнуть средней кнопкой мыши на кнопку, то в случае с 'onClick' перехода
+                по ссылке не будет. С 'AppLink' переход по ссылке отработает
+              */}
+              <AppLink target={target} to={getRouteArticleDetails(article.id)}>
+                <Button theme={ButtonTheme.OUTLINE}>{t('Читать далее')}...</Button>
+              </AppLink>
+
+              <Text className={classes.views} text={String(article.views || 0)} />
+              <Icon Svg={EyeIcon} />
+            </div>
+          </Card>
+        </div>
+      );
+    }
+
+    /*
+      Для доступности лучше использовать 'AppLink' чем вешать 'onClick' на 'Card'
+      Если кликнуть средней кнопкой мыши на карточку, то в случае с 'onClick' перехода
+      по ссылке не будет. С 'AppLink' переход по ссылке отработает
+    */
 
     return (
-      <div
+      <AppLink
         className={classNames('', {}, [className, classes[view]])}
         data-testid='ArticleListItem'
+        target={target}
+        to={getRouteArticleDetails(article.id)}
+        /* {...hoverHandlers} */
       >
-        <Card>
-          <div className={classes.header}>
-            <Avatar size={30} src={article.user.avatar} />
-
-            <Text className={classes.username} text={article.user.username} />
+        <Card className={classes.card}>
+          <div className={classes.imageWrapper}>
+            <AppImage
+              alt={article.title}
+              className={classes.image}
+              loadingFallback={<Skeleton height={200} width={200} />}
+              src={article.img}
+            />
 
             <Text className={classes.date} text={article.createdAt} />
           </div>
 
-          <Text className={classes.title} title={article.title} />
-
-          <Text className={classes.types} text={article.type.join(', ')} />
-
-          <AppImage
-            alt={article.title}
-            className={classes.image}
-            loadingFallback={<Skeleton height={250} width='100%' />}
-            src={article.img}
-          />
-
-          {firstTextBlock && (
-            <ArticleTextBlockComponent
-              block={firstTextBlock}
-              className={classes.textBlock}
-            />
-          )}
-
-          <div className={classes.footer}>
-            {/*
-              Для доступности лучше использовать 'AppLink' чем вешать 'onClick' на кнопку
-              Если кликнуть средней кнопкой мыши на кнопку, то в случае с 'onClick' перехода
-              по ссылке не будет. С 'AppLink' переход по ссылке отработает
-            */}
-            <AppLink
-              target={target}
-              to={getRouteArticleDetails(article.id)}
-            >
-              <Button theme={ButtonTheme.OUTLINE}>
-                {t('Читать далее')}...
-              </Button>
-            </AppLink>
+          <div className={classes.infoWrapper}>
+            <Text className={classes.types} text={article.type.join(', ')} />
 
             <Text className={classes.views} text={String(article.views || 0)} />
+
             <Icon Svg={EyeIcon} />
           </div>
+
+          <Text className={classes.title} text={article.title} />
         </Card>
-      </div>
+      </AppLink>
     );
-  }
-
-/*
-  Для доступности лучше использовать 'AppLink' чем вешать 'onClick' на 'Card'
-  Если кликнуть средней кнопкой мыши на карточку, то в случае с 'onClick' перехода
-  по ссылке не будет. С 'AppLink' переход по ссылке отработает
-*/
-
-  return (
-    <AppLink
-      className={classNames('', {}, [className, classes[view]])}
-      data-testid='ArticleListItem'
-      target={target}
-      to={getRouteArticleDetails(article.id)}
-      /* {...hoverHandlers} */
-    >
-      <Card className={classes.card}>
-        <div className={classes.imageWrapper}>
-          <AppImage
-            alt={article.title}
-            className={classes.image}
-            loadingFallback={<Skeleton height={200} width={200} />}
-            src={article.img}
-          />
-
-          <Text className={classes.date} text={article.createdAt} />
-        </div>
-
-        <div className={classes.infoWrapper}>
-          <Text className={classes.types} text={article.type.join(', ')} />
-
-          <Text className={classes.views} text={String(article.views || 0)} />
-
-          <Icon Svg={EyeIcon} />
-        </div>
-
-        <Text className={classes.title} text={article.title} />
-      </Card>
-    </AppLink>
-  );
-});
+  },
+);
 
 ArticleListItem.displayName = 'ArticleListItem';

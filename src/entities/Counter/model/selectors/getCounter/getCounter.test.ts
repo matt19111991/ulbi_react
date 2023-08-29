@@ -12,9 +12,12 @@ describe('getCounter', () => {
       },
     };
 
-/*  'as' нужен, т.к. иначе ошибка: Property 'value' is optional in
-    type 'DeepPartial<CounterSchema>' but required in type 'CounterSchema'.
-*/  expect(getCounter(state as StateSchema)).toEqual({ value: 10 });
+    /*
+      'as' нужен, т.к. иначе ошибка: Property 'value' is optional in
+      type 'DeepPartial<CounterSchema>' but required in type 'CounterSchema'.
+    */
+
+    expect(getCounter(state as StateSchema)).toEqual({ value: 10 });
   });
 
   test('should work with empty state', () => {
