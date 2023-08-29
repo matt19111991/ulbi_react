@@ -3,7 +3,6 @@ import { Article } from '../../../src/entities/Article';
 const defaultArticle = {
   blocks: [],
   createdAt: '26.02.2023',
-  // eslint-disable-next-line max-len
   img: 'https://www.freepnglogos.com/uploads/javascript-png/javascript-vector-logo-yellow-png-transparent-javascript-vector-12.png',
   subtitle: 'Testing article description',
   title: 'Testing article',

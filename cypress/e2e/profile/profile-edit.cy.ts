@@ -4,7 +4,8 @@ describe('Пользователь заходит на страницу проф
   beforeEach(() => {
     cy.visit('');
 
-    cy.login().then((data) => { // 'data' возвращается из 'body' ('commands/common.ts')
+    // 'data' возвращается из 'body' ('commands/common.ts')
+    cy.login().then((data) => {
       profileId = data.id;
 
       cy.visit(`profile/${profileId}`);
