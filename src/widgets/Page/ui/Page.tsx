@@ -1,10 +1,4 @@
-import {
-  MutableRefObject,
-  ReactNode,
-  UIEvent,
-  useRef,
-} from 'react';
-
+import { MutableRefObject, ReactNode, UIEvent, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
@@ -31,17 +25,12 @@ interface PageProps extends TestProps {
 
 export const PAGE_ID = 'PAGE_ID';
 
-export const Page = ({
-  children,
-  className,
-  onScrollEnd,
-  ...rest
-}: PageProps) => {
+export const Page = ({ children, className, onScrollEnd, ...rest }: PageProps) => {
   const dispatch = useAppDispatch();
   const location = useLocation();
 
-  const scrollPosition = useSelector(
-    (state: StateSchema) => getPageScrollByPath(state, location.pathname),
+  const scrollPosition = useSelector((state: StateSchema) =>
+    getPageScrollByPath(state, location.pathname),
   );
 
   const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
@@ -56,24 +45,25 @@ export const Page = ({
   useInitialEffect(() => {
     wrapperRef.current.scrollTop = scrollPosition;
 
-    dispatch(pageScrollActions.setScrollPosition({
-      path: location.pathname,
-      position: 0,
-    }));
+    dispatch(
+      pageScrollActions.setScrollPosition({
+        path: location.pathname,
+        position: 0,
+      }),
+    );
   });
 
-  const onScroll = useThrottle(
-    (e: UIEvent<HTMLDivElement>) => {
-      // избегаем очистки скролла при возврате на страницу, где скролл уже был выставлен
-      if (!scrollPosition || (e.currentTarget.scrollTop && scrollPosition)) {
-        dispatch(pageScrollActions.setScrollPosition({
+  const onScroll = useThrottle((e: UIEvent<HTMLDivElement>) => {
+    // избегаем очистки скролла при возврате на страницу, где скролл уже был выставлен
+    if (!scrollPosition || (e.currentTarget.scrollTop && scrollPosition)) {
+      dispatch(
+        pageScrollActions.setScrollPosition({
           path: location.pathname,
           position: e.currentTarget.scrollTop,
-        }));
-      }
-    },
-    500,
-  );
+        }),
+      );
+    }
+  }, 500);
 
   return (
     <main

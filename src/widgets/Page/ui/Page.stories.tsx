@@ -18,7 +18,7 @@ const statePage: DeepPartial<StateSchema> = {
 const content = new Array(100)
   .fill(0)
   // eslint-disable-next-line react/no-array-index-key
-  .map((_, idx) => (<div key={idx}>Test block {idx}</div>));
+  .map((_, idx) => <div key={idx}>Test block {idx}</div>);
 
 const meta = {
   title: 'widgets/Page',

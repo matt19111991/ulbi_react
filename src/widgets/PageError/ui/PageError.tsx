@@ -21,9 +21,7 @@ export const PageError = memo(({ className }: PageErrorProps) => {
     <div className={classNames(classes.PageError, {}, [className])}>
       <p>{t('Произошла непредвиденная ошибка')}</p>
 
-      <Button onClick={reloadPage}>
-        {t('Обновить страницу')}
-      </Button>
+      <Button onClick={reloadPage}>{t('Обновить страницу')}</Button>
     </div>
   );
 });

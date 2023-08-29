@@ -26,26 +26,21 @@ export interface TestProviderProps {
 }
 
 export const TestProvider = ({ children, options = {} }: TestProviderProps) => {
-  const {
-    asyncReducers,
-    initialState,
-    route = '/',
-    theme = Theme.LIGHT,
-  } = options;
+  const { asyncReducers, initialState, route = '/', theme = Theme.LIGHT } = options;
 
   /* Ошибка 'Uncaught Error: useNavigate() may be used only in the context of a <Router> component.',
      если 'StoreProvider' находится в дереве выше чем 'MemoryRouter' и попытаться использовать навигацию в
      'async thunks'
   */
 
+  // MemoryRouter используется для тестов
+
   return (
-    <MemoryRouter initialEntries={[route]}> {/* MemoryRouter используется для тестов */}
+    <MemoryRouter initialEntries={[route]}>
       <StoreProvider asyncReducers={asyncReducers} initialState={initialState}>
         <I18nextProvider i18n={i18nForTests}>
           <ThemeProvider initialTheme={theme}>
-            <div className={`app ${theme}`}>
-              {children}
-            </div>
+            <div className={`app ${theme}`}>{children}</div>
           </ThemeProvider>
         </I18nextProvider>
       </StoreProvider>
@@ -55,5 +50,5 @@ export const TestProvider = ({ children, options = {} }: TestProviderProps) => {
 
 export const componentTestRenderer = (
   component: ReactNode,
-  options: ComponentTestRendererOptions,
+  options?: ComponentTestRendererOptions,
 ) => render(<TestProvider options={options}>{component}</TestProvider>);

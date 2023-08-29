@@ -67,17 +67,11 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
 
   return (
     <header className={classNames(classes.Navbar, {}, [className])}>
-      <Button
-        className={classes.links}
-        onClick={onShowModal}
-        theme={ButtonTheme.CLEAR_INVERTED}
-      >
+      <Button className={classes.links} onClick={onShowModal} theme={ButtonTheme.CLEAR_INVERTED}>
         {t('Войти')}
       </Button>
 
-      {isAuthModal && (
-        <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
-      )}
+      {isAuthModal && <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />}
     </header>
   );
 });
