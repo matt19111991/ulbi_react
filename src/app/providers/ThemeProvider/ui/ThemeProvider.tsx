@@ -6,7 +6,7 @@ import { LOCAL_STORAGE_THEME_KEY } from '@/shared/const/localstorage';
 import { ThemeContext } from '../../../../shared/lib/context/ThemeContext';
 
 // localStorage все типы приводит к 'string'. 'as' нужен, чтобы вместо типа 'string' был тип 'Theme'
-const defaultTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme || Theme.LIGHT;
+const defaultTheme = (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || Theme.LIGHT;
 
 interface ThemeProviderProps {
   children?: ReactNode;
@@ -20,11 +20,7 @@ const ThemeProvider = ({ children, initialTheme }: ThemeProviderProps) => {
 
   const memoizedContext = useMemo(() => ({ setTheme, theme }), [theme]);
 
-  return (
-    <ThemeContext.Provider value={memoizedContext}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={memoizedContext}>{children}</ThemeContext.Provider>;
 };
 
 export default ThemeProvider;

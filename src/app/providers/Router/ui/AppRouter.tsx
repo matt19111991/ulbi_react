@@ -11,18 +11,13 @@ import { RequireAuth } from './RequireAuth';
 
 export const AppRouter = memo(() => {
   const renderWithWrapper = useCallback((route: AppRoutesProps) => {
-    const element = (
-      <Suspense fallback={<PageLoader />}> {/* <Suspense /> для роутинга */}
-        {route.element}
-      </Suspense>
-    );
+    // <Suspense /> для роутинга
+    const element = <Suspense fallback={<PageLoader />}>{route.element}</Suspense>;
 
     return (
       <Route
         element={
-          route.authOnly
-            ? <RequireAuth roles={route.roles}>{element}</RequireAuth>
-            : element
+          route.authOnly ? <RequireAuth roles={route.roles}>{element}</RequireAuth> : element
         }
         key={route.path}
         path={route.path}
@@ -30,11 +25,7 @@ export const AppRouter = memo(() => {
     );
   }, []);
 
-  return (
-    <Routes>
-      {Object.values(routeConfig).map(renderWithWrapper)}
-    </Routes>
-  );
+  return <Routes>{Object.values(routeConfig).map(renderWithWrapper)}</Routes>;
 });
 
 AppRouter.displayName = 'AppRouter';

@@ -47,13 +47,15 @@ export type MountedReducers = OptionalRecord<StateSchemaKey, boolean>;
 
 export interface ReducerManager {
   getReducerMap: () => ReducersMapObject<StateSchema>;
-  reduce: (s: StateSchema, a: AnyAction) => CombinedState<StateSchema>,
-  add: (k: StateSchemaKey, r: Reducer) => void,
-  remove: (k: StateSchemaKey) => void,
-/*
-  'getMountedReducers'() - чтобы не монтировать заново уже смонтированные редюсеры
-  (true - вмонтирован, false - демонтирован)
-*/getMountedReducers: () => MountedReducers;
+  reduce: (s: StateSchema, a: AnyAction) => CombinedState<StateSchema>;
+  add: (k: StateSchemaKey, r: Reducer) => void;
+  remove: (k: StateSchemaKey) => void;
+
+  /*
+    'getMountedReducers'() - чтобы не монтировать заново уже смонтированные редюсеры
+    (true - вмонтирован, false - демонтирован)
+  */
+  getMountedReducers: () => MountedReducers;
 }
 
 // расширение дефолтного типа для 'store'

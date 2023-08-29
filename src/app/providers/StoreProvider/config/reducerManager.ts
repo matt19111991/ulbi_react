@@ -1,16 +1,6 @@
-import {
-  AnyAction,
-  combineReducers,
-  Reducer,
-  ReducersMapObject,
-} from '@reduxjs/toolkit';
+import { AnyAction, combineReducers, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 
-import {
-  MountedReducers,
-  ReducerManager,
-  StateSchema,
-  StateSchemaKey,
-} from './StateSchema';
+import { MountedReducers, ReducerManager, StateSchema, StateSchemaKey } from './StateSchema';
 
 // для асинхронной подгрузки редюсеров, 'createReducerManager' взят из документации
 

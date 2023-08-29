@@ -15,9 +15,11 @@ describe('AppRouter', () => {
     // используем асинхронный 'findByTestId', т.к. роутер использует 'Suspense'
     const page = await screen.findByTestId('AboutPage');
 
-/*  Нужна актуальная версия '@testing-library', которая соответствует 'React v.18', иначе ошибка:
-    'Unable to find an element by: [data-testid="AboutPage"]'
-*/  expect(page).toBeInTheDocument();
+    /*
+      Нужна актуальная версия '@testing-library', которая соответствует 'React v.18', иначе ошибка:
+      'Unable to find an element by: [data-testid="AboutPage"]'
+    */
+    expect(page).toBeInTheDocument();
   });
 
   test('Страница не найдена', async () => {

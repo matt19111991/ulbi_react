@@ -38,9 +38,8 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   },
   [AppRoutes.ARTICLE_CREATE]: {
     authOnly: true,
-/*  можно создать отдельно <ArticleCreatePage />,
-    но скорее всего она будет не сильно отличаться от <ArticleEditPage />
-*/  element: <ArticleEditPage />,
+    // можно создать отдельно <ArticleCreatePage />, но скорее всего она будет не сильно отличаться от <ArticleEditPage />
+    element: <ArticleEditPage />,
     path: getRouteArticleCreate(),
   },
   [AppRoutes.ARTICLE_DETAILS]: {
@@ -72,8 +71,8 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     path: getRouteProfile(':id'),
   },
 
-  // должен идти последним
-  [AppRoutes.NOT_FOUND]: { // охватывает все маршруты, кроме указанных выше
+  // должен идти последним; охватывает все маршруты, кроме указанных выше
+  [AppRoutes.NOT_FOUND]: {
     element: <NotFoundPage />,
     path: '*',
   },

@@ -12,12 +12,13 @@ import { Sidebar } from '@/widgets/Sidebar';
 import { AppRouter } from './providers/Router';
 
 /*
-    В большинстве случаев не стоит оборачивать в 'memo' компоненты с 'children':
-      - 'children' могут быть объектами (от использования 'memo' не будет смысла)
-      - 'children' могут иметь древовидную структуру, а это накладно хранить в памяти
+  В большинстве случаев не стоит оборачивать в 'memo' компоненты с 'children':
+    - 'children' могут быть объектами (от использования 'memo' не будет смысла)
+    - 'children' могут иметь древовидную структуру, а это накладно хранить в памяти
 
-    Но, если мы точно знаем, что 'children' - это примитив, тогда можно использовать обертку 'memo'
+  Но, если мы точно знаем, что 'children' - это примитив, тогда можно использовать обертку 'memo'
 */
+
 const App = () => {
   const dispatch = useAppDispatch();
 
@@ -27,9 +28,10 @@ const App = () => {
     dispatch(userActions.initAuthData());
   }, [dispatch]);
 
+  // <Suspense /> для переводов
   return (
     <div className={classNames('app', {}, [])}>
-      <Suspense fallback=''> {/* <Suspense /> для переводов */}
+      <Suspense fallback=''>
         <Navbar />
 
         <div className='content-page'>

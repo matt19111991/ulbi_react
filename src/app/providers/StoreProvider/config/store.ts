@@ -1,9 +1,4 @@
-import {
-  CombinedState,
-  configureStore,
-  Reducer,
-  ReducersMapObject,
-} from '@reduxjs/toolkit';
+import { CombinedState, configureStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 
 import { counterReducer } from '@/entities/Counter';
 import { userReducer } from '@/entities/User';
@@ -41,13 +36,16 @@ export const createReduxStore = (
   const store = configureStore({
     devTools: __IS_DEV__,
 
-/*  'reducerManager.reduce as ReducersMapObject<StateSchema>' в поле 'reducer' помогает избежать
-    ошибки типов в поле 'middleware', которая возникает из-за использования 'reducerManager'
-*/  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-      thunk: {
-        extraArgument,
-      },
-    }).concat(rtkApi.middleware),
+    /*
+      'reducerManager.reduce as ReducersMapObject<StateSchema>' в поле 'reducer' помогает избежать
+      ошибки типов в поле 'middleware', которая возникает из-за использования 'reducerManager'
+    */
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        thunk: {
+          extraArgument,
+        },
+      }).concat(rtkApi.middleware),
 
     // инициализация 'store' заранее подготовленными данными для тестов, storybook и т.д.
     preloadedState: initialState,

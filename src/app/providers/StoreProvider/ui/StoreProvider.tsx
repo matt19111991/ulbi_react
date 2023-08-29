@@ -7,7 +7,7 @@ import { StateSchema } from '../config/StateSchema';
 import { createReduxStore } from '../config/store';
 
 interface StoreProviderProps {
-  asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>
+  asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>;
   children?: ReactNode;
   initialState?: DeepPartial<StateSchema>;
 }
@@ -18,9 +18,5 @@ export const StoreProvider = ({ asyncReducers, children, initialState }: StorePr
     asyncReducers as ReducersMapObject<StateSchema>,
   );
 
-  return (
-    <Provider store={store}>
-      {children}
-    </Provider>
-  );
+  return <Provider store={store}>{children}</Provider>;
 };

@@ -20,11 +20,7 @@ export const BugButton = memo(() => {
     }
   }, [error]);
 
-  return (
-    <Button onClick={onThrow}>
-      {t('Выбросить ошибку')}
-    </Button>
-  );
+  return <Button onClick={onThrow}>{t('Выбросить ошибку')}</Button>;
 });
 
 BugButton.displayName = 'BugButton';

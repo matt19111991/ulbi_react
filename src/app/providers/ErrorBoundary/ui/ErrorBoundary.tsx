@@ -1,6 +1,4 @@
-import {
- Component, ErrorInfo, ReactNode, Suspense,
-} from 'react';
+import { Component, ErrorInfo, ReactNode, Suspense } from 'react';
 
 import { PageError } from '@/widgets/PageError';
 
@@ -41,9 +39,11 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     const { children } = this.props;
     const { hasError } = this.state;
 
-    if (hasError) { // Резервный UI ошибки
+    // Резервный UI ошибки
+    if (hasError) {
+      // <Suspense /> для переводов
       return (
-        <Suspense fallback=''> {/* <Suspense /> для переводов */}
+        <Suspense fallback=''>
           <PageError />
         </Suspense>
       );

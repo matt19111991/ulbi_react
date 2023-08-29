@@ -14,9 +14,9 @@ describe('Пользователь заходит на страницу со с�
     // перехватываем запрос совпадающий с '**/articles?*' и подставляем моковые данные из 'fixtures'
     cy.intercept('GET', '**/articles?*', { fixture: 'articles.json' });
 
-/*  при запуске development сборки через 'vite' будет ошибка, т.к.
-    'vite' не работает корректно с 'react-virtualized'
-*/  cy.getByTestId('ArticleList').should('exist');
+    // при запуске dev сборки через 'vite' будет ошибка, т.к. 'vite' не работает корректно с 'react-virtualized'
+
+    cy.getByTestId('ArticleList').should('exist');
     cy.getByTestId('ArticleListItem').should('have.length.greaterThan', 3);
   });
 });
