@@ -25,11 +25,7 @@ componentsDirs?.forEach((directory) => {
     const sourceCode = `export * from './${directory.getBaseName()}';
 `;
 
-    const file = directory.createSourceFile(
-      indexFilePath,
-      sourceCode,
-      { overwrite: true },
-    );
+    const file = directory.createSourceFile(indexFilePath, sourceCode, { overwrite: true });
 
     file.save();
   }
@@ -63,9 +59,8 @@ files?.forEach((sourceFile) => {
     const isUiSlice = segments?.[1] === 'ui';
 
     if (isAbsolutePath(valueWithoutAlias) && isSharedLayer && isUiSlice) {
-/*    отрезаем от 'shared/ui/Card/Card' часть после последнего слэша =>
-      остается 'shared/ui/Card'
-*/    const resultPath = valueWithoutAlias.split('/').slice(0, 3).join('/');
+      // отрезаем от 'shared/ui/Card/Card' часть после последнего слэша => остается 'shared/ui/Card'
+      const resultPath = valueWithoutAlias.split('/').slice(0, 3).join('/');
 
       importDeclaration.setModuleSpecifier(`@/${resultPath}`);
     }

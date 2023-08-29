@@ -39,5 +39,5 @@ export const ${sliceName}Slice = createSlice({
 
 export const { actions: ${sliceName}Actions } = ${sliceName}Slice;
 export const { reducer: ${sliceName}Reducer } = ${sliceName}Slice;
-`;// конец шаблона
+`; // конец шаблона
 };
