@@ -58,6 +58,25 @@
    8. Устанавливаем Node: `nvm install 18.16.0`
    9. Устанавливаем зависимости: `npm i`
    10. Запускаем development сборку (vite не работает): `npm run start:client:webpack`
+   11. Устанавливаем nginx: `sudo apt install nginx`
+   12. Идем в папку с конфигом nginx: `cd ../../etc/nginx/sites-enabled/`
+   13. Открываем и редактируем файл конфига nginx: `vim default`
+   14. Проверяем целосность nginx конфига: `nginx -t`
+   15. Останавливаем Apache сервис перед обновлением nginx: `sudo service apache2 stop`
+   16. Перезапускаем nginx: `sudo service nginx restart`
+   17. http://103.13.210.44 должен выдавать 404 Not Found | nginx/1.18.0 (Ubuntu)
+   18. Идем в папку www: `cd ../../../var/www/`
+   19. Создаем папку с названием проекта: `mkdir ulbi_react`
+   20. Переходим в созданную папку: `cd ulbi_react/`
+   21. Создаем папку html: `mkdir html`
+   22. Переходим в папку с проектом: `../../../root/ulbi_react/`
+   23. Делаем билд: `npm run build:prod mode=production apiUrl="http://103.13.210.44:8000"`
+   24. Перемещаем билд в папку для статики: `mv build/ ../../../var/www/ulbi_react`
+   25. Переходим в папку со статикой: `../../var/www/ulbi_react/`
+   26. Удаляем папку html: `rmdir html/`
+   27. Переименовываем папку с билдом: `mv build/ html/`
+   28. Переходим в папку с проектом: `../../../root/ulbi_react/`
+   29. Запускаем сервер: `npm run start:server`
 
 ----
 
