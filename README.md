@@ -18,6 +18,38 @@
 
 ----
 
+## Deploy проекта
+   1. Создаем облачный сервер
+   2. Подключаемся по SSH: `ssh root@178.172.194.139`
+      Если `ssh` команды не существует, устанавливаем SSH клиент и генерируем приватный и публичный ключи: `ssh-keygen`
+      2.1. Вводим пароль от сервера и попадаем в консоль сервера
+   3. Обновляем apt зависимости на сервере: `sudo apt update`
+   4. Устанавливаем Git: `sudo apt install git-all`
+   5. Клонируем проект
+      5.1. Публичный: `git clone https://github.com/matt19111991/ulbi_react.git`
+      5.2. Приватный (возможна ошибка **Authentication failed for https://github.com/matt19111991/ulbi_react.git**)
+          5.2.1. Генерируем приватный и публичный ключи: `sudo ssh-keygen`
+          5.2.2. Указываем путь: `/root/.ssh/project`
+          5.2.3. Вводим passphrase (просто жмем Enter)
+          5.2.4. Переходим в папку с .ssh: `cd .ssh`
+          5.2.5. Создаем конфигурационный файл для GitHub: `cat > config`
+                 Host должен быть точным названием проекта в репозитории
+                 `Host ulbi_react
+                  Hostname github.com
+                  User git
+                  IndetityFile ~/.ssh/project`
+          5.2.6. Берем публичный SSH ключ: `sudo cat project.pub`
+          5.2.7. Добавляем публичный SSH ключ в GitHub (Settings / Deploy keys / Add deploy key)
+          5.2.8. Клонируем проект `git clone git@github.com:matt19111991/ulbi_react.git`
+   6. Устанавливаем nvm: `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash`
+   7. Настраиваем nvm: `export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+                        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"`
+   8. Устанавливаем Node: `nvm install 18.16.0`
+   9. Устанавливаем зависимости: `npm i`
+   10. Запускаем development сборку: `npm run start:client:vite`
+
+----
+
 ## Скрипты
 
 - `npm run start:client:webpack` - Запуск frontend проекта на Webpack dev server
