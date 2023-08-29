@@ -52,10 +52,7 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [
-  StoreDecorator(stateAvatarDropdown),
-  ThemeDecorator(Theme.DARK),
-];
+Dark.decorators = [StoreDecorator(stateAvatarDropdown), ThemeDecorator(Theme.DARK)];
 
 // Orange avatar dropdown
 
@@ -65,10 +62,7 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [
-  StoreDecorator(stateAvatarDropdown),
-  ThemeDecorator(Theme.ORANGE),
-];
+Orange.decorators = [StoreDecorator(stateAvatarDropdown), ThemeDecorator(Theme.ORANGE)];
 
 // Authorized user avatar dropdown
 

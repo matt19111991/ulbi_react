@@ -42,13 +42,19 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
   const password = useSelector(getLoginPassword);
   const username = useSelector(getLoginUsername);
 
-  const onChangePassword = useCallback((value: string) => {
-    dispatch(loginActions.setPassword(value));
-  }, [dispatch]);
+  const onChangePassword = useCallback(
+    (value: string) => {
+      dispatch(loginActions.setPassword(value));
+    },
+    [dispatch],
+  );
 
-  const onChangeUsername = useCallback((value: string) => {
-    dispatch(loginActions.setUsername(value));
-  }, [dispatch]);
+  const onChangeUsername = useCallback(
+    (value: string) => {
+      dispatch(loginActions.setUsername(value));
+    },
+    [dispatch],
+  );
 
   const onLoginClick = useCallback(async () => {
     try {
@@ -65,19 +71,14 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
 
   return (
     <DynamicModuleLoader
-/*    плохой вариант (пересоздание объекта на каждый ререндер)
-      reducers={{ loginForm: loginReducer }}                */
+      // плохой вариант (пересоздание объекта на каждый ререндер)
+      // reducers={{ loginForm: loginReducer }}
       reducers={initialReducers} // 'initialReducers' ссылка меняться не будет
     >
       <div className={classNames(classes.LoginForm, {}, [className])}>
         <Text title={t('Форма авторизации')} />
 
-        {error && (
-          <Text
-            text={t('Вы ввели неверный логин или пароль')}
-            theme={TextTheme.ERROR}
-          />
-        )}
+        {error && <Text text={t('Вы ввели неверный логин или пароль')} theme={TextTheme.ERROR} />}
 
         <Input
           autoFocus

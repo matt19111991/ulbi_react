@@ -35,7 +35,7 @@ export const profileSlice = createSlice({
       };
     },
   },
-  extraReducers: ((builder) => {
+  extraReducers: (builder) => {
     builder
       .addCase(fetchProfileData.pending, (state) => {
         state.error = undefined;
@@ -65,7 +65,7 @@ export const profileSlice = createSlice({
         state.validateErrors = action.payload;
         state.isLoading = false;
       });
-  }),
+  },
 });
 
 export const { actions: profileActions } = profileSlice;

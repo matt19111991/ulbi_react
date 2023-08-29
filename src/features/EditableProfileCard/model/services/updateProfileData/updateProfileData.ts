@@ -14,29 +14,27 @@ export const updateProfileData = createAsyncThunk<
   Profile,
   void,
   ThunkConfig<ValidateProfileError[]>
->(
-  'profile/updateProfileData',
-  async (_, thunkAPI) => {
-    // '_' - заглушка (ничего не передаем при вызове updateProfileData()
-    try {
-      // в 'async thunks' можно использовать 'thunkAPI.getState()'
-      const formData = getProfileForm(thunkAPI.getState());
+>('profile/updateProfileData', async (_, thunkAPI) => {
+  // '_' - заглушка (ничего не передаем при вызове updateProfileData()
+  try {
+    // в 'async thunks' можно использовать 'thunkAPI.getState()'
+    const formData = getProfileForm(thunkAPI.getState());
 
-      const errors = validateProfileData(formData);
+    const errors = validateProfileData(formData);
 
-      if (errors.length) { // валидация не прошла
-        return thunkAPI.rejectWithValue(errors);
-      }
-
-      const response = await thunkAPI.extra.api.put(`/profile/${formData?.id}`, formData);
-
-      if (!response.data) {
-        throw new Error();
-      }
-
-      return response.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue([ValidateProfileError.SERVER_ERROR]);
+    // валидация не прошла
+    if (errors.length) {
+      return thunkAPI.rejectWithValue(errors);
     }
-  },
-);
+
+    const response = await thunkAPI.extra.api.put(`/profile/${formData?.id}`, formData);
+
+    if (!response.data) {
+      throw new Error();
+    }
+
+    return response.data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue([ValidateProfileError.SERVER_ERROR]);
+  }
+});

@@ -48,10 +48,7 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [
-  StoreDecorator(stateAddCommentFormActive),
-  ThemeDecorator(Theme.DARK),
-];
+Dark.decorators = [StoreDecorator(stateAddCommentFormActive), ThemeDecorator(Theme.DARK)];
 
 // Orange add comment form
 
@@ -61,10 +58,7 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [
-  StoreDecorator(stateAddCommentFormActive),
-  ThemeDecorator(Theme.ORANGE),
-];
+Orange.decorators = [StoreDecorator(stateAddCommentFormActive), ThemeDecorator(Theme.ORANGE)];
 
 // Disabled add comment form
 

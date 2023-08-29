@@ -12,7 +12,8 @@ import { updateProfileData } from './updateProfileData';
 const updateFormData = {
   id: '1',
   age: 22,
-  avatar: 'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
+  avatar:
+    'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
   city: 'New-York',
   country: Country.USA,
   currency: Currency.USD,

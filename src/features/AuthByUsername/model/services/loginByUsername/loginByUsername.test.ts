@@ -73,10 +73,8 @@ describe('loginByUsername', () => {
 
     const thunk = new TestAsyncThunk(loginByUsername);
 
-//  после вызова 'jest.mock()', метод 'mockReturnValue' добавляется к 'axios'
-    thunk.api.post.mockReturnValue(
-      Promise.resolve({ data: userValue }),
-    );
+    // после вызова 'jest.mock()', метод 'mockReturnValue' добавляется к 'axios'
+    thunk.api.post.mockReturnValue(Promise.resolve({ data: userValue }));
 
     const result = await thunk.callThunk({ password: '123', username: '123' });
 
@@ -92,9 +90,7 @@ describe('loginByUsername', () => {
   test('error login', async () => {
     const thunk = new TestAsyncThunk(loginByUsername);
 
-    thunk.api.post.mockReturnValue(
-      Promise.resolve({ status: 403 }),
-    );
+    thunk.api.post.mockReturnValue(Promise.resolve({ status: 403 }));
 
     const result = await thunk.callThunk({ password: '123', username: '123' });
 

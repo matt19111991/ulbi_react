@@ -15,49 +15,42 @@ interface ArticleRecommendationsListProps {
   storybookError?: string;
 }
 
-export const ArticleRecommendationsList = memo(({
-  className,
-  storybookError,
-}: ArticleRecommendationsListProps) => {
-  const { t } = useTranslation('article-details');
+export const ArticleRecommendationsList = memo(
+  ({ className, storybookError }: ArticleRecommendationsListProps) => {
+    const { t } = useTranslation('article-details');
 
-  const { data = [], error: queryError, isLoading } = useGetArticleRecommendationsListQuery(4);
+    const { data = [], error: queryError, isLoading } = useGetArticleRecommendationsListQuery(4);
 
-  const articles = __PROJECT__ === 'storybook' && storybookError ? [] : data;
-  const error = __PROJECT__ === 'storybook' ? storybookError : queryError;
+    const articles = __PROJECT__ === 'storybook' && storybookError ? [] : data;
+    const error = __PROJECT__ === 'storybook' ? storybookError : queryError;
 
-  if (error) {
+    if (error) {
+      return (
+        <HStack className={classNames('', {}, [className])} max>
+          <Text theme={TextTheme.ERROR} title={t('Ошибка при загрузке рекоммендаций')} />
+        </HStack>
+      );
+    }
+
     return (
-      <HStack
+      <VStack
+        align='start'
         className={classNames('', {}, [className])}
+        data-testid='ArticleRecommendationsList'
+        gap='8'
         max
       >
-        <Text
-          theme={TextTheme.ERROR}
-          title={t('Ошибка при загрузке рекоммендаций')}
+        <Text size={TextSize.L} title={t('Рекомендуем')} />
+
+        <ArticleList
+          articles={articles}
+          isLoading={isLoading}
+          target='_blank'
+          virtualized={false}
         />
-      </HStack>
+      </VStack>
     );
-  }
-
-  return (
-    <VStack
-      align='start'
-      className={classNames('', {}, [className])}
-      data-testid='ArticleRecommendationsList'
-      gap='8'
-      max
-    >
-      <Text size={TextSize.L} title={t('Рекомендуем')} />
-
-      <ArticleList
-        articles={articles}
-        isLoading={isLoading}
-        target='_blank'
-        virtualized={false}
-      />
-    </VStack>
-  );
-});
+  },
+);
 
 ArticleRecommendationsList.displayName = 'ArticleRecommendationsList';

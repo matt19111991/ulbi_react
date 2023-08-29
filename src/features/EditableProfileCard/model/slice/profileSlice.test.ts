@@ -12,7 +12,8 @@ import { profileActions, profileReducer } from './profileSlice';
 
 const profileData = {
   age: 22,
-  avatar: 'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
+  avatar:
+    'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
   city: 'New-York',
   country: Country.USA,
   currency: Currency.USD,
@@ -35,9 +36,7 @@ describe('profileSlice', () => {
         validateErrors: [ValidateProfileError.INCORRECT_USER_DATA],
       };
 
-      expect(
-        profileReducer(state as ProfileSchema, profileActions.cancelEdit()),
-      ).toEqual({
+      expect(profileReducer(state as ProfileSchema, profileActions.cancelEdit())).toEqual({
         data: profileData,
         form: profileData,
         readonly: true,
@@ -50,9 +49,9 @@ describe('profileSlice', () => {
         readonly: false,
       };
 
-      expect(
-        profileReducer(state as ProfileSchema, profileActions.setReadOnly(true)),
-      ).toEqual({ readonly: true });
+      expect(profileReducer(state as ProfileSchema, profileActions.setReadOnly(true))).toEqual({
+        readonly: true,
+      });
     });
 
     test('test update profile', () => {
@@ -83,11 +82,10 @@ describe('profileSlice', () => {
         isLoading: false,
       };
 
-      expect(profileReducer(state as ProfileSchema, fetchProfileData.pending))
-        .toEqual({
-          error: undefined,
-          isLoading: true,
-        });
+      expect(profileReducer(state as ProfileSchema, fetchProfileData.pending)).toEqual({
+        error: undefined,
+        isLoading: true,
+      });
     });
 
     test('test fulfilled', () => {
@@ -112,9 +110,7 @@ describe('profileSlice', () => {
         validateErrors: [ValidateProfileError.SERVER_ERROR],
       };
 
-      expect(
-        profileReducer(state as ProfileSchema, updateProfileData.pending),
-      ).toEqual({
+      expect(profileReducer(state as ProfileSchema, updateProfileData.pending)).toEqual({
         isLoading: true,
         validateErrors: undefined,
       });

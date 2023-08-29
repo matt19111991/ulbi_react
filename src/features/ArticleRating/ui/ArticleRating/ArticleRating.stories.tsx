@@ -47,10 +47,7 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [
-  StoreDecorator(stateArticleRating),
-  ThemeDecorator(Theme.DARK),
-];
+Dark.decorators = [StoreDecorator(stateArticleRating), ThemeDecorator(Theme.DARK)];
 
 // Orange article rating
 
@@ -60,10 +57,7 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [
-  StoreDecorator(stateArticleRating),
-  ThemeDecorator(Theme.ORANGE),
-];
+Orange.decorators = [StoreDecorator(stateArticleRating), ThemeDecorator(Theme.ORANGE)];
 
 // Loading article rating
 

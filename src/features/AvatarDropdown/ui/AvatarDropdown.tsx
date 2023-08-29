@@ -2,12 +2,7 @@ import { memo, useCallback, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import {
-  getUserAuthData,
-  isUserAdmin,
-  isUserManager,
-  userActions,
-} from '@/entities/User';
+import { getUserAuthData, isUserAdmin, isUserManager, userActions } from '@/entities/User';
 
 import { getRouteAdmin, getRouteProfile } from '@/shared/const/router';
 
@@ -22,10 +17,7 @@ interface NotificationButtonProps {
   storybookAvatar?: string;
 }
 
-export const AvatarDropdown = memo(({
-  className,
-  storybookAvatar,
-}: NotificationButtonProps) => {
+export const AvatarDropdown = memo(({ className, storybookAvatar }: NotificationButtonProps) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
 

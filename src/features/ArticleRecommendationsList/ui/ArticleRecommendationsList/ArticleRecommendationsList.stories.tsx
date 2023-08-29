@@ -37,10 +37,7 @@ export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [
-  StoreDecorator(stateArticleRecommendationsList),
-  ThemeDecorator(Theme.DARK),
-];
+Dark.decorators = [StoreDecorator(stateArticleRecommendationsList), ThemeDecorator(Theme.DARK)];
 
 // Orange article recommendations list
 
@@ -48,10 +45,7 @@ export const Orange: Story = {
   args: {},
 };
 
-Orange.decorators = [
-  StoreDecorator(stateArticleRecommendationsList),
-  ThemeDecorator(Theme.ORANGE),
-];
+Orange.decorators = [StoreDecorator(stateArticleRecommendationsList), ThemeDecorator(Theme.ORANGE)];
 
 // Error article recommendations list
 

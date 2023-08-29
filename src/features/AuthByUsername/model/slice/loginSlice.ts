@@ -13,7 +13,9 @@ const initialState: LoginSchema = {
 const loginSlice = createSlice({
   name: 'login',
   initialState,
-  reducers: { // обычные 'reducers' предназначены для обычных синхронных изменений
+
+  // обычные 'reducers' предназначены для обычных синхронных изменений
+  reducers: {
     setPassword: (state, action: PayloadAction<string>) => {
       state.password = action.payload;
     },
@@ -21,7 +23,9 @@ const loginSlice = createSlice({
       state.username = action.payload;
     },
   },
-  extraReducers: (builder) => { // 'extraReducers' предназначены для асинхронных изменений (asyncThunk)
+
+  // 'extraReducers' предназначены для асинхронных изменений (asyncThunk)
+  extraReducers: (builder) => {
     builder
       .addCase(loginByUsername.pending, (state) => {
         state.error = undefined;

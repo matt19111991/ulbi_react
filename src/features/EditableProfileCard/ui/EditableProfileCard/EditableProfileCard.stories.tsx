@@ -55,10 +55,7 @@ export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [
-  StoreDecorator(stateEditableProfileCard),
-  ThemeDecorator(Theme.DARK),
-];
+Dark.decorators = [StoreDecorator(stateEditableProfileCard), ThemeDecorator(Theme.DARK)];
 
 // Orange editable profile card
 
@@ -66,9 +63,6 @@ export const Orange: Story = {
   args: {},
 };
 
-Orange.decorators = [
-  StoreDecorator(stateEditableProfileCard),
-  ThemeDecorator(Theme.ORANGE),
-];
+Orange.decorators = [StoreDecorator(stateEditableProfileCard), ThemeDecorator(Theme.ORANGE)];
 
 export default meta;

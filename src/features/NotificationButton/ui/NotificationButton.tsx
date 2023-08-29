@@ -19,53 +19,52 @@ interface NotificationButtonProps {
   storybookMobile?: boolean;
 }
 
-export const NotificationButton = memo(({
-  className,
-  storybookMobile,
-}: NotificationButtonProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+export const NotificationButton = memo(
+  ({ className, storybookMobile }: NotificationButtonProps) => {
+    const [isOpen, setIsOpen] = useState(false);
 
-  const onCloseDrawer = useCallback(() => setIsOpen(false), []);
+    const onCloseDrawer = useCallback(() => setIsOpen(false), []);
 
-  const onOpenDrawer = useCallback(() => setIsOpen(true), []);
+    const onOpenDrawer = useCallback(() => setIsOpen(true), []);
 
-  const trigger = (
-    <Button onClick={onOpenDrawer} theme={ButtonTheme.CLEAR}>
-      <Icon inverted Svg={NotificationIcon} />
-    </Button>
-  );
+    const trigger = (
+      <Button onClick={onOpenDrawer} theme={ButtonTheme.CLEAR}>
+        <Icon inverted Svg={NotificationIcon} />
+      </Button>
+    );
 
-  const browserContent = (
-    <Popover
-      className={classNames('', {}, [className])}
-      direction='bottom-right'
-      trigger={trigger}
-    >
-      <NotificationList className={classes.list} />
-    </Popover>
-  );
+    const browserContent = (
+      <Popover
+        className={classNames('', {}, [className])}
+        direction='bottom-right'
+        trigger={trigger}
+      >
+        <NotificationList className={classes.list} />
+      </Popover>
+    );
 
-  const mobileContent = (
-    <>
-      {trigger}
+    const mobileContent = (
+      <>
+        {trigger}
 
-      <Drawer isOpen={isOpen} onClose={onCloseDrawer}>
-        <NotificationList />
-      </Drawer>
-    </>
-  );
+        <Drawer isOpen={isOpen} onClose={onCloseDrawer}>
+          <NotificationList />
+        </Drawer>
+      </>
+    );
 
-  if (storybookMobile) {
-    return mobileContent;
-  }
+    if (storybookMobile) {
+      return mobileContent;
+    }
 
-  return (
-    <>
-      <BrowserView>{browserContent}</BrowserView>
+    return (
+      <>
+        <BrowserView>{browserContent}</BrowserView>
 
-      <MobileView>{mobileContent}</MobileView>
-    </>
-  );
-});
+        <MobileView>{mobileContent}</MobileView>
+      </>
+    );
+  },
+);
 
 NotificationButton.displayName = 'NotificationButton';

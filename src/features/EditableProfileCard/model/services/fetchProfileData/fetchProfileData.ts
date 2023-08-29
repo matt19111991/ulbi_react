@@ -5,18 +5,18 @@ import { ThunkConfig } from '@/app/providers/StoreProvider';
 import type { Profile } from '@/entities/Profile';
 
 export const fetchProfileData = createAsyncThunk<Profile, string, ThunkConfig<string>>(
-    'profile/fetchProfileData',
+  'profile/fetchProfileData',
   async (profileId, thunkAPI) => {
-      try {
-        const response = await thunkAPI.extra.api.get<Profile>(`/profile/${profileId}`);
+    try {
+      const response = await thunkAPI.extra.api.get<Profile>(`/profile/${profileId}`);
 
-        if (!response.data) {
-          throw new Error();
-        }
-
-        return response.data;
-      } catch (e) {
-        return thunkAPI.rejectWithValue('error');
+      if (!response.data) {
+        throw new Error();
       }
-    },
+
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue('error');
+    }
+  },
 );

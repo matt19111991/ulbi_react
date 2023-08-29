@@ -16,7 +16,8 @@ import { EditableProfileCard } from './EditableProfileCard';
 
 const profile: Profile = {
   age: 22,
-  avatar: 'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
+  avatar:
+    'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
   city: 'New-York',
   country: Country.USA,
   currency: Currency.USD,
@@ -38,7 +39,8 @@ const options = {
     },
     user: {
       authData: {
-        avatar: 'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
+        avatar:
+          'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
         id: '1',
         username: 'jack_white',
       },

@@ -10,13 +10,14 @@ interface RecommendationsResponse {
 
 const recommendationsApi = rtkApi.injectEndpoints({
   endpoints: (build) => ({
-/*
-    build.query    - для GET запросов
-    build.mutation - для POST, PUT, DELETE, ... запросов
+    /*
+      build.query    - для GET запросов
+      build.mutation - для POST, PUT, DELETE, ... запросов
 
-         название эндпоинта                     ReturnType  args
-                v                                   v        v
-*/  getArticleRecommendationsList: build.query<Article[], number>({
+      название эндпоинта                     ReturnType   args
+              v                                   v         v
+    */
+    getArticleRecommendationsList: build.query<Article[], number>({
       queryFn: (limit, api, extraOptions, baseQuery) => {
         if (__PROJECT__ === 'storybook') {
           return { data: generateArticles(4) };

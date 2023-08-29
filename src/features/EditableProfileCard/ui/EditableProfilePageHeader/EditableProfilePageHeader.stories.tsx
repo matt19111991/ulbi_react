@@ -50,10 +50,7 @@ export const DarkEditing: Story = {
   args: {},
 };
 
-DarkEditing.decorators = [
-  StoreDecorator(stateEditableProfileHeader),
-  ThemeDecorator(Theme.DARK),
-];
+DarkEditing.decorators = [StoreDecorator(stateEditableProfileHeader), ThemeDecorator(Theme.DARK)];
 
 // Orange editing editable profile page header
 
@@ -88,9 +85,7 @@ const stateEditableProfileHeaderNotEditing: DeepPartial<StateSchema> = {
   },
 };
 
-NotEditing.decorators = [
-  StoreDecorator(stateEditableProfileHeaderNotEditing),
-];
+NotEditing.decorators = [StoreDecorator(stateEditableProfileHeaderNotEditing)];
 
 // Not editable profile page header
 
@@ -113,8 +108,6 @@ const stateEditableProfileHeaderNotEditable: DeepPartial<StateSchema> = {
   },
 };
 
-NotEditable.decorators = [
-  StoreDecorator(stateEditableProfileHeaderNotEditable),
-];
+NotEditable.decorators = [StoreDecorator(stateEditableProfileHeaderNotEditable)];
 
 export default meta;

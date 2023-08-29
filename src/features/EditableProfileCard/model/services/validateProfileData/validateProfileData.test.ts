@@ -9,7 +9,8 @@ describe('validateProfileData', () => {
   test('all fields are correct', () => {
     const profileData = {
       age: 22,
-      avatar: 'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
+      avatar:
+        'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
       city: 'New-York',
       country: Country.USA,
       currency: Currency.USD,
@@ -22,15 +23,14 @@ describe('validateProfileData', () => {
   });
 
   test('no profile data', () => {
-    expect(validateProfileData(undefined)).toEqual([
-      ValidateProfileError.NO_DATA,
-    ]);
+    expect(validateProfileData(undefined)).toEqual([ValidateProfileError.NO_DATA]);
   });
 
   test('no first and last name', () => {
     const profileData = {
       age: 22,
-      avatar: 'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
+      avatar:
+        'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
       city: 'New-York',
       country: Country.USA,
       currency: Currency.USD,
@@ -39,15 +39,14 @@ describe('validateProfileData', () => {
       username: 'admin',
     };
 
-    expect(validateProfileData(profileData)).toEqual([
-      ValidateProfileError.INCORRECT_USER_DATA,
-    ]);
+    expect(validateProfileData(profileData)).toEqual([ValidateProfileError.INCORRECT_USER_DATA]);
   });
 
   test('incorrect age', () => {
     const profileData = {
       age: 0,
-      avatar: 'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
+      avatar:
+        'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
       city: 'New-York',
       country: Country.USA,
       currency: Currency.USD,
@@ -56,9 +55,7 @@ describe('validateProfileData', () => {
       username: 'admin',
     };
 
-    expect(validateProfileData(profileData)).toEqual([
-      ValidateProfileError.INCORRECT_AGE,
-    ]);
+    expect(validateProfileData(profileData)).toEqual([ValidateProfileError.INCORRECT_AGE]);
   });
 
   test('incorrect avatar', () => {
@@ -73,15 +70,14 @@ describe('validateProfileData', () => {
       username: 'admin',
     };
 
-    expect(validateProfileData(profileData)).toEqual([
-      ValidateProfileError.INCORRECT_AVATAR,
-    ]);
+    expect(validateProfileData(profileData)).toEqual([ValidateProfileError.INCORRECT_AVATAR]);
   });
 
   test('incorrect city', () => {
     const profileData = {
       age: 22,
-      avatar: 'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
+      avatar:
+        'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
       city: '',
       country: Country.USA,
       currency: Currency.USD,
@@ -90,15 +86,14 @@ describe('validateProfileData', () => {
       username: 'admin',
     };
 
-    expect(validateProfileData(profileData)).toEqual([
-      ValidateProfileError.INCORRECT_CITY,
-    ]);
+    expect(validateProfileData(profileData)).toEqual([ValidateProfileError.INCORRECT_CITY]);
   });
 
   test('incorrect country', () => {
     const profileData = {
       age: 22,
-      avatar: 'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
+      avatar:
+        'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
       city: 'New-York',
       country: undefined,
       currency: Currency.USD,
@@ -107,15 +102,14 @@ describe('validateProfileData', () => {
       username: 'admin',
     };
 
-    expect(validateProfileData(profileData)).toEqual([
-      ValidateProfileError.INCORRECT_COUNTRY,
-    ]);
+    expect(validateProfileData(profileData)).toEqual([ValidateProfileError.INCORRECT_COUNTRY]);
   });
 
   test('incorrect currency', () => {
     const profileData = {
       age: 22,
-      avatar: 'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
+      avatar:
+        'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
       city: 'New-York',
       country: Country.USA,
       currency: undefined,
@@ -124,15 +118,14 @@ describe('validateProfileData', () => {
       username: 'admin',
     };
 
-    expect(validateProfileData(profileData)).toEqual([
-      ValidateProfileError.INCORRECT_CURRENCY,
-    ]);
+    expect(validateProfileData(profileData)).toEqual([ValidateProfileError.INCORRECT_CURRENCY]);
   });
 
   test('incorrect username', () => {
     const profileData = {
       age: 22,
-      avatar: 'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
+      avatar:
+        'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
       city: 'New-York',
       country: Country.USA,
       currency: Currency.USD,
@@ -141,9 +134,7 @@ describe('validateProfileData', () => {
       username: '',
     };
 
-    expect(validateProfileData(profileData)).toEqual([
-      ValidateProfileError.INCORRECT_USERNAME,
-    ]);
+    expect(validateProfileData(profileData)).toEqual([ValidateProfileError.INCORRECT_USERNAME]);
   });
 
   test('incorrect all', () => {

@@ -14,12 +14,7 @@ interface LoginModalProps {
 }
 
 export const LoginModal = memo(({ className, isOpen, onClose }: LoginModalProps) => (
-  <Modal
-    className={classNames('', {}, [className])}
-    isOpen={isOpen}
-    lazy
-    onClose={onClose}
-  >
+  <Modal className={classNames('', {}, [className])} isOpen={isOpen} lazy onClose={onClose}>
     <Suspense fallback={<Loader />}>
       <LoginFormAsync onSuccess={onClose} />
     </Suspense>

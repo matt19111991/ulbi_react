@@ -9,10 +9,7 @@ import { Button, ButtonTheme } from '@/shared/ui/Button';
 import { HStack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text';
 
-import {
-  getIsUserCanEditProfile,
-} from '../../model/selectors/getIsUserCanEditProfile/getIsUserCanEditProfile';
-
+import { getIsUserCanEditProfile } from '../../model/selectors/getIsUserCanEditProfile/getIsUserCanEditProfile';
 import { getProfileReadOnly } from '../../model/selectors/getProfileReadOnly/getProfileReadOnly';
 
 import { updateProfileData } from '../../model/services/updateProfileData/updateProfileData';
@@ -23,9 +20,7 @@ interface EditableProfilePageHeaderProps {
   className?: string;
 }
 
-export const EditableProfilePageHeader = memo(({
-  className,
-}: EditableProfilePageHeaderProps) => {
+export const EditableProfilePageHeader = memo(({ className }: EditableProfilePageHeaderProps) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation('profile');
 
@@ -46,11 +41,7 @@ export const EditableProfilePageHeader = memo(({
   }, [dispatch]);
 
   return (
-    <HStack
-      className={classNames('', {}, [className])}
-      justify='between'
-      max
-    >
+    <HStack className={classNames('', {}, [className])} justify='between' max>
       <Text title={t('Профиль')} />
 
       {canEdit && (

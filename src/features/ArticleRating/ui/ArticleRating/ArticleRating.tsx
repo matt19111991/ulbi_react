@@ -26,36 +26,45 @@ const ArticleRating = ({
 
   const userData = useSelector(getUserAuthData);
 
-  const {
-    data,
-    isLoading: queryLoading,
-  } = useGetArticleRatingQuery({ articleId, userId: userData?.id ?? '' });
+  const { data, isLoading: queryLoading } = useGetArticleRatingQuery({
+    articleId,
+    userId: userData?.id ?? '',
+  });
 
   const [rateArticleMutation] = useRateArticleMutation();
 
   const isLoading = __PROJECT__ === 'storybook' ? storybookLoading : queryLoading;
 
-  const handleRateArticle = useCallback((starsCount: number, feedback?: string) => {
-    try {
-      rateArticleMutation({
-        articleId,
-        feedback,
-        rate: starsCount,
-        userId: userData?.id ?? '',
-      });
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.log('e', e);
-    }
-  }, [articleId, rateArticleMutation, userData?.id]);
+  const handleRateArticle = useCallback(
+    (starsCount: number, feedback?: string) => {
+      try {
+        rateArticleMutation({
+          articleId,
+          feedback,
+          rate: starsCount,
+          userId: userData?.id ?? '',
+        });
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log('e', e);
+      }
+    },
+    [articleId, rateArticleMutation, userData?.id],
+  );
 
-  const onAccept = useCallback((starsCount: number, feedback?: string) => {
-    handleRateArticle(starsCount, feedback);
-  }, [handleRateArticle]);
+  const onAccept = useCallback(
+    (starsCount: number, feedback?: string) => {
+      handleRateArticle(starsCount, feedback);
+    },
+    [handleRateArticle],
+  );
 
-  const onCancel = useCallback((starsCount: number) => {
-    handleRateArticle(starsCount);
-  }, [handleRateArticle]);
+  const onCancel = useCallback(
+    (starsCount: number) => {
+      handleRateArticle(starsCount);
+    },
+    [handleRateArticle],
+  );
 
   if (isLoading) {
     return <Skeleton height={120} width='100%' />;

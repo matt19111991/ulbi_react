@@ -43,9 +43,12 @@ const AddCommentForm = ({ className, onSendComment }: AddCommentFormProps) => {
   const isLoading = useSelector(getArticleCommentsAreLoading);
   const text = useSelector(getAddCommentFormText);
 
-  const onCommentTextChange = useCallback((value: string) => {
-    dispatch(addCommentFormActions.setText(value));
-  }, [dispatch]);
+  const onCommentTextChange = useCallback(
+    (value: string) => {
+      dispatch(addCommentFormActions.setText(value));
+    },
+    [dispatch],
+  );
 
   const onSendHandler = useCallback(() => {
     onSendComment(text || '');
@@ -56,13 +59,9 @@ const AddCommentForm = ({ className, onSendComment }: AddCommentFormProps) => {
   return (
     <DynamicModuleLoader reducers={reducers}>
       <HStack
-        className={
-          classNames(
-            classes.AddCommentForm,
-            { [classes.loading]: isLoading },
-            [className],
-          )
-        }
+        className={classNames(classes.AddCommentForm, { [classes.loading]: isLoading }, [
+          className,
+        ])}
         data-testid='AddCommentForm'
         justify='between'
         max

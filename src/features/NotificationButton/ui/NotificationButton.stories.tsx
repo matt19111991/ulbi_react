@@ -50,10 +50,7 @@ export const DarkDesktop: Story = {
   args: {},
 };
 
-DarkDesktop.decorators = [
-  StoreDecorator(stateNotificationButton),
-  ThemeDecorator(Theme.DARK),
-];
+DarkDesktop.decorators = [StoreDecorator(stateNotificationButton), ThemeDecorator(Theme.DARK)];
 
 // Orange desktop notification button
 
@@ -61,10 +58,7 @@ export const OrangeDesktop: Story = {
   args: {},
 };
 
-OrangeDesktop.decorators = [
-  StoreDecorator(stateNotificationButton),
-  ThemeDecorator(Theme.ORANGE),
-];
+OrangeDesktop.decorators = [StoreDecorator(stateNotificationButton), ThemeDecorator(Theme.ORANGE)];
 
 // Primary mobile notification button
 
@@ -90,10 +84,7 @@ export const DarkMobile: Story = {
   },
 };
 
-DarkMobile.decorators = [
-  StoreDecorator(stateNotificationButton),
-  ThemeDecorator(Theme.DARK),
-];
+DarkMobile.decorators = [StoreDecorator(stateNotificationButton), ThemeDecorator(Theme.DARK)];
 
 DarkMobile.parameters = {
   viewport: {
@@ -109,10 +100,7 @@ export const OrangeMobile: Story = {
   },
 };
 
-OrangeMobile.decorators = [
-  StoreDecorator(stateNotificationButton),
-  ThemeDecorator(Theme.ORANGE),
-];
+OrangeMobile.decorators = [StoreDecorator(stateNotificationButton), ThemeDecorator(Theme.ORANGE)];
 
 OrangeMobile.parameters = {
   viewport: {
