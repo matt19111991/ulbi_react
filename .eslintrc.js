@@ -13,7 +13,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:storybook/recommended',
-    'prettier',
+    'plugin:prettier/recommended',
   ],
   globals: {
     __API__: 'readonly',
