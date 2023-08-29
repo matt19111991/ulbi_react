@@ -57,7 +57,7 @@
                         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"`
    8. Устанавливаем Node: `nvm install 18.16.0`
    9. Устанавливаем зависимости: `npm i`
-   10. Запускаем development сборку: `npm run start:client:vite`
+   10. Запускаем development сборку (vite не работает): `npm run start:client:webpack`
 
 ----
 
