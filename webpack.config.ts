@@ -25,7 +25,7 @@ module.exports = { // аналог экспорта для Node.js
 // export default config; // если не нужны переменные окружения env, можно вернуть просто config
 
 export default (env: BuildEnv) => {
-  const apiUrl = process.env?.API_URL || 'https://localhost:8443';
+  const apiUrl = process.env?.API_URL || 'http://localhost:8000';
 
   const mode: BuildMode = env?.mode || 'development';
 

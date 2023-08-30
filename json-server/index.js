@@ -69,22 +69,22 @@ server.use(router);
 const httpsServer = https.createServer(options, server);
 
 /*
+  запуск сервера c HTTPS
+
   443 порт по умолчанию для HTTPS
   меняем на 8443, чтобы избежать потенциальных конфликтов с фронтом и nginx
-*/
-const PORT = 8443;
 
-// запуск сервера c HTTPS
-httpsServer.listen(PORT, () => {
-  // eslint-disable-next-line no-console
-  console.log(`---Server is running on ${PORT} port---`);
-});
+  const PORT = 8443;
 
-/*
-  запуск сервера до перехода на HTTPS
-
-  server().listen(8000, () => {
+  httpsServer.listen(PORT, () => {
     // eslint-disable-next-line no-console
-    console.log('---Server is running on 8000 port---');
+    console.log(`---Server is running on ${PORT} port---`);
   });
 */
+
+// запуск сервера на HTTP
+
+server().listen(8000, () => {
+  // eslint-disable-next-line no-console
+  console.log('---Server is running on 8000 port---');
+});
