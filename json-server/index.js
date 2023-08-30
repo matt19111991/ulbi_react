@@ -84,7 +84,7 @@ const httpsServer = https.createServer(options, server);
 
 // запуск сервера на HTTP
 
-server().listen(8000, () => {
+server.listen(8000, () => {
   // eslint-disable-next-line no-console
   console.log('---Server is running on 8000 port---');
 });
