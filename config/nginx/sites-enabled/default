@@ -1,0 +1,22 @@
+server {
+  # Start listening :80 port
+  listen 80;
+  listen [::]80;
+
+  # Directory with static files
+  root /var/www/ulbi_react/html;
+
+  # Possible entry points
+  index index.html index.htm index.nginx-debian.html;
+
+  # Optional property
+  server_name: _;
+
+  # Catch all routes after slash
+  location / {
+    # We use Single Page Application (SPA) and routing should be fully on client side
+    # So we put all redirects to index.html page
+    # Without this we will catch 404 error after page refresh
+    try_files $uri $uri/ /index.html;
+  }
+}
