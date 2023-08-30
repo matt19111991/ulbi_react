@@ -18,7 +18,7 @@ export const createArticle = (article?: Article) => {
       Authorization: true,
     },
     method: 'POST',
-    url: 'http://localhost:8000/articles',
+    url: 'https://localhost:8443/articles',
   }).then(({ body }) => body);
 };
 
@@ -28,7 +28,7 @@ export const removeArticle = (articleId: string) => {
       Authorization: true,
     },
     method: 'DELETE',
-    url: `http://localhost:8000/articles/${articleId}`,
+    url: `https://localhost:8443/articles/${articleId}`,
   });
 };
 

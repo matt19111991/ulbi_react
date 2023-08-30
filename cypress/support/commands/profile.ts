@@ -16,7 +16,7 @@ export const resetProfile = (profileId: string) => {
       Authorization: true,
     },
     method: 'PUT',
-    url: `http://localhost:8000/profile/${profileId}`,
+    url: `https://localhost:8443/profile/${profileId}`,
   });
 };
 

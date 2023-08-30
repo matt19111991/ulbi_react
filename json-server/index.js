@@ -5,8 +5,8 @@ const jsonServer = require('json-server');
 const path = require('path');
 
 const options = {
-  cert: fs.readFileSync('cert.pem'),
-  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync(path.resolve(__dirname, 'cert.pem')),
+  key: fs.readFileSync(path.resolve(__dirname, 'key.pem')),
 };
 
 const server = jsonServer.create();
@@ -66,10 +66,25 @@ server.post('/login', (req, res) => {
 server.use(router);
 
 // создаем HTTPS сервер
-const httpsServer = https.createServer();
+const httpsServer = https.createServer(options, server);
 
-// запуск сервера
-server.listen(8000, () => {
+/*
+  443 порт по умолчанию для HTTPS
+  меняем на 8443, чтобы избежать потенциальных конфликтов с фронтом и nginx
+*/
+const PORT = 8443;
+
+// запуск сервера c HTTPS
+httpsServer.listen(PORT, () => {
   // eslint-disable-next-line no-console
-  console.log('---Server is running on 8000 port---');
+  console.log(`---Server is running on ${PORT} port---`);
 });
+
+/*
+  запуск сервера до перехода на HTTPS
+
+  server().listen(8000, () => {
+    // eslint-disable-next-line no-console
+    console.log('---Server is running on 8000 port---');
+  });
+*/

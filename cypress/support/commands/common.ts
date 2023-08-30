@@ -13,7 +13,7 @@ export const login = (username: string = 'Jack', password: string = '12345') => 
       Authorization: true,
     },
     method: 'POST',
-    url: 'http://localhost:8000/login',
+    url: 'https://localhost:8443/login',
   }).then(({ body }) => {
     window.localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(body));
 
