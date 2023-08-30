@@ -9,8 +9,8 @@ server {
   # Possible entry points
   index index.html index.htm index.nginx-debian.html;
 
-  # Optional property
-  server_name: _;
+  # Our domain name (without and with 'www')
+  server_name ulbi_react.ru www.ulbi_react.ru;
 
   # Catch all routes after slash
   location / {
