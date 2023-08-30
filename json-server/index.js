@@ -1,7 +1,13 @@
 const cors = require('cors');
 const fs = require('fs');
+const https = require('https');
 const jsonServer = require('json-server');
 const path = require('path');
+
+const options = {
+  cert: fs.readFileSync('cert.pem'),
+  key: fs.readFileSync('key.pem'),
+};
 
 const server = jsonServer.create();
 
@@ -58,6 +64,9 @@ server.post('/login', (req, res) => {
 
 // должно быть после описания всех роутов
 server.use(router);
+
+// создаем HTTPS сервер
+const httpsServer = https.createServer();
 
 // запуск сервера
 server.listen(8000, () => {

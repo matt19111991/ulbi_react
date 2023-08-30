@@ -1,4 +1,4 @@
-**Настройка SSL и HTTPS**
+**Настройка SSL**
 
 1 Идем на сайт https://letsencrypt.org и далее на https://certbot.eff.org
 
@@ -26,3 +26,4 @@
   This request has been blocked; the content must be server over HTTPS."
   
   Нужно настроить HTTPS для Node.js (json-server/index.js)
+  [Настройка HTTPS](./HTTPS.md)
