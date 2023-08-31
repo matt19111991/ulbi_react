@@ -1,5 +1,6 @@
 const cors = require('cors');
 const fs = require('fs');
+const http = require('http');
 const https = require('https');
 const jsonServer = require('json-server');
 const path = require('path');
@@ -65,26 +66,25 @@ server.post('/login', (req, res) => {
 // должно быть после описания всех роутов
 server.use(router);
 
-// создаем HTTPS сервер
+// HTTPS сервер (443 порт по умолчанию) для production сборки
+
 const httpsServer = https.createServer(options, server);
 
-/*
-  запуск сервера c HTTPS
+// меняем порт на 8443, чтобы избежать потенциальных конфликтов с фронтом и nginx
+const HTTPS_PORT = 8443;
 
-  443 порт по умолчанию для HTTPS
-  меняем на 8443, чтобы избежать потенциальных конфликтов с фронтом и nginx
-
-  const PORT = 8443;
-
-  httpsServer.listen(PORT, () => {
-    // eslint-disable-next-line no-console
-    console.log(`---Server is running on ${PORT} port---`);
-  });
-*/
-
-// запуск сервера на HTTP
-
-server.listen(8000, () => {
+httpsServer.listen(HTTPS_PORT, () => {
   // eslint-disable-next-line no-console
-  console.log('---Server is running on 8000 port---');
+  console.log(`---Server is running on ${HTTPS_PORT} port---`);
+});
+
+// HTTP сервер (80 порт по умолчанию) для локальной разработки
+
+const httpServer = http.createServer(server);
+
+const HTTP_PORT = 8000;
+
+httpServer.listen(HTTP_PORT, () => {
+  // eslint-disable-next-line no-console
+  console.log(`---Server is running on ${HTTP_PORT} port---`);
 });
