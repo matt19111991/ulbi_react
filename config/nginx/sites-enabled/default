@@ -12,6 +12,15 @@ server {
   # Our domain name (without and with 'www')
   server_name ulbi_react.ru www.ulbi_react.ru;
 
+  # Proxying for backend (HTTPS)
+    location ~ ^/api/(.*)$ { # catch all /api/ requests and redirect them to the backend
+      # proxy_pass $scheme://103.13.210.44:8443/${1};
+      # proxy_redirect off;
+      # proxy_set_header Host $host;
+      # proxy_set_header X-Real-IP $remote_addr;
+      # proxy_set_header X-Forwarded_For $proxy_add_x_forwarded_for;
+  # }
+
   # Catch all routes after slash
   location / {
     # We use Single Page Application (SPA) and routing should be fully on client side
