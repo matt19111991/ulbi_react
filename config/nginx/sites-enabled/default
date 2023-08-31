@@ -13,15 +13,15 @@ server {
   server_name ulbireact.ru;
 
   # Proxying for backend (HTTPS)
-    location ~ ^/api/(.*)$ { # catch all /api/ requests and redirect them to the backend
-      # $1$is_args$args - for correct work with query params
-      # proxy_pass $scheme://103.13.210.44:8443/$1$is_args$args;
+  location ~ ^/api/(.*)$ { # catch all /api/ requests and redirect them to the backend
+    # $1$is_args$args - for correct work with query params
+    proxy_pass $scheme://103.13.210.44:8443/$1$is_args$args;
 
-      # proxy_redirect off;
-      # proxy_set_header Host $host;
-      # proxy_set_header X-Real-IP $remote_addr;
-      # proxy_set_header X-Forwarded_For $proxy_add_x_forwarded_for;
-  # }
+    proxy_redirect off;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded_For $proxy_add_x_forwarded_for;
+  }
 
   # Catch all routes after slash
   location / {
