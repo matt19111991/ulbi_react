@@ -9,8 +9,8 @@ server {
   # Possible entry points
   index index.html index.htm index.nginx-debian.html;
 
-  # Our domain name (without and with 'www')
-  server_name ulbi_react.ru www.ulbi_react.ru;
+  # Our domain name (without 'www' or any prefix)
+  server_name ulbireact.ru;
 
   # Proxying for backend (HTTPS)
     location ~ ^/api/(.*)$ { # catch all /api/ requests and redirect them to the backend

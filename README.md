@@ -20,11 +20,14 @@
 
 ## Deploy проекта
    1. Создаем облачный сервер (можно бесплатно на https://console.kamatera.com)
-   2. Подключаемся по SSH: `ssh root@178.172.194.139`
-      
+   2. Подключаемся по SSH: `ssh root@103.13.210.44` или через Remove Console
+      (https://console.kamatera.com => Servers => Наш сервер => Connect => 
+      Open Remote Console)
+  
       Если `ssh` команды не существует, устанавливаем SSH клиент и генерируем приватный и публичный ключи: `ssh-keygen`
       
       2.1. Вводим пароль от сервера и попадаем в консоль сервера
+
    3. Обновляем apt зависимости на сервере: `sudo apt update`
    4. Устанавливаем Git: `sudo apt install git-all`
    5. Клонируем проект
@@ -47,6 +50,7 @@
                   Hostname github.com
                   User git
                   IndetityFile ~/.ssh/project`
+
           5.2.6. Берем публичный SSH ключ: `sudo cat project.pub`
           
           5.2.7. Добавляем публичный SSH ключ в GitHub (Settings / Deploy keys / Add deploy key)
