@@ -22,14 +22,25 @@ module.exports = { // аналог экспорта для Node.js
 }
 */
 
+const getApiUrl = (mode: BuildMode, apiUrl?: string) => {
+  if (apiUrl) {
+    return apiUrl;
+  }
+
+  if (mode === 'production') {
+    return '/api';
+  }
+
+  return 'http://localhost:8000';
+};
+
 // export default config; // если не нужны переменные окружения env, можно вернуть просто config
 
 export default (env: BuildEnv) => {
-  const apiUrl = process.env?.API_URL || 'http://localhost:8000';
-
   const mode: BuildMode = env?.mode || 'development';
-
   const isDev = mode === 'development';
+
+  const apiUrl = getApiUrl(mode, process.env?.API_URL);
 
   const paths: BuildPaths = {
     // __dirname - папка, где находимся в данный момент. В текущем случае: корень

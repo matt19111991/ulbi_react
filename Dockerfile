@@ -2,8 +2,12 @@
 
 # Здесь как пример аналога для .deploy/deploy.sh скрипта
 
+###################################################################################
+
+# Этап 1 (builder)
+
 # Cобираем образ на основе Node v.18.16.0
-FROM node:18-alpine3.16
+FROM node:18-alpine3.16 as builder
 
 # Копируем package.json файлы внутрь образа для ускорения сборки образов
 COPY package.json package-lock.json ./
@@ -22,8 +26,22 @@ RUN npm run build:prod
 
 ###################################################################################
 
+# Этап 2 (nginx)
+
 # Используем базовый образ для nginx
 FROM nginx:alpine
 
 # Копируем локальный конфиг nginx в папку с nginx в образе
 COPY ./config/nginx/nginx.conf /etc/nginx/nginx.conf
+
+# Удаляем nginx index page, заданную по умолчанию
+RUN rm -rf /usr/share/nginx/html/*
+
+# Копируем все файлы из этапа 1 в корневое расположение, откуда он может обслуживать содержимое
+COPY --from=builder /ulbi_react/build /usr/share/nginx/html
+
+# выставляем наружу 80 порт
+EXPOSE 80
+
+# задаем точку входа для nginx
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
