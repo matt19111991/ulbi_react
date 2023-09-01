@@ -21,10 +21,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Executing remote SSH commands using password and deploying on ulbireact.ru
+      - name: Executing remote SSH commands using password
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          run: pm2 -v
+
+      - name: Check pm2 version
+        run: pm2 -v
+
