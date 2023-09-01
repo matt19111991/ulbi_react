@@ -1449,6 +1449,10 @@
     {
       "id": "1",
       "avatar": "https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg",
+      "features": {
+        "isArticleRatingEnabled": true,
+        "isCounterEnabled": true
+      },
       "password": "12345",
       "roles": [
         "ADMIN"
@@ -1458,6 +1462,10 @@
     {
       "id": "2",
       "avatar": "https://img.freepik.com/premium-photo/man-stands-ledge-looking-cityscape_529521-762.jpg",
+      "features": {
+        "isArticleRatingEnabled": false,
+        "isCounterEnabled": true
+      },
       "password": "12345",
       "roles": [
         "USER"
@@ -1467,6 +1475,10 @@
     {
       "id": "3",
       "avatar": "https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png",
+      "features": {
+        "isArticleRatingEnabled": false,
+        "isCounterEnabled": false
+      },
       "password": "12345",
       "roles": [
         "MANAGER"

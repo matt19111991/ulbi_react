@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { ArticleDetails } from '@/entities/Article';
+import { Counter } from '@/entities/Counter';
 
 import { ArticleRating } from '@/features/ArticleRating';
 import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
@@ -13,6 +14,8 @@ import {
   DynamicModuleLoader,
   ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+
+import { getFeatureFlag } from '@/shared/lib/features';
 
 import { HStack, VStack } from '@/shared/ui/Stack';
 import { Text, TextTheme } from '@/shared/ui/Text';
@@ -44,6 +47,9 @@ const ArticleDetailsPage = ({
   const { id } = useParams<{ id: string }>();
   const { t } = useTranslation('article-details');
 
+  const isArticleRatingEnabled = getFeatureFlag('isArticleRatingEnabled');
+  const isCounterEnabled = getFeatureFlag('isCounterEnabled');
+
   const articleId = __PROJECT__ === 'storybook' ? storybookId : id;
 
   if (!articleId) {
@@ -66,7 +72,9 @@ const ArticleDetailsPage = ({
 
           <ArticleDetails id={articleId!} />
 
-          <ArticleRating articleId={articleId} />
+          {isCounterEnabled && <Counter />}
+
+          {isArticleRatingEnabled && <ArticleRating articleId={articleId} />}
 
           <ArticleRecommendationsList storybookError={storybookError} />
 
