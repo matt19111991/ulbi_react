@@ -6,6 +6,9 @@
 # идем в папку с проектом
 cd ~/ulbi_react
 
+# скачиваем последние обновления с GitHub
+git pull
+
 # делаем сборку
 npm run build:prod
 
