@@ -11,6 +11,14 @@
 
 ---- 
 
+## Доп. информация
+- [Создание и настройка доменного имени](DOMAIN_NAME.md)
+- [Настройка SSL](SSL.md)
+- [Настройка HTTPS](HTTPS.md)
+- [Loki Ui Screenshot testing](LOKI.md)
+
+---- 
+
 ## Запуск проекта
 - `npm install` - устанавливаем зависимости
 - `npm run start:vite` - запуск сервера + frontend проекта в development режиме (Vite сборщик)
@@ -86,6 +94,7 @@
        
        Остановить процесс по id = 0: `pm2 stop 0`
    30. Запускаем сервер в фоне: `pm2 start json-server/index.js`
+   31. [Скрипт для деплоя](.deploy/deploy.sh) позволяет автоматизировать деплой на сервере
 
 ----
 

@@ -25,5 +25,5 @@
   but requested an insecure XMLHttpRequest endpoint 'http://103.13.210.44:8000/login'. 
   This request has been blocked; the content must be served over HTTPS."
   
-  Нужно настроить HTTPS для Node.js (json-server/index.js)
-  [Настройка HTTPS](./HTTPS.md)
+  - Нужно наш json server [настроить под HTTPS](./HTTPS.md)
+  - Добавить [проксирование через nginx](config/nginx/sites-enabled/default)
