@@ -27,9 +27,4 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-
-          # export NVM_DIR="$HOME/.nvm"... - чтобы избежать ошибки 'npm: command not found'
-          script: |
-            cd ~/ulbi_react
-            export NVM_DIR="$HOME/.nvm" [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-            .deploy/deploy.sh
+          script: ulbi_react/.deploy/deploy.sh
