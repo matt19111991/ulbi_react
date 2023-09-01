@@ -8,6 +8,13 @@ name: Deploy on ulbireact.ru
 
 on: [push]
 
+#      pm2 stop 0
+#      git pull
+#      npm run build:prod
+#      .deploy/deploy.sh
+#      pm2 start json-server/index.js
+
+
 jobs:
   build:
     name: Build
@@ -21,8 +28,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            pm2 stop 0
-            git pull
-            npm run build:prod
-            .deploy/deploy.sh
-            pm2 start json-server/index.js
+            pm2 -v
