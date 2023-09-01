@@ -21,13 +21,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Executing remote SSH commands using password and deploying
+      - name: Executing remote SSH commands using password
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
 
+      - name: Deploying on ulbireact.ru
+        with:
           # команды, чтобы избежать ошибки 'npm: command not found'
             # export NVM_DIR="$HOME/.nvm"
             # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
