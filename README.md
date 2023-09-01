@@ -214,9 +214,10 @@
 
 Конфигурация Github Actions находится в ./github/workflows/main.yaml.
 
-В [main.yaml](.github/workflows/main.yaml) прогоняются все виды тестов, сборка проекта, storybook и линтинг.
+В [main.yaml](.github/workflows/main.yaml) прогоняются все виды тестов, сборка проекта,
+storybook и линтинг и деплой на сервер.
 
-В [server_deploy.yaml](.github/workflows/server_deploy.yaml) проект деплоется на ublireact.ru 
+В [server.yaml](.github/deploy/server.yaml) проект деплоется на ulbireact.ru 
 
 В Pre-commit hooks проверяем проект линтерами, [конфигурация здесь](./.husky)
 
