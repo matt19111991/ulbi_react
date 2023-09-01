@@ -213,9 +213,12 @@
 ## CI Pipeline и Pre-commit hooks
 
 Конфигурация Github Actions находится в ./github/workflows/main.yaml.
-В CI прогоняются все виды тестов, сборка проекта и storybook, линтинг.
 
-В Pre-commit hooks проверяем проект линтерами, конфигурация находится в /.husky
+В [main.yaml](.github/workflows/main.yaml) прогоняются все виды тестов, сборка проекта, storybook и линтинг.
+
+В [server_deploy.yaml](.github/workflows/server_deploy.yaml) проект деплоется на ublireact.ru 
+
+В Pre-commit hooks проверяем проект линтерами, [конфигурация здесь](./.husky)
 
 ----
 

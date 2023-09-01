@@ -4,7 +4,7 @@
 # USERNAME = root
 # PASSWORD = 1234567qwertyA
 
-name: Remote SSH command
+name: Deploy on ulbireact.ru
 
 on: [push]
 
@@ -14,10 +14,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Executing remote SSH commands using password
+      - name: Executing remote SSH commands using password and deploying on ulbireact.ru
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          script: whoami
+          script: |
+            pm2 stop 0
+            git pull
+            npm run build:prod
+            .deploy/deploy.sh
+            pm2 start json-server/index.js
