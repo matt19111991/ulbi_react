@@ -146,5 +146,6 @@ jobs: # 'build-and-ui-testing' и 'checks' jobs запускаются пара�
         run: npm run test:unit
 
   deploy: # деплоим на сервер ulbireact.ru
+    name: Deploy on ulbireact.ru
     dependsOn: build-and-ui-testing # запуск после успешного завершения build-and-ui-testing шага
     uses: /.github/workflows/deploy.yaml
