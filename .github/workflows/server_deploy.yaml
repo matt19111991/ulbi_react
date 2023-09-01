@@ -29,5 +29,6 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             whoami
-            ls -al
             cd ./ulbi_react
+            ls -al
+
