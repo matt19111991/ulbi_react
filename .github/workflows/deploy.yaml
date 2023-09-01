@@ -1,4 +1,4 @@
-# Секреты задаются на GitHub: Settings => General => Security => Secrets => Actions
+# Секреты задаются на GitHub: Settings => Security => Secrets and variables => Actions
 
 name: Remote SSH command
 
@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Executing remote SSH commands using password
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v1.0.0
 
         with:
           host: ${{ secrets.HOST }}

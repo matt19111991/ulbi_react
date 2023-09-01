@@ -1,4 +1,4 @@
-name: linting, testing, building
+name: Linting, Testing, Building
 
 # запуск GitHub actions будет происходить на push и pull request (ветка 'master')
 on:
