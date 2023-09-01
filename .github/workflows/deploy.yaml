@@ -1,5 +1,9 @@
 # Секреты задаются на GitHub: Settings => Security => Secrets and variables => Actions
 
+# HOST = 103.13.210.44
+# USERNAME = root
+# PASSWORD = 1234567qwertyA
+
 name: Remote SSH command
 
 on: [push]
@@ -11,7 +15,7 @@ jobs:
 
     steps:
       - name: Executing remote SSH commands using password
-        uses: appleboy/ssh-action@v1.0.0
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
