@@ -144,3 +144,6 @@ jobs: # 'build-and-ui-testing' и 'checks' jobs запускаются пара�
       - name: Unit testing
         if: always()
         run: npm run test:unit
+
+  deploy: # деплоим на сервер ulbireact.ru
+    uses: /.github/deploy/server.yaml
