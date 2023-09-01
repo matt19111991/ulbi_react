@@ -29,16 +29,16 @@ jobs:
           password: ${{ secrets.PASSWORD }}
 
       - name: Deploying on ulbireact.ru
-        with:
-          # команды, чтобы избежать ошибки 'npm: command not found'
-            # export NVM_DIR="$HOME/.nvm"
-            # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-          run: |
-            cd ~/ulbi_react
 
-            export NVM_DIR="$HOME/.nvm"
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+        # команды, чтобы избежать ошибки 'npm: command not found'
+          # export NVM_DIR="$HOME/.nvm"
+          # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+        run: |
+          cd ~/ulbi_react
 
-            git pull
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-            ~/ulbi_react/.deploy/deploy.sh
+          git pull
+
+          ~/ulbi_react/.deploy/deploy.sh
