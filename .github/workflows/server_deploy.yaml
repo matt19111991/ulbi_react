@@ -28,7 +28,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            export NVM_DIR=/home/${{ secrets.USERNAME }}/.nvm
-            source /home/${{ secrets.USERNAME }}/.nvm/nvm.sh
             cd ./ulbi_react
+            ls -la
             .deploy/deploy.sh
