@@ -27,7 +27,6 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-
-      - name: Check pm2 version
-        run: pm2 -v
-
+          script: |
+            whoami
+            ls -al
