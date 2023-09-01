@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Executing remote SSH commands using password
+      - name: Executing remote SSH commands using password and deploying
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
@@ -31,4 +31,5 @@ jobs:
             whoami
             cd ./ulbi_react
             ls -al
+            pm2 list
 
