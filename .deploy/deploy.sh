@@ -3,10 +3,6 @@
 # Нужно дать файлу разрешение на выполнение
 # chmod +x .deploy/deploy.sh
 
-# для работы Npm на сервере (чтобы избежать ошибки 'npm: command not found')
-export NVM_DIR=~/.nvm
-source ~/.nvm/nvm.sh
-
 # идем в папку с проектом
 cd ~/ulbi_react
 

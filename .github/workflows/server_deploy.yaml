@@ -21,6 +21,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+
       - name: Executing remote SSH commands using password and deploying
         uses: appleboy/ssh-action@master
         with:
