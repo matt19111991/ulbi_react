@@ -30,3 +30,4 @@ jobs:
           script: |
             whoami
             ls -al
+            cd ./ulbi_react
