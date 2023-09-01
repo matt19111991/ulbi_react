@@ -27,9 +27,4 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          script: |
-            whoami
-            cd ./ulbi_react
-            ls -al
-            pm2 list
-
+          script: .deploy/deploy.sh
