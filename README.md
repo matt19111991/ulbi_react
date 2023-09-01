@@ -16,6 +16,7 @@
 - [Настройка SSL](SSL.md)
 - [Настройка HTTPS](HTTPS.md)
 - [Loki Ui Screenshot testing](LOKI.md)
+- [Модели ветвления Git](GIT_BRANCHES.md)
 
 ---- 
 

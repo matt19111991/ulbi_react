@@ -1,4 +1,4 @@
-**Настройка HTTPS**
+##Настройка HTTPS
 
 1. Генерируем key.pem: `openssl genrsa -out ./json-server/key.pem`
 2. Генерируем csr.pem: `openssl req -new -key ./json-server/key.pem -out ./json-server/csr.pem`
