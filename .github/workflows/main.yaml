@@ -146,12 +146,4 @@ jobs: # 'build-and-ui-testing' и 'checks' jobs запускаются пара�
         run: npm run test:unit
 
   deploy: # деплоим на сервер ulbireact.ru
-    runs-on: ubuntu-latest
-
-    needs: [build-and-ui-testing]
-
-    strategy:
-      matrix:
-        node-version: [ 17.x ]
-
     uses: /.github/deploy/deploy.yaml
