@@ -9,9 +9,6 @@ cd ~/ulbi_react
 # останавливаем сервер (id процесса === 0)
 pm2 stop 0
 
-# скачиваем последние обновления с GitHub
-git pull
-
 # делаем сборку
 npm run build:prod
 
