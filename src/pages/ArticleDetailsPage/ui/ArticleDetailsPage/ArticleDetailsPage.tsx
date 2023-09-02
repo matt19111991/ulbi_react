@@ -15,7 +15,7 @@ import {
   ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
-import { getFeatureFlag } from '@/shared/lib/features';
+import { getFeatureFlag, toggleFeatures } from '@/shared/lib/features';
 
 import { HStack, VStack } from '@/shared/ui/Stack';
 import { Text, TextTheme } from '@/shared/ui/Text';
@@ -48,7 +48,6 @@ const ArticleDetailsPage = ({
   const { t } = useTranslation('article-details');
 
   const isArticleRatingEnabled = getFeatureFlag('isArticleRatingEnabled');
-  const isCounterEnabled = getFeatureFlag('isCounterEnabled');
 
   const articleId = __PROJECT__ === 'storybook' ? storybookId : id;
 
@@ -64,6 +63,18 @@ const ArticleDetailsPage = ({
     );
   }
 
+  const counter = toggleFeatures({
+    name: 'isCounterEnabled',
+    on: () => (
+      <>
+        {/* eslint-disable-next-line i18next/no-literal-string */}
+        <h2>Redesigned counter</h2>
+        <Counter />
+      </>
+    ),
+    off: () => <Counter />,
+  });
+
   return (
     <DynamicModuleLoader reducers={reducers}>
       <Page className={classNames(classes.ArticleDetailsPage, {}, [className])}>
@@ -72,7 +83,7 @@ const ArticleDetailsPage = ({
 
           <ArticleDetails id={articleId!} />
 
-          {isCounterEnabled && <Counter />}
+          {counter}
 
           {isArticleRatingEnabled && <ArticleRating articleId={articleId} />}
 
