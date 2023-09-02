@@ -27,7 +27,7 @@ export const ArticleRecommendationsList = memo(
     if (error) {
       return (
         <HStack className={classNames('', {}, [className])} max>
-          <Text theme={TextTheme.ERROR} title={t('Ошибка при загрузке рекоммендаций')} />
+          <Text theme={TextTheme.ERROR} title={t('Ошибка при загрузке рекомендаций')} />
         </HStack>
       );
     }

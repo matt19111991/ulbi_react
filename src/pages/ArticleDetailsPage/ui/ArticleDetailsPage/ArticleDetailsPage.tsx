@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { ArticleDetails } from '@/entities/Article';
-import { Counter } from '@/entities/Counter';
 
 import { ArticleRating } from '@/features/ArticleRating';
 import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
@@ -15,8 +14,9 @@ import {
   ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
-import { getFeatureFlag, toggleFeatures } from '@/shared/lib/features';
+import { toggleFeatures } from '@/shared/lib/features';
 
+import { Card } from '@/shared/ui/Card';
 import { HStack, VStack } from '@/shared/ui/Stack';
 import { Text, TextTheme } from '@/shared/ui/Text';
 
@@ -47,8 +47,6 @@ const ArticleDetailsPage = ({
   const { id } = useParams<{ id: string }>();
   const { t } = useTranslation('article-details');
 
-  const isArticleRatingEnabled = getFeatureFlag('isArticleRatingEnabled');
-
   const articleId = __PROJECT__ === 'storybook' ? storybookId : id;
 
   if (!articleId) {
@@ -63,16 +61,10 @@ const ArticleDetailsPage = ({
     );
   }
 
-  const counter = toggleFeatures({
-    name: 'isCounterEnabled',
-    on: () => (
-      <>
-        {/* eslint-disable-next-line i18next/no-literal-string */}
-        <h2>Redesigned counter</h2>
-        <Counter />
-      </>
-    ),
-    off: () => <Counter />,
+  const articleRatingCard = toggleFeatures({
+    name: 'isArticleRatingEnabled',
+    on: () => <ArticleRating articleId={articleId} />,
+    off: () => <Card>{t('Оценка статей скоро появится')}</Card>,
   });
 
   return (
@@ -83,9 +75,7 @@ const ArticleDetailsPage = ({
 
           <ArticleDetails id={articleId!} />
 
-          {counter}
-
-          {isArticleRatingEnabled && <ArticleRating articleId={articleId} />}
+          {articleRatingCard}
 
           <ArticleRecommendationsList storybookError={storybookError} />
 

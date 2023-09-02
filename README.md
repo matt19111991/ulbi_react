@@ -234,6 +234,30 @@ storybook и линтинг и деплой на сервер.
 Для асинхронного подключения редюсеров (чтобы не тянуть их в общий бандл) используется
 [DynamicModuleLoader](/src/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader.tsx)
 
+----
+
+### Работа с feature flags
+
+Разрешено использование feature flags только с помощью `toggleFeatures`
+
+В него передается объект с опциями:
+
+```
+{
+    name: название feature flag,
+    on: функция, которая отрабатывает после включения feature,
+    off: функция, которая отрабатывает после выключения feature,
+}
+```
+
+Для автоматического удаления feature можно использовать [скрипт](scripts/removeFeature.ts) 
+
+Скрипт принимает 2 аргумента:
+1. Название удаляемого feature flag
+2. Состояние (on/off)
+
+---
+
 ## Сущности (entities)
 
 - [Article](/src/entities/Article)
