@@ -1,12 +1,13 @@
 import { Suspense, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import { getUserMounted, userActions } from '@/entities/User';
+import { getUserMounted, initAuthData } from '@/entities/User';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 import { Navbar } from '@/widgets/Navbar';
+import { PageLoader } from '@/widgets/PageLoader';
 import { Sidebar } from '@/widgets/Sidebar';
 
 import { AppRouter } from './providers/Router';
@@ -25,8 +26,12 @@ const App = () => {
   const mounted = useSelector(getUserMounted);
 
   useEffect(() => {
-    dispatch(userActions.initAuthData());
+    dispatch(initAuthData());
   }, [dispatch]);
+
+  if (!mounted) {
+    return <PageLoader />;
+  }
 
   // <Suspense /> для переводов
   return (
