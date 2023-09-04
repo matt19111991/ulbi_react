@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 
-import { LOCAL_STORAGE_THEME_KEY } from '../../../const/localstorage';
 import { Theme } from '../../../const/theme';
 
 import { ThemeContext } from '../../context/ThemeContext';
@@ -40,8 +39,6 @@ export function useTheme(): UseThemeResults {
 
     // чтобы не вешать дополнительные классы `${theme}` для 'App.tsx' и порталов
     document.body.className = newTheme;
-
-    localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
   };
 
   return {
