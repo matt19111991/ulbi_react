@@ -1,8 +1,12 @@
+import type { DeepPartial } from '@reduxjs/toolkit';
 import type { Preview } from '@storybook/react';
+
+import { StateSchema } from '../../src/app/providers/StoreProvider';
 
 import { GlobalStyleDecorator } from '../../src/shared/config/storybook/GlobalStyleDecorator/GlobalStyleDecorator';
 import { IndentsDecorator } from '../../src/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { RouterDecorator } from '../../src/shared/config/storybook/RouterDecorator/RouterDecorator';
+import { StoreDecorator } from '../../src/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { SuspenseDecorator } from '../../src/shared/config/storybook/SuspenseDecorator/SuspenseDecorator';
 import { ThemeDecorator } from '../../src/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -22,8 +26,14 @@ export const preview: Preview = {
   },
 };
 
-/* добавление декораторов на глобальном уровне (порядок неважен)
-   по умолчанию добавлена светлая тема, локально можно переопределить на другую
+const state: DeepPartial<StateSchema> = {}; // заглушка 'state'
+
+/*
+  Добавление декораторов на глобальном уровне (порядок важен)
+
+  По умолчанию добавлена светлая тема, локально можно переопределить на другую
+
+  'StoreDecorator' должен быть после 'ThemeDecorator'
 */
 
 export const decorators = [
@@ -32,4 +42,5 @@ export const decorators = [
   RouterDecorator,
   SuspenseDecorator,
   ThemeDecorator(Theme.LIGHT),
+  StoreDecorator(state),
 ];
