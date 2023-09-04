@@ -7,13 +7,13 @@ import { ThemeContext } from '../../context/ThemeContext';
 
 interface UseThemeResults {
   theme: Theme;
-  toggleTheme: () => void;
+  toggleTheme: (saveAction?: (theme: Theme) => void) => void;
 }
 
 export function useTheme(): UseThemeResults {
   const { setTheme, theme } = useContext(ThemeContext);
 
-  const toggleTheme = () => {
+  const toggleTheme = (saveAction?: (theme: Theme) => void) => {
     let newTheme: Theme;
 
     switch (theme) {
@@ -35,6 +35,8 @@ export function useTheme(): UseThemeResults {
     }
 
     setTheme?.(newTheme); // иначе ошибка "Cannot invoke an object which is possibly 'undefined'"
+
+    saveAction?.(newTheme); // сохраняем тему на сервере для текущего пользователя
 
     // чтобы не вешать дополнительные классы `${theme}` для 'App.tsx' и порталов
     document.body.className = newTheme;
