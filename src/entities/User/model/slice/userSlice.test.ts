@@ -57,7 +57,10 @@ describe('userSlice', () => {
     test('test set fulfilled', () => {
       const state: DeepPartial<UserSchema> = { authData: {}, mounted: false };
 
-      const reducer = userReducer(state as UserSchema, initAuthData.fulfilled(authData, ''));
+      const reducer = userReducer(
+        state as UserSchema,
+        initAuthData.fulfilled(authData, '', authData),
+      );
 
       expect(reducer).toEqual({ authData, mounted: true });
     });
@@ -65,7 +68,10 @@ describe('userSlice', () => {
     test('test set rejected', () => {
       const state: DeepPartial<UserSchema> = { authData: {}, mounted: false };
 
-      const reducer = userReducer(state as UserSchema, initAuthData.rejected(new Error(''), ''));
+      const reducer = userReducer(
+        state as UserSchema,
+        initAuthData.rejected(new Error(''), '', undefined),
+      );
 
       expect(reducer).toEqual({ authData: {}, mounted: true });
     });
