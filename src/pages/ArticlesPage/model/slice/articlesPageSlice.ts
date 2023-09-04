@@ -42,6 +42,10 @@ export const articlesPageSlice = createSlice({
   initialState: articlesAdapter.getInitialState<ArticlesPageSchema>(initialState),
   reducers: {
     initState: (state) => {
+      /*
+        'LocalStorage' все типы приводит к 'string'
+        'as' нужен, чтобы вместо типа 'string' был тип 'ArticleView'
+      */
       const storedView = localStorage.getItem(ARTICLE_VIEW_LOCALSTORAGE_KEY) as ArticleView;
 
       state.inited = true;
