@@ -1,4 +1,8 @@
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
+import { Theme } from '@/shared/const/theme';
+
+import { initAuthData } from '../services/initAuthData/initAuthData';
+import { saveJsonSettings } from '../services/saveJsonSettings/saveJsonSettings';
 
 import { User, UserSchema } from '../types/user';
 
@@ -6,6 +10,12 @@ import { userActions, userReducer } from './userSlice';
 
 const authData: User = {
   id: '1',
+  features: {
+    isArticleRatingEnabled: true,
+  },
+  jsonSettings: {
+    theme: Theme.ORANGE,
+  },
   username: 'Jack',
 };
 
@@ -15,45 +25,73 @@ describe('userSlice', () => {
     window.localStorage.clear();
   });
 
-  test('test set auth data', () => {
-    const state: DeepPartial<UserSchema> = {};
+  describe('setAuthData', () => {
+    test('test set auth data', () => {
+      const state: DeepPartial<UserSchema> = {};
 
-    expect(userReducer(state as UserSchema, userActions.setAuthData(authData))).toEqual({
-      authData,
+      expect(userReducer(state as UserSchema, userActions.setAuthData(authData))).toEqual({
+        authData,
+      });
+
+      expect(window.localStorage.getItem(USER_LOCALSTORAGE_KEY)).toBe(authData.id);
     });
   });
 
-  test('test init auth data (user exists in localStorage)', () => {
-    window.localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(authData));
+  describe('logout', () => {
+    test('test logout', () => {
+      window.localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(authData.id));
 
-    const state: DeepPartial<UserSchema> = {};
+      const state: DeepPartial<UserSchema> = {
+        authData,
+      };
 
-    expect(userReducer(state as UserSchema, userActions.initAuthData())).toEqual({
-      authData,
-      mounted: true,
+      expect(userReducer(state as UserSchema, userActions.logout())).toEqual({
+        authData: undefined,
+      });
+
+      expect(window.localStorage.getItem(USER_LOCALSTORAGE_KEY)).toBe(undefined);
     });
   });
 
-  test('test init auth data (no user in localStorage)', () => {
-    const state: DeepPartial<UserSchema> = {};
+  describe('initAuthData', () => {
+    test('test set fulfilled', () => {
+      const state: DeepPartial<UserSchema> = { authData: {}, mounted: false };
 
-    expect(userReducer(state as UserSchema, userActions.initAuthData())).toEqual({
-      authData: undefined,
-      mounted: true,
+      const reducer = userReducer(state as UserSchema, initAuthData.fulfilled(authData, ''));
+
+      expect(reducer).toEqual({ authData, mounted: true });
+    });
+
+    test('test set rejected', () => {
+      const state: DeepPartial<UserSchema> = { authData: {}, mounted: false };
+
+      const reducer = userReducer(state as UserSchema, initAuthData.rejected(new Error(''), ''));
+
+      expect(reducer).toEqual({ authData: {}, mounted: true });
     });
   });
 
-  test('test logout', () => {
-    window.localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(authData));
+  describe('saveJsonSettings', () => {
+    test('test set fulfilled', () => {
+      const state: DeepPartial<UserSchema> = { authData, mounted: true };
 
-    const state: DeepPartial<UserSchema> = {
-      authData,
-    };
+      const newJsonSettings = { theme: Theme.DARK };
 
-    expect(userReducer(state as UserSchema, userActions.logout())).toEqual({
-      authData: undefined,
+      const reducer = userReducer(
+        state as UserSchema,
+        saveJsonSettings.fulfilled(newJsonSettings, '', newJsonSettings),
+      );
+
+      expect(reducer).toEqual({
+        authData: {
+          ...authData,
+          jsonSettings: {
+            ...authData.jsonSettings,
+            ...newJsonSettings,
+          },
+        },
+        mounted: true,
+      });
     });
-
-    expect(window.localStorage.getItem(USER_LOCALSTORAGE_KEY)).toBe(undefined);
   });
 });
