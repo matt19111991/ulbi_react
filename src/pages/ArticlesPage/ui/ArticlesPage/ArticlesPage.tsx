@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
+import { ArticlePageGreeting } from '@/features/ArticlePageGreeting';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
@@ -77,6 +79,8 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
         <ArticlesPageFilters />
 
         <ArticleInfiniteList className={classes.list} />
+
+        <ArticlePageGreeting />
       </Page>
     </DynamicModuleLoader>
   );

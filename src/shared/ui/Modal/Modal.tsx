@@ -31,10 +31,10 @@ export const Modal = ({ children, className, isOpen, lazy, onClose }: ModalProps
 
   return (
     <Portal>
-      <div className={classNames(classes.Modal, mods, [className])}>
+      <div className={classNames(classes.Modal, mods)}>
         <Overlay onClick={onCloseModal} />
 
-        <div className={classes.content}>{children}</div>
+        <div className={classNames(classes.content, mods, [className])}>{children}</div>
       </div>
     </Portal>
   );
