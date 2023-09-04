@@ -9,11 +9,6 @@
 - Добавить E2E тесты на поиск и сортировку статей
 - Проверить очистку всех созданных сущностей в БД после прогона E2E тестов
 
-- Добавить getUserJsonSettings тесты для селектора
-- Добавить initAuthData тесты для сервиса
-- Добавить getUserDataById и saveJsonSettings тесты для сервисов
-- Добавить initAuthData и saveJsonSettings тесты для userSlice
-
 ---- 
 
 ## Доп. информация
