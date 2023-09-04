@@ -1,12 +1,10 @@
-import { ReactNode, useMemo, useState } from 'react';
+import { ReactNode, useEffect, useMemo, useState } from 'react';
+
+import { useJsonSettings } from '@/entities/User';
 
 import { Theme } from '@/shared/const/theme';
-import { LOCAL_STORAGE_THEME_KEY } from '@/shared/const/localstorage';
 
 import { ThemeContext } from '../../../../shared/lib/context/ThemeContext';
-
-// localStorage все типы приводит к 'string'. 'as' нужен, чтобы вместо типа 'string' был тип 'Theme'
-const defaultTheme = (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || Theme.LIGHT;
 
 interface ThemeProviderProps {
   children?: ReactNode;
@@ -15,8 +13,25 @@ interface ThemeProviderProps {
 
 // В типе FC уже описан 'children' prop для версий React меньше v.18)
 const ThemeProvider = ({ children, initialTheme }: ThemeProviderProps) => {
-  // по умолчанию устанавливаем либо 'initialTheme' из props или 'defaultTheme' из localStorage
-  const [theme, setTheme] = useState<Theme>(initialTheme || defaultTheme);
+  const { theme: jsonSettingsTheme } = useJsonSettings();
+
+  const [isThemeInited, setIsThemeInited] = useState(false);
+
+  /*
+    по умолчанию устанавливаем либо 'initialTheme' из props или 'jsonSettingsTheme' из user settings
+    если нет ни того, ни другого - берем 'Theme.LIGHT'
+  */
+  const [theme, setTheme] = useState<Theme>(initialTheme || jsonSettingsTheme || Theme.LIGHT);
+
+  // данные о теме, сохраненные в объект с авторизованным пользователем прилетают не сразу
+  useEffect(() => {
+    // поэтому реагируем на изменение 'jsonSettingsTheme'
+    if (!isThemeInited && jsonSettingsTheme) {
+      setTheme(jsonSettingsTheme);
+
+      setIsThemeInited(true);
+    }
+  }, [isThemeInited, jsonSettingsTheme]);
 
   const memoizedContext = useMemo(() => ({ setTheme, theme }), [theme]);
 
