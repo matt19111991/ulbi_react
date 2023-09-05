@@ -5,9 +5,7 @@ import { ReducersMapObject } from '@reduxjs/toolkit';
 import { render } from '@testing-library/react';
 
 import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider';
-// eslint-disable-next-line path-checker-1911/layer-imports
 import { ThemeProvider } from '@/app/providers/ThemeProvider';
-// eslint-disable-next-line path-checker-1911/layer-imports
 import '@/app/styles/index.scss';
 
 import i18nForTests from '@/shared/config/i18n/i18nForTests';

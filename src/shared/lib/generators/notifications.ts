@@ -1,4 +1,3 @@
-// eslint-disable-next-line path-checker-1911/layer-imports
 import { Notification } from '@/entities/Notification';
 
 export const notification: Notification = {

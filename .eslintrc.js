@@ -148,6 +148,15 @@ module.exports = {
       2,
       {
         alias: '@',
+        // игнорируем правило для путей внутри генераторов, декораторов, роутера и тестовой среды
+        ignoreFilePathPatterns: [
+          '**/generators/**',
+          '**/lib/tests/**',
+          '**/router.ts',
+          '**/GlobalStyleDecorator.tsx',
+          '**/StoreDecorator.tsx',
+          '**/ThemeDecorator.tsx',
+        ],
 
         // игнорируем правило для: 'StateSchema' (внутри 'StoreProvider') и 'Testing Public API'
         ignoreImportPatterns: ['**/StoreProvider', '**/testing'],

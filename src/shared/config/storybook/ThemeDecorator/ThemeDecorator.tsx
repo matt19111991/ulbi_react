@@ -1,7 +1,6 @@
 import { ReactElement } from 'react';
 import type { StoryFn } from '@storybook/react';
 
-// eslint-disable-next-line path-checker-1911/layer-imports
 import { ThemeProvider } from '@/app/providers/ThemeProvider';
 
 import { Theme } from '@/shared/const/theme';
