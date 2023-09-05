@@ -3,6 +3,7 @@ import { Article } from '../../../src/entities/Article';
 const defaultArticle = {
   blocks: [],
   createdAt: '26.02.2023',
+  id: 'cy_test',
   img: 'https://www.freepnglogos.com/uploads/javascript-png/javascript-vector-logo-yellow-png-transparent-javascript-vector-12.png',
   subtitle: 'Testing article description',
   title: 'Testing article',

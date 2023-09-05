@@ -15,7 +15,7 @@ export const login = (username: string = 'Jack', password: string = '12345') => 
     method: 'POST',
     url: 'http://localhost:8000/login',
   }).then(({ body }) => {
-    window.localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(body));
+    window.localStorage.setItem(USER_LOCALSTORAGE_KEY, body.id);
 
     return body;
   });
