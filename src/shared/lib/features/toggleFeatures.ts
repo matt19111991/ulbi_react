@@ -8,7 +8,7 @@ interface ToggleFeaturesOptions<T> {
   off: () => T;
 }
 
-// для стандартизации переключения и возможности авто удаления 'feature flags'
+// для стандартизации переключения и возможности авто удаления 'feature flags' (для функций)
 export const toggleFeatures = <T>({ name, on, off }: ToggleFeaturesOptions<T>): T => {
   if (getFeatureFlag(name)) {
     return on();

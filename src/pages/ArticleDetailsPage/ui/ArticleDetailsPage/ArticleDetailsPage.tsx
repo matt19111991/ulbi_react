@@ -14,7 +14,7 @@ import {
   ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
-import { toggleFeatures } from '@/shared/lib/features';
+import { ToggleFeatures } from '@/shared/lib/features';
 
 import { Card } from '@/shared/ui/Card';
 import { HStack, VStack } from '@/shared/ui/Stack';
@@ -61,12 +61,6 @@ const ArticleDetailsPage = ({
     );
   }
 
-  const articleRatingCard = toggleFeatures({
-    name: 'isArticleRatingEnabled',
-    on: () => <ArticleRating articleId={articleId} />,
-    off: () => <Card>{t('Оценка статей скоро появится')}</Card>,
-  });
-
   return (
     <DynamicModuleLoader reducers={reducers}>
       <Page className={classNames(classes.ArticleDetailsPage, {}, [className])}>
@@ -75,7 +69,11 @@ const ArticleDetailsPage = ({
 
           <ArticleDetails id={articleId!} />
 
-          {articleRatingCard}
+          <ToggleFeatures
+            feature='isArticleRatingEnabled'
+            on={<ArticleRating articleId={articleId} />}
+            off={<Card>{t('Оценка статей скоро появится')}</Card>}
+          />
 
           <ArticleRecommendationsList storybookError={storybookError} />
 
