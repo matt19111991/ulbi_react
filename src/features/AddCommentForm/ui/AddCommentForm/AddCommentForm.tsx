@@ -2,9 +2,6 @@ import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-// eslint-disable-next-line path-checker-1911/layer-imports
-import { getArticleCommentsAreLoading } from '@/pages/ArticleDetailsPage';
-
 import { classNames } from '@/shared/lib/classNames/classNames';
 
 import {
@@ -29,6 +26,7 @@ import classes from './AddCommentForm.module.scss';
 
 export interface AddCommentFormProps {
   className?: string;
+  isLoading: boolean;
   onSendComment: (text: string) => void;
 }
 
@@ -36,11 +34,10 @@ const reducers: ReducersList = {
   addCommentForm: addCommentFormReducer,
 };
 
-const AddCommentForm = ({ className, onSendComment }: AddCommentFormProps) => {
+const AddCommentForm = ({ className, isLoading, onSendComment }: AddCommentFormProps) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
-  const isLoading = useSelector(getArticleCommentsAreLoading);
   const text = useSelector(getAddCommentFormText);
 
   const onCommentTextChange = useCallback(
