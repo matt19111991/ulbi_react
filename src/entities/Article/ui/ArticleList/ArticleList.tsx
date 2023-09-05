@@ -2,14 +2,13 @@ import { HTMLAttributeAnchorTarget, memo, ReactNode, useEffect, useMemo, useStat
 import { useTranslation } from 'react-i18next';
 import { AutoSizer, List, ListRowProps, WindowScroller } from 'react-virtualized';
 
+import { PAGE_ID } from '@/shared/const/page';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useWindowWidth } from '@/shared/lib/hooks/useWindowWidth/useWindowWidth';
 
 import { HStack } from '@/shared/ui/Stack';
 import { Text, TextTheme } from '@/shared/ui/Text';
-
-// eslint-disable-next-line path-checker-1911/layer-imports
-import { PAGE_ID } from '@/widgets/Page';
 
 import { ArticleView } from '../../model/consts/articleConsts';
 

@@ -4,4 +4,4 @@ export { pageScrollActions, pageScrollReducer } from './model/slice/pageScrollSl
 
 export type { PageScrollSchema } from './model/types/PageScrollSchema';
 
-export { Page, PAGE_ID } from './ui/Page';
+export { Page } from './ui/Page';

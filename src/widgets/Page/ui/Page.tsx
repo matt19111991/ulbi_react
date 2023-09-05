@@ -4,6 +4,8 @@ import { useLocation } from 'react-router-dom';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
+import { PAGE_ID } from '@/shared/const/page';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfiniteScroll';
@@ -22,8 +24,6 @@ interface PageProps extends TestProps {
   className?: string;
   onScrollEnd?: () => void;
 }
-
-export const PAGE_ID = 'PAGE_ID';
 
 export const Page = ({ children, className, onScrollEnd, ...rest }: PageProps) => {
   const dispatch = useAppDispatch();

@@ -2,7 +2,7 @@
 - Добавить функционал создания статьи (widget)
 - Добавить функционал редактирования статьи (widget)
 - Добавить функционал оценки профиля (feature)
-- Добавить unit тесты для всех rtkApi.injectEndpoints 
+- Добавить unit тесты для всех rtkApi.injectEndpoints
 - Добавить документацию и README.md для всех файлов
 - Исправить все закомментированные 'eslint-disable-next-line path-checker-1911' правила
 - Добавить script npm run postinstall и clearCache.js
