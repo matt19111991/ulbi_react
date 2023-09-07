@@ -5,6 +5,7 @@ import { LangSwitcher } from '@/features/LangSwitcher';
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { ToggleFeatures } from '@/shared/lib/features';
 
 import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/Button';
 import { VStack } from '@/shared/ui/Stack';
@@ -37,35 +38,52 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
   };
 
   return (
-    <aside
-      className={classNames(classes.Sidebar, { [classes.collapsed]: collapsed }, [className])}
-      data-testid='sidebar'
-    >
-      <Button
-        className={classes.collapseBtn}
-        data-testid='sidebar-toggle'
-        onClick={onToggle}
-        size={ButtonSize.L}
-        square
-        theme={ButtonTheme.BACKGROUND_INVERTED}
-      >
-        {collapsed ? '>' : '<'}
-      </Button>
+    <ToggleFeatures
+      feature='isAppRedesigned'
+      // сайдбар после редизайна
+      on={
+        <aside
+          className={classNames(classes.SidebarRedesigned, { [classes.collapsed]: collapsed }, [
+            className,
+          ])}
+          data-testid='sidebar'
+        >
+          123456789
+        </aside>
+      }
+      // сайдбар до редизайна
+      off={
+        <aside
+          className={classNames(classes.Sidebar, { [classes.collapsed]: collapsed }, [className])}
+          data-testid='sidebar'
+        >
+          <Button
+            className={classes.collapseBtn}
+            data-testid='sidebar-toggle'
+            onClick={onToggle}
+            size={ButtonSize.L}
+            square
+            theme={ButtonTheme.BACKGROUND_INVERTED}
+          >
+            {collapsed ? '>' : '<'}
+          </Button>
 
-      <VStack
-        align='start'
-        className={classes.items}
-        gap='8'
-        role='navigation' // для семантики
-      >
-        {itemsList}
-      </VStack>
+          <VStack
+            align='start'
+            className={classes.items}
+            gap='8'
+            role='navigation' // для семантики
+          >
+            {itemsList}
+          </VStack>
 
-      <div className={classes.switchers}>
-        <ThemeSwitcher />
-        <LangSwitcher className={classes.lang} short={collapsed} />
-      </div>
-    </aside>
+          <div className={classes.switchers}>
+            <ThemeSwitcher />
+            <LangSwitcher className={classes.lang} short={collapsed} />
+          </div>
+        </aside>
+      }
+    />
   );
 });
 

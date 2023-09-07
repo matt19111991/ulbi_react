@@ -1450,10 +1450,12 @@
       "id": "1",
       "avatar": "https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg",
       "features": {
+        "isAppRedesigned": true,
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
       "jsonSettings": {
+        "isArticlesPageHasBeenOpened": true,
         "isFirstVisit": false,
         "settingsPageHasBeenOpen": false,
         "theme": "app_orange_theme"

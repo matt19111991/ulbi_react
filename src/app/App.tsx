@@ -4,7 +4,9 @@ import { useSelector } from 'react-redux';
 import { getUserMounted, initAuthData } from '@/entities/User';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { ToggleFeatures } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { MainLayout } from '@/shared/layouts';
 
 import { Navbar } from '@/widgets/Navbar';
 import { PageLoader } from '@/widgets/PageLoader';
@@ -34,18 +36,37 @@ const App = () => {
   }
 
   // <Suspense /> для переводов
+
   return (
-    <div className={classNames('app', {}, [])}>
-      <Suspense fallback=''>
-        <Navbar />
-
-        <div className='content-page'>
-          <Sidebar />
-
-          {mounted && <AppRouter />}
+    <ToggleFeatures
+      feature='isAppRedesigned'
+      // приложение после редизайна
+      on={
+        <div className={classNames('app_redesigned', {}, [])}>
+          <Suspense fallback=''>
+            <MainLayout
+              content={<AppRouter />}
+              header={<Navbar />}
+              sidebar={<Sidebar />}
+              toolbar={<div>12345</div>}
+            />
+          </Suspense>
         </div>
-      </Suspense>
-    </div>
+      }
+      // приложение до редизайна
+      off={
+        <div className={classNames('app', {}, [])}>
+          <Suspense fallback=''>
+            <Navbar />
+
+            <div className='content-page'>
+              <Sidebar />
+              <AppRouter />
+            </div>
+          </Suspense>
+        </div>
+      }
+    />
   );
 };
 
