@@ -49,9 +49,15 @@
   background-color: var(--light-bg-redesigned);
   border-radius: 32px;
   height: 100%;
+  overflow: hidden;
   width: 220px;
 }
 
 .appLogo {
-  padding-top: 20px;
+  display: flex;
+  fill: var(--icon-redesigned);
+  height: 80px;
+  justify-content: center;
+  margin: auto;
+  width: 80px;
 }

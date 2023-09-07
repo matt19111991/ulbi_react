@@ -12,7 +12,6 @@
 - Добавить Page stories 
 - Добавить Navbar stories 
 - Добавить AppLogo stories 
-- Исправить логотип, добавить градиенты
 
 ---- 
 
