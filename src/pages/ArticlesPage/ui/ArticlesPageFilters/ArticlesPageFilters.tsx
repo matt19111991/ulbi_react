@@ -104,7 +104,13 @@ export const ArticlesPageFilters = memo(({ className }: ArticlesPageFiltersProps
 
   return (
     <div className={classNames('', {}, [className])}>
-      <div className={classes.sortWrapper}>
+      <div
+        className={classNames(
+          classes.sortWrapper,
+          { [classes.cutWidth]: view === ArticleView.PLATE },
+          [],
+        )}
+      >
         <ArticleSortSelector
           className={classNames('', { [classes.loading]: areLoading })}
           onChangeOrder={onChangeOrder}
@@ -116,7 +122,13 @@ export const ArticlesPageFilters = memo(({ className }: ArticlesPageFiltersProps
         <ArticleViewSelector onViewClick={onChangeView} selectedView={view} />
       </div>
 
-      <Card className={classes.search}>
+      <Card
+        className={classNames(
+          classes.search,
+          { [classes.cutWidth]: view === ArticleView.PLATE },
+          [],
+        )}
+      >
         <Input
           className={classNames('', { [classes.loading]: areLoading })}
           fullWidth

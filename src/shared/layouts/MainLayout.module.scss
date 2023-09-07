@@ -7,12 +7,32 @@
 
 .content {
   grid-area: content;
+  justify-self: center;
+  max-width: 1180px;
+  padding: 32px;
+  width: 100%;
 }
 
 .rightBar {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
   grid-area: rightBar;
 }
 
 .sidebar {
   grid-area: sidebar;
+  justify-self: center;
+  padding: 32px;
+}
+
+.rightBar,
+.sidebar {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+.toolbar {
+  height: 100%;
 }

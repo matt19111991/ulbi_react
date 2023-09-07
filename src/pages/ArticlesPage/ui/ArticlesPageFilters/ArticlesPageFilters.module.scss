@@ -1,3 +1,7 @@
+.cutWidth {
+  width: calc(100% - 95px);
+}
+
 .loading {
   opacity: .7;
   pointer-events: none;

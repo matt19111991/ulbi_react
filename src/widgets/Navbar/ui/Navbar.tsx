@@ -14,6 +14,7 @@ import Logo from '@/shared/assets/icons/logo.svg';
 import { getRouteArticleCreate } from '@/shared/const/router';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { ToggleFeatures } from '@/shared/lib/features';
 
 import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink';
 import { Button, ButtonTheme } from '@/shared/ui/Button';
@@ -43,25 +44,41 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
 
   if (authData) {
     return (
-      <header className={classNames(classes.Navbar, {}, [className])}>
-        <div className={classes.logoWrapper}>
-          <Logo className={classes.logo} />
-        </div>
+      <ToggleFeatures
+        feature='isAppRedesigned'
+        // Navbar после редизайна для авторизованного пользователя
+        on={
+          <header className={classNames(classes.NavbarRedesigned, {}, [className])}>
+            <HStack className={classes.actions} gap='16'>
+              <NotificationButton />
 
-        <AppLink
-          className={classes.createLink}
-          invertedTheme={AppLinkTheme.SECONDARY}
-          to={getRouteArticleCreate()}
-        >
-          {t('Создать статью')}
-        </AppLink>
+              <AvatarDropdown storybookAvatar={storybookAvatar} />
+            </HStack>
+          </header>
+        }
+        // Navbar до редизайна для авторизованного пользователя
+        off={
+          <header className={classNames(classes.Navbar, {}, [className])}>
+            <div className={classes.logoWrapper}>
+              <Logo className={classes.logo} />
+            </div>
 
-        <HStack className={classes.actions} gap='16'>
-          <NotificationButton />
+            <AppLink
+              className={classes.createLink}
+              invertedTheme={AppLinkTheme.SECONDARY}
+              to={getRouteArticleCreate()}
+            >
+              {t('Создать статью')}
+            </AppLink>
 
-          <AvatarDropdown storybookAvatar={storybookAvatar} />
-        </HStack>
-      </header>
+            <HStack className={classes.actions} gap='16'>
+              <NotificationButton />
+
+              <AvatarDropdown storybookAvatar={storybookAvatar} />
+            </HStack>
+          </header>
+        }
+      />
     );
   }
 

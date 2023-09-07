@@ -10,6 +10,10 @@
 - Проверить шрифт Roboto 
 - Добавить MainLayout stories 
 - Добавить Sidebar stories 
+- Добавить Page stories 
+- Добавить Navbar stories 
+- Добавить AppLogo stories 
+- Исправить логотип, добавить градиенты
 
 ---- 
 

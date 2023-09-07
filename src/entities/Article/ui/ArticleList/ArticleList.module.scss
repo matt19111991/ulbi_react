@@ -6,7 +6,7 @@
 
 .plate {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 30px;
 
   .card {

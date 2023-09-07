@@ -217,7 +217,7 @@ export const ArticleList = memo(
                     rowRenderer={rowRenderer}
                     scrollTop={scrollTop}
                     // у '.Page' класса нужно учитывать 'padding' в 45px слева и 20px справа
-                    width={width ? width - 65 : 700}
+                    width={width ?? 700}
                   />
                 )}
               </AutoSizer>

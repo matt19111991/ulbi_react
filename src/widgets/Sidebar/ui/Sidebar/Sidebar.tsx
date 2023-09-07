@@ -7,6 +7,7 @@ import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { ToggleFeatures } from '@/shared/lib/features';
 
+import { AppLogo } from '@/shared/ui/AppLogo';
 import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/Button';
 import { VStack } from '@/shared/ui/Stack';
 
@@ -48,7 +49,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
           ])}
           data-testid='sidebar'
         >
-          123456789
+          <AppLogo className={classes.appLogo} />
         </aside>
       }
       // сайдбар до редизайна

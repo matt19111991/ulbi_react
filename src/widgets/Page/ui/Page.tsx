@@ -7,6 +7,7 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 import { PAGE_ID } from '@/shared/const/page';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { toggleFeatures } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfiniteScroll';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
@@ -65,9 +66,15 @@ export const Page = ({ children, className, onScrollEnd, ...rest }: PageProps) =
     }
   }, 500);
 
+  const toggleFeaturePageClass = toggleFeatures({
+    name: 'isAppRedesigned',
+    on: () => classes.PageRedesigned,
+    off: () => classes.Page,
+  });
+
   return (
     <main
-      className={classNames(classes.Page, {}, [className])}
+      className={classNames(toggleFeaturePageClass, {}, [className])}
       data-testid={rest['data-testid'] ?? 'Page'}
       id={PAGE_ID}
       onScroll={onScroll}

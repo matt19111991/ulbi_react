@@ -44,12 +44,7 @@ const App = () => {
       on={
         <div className={classNames('app_redesigned', {}, [])}>
           <Suspense fallback=''>
-            <MainLayout
-              content={<AppRouter />}
-              header={<Navbar />}
-              sidebar={<Sidebar />}
-              toolbar={<div>12345</div>}
-            />
+            <MainLayout content={<AppRouter />} header={<Navbar />} sidebar={<Sidebar />} />
           </Suspense>
         </div>
       }
