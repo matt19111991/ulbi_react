@@ -14,6 +14,13 @@ const meta = {
       control: 'color',
     },
   },
+  decorators: [
+    (Story) => (
+      <div style={{ fill: 'var(--icon-redesigned)', height: 120, width: 120 }}>
+        <Story />
+      </div>
+    ),
+  ],
 } as Meta<typeof AppLogo>;
 
 type Story = StoryObj<typeof meta>;

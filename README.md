@@ -9,7 +9,6 @@
 
 - Добавить Sidebar stories 
 - Добавить Navbar stories 
-- Добавить AppLogo stories 
 
 ---- 
 
