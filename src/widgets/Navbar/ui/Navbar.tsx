@@ -18,6 +18,7 @@ import { ToggleFeatures } from '@/shared/lib/features';
 
 import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink';
 import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { Icon } from '@/shared/ui/Icon';
 import { HStack } from '@/shared/ui/Stack';
 
 import classes from './Navbar.module.scss';
@@ -60,7 +61,7 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
         off={
           <header className={classNames(classes.Navbar, {}, [className])}>
             <div className={classes.logoWrapper}>
-              <Logo className={classes.logo} />
+              <Icon className={classes.logo} height={60} Svg={Logo} width={60} />
             </div>
 
             <AppLink
