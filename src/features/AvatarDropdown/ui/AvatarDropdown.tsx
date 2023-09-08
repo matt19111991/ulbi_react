@@ -9,8 +9,8 @@ import { getRouteAdmin, getRouteProfile } from '@/shared/const/router';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
-import { Avatar } from '@/shared/ui/Avatar';
-import { DropDown } from '@/shared/ui/Popups';
+import { Avatar } from '@/shared/ui/deprecated/Avatar';
+import { DropDown } from '@/shared/ui/deprecated/Popups';
 
 interface NotificationButtonProps {
   className?: string;

@@ -2,8 +2,8 @@ import { memo, Suspense } from 'react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
-import { Loader } from '@/shared/ui/Loader';
-import { Modal } from '@/shared/ui/Modal';
+import { Loader } from '@/shared/ui/deprecated/Loader';
+import { Modal } from '@/shared/ui/deprecated/Modal';
 
 import { LoginFormAsync } from '../LoginForm/LoginForm.async';
 

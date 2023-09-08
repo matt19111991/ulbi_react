@@ -16,10 +16,10 @@ import { getRouteArticleCreate } from '@/shared/const/router';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { ToggleFeatures } from '@/shared/lib/features';
 
-import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink';
-import { Button, ButtonTheme } from '@/shared/ui/Button';
-import { Icon } from '@/shared/ui/Icon';
-import { HStack } from '@/shared/ui/Stack';
+import { AppLink, AppLinkTheme } from '@/shared/ui/deprecated/AppLink';
+import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
+import { Icon } from '@/shared/ui/deprecated/Icon';
+import { HStack } from '@/shared/ui/deprecated/Stack';
 
 import classes from './Navbar.module.scss';
 

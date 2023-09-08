@@ -15,7 +15,7 @@ import {
 
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 
-import { Text, TextAlign, TextTheme } from '@/shared/ui/Text';
+import { Text, TextAlign, TextTheme } from '@/shared/ui/deprecated/Text';
 
 import { Page } from '@/widgets/Page';
 

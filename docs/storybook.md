@@ -17,7 +17,7 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Theme } from '@/shared/const/theme';
 
-import { Card } from '../src/shared/ui/Card/Card';
+import { Card } from '../src/shared/ui/deprecated/Card/Card';
 
 const meta = {
   title: 'shared/Card',

@@ -16,9 +16,9 @@ import {
 
 import { ToggleFeatures } from '@/shared/lib/features';
 
-import { Card } from '@/shared/ui/Card';
-import { HStack, VStack } from '@/shared/ui/Stack';
-import { Text, TextTheme } from '@/shared/ui/Text';
+import { Card } from '@/shared/ui/deprecated/Card';
+import { HStack, VStack } from '@/shared/ui/deprecated/Stack';
+import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
 
 import { Page } from '@/widgets/Page';
 
