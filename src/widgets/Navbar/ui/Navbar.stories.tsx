@@ -6,6 +6,11 @@ import { UserRole } from '@/entities/User';
 
 import Avatar from '@/shared/assets/tests/storybook.jpg';
 
+import {
+  RedesignDecorator,
+  redesignState,
+} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
+
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -13,7 +18,7 @@ import { Theme } from '@/shared/const/theme';
 
 import { Navbar } from './Navbar';
 
-const stateNavbar: DeepPartial<StateSchema> = {};
+const stateNavbarRedesigned: DeepPartial<StateSchema> = redesignState;
 
 const meta = {
   title: 'widgets/Navbar',
@@ -27,33 +32,31 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Primary navbar
+// Primary navbar old
 
-export const Primary: Story = {
+export const PrimaryOld: Story = {
   args: {},
 };
 
-Primary.decorators = [StoreDecorator(stateNavbar)];
+// Dark navbar old
 
-// Dark navbar
-
-export const Dark: Story = {
+export const DarkOld: Story = {
   args: {},
 };
 
-Dark.decorators = [StoreDecorator(stateNavbar), ThemeDecorator(Theme.DARK)];
+DarkOld.decorators = [ThemeDecorator(Theme.DARK)];
 
-// Orange navbar
+// Orange navbar old
 
-export const Orange: Story = {
+export const OrangeOld: Story = {
   args: {},
 };
 
-Orange.decorators = [StoreDecorator(stateNavbar), ThemeDecorator(Theme.ORANGE)];
+OrangeOld.decorators = [ThemeDecorator(Theme.ORANGE)];
 
-// Authorized navbar
+// Authorized navbar old
 
-const stateAuthorized: DeepPartial<StateSchema> = {
+const stateAuthorizedOld: DeepPartial<StateSchema> = {
   user: {
     authData: {
       id: '1',
@@ -63,12 +66,67 @@ const stateAuthorized: DeepPartial<StateSchema> = {
   },
 };
 
-export const Authorized: Story = {
+export const AuthorizedOld: Story = {
   args: {
     storybookAvatar: Avatar,
   },
 };
 
-Authorized.decorators = [StoreDecorator(stateAuthorized)];
+AuthorizedOld.decorators = [StoreDecorator(stateAuthorizedOld)];
+
+// Primary navbar new
+
+export const PrimaryNew: Story = {
+  args: {},
+};
+
+PrimaryNew.decorators = [RedesignDecorator, StoreDecorator(stateNavbarRedesigned)];
+
+// Dark navbar new
+
+export const DarkNew: Story = {
+  args: {},
+};
+
+DarkNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator(stateNavbarRedesigned),
+  ThemeDecorator(Theme.DARK),
+];
+
+// Orange navbar new
+
+export const OrangeNew: Story = {
+  args: {},
+};
+
+OrangeNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator(stateNavbarRedesigned),
+  ThemeDecorator(Theme.ORANGE),
+];
+
+// Authorized navbar new
+
+const stateAuthorizedNew: DeepPartial<StateSchema> = {
+  user: {
+    authData: {
+      id: '1',
+      features: {
+        isAppRedesigned: true,
+      },
+      roles: [UserRole.USER],
+      username: 'Jack',
+    },
+  },
+};
+
+export const AuthorizedNew: Story = {
+  args: {
+    storybookAvatar: Avatar,
+  },
+};
+
+AuthorizedNew.decorators = [RedesignDecorator, StoreDecorator(stateAuthorizedNew)];
 
 export default meta;
