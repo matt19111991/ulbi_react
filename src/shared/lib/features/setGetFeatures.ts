@@ -1,5 +1,7 @@
 import { FeatureFlags } from '@/shared/types/featureFlags';
 
+// features не меняются в ходе сессии, их необязательно делать реактивными
+
 let featureFlags: FeatureFlags = {};
 
 export const setFeatureFlags = (newFeatureFlags?: FeatureFlags) => {
@@ -8,4 +10,4 @@ export const setFeatureFlags = (newFeatureFlags?: FeatureFlags) => {
   }
 };
 
-export const getFeatureFlag = (flag: keyof FeatureFlags) => featureFlags[flag];
+export const getFeatureFlag = (flag: keyof FeatureFlags) => featureFlags?.[flag];
