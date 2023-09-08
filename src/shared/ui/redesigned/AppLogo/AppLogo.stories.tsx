@@ -47,4 +47,32 @@ export const Orange: Story = {
 
 Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
 
+// Primary custom size app logo
+
+export const PrimaryCustomSize: Story = {
+  args: {
+    size: 30,
+  },
+};
+
+// Dark custom size app logo
+
+export const DarkCustomSize: Story = {
+  args: {
+    size: 30,
+  },
+};
+
+DarkCustomSize.decorators = [ThemeDecorator(Theme.DARK)];
+
+// Orange custom size app logo
+
+export const OrangeCustomSize: Story = {
+  args: {
+    size: 30,
+  },
+};
+
+OrangeCustomSize.decorators = [ThemeDecorator(Theme.ORANGE)];
+
 export default meta;

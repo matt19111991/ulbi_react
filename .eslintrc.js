@@ -168,7 +168,7 @@ module.exports = {
 
     // задаем максимально допустимое количество пропсов в одну строку в JSX (вкл.),
     // если пропсов больше => каждый проп будет на новой строке
-    'react/jsx-max-props-per-line': [2, { maximum: 4 }],
+    'react/jsx-max-props-per-line': [2, { maximum: 5 }],
 
     // определение функциональных компонентов только через стрелочные функции (вкл.)
     'react/function-component-definition': [

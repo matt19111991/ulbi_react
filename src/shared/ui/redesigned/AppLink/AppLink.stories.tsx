@@ -4,10 +4,10 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Theme } from '@/shared/const/theme';
 
-import { AppLink, AppLinkTheme } from './AppLink';
+import { AppLink } from './AppLink';
 
 const meta = {
-  title: 'shared/old/AppLink',
+  title: 'shared/new/AppLink',
   component: AppLink,
   argTypes: {
     backgroundColor: {
@@ -26,16 +26,7 @@ type Story = StoryObj<typeof meta>;
 export const PrimaryLight: Story = {
   args: {
     children: 'Text',
-    invertedTheme: AppLinkTheme.PRIMARY,
-  },
-};
-
-// Secondary light app link
-
-export const SecondaryLight: Story = {
-  args: {
-    children: 'Text',
-    invertedTheme: AppLinkTheme.SECONDARY,
+    variant: 'primary',
   },
 };
 
@@ -44,7 +35,7 @@ export const SecondaryLight: Story = {
 export const RedLight: Story = {
   args: {
     children: 'Text',
-    invertedTheme: AppLinkTheme.RED,
+    variant: 'red',
   },
 };
 
@@ -53,29 +44,18 @@ export const RedLight: Story = {
 export const PrimaryDark: Story = {
   args: {
     children: 'Text',
-    invertedTheme: AppLinkTheme.PRIMARY,
+    variant: 'primary',
   },
 };
 
 PrimaryDark.decorators = [ThemeDecorator(Theme.DARK)];
-
-// Secondary dark app link
-
-export const SecondaryDark: Story = {
-  args: {
-    children: 'Text',
-    invertedTheme: AppLinkTheme.SECONDARY,
-  },
-};
-
-SecondaryDark.decorators = [ThemeDecorator(Theme.DARK)];
 
 // Red dark app link
 
 export const RedDark: Story = {
   args: {
     children: 'Text',
-    invertedTheme: AppLinkTheme.RED,
+    variant: 'red',
   },
 };
 
@@ -86,29 +66,18 @@ RedDark.decorators = [ThemeDecorator(Theme.DARK)];
 export const PrimaryOrange: Story = {
   args: {
     children: 'Text',
-    invertedTheme: AppLinkTheme.PRIMARY,
+    variant: 'primary',
   },
 };
 
 PrimaryOrange.decorators = [ThemeDecorator(Theme.ORANGE)];
-
-// Secondary orange app link
-
-export const SecondaryOrange: Story = {
-  args: {
-    children: 'Text',
-    invertedTheme: AppLinkTheme.SECONDARY,
-  },
-};
-
-SecondaryOrange.decorators = [ThemeDecorator(Theme.ORANGE)];
 
 // Red orange app link
 
 export const RedOrange: Story = {
   args: {
     children: 'Text',
-    invertedTheme: AppLinkTheme.RED,
+    variant: 'red',
   },
 };
 

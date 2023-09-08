@@ -7,7 +7,7 @@ import { Theme } from '@/shared/const/theme';
 import { Button, ButtonSize, ButtonTheme } from './Button';
 
 const meta = {
-  title: 'shared/old/Button',
+  title: 'shared/new/Button',
   component: Button,
   argTypes: {
     backgroundColor: { control: 'color' },

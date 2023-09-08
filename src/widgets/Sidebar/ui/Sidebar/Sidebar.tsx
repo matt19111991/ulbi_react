@@ -7,9 +7,10 @@ import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { ToggleFeatures } from '@/shared/lib/features';
 
-import { AppLogo } from '@/shared/ui/deprecated/AppLogo';
 import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import { VStack } from '@/shared/ui/deprecated/Stack';
+
+import { AppLogo } from '@/shared/ui/redesigned/AppLogo';
 
 import { getSidebarItems } from '../../model/selectors/getSidebarItems';
 
@@ -50,6 +51,15 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
           data-testid='sidebar'
         >
           <AppLogo className={classes.appLogo} />
+
+          <VStack
+            align='start'
+            className={classes.items}
+            gap='8'
+            role='navigation' // для семантики
+          >
+            {itemsList}
+          </VStack>
         </aside>
       }
       // сайдбар до редизайна

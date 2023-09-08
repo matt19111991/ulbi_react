@@ -4,30 +4,30 @@
   position: relative;
   transition: width .3s;
   width: var(--sidebar-width);
-}
 
-.collapseBtn {
-  bottom: 32px;
-  position: absolute;
-  right: -32px;
-  z-index: var(--sidebar-btn-z-index);
-}
+  .collapseBtn {
+    bottom: 32px;
+    position: absolute;
+    right: -32px;
+    z-index: var(--sidebar-btn-z-index);
+  }
 
-.items {
-  margin-left: 30px;
-  margin-top: 20px;
-}
+  .items {
+    margin-left: 30px;
+    margin-top: 20px;
+  }
 
-.lang {
-  margin-left: 20px;
-}
+  .lang {
+    margin-left: 20px;
+  }
 
-.switchers {
-  bottom: 20px;
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  width: 100%;
+  .switchers {
+    bottom: 20px;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+  }
 }
 
 .collapsed {
@@ -51,13 +51,11 @@
   height: 100%;
   overflow: hidden;
   width: 220px;
-}
 
-.appLogo {
-  display: flex;
-  fill: var(--icon-redesigned);
-  height: 80px;
-  justify-content: center;
-  margin: auto;
-  width: 80px;
+  .appLogo {
+    fill: var(--icon-redesigned);
+    height: 80px;
+    margin-left: 8px;
+    width: 80px;
+  }
 }
