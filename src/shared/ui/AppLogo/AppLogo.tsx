@@ -17,7 +17,7 @@ export const AppLogo = memo(({ className }: AppLogoProps) => (
     <div className={classes.gradientBig} />
     <div className={classes.gradientSmall} />
 
-    <AppSvg />
+    <AppSvg className={classes.logo} />
   </HStack>
 ));
 
