@@ -4,7 +4,7 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Theme } from '@/shared/const/theme';
 
-import { Button, ButtonSize, ButtonTheme } from './Button';
+import { Button } from './Button';
 
 const meta = {
   title: 'shared/new/Button',
@@ -29,16 +29,7 @@ export const PrimaryLight: Story = {
 export const ClearLight: Story = {
   args: {
     children: 'Text',
-    theme: ButtonTheme.CLEAR,
-  },
-};
-
-// Clear inverted button
-
-export const ClearInverted: Story = {
-  args: {
-    children: 'Text',
-    theme: ButtonTheme.CLEAR_INVERTED,
+    variant: 'clear',
   },
 };
 
@@ -47,7 +38,7 @@ export const ClearInverted: Story = {
 export const OutlineLight: Story = {
   args: {
     children: 'Text',
-    theme: ButtonTheme.OUTLINE,
+    variant: 'outline',
   },
 };
 
@@ -56,7 +47,7 @@ export const OutlineLight: Story = {
 export const OutlineDark: Story = {
   args: {
     children: 'Text',
-    theme: ButtonTheme.OUTLINE,
+    variant: 'outline',
   },
 };
 
@@ -67,8 +58,8 @@ OutlineDark.decorators = [ThemeDecorator(Theme.DARK)]; // добавление �
 export const OutlineLarge: Story = {
   args: {
     children: 'Text',
-    size: ButtonSize.L,
-    theme: ButtonTheme.OUTLINE,
+    size: 'l',
+    variant: 'outline',
   },
 };
 
@@ -77,26 +68,8 @@ export const OutlineLarge: Story = {
 export const OutlineExtraLarge: Story = {
   args: {
     children: 'Text',
-    size: ButtonSize.XL,
-    theme: ButtonTheme.OUTLINE,
-  },
-};
-
-// Background theme button
-
-export const BackgroundTheme: Story = {
-  args: {
-    children: 'Text',
-    theme: ButtonTheme.BACKGROUND,
-  },
-};
-
-// Background inverted theme button
-
-export const BackgroundInvertedTheme: Story = {
-  args: {
-    children: 'Text',
-    theme: ButtonTheme.BACKGROUND_INVERTED,
+    size: 'xl',
+    variant: 'outline',
   },
 };
 
@@ -106,7 +79,7 @@ export const SquareMedium: Story = {
   args: {
     children: '>',
     square: true,
-    theme: ButtonTheme.BACKGROUND_INVERTED,
+    variant: 'clear',
   },
 };
 
@@ -115,9 +88,9 @@ export const SquareMedium: Story = {
 export const SquareLarge: Story = {
   args: {
     children: '>',
-    size: ButtonSize.L,
+    size: 'l',
     square: true,
-    theme: ButtonTheme.BACKGROUND_INVERTED,
+    variant: 'clear',
   },
 };
 
@@ -126,9 +99,9 @@ export const SquareLarge: Story = {
 export const SquareExtraLarge: Story = {
   args: {
     children: '>',
-    size: ButtonSize.XL,
+    size: 'xl',
     square: true,
-    theme: ButtonTheme.BACKGROUND_INVERTED,
+    variant: 'clear',
   },
 };
 
@@ -138,7 +111,7 @@ export const Disabled: Story = {
   args: {
     children: '>',
     disabled: true,
-    theme: ButtonTheme.OUTLINE,
+    variant: 'outline',
   },
 };
 
@@ -148,7 +121,7 @@ export const FullWidth: Story = {
   args: {
     children: '>',
     fullWidth: true,
-    theme: ButtonTheme.OUTLINE,
+    variant: 'outline',
   },
 };
 
