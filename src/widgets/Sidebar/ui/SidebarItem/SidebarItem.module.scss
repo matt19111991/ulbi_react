@@ -1,7 +1,3 @@
-.icon {
-  fill: var(--inverted-primary-color);
-}
-
 .item {
   align-items: center;
   display: flex;
@@ -16,6 +12,16 @@
   .link {
     opacity: 0;
     transition: .2s opacity;
+    width: 0;
+  }
+}
+
+// Redesigned
+
+.collapsedRedesigned {
+  .link {
+    margin: 0;
+    opacity: 0;
     width: 0;
   }
 }

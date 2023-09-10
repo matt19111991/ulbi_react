@@ -5,8 +5,12 @@ import { useTranslation } from 'react-i18next';
 import { getUserAuthData } from '@/entities/User';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { ToggleFeatures } from '@/shared/lib/features';
 
-import { AppLink, AppLinkTheme } from '@/shared/ui/deprecated/AppLink';
+import { AppLink as AppLinkDeprecated, AppLinkTheme } from '@/shared/ui/deprecated/AppLink';
+
+import { AppLink } from '@/shared/ui/redesigned/AppLink';
+import { Icon as RedesignedIcon } from '@/shared/ui/redesigned/Icon';
 
 import { SidebarItemType } from '../../model/types/sidebar';
 
@@ -30,14 +34,31 @@ export const SidebarItem = memo(({ collapsed, item }: SidebarItemProps) => {
   const { Icon, path, text } = item;
 
   return (
-    <AppLink
-      className={classNames(classes.item, { [classes.collapsed]: collapsed })}
-      invertedTheme={AppLinkTheme.SECONDARY}
-      to={path}
-    >
-      <Icon className={classes.icon} />
-      <span className={classes.link}>{t(text)}</span>
-    </AppLink>
+    <ToggleFeatures
+      feature='isAppRedesigned'
+      on={
+        <AppLink
+          className={classNames(classes.item, {
+            [classes.collapsedRedesigned]: collapsed,
+          })}
+          to={path}
+        >
+          <RedesignedIcon Svg={Icon} />
+
+          <span className={classes.link}>{t(text)}</span>
+        </AppLink>
+      }
+      off={
+        <AppLinkDeprecated
+          className={classNames(classes.item, { [classes.collapsed]: collapsed })}
+          invertedTheme={AppLinkTheme.SECONDARY}
+          to={path}
+        >
+          <Icon className={classes.icon} />
+          <span className={classes.link}>{t(text)}</span>
+        </AppLinkDeprecated>
+      }
+    />
   );
 });
 
