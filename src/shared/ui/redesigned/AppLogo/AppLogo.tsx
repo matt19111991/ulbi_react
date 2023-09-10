@@ -4,8 +4,9 @@ import AppSvg from '@/shared/assets/icons/logo.svg';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
-import { Icon } from '../../deprecated/Icon';
 import { HStack } from '../../deprecated/Stack';
+
+import { Icon } from '../Icon';
 
 import classes from './AppLogo.module.scss';
 
@@ -15,11 +16,17 @@ interface AppLogoProps {
 }
 
 export const AppLogo = memo(({ className, size = 80 }: AppLogoProps) => (
-  <HStack className={classNames(classes.appLogoWrapper, {}, [className])} justify='center' max>
+  <HStack className={classes.appLogoWrapper} max>
     <div className={classes.gradientBig} />
     <div className={classes.gradientSmall} />
 
-    <Icon className={classes.logo} color='black' height={size} Svg={AppSvg} width={size} />
+    <Icon
+      className={classNames(classes.logo, {}, [className])}
+      color='black'
+      height={size}
+      Svg={AppSvg}
+      width={size}
+    />
   </HStack>
 ));
 

@@ -51,7 +51,7 @@ Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
 
 export const PrimaryCustomSize: Story = {
   args: {
-    size: 30,
+    size: 120,
   },
 };
 
@@ -59,7 +59,7 @@ export const PrimaryCustomSize: Story = {
 
 export const DarkCustomSize: Story = {
   args: {
-    size: 30,
+    size: 120,
   },
 };
 
@@ -69,7 +69,7 @@ DarkCustomSize.decorators = [ThemeDecorator(Theme.DARK)];
 
 export const OrangeCustomSize: Story = {
   args: {
-    size: 30,
+    size: 120,
   },
 };
 
