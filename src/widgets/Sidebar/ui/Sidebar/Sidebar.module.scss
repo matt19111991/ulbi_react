@@ -50,6 +50,7 @@
   border-radius: 32px;
   height: 100%;
   overflow: hidden;
+  position: relative;
   width: 220px;
 
   .appLogo {
@@ -57,5 +58,49 @@
     height: 80px;
     margin-left: 8px;
     width: 80px;
+  }
+
+  .collapseBtn {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: rotate(90deg);
+    z-index: var(--sidebar-btn-z-index);
+  }
+
+  .items {
+    margin-left: 30px;
+    margin-top: 40px;
+  }
+}
+
+.collapsedRedesigned {
+  width: 50px;
+
+  .appLogo {
+    margin-left: 2px;
+  }
+
+  .collapseBtn {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    z-index: var(--sidebar-btn-z-index);
+    transform: rotate(-90deg);
+  }
+
+  .items {
+    align-items: center;
+    display: flex;
+    margin-left: 0;
+  }
+
+  .lang {
+    margin-left: 0;
+  }
+
+  .switchers {
+    align-items: center;
+    flex-direction: column;
   }
 }
