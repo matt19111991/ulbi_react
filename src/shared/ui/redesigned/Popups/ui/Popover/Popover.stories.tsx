@@ -9,7 +9,7 @@ import { Button } from '../../../Button/Button';
 import { Popover } from './Popover';
 
 const meta = {
-  title: 'shared/old/Popover',
+  title: 'shared/new/Popover',
   component: Popover,
   argTypes: {
     backgroundColor: {
