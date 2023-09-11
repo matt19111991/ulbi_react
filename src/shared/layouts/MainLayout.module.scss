@@ -1,7 +1,7 @@
 .MainLayout {
   display: grid;
   grid-template-areas: 'sidebar content rightBar';
-  grid-template-columns: 284px 1fr 175px;
+  grid-template-columns: 284px 1fr 100px;
   min-height: 100vh;
 }
 
