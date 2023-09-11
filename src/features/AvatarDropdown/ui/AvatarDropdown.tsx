@@ -7,10 +7,14 @@ import { getUserAuthData, isUserAdmin, isUserManager, userActions } from '@/enti
 import { getRouteAdmin, getRouteProfile } from '@/shared/const/router';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { ToggleFeatures } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
-import { Avatar } from '@/shared/ui/deprecated/Avatar';
-import { DropDown } from '@/shared/ui/deprecated/Popups';
+import { Avatar as AvatarDeprecated } from '@/shared/ui/deprecated/Avatar';
+import { DropDown as DropDownDeprecated } from '@/shared/ui/deprecated/Popups';
+
+import { Avatar } from '@/shared/ui/redesigned/Avatar';
+import { DropDown } from '@/shared/ui/redesigned/Popups';
 
 interface NotificationButtonProps {
   className?: string;
@@ -54,13 +58,28 @@ export const AvatarDropdown = memo(({ className, storybookAvatar }: Notification
   const avatarSrc = __PROJECT__ === 'storybook' ? storybookAvatar : authData?.avatar;
 
   return (
-    <DropDown
-      className={classNames('', {}, [className])}
-      direction='bottom-right'
-      items={menuItems}
-      justify='right'
-      optionSize='S'
-      trigger={<Avatar fallbackInverted size={30} src={avatarSrc} />}
+    <ToggleFeatures
+      feature='isAppRedesigned'
+      on={
+        <DropDown
+          className={classNames('', {}, [className])}
+          direction='bottom-right'
+          items={menuItems}
+          justify='right'
+          optionSize='S'
+          trigger={<Avatar size={40} src={avatarSrc} />}
+        />
+      }
+      off={
+        <DropDownDeprecated
+          className={classNames('', {}, [className])}
+          direction='bottom-right'
+          items={menuItems}
+          justify='right'
+          optionSize='S'
+          trigger={<AvatarDeprecated fallbackInverted size={30} src={avatarSrc} />}
+        />
+      }
     />
   );
 });
