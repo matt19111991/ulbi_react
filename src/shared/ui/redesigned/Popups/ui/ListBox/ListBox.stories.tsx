@@ -8,7 +8,7 @@ import { Theme } from '@/shared/const/theme';
 import { ListBox } from './ListBox';
 
 const meta = {
-  title: 'shared/old/ListBox',
+  title: 'shared/new/ListBox',
   component: ListBox,
   argTypes: {
     backgroundColor: {

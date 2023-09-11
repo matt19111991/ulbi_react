@@ -1,0 +1,48 @@
+.popup {
+  position: relative;
+}
+
+.active {
+  background: var(--inverted-primary-color) !important;
+}
+
+.disabled {
+  opacity: .8;
+}
+
+.optionsBottomLeft {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  left: 0;
+  top: 44px;
+}
+
+.optionsBottomRight {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  right: 0;
+  top: 44px;
+}
+
+.optionsTopLeft {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  bottom: 120%;
+  left: 0;
+}
+
+.optionsTopRight {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  bottom: 120%;
+  right: 0;
+}
+
+.trigger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  outline: none;
+  padding: 0;
+}
