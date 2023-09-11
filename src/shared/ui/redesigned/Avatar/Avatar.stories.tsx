@@ -5,7 +5,7 @@ import AvatarImg from '@/shared/assets/tests/storybook.jpg';
 import { Avatar } from './Avatar';
 
 const meta = {
-  title: 'shared/old/Avatar',
+  title: 'shared/new/Avatar',
   component: Avatar,
   argTypes: {
     backgroundColor: {
@@ -38,15 +38,6 @@ export const Small: Story = {
 
 export const FallbackPrimary: Story = {
   args: {
-    src: '',
-  },
-};
-
-// Fallback inverted avatar
-
-export const FallbackInverted: Story = {
-  args: {
-    fallbackInverted: true,
     src: '',
   },
 };
