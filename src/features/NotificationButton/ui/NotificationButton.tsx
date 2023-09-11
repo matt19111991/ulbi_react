@@ -3,14 +3,18 @@ import { BrowserView, MobileView } from 'react-device-detect';
 
 import { NotificationList } from '@/entities/Notification';
 
-import NotificationIcon from '@/shared/assets/icons/notification-20-20.svg';
+import NotificationIconDeprecated from '@/shared/assets/icons/notification-20-20.svg';
+import NotificationIcon from '@/shared/assets/icons/notification-redesigned.svg';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { ToggleFeatures } from '@/shared/lib/features';
 
-import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
+import { Button as ButtonDeprecated, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import { Drawer } from '@/shared/ui/deprecated/Drawer';
-import { Icon } from '@/shared/ui/deprecated/Icon';
-import { Popover } from '@/shared/ui/deprecated/Popups';
+import { Icon as IconDeprecated } from '@/shared/ui/deprecated/Icon';
+import { Popover as PopoverDeprecated } from '@/shared/ui/deprecated/Popups';
+
+import { Icon } from '@/shared/ui/redesigned/Icon';
 
 import classes from './NotificationButton.module.scss';
 
@@ -28,19 +32,25 @@ export const NotificationButton = memo(
     const onOpenDrawer = useCallback(() => setIsOpen(true), []);
 
     const trigger = (
-      <Button onClick={onOpenDrawer} theme={ButtonTheme.CLEAR}>
-        <Icon inverted Svg={NotificationIcon} />
-      </Button>
+      <ToggleFeatures
+        feature='isAppRedesigned'
+        on={<Icon clickable onClick={onOpenDrawer} Svg={NotificationIcon} />}
+        off={
+          <ButtonDeprecated onClick={onOpenDrawer} theme={ButtonTheme.CLEAR}>
+            <IconDeprecated inverted Svg={NotificationIconDeprecated} />
+          </ButtonDeprecated>
+        }
+      />
     );
 
     const browserContent = (
-      <Popover
+      <PopoverDeprecated
         className={classNames('', {}, [className])}
         direction='bottom-right'
         trigger={trigger}
       >
         <NotificationList className={classes.list} />
-      </Popover>
+      </PopoverDeprecated>
     );
 
     const mobileContent = (
