@@ -1,9 +1,6 @@
-import { I18nextProvider } from 'react-i18next';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
-
-import i18n from '@/shared/config/i18n/i18n';
 
 import {
   RedesignDecorator,
@@ -27,13 +24,6 @@ const meta = {
       control: 'color',
     },
   },
-  decorators: [
-    (Story) => (
-      <I18nextProvider i18n={i18n}>
-        <Story />
-      </I18nextProvider>
-    ),
-  ],
 } as Meta<typeof LangSwitcher>;
 
 type Story = StoryObj<typeof meta>;

@@ -14,12 +14,7 @@
 .red {
   color: var(--cancel-redesigned);
 
-  svg {
-    color: var(--cancel-redesigned);
-  }
-
-  &:hover,
-  &:hover svg {
+  &:hover {
     opacity: .8;
   }
 }
