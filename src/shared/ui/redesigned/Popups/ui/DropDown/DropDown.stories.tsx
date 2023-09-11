@@ -9,7 +9,7 @@ import { Button } from '../../../Button/Button';
 import { DropDown } from './DropDown';
 
 const meta = {
-  title: 'shared/old/DropDown',
+  title: 'shared/new/DropDown',
   component: DropDown,
   argTypes: {
     backgroundColor: {

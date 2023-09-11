@@ -1,0 +1,43 @@
+.item {
+  align-items: center;
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  display: flex;
+  outline: none;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.justifyLeft {
+  justify-content: flex-start;
+}
+
+.justifyCenter {
+  justify-content: center;
+}
+
+.justifyRight {
+  justify-content: flex-end;
+}
+
+.menu {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  outline: 1px solid var(--primary-color);
+  position: absolute;
+  z-index: var(--menu-z-index);
+}
+
+.size_s {
+  height: 22px;
+  padding: 16px 20px;
+}
+
+.size_m {
+  height: 44px;
+  padding: 10px 25px;
+}
