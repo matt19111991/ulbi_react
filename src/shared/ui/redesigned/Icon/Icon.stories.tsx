@@ -48,12 +48,23 @@ export const Orange: Story = {
 
 Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
 
-// Inverted icon
+// Icon clickable
 
-export const Inverted: Story = {
+export const Clickable: Story = {
   args: {
-    inverted: true,
+    // @ts-ignore
+    clickable: true,
     Svg: IconSvg,
+  },
+};
+
+// Icon custom size
+
+export const CustomSize: Story = {
+  args: {
+    height: 40,
+    Svg: IconSvg,
+    width: 40,
   },
 };
 
