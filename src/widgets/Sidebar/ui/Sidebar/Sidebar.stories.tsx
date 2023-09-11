@@ -1,6 +1,9 @@
+import { I18nextProvider } from 'react-i18next';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
+
+import i18n from '@/shared/config/i18n/i18n';
 
 import {
   RedesignDecorator,
@@ -30,6 +33,13 @@ const meta = {
       control: 'color',
     },
   },
+  decorators: [
+    (Story) => (
+      <I18nextProvider i18n={i18n}>
+        <Story />
+      </I18nextProvider>
+    ),
+  ],
 } as Meta<typeof Sidebar>;
 
 type Story = StoryObj<typeof meta>;
@@ -57,6 +67,12 @@ export const OrangeOld: Story = {
 };
 
 OrangeOld.decorators = [StoreDecorator(stateAuthorizedOld), ThemeDecorator(Theme.ORANGE)];
+
+// Unauthorized sidebar old
+
+export const UnauthorizedOld: Story = {
+  args: {},
+};
 
 // Primary sidebar new
 
@@ -108,10 +124,18 @@ OrangeNew.decorators = [
   ThemeDecorator(Theme.ORANGE),
 ];
 
-// Unauthorized sidebar
+// Unauthorized sidebar new
 
-export const Unauthorized: Story = {
+export const UnauthorizedNew: Story = {
   args: {},
 };
+
+UnauthorizedNew.decorators = [
+  (Story) => (
+    <div style={{ height: '100vh' }}>
+      <Story />
+    </div>
+  ),
+];
 
 export default meta;

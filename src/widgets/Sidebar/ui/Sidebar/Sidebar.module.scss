@@ -49,8 +49,8 @@
   background-color: var(--light-bg-redesigned);
   border-radius: 32px;
   height: 100%;
-  overflow: hidden;
   position: relative;
+  transition: width .1s ease-in;
   width: 220px;
 
   .appLogo {
@@ -62,14 +62,13 @@
 
   .collapseBtn {
     position: absolute;
-    right: 0;
+    right: -14px;
     top: 50%;
     transform: rotate(90deg);
     z-index: var(--sidebar-btn-z-index);
   }
 
   .items {
-    margin-left: 30px;
     margin-top: 40px;
   }
 
@@ -77,7 +76,7 @@
     bottom: 40px;
     display: flex;
     gap: 16px;
-    justify-content: center;
+    padding-left: 24px;
     position: absolute;
     width: 100%;
   }
@@ -85,6 +84,7 @@
 
 .collapsedRedesigned {
   width: 50px;
+  transition: width .1s ease-out;
 
   .appLogo {
     margin-left: 2px;
@@ -92,7 +92,7 @@
 
   .collapseBtn {
     position: absolute;
-    right: 0;
+    right: -17px;
     top: 50%;
     z-index: var(--sidebar-btn-z-index);
     transform: rotate(-90deg);
@@ -101,7 +101,6 @@
   .items {
     align-items: center;
     display: flex;
-    margin-left: 0;
   }
 
   .lang {
@@ -111,5 +110,6 @@
   .switchers {
     align-items: center;
     flex-direction: column;
+    padding-left: 0;
   }
 }
