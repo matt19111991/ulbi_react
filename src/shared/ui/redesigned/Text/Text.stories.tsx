@@ -4,10 +4,10 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Theme } from '@/shared/const/theme';
 
-import { Text, TextSize, TextTheme } from './Text';
+import { Text } from './Text';
 
 const meta = {
-  title: 'shared/old/Text',
+  title: 'shared/new/Text',
   component: Text,
   argTypes: {
     background: {
@@ -111,49 +111,49 @@ export const Error: Story = {
   args: {
     title: 'Title lorem ipsun',
     text: 'Description Description Description Description',
-    theme: TextTheme.ERROR,
+    variant: 'error',
   },
 };
 
-// Inverted primary
+// Accent primary
 
-export const InvertedPrimary: Story = {
+export const AccentPrimary: Story = {
   args: {
     title: 'Title lorem ipsun',
     text: 'Description Description Description Description',
-    theme: TextTheme.INVERTED,
+    variant: 'accent',
   },
 };
 
-// Inverted dark
+// Accent dark
 
-export const InvertedDark: Story = {
+export const AccentDark: Story = {
   args: {
     title: 'Title lorem ipsun',
     text: 'Description Description Description Description',
-    theme: TextTheme.INVERTED,
+    variant: 'accent',
   },
 };
 
-InvertedDark.decorators = [ThemeDecorator(Theme.DARK)];
+AccentDark.decorators = [ThemeDecorator(Theme.DARK)];
 
-// Inverted orange
+// Accent orange
 
-export const InvertedOrange: Story = {
+export const AccentOrange: Story = {
   args: {
     title: 'Title lorem ipsun',
     text: 'Description Description Description Description',
-    theme: TextTheme.INVERTED,
+    variant: 'accent',
   },
 };
 
-InvertedOrange.decorators = [ThemeDecorator(Theme.ORANGE)];
+AccentOrange.decorators = [ThemeDecorator(Theme.ORANGE)];
 
 // Large size
 
 export const SizeLarge: Story = {
   args: {
-    size: TextSize.L,
+    size: 'l',
     title: 'Title lorem ipsun',
     text: 'Description Description Description Description',
   },
@@ -163,7 +163,7 @@ export const SizeLarge: Story = {
 
 export const SizeMedium: Story = {
   args: {
-    size: TextSize.M,
+    size: 'm',
     title: 'Title lorem ipsun',
     text: 'Description Description Description Description',
   },
@@ -173,7 +173,7 @@ export const SizeMedium: Story = {
 
 export const SizeSmall: Story = {
   args: {
-    size: TextSize.S,
+    size: 's',
     title: 'Title lorem ipsun',
     text: 'Description Description Description Description',
   },

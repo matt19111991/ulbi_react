@@ -9,7 +9,8 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { Drawer } from '@/shared/ui/deprecated/Drawer';
 import { Modal } from '@/shared/ui/deprecated/Modal';
 import { Text, TextAlign } from '@/shared/ui/deprecated/Text';
-import { VStack } from '@/shared/ui/deprecated/Stack';
+
+import { VStack } from '@/shared/ui/redesigned/Stack';
 
 import classes from './ArticlePageGreeting.module.scss';
 

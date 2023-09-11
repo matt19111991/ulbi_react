@@ -5,8 +5,9 @@ import { ArticleList } from '@/entities/Article';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
-import { HStack, VStack } from '@/shared/ui/deprecated/Stack';
 import { Text, TextSize, TextTheme } from '@/shared/ui/deprecated/Text';
+
+import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 
 import { useGetArticleRecommendationsListQuery } from '../../api/articleRecommedationsApi';
 

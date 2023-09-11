@@ -19,7 +19,8 @@ import { ToggleFeatures } from '@/shared/lib/features';
 import { AppLink, AppLinkTheme } from '@/shared/ui/deprecated/AppLink';
 import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import { Icon } from '@/shared/ui/deprecated/Icon';
-import { HStack } from '@/shared/ui/deprecated/Stack';
+
+import { HStack } from '@/shared/ui/redesigned/Stack';
 
 import classes from './Navbar.module.scss';
 

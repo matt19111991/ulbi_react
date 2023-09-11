@@ -7,8 +7,9 @@ import { PAGE_ID } from '@/shared/const/page';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useWindowWidth } from '@/shared/lib/hooks/useWindowWidth/useWindowWidth';
 
-import { HStack } from '@/shared/ui/deprecated/Stack';
 import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
+
+import { HStack } from '@/shared/ui/redesigned/Stack';
 
 import { ArticleView } from '../../model/consts/articleConsts';
 

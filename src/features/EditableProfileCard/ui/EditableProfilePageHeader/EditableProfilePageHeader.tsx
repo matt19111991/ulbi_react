@@ -6,8 +6,9 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
-import { HStack } from '@/shared/ui/deprecated/Stack';
 import { Text } from '@/shared/ui/deprecated/Text';
+
+import { HStack } from '@/shared/ui/redesigned/Stack';
 
 import { getIsUserCanEditProfile } from '../../model/selectors/getIsUserCanEditProfile/getIsUserCanEditProfile';
 import { getProfileReadOnly } from '../../model/selectors/getProfileReadOnly/getProfileReadOnly';

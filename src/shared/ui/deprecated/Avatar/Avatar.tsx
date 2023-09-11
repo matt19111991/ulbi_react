@@ -4,9 +4,10 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 
 import UserIcon from '../../../assets/icons/user-filled-32-32.svg';
 
-import { AppImage } from '../AppImage/AppImage';
 import { Icon } from '../Icon/Icon';
 import { Skeleton } from '../Skeleton/Skeleton';
+
+import { AppImage } from '../../redesigned/AppImage/AppImage';
 
 import classes from './Avatar.module.scss';
 

@@ -7,10 +7,6 @@ interface AppImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   storybookLoading?: boolean;
 }
 
-/**
- * Устарел, используем новые компоненты из папки 'redesigned'
- * @deprecated
- */
 export const AppImage = memo(
   ({
     alt = 'image',

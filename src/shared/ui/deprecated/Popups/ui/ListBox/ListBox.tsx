@@ -9,7 +9,8 @@ import { genericMemo } from '@/shared/lib/components/genericMemo/genericMemo';
 import { DropdownDirection } from '@/shared/types/ui';
 
 import { Button } from '../../../Button/Button';
-import { HStack, VStack } from '../../../Stack';
+
+import { HStack, VStack } from '../../../../redesigned/Stack';
 
 import { mapDirectionClass } from '../../styles/consts';
 
