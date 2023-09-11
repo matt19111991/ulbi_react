@@ -1,13 +1,23 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { StateSchema } from '@/app/providers/StoreProvider';
+
+import {
+  RedesignDecorator,
+  redesignState,
+} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
+
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
 
 import { LangSwitcher } from './LangSwitcher';
 
+const stateLangSwitcherRedesigned: DeepPartial<StateSchema> = redesignState;
+
 const meta = {
-  title: 'shared/LangSwitcher',
+  title: 'features/LangSwitcher',
   component: LangSwitcher,
   argTypes: {
     backgroundColor: {
@@ -18,26 +28,58 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Primary lang switcher
+// Primary lang switcher old
 
-export const Primary: Story = {
+export const PrimaryOld: Story = {
   args: {},
 };
 
-// Dark lang switcher
+// Dark lang switcher old
 
-export const Dark: Story = {
+export const DarkOld: Story = {
   args: {},
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+DarkOld.decorators = [ThemeDecorator(Theme.DARK)];
 
-// Orange lang switcher
+// Orange lang switcher old
 
-export const Orange: Story = {
+export const OrangeOld: Story = {
   args: {},
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeOld.decorators = [ThemeDecorator(Theme.ORANGE)];
+
+// Primary lang switcher new
+
+export const PrimaryNew: Story = {
+  args: {},
+};
+
+PrimaryNew.decorators = [RedesignDecorator, StoreDecorator(stateLangSwitcherRedesigned)];
+
+// Dark lang switcher new
+
+export const DarkNew: Story = {
+  args: {},
+};
+
+DarkNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator(stateLangSwitcherRedesigned),
+  ThemeDecorator(Theme.DARK),
+];
+
+// Orange lang switcher new
+
+export const OrangeNew: Story = {
+  args: {},
+};
+
+OrangeNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator(stateLangSwitcherRedesigned),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 export default meta;
