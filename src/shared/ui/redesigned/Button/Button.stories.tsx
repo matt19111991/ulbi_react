@@ -16,42 +16,67 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Primary light button
+// Primary clear button
 
-export const PrimaryLight: Story = {
-  args: {
-    children: 'Text',
-  },
-};
-
-// Clear light button
-
-export const ClearLight: Story = {
+export const PrimaryClear: Story = {
   args: {
     children: 'Text',
     variant: 'clear',
   },
 };
 
-// Outline light button
+// Dark clear button
 
-export const OutlineLight: Story = {
+export const DarkClear: Story = {
+  args: {
+    children: 'Text',
+    variant: 'clear',
+  },
+};
+
+DarkClear.decorators = [ThemeDecorator(Theme.DARK)];
+
+// Orange clear button
+
+export const OrangeClear: Story = {
+  args: {
+    children: 'Text',
+    variant: 'clear',
+  },
+};
+
+OrangeClear.decorators = [ThemeDecorator(Theme.ORANGE)];
+
+// Primary outline button
+
+export const PrimaryOutline: Story = {
   args: {
     children: 'Text',
     variant: 'outline',
   },
 };
 
-// Outline dark button
+// Dark outline button
 
-export const OutlineDark: Story = {
+export const DarkOutline: Story = {
   args: {
     children: 'Text',
     variant: 'outline',
   },
 };
 
-OutlineDark.decorators = [ThemeDecorator(Theme.DARK)]; // добавление декораторов на локальном уровне
+DarkOutline.decorators = [ThemeDecorator(Theme.DARK)];
+
+// Orange outline button
+
+export const OrangeOutline: Story = {
+  args: {
+    children: 'Text',
+    variant: 'outline',
+  },
+};
+
+OrangeOutline.decorators = [ThemeDecorator(Theme.ORANGE)];
 
 // Outline large button
 
@@ -79,7 +104,7 @@ export const SquareMedium: Story = {
   args: {
     children: '>',
     square: true,
-    variant: 'clear',
+    variant: 'outline',
   },
 };
 
@@ -90,7 +115,7 @@ export const SquareLarge: Story = {
     children: '>',
     size: 'l',
     square: true,
-    variant: 'clear',
+    variant: 'outline',
   },
 };
 
@@ -101,7 +126,7 @@ export const SquareExtraLarge: Story = {
     children: '>',
     size: 'xl',
     square: true,
-    variant: 'clear',
+    variant: 'outline',
   },
 };
 

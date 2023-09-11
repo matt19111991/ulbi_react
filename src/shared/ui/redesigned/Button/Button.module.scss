@@ -18,6 +18,10 @@
 .disabled {
   cursor: auto;
   opacity: .5;
+
+  &:hover {
+    color: var(--text-redesigned);
+  }
 }
 
 .fullWidth {
