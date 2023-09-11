@@ -18,7 +18,38 @@
 
 // Redesigned
 
+.itemRedesigned {
+  align-items: center;
+  display: inline-flex;
+  padding: 0 16px;
+  white-space: nowrap;
+
+  .link {
+    display: inline-block;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    width: 140px;
+  }
+}
+
+.active {
+  background: linear-gradient(89.97deg, rgba(29, 29, 255, .3) 1.15%, rgba(94, 211, 243, 0) 99.97%);
+  position: relative;
+
+  &::before {
+    background-color: var(--accent-redesigned);
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    width: 2px;
+  }
+}
+
 .collapsedRedesigned {
+  padding: 0 8px;
+  width: 100%;
+
   .link {
     margin: 0;
     opacity: 0;

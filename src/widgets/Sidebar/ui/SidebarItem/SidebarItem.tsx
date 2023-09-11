@@ -38,7 +38,8 @@ export const SidebarItem = memo(({ collapsed, item }: SidebarItemProps) => {
       feature='isAppRedesigned'
       on={
         <AppLink
-          className={classNames(classes.item, {
+          activeClassName={classes.active}
+          className={classNames(classes.itemRedesigned, {
             [classes.collapsedRedesigned]: collapsed,
           })}
           to={path}
