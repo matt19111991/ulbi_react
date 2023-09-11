@@ -7,7 +7,7 @@ import { Theme } from '@/shared/const/theme';
 import { Skeleton } from './Skeleton';
 
 const meta = {
-  title: 'shared/old/Skeleton',
+  title: 'shared/new/Skeleton',
   component: Skeleton,
   argTypes: {
     backgroundColor: {
