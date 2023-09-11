@@ -43,7 +43,7 @@ export const SidebarItem = memo(({ collapsed, item }: SidebarItemProps) => {
           })}
           to={path}
         >
-          <RedesignedIcon Svg={Icon} />
+          <RedesignedIcon inheritParentClassName Svg={Icon} />
 
           <span className={classes.link}>{t(text)}</span>
         </AppLink>

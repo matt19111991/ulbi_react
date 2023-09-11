@@ -1,7 +1,12 @@
 .primary {
   color: var(--text-redesigned);
 
-  &:hover {
+  svg {
+    color: var(--icon-redesigned);
+  }
+
+  &:hover,
+  &:hover svg {
     color: var(--accent-redesigned);
   }
 }
@@ -9,7 +14,12 @@
 .red {
   color: var(--cancel-redesigned);
 
-  &:hover {
+  svg {
+    color: var(--cancel-redesigned);
+  }
+
+  &:hover,
+  &:hover svg {
     opacity: .8;
   }
 }

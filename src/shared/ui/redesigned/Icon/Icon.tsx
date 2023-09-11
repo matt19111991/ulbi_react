@@ -8,6 +8,8 @@ type SvgProps = Omit<SVGProps<SVGSVGElement>, 'onClick'>;
 
 interface IconBaseProps extends SvgProps {
   className?: string;
+  // наследуем класс от родителя (для подсветки при наведении на ссылку и названия и иконки)
+  inheritParentClassName?: boolean;
   Svg: VFC<SVGProps<SVGSVGElement>>;
 }
 
@@ -29,6 +31,7 @@ export const Icon = memo(
     className,
     clickable,
     height = 32,
+    inheritParentClassName,
     onClick,
     Svg,
     width = 32,
@@ -37,7 +40,7 @@ export const Icon = memo(
     const icon = (
       <Svg
         {...rest}
-        className={classNames(classes.Icon, {}, [className])}
+        className={classNames('', { [classes.Icon]: !inheritParentClassName }, [className])}
         height={height}
         // иначе достается' onClick' из '...rest' и отрабатывает дважды для 'Icon' и 'button'
         onClick={undefined}

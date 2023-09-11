@@ -73,6 +73,11 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
             onClick={onToggle}
             Svg={SidebarArrowIcon}
           />
+
+          <div className={classes.switchers}>
+            <ThemeSwitcher />
+            <LangSwitcher className={classes.lang} short={collapsed} />
+          </div>
         </aside>
       }
       // сайдбар до редизайна
