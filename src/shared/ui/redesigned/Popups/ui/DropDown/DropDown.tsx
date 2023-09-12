@@ -51,47 +51,51 @@ export const DropDown = memo(
     justify = 'left',
     optionSize = 'S',
     trigger,
-  }: DropDownProps) => (
-    <Menu as='div' className={classNames(popupClasses.popup, {}, [className])}>
-      <Menu.Button className={popupClasses.trigger}>{trigger}</Menu.Button>
+  }: DropDownProps) => {
+    const menuClasses = [mapDirectionClass[direction], popupClasses.menu];
 
-      <Menu.Items className={classNames(classes.menu, {}, [mapDirectionClass[direction]])}>
-        {items.map((item) => {
-          const content = ({ active }: { active: boolean }) => (
-            <button
-              className={classNames(classes.item, { [popupClasses.active]: active }, [
-                mapJustifyClass[justify],
-                mapOptionSizeClass[optionSize],
-              ])}
-              disabled={item.disabled}
-              onClick={item.onClick}
-            >
-              {item.content}
-            </button>
-          );
+    return (
+      <Menu as='div' className={classNames(popupClasses.popup, {}, [className])}>
+        <Menu.Button className={popupClasses.trigger}>{trigger}</Menu.Button>
 
-          if (item.href) {
-            return (
-              <Menu.Item
-                as={AppLink}
+        <Menu.Items className={classNames(classes.menu, {}, menuClasses)}>
+          {items.map((item) => {
+            const content = ({ active }: { active: boolean }) => (
+              <button
+                className={classNames(classes.item, { [popupClasses.active]: active }, [
+                  mapJustifyClass[justify],
+                  mapOptionSizeClass[optionSize],
+                ])}
                 disabled={item.disabled}
-                key={String(item.content)}
-                to={item.href}
+                onClick={item.onClick}
               >
+                {item.content}
+              </button>
+            );
+
+            if (item.href) {
+              return (
+                <Menu.Item
+                  as={AppLink}
+                  disabled={item.disabled}
+                  key={String(item.content)}
+                  to={item.href}
+                >
+                  {content}
+                </Menu.Item>
+              );
+            }
+
+            return (
+              <Menu.Item as={Fragment} disabled={item.disabled} key={String(item.content)}>
                 {content}
               </Menu.Item>
             );
-          }
-
-          return (
-            <Menu.Item as={Fragment} disabled={item.disabled} key={String(item.content)}>
-              {content}
-            </Menu.Item>
-          );
-        })}
-      </Menu.Items>
-    </Menu>
-  ),
+          })}
+        </Menu.Items>
+      </Menu>
+    );
+  },
 );
 
 DropDown.displayName = 'DropDown';

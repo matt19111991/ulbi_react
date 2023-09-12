@@ -2,7 +2,7 @@
   align-items: center;
   background: none;
   border: none;
-  color: var(--primary-color);
+  color: var(--text-redesigned);
   cursor: pointer;
   display: flex;
   outline: none;
@@ -23,8 +23,7 @@
 }
 
 .menu {
-  background-color: var(--card-bg);
-  border-radius: 8px;
+  background-color: var(--dark-bg-redesigned);
   display: flex;
   flex-direction: column;
   outline: 1px solid var(--primary-color);
