@@ -22,16 +22,18 @@ export const Popover = ({
   className,
   direction = 'bottom-left',
   trigger,
-}: PopoverProps) => (
-  <HeadlessPopover className={classNames('', {}, [className, popupClasses.popup])}>
-    <HeadlessPopover.Button as='div' className={popupClasses.trigger}>
-      {trigger}
-    </HeadlessPopover.Button>
+}: PopoverProps) => {
+  const menuClasses = [mapDirectionClass[direction], popupClasses.menu];
 
-    <HeadlessPopover.Panel
-      className={classNames(classes.panel, {}, [mapDirectionClass[direction]])}
-    >
-      {children}
-    </HeadlessPopover.Panel>
-  </HeadlessPopover>
-);
+  return (
+    <HeadlessPopover className={classNames('', {}, [className, popupClasses.popup])}>
+      <HeadlessPopover.Button as='div' className={popupClasses.trigger}>
+        {trigger}
+      </HeadlessPopover.Button>
+
+      <HeadlessPopover.Panel className={classNames(classes.panel, {}, menuClasses)}>
+        {children}
+      </HeadlessPopover.Panel>
+    </HeadlessPopover>
+  );
+};
