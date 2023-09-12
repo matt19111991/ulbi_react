@@ -18,6 +18,7 @@
 .disabled {
   cursor: auto;
   opacity: .5;
+  pointer-events: none;
 
   &:hover {
     color: var(--text-redesigned);
