@@ -42,55 +42,57 @@ const ListBox = ({
   onChange,
   readonly,
   value,
-}: ListBoxProps) => (
-  <VStack align='start' gap='4'>
-    {label && <span>{`${label} >`}</span>}
+}: ListBoxProps) => {
+  const optionsClasses = [mapDirectionClass[direction], popupClasses.menu];
 
-    <HeadlessListBox
-      as='div'
-      className={classNames(popupClasses.popup, {}, [className])}
-      disabled={readonly}
-      onChange={onChange}
-      value={value}
-    >
-      <HeadlessListBox.Button as='div' className={classes.trigger}>
-        <Button disabled={readonly}>{value ?? defaultValue}</Button>
-      </HeadlessListBox.Button>
+  return (
+    <VStack align='start' gap='4'>
+      {label && <span>{`${label} >`}</span>}
 
-      <HeadlessListBox.Options
-        className={classNames(classes.options, {}, [mapDirectionClass[direction]])}
+      <HeadlessListBox
+        as='div'
+        className={classNames(popupClasses.popup, {}, [className])}
+        disabled={readonly}
+        onChange={onChange}
+        value={value}
       >
-        {items?.map((item) => (
-          <HeadlessListBox.Option
-            as={Fragment}
-            disabled={item.disabled}
-            key={item.value}
-            value={item.value}
-          >
-            {({ active, selected }) => (
-              <li
-                className={classNames(
-                  classes.item,
-                  {
-                    [popupClasses.active]: active,
-                    [popupClasses.disabled]: item.disabled,
-                  },
-                  [],
-                )}
-              >
-                <HStack gap='4'>
-                  {item.content}
+        <HeadlessListBox.Button as='div' className={classes.trigger}>
+          <Button disabled={readonly}>{value ?? defaultValue}</Button>
+        </HeadlessListBox.Button>
 
-                  {selected && <CheckIcon className={classes.check} />}
-                </HStack>
-              </li>
-            )}
-          </HeadlessListBox.Option>
-        ))}
-      </HeadlessListBox.Options>
-    </HeadlessListBox>
-  </VStack>
-);
+        <HeadlessListBox.Options className={classNames(classes.options, {}, optionsClasses)}>
+          {items?.map((item) => (
+            <HeadlessListBox.Option
+              as={Fragment}
+              disabled={item.disabled}
+              key={item.value}
+              value={item.value}
+            >
+              {({ active, selected }) => (
+                <li
+                  className={classNames(
+                    classes.item,
+                    {
+                      [popupClasses.active]: active,
+                      [popupClasses.disabled]: item.disabled,
+                    },
+                    [],
+                  )}
+                >
+                  <HStack gap='4'>
+                    {item.content}
+
+                    {selected && <CheckIcon className={classes.check} />}
+                  </HStack>
+                </li>
+              )}
+            </HeadlessListBox.Option>
+          ))}
+        </HeadlessListBox.Options>
+      </HeadlessListBox>
+    </VStack>
+  );
+};
 
 const MemoizedListBox = genericMemo(ListBox);
 
