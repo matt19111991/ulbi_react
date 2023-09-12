@@ -15,6 +15,7 @@ import { Icon as IconDeprecated } from '@/shared/ui/deprecated/Icon';
 import { Popover as PopoverDeprecated } from '@/shared/ui/deprecated/Popups';
 
 import { Icon } from '@/shared/ui/redesigned/Icon';
+import { Popover } from '@/shared/ui/redesigned/Popups';
 
 import classes from './NotificationButton.module.scss';
 
@@ -44,13 +45,27 @@ export const NotificationButton = memo(
     );
 
     const browserContent = (
-      <PopoverDeprecated
-        className={classNames('', {}, [className])}
-        direction='bottom-right'
-        trigger={trigger}
-      >
-        <NotificationList className={classes.list} />
-      </PopoverDeprecated>
+      <ToggleFeatures
+        feature='isAppRedesigned'
+        on={
+          <Popover
+            className={classNames('', {}, [className])}
+            direction='bottom-right'
+            trigger={trigger}
+          >
+            <NotificationList className={classes.list} />
+          </Popover>
+        }
+        off={
+          <PopoverDeprecated
+            className={classNames('', {}, [className])}
+            direction='bottom-right'
+            trigger={trigger}
+          >
+            <NotificationList className={classes.list} />
+          </PopoverDeprecated>
+        }
+      />
     );
 
     const mobileContent = (

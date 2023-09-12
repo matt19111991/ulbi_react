@@ -3,6 +3,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
+import {
+  redesignState,
+  RedesignDecorator,
+} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
+
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -10,7 +15,7 @@ import { Theme } from '@/shared/const/theme';
 
 import { NotificationButton } from './NotificationButton';
 
-const stateNotificationButton: DeepPartial<StateSchema> = {};
+const stateNotificationButtonRedesigned: DeepPartial<StateSchema> = redesignState;
 
 const meta = {
   title: 'features/NotificationButton',
@@ -36,73 +41,163 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Primary desktop notification button
+// Primary desktop notification button old
 
-export const PrimaryDesktop: Story = {
+export const PrimaryDesktopOld: Story = {
   args: {},
 };
 
-PrimaryDesktop.decorators = [StoreDecorator(stateNotificationButton)];
+// Dark desktop notification button old
 
-// Dark desktop notification button
-
-export const DarkDesktop: Story = {
+export const DarkDesktopOld: Story = {
   args: {},
 };
 
-DarkDesktop.decorators = [StoreDecorator(stateNotificationButton), ThemeDecorator(Theme.DARK)];
+DarkDesktopOld.decorators = [ThemeDecorator(Theme.DARK)];
 
-// Orange desktop notification button
+// Orange desktop notification button old
 
-export const OrangeDesktop: Story = {
+export const OrangeDesktopOld: Story = {
   args: {},
 };
 
-OrangeDesktop.decorators = [StoreDecorator(stateNotificationButton), ThemeDecorator(Theme.ORANGE)];
+OrangeDesktopOld.decorators = [ThemeDecorator(Theme.ORANGE)];
 
-// Primary mobile notification button
+// Primary mobile notification button old
 
-export const PrimaryMobile: Story = {
+export const PrimaryMobileOld: Story = {
   args: {
     storybookMobile: true,
   },
 };
 
-PrimaryMobile.decorators = [StoreDecorator(stateNotificationButton)];
-
-PrimaryMobile.parameters = {
+PrimaryMobileOld.parameters = {
   viewport: {
     defaultViewport: 'iphone6',
   },
 };
 
-// Dark mobile notification button
+// Dark mobile notification button old
 
-export const DarkMobile: Story = {
+export const DarkMobileOld: Story = {
   args: {
     storybookMobile: true,
   },
 };
 
-DarkMobile.decorators = [StoreDecorator(stateNotificationButton), ThemeDecorator(Theme.DARK)];
+DarkMobileOld.decorators = [ThemeDecorator(Theme.DARK)];
 
-DarkMobile.parameters = {
+DarkMobileOld.parameters = {
   viewport: {
     defaultViewport: 'iphone6',
   },
 };
 
-// Orange mobile notification button
+// Orange mobile notification button old
 
-export const OrangeMobile: Story = {
+export const OrangeMobileOld: Story = {
   args: {
     storybookMobile: true,
   },
 };
 
-OrangeMobile.decorators = [StoreDecorator(stateNotificationButton), ThemeDecorator(Theme.ORANGE)];
+OrangeMobileOld.decorators = [ThemeDecorator(Theme.ORANGE)];
 
-OrangeMobile.parameters = {
+OrangeMobileOld.parameters = {
+  viewport: {
+    defaultViewport: 'iphone6',
+  },
+};
+
+// Primary desktop notification button new
+
+export const PrimaryDesktopNew: Story = {
+  args: {},
+};
+
+PrimaryDesktopNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator(stateNotificationButtonRedesigned),
+];
+
+// Dark desktop notification button new
+
+export const DarkDesktopNew: Story = {
+  args: {},
+};
+
+DarkDesktopNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator(stateNotificationButtonRedesigned),
+  ThemeDecorator(Theme.DARK),
+];
+
+// Orange desktop notification button new
+
+export const OrangeDesktopNew: Story = {
+  args: {},
+};
+
+OrangeDesktopNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator(stateNotificationButtonRedesigned),
+  ThemeDecorator(Theme.ORANGE),
+];
+
+// Primary mobile notification button new
+
+export const PrimaryMobileNew: Story = {
+  args: {
+    storybookMobile: true,
+  },
+};
+
+PrimaryMobileNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator(stateNotificationButtonRedesigned),
+];
+
+PrimaryMobileNew.parameters = {
+  viewport: {
+    defaultViewport: 'iphone6',
+  },
+};
+
+// Dark mobile notification button new
+
+export const DarkMobileNew: Story = {
+  args: {
+    storybookMobile: true,
+  },
+};
+
+DarkMobileNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator(stateNotificationButtonRedesigned),
+  ThemeDecorator(Theme.DARK),
+];
+
+DarkMobileNew.parameters = {
+  viewport: {
+    defaultViewport: 'iphone6',
+  },
+};
+
+// Orange mobile notification button new
+
+export const OrangeMobileNew: Story = {
+  args: {
+    storybookMobile: true,
+  },
+};
+
+OrangeMobileNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator(stateNotificationButtonRedesigned),
+  ThemeDecorator(Theme.ORANGE),
+];
+
+OrangeMobileNew.parameters = {
   viewport: {
     defaultViewport: 'iphone6',
   },

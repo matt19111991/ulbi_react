@@ -7,7 +7,6 @@
 - Добавить E2E тесты на поиск и сортировку статей
 - Проверить очистку всех созданных сущностей в БД после прогона E2E тестов
 
-- Добавить stories для NotificationButton redesigned
 - Добавить stories для AvatarDropdown redesigned
 
 ---- 
