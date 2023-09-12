@@ -1,5 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { StateSchema } from '@/app/providers/StoreProvider';
+
+import {
+  RedesignDecorator,
+  redesignState,
+} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
+
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -7,6 +15,8 @@ import { Theme } from '@/shared/const/theme';
 import { generateNotifications } from '@/shared/lib/generators/notifications';
 
 import { NotificationItem } from './NotificationItem';
+
+const stateNotificationItemRedesigned: DeepPartial<StateSchema> = redesignState;
 
 const [notificationWithLink] = generateNotifications(1);
 
@@ -22,9 +32,9 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Primary notification item
+// Primary notification item old
 
-export const Primary: Story = {
+export const PrimaryOld: Story = {
   args: {
     notification: {
       ...notificationWithLink,
@@ -33,9 +43,9 @@ export const Primary: Story = {
   },
 };
 
-// Dark notification item
+// Dark notification item old
 
-export const Dark: Story = {
+export const DarkOld: Story = {
   args: {
     notification: {
       ...notificationWithLink,
@@ -44,11 +54,11 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+DarkOld.decorators = [ThemeDecorator(Theme.DARK)];
 
-// Orange notification item
+// Orange notification item old
 
-export const Orange: Story = {
+export const OrangeOld: Story = {
   args: {
     notification: {
       ...notificationWithLink,
@@ -57,14 +67,71 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeOld.decorators = [ThemeDecorator(Theme.ORANGE)];
 
-// Link notification item
+// Link notification item old
 
-export const Link: Story = {
+export const LinkOld: Story = {
   args: {
     notification: notificationWithLink,
   },
 };
+
+// Primary notification item new
+
+export const PrimaryNew: Story = {
+  args: {
+    notification: {
+      ...notificationWithLink,
+      href: undefined,
+    },
+  },
+};
+
+PrimaryNew.decorators = [RedesignDecorator, StoreDecorator(stateNotificationItemRedesigned)];
+
+// Dark notification item new
+
+export const DarkNew: Story = {
+  args: {
+    notification: {
+      ...notificationWithLink,
+      href: undefined,
+    },
+  },
+};
+
+DarkNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator(stateNotificationItemRedesigned),
+  ThemeDecorator(Theme.DARK),
+];
+
+// Orange notification item new
+
+export const OrangeNew: Story = {
+  args: {
+    notification: {
+      ...notificationWithLink,
+      href: undefined,
+    },
+  },
+};
+
+OrangeNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator(stateNotificationItemRedesigned),
+  ThemeDecorator(Theme.ORANGE),
+];
+
+// Link notification item new
+
+export const LinkNew: Story = {
+  args: {
+    notification: notificationWithLink,
+  },
+};
+
+LinkNew.decorators = [RedesignDecorator, StoreDecorator(stateNotificationItemRedesigned)];
 
 export default meta;
