@@ -6,6 +6,11 @@ import { UserRole } from '@/entities/User';
 
 import Avatar from '@/shared/assets/tests/storybook.jpg';
 
+import {
+  RedesignDecorator,
+  redesignState,
+} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
+
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -13,7 +18,37 @@ import { Theme } from '@/shared/const/theme';
 
 import { AvatarDropdown } from './AvatarDropdown';
 
-const stateAvatarDropdown: DeepPartial<StateSchema> = {};
+const stateAvatarDropdownRedesigned: DeepPartial<StateSchema> = redesignState;
+
+const stateAuthUser: DeepPartial<StateSchema> = {
+  user: {
+    authData: {
+      id: '1',
+      roles: [UserRole.USER],
+      username: 'Jack',
+    },
+  },
+};
+
+const stateAuthManager: DeepPartial<StateSchema> = {
+  user: {
+    authData: {
+      id: '1',
+      roles: [UserRole.MANAGER],
+      username: 'Mary',
+    },
+  },
+};
+
+const stateAuthAdmin: DeepPartial<StateSchema> = {
+  user: {
+    authData: {
+      id: '1',
+      roles: [UserRole.ADMIN],
+      username: 'Tom',
+    },
+  },
+};
 
 const meta = {
   title: 'features/AvatarDropdown',
@@ -34,94 +69,169 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Primary avatar dropdown
+// Primary avatar dropdown old
 
-export const Primary: Story = {
+export const PrimaryOld: Story = {
   args: {
     storybookAvatar: Avatar,
   },
 };
 
-Primary.decorators = [StoreDecorator(stateAvatarDropdown)];
+// Dark avatar dropdown old
 
-// Dark avatar dropdown
-
-export const Dark: Story = {
+export const DarkOld: Story = {
   args: {
     storybookAvatar: Avatar,
   },
 };
 
-Dark.decorators = [StoreDecorator(stateAvatarDropdown), ThemeDecorator(Theme.DARK)];
+DarkOld.decorators = [ThemeDecorator(Theme.DARK)];
 
-// Orange avatar dropdown
+// Orange avatar dropdown old
 
-export const Orange: Story = {
+export const OrangeOld: Story = {
   args: {
     storybookAvatar: Avatar,
   },
 };
 
-Orange.decorators = [StoreDecorator(stateAvatarDropdown), ThemeDecorator(Theme.ORANGE)];
+OrangeOld.decorators = [ThemeDecorator(Theme.ORANGE)];
 
-// Authorized user avatar dropdown
+// Authorized user avatar dropdown old
 
-const stateAuthUser: DeepPartial<StateSchema> = {
-  user: {
-    authData: {
-      id: '1',
-      roles: [UserRole.USER],
-      username: 'Jack',
+export const AuthorizedUserOld: Story = {
+  args: {
+    storybookAvatar: Avatar,
+  },
+};
+
+AuthorizedUserOld.decorators = [StoreDecorator(stateAuthUser)];
+
+// Authorized manager avatar dropdown old
+
+export const AuthorizedManagerOld: Story = {
+  args: {
+    storybookAvatar: Avatar,
+  },
+};
+
+AuthorizedManagerOld.decorators = [StoreDecorator(stateAuthManager)];
+
+// Authorized admin avatar dropdown old
+
+export const AuthorizedAdminOld: Story = {
+  args: {
+    storybookAvatar: Avatar,
+  },
+};
+
+AuthorizedAdminOld.decorators = [StoreDecorator(stateAuthAdmin)];
+
+// Primary avatar dropdown new
+
+export const PrimaryNew: Story = {
+  args: {
+    storybookAvatar: Avatar,
+  },
+};
+
+PrimaryNew.decorators = [RedesignDecorator, StoreDecorator(stateAvatarDropdownRedesigned)];
+
+// Dark avatar dropdown new
+
+export const DarkNew: Story = {
+  args: {
+    storybookAvatar: Avatar,
+  },
+};
+
+DarkNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator(stateAvatarDropdownRedesigned),
+  ThemeDecorator(Theme.DARK),
+];
+
+// Orange avatar dropdown new
+
+export const OrangeNew: Story = {
+  args: {
+    storybookAvatar: Avatar,
+  },
+};
+
+OrangeNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator(stateAvatarDropdownRedesigned),
+  ThemeDecorator(Theme.DARK),
+];
+
+// Authorized user avatar dropdown new
+
+export const AuthorizedUserNew: Story = {
+  args: {
+    storybookAvatar: Avatar,
+  },
+};
+
+AuthorizedUserNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator({
+    user: {
+      ...stateAuthUser.user,
+      authData: {
+        ...stateAuthUser.user?.authData,
+        features: {
+          isAppRedesigned: true,
+        },
+      },
     },
-  },
-};
+  }),
+];
 
-export const AuthorizedUser: Story = {
+// Authorized manager avatar dropdown new
+
+export const AuthorizedManagerNew: Story = {
   args: {
     storybookAvatar: Avatar,
   },
 };
 
-AuthorizedUser.decorators = [StoreDecorator(stateAuthUser)];
-
-// Authorized manager avatar dropdown
-
-const stateAuthManager: DeepPartial<StateSchema> = {
-  user: {
-    authData: {
-      id: '1',
-      roles: [UserRole.MANAGER],
-      username: 'Mary',
+AuthorizedManagerNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator({
+    user: {
+      ...stateAuthManager.user,
+      authData: {
+        ...stateAuthManager.user?.authData,
+        features: {
+          isAppRedesigned: true,
+        },
+      },
     },
-  },
-};
+  }),
+];
 
-export const AuthorizedManager: Story = {
+// Authorized admin avatar dropdown new
+
+export const AuthorizedAdminNew: Story = {
   args: {
     storybookAvatar: Avatar,
   },
 };
 
-AuthorizedManager.decorators = [StoreDecorator(stateAuthManager)];
-
-// Authorized admin avatar dropdown
-
-const stateAuthAdmin: DeepPartial<StateSchema> = {
-  user: {
-    authData: {
-      id: '1',
-      roles: [UserRole.ADMIN],
-      username: 'Tom',
+AuthorizedAdminNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator({
+    user: {
+      ...stateAuthAdmin.user,
+      authData: {
+        ...stateAuthAdmin.user?.authData,
+        features: {
+          isAppRedesigned: true,
+        },
+      },
     },
-  },
-};
-
-export const AuthorizedAdmin: Story = {
-  args: {
-    storybookAvatar: Avatar,
-  },
-};
-
-AuthorizedAdmin.decorators = [StoreDecorator(stateAuthAdmin)];
+  }),
+];
 
 export default meta;
