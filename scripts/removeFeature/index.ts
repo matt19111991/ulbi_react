@@ -32,15 +32,16 @@ const files = project.getSourceFiles();
 
 files.forEach((sourceFile) => {
   // проходимся по всем потомкам
+  // eslint-disable-next-line consistent-return
   sourceFile.forEachDescendant((node) => {
     // находим компонент <ToggleFeatures />
     if (node.isKind(SyntaxKind.JsxSelfClosingElement) && isToggleComponent(node)) {
-      replaceToggleComponent(node, removedFeatureName, featureState);
+      return replaceToggleComponent(node, removedFeatureName, featureState);
     }
 
     // находим функцию 'toggleFeatures'
     if (node.isKind(SyntaxKind.CallExpression) && isToggleFunction(node)) {
-      replaceToggleFunction(node, removedFeatureName, featureState);
+      return replaceToggleFunction(node, removedFeatureName, featureState);
     }
   });
 });
