@@ -103,14 +103,6 @@ export const LoadingOld: Story = {
 
 LoadingOld.decorators = [StoreDecorator(stateArticlesLoading)];
 
-// Error articles page old
-
-export const ErrorOld: Story = {
-  args: {},
-};
-
-ErrorOld.decorators = [StoreDecorator(stateArticlesError)];
-
 // Primary articles page new
 
 export const PrimaryNew: Story = {
@@ -157,13 +149,13 @@ LoadingNew.decorators = [
   StoreDecorator({ ...stateArticlesLoading, ...stateArticlesPageRedesigned }),
 ];
 
-// Error articles page new
+// Error articles page
 
-export const ErrorNew: Story = {
+export const Error: Story = {
   args: {},
 };
 
-ErrorNew.decorators = [
+Error.decorators = [
   RedesignDecorator,
   StoreDecorator({ ...stateArticlesError, ...stateArticlesPageRedesigned }),
 ];

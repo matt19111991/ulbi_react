@@ -31,6 +31,7 @@ import { articlesPageReducer } from '../../model/slice/articlesPageSlice';
 
 import { ArticleInfiniteList } from '../ArticleInfiniteList/ArticleInfiniteList';
 import { ArticlesPageFilters } from '../ArticlesPageFilters/ArticlesPageFilters';
+import { ViewSelectorContainer } from '../ViewSelectorContainer/ViewSelectorContainer';
 
 import classes from './ArticlesPage.module.scss';
 
@@ -88,7 +89,7 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
               <ArticlePageGreeting />
             </Page>
           }
-          left={<div>11111</div>}
+          left={<ViewSelectorContainer />}
           right={<div>2222</div>}
         />
       }
