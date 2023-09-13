@@ -6,7 +6,7 @@ import { getUserMounted, initAuthData } from '@/entities/User';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { ToggleFeatures } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { MainLayout } from '@/shared/layouts';
+import { MainLayout } from '@/shared/layouts/MainLayout';
 
 import { Navbar } from '@/widgets/Navbar';
 import { PageLoader } from '@/widgets/PageLoader';

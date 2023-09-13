@@ -4,6 +4,11 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 
 import { ArticleSortField, ArticleView } from '@/entities/Article';
 
+import {
+  RedesignDecorator,
+  redesignState,
+} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
+
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -30,44 +35,6 @@ const stateArticles: DeepPartial<StateSchema> = {
   },
 };
 
-const meta = {
-  title: 'pages/ArticlesPage',
-  component: ArticlesPage,
-  argTypes: {
-    backgroundColor: {
-      control: 'color',
-    },
-  },
-} as Meta<typeof ArticlesPage>;
-
-type Story = StoryObj<typeof meta>;
-
-// Primary articles page
-
-export const Primary: Story = {
-  args: {},
-};
-
-Primary.decorators = [StoreDecorator(stateArticles)];
-
-// Dark articles page
-
-export const Dark: Story = {
-  args: {},
-};
-
-Dark.decorators = [StoreDecorator(stateArticles), ThemeDecorator(Theme.DARK)];
-
-// Orange articles page
-
-export const Orange: Story = {
-  args: {},
-};
-
-Orange.decorators = [StoreDecorator(stateArticles), ThemeDecorator(Theme.ORANGE)];
-
-// Loading articles page
-
 const stateArticlesLoading = {
   articlesPage: {
     areLoading: true,
@@ -82,14 +49,6 @@ const stateArticlesLoading = {
   },
 };
 
-export const Loading: Story = {
-  args: {},
-};
-
-Loading.decorators = [StoreDecorator(stateArticlesLoading)];
-
-// Error articles page
-
 const stateArticlesError = {
   ...stateArticles,
   articlesPage: {
@@ -98,10 +57,115 @@ const stateArticlesError = {
   },
 };
 
-export const Error: Story = {
+const stateArticlesPageRedesigned: DeepPartial<StateSchema> = redesignState;
+
+const meta = {
+  title: 'pages/ArticlesPage',
+  component: ArticlesPage,
+  argTypes: {
+    backgroundColor: {
+      control: 'color',
+    },
+  },
+} as Meta<typeof ArticlesPage>;
+
+type Story = StoryObj<typeof meta>;
+
+// Primary articles page old
+
+export const PrimaryOld: Story = {
   args: {},
 };
 
-Error.decorators = [StoreDecorator(stateArticlesError)];
+PrimaryOld.decorators = [StoreDecorator(stateArticles)];
+
+// Dark articles page old
+
+export const DarkOld: Story = {
+  args: {},
+};
+
+DarkOld.decorators = [StoreDecorator(stateArticles), ThemeDecorator(Theme.DARK)];
+
+// Orange articles page old
+
+export const OrangeOld: Story = {
+  args: {},
+};
+
+OrangeOld.decorators = [StoreDecorator(stateArticles), ThemeDecorator(Theme.ORANGE)];
+
+// Loading articles page old
+
+export const LoadingOld: Story = {
+  args: {},
+};
+
+LoadingOld.decorators = [StoreDecorator(stateArticlesLoading)];
+
+// Error articles page old
+
+export const ErrorOld: Story = {
+  args: {},
+};
+
+ErrorOld.decorators = [StoreDecorator(stateArticlesError)];
+
+// Primary articles page new
+
+export const PrimaryNew: Story = {
+  args: {},
+};
+
+PrimaryNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator({ ...stateArticles, ...stateArticlesPageRedesigned }),
+];
+
+// Dark articles page new
+
+export const DarkNew: Story = {
+  args: {},
+};
+
+DarkNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator({ ...stateArticles, ...stateArticlesPageRedesigned }),
+  ThemeDecorator(Theme.DARK),
+];
+
+// Orange articles page new
+
+export const OrangeNew: Story = {
+  args: {},
+};
+
+OrangeNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator({ ...stateArticles, ...stateArticlesPageRedesigned }),
+  ThemeDecorator(Theme.ORANGE),
+];
+
+// Loading articles page new
+
+export const LoadingNew: Story = {
+  args: {},
+};
+
+LoadingNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator({ ...stateArticlesLoading, ...stateArticlesPageRedesigned }),
+];
+
+// Error articles page new
+
+export const ErrorNew: Story = {
+  args: {},
+};
+
+ErrorNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator({ ...stateArticlesError, ...stateArticlesPageRedesigned }),
+];
 
 export default meta;

@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { ArticlePageGreeting } from '@/features/ArticlePageGreeting';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { ToggleFeatures } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 import {
@@ -14,6 +15,8 @@ import {
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
+
+import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 
 import { Text, TextAlign, TextTheme } from '@/shared/ui/deprecated/Text';
 
@@ -69,19 +72,45 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
     );
   }
 
+  const content = (
+    <ToggleFeatures
+      feature='isAppRedesigned'
+      on={
+        <StickyContentLayout
+          content={
+            <Page
+              className={classNames(classes.ArticlesPage, {}, [className])}
+              data-testid='ArticlesPage'
+              onScrollEnd={onLoadNextPart}
+            >
+              <ArticleInfiniteList />
+
+              <ArticlePageGreeting />
+            </Page>
+          }
+          left={<div>11111</div>}
+          right={<div>2222</div>}
+        />
+      }
+      off={
+        <Page
+          className={classNames(classes.ArticlesPage, {}, [className])}
+          data-testid='ArticlesPage'
+          onScrollEnd={onLoadNextPart}
+        >
+          <ArticlesPageFilters />
+
+          <ArticleInfiniteList className={classes.list} />
+
+          <ArticlePageGreeting />
+        </Page>
+      }
+    />
+  );
+
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
-      <Page
-        className={classNames(classes.ArticlesPage, {}, [className])}
-        data-testid='ArticlesPage'
-        onScrollEnd={onLoadNextPart}
-      >
-        <ArticlesPageFilters />
-
-        <ArticleInfiniteList className={classes.list} />
-
-        <ArticlePageGreeting />
-      </Page>
+      {content}
     </DynamicModuleLoader>
   );
 };
