@@ -1,4 +1,4 @@
-import { memo, SVGProps, VFC } from 'react';
+import { memo, MouseEvent, SVGProps, VFC } from 'react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
@@ -19,7 +19,7 @@ interface NonClickableIconProps extends IconBaseProps {
 
 interface ClickableIconProps extends IconBaseProps {
   clickable?: true;
-  onClick: () => void;
+  onClick: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
 type IconsProps = NonClickableIconProps | ClickableIconProps;
