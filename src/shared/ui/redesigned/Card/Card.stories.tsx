@@ -225,4 +225,18 @@ export const Padding24: Story = {
   },
 };
 
+// Card round
+
+export const Round: Story = {
+  args: {
+    border: 'round',
+    children: (
+      <Text
+        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
+        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
+      />
+    ),
+  },
+};
+
 export default meta;
