@@ -40,7 +40,12 @@ export const Page = ({ children, className, onScrollEnd, ...rest }: PageProps) =
   useInfiniteScroll({
     callback: onScrollEnd,
     triggerRef,
-    wrapperRef,
+    wrapperRef: toggleFeatures({
+      name: 'isAppRedesigned',
+      // после редизайна ссылаемся на область видимости браузера, если 'wrapperRef' не определён
+      on: () => undefined,
+      off: () => wrapperRef,
+    }),
   });
 
   useInitialEffect(() => {

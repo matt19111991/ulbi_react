@@ -3,7 +3,7 @@ import { MutableRefObject, useEffect } from 'react';
 interface UseInfiniteScrollOptions {
   callback?: () => void; // функция, которая вызывается, когда пересекли элемент
   triggerRef: MutableRefObject<HTMLElement>; // элемент, при пересечении которого вызывается callback
-  wrapperRef: MutableRefObject<HTMLElement>; // элемент, внутри которого находится scroll
+  wrapperRef?: MutableRefObject<HTMLElement>; // элемент, внутри которого находится scroll
 }
 
 export const useInfiniteScroll = ({
@@ -24,7 +24,9 @@ export const useInfiniteScroll = ({
     */
 
     const triggerElement = triggerRef.current;
-    const wrapperElement = wrapperRef.current;
+
+    // ссылаемся на область видимости браузера, если 'wrapperRef' === null
+    const wrapperElement = wrapperRef?.current || null;
 
     if (callback) {
       const options: IntersectionObserverInit = {
@@ -47,7 +49,7 @@ export const useInfiniteScroll = ({
 
     return () => {
       if (observer && triggerElement) {
-        observer.unobserve(wrapperElement);
+        observer.unobserve(wrapperElement!);
       }
     };
   }, [callback, triggerRef, wrapperRef]);
