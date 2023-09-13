@@ -1,7 +1,21 @@
-.icon {
-  fill-opacity: .3;
+.ArticleViewSelector {
+  .icon {
+    fill-opacity: .3;
+  }
+
+  .selected {
+    fill-opacity: 1;
+  }
 }
 
-.selected {
-  fill-opacity: 1;
+// Redesigned
+
+.ArticleViewSelectorRedesigned {
+  .icon {
+    color: var(--light-bg-redesigned);
+  }
+
+  .selected {
+    color: var(--text-redesigned);
+  }
 }
