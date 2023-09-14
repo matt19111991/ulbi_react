@@ -22,18 +22,18 @@ export interface ListBoxItem {
   value: string;
 }
 
-interface ListBoxProps {
+interface ListBoxProps<T> {
   className?: string;
   defaultValue?: string;
   direction?: DropdownDirection;
   items?: ListBoxItem[];
   label?: string;
-  onChange: (value: string) => void;
+  onChange: (value: T) => void;
   readonly?: boolean;
-  value?: string;
+  value?: T;
 }
 
-const ListBox = ({
+const ListBox = <T extends string>({
   className,
   defaultValue,
   direction = 'bottom-left',
@@ -42,7 +42,7 @@ const ListBox = ({
   onChange,
   readonly,
   value,
-}: ListBoxProps) => {
+}: ListBoxProps<T>) => {
   const optionsClasses = [mapDirectionClass[direction], popupClasses.menu];
 
   return (

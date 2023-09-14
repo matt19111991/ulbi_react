@@ -46,7 +46,7 @@ export const ArticlesFilters = memo(
     const { t } = useTranslation();
 
     return (
-      <Card className={classNames('', {}, [className])}>
+      <Card className={classNames(classes.ArticlesFilters, {}, [className])} padding='24'>
         <VStack gap='32'>
           <Input
             className={classNames('', { [classes.loading]: areLoading })}
