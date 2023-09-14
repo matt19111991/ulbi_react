@@ -1,23 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
-
-import {
-  RedesignDecorator,
-  redesignState,
-} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
-
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
 
 import { FiltersContainer } from './FiltersContainer';
 
-const stateViewSelectorContainerRedesigned: DeepPartial<StateSchema> = redesignState;
-
 const meta = {
-  title: 'pages/ArticlesPage/ViewSelectorContainer',
+  title: 'pages/ArticlesPage/FiltersContainer',
   component: FiltersContainer,
   argTypes: {
     backgroundColor: {
@@ -28,58 +18,26 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Primary articles page view selector container old
+// Primary filters container
 
-export const PrimaryOld: Story = {
+export const Primary: Story = {
   args: {},
 };
 
-// Dark articles page view selector container old
+// Dark filters container
 
-export const DarkOld: Story = {
+export const Dark: Story = {
   args: {},
 };
 
-DarkOld.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [ThemeDecorator(Theme.DARK)];
 
-// Orange articles page view selector container old
+// Orange filters container
 
-export const OrangeOld: Story = {
+export const Orange: Story = {
   args: {},
 };
 
-OrangeOld.decorators = [ThemeDecorator(Theme.ORANGE)];
-
-// Primary articles page view selector container new
-
-export const PrimaryNew: Story = {
-  args: {},
-};
-
-PrimaryNew.decorators = [RedesignDecorator, StoreDecorator(stateViewSelectorContainerRedesigned)];
-
-// Dark articles page view selector container new
-
-export const DarkNew: Story = {
-  args: {},
-};
-
-DarkNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateViewSelectorContainerRedesigned),
-  ThemeDecorator(Theme.DARK),
-];
-
-// Orange articles page view selector container new
-
-export const OrangeNew: Story = {
-  args: {},
-};
-
-OrangeNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateViewSelectorContainerRedesigned),
-  ThemeDecorator(Theme.ORANGE),
-];
+Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
 
 export default meta;
