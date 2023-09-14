@@ -4,10 +4,15 @@ import { useTranslation } from 'react-i18next';
 import { ArticleSortField } from '@/entities/Article';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
-
-import { SortOrder } from '@/shared/types/sort';
+import { ToggleFeatures } from '@/shared/lib/features';
 
 import { Select, SelectOption } from '@/shared/ui/deprecated/Select';
+
+import { ListBox } from '@/shared/ui/redesigned/Popups';
+import { VStack } from '@/shared/ui/redesigned/Stack';
+import { Text } from '@/shared/ui/redesigned/Text';
+
+import { SortOrder } from '@/shared/types/sort';
 
 import classes from './ArticleSortSelector.module.scss';
 
@@ -56,21 +61,37 @@ export const ArticleSortSelector = memo(
     );
 
     return (
-      <div className={classNames(classes.ArticleSortSelector, {}, [className])}>
-        <Select<ArticleSortField>
-          label={t('Сортировать по')}
-          onChange={onChangeSort}
-          options={sortFieldOptions}
-          value={sort}
-        />
+      <ToggleFeatures
+        feature='isAppRedesigned'
+        on={
+          <div className={classNames(classes.ArticleSortSelector, {}, [className])}>
+            <VStack gap='8'>
+              <Text title={`${t('Сортировать по')}:`} />
 
-        <Select<SortOrder>
-          label={t('по').toLowerCase()}
-          onChange={onChangeOrder}
-          options={orderOptions}
-          value={order}
-        />
-      </div>
+              <ListBox items={sortFieldOptions} onChange={onChangeSort} value={sort} />
+
+              <ListBox items={orderOptions} onChange={onChangeOrder} value={order} />
+            </VStack>
+          </div>
+        }
+        off={
+          <div className={classNames(classes.ArticleSortSelector, {}, [className])}>
+            <Select<ArticleSortField>
+              label={t('Сортировать по')}
+              onChange={onChangeSort}
+              options={sortFieldOptions}
+              value={sort}
+            />
+
+            <Select<SortOrder>
+              label={t('по').toLowerCase()}
+              onChange={onChangeOrder}
+              options={orderOptions}
+              value={order}
+            />
+          </div>
+        }
+      />
     );
   },
 );
