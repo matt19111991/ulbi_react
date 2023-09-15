@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import IconSvg from '@/shared/assets/tests/storybook3.svg';
+
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -177,6 +179,34 @@ export const FullWidth: Story = {
   args: {
     children: '>',
     fullWidth: true,
+    variant: 'outline',
+  },
+};
+
+// Button with addon left
+
+export const AddonLeft: Story = {
+  args: {
+    addonLeft: (
+      <div style={{ alignItems: 'center', display: 'flex', margin: '0 8px 2px 0' }}>
+        <IconSvg />
+      </div>
+    ),
+    children: '>',
+    variant: 'outline',
+  },
+};
+
+// Button with addon right
+
+export const AddonRight: Story = {
+  args: {
+    addonRight: (
+      <div style={{ alignItems: 'center', display: 'flex', margin: '0 0 2px 8px' }}>
+        <IconSvg />
+      </div>
+    ),
+    children: '>',
     variant: 'outline',
   },
 };

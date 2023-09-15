@@ -9,6 +9,10 @@ export type ButtonVariant = 'clear' | 'filled' | 'outline';
 export type ButtonSize = 'm' | 'l' | 'xl';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  addonLeft?: ReactNode;
+
+  addonRight?: ReactNode;
+
   className?: string;
 
   /**
@@ -44,6 +48,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const Button = memo(
   ({
+    addonLeft,
+    addonRight,
     className,
     children,
     disabled,
@@ -57,6 +63,7 @@ export const Button = memo(
       [classes.disabled]: disabled,
       [classes.fullWidth]: fullWidth,
       [classes.square]: square,
+      [classes.withAddon]: Boolean(addonLeft) || Boolean(addonRight),
     };
 
     return (
@@ -65,7 +72,11 @@ export const Button = memo(
         disabled={disabled}
         {...rest}
       >
+        <div className={classes.addonLeft}>{addonLeft}</div>
+
         {children}
+
+        <div className={classes.addonRight}>{addonRight}</div>
       </button>
     );
   },
