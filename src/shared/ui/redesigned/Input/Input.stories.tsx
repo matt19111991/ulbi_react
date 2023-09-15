@@ -1,5 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import {
+  RedesignDecorator,
+  redesignState,
+} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
+
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -7,13 +13,14 @@ import { Theme } from '@/shared/const/theme';
 import { Input } from './Input';
 
 const meta = {
-  title: 'shared/old/Input',
+  title: 'shared/new/Input',
   component: Input,
   argTypes: {
     backgroundColor: {
       control: 'color',
     },
   },
+  decorators: [RedesignDecorator, StoreDecorator(redesignState)],
 } as Meta<typeof Input>;
 
 type Story = StoryObj<typeof meta>;

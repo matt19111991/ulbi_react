@@ -44,6 +44,10 @@
   right: 0;
 }
 
+.selected {
+  background-color: var(--light-bg-redesigned);
+}
+
 .trigger {
   background: none;
   border: none;
