@@ -8,9 +8,8 @@ import { ArticleTypeTabs } from '@/features/ArticleTypeTabs';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
-import { Input } from '@/shared/ui/deprecated/Input';
-
 import { Card } from '@/shared/ui/redesigned/Card';
+import { Input } from '@/shared/ui/redesigned/Input';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 
 import { SortOrder } from '@/shared/types/sort';
@@ -47,7 +46,7 @@ export const ArticlesFilters = memo(
 
     return (
       <Card className={classNames(classes.ArticlesFilters, {}, [className])} padding='24'>
-        <VStack gap='32'>
+        <VStack align='start' gap='32'>
           <Input
             className={classNames('', { [classes.loading]: areLoading })}
             fullWidth
