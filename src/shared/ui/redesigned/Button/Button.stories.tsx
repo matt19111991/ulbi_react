@@ -47,6 +47,37 @@ export const OrangeClear: Story = {
 
 OrangeClear.decorators = [ThemeDecorator(Theme.ORANGE)];
 
+// Primary filled button
+
+export const PrimaryFilled: Story = {
+  args: {
+    children: 'Text',
+    variant: 'filled',
+  },
+};
+
+// Dark filled button
+
+export const DarkFilled: Story = {
+  args: {
+    children: 'Text',
+    variant: 'filled',
+  },
+};
+
+DarkFilled.decorators = [ThemeDecorator(Theme.DARK)];
+
+// Orange filled button
+
+export const OrangeFilled: Story = {
+  args: {
+    children: 'Text',
+    variant: 'filled',
+  },
+};
+
+OrangeFilled.decorators = [ThemeDecorator(Theme.ORANGE)];
+
 // Primary outline button
 
 export const PrimaryOutline: Story = {
