@@ -59,4 +59,15 @@ export const Orange: Story = {
 
 Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
 
+// Tabs in column
+
+export const Column: Story = {
+  args: {
+    direction: 'column',
+    onTabClick: action('onTabClick'),
+    tabs,
+    value: 'tab 2',
+  },
+};
+
 export default meta;
