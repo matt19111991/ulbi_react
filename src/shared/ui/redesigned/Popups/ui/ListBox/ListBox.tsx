@@ -1,4 +1,4 @@
-import { Fragment, ReactNode } from 'react';
+import { Fragment, ReactNode, useMemo } from 'react';
 import { Listbox as HeadlessListBox } from '@headlessui/react';
 
 import CheckIcon from '@/shared/assets/icons/check-16-12.svg';
@@ -45,6 +45,8 @@ const ListBox = <T extends string>({
 }: ListBoxProps<T>) => {
   const optionsClasses = [mapDirectionClass[direction], popupClasses.menu];
 
+  const selectedItem = useMemo(() => items?.find((item) => item.value === value), [items, value]);
+
   return (
     <VStack align='start' gap='4'>
       {label && <span>{`${label} >`}</span>}
@@ -57,7 +59,9 @@ const ListBox = <T extends string>({
         value={value}
       >
         <HeadlessListBox.Button as='div' className={classes.trigger}>
-          <Button disabled={readonly}>{value ?? defaultValue}</Button>
+          <Button disabled={readonly} variant='filled'>
+            {selectedItem?.content ?? defaultValue}
+          </Button>
         </HeadlessListBox.Button>
 
         <HeadlessListBox.Options className={classNames(classes.options, {}, optionsClasses)}>
@@ -75,6 +79,7 @@ const ListBox = <T extends string>({
                     {
                       [popupClasses.active]: active,
                       [popupClasses.disabled]: item.disabled,
+                      [popupClasses.selected]: selected,
                     },
                     [],
                   )}

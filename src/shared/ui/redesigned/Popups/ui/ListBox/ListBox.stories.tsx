@@ -30,7 +30,7 @@ export const Primary: Story = {
       { content: 'Третий пункт', value: '789' },
     ],
     onChange: action('onChange'),
-    value: 'Первый пункт',
+    value: '123',
   },
 };
 
@@ -45,7 +45,7 @@ export const Dark: Story = {
       { content: 'Третий пункт', value: '789' },
     ],
     onChange: action('onChange'),
-    value: 'Первый пункт',
+    value: '123',
   },
 };
 
@@ -62,7 +62,7 @@ export const Orange: Story = {
       { content: 'Третий пункт', value: '789' },
     ],
     onChange: action('onChange'),
-    value: 'Первый пункт',
+    value: '123',
   },
 };
 
@@ -79,7 +79,7 @@ export const ReadOnly: Story = {
       { content: 'Третий пункт', value: '789' },
     ],
     readonly: true,
-    value: 'Первый пункт',
+    value: '123',
   },
 };
 
@@ -94,7 +94,7 @@ export const DisabledOption: Story = {
       { content: 'Третий пункт', value: '789' },
     ],
     onChange: action('onChange'),
-    value: 'Первый пункт',
+    value: '123',
   },
 };
 
