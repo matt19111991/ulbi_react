@@ -1,4 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+
+import IconSvg from '@/shared/assets/tests/storybook3.svg';
 
 import {
   RedesignDecorator,
@@ -11,6 +13,12 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 import { Theme } from '@/shared/const/theme';
 
 import { Input } from './Input';
+
+const InlineBlockDecorator = (Story: StoryFn) => (
+  <div style={{ color: 'var(--icon-redesigned)', display: 'inline-block' }}>
+    <Story />
+  </div>
+);
 
 const meta = {
   title: 'shared/new/Input',
@@ -34,6 +42,8 @@ export const Primary: Story = {
   },
 };
 
+Primary.decorators = [InlineBlockDecorator];
+
 // Dark input
 
 export const Dark: Story = {
@@ -43,7 +53,7 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [InlineBlockDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange input
 
@@ -54,7 +64,7 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [InlineBlockDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Input with auto focus
 
@@ -65,6 +75,8 @@ export const AutoFocus: Story = {
   },
 };
 
+AutoFocus.decorators = [InlineBlockDecorator];
+
 // Full width input
 
 export const FullWidth: Story = {
@@ -72,13 +84,6 @@ export const FullWidth: Story = {
     fullWidth: true,
     value: '12345',
   },
-  decorators: [
-    (Story) => (
-      <div style={{ border: '1px solid black', padding: 16 }}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 // Read only input
@@ -89,5 +94,37 @@ export const ReadOnly: Story = {
     value: '12345',
   },
 };
+
+ReadOnly.decorators = [InlineBlockDecorator];
+
+// Input with addon left
+
+export const AddonLeft: Story = {
+  args: {
+    addonLeft: (
+      <div style={{ alignItems: 'center', display: 'flex', margin: '0 8px 2px 0' }}>
+        <IconSvg />
+      </div>
+    ),
+    value: '12345',
+  },
+};
+
+AddonLeft.decorators = [InlineBlockDecorator];
+
+// Input with addon right
+
+export const AddonRight: Story = {
+  args: {
+    addonRight: (
+      <div style={{ alignItems: 'center', display: 'flex', marginBottom: 2 }}>
+        <IconSvg />
+      </div>
+    ),
+    value: '12345',
+  },
+};
+
+AddonRight.decorators = [InlineBlockDecorator];
 
 export default meta;

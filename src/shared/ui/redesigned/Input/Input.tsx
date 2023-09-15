@@ -3,7 +3,7 @@ import {
   HTMLInputTypeAttribute,
   InputHTMLAttributes,
   memo,
-  SyntheticEvent,
+  ReactNode,
   useEffect,
   useRef,
   useState,
@@ -22,6 +22,8 @@ type HTMLInputProps = Omit<
 >;
 
 interface InputProps extends HTMLInputProps {
+  addonLeft?: ReactNode;
+  addonRight?: ReactNode;
   autoFocus?: boolean;
   className?: string;
   fullWidth?: boolean;
@@ -34,6 +36,8 @@ interface InputProps extends HTMLInputProps {
 
 export const Input = memo(
   ({
+    addonLeft,
+    addonRight,
     autoFocus,
     className,
     fullWidth,
@@ -44,17 +48,12 @@ export const Input = memo(
     value,
     ...rest
   }: InputProps) => {
-    const [caretPosition, setCaretPosition] = useState(0);
     const [isFocused, setIsFocused] = useState(false);
 
     const ref = useRef<HTMLInputElement>(null);
 
-    const isCaretVisible = isFocused && !readOnly;
-
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
       onChange?.(e.target.value); // 'onChange?.()' => функция не будет вызвана, если не будет передана
-
-      setCaretPosition(e.target.value.length);
     };
 
     const onBlur = (): void => {
@@ -63,15 +62,6 @@ export const Input = memo(
 
     const onFocus = (): void => {
       setIsFocused(true);
-    };
-
-    // лайфхак для onSelect события и TypeScript
-    const onSelect = (e: SyntheticEvent<HTMLInputElement, Event>): void => {
-      const target = e.target as HTMLInputElement;
-
-      // перемещаем каретку вслед за курсором. исправляем кейс, когда каретка
-      // всегда стоит в конце, а мы переместили курсор в середину введенного текста
-      setCaretPosition(target.selectionStart || 0);
     };
 
     useEffect(() => {
@@ -83,7 +73,10 @@ export const Input = memo(
     }, [autoFocus]);
 
     const wrapperMods: Mods = {
+      [classes.focused]: isFocused,
       [classes.readonly]: readOnly,
+      [classes.withAddonLeft]: Boolean(addonLeft),
+      [classes.widthAddonLeft]: Boolean(addonRight),
     };
 
     const inputMods: Mods = {
@@ -92,31 +85,22 @@ export const Input = memo(
 
     return (
       <div className={classNames(classes.InputWrapper, wrapperMods, [className])}>
-        {placeholder && <div className={classes.placeholder}>{`${placeholder}>`}</div>}
+        <div className={classes.addonLeft}>{addonLeft}</div>
 
-        <div className={classes.caretWrapper}>
-          <input
-            className={classNames(classes.input, inputMods, [])}
-            onBlur={onBlur}
-            onChange={onChangeHandler}
-            onFocus={onFocus}
-            onSelect={onSelect}
-            readOnly={readOnly}
-            ref={ref}
-            type={type}
-            value={value}
-            {...rest}
-          />
+        <input
+          className={classNames(classes.input, inputMods, [])}
+          onBlur={onBlur}
+          onChange={onChangeHandler}
+          onFocus={onFocus}
+          placeholder={placeholder}
+          readOnly={readOnly}
+          ref={ref}
+          type={type}
+          value={value}
+          {...rest}
+        />
 
-          {isCaretVisible && (
-            <span
-              className={classes.caret}
-              style={{
-                left: `${caretPosition * 9}px`,
-              }}
-            />
-          )}
-        </div>
+        <div className={classes.addonRight}>{addonRight}</div>
       </div>
     );
   },
