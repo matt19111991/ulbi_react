@@ -1,6 +1,7 @@
 import { Fragment, ReactNode, useMemo } from 'react';
 import { Listbox as HeadlessListBox } from '@headlessui/react';
 
+import ArrowIcon from '@/shared/assets/icons/arrow-redesigned.svg';
 import CheckIcon from '@/shared/assets/icons/check-16-12.svg';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -9,6 +10,7 @@ import { genericMemo } from '@/shared/lib/components/genericMemo/genericMemo';
 import { DropdownDirection } from '@/shared/types/ui';
 
 import { Button } from '../../../Button/Button';
+import { Icon } from '../../../Icon/Icon';
 import { HStack, VStack } from '../../../Stack';
 
 import { mapDirectionClass } from '../../styles/consts';
@@ -59,7 +61,7 @@ const ListBox = <T extends string>({
         value={value}
       >
         <HeadlessListBox.Button as='div' className={classes.trigger}>
-          <Button disabled={readonly} variant='filled'>
+          <Button addonRight={<Icon Svg={ArrowIcon} />} disabled={readonly} variant='filled'>
             {selectedItem?.content ?? defaultValue}
           </Button>
         </HeadlessListBox.Button>
