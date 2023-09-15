@@ -14,7 +14,7 @@ const tabs = [
 ];
 
 const meta = {
-  title: 'shared/old/Tabs',
+  title: 'shared/new/Tabs',
   component: Tabs,
   argTypes: {
     backgroundColor: {
