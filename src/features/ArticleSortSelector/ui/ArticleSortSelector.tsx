@@ -64,9 +64,9 @@ export const ArticleSortSelector = memo(
       <ToggleFeatures
         feature='isAppRedesigned'
         on={
-          <div className={classNames(classes.ArticleSortSelector, {}, [className])}>
-            <VStack gap='8'>
-              <Text title={`${t('Сортировать по')}:`} />
+          <div className={className}>
+            <VStack align='start' gap='8'>
+              <Text text={`${t('Сортировать по')}:`} />
 
               <ListBox items={sortFieldOptions} onChange={onChangeSort} value={sort} />
 

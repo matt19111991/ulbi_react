@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
+import { ArticleSortField } from '@/entities/Article';
+
 import {
   RedesignDecorator,
   redesignState,
@@ -53,7 +55,10 @@ OrangeOld.decorators = [ThemeDecorator(Theme.ORANGE)];
 // Primary article sort selector new
 
 export const PrimaryNew: Story = {
-  args: {},
+  args: {
+    order: 'asc',
+    sort: ArticleSortField.CREATED,
+  },
 };
 
 PrimaryNew.decorators = [RedesignDecorator, StoreDecorator(stateArticleSortSelectorRedesigned)];
@@ -61,7 +66,10 @@ PrimaryNew.decorators = [RedesignDecorator, StoreDecorator(stateArticleSortSelec
 // Dark article sort selector new
 
 export const DarkNew: Story = {
-  args: {},
+  args: {
+    order: 'asc',
+    sort: ArticleSortField.CREATED,
+  },
 };
 
 DarkNew.decorators = [
@@ -73,7 +81,10 @@ DarkNew.decorators = [
 // Orange article sort selector new
 
 export const OrangeNew: Story = {
-  args: {},
+  args: {
+    order: 'asc',
+    sort: ArticleSortField.CREATED,
+  },
 };
 
 OrangeNew.decorators = [
