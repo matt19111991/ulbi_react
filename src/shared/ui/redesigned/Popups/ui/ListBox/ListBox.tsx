@@ -32,6 +32,7 @@ interface ListBoxProps<T> {
   label?: string;
   onChange: (value: T) => void;
   readonly?: boolean;
+  stack?: 'horizontal' | 'vertical';
   value?: T;
 }
 
@@ -43,15 +44,24 @@ const ListBox = <T extends string>({
   label,
   onChange,
   readonly,
+  stack = 'vertical',
   value,
 }: ListBoxProps<T>) => {
   const optionsClasses = [mapDirectionClass[direction], popupClasses.menu];
 
   const selectedItem = useMemo(() => items?.find((item) => item.value === value), [items, value]);
 
+  const horizontally = stack === 'horizontal';
+
+  const Stack = horizontally ? HStack : VStack;
+
   return (
-    <VStack align='start' gap='4'>
-      {label && <span>{`${label} >`}</span>}
+    <Stack
+      align={horizontally ? 'center' : 'start'}
+      gap={horizontally ? '8' : '4'}
+      max={horizontally}
+    >
+      {label && <span>{label}</span>}
 
       <HeadlessListBox
         as='div'
@@ -97,7 +107,7 @@ const ListBox = <T extends string>({
           ))}
         </HeadlessListBox.Options>
       </HeadlessListBox>
-    </VStack>
+    </Stack>
   );
 };
 

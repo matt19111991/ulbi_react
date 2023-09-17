@@ -113,6 +113,22 @@ export const DefaultValue: Story = {
   },
 };
 
+// Horizontal list box
+
+export const Horizontal: Story = {
+  args: {
+    defaultValue: 'Второй пункт',
+    label: 'Укажите значение',
+    items: [
+      { content: 'Первый пункт', value: '123' },
+      { content: 'Второй пункт', value: '456' },
+      { content: 'Третий пункт', value: '789' },
+    ],
+    onChange: action('onChange'),
+    stack: 'horizontal',
+  },
+};
+
 // Bottom left direction list box
 
 export const BottomLeftDirection: Story = {
