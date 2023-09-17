@@ -36,4 +36,6 @@
 
 .logo {
   pointer-events: none;
+  position: relative;
+  z-index: var(--overlay-z-index);
 }
