@@ -1,13 +1,11 @@
 {
-  "Ваш возраст": "Enter your age",
-  "Ваше имя": "Enter first name",
-  "Ваша фамилия": "Enter last name",
-  "Введите имя пользователя": "Enter username",
-  "Введите ссылку на аватар": "Enter avatar link",
-  "Выберите город": "Select city",
+  "Возраст": "Age",
+  "Город": "City",
   "Данные профиля не указаны": "Profile data is empty",
+  "Имя": "First name",
   "Имя и фамилия обязательны": "First name and last name are required",
-  "Некорретная ссылка для аватара": "Avatar link is empty",
+  "Имя пользователя": "Username",
+  "Некорректная ссылка для аватарки": "Avatar link is empty",
   "Некорректное название города": "Incorrect city",
   "Некорректное название страны": "Incorrect country name",
   "Некорректное имя пользователя": "Incorrect username",
@@ -21,6 +19,8 @@
   "Редактировать": "Edit",
   "Серверная ошибка при сохранении": "Server error during save profile data",
   "Сохранить": "Save",
+  "Ссылка на аватар": "Avatar link",
   "Укажите валюту": "Select currency",
-  "Укажите страну": "Select country"
+  "Укажите страну": "Select country",
+  "Фамилия": "Last name"
 }

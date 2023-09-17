@@ -53,7 +53,7 @@ export const EditableProfileCard = memo(({ className, id }: EditableProfileCardP
 
   const validateErrorsTranslates = {
     [ValidateProfileError.INCORRECT_AGE]: t('Некорректный возраст'),
-    [ValidateProfileError.INCORRECT_AVATAR]: t('Некорретная ссылка для аватара'),
+    [ValidateProfileError.INCORRECT_AVATAR]: t('Некорректная ссылка для аватарки'),
     [ValidateProfileError.INCORRECT_CITY]: t('Некорректное название города'),
     [ValidateProfileError.INCORRECT_COUNTRY]: t('Некорректное название страны'),
     [ValidateProfileError.INCORRECT_CURRENCY]: t('Некорректный тип валюты'),
