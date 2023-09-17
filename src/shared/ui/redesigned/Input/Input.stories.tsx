@@ -127,4 +127,37 @@ export const AddonRight: Story = {
 
 AddonRight.decorators = [InlineBlockDecorator];
 
+// Input with label
+
+export const Label: Story = {
+  args: {
+    label: 'Input',
+    value: '12345',
+  },
+};
+
+Label.decorators = [InlineBlockDecorator];
+
+// Small input
+
+export const Small: Story = {
+  args: {
+    size: 's',
+    value: '12345',
+  },
+};
+
+Small.decorators = [InlineBlockDecorator];
+
+// Large input
+
+export const Large: Story = {
+  args: {
+    size: 'l',
+    value: '12345',
+  },
+};
+
+Large.decorators = [InlineBlockDecorator];
+
 export default meta;

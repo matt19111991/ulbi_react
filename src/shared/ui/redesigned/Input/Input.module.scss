@@ -3,7 +3,6 @@
   border: 2px solid var(--icon-redesigned);
   border-radius: 48px;
   display: flex;
-  height: 32px;
   padding: 8px 16px;
   width: 100%;
 }
@@ -51,3 +50,18 @@
 .withAddonRight {
   padding-right: 8px;
 }
+
+// Sizes
+
+.s {
+  height: 32px;
+}
+
+.m {
+  height: 38px;
+}
+
+.l {
+  height: 44px;
+}
+
