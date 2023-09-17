@@ -1,15 +1,25 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { StateSchema } from '@/app/providers/StoreProvider';
+
 import { Country } from '@/entities/Country';
 import { Currency } from '@/entities/Currency';
 
 import Avatar from '@/shared/assets/tests/storybook.jpg';
 
+import {
+  RedesignDecorator,
+  redesignState,
+} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
+
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
 
 import { ProfileCard } from './ProfileCard';
+
+const stateProfileCard: DeepPartial<StateSchema> = redesignState;
 
 const meta = {
   title: 'entities/ProfileCard',
@@ -23,9 +33,9 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Primary profile card
+// Primary profile card old
 
-export const Primary: Story = {
+export const PrimaryOld: Story = {
   args: {
     data: {
       age: 22,
@@ -40,9 +50,9 @@ export const Primary: Story = {
   },
 };
 
-// Dark profile card
+// Dark profile card old
 
-export const Dark: Story = {
+export const DarkOld: Story = {
   args: {
     data: {
       age: 22,
@@ -57,11 +67,11 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+DarkOld.decorators = [ThemeDecorator(Theme.DARK)];
 
-// Orange profile card
+// Orange profile card old
 
-export const Orange: Story = {
+export const OrangeOld: Story = {
   args: {
     data: {
       age: 22,
@@ -76,22 +86,71 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeOld.decorators = [ThemeDecorator(Theme.ORANGE)];
 
-// Loading profile card
+// Primary profile card new
 
-export const Loading: Story = {
+export const PrimaryNew: Story = {
   args: {
-    isLoading: true,
+    data: {
+      age: 22,
+      avatar: Avatar,
+      city: 'New-York',
+      country: Country.USA,
+      currency: Currency.USD,
+      first: 'Jack',
+      lastname: 'Smith',
+      username: 'admin',
+    },
   },
 };
 
-// Error profile card
+PrimaryNew.decorators = [RedesignDecorator, StoreDecorator(stateProfileCard)];
 
-export const Error: Story = {
+// Dark profile card new
+
+export const DarkNew: Story = {
   args: {
-    error: 'true',
+    data: {
+      age: 22,
+      avatar: Avatar,
+      city: 'New-York',
+      country: Country.USA,
+      currency: Currency.USD,
+      first: 'Jack',
+      lastname: 'Smith',
+      username: 'admin',
+    },
   },
 };
+
+DarkNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator(stateProfileCard),
+  ThemeDecorator(Theme.DARK),
+];
+
+// Orange profile card new
+
+export const OrangeNew: Story = {
+  args: {
+    data: {
+      age: 22,
+      avatar: Avatar,
+      city: 'New-York',
+      country: Country.USA,
+      currency: Currency.USD,
+      first: 'Jack',
+      lastname: 'Smith',
+      username: 'admin',
+    },
+  },
+};
+
+OrangeNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator(stateProfileCard),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 export default meta;
