@@ -115,6 +115,23 @@ export const ColumnGap16: Story = {
   },
 };
 
+// Column gap 24px
+
+export const ColumnGap24: Story = {
+  args: {
+    children: (
+      <>
+        <div>First</div>
+        <div>Second</div>
+        <div>Third</div>
+        <div>Fourth</div>
+      </>
+    ),
+    direction: 'column',
+    gap: '24',
+  },
+};
+
 // Column gap 32px
 
 export const ColumnGap32: Story = {
