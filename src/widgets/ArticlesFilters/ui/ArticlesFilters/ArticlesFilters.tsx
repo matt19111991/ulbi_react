@@ -56,6 +56,7 @@ export const ArticlesFilters = memo(
             fullWidth
             onChange={onChangeSearch}
             placeholder={t('Поиск')}
+            size='s'
             value={search}
           />
 
