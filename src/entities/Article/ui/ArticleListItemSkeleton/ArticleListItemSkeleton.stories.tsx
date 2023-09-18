@@ -138,7 +138,6 @@ export const PrimaryPlateItemSkeletonNew: Story = {
 PrimaryPlateItemSkeletonNew.decorators = [
   RedesignDecorator,
   StoreDecorator(stateArticleListItemSkeletonRedesigned),
-  ThemeDecorator(Theme.DARK),
 ];
 
 // Dark article plate item skeleton new

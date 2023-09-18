@@ -1,64 +1,136 @@
-.list {
-  display: flex;
-  height: calc(100% - 30px);
-
-  .card {
+.ArticleListItemSkeletonDeprecated {
+  &.list {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: calc(100% - 5.5px)
+    height: calc(100% - 30px);
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: calc(100% - 5.5px)
+    }
+
+    .date {
+      margin-left: auto;
+    }
+
+    .footer {
+      align-items: center;
+      display: flex;
+      margin-top: 16px;
+    }
+
+    .header {
+      align-items: center;
+      display: flex;
+    }
+
+    .image {
+      margin: 16px 0;
+      width: 100%;
+    }
+
+    .title {
+      margin-top: 8px;
+    }
+
+    .username {
+      margin-left: 8px;
+    }
   }
 
-  .date {
-    margin-left: auto;
-  }
+  &.plate {
+    width: 230px;
 
-  .footer {
-    align-items: center;
-    display: flex;
-    margin-top: 16px;
-  }
+    .imageWrapper {
+      height: 200px;
+      position: relative;
+      width: 200px;
+    }
 
-  .header {
-    align-items: center;
-    display: flex;
-  }
+    .image {
+      height: 200px;
+      width: 200px;
+    }
 
-  .image {
-    margin: 16px 0;
-    width: 100%;
-  }
+    .infoWrapper {
+      align-items: center;
+      display: flex;
+      margin-top: 16px;
+    }
 
-  .title {
-    margin-top: 8px;
-  }
-
-  .username {
-    margin-left: 8px;
+    .title {
+      margin-top: 16px;
+    }
   }
 }
 
-.plate {
-  width: 230px;
+// Redesigned
 
-  .imageWrapper {
-    height: 200px;
-    position: relative;
-    width: 200px;
-  }
-
-  .image {
-    height: 200px;
-    width: 200px;
-  }
-
-  .infoWrapper {
-    align-items: center;
+.ArticleListItemSkeletonRedesigned {
+  &.list {
     display: flex;
-    margin-top: 16px;
+    height: 350px;
+    width: 100%;
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: calc(100% - 5.5px)
+    }
+
+    .date {
+      margin-left: auto;
+    }
+
+    .footer {
+      align-items: center;
+      display: flex;
+      margin-top: 16px;
+    }
+
+    .header {
+      align-items: center;
+      display: flex;
+    }
+
+    .image {
+      margin: 16px 0;
+      width: 100%;
+    }
+
+    .title {
+      margin-top: 8px;
+    }
+
+    .username {
+      margin-left: 8px;
+    }
   }
 
-  .title {
-    margin-top: 16px;
+  &.plate {
+    width: 216px;
+
+    .imageWrapper {
+      height: 200px;
+      position: relative;
+      width: 200px;
+    }
+
+    .image {
+      height: 200px;
+      width: 200px;
+    }
+
+    .infoWrapper {
+      align-items: center;
+      display: flex;
+      margin-top: 16px;
+    }
+
+    .title {
+      margin-top: 16px;
+    }
   }
 }

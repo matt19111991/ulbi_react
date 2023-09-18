@@ -31,9 +31,15 @@ export const ArticleListItemSkeleton = memo(({ className, view }: ArticleListIte
     off: () => SkeletonDeprecated,
   });
 
+  const mainClass = toggleFeatures({
+    name: 'isAppRedesigned',
+    on: () => classes.ArticleListItemSkeletonRedesigned,
+    off: () => classes.ArticleListItemSkeletonDeprecated,
+  });
+
   if (view === ArticleView.LIST) {
     return (
-      <div className={classNames('', {}, [className, classes[view]])}>
+      <div className={classNames(mainClass, {}, [className, classes[view]])}>
         <Card className={classes.card}>
           <div className={classes.top}>
             <div className={classes.header}>
@@ -56,7 +62,7 @@ export const ArticleListItemSkeleton = memo(({ className, view }: ArticleListIte
   }
 
   return (
-    <div className={classNames('', {}, [className, classes[view]])}>
+    <div className={classNames(mainClass, {}, [className, classes[view]])}>
       <Card>
         <div className={classes.imageWrapper}>
           <Skeleton className={classes.image} height={200} width={200} />
