@@ -8,6 +8,7 @@ export type FlexAlign = 'start' | 'center' | 'end';
 export type FlexDirection = 'column' | 'row';
 export type FlexGap = '4' | '8' | '16' | '24' | '32';
 export type FlexJustify = 'start' | 'center' | 'end' | 'between';
+export type FlexWrap = 'nowrap' | 'wrap';
 
 const alignClasses: Record<FlexAlign, string> = {
   start: classes.alignStart,
@@ -46,6 +47,7 @@ export interface FlexProps extends DivProps {
   gap?: FlexGap;
   justify?: FlexJustify;
   max?: boolean;
+  wrap?: FlexWrap;
 }
 
 export const Flex = memo(
@@ -57,10 +59,12 @@ export const Flex = memo(
     gap,
     justify = 'start',
     max,
+    wrap = 'nowrap',
     ...rest
   }: FlexProps) => {
     const additionalClasses = [
       className,
+      classes[wrap],
       alignClasses[align],
       directionClasses[direction],
       gap && gapClasses[gap],

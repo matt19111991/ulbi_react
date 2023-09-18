@@ -71,3 +71,13 @@
 .max {
   width: 100%;
 }
+
+// wrap
+
+.nowrap {
+  flex-wrap: nowrap;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}

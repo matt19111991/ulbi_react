@@ -260,4 +260,62 @@ export const RowGap32: Story = {
   },
 };
 
+// Nowrap
+
+export const Nowrap: Story = {
+  args: {
+    children: (
+      <>
+        <div>First</div>
+        <div>Second</div>
+        <div>Third</div>
+        <div>Fourth</div>
+        <div>Fifth</div>
+        <div>Sixth</div>
+        <div>Sevenths</div>
+        <div>Eighth</div>
+        <div>Ninth</div>
+        <div>Tenth</div>
+      </>
+    ),
+    wrap: 'nowrap',
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ border: '1px solid black', overflow: 'hidden', padding: 8, width: 300 }}>
+        <Story />
+      </div>
+    ),
+  ],
+};
+
+// Wrap
+
+export const Wrap: Story = {
+  args: {
+    children: (
+      <>
+        <div>First</div>
+        <div>Second</div>
+        <div>Third</div>
+        <div>Fourth</div>
+        <div>Fifth</div>
+        <div>Sixth</div>
+        <div>Sevenths</div>
+        <div>Eighth</div>
+        <div>Ninth</div>
+        <div>Tenth</div>
+      </>
+    ),
+    wrap: 'wrap',
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ border: '1px solid black', overflow: 'hidden', padding: 8, width: 300 }}>
+        <Story />
+      </div>
+    ),
+  ],
+};
+
 export default meta;
