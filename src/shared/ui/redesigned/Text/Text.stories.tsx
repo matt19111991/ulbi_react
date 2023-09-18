@@ -179,4 +179,14 @@ export const SizeSmall: Story = {
   },
 };
 
+// Bold
+
+export const Bold: Story = {
+  args: {
+    bold: true,
+    title: 'Title lorem ipsun',
+    text: 'Description Description Description Description',
+  },
+};
+
 export default meta;

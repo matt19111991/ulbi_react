@@ -71,3 +71,12 @@
     font: var(--font-xl-redesigned);
   }
 }
+
+// Font weight
+
+.bold {
+  .title,
+  .text {
+    font-weight: 700;
+  }
+}

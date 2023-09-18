@@ -26,6 +26,7 @@ const mapSizeToHeaderTag: Record<TextSize, HeaderTagType> = {
 
 interface TextProps {
   align?: TextAlign;
+  bold?: boolean;
   className?: string;
   'data-testid'?: string;
   size?: TextSize;
@@ -37,6 +38,7 @@ interface TextProps {
 export const Text = memo(
   ({
     align = 'left',
+    bold,
     className,
     'data-testid': dataTestId = 'Text',
     size = 'm',
@@ -50,7 +52,7 @@ export const Text = memo(
     const additionalClasses = [className, classes[align], classes[variant], sizeClass];
 
     return (
-      <div className={classNames('', {}, additionalClasses)}>
+      <div className={classNames('', { [classes.bold]: bold }, additionalClasses)}>
         {title && (
           <HeaderTag className={classes.title} data-testid={`${dataTestId}.Header`}>
             {title}
