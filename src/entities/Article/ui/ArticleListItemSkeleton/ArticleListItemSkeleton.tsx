@@ -49,12 +49,16 @@ export const ArticleListItemSkeleton = memo(({ className, view }: ArticleListIte
             </div>
 
             <Skeleton className={classes.title} height={24} width={250} />
+            <Skeleton className={classes.subtitle} height={24} width={250} />
           </div>
 
           <Skeleton className={classes.image} height={200} />
 
+          <Skeleton className={classes.description} height={60} />
+
           <div className={classes.footer}>
-            <Skeleton height={36} width={200} />
+            <Skeleton height={36} width={180} />
+            <Skeleton className={classes.review} height={36} width={100} />
           </div>
         </Card>
       </div>

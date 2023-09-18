@@ -64,7 +64,7 @@ export const ArticleListItemRedesigned = memo(
 
             <Text bold title={article.title} />
 
-            <Text size='s' title={article.subtitle} />
+            <Text className={classes.subtitle} size='s' title={article.subtitle} />
 
             <AppImage
               alt={article.title}

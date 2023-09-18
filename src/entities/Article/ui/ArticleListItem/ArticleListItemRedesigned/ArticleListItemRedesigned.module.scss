@@ -1,8 +1,16 @@
 .list {
   .image {
-    max-height: 420px;
+    max-height: 320px;
     object-fit: cover;
     width: 100%;
+  }
+
+  .subtitle > * {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: calc(100% - 60px);
   }
 
   .textBlock {

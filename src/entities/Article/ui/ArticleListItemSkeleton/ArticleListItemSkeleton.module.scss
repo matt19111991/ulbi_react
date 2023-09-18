@@ -14,6 +14,12 @@
       margin-left: auto;
     }
 
+    .description,
+    .review,
+    .subtitle {
+      display: none;
+    }
+
     .footer {
       align-items: center;
       display: flex;
@@ -70,24 +76,34 @@
 .ArticleListItemSkeletonRedesigned {
   &.list {
     display: flex;
-    height: 350px;
+    height: 648px;
     width: 100%;
 
     .card {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      width: calc(100% - 5.5px)
+      justify-content: flex-start;
+      padding: 24px;
+      width: 100%;
     }
 
     .date {
-      margin-left: auto;
+      display: none;
+    }
+
+    .description {
+      margin: 6px 0 14px 0;
     }
 
     .footer {
       align-items: center;
       display: flex;
+      justify-content: space-between;
       margin-top: 16px;
+
+      & > div {
+        height: 320px;
+      }
     }
 
     .header {
@@ -96,12 +112,17 @@
     }
 
     .image {
+      height: 320px !important;
       margin: 16px 0;
       width: 100%;
     }
 
+    .subtitle {
+      margin-bottom: 5px;
+    }
+
     .title {
-      margin-top: 8px;
+      margin: 20px 0 16px;
     }
 
     .username {
