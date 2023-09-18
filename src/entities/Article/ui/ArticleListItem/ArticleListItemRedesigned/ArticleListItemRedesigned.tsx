@@ -1,0 +1,121 @@
+import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import EyeIcon from '@/shared/assets/icons/eye-redesigned.svg';
+
+import { getRouteArticleDetails } from '@/shared/const/router';
+
+import { classNames } from '@/shared/lib/classNames/classNames';
+
+import { AppImage } from '@/shared/ui/redesigned/AppImage';
+import { AppLink } from '@/shared/ui/redesigned/AppLink';
+import { Avatar } from '@/shared/ui/redesigned/Avatar';
+import { Button } from '@/shared/ui/redesigned/Button';
+import { Card } from '@/shared/ui/redesigned/Card';
+import { Icon } from '@/shared/ui/redesigned/Icon';
+import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
+import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
+import { Text } from '@/shared/ui/redesigned/Text';
+
+import { ArticleBlockType, ArticleView } from '../../../model/consts/articleConsts';
+
+import { ArticleTextBlock } from '../../../model/types/article';
+
+import { ArticleListItemProps } from '../ArticleListItem';
+
+import classes from './ArticleListItemRedesigned.module.scss';
+
+export const ArticleListItemRedesigned = memo(
+  ({ article, className, target, view }: ArticleListItemProps) => {
+    const { t } = useTranslation();
+
+    if (view === ArticleView.LIST) {
+      const firstTextBlock = article.blocks.find(
+        (block) => block.type === ArticleBlockType.TEXT,
+      ) as ArticleTextBlock;
+
+      return (
+        <Card
+          className={classNames('', {}, [className, classes[view]])}
+          data-testid='ArticleListItem'
+          max
+          padding='24'
+        >
+          <VStack align='start' gap='16' max>
+            <HStack gap='8' max>
+              <Avatar size={32} src={article.user.avatar} />
+
+              <Text bold text={article.user.username} />
+
+              <Text text={article.createdAt} />
+            </HStack>
+
+            <Text bold title={article.title} />
+
+            <Text size='s' title={article.subtitle} />
+
+            <AppImage
+              alt={article.title}
+              className={classes.image}
+              loadingFallback={<Skeleton height={250} width='100%' />}
+              src={article.img}
+            />
+
+            {firstTextBlock?.paragraphs && (
+              <Text
+                className={classes.textBlock}
+                text={firstTextBlock.paragraphs.slice(0, 2).join(' ')}
+              />
+            )}
+
+            <HStack justify='between' max>
+              <AppLink target={target} to={getRouteArticleDetails(article.id)}>
+                <Button variant='outline'>{t('Читать далее')}...</Button>
+              </AppLink>
+
+              <HStack gap='8'>
+                <Icon Svg={EyeIcon} />
+
+                <Text className={classes.views} text={String(article.views || 0)} />
+              </HStack>
+            </HStack>
+          </VStack>
+        </Card>
+      );
+    }
+
+    return (
+      <AppLink
+        className={classNames('', {}, [className, classes[view]])}
+        data-testid='ArticleListItem'
+        target={target}
+        to={getRouteArticleDetails(article.id)}
+      >
+        <Card className={classes.card}>
+          <div className={classes.imageWrapper}>
+            <AppImage
+              alt={article.title}
+              className={classes.image}
+              loadingFallback={<Skeleton height={200} width={200} />}
+              src={article.img}
+            />
+
+            <Text className={classes.date} text={article.createdAt} />
+          </div>
+
+          <div className={classes.infoWrapper}>
+            <Text className={classes.types} text={article.type.join(', ')} />
+
+            <Text className={classes.views} text={String(article.views || 0)} />
+
+            <Icon Svg={EyeIcon} />
+          </div>
+
+          <Text className={classes.title} text={article.title} />
+        </Card>
+      </AppLink>
+    );
+  },
+);
+
+ArticleListItemRedesigned.displayName = 'ArticleListItemRedesigned';

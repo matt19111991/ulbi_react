@@ -1,0 +1,55 @@
+.list {
+  .image {
+    max-height: 340px;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .textBlock {
+    height: 72px;
+    overflow-y: hidden;
+  }
+
+  .views {
+    margin-left: auto;
+  }
+}
+
+.plate {
+  cursor: pointer;
+  transition: .2s; // плавный переход при увеличении карточки при наведении
+  width: 230px;
+
+  .card {
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  &:hover {
+    opacity: .8;
+    transform: scale(1.01); // увеличение карточки при наведении
+  }
+
+  .imageWrapper {
+    height: 200px;
+    position: relative;
+    width: 200px;
+  }
+
+  .image {
+    height: 200px;
+    object-fit: contain;
+    width: 200px;
+  }
+
+  .infoWrapper {
+    align-items: center;
+    display: flex;
+    margin-top: 8px;
+  }
+
+  .views {
+    margin-left: auto;
+    margin-right: 8px;
+  }
+}
