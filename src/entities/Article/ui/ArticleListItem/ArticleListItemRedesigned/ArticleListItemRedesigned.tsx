@@ -29,6 +29,20 @@ export const ArticleListItemRedesigned = memo(
   ({ article, className, target, view }: ArticleListItemProps) => {
     const { t } = useTranslation();
 
+    const userInfo = (
+      <>
+        <Avatar size={32} src={article.user.avatar} />
+        <Text bold text={article.user.username} />
+      </>
+    );
+
+    const views = (
+      <HStack gap='8'>
+        <Icon Svg={EyeIcon} />
+        <Text className={classes.views} text={String(article.views || 0)} />
+      </HStack>
+    );
+
     if (view === ArticleView.LIST) {
       const firstTextBlock = article.blocks.find(
         (block) => block.type === ArticleBlockType.TEXT,
@@ -43,9 +57,7 @@ export const ArticleListItemRedesigned = memo(
         >
           <VStack align='start' gap='16' max>
             <HStack gap='8' max>
-              <Avatar size={32} src={article.user.avatar} />
-
-              <Text bold text={article.user.username} />
+              {userInfo}
 
               <Text text={article.createdAt} />
             </HStack>
@@ -73,11 +85,7 @@ export const ArticleListItemRedesigned = memo(
                 <Button variant='outline'>{t('Читать далее')}...</Button>
               </AppLink>
 
-              <HStack gap='8'>
-                <Icon Svg={EyeIcon} />
-
-                <Text className={classes.views} text={String(article.views || 0)} />
-              </HStack>
+              {views}
             </HStack>
           </VStack>
         </Card>
@@ -91,27 +99,29 @@ export const ArticleListItemRedesigned = memo(
         target={target}
         to={getRouteArticleDetails(article.id)}
       >
-        <Card className={classes.card}>
-          <div className={classes.imageWrapper}>
-            <AppImage
-              alt={article.title}
-              className={classes.image}
-              loadingFallback={<Skeleton height={200} width={200} />}
-              src={article.img}
-            />
+        <Card border='round' className={classes.card}>
+          <AppImage
+            alt={article.title}
+            className={classes.image}
+            loadingFallback={<Skeleton height={200} width={200} />}
+            src={article.img}
+          />
 
-            <Text className={classes.date} text={article.createdAt} />
-          </div>
+          <VStack align='start' className={classes.info} gap='4' max>
+            <Text className={classes.title} text={article.title} />
 
-          <div className={classes.infoWrapper}>
-            <Text className={classes.types} text={article.type.join(', ')} />
+            <VStack className={classes.footer} gap='4' max>
+              <HStack justify='between' max>
+                <Text className={classes.date} text={article.createdAt} />
 
-            <Text className={classes.views} text={String(article.views || 0)} />
+                {views}
+              </HStack>
 
-            <Icon Svg={EyeIcon} />
-          </div>
-
-          <Text className={classes.title} text={article.title} />
+              <HStack gap='8' max>
+                {userInfo}
+              </HStack>
+            </VStack>
+          </VStack>
         </Card>
       </AppLink>
     );

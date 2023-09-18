@@ -26,3 +26,34 @@
   overflow-y: hidden;
   width: 100%;
 }
+
+// Redesigned
+
+.listRedesigned {
+  .card {
+    margin-bottom: 30px;
+  }
+}
+
+.plateRedesigned {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 30px;
+
+  .card {
+    display: inline-flex;
+    height: 300px;
+  }
+
+  .row {
+    display: flex;
+    gap: 30px;
+  }
+}
+
+.inlineRedesigned {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+}

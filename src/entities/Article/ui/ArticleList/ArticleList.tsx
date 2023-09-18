@@ -5,10 +5,12 @@ import { AutoSizer, List, ListRowProps, WindowScroller } from 'react-virtualized
 import { PAGE_ID } from '@/shared/const/page';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { ToggleFeatures } from '@/shared/lib/features';
 import { useWindowWidth } from '@/shared/lib/hooks/useWindowWidth/useWindowWidth';
 
-import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
+import { Text as TextDeprecated, TextTheme } from '@/shared/ui/deprecated/Text';
 
+import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 import { HStack } from '@/shared/ui/redesigned/Stack';
 
 import { ArticleView } from '../../model/consts/articleConsts';
@@ -153,9 +155,23 @@ export const ArticleList = memo(
 
     if (!isLoading && !articles.length) {
       return (
-        <HStack className={classNames('', {}, [className, classes[view]])} justify='center' max>
-          <Text theme={TextTheme.ERROR} title={t('Статьи не найдены')} />
-        </HStack>
+        <ToggleFeatures
+          feature='isAppRedesigned'
+          on={
+            <HStack
+              className={classNames('', {}, [className, classes[`${view}Redesigned`]])}
+              justify='center'
+              max
+            >
+              <TextRedesigned variant='error' title={t('Статьи не найдены')} />
+            </HStack>
+          }
+          off={
+            <HStack className={classNames('', {}, [className, classes[view]])} justify='center' max>
+              <TextDeprecated theme={TextTheme.ERROR} title={t('Статьи не найдены')} />
+            </HStack>
+          }
+        />
       );
     }
 
@@ -182,11 +198,23 @@ export const ArticleList = memo(
         ));
 
       return (
-        <div className={classNames(classes.inline, {}, [className, classes[view]])}>
-          {articles.length ? articles.map(renderArticle) : null}
+        <ToggleFeatures
+          feature='isAppRedesigned'
+          on={
+            <HStack gap='16' className={classNames(classes.inlineRedesigned, {})} wrap='wrap'>
+              {articles.length ? articles.map(renderArticle) : null}
 
-          {isLoading && renderSkeletons()}
-        </div>
+              {isLoading && renderSkeletons()}
+            </HStack>
+          }
+          off={
+            <div className={classNames(classes.inline, {}, [className, classes[view]])}>
+              {articles.length ? articles.map(renderArticle) : null}
+
+              {isLoading && renderSkeletons()}
+            </div>
+          }
+        />
       );
     }
 
@@ -199,31 +227,58 @@ export const ArticleList = memo(
           // без 'scrollTop' с каждой подгрузкой все больше увеличивается пустое пространство снизу
           scrollTop,
         }) => (
-          <div className={classNames('', {}, [className, classes[view]])} data-testid='ArticleList'>
-            {articleItems.length ? (
-              /*
-                'AutoSizer' сохраняет высоту и ширину виртуализированного списка
-                 Можно проскроллить список, уйти со страницы со списком и вернуться обратно на последнюю
-                 позицию в списке
+          <ToggleFeatures
+            feature='isAppRedesigned'
+            on={
+              <HStack className={classNames('', {})} data-testid='ArticleList' gap='16' wrap='wrap'>
+                {articleItems.length ? (
+                  /*
+                    'AutoSizer' сохраняет высоту и ширину виртуализированного списка
+                     Можно проскроллить список, уйти со страницы со списком и вернуться обратно на последнюю
+                     позицию в списке
 
-                 'disableHeight' - отключаем динамическую высоту
-              */
-              <AutoSizer disableHeight>
-                {({ height, width }) => (
-                  <List
-                    autoHeight // без 'autoHeight' у списка будет собственный скролл
-                    height={height ?? 700}
-                    rowCount={rowCount}
-                    rowHeight={view === ArticleView.LIST ? 700 : 330}
-                    rowRenderer={rowRenderer}
-                    scrollTop={scrollTop}
-                    // у '.Page' класса нужно учитывать 'padding' в 45px слева и 20px справа
-                    width={width ?? 700}
-                  />
-                )}
-              </AutoSizer>
-            ) : null}
-          </div>
+                     'disableHeight' - отключаем динамическую высоту
+                  */
+                  <AutoSizer disableHeight>
+                    {({ height, width }) => (
+                      <List
+                        autoHeight // без 'autoHeight' у списка будет собственный скролл
+                        height={height ?? 700}
+                        rowCount={rowCount}
+                        rowHeight={view === ArticleView.LIST ? 700 : 330}
+                        rowRenderer={rowRenderer}
+                        scrollTop={scrollTop}
+                        // у '.Page' класса нужно учитывать 'padding' в 45px слева и 20px справа
+                        width={width ?? 700}
+                      />
+                    )}
+                  </AutoSizer>
+                ) : null}
+              </HStack>
+            }
+            off={
+              <div
+                className={classNames('', {}, [className, classes[view]])}
+                data-testid='ArticleList'
+              >
+                {articleItems.length ? (
+                  <AutoSizer disableHeight>
+                    {({ height, width }) => (
+                      <List
+                        autoHeight
+                        height={height ?? 700}
+                        rowCount={rowCount}
+                        rowHeight={view === ArticleView.LIST ? 700 : 330}
+                        rowRenderer={rowRenderer}
+                        scrollTop={scrollTop}
+                        width={width ?? 700}
+                      />
+                    )}
+                  </AutoSizer>
+                ) : null}
+              </div>
+            }
+          />
         )}
       </WindowScroller>
     );
