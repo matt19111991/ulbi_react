@@ -9,6 +9,7 @@
 
 - Убрать большой отступ снизу для статей (в самом низу у view mode === list)
 - Исправить preview для загружаемой картинки (plate view redesigned)
+- Протестировать и поправить article list plate view redesigned
 - ArticleList component redesigned. Добавить stories. Дебаг
 
 ---- 

@@ -5,7 +5,7 @@ import { AutoSizer, List, ListRowProps, WindowScroller } from 'react-virtualized
 import { PAGE_ID } from '@/shared/const/page';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { ToggleFeatures } from '@/shared/lib/features';
+import { toggleFeatures, ToggleFeatures } from '@/shared/lib/features';
 import { useWindowWidth } from '@/shared/lib/hooks/useWindowWidth/useWindowWidth';
 
 import { Text as TextDeprecated, TextTheme } from '@/shared/ui/deprecated/Text';
@@ -91,10 +91,17 @@ export const ArticleList = memo(
 
     const pageNodeWidthWithoutIndents = pageNodeWidthWithIndents - 20 - 45; // страница без padding
 
+    // размер карточки, + gap между карточками
+    const cardSizeWithGap = toggleFeatures({
+      name: 'isAppRedesigned',
+      on: () => 204 + 16,
+      off: () => 230 + 30,
+    });
+
     const itemsPerRow =
       view === ArticleView.LIST
         ? 1 // один элемент на строку
-        : Math.floor(pageNodeWidthWithoutIndents / (230 + 30)); // страница без padding / (размер карточки + gap между карточками)
+        : Math.floor(pageNodeWidthWithoutIndents / cardSizeWithGap); // страница без padding / размер карточки
 
     let rowCount = 1; // всегда отрисовывается как минимум одна строка
 
@@ -146,8 +153,14 @@ export const ArticleList = memo(
         }
       }
 
+      const containerClass = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => classes.rowRedesigned,
+        off: () => classes.rowDeprecated,
+      });
+
       return (
-        <div className={classes.row} key={key} style={style}>
+        <div className={containerClass} key={key} style={style}>
           {items}
         </div>
       );

@@ -13,11 +13,6 @@
     display: inline-flex;
     height: 300px;
   }
-
-  .row {
-    display: flex;
-    gap: 30px;
-  }
 }
 
 .inline {
@@ -27,6 +22,10 @@
   width: 100%;
 }
 
+.rowDeprecated {
+  display: flex;
+  gap: 30px;
+}
 // Redesigned
 
 .listRedesigned {
@@ -38,16 +37,10 @@
 .plateRedesigned {
   display: flex;
   flex-wrap: nowrap;
-  gap: 30px;
 
   .card {
     display: inline-flex;
     height: 300px;
-  }
-
-  .row {
-    display: flex;
-    gap: 30px;
   }
 }
 
@@ -56,4 +49,9 @@
   overflow-x: auto;
   overflow-y: hidden;
   width: 100%;
+}
+
+.rowRedesigned {
+  display: flex;
+  gap: 16px;
 }
