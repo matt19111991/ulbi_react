@@ -1,5 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { StateSchema } from '@/app/providers/StoreProvider';
+
+import {
+  RedesignDecorator,
+  redesignState,
+} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
+
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -9,6 +17,8 @@ import { article } from '@/shared/lib/generators/articles';
 import { ArticleView } from '../../model/consts/articleConsts';
 
 import { ArticleListItem } from './ArticleListItem';
+
+const stateArticleListItemRedesigned: DeepPartial<StateSchema> = redesignState;
 
 const meta = {
   title: 'entities/ArticleListItem',
@@ -22,66 +32,151 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Primary article list item
+// Primary article list item old
 
-export const PrimaryListItem: Story = {
+export const PrimaryListItemOld: Story = {
   args: {
     article,
     view: ArticleView.LIST,
   },
 };
 
-// Dark article list item
+// Dark article list item old
 
-export const DarkListItem: Story = {
+export const DarkListItemOld: Story = {
   args: {
     article,
     view: ArticleView.LIST,
   },
 };
 
-DarkListItem.decorators = [ThemeDecorator(Theme.DARK)];
+DarkListItemOld.decorators = [ThemeDecorator(Theme.DARK)];
 
-// Orange article list item
+// Orange article list item old
 
-export const OrangeListItem: Story = {
+export const OrangeListItemOld: Story = {
   args: {
     article,
     view: ArticleView.LIST,
   },
 };
 
-OrangeListItem.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeListItemOld.decorators = [ThemeDecorator(Theme.ORANGE)];
 
-// Primary article plate item
+// Primary article plate item old
 
-export const PrimaryPlateItem: Story = {
+export const PrimaryPlateItemOld: Story = {
   args: {
     article,
     view: ArticleView.PLATE,
   },
 };
 
-// Dark article plate item
+// Dark article plate item old
 
-export const DarkPlateItem: Story = {
+export const DarkPlateItemOld: Story = {
   args: {
     article,
     view: ArticleView.PLATE,
   },
 };
 
-DarkPlateItem.decorators = [ThemeDecorator(Theme.DARK)];
+DarkPlateItemOld.decorators = [ThemeDecorator(Theme.DARK)];
 
-// Orange article plate item
+// Orange article plate item old
 
-export const OrangePlateItem: Story = {
+export const OrangePlateItemOld: Story = {
   args: {
     article,
     view: ArticleView.PLATE,
   },
 };
 
-OrangePlateItem.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangePlateItemOld.decorators = [ThemeDecorator(Theme.ORANGE)];
+
+// Primary article list item new
+
+export const PrimaryListItemNew: Story = {
+  args: {
+    article,
+    view: ArticleView.LIST,
+  },
+};
+
+PrimaryListItemNew.decorators = [RedesignDecorator, StoreDecorator(stateArticleListItemRedesigned)];
+
+// Dark article list item new
+
+export const DarkListItemNew: Story = {
+  args: {
+    article,
+    view: ArticleView.LIST,
+  },
+};
+
+DarkListItemNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator(stateArticleListItemRedesigned),
+  ThemeDecorator(Theme.DARK),
+];
+
+// Orange article list item new
+
+export const OrangeListItemNew: Story = {
+  args: {
+    article,
+    view: ArticleView.LIST,
+  },
+};
+
+OrangeListItemNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator(stateArticleListItemRedesigned),
+  ThemeDecorator(Theme.ORANGE),
+];
+
+// Primary article plate item new
+
+export const PrimaryPlateItemNew: Story = {
+  args: {
+    article,
+    view: ArticleView.PLATE,
+  },
+};
+
+PrimaryPlateItemNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator(stateArticleListItemRedesigned),
+];
+
+// Dark article plate item new
+
+export const DarkPlateItemNew: Story = {
+  args: {
+    article,
+    view: ArticleView.PLATE,
+  },
+};
+
+DarkPlateItemNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator(stateArticleListItemRedesigned),
+  ThemeDecorator(Theme.DARK),
+];
+
+// Orange article plate item new
+
+export const OrangePlateItemNew: Story = {
+  args: {
+    article,
+    view: ArticleView.PLATE,
+  },
+};
+
+OrangePlateItemNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator(stateArticleListItemRedesigned),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 export default meta;
