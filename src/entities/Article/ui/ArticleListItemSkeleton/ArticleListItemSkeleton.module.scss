@@ -2,12 +2,13 @@
   &.list {
     display: flex;
     height: calc(100% - 30px);
+    width: 100%;
 
     .card {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      width: calc(100% - 5.5px)
+      width: calc(100% - 5.5px);
     }
 
     .date {
