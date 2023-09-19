@@ -1,4 +1,6 @@
 .list {
+  height: 648px;
+
   .image {
     max-height: 320px;
     object-fit: cover;
@@ -22,15 +24,14 @@
 .plate {
   cursor: pointer;
   transition: .2s; // плавный переход при увеличении карточки при наведении
-  width: 100%;
 
   .card {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    height: 350px;
+    height: 346px;
     overflow: hidden;
-    width: 240px;
+    padding: 0;
+    width: 233px;
   }
 
   &:hover {
@@ -44,10 +45,8 @@
   }
 
   .image {
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
-    min-height: 200px;
-    max-height: 200px;
+    min-height: 140px;
+    max-height: 140px;
     object-fit: cover;
     width: 100%;
   }
@@ -55,6 +54,18 @@
   .info {
     height: 100%;
     padding: 8px 8px 16px 8px;
+  }
+
+  .title > * {
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    display: -webkit-box;
+    font: var(--font-l-redesigned);
+    height: 123px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 218px;
+    word-break: break-all;
   }
 
   .views {

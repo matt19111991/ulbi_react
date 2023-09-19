@@ -94,7 +94,7 @@ export const ArticleList = memo(
     // размер карточки, + gap между карточками
     const cardSizeWithGap = toggleFeatures({
       name: 'isAppRedesigned',
-      on: () => 204 + 16,
+      on: () => 206 + 16,
       off: () => 230 + 30,
     });
 
@@ -258,7 +258,7 @@ export const ArticleList = memo(
                         autoHeight // без 'autoHeight' у списка будет собственный скролл
                         height={height ?? 700}
                         rowCount={rowCount}
-                        rowHeight={view === ArticleView.LIST ? 700 : 330}
+                        rowHeight={view === ArticleView.LIST ? 700 : 362}
                         rowRenderer={rowRenderer}
                         scrollTop={scrollTop}
                         // у '.Page' класса нужно учитывать 'padding' в 45px слева и 20px справа

@@ -92,14 +92,14 @@
     }
 
     .description {
-      margin: 6px 0 14px 0;
+      margin: 4px 0 14px 0;
     }
 
     .footer {
       align-items: center;
       display: flex;
       justify-content: space-between;
-      margin-top: 16px;
+      margin-top: 12px;
 
       & > div {
         height: 320px;
@@ -133,6 +133,11 @@
   &.plate {
     width: 216px;
 
+    .card {
+      border-radius: 24px;
+      padding: 12px;
+    }
+
     .imageWrapper {
       height: 200px;
       position: relative;
@@ -140,14 +145,16 @@
     }
 
     .image {
-      height: 200px;
-      width: 200px;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      height: 192px !important;
+      width: 193px !important;
     }
 
     .infoWrapper {
       align-items: center;
       display: flex;
-      margin-top: 16px;
+      margin-top: 4px;
     }
 
     .title {
