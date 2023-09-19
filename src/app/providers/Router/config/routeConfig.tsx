@@ -9,6 +9,7 @@ import { ForbiddenPage } from '@/pages/ForbiddenPage';
 import { MainPage } from '@/pages/MainPage';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
+import { SettingsPage } from '@/pages/SettingsPage';
 
 import {
   AppRoutes,
@@ -21,6 +22,7 @@ import {
   getRouteForbidden,
   getRouteMain,
   getRouteProfile,
+  getRouteSettings,
 } from '@/shared/const/router';
 
 import { AppRoutesProps } from '@/shared/types/router';
@@ -69,6 +71,10 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     authOnly: true,
     element: <ProfilePage />,
     path: getRouteProfile(':id'),
+  },
+  [AppRoutes.SETTINGS]: {
+    element: <SettingsPage />,
+    path: getRouteSettings(),
   },
 
   // должен идти последним; охватывает все маршруты, кроме указанных выше
