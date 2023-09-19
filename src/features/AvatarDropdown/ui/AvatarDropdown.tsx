@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { getUserAuthData, isUserAdmin, isUserManager, userActions } from '@/entities/User';
 
-import { getRouteAdmin, getRouteProfile } from '@/shared/const/router';
+import { getRouteAdmin, getRouteProfile, getRouteSettings } from '@/shared/const/router';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { ToggleFeatures } from '@/shared/lib/features';
@@ -38,6 +38,10 @@ export const AvatarDropdown = memo(({ className, storybookAvatar }: Notification
       {
         content: t('Профиль'),
         href: getRouteProfile(authData?.id || ''),
+      },
+      {
+        content: t('Настройки'),
+        href: getRouteSettings(),
       },
       {
         content: t('Выйти'),
