@@ -40,7 +40,7 @@
   }
 
   .footer {
-    height: 100%;
+    height: 70px;
     justify-content: flex-end;
   }
 
@@ -58,10 +58,10 @@
 
   .title > * {
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 3;
     display: -webkit-box;
     font: var(--font-l-redesigned);
-    height: 123px;
+    height: 100px;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 218px;

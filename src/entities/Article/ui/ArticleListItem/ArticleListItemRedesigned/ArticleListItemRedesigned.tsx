@@ -56,7 +56,7 @@ export const ArticleListItemRedesigned = memo(
           padding='24'
         >
           <VStack align='start' gap='16' max>
-            <HStack gap='8' max>
+            <HStack gap='16' max>
               {userInfo}
 
               <Text text={article.createdAt} />
