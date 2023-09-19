@@ -253,12 +253,12 @@ export const ArticleList = memo(
                      'disableHeight' - отключаем динамическую высоту
                   */
                   <AutoSizer disableHeight>
-                    {({ height, width }) => (
+                    {({ width }) => (
                       <List
                         autoHeight // без 'autoHeight' у списка будет собственный скролл
-                        height={height ?? 700}
+                        height={rowCount * (ArticleView.LIST ? 664 : 362)}
                         rowCount={rowCount}
-                        rowHeight={view === ArticleView.LIST ? 700 : 362}
+                        rowHeight={view === ArticleView.LIST ? 664 : 362}
                         rowRenderer={rowRenderer}
                         scrollTop={scrollTop}
                         // у '.Page' класса нужно учитывать 'padding' в 45px слева и 20px справа
