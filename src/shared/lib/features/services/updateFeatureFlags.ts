@@ -30,9 +30,9 @@ export const updateFeatureFlags = createAsyncThunk<
     );
 
     window.location.reload();
+
+    return undefined;
   } catch (e) {
     return thunkApi.rejectWithValue('error');
   }
-
-  return thunkApi.rejectWithValue('error');
 });
