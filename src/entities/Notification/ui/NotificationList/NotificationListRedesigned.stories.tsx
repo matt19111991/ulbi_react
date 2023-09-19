@@ -2,6 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
+import {
+  RedesignDecorator,
+  redesignState,
+} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
+
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -9,16 +14,17 @@ import { Theme } from '@/shared/const/theme';
 
 import { NotificationList } from './NotificationList';
 
-const stateNotificationList: DeepPartial<StateSchema> = {};
+const stateNotificationListRedesigned: DeepPartial<StateSchema> = redesignState;
 
 const meta = {
-  title: 'entities/NotificationList',
+  title: 'entities/NotificationList/new',
   component: NotificationList,
   argTypes: {
     backgroundColor: {
       control: 'color',
     },
   },
+  decorators: [RedesignDecorator, StoreDecorator(stateNotificationListRedesigned)],
 } as Meta<typeof NotificationList>;
 
 type Story = StoryObj<typeof meta>;
@@ -29,15 +35,13 @@ export const Primary: Story = {
   args: {},
 };
 
-Primary.decorators = [StoreDecorator(stateNotificationList)];
-
 // Dark notification list
 
 export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [StoreDecorator(stateNotificationList), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [ThemeDecorator(Theme.DARK)];
 
 // Orange notification list
 
@@ -45,7 +49,7 @@ export const Orange: Story = {
   args: {},
 };
 
-Orange.decorators = [StoreDecorator(stateNotificationList), ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
 
 // Loading notification list
 
@@ -55,8 +59,6 @@ export const Loading: Story = {
   },
 };
 
-Loading.decorators = [StoreDecorator(stateNotificationList)];
-
 // Error notification list
 
 export const Error: Story = {
@@ -64,7 +66,5 @@ export const Error: Story = {
     storybookError: 'Error',
   },
 };
-
-Error.decorators = [StoreDecorator(stateNotificationList)];
 
 export default meta;

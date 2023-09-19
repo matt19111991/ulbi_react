@@ -2,11 +2,14 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { toggleFeatures, ToggleFeatures } from '@/shared/lib/features';
 
-import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
-import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
+import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
+import { Text as TextDeprecated, TextTheme } from '@/shared/ui/deprecated/Text';
 
+import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
+import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 
 import { useGetNotificationsQuery } from '../../api/notificationApi';
 
@@ -33,6 +36,12 @@ export const NotificationList = memo(
     const isLoading = __PROJECT__ === 'storybook' ? storybookLoading : queryLoading;
     const error = __PROJECT__ === 'storybook' ? storybookError : queryError;
 
+    const Skeleton = toggleFeatures({
+      name: 'isAppRedesigned',
+      on: () => SkeletonRedesigned,
+      off: () => SkeletonDeprecated,
+    });
+
     if (isLoading) {
       return (
         <VStack className={classNames('', {}, [className])} gap='16' max>
@@ -46,7 +55,13 @@ export const NotificationList = memo(
     if (error) {
       return (
         <HStack className={classNames(classes.error, {}, [className])}>
-          <Text theme={TextTheme.ERROR} text={t('Ошибка при загрузке уведомлений')} />
+          <ToggleFeatures
+            feature='isAppRedesigned'
+            on={<TextRedesigned text={t('Ошибка при загрузке уведомлений')} variant='error' />}
+            off={
+              <TextDeprecated theme={TextTheme.ERROR} text={t('Ошибка при загрузке уведомлений')} />
+            }
+          />
         </HStack>
       );
     }
