@@ -6,7 +6,7 @@ import { FeatureFlags } from '@/shared/types/featureFlags';
 
 import { updateFeatureFlagsMutation } from '../api/featureFlagsApi';
 
-import { getAllFeatureFlags } from '../lib/setGetFeatures';
+import { getAllFeatureFlags } from '../lib/setGetFeatures/setGetFeatures';
 
 interface UpdateFeatureFlagsOptions {
   newFeatures: Partial<FeatureFlags>;
