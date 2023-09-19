@@ -48,6 +48,12 @@
   &.plate {
     width: 230px;
 
+    .date,
+    .userInfo,
+    .views {
+      display: none;
+    }
+
     .imageWrapper {
       height: 200px;
       position: relative;
@@ -136,13 +142,17 @@
     .card {
       border-radius: 24px;
       height: 346px;
+      overflow: hidden;
       padding: 0;
       width: 233px;
     }
 
+    .date {
+      display: inline-block;
+      margin: 54px 52px 8px 8px;
+    }
+
     .image {
-      border-top-left-radius: 12px;
-      border-top-right-radius: 12px;
       height: 138px !important;
       width: 100% !important;
     }
@@ -152,9 +162,18 @@
     }
 
     .title {
-      height: 100px;
-      margin: 8px;
-      width: 218px;
+      height: 32px !important;
+      margin: 16px 8px;
+      width: 218px !important;
+    }
+
+    .userInfo {
+      margin: 0 8px 8px 8px;
+    }
+
+    .views {
+      display: inline-block;
+      margin: 54px 4px 8px 8px;
     }
   }
 }
