@@ -10,6 +10,10 @@
   display: flex;
   padding: 8px 16px;
 
+  &.s {
+    padding: 2px 12px;
+  }
+
   &:hover {
     color: var(--accent-redesigned);
 

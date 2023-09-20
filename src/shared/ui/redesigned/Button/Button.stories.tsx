@@ -111,6 +111,16 @@ export const OrangeOutline: Story = {
 
 OrangeOutline.decorators = [ThemeDecorator(Theme.ORANGE)];
 
+// Outline small button
+
+export const OutlineSmall: Story = {
+  args: {
+    children: 'Text',
+    size: 's',
+    variant: 'outline',
+  },
+};
+
 // Outline large button
 
 export const OutlineLarge: Story = {

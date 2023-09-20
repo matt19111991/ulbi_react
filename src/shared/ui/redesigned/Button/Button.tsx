@@ -6,7 +6,7 @@ import classes from './Button.module.scss';
 
 export type ButtonVariant = 'clear' | 'filled' | 'outline';
 
-export type ButtonSize = 'm' | 'l' | 'xl';
+export type ButtonSize = 's' | 'm' | 'l' | 'xl';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   addonLeft?: ReactNode;
