@@ -7,6 +7,8 @@ import { ArticleDetails } from '@/entities/Article';
 import { ArticleRating } from '@/features/ArticleRating';
 import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
 
+import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
 
 import {
@@ -25,13 +27,16 @@ import { Page } from '@/widgets/Page';
 
 import { articleDetailsPageReducer } from '../../model/slices';
 
+import { AdditionalInfoContainer } from '../AdditionalInfoContainer/AdditionalInfoContainer';
 import { ArticleDetailsComments } from '../ArticleDetailsComments/ArticleDetailsComments';
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
+import { DetailsContainer } from '../DetailsContainer/DetailsContainer';
 
 import classes from './ArticleDetailsPage.module.scss';
 
 interface ArticleDetailsPageProps {
   className?: string;
+  isStorybook?: boolean;
   storybookError?: string;
   storybookId?: string;
 }
@@ -42,6 +47,7 @@ const reducers: ReducersList = {
 
 const ArticleDetailsPage = ({
   className,
+  isStorybook = false,
   storybookError,
   storybookId,
 }: ArticleDetailsPageProps) => {
@@ -64,23 +70,46 @@ const ArticleDetailsPage = ({
 
   return (
     <DynamicModuleLoader reducers={reducers}>
-      <Page className={classNames(classes.ArticleDetailsPage, {}, [className])}>
-        <VStack gap='16' max>
-          <ArticleDetailsPageHeader />
+      <ToggleFeatures
+        feature='isAppRedesigned'
+        on={
+          <StickyContentLayout
+            content={
+              <Page className={classNames(classes.ArticleDetailsPage, {}, [className])}>
+                <VStack gap='16' max>
+                  <DetailsContainer />
 
-          <ArticleDetails id={articleId!} />
+                  <ArticleRating articleId={articleId} />
 
-          <ToggleFeatures
-            feature='isArticleRatingEnabled'
-            on={<ArticleRating articleId={articleId} />}
-            off={<Card>{t('Оценка статей скоро появится')}</Card>}
+                  <ArticleRecommendationsList storybookError={storybookError} />
+
+                  <ArticleDetailsComments id={articleId!} />
+                </VStack>
+              </Page>
+            }
+            right={<AdditionalInfoContainer isStorybook={isStorybook} />}
           />
+        }
+        off={
+          <Page className={classNames(classes.ArticleDetailsPage, {}, [className])}>
+            <VStack gap='16' max>
+              <ArticleDetailsPageHeader />
 
-          <ArticleRecommendationsList storybookError={storybookError} />
+              <ArticleDetails id={articleId!} />
 
-          <ArticleDetailsComments id={articleId!} />
-        </VStack>
-      </Page>
+              <ToggleFeatures
+                feature='isArticleRatingEnabled'
+                on={<ArticleRating articleId={articleId} />}
+                off={<Card>{t('Оценка статей скоро появится')}</Card>}
+              />
+
+              <ArticleRecommendationsList storybookError={storybookError} />
+
+              <ArticleDetailsComments id={articleId!} />
+            </VStack>
+          </Page>
+        }
+      />
     </DynamicModuleLoader>
   );
 };
