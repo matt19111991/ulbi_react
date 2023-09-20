@@ -30,7 +30,7 @@ const stateEditable: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'pages/ArticleDetailsPageHeader',
+  title: 'pages/ArticleDetailsPage/ArticleDetailsPageHeader',
   component: ArticleDetailsPageHeader,
   argTypes: {
     background: {

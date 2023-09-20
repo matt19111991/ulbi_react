@@ -21,7 +21,7 @@ const stateArticleInfiniteList: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'pages/ArticleInfiniteList',
+  title: 'pages/ArticlesPage/ArticleInfiniteList',
   component: ArticleInfiniteList,
   argTypes: {
     backgroundColor: {

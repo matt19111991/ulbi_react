@@ -42,7 +42,7 @@ const stateArticleDetailsComments: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'pages/ArticleDetailsComments',
+  title: 'pages/ArticleDetailsPage/ArticleDetailsComments',
   component: ArticleDetailsComments,
   argTypes: {
     backgroundColor: {
