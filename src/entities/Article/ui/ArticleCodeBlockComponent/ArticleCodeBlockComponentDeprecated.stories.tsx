@@ -17,7 +17,7 @@ const block: ArticleCodeBlock = {
 };
 
 const meta = {
-  title: 'entities/ArticleDetails/blocks/Code',
+  title: 'entities/ArticleDetails/blocks/Code/old',
   component: ArticleCodeBlockComponent,
   argTypes: {
     backgroundColor: {
