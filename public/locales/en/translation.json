@@ -1,4 +1,8 @@
 {
+  "{{count}} просмотров_zero": "{{count}} views",
+  "{{count}} просмотров_one": "{{count}} view",
+  "{{count}} просмотров_other": "{{count}} views",
+
   "Айти": "IT",
   "Вариант интерфейса": "Interface variant",
   "Ваш отзыв": "Your feedback",
@@ -41,6 +45,7 @@
   "Произошла непредвиденная ошибка": "An unexpected error occurred",
   "Просмотрам": "Views",
   "Профиль": "Profile",
+  "Редактировать": "Edit",
   "Создать статью": "Create an article",
   "Сортировать по": "Sort by",
   "Спасибо за оценку": "Thanks for your rate",
