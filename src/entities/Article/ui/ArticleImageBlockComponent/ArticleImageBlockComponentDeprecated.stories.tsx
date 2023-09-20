@@ -20,7 +20,7 @@ const block: ArticleImageBlock = {
 };
 
 const meta = {
-  title: 'entities/ArticleDetails/blocks/Image',
+  title: 'entities/ArticleDetails/blocks/Image/old',
   component: ArticleImageBlockComponent,
   argTypes: {
     backgroundColor: {
