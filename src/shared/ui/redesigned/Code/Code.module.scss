@@ -17,3 +17,14 @@
     stroke: var(--primary-color);
   }
 }
+
+// Redesigned
+
+.CodeRedesigned {
+  background-color: var(--light-bg-redesigned);
+  border: 1px solid var(--accent-redesigned);
+  border-radius: 16px;
+  padding: 20px;
+  position: relative;
+  overflow: auto;
+}
