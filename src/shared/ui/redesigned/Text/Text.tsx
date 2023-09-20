@@ -13,9 +13,9 @@ export type TextVariant = 'accent' | 'error' | 'primary';
 type HeaderTagType = 'h1' | 'h2' | 'h3';
 
 const mapSizeToClass: Record<TextSize, string> = {
-  s: 'size_s',
-  m: 'size_m',
-  l: 'size_l',
+  s: classes.size_s,
+  m: classes.size_m,
+  l: classes.size_l,
 };
 
 const mapSizeToHeaderTag: Record<TextSize, HeaderTagType> = {
