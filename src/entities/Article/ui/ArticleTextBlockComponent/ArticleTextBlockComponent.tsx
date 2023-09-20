@@ -1,8 +1,11 @@
 import { memo } from 'react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { ToggleFeatures } from '@/shared/lib/features';
 
-import { Text } from '@/shared/ui/deprecated/Text';
+import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
+
+import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 
 import { ArticleTextBlock } from '../../model/types/article';
 
@@ -16,12 +19,23 @@ interface ArticleTextBlockComponentProps {
 export const ArticleTextBlockComponent = memo(
   ({ block, className }: ArticleTextBlockComponentProps) => (
     <div className={classNames('', {}, [className])}>
-      {block.title && <Text className={classes.title} title={block.title} />}
+      {block.title && (
+        <ToggleFeatures
+          feature='isAppRedesigned'
+          on={<TextRedesigned className={classes.title} title={block.title} />}
+          off={<TextDeprecated className={classes.title} title={block.title} />}
+        />
+      )}
 
       {block.paragraphs.map((paragraph, index) => (
         // можно использовать 'index', т.к. массив изменяться не будет
-        // eslint-disable-next-line react/no-array-index-key
-        <Text className={classes.paragraph} key={index} text={paragraph} />
+        <ToggleFeatures
+          feature='isAppRedesigned'
+          // eslint-disable-next-line react/no-array-index-key
+          key={index}
+          on={<TextRedesigned className={classes.paragraph} text={paragraph} />}
+          off={<TextDeprecated className={classes.paragraph} text={paragraph} />}
+        />
       ))}
     </div>
   ),

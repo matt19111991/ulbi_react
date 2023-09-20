@@ -1,5 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { StateSchema } from '@/app/providers/StoreProvider';
+
+import {
+  RedesignDecorator,
+  redesignState,
+} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
+
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -20,14 +28,17 @@ const block: ArticleTextBlock = {
   type: ArticleBlockType.TEXT,
 };
 
+const stateArticleTextBlockComponentRedesigned: DeepPartial<StateSchema> = redesignState;
+
 const meta = {
-  title: 'entities/ArticleDetails/blocks/Text',
+  title: 'entities/ArticleDetails/blocks/Text/new',
   component: ArticleTextBlockComponent,
   argTypes: {
     backgroundColor: {
       control: 'color',
     },
   },
+  decorators: [RedesignDecorator, StoreDecorator(stateArticleTextBlockComponentRedesigned)],
 } as Meta<typeof ArticleTextBlockComponent>;
 
 type Story = StoryObj<typeof meta>;
