@@ -42,7 +42,7 @@ const App = () => {
       feature='isAppRedesigned'
       // приложение после редизайна
       on={
-        <div className={classNames('app_redesigned', {}, [])}>
+        <div className={classNames('app_redesigned', {}, [])} id='app'>
           <Suspense fallback=''>
             <MainLayout content={<AppRouter />} header={<Navbar />} sidebar={<Sidebar />} />
           </Suspense>
@@ -50,7 +50,7 @@ const App = () => {
       }
       // приложение до редизайна
       off={
-        <div className={classNames('app', {}, [])}>
+        <div className={classNames('app', {}, [])} id='app'>
           <Suspense fallback=''>
             <Navbar />
 

@@ -7,11 +7,13 @@ import {
   useAnimationLibraries,
 } from '@/shared/lib/components/AnimationProvider';
 
+import { toggleFeatures } from '@/shared/lib/features';
+
 import { useModal } from '@/shared/lib/hooks/useModal/useModal';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 
-import { Overlay } from '../../redesigned/Overlay/Overlay';
-import { Portal } from '../../redesigned/Portal/Portal';
+import { Overlay } from '../Overlay/Overlay';
+import { Portal } from '../Portal/Portal';
 
 import classes from './Drawer.module.scss';
 
@@ -25,10 +27,6 @@ interface DrawerProps {
 
 const height = window.innerHeight - 100; // общая высота окна - 100px
 
-/**
- * Устарел, используем новые компоненты из папки 'redesigned'
- * @deprecated
- */
 export const DrawerContent = ({ children, className, isOpen, lazy, onClose }: DrawerProps) => {
   const { Gesture, Spring } = useAnimationLibraries();
 
@@ -96,9 +94,19 @@ export const DrawerContent = ({ children, className, isOpen, lazy, onClose }: Dr
     [classes.opened]: isOpen,
   };
 
+  const additionalClasses = [
+    className,
+    theme,
+    toggleFeatures({
+      name: 'isAppRedesigned',
+      on: () => classes.drawerNew,
+      off: () => classes.drawerOld,
+    }),
+  ];
+
   return (
-    <Portal>
-      <div className={classNames(classes.Drawer, mods, [className, theme])}>
+    <Portal element={document.getElementById('app') ?? document.body}>
+      <div className={classNames(classes.Drawer, mods, additionalClasses)}>
         <Overlay onClick={onCloseModal} />
 
         <Spring.a.div // анимированный 'div'
@@ -130,10 +138,6 @@ const DrawerAsync = ({ children, ...rest }: DrawerProps) => {
   return <DrawerContent {...rest}>{children}</DrawerContent>;
 };
 
-/**
- * Устарел, используем новые компоненты из папки 'redesigned'
- * @deprecated
- */
 export const Drawer = ({ children, ...rest }: DrawerProps) => (
   <AnimationProvider>
     <DrawerAsync {...rest}>{children}</DrawerAsync>
