@@ -31,7 +31,7 @@ export const ArticleListItemRedesigned = memo(
 
     const userInfo = (
       <>
-        <Avatar size={32} src={article.user.avatar} />
+        <Avatar className={classes.avatar} size={32} src={article.user.avatar} />
         <Text bold text={article.user.username} />
       </>
     );
@@ -99,11 +99,11 @@ export const ArticleListItemRedesigned = memo(
         target={target}
         to={getRouteArticleDetails(article.id)}
       >
-        <Card border='round' className={classes.card}>
+        <Card border='round' className={classes.card} padding='0'>
           <AppImage
             alt={article.title}
             className={classes.image}
-            loadingFallback={<Skeleton height={230} width={230} />}
+            loadingFallback={<Skeleton height={230} width='100%' />}
             src={article.img}
           />
 

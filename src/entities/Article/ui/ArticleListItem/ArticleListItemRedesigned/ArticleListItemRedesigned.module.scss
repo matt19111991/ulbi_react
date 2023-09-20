@@ -25,6 +25,10 @@
   cursor: pointer;
   transition: .2s; // плавный переход при увеличении карточки при наведении
 
+  .avatar {
+    margin-left: 8px;
+  }
+
   .card {
     display: flex;
     flex-direction: column;
