@@ -1,0 +1,25 @@
+.StarRatingDeprecated {
+  .hovered {
+    fill: var(--primary-color); // закрашиваем звезды
+  }
+}
+
+.normal {
+  fill: none; // не закрашиваем звезды
+}
+
+.selected {
+  cursor: auto !important;
+}
+
+.starIcon {
+  cursor: pointer;
+}
+
+// Redesigned
+
+.StarRatingRedesigned {
+  .hovered {
+    fill: var(--icon-redesigned); // закрашиваем звезды
+  }
+}

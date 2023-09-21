@@ -1,20 +1,31 @@
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { StateSchema } from '@/app/providers/StoreProvider';
+
+import {
+  RedesignDecorator,
+  redesignState,
+} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
+
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
 
 import { StarRating } from './StarRating';
 
+const stateStarRatingRedesigned: DeepPartial<StateSchema> = redesignState;
+
 const meta = {
-  title: 'shared/StarRating',
+  title: 'shared/new/StarRating',
   component: StarRating,
   argTypes: {
     backgroundColor: {
       control: 'color',
     },
   },
+  decorators: [RedesignDecorator, StoreDecorator(stateStarRatingRedesigned)],
 } as Meta<typeof StarRating>;
 
 type Story = StoryObj<typeof meta>;
