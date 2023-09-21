@@ -12,6 +12,8 @@ import {
 
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
+import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
+
 import { Button as ButtonDeprecated, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import { Input as InputDeprecated } from '@/shared/ui/deprecated/Input';
 import { Text as TextDeprecated, TextTheme } from '@/shared/ui/deprecated/Text';
@@ -41,6 +43,7 @@ const initialReducers: ReducersList = {
 
 const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
   const dispatch = useAppDispatch();
+  const forceUpdate = useForceUpdate();
   const { t } = useTranslation();
 
   const error = useSelector(getLoginError);
@@ -68,12 +71,14 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
 
       if (response.meta.requestStatus === 'fulfilled') {
         onSuccess?.(); // закрываем модалку только на успешный респонс
+
+        forceUpdate(); // вызываем принудительную перерисовку всего интерфейса
       }
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log(`Error: ${e}`);
     }
-  }, [dispatch, onSuccess, password, username]);
+  }, [dispatch, forceUpdate, onSuccess, password, username]);
 
   return (
     <DynamicModuleLoader

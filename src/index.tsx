@@ -12,6 +12,8 @@ import App from '@/app/App';
 
 */ import '@/shared/config/i18n/i18n';
 
+import { ForceUpdateProvider } from '@/shared/lib/render/forceUpdate';
+
 import './app/styles/index.scss';
 
 /* Ошибка 'Uncaught Error: useNavigate() may be used only in the context of a <Router> component.',
@@ -36,9 +38,11 @@ root.render(
   <BrowserRouter>
     <StoreProvider>
       <ErrorBoundary>
-        <ThemeProvider>
-          <App />
-        </ThemeProvider>
+        <ForceUpdateProvider>
+          <ThemeProvider>
+            <App />
+          </ThemeProvider>
+        </ForceUpdateProvider>
       </ErrorBoundary>
     </StoreProvider>
   </BrowserRouter>,

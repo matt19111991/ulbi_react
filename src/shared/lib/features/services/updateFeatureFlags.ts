@@ -6,7 +6,7 @@ import { FeatureFlags } from '@/shared/types/featureFlags';
 
 import { updateFeatureFlagsMutation } from '../api/featureFlagsApi';
 
-import { getAllFeatureFlags } from '../lib/setGetFeatures/setGetFeatures';
+import { getAllFeatureFlags, setFeatureFlags } from '../lib/setGetFeatures/setGetFeatures';
 
 interface UpdateFeatureFlagsOptions {
   newFeatures: Partial<FeatureFlags>;
@@ -19,17 +19,19 @@ export const updateFeatureFlags = createAsyncThunk<
   ThunkConfig<string>
 >('user/saveJsonSettings', async ({ newFeatures, userId }, thunkApi) => {
   try {
+    const allFeatures = {
+      ...getAllFeatureFlags(),
+      ...newFeatures,
+    };
+
     await thunkApi.dispatch(
       updateFeatureFlagsMutation({
-        features: {
-          ...getAllFeatureFlags(),
-          ...newFeatures,
-        },
+        features: allFeatures,
         userId,
       }),
     );
 
-    window.location.reload();
+    setFeatureFlags(allFeatures);
 
     return undefined;
   } catch (e) {

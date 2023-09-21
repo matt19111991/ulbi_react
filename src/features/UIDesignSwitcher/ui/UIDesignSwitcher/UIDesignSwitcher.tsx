@@ -7,6 +7,8 @@ import { getUserAuthData } from '@/entities/User';
 import { getFeatureFlag, updateFeatureFlags } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
+import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
+
 import { ListBox } from '@/shared/ui/redesigned/Popups';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { HStack } from '@/shared/ui/redesigned/Stack';
@@ -20,6 +22,7 @@ interface UIDesignSwitcherProps {
 
 export const UIDesignSwitcher = memo(({ className }: UIDesignSwitcherProps) => {
   const dispatch = useAppDispatch();
+  const forceUpdate = useForceUpdate();
   const { t } = useTranslation();
 
   const authData = useSelector(getUserAuthData);
@@ -47,6 +50,8 @@ export const UIDesignSwitcher = memo(({ className }: UIDesignSwitcherProps) => {
       ).unwrap();
 
       setIsLoading(false);
+
+      forceUpdate(); // вызываем принудительную перерисовку всего интерфейса
     }
   };
 
