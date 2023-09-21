@@ -103,7 +103,7 @@ export const ArticleListItemRedesigned = memo(
           <AppImage
             alt={article.title}
             className={classes.image}
-            loadingFallback={<Skeleton height={230} width='100%' />}
+            loadingFallback={<Skeleton height={248} width='100%' />}
             src={article.img}
           />
 

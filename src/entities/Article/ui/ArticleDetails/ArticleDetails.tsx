@@ -119,9 +119,9 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
         feature='isAppRedesigned'
         on={
           <>
-            <SkeletonRedesigned border='50%' className={classes.avatar} height={200} width={200} />
-            <SkeletonRedesigned height={32} width={300} />
-            <SkeletonRedesigned height={24} width={600} />
+            <SkeletonRedesigned height={40} width={300} />
+            <SkeletonRedesigned height={32} width={600} />
+            <SkeletonRedesigned height={819} width='100%' />
             <SkeletonRedesigned height={200} width='100%' />
             <SkeletonRedesigned height={200} width='100%' />
           </>
