@@ -11,7 +11,6 @@
 - Исправить цвета для redesigned ArticleViewSelector
 - Пересмотреть stories LoginForm
 - Добавить stories для EditableProfileCard
-- Добавить stories для EditableProfilePageHeader
 
 ---- 
 

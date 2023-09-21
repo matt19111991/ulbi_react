@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
+import { RedesignDecorator } from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -18,6 +19,9 @@ const stateEditableProfileHeader: DeepPartial<StateSchema> = {
   },
   user: {
     authData: {
+      features: {
+        isAppRedesigned: true,
+      },
       id: '1',
       username: 'Jack',
     },
@@ -25,13 +29,14 @@ const stateEditableProfileHeader: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'features/EditableProfilePageHeader',
+  title: 'features/EditableProfilePageHeader/new',
   component: EditableProfilePageHeader,
   argTypes: {
     background: {
       control: 'color',
     },
   },
+  decorators: [RedesignDecorator],
 } as Meta<typeof EditableProfilePageHeader>;
 
 type Story = StoryObj<typeof meta>;
@@ -79,6 +84,9 @@ const stateEditableProfileHeaderNotEditing: DeepPartial<StateSchema> = {
   },
   user: {
     authData: {
+      features: {
+        isAppRedesigned: true,
+      },
       id: '1',
       username: 'Jack',
     },
@@ -102,6 +110,9 @@ const stateEditableProfileHeaderNotEditable: DeepPartial<StateSchema> = {
   },
   user: {
     authData: {
+      features: {
+        isAppRedesigned: true,
+      },
       id: '2',
       username: 'Mary',
     },
