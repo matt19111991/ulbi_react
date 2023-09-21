@@ -56,16 +56,33 @@ body {
 
 // Scroll bar
 
+.app *::-webkit-scrollbar {
+  height: 6px; // высота скролл бара
+  width: 6px;  // ширина скролл бара
+}
+
+.app *::-webkit-scrollbar-track {
+  background: var(--scroll-track-color); // цвет дорожки
+}
+
+.app *::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-thumb-color);  // цвет ползунка
+  border: 1px solid var(--scroll-border-color); // закругления для ползунка
+  border-radius: 20px;                          // padding вокруг ползунка
+}
+
+// Scroll bar redesigned
+
 *::-webkit-scrollbar {
   height: 6px; // высота скролл бара
   width: 6px;  // ширина скролл бара
 }
 
 *::-webkit-scrollbar-track {
-  background: var(--scroll-track-color); // цвет дорожки
+  background: var(--light-bg-redesigned); // цвет дорожки
 }
 *::-webkit-scrollbar-thumb {
-  background-color: var(--scroll-thumb-color);  // цвет ползунка
-  border: 1px solid var(--scroll-border-color); // закругления для ползунка
-  border-radius: 20px;                          // padding вокруг ползунка
+  background-color: var(--icon-redesigned);   // цвет ползунка
+  border: 1px solid var(--accent-redesigned); // закругления для ползунка
+  border-radius: 20px;                        // padding вокруг ползунка
 }

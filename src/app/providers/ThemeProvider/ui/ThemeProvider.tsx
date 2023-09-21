@@ -33,6 +33,11 @@ const ThemeProvider = ({ children, initialTheme }: ThemeProviderProps) => {
     }
   }, [isThemeInited, jsonSettingsTheme]);
 
+  useEffect(() => {
+    // может не меняться цвет скролла при переключении темы, поэтому добавляем класс на 'body'
+    document.body.className = theme;
+  }, [theme]);
+
   const memoizedContext = useMemo(() => ({ setTheme, theme }), [theme]);
 
   return <ThemeContext.Provider value={memoizedContext}>{children}</ThemeContext.Provider>;

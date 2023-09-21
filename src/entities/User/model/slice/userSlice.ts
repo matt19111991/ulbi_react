@@ -41,6 +41,8 @@ export const userSlice = createSlice({
 
       // сбрасываем пользовательскую тему
       document.body.className = Theme.LIGHT;
+
+      window.location.reload();
     },
   },
   extraReducers: (builder) => {

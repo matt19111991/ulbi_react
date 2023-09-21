@@ -31,6 +31,7 @@ describe('updateFeatureFlags', () => {
 
     expect(thunk.dispatch).toHaveBeenCalled();
     expect(result.meta.requestStatus).toBe('fulfilled');
+    expect(window.location.reload).toHaveBeenCalledTimes(1);
   });
 
   test('error update feature flags', async () => {
