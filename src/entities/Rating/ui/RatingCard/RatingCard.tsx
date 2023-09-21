@@ -3,16 +3,21 @@ import { useTranslation } from 'react-i18next';
 import { BrowserView, MobileView } from 'react-device-detect';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { ToggleFeatures } from '@/shared/lib/features';
 
-import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/deprecated/Button';
-import { Card } from '@/shared/ui/deprecated/Card';
-import { Input } from '@/shared/ui/deprecated/Input';
-import { StarRating } from '@/shared/ui/deprecated/StarRating';
-import { Text } from '@/shared/ui/deprecated/Text';
+import { Button as ButtonDeprecated, ButtonSize, ButtonTheme } from '@/shared/ui/deprecated/Button';
+import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
+import { Input as InputDeprecated } from '@/shared/ui/deprecated/Input';
+import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
 
+import { Button as ButtonRedesigned } from '@/shared/ui/redesigned/Button';
+import { Card as CardRedesigned } from '@/shared/ui/redesigned/Card';
 import { Drawer } from '@/shared/ui/redesigned/Drawer';
+import { Input as InputRedesigned } from '@/shared/ui/redesigned/Input';
 import { Modal } from '@/shared/ui/redesigned/Modal';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
+import { StarRating } from '@/shared/ui/redesigned/StarRating';
+import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 
 import classes from './RatingCard.module.scss';
 
@@ -74,16 +79,33 @@ export const RatingCard = memo(
     }, [rate]);
 
     const modalContent = (
-      <>
-        <Text title={feedbackTitle} />
+      <ToggleFeatures
+        feature='isAppRedesigned'
+        on={
+          <>
+            <TextRedesigned title={feedbackTitle} />
 
-        <Input
-          data-testid='RatingCard.Input'
-          onChange={setFeedback}
-          placeholder={t('Ваш отзыв')}
-          value={feedback}
-        />
-      </>
+            <InputRedesigned
+              data-testid='RatingCard.Input'
+              onChange={setFeedback}
+              placeholder={t('Ваш отзыв')}
+              value={feedback}
+            />
+          </>
+        }
+        off={
+          <>
+            <TextDeprecated title={feedbackTitle} />
+
+            <InputDeprecated
+              data-testid='RatingCard.Input'
+              onChange={setFeedback}
+              placeholder={t('Ваш отзыв')}
+              value={feedback}
+            />
+          </>
+        }
+      />
     );
 
     const browserContent = (
@@ -91,19 +113,35 @@ export const RatingCard = memo(
         <VStack align='start' gap='32' max>
           {modalContent}
 
-          <HStack gap='16' justify='end' max>
-            <Button
-              data-testid='RatingCard.Close'
-              onClick={cancelHandler}
-              theme={ButtonTheme.OUTLINE_RED}
-            >
-              {t('Закрыть')}
-            </Button>
+          <ToggleFeatures
+            feature='isAppRedesigned'
+            on={
+              <HStack gap='16' justify='end' max>
+                <ButtonRedesigned data-testid='RatingCard.Close' onClick={cancelHandler}>
+                  {t('Закрыть')}
+                </ButtonRedesigned>
 
-            <Button data-testid='RatingCard.Send' onClick={acceptHandler}>
-              {t('Отправить')}
-            </Button>
-          </HStack>
+                <ButtonRedesigned data-testid='RatingCard.Send' onClick={acceptHandler}>
+                  {t('Отправить')}
+                </ButtonRedesigned>
+              </HStack>
+            }
+            off={
+              <HStack gap='16' justify='end' max>
+                <ButtonDeprecated
+                  data-testid='RatingCard.Close'
+                  onClick={cancelHandler}
+                  theme={ButtonTheme.OUTLINE_RED}
+                >
+                  {t('Закрыть')}
+                </ButtonDeprecated>
+
+                <ButtonDeprecated data-testid='RatingCard.Send' onClick={acceptHandler}>
+                  {t('Отправить')}
+                </ButtonDeprecated>
+              </HStack>
+            }
+          />
         </VStack>
       </Modal>
     );
@@ -113,44 +151,101 @@ export const RatingCard = memo(
         <VStack align='start' gap='32' max>
           {modalContent}
 
-          <Button
-            data-testid='RatingCard.Send'
-            fullWidth
-            onClick={acceptHandler}
-            size={ButtonSize.L}
-          >
-            {t('Отправить')}
-          </Button>
+          <ToggleFeatures
+            feature='isAppRedesigned'
+            on={
+              <HStack justify='end' max>
+                <ButtonRedesigned data-testid='RatingCard.Send' onClick={acceptHandler} size='m'>
+                  {t('Отправить')}
+                </ButtonRedesigned>
+              </HStack>
+            }
+            off={
+              <ButtonDeprecated
+                data-testid='RatingCard.Send'
+                fullWidth
+                onClick={acceptHandler}
+                size={ButtonSize.L}
+              >
+                {t('Отправить')}
+              </ButtonDeprecated>
+            }
+          />
         </VStack>
       </Drawer>
     );
 
     if (storybookMobile) {
       return (
-        <Card className={classNames('', {}, [className])} max>
-          <VStack align='center' gap='8' max>
-            <Text title={starsCount ? `${t('Спасибо за оценку')}!` : title} />
+        <ToggleFeatures
+          feature='isAppRedesigned'
+          on={
+            <CardRedesigned
+              border='round'
+              className={classNames('', {}, [className])}
+              max
+              padding='24'
+            >
+              <VStack align='center' gap='8' max>
+                <TextRedesigned title={starsCount ? `${t('Спасибо за оценку')}!` : title} />
 
-            <StarRating onSelect={onSelectStars} selectedStars={starsCount} size={40} />
+                <StarRating onSelect={onSelectStars} selectedStars={starsCount} size={40} />
 
-            {mobileContent}
-          </VStack>
-        </Card>
+                {mobileContent}
+              </VStack>
+            </CardRedesigned>
+          }
+          off={
+            <CardDeprecated className={classNames('', {}, [className])} max>
+              <VStack align='center' gap='8' max>
+                <TextDeprecated title={starsCount ? `${t('Спасибо за оценку')}!` : title} />
+
+                <StarRating onSelect={onSelectStars} selectedStars={starsCount} size={40} />
+
+                {mobileContent}
+              </VStack>
+            </CardDeprecated>
+          }
+        />
       );
     }
 
+    const content = (
+      <VStack align='center' gap='8' max>
+        <ToggleFeatures
+          feature='isAppRedesigned'
+          on={<TextRedesigned title={starsCount ? `${t('Спасибо за оценку')}!` : title} />}
+          off={<TextDeprecated title={starsCount ? `${t('Спасибо за оценку')}!` : title} />}
+        />
+
+        <StarRating onSelect={onSelectStars} selectedStars={starsCount} size={40} />
+
+        <BrowserView>{browserContent}</BrowserView>
+
+        <MobileView>{mobileContent}</MobileView>
+      </VStack>
+    );
+
     return (
-      <Card className={classNames('', {}, [className])} data-testid='RatingCard' max>
-        <VStack align='center' gap='8' max>
-          <Text title={starsCount ? `${t('Спасибо за оценку')}!` : title} />
-
-          <StarRating onSelect={onSelectStars} selectedStars={starsCount} size={40} />
-
-          <BrowserView>{browserContent}</BrowserView>
-
-          <MobileView>{mobileContent}</MobileView>
-        </VStack>
-      </Card>
+      <ToggleFeatures
+        feature='isAppRedesigned'
+        on={
+          <CardRedesigned
+            border='round'
+            className={classNames('', {}, [className])}
+            data-testid='RatingCard'
+            max
+            padding='24'
+          >
+            {content}
+          </CardRedesigned>
+        }
+        off={
+          <CardDeprecated className={classNames('', {}, [className])} data-testid='RatingCard' max>
+            {content}
+          </CardDeprecated>
+        }
+      />
     );
   },
 );
