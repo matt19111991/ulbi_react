@@ -58,7 +58,7 @@ export const CommentCard = memo(({ className, comment, isLoading }: CommentCardP
       <ToggleFeatures
         feature='isAppRedesigned'
         on={
-          <Card border='round' max padding='24'>
+          <Card border='partial' max padding='24'>
             <VStack
               align='start'
               className={classNames('', {}, [className])}

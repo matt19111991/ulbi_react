@@ -4,6 +4,8 @@ import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 
 import classes from './Button.module.scss';
 
+export type ButtonColor = 'error' | 'normal' | 'success';
+
 export type ButtonVariant = 'clear' | 'filled' | 'outline';
 
 export type ButtonSize = 's' | 'm' | 'l' | 'xl';
@@ -19,6 +21,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    * Содержимое кнопки
    */
   children?: ReactNode;
+
+  /**
+   * Цвет кнопки
+   */
+  color?: ButtonColor;
 
   /**
    * Флаг, отвечающий за работу кнопки
@@ -52,6 +59,7 @@ export const Button = memo(
     addonRight,
     className,
     children,
+    color = 'normal',
     disabled,
     fullWidth,
     size = 'm',
@@ -66,9 +74,11 @@ export const Button = memo(
       [classes.withAddon]: Boolean(addonLeft) || Boolean(addonRight),
     };
 
+    const additionalClasses = [className, classes[color], classes[size], classes[variant]];
+
     return (
       <button
-        className={classNames(classes.Button, mods, [className, classes[size], classes[variant]])}
+        className={classNames(classes.Button, mods, additionalClasses)}
         disabled={disabled}
         {...rest}
       >

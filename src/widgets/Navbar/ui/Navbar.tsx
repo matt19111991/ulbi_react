@@ -14,12 +14,13 @@ import Logo from '@/shared/assets/icons/logo.svg';
 import { getRouteArticleCreate } from '@/shared/const/router';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { ToggleFeatures } from '@/shared/lib/features';
+import { toggleFeatures, ToggleFeatures } from '@/shared/lib/features';
 
 import { AppLink, AppLinkTheme } from '@/shared/ui/deprecated/AppLink';
-import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
+import { Button as ButtonDeprecated, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import { Icon } from '@/shared/ui/deprecated/Icon';
 
+import { Button as ButtonRedesigned } from '@/shared/ui/redesigned/Button';
 import { HStack } from '@/shared/ui/redesigned/Stack';
 
 import classes from './Navbar.module.scss';
@@ -44,13 +45,19 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
     setIsAuthModal(true);
   }, []);
 
+  const mainClass = toggleFeatures({
+    name: 'isAppRedesigned',
+    on: () => classes.NavbarRedesigned,
+    off: () => classes.Navbar,
+  });
+
   if (authData) {
     return (
       <ToggleFeatures
         feature='isAppRedesigned'
         // Navbar после редизайна для авторизованного пользователя
         on={
-          <header className={classNames(classes.NavbarRedesigned, {}, [className])}>
+          <header className={classNames(mainClass, {}, [className])}>
             <HStack className={classes.actions} gap='16'>
               <NotificationButton />
 
@@ -60,7 +67,7 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
         }
         // Navbar до редизайна для авторизованного пользователя
         off={
-          <header className={classNames(classes.Navbar, {}, [className])}>
+          <header className={classNames(mainClass, {}, [className])}>
             <div className={classes.logoWrapper}>
               <Icon className={classes.logo} height={60} Svg={Logo} width={60} />
             </div>
@@ -85,10 +92,24 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
   }
 
   return (
-    <header className={classNames(classes.Navbar, {}, [className])}>
-      <Button className={classes.links} onClick={onShowModal} theme={ButtonTheme.CLEAR_INVERTED}>
-        {t('Войти')}
-      </Button>
+    <header className={classNames(mainClass, {}, [className])}>
+      <ToggleFeatures
+        feature='isAppRedesigned'
+        on={
+          <ButtonRedesigned className={classes.links} onClick={onShowModal} variant='clear'>
+            {t('Войти')}
+          </ButtonRedesigned>
+        }
+        off={
+          <ButtonDeprecated
+            className={classes.links}
+            onClick={onShowModal}
+            theme={ButtonTheme.CLEAR_INVERTED}
+          >
+            {t('Войти')}
+          </ButtonDeprecated>
+        }
+      />
 
       {isAuthModal && <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />}
     </header>

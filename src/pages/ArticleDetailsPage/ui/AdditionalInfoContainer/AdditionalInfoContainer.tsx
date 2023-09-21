@@ -33,7 +33,7 @@ export const AdditionalInfoContainer = memo(
 
     if (loading) {
       return (
-        <Card border='round' className={classes.card} padding='24'>
+        <Card border='partial' className={classes.card} padding='24'>
           <VStack align='start' gap='16'>
             <Skeleton height={28} width={165} />
             <Skeleton height={28} width={137} />
@@ -48,7 +48,7 @@ export const AdditionalInfoContainer = memo(
     }
 
     return (
-      <Card border='round' className={classes.card} padding='24'>
+      <Card border='partial' className={classes.card} padding='24'>
         <ArticleAdditionalInfo
           author={article.user}
           createdAt={article.createdAt}

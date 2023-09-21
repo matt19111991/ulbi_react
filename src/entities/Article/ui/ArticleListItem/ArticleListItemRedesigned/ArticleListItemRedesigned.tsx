@@ -99,7 +99,7 @@ export const ArticleListItemRedesigned = memo(
         target={target}
         to={getRouteArticleDetails(article.id)}
       >
-        <Card border='round' className={classes.card} padding='0'>
+        <Card border='partial' className={classes.card} padding='0'>
           <AppImage
             alt={article.title}
             className={classes.image}

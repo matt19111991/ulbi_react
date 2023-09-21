@@ -181,7 +181,7 @@ export const RatingCard = memo(
           feature='isAppRedesigned'
           on={
             <CardRedesigned
-              border='round'
+              border='partial'
               className={classNames('', {}, [className])}
               max
               padding='24'
@@ -231,7 +231,7 @@ export const RatingCard = memo(
         feature='isAppRedesigned'
         on={
           <CardRedesigned
-            border='round'
+            border='partial'
             className={classNames('', {}, [className])}
             data-testid='RatingCard'
             max

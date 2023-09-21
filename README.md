@@ -7,6 +7,13 @@
 - Добавить E2E тесты на поиск и сортировку статей
 - Проверить очистку всех созданных сущностей в БД после прогона E2E тестов
 
+- Исправить stories для Navbar
+- Исправить цвета для redesigned ArticleViewSelector
+- Пересмотреть stories LoginForm
+- Добавить stories для EditableProfileCard
+- Добавить stories для EditableProfilePageHeader
+- Добавить stories для цветов Button redesigned
+
 ---- 
 
 ## Доп. информация

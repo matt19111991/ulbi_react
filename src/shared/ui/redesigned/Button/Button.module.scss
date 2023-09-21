@@ -14,14 +14,12 @@
     padding: 2px 12px;
   }
 
-  &:hover {
-    color: var(--accent-redesigned);
-
-    .addonLeft svg,
-    .addonRight svg {
-      color: var(--accent-redesigned);
-    }
-  }
+  //&:hover {
+  //  .addonLeft svg,
+  //  .addonRight svg {
+  //    color: var(--accent-redesigned);
+  //  }
+  //}
 }
 
 .addonLeft,
@@ -59,11 +57,27 @@
 
 .outline {
   background: none;
-  border: 2px solid var(--icon-redesigned);
   border-radius: 34px;
+  transition: all .2s ease-in-out;
 
-  &:hover {
-    border: 2px solid var(--accent-redesigned);
+  &.error {
+    border: 2px solid var(--cancel-redesigned);
+  }
+
+  &.normal {
+    border: 2px solid var(--icon-redesigned);
+  }
+
+  &.success {
+    border: 2px solid var(--save-redesigned);
+  }
+
+  &.error,
+  &.normal,
+  &.success {
+    &:hover {
+      opacity: .6;
+    }
   }
 }
 

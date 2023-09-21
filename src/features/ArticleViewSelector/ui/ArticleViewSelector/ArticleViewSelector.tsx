@@ -75,7 +75,7 @@ export const ArticleViewSelector = memo(
         on={
           <Card
             className={classNames(classes.ArticleViewSelectorRedesigned, {}, [className])}
-            border='round'
+            border='partial'
           >
             <HStack gap='8'>
               {viewTypes.map((viewType) => (

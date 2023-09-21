@@ -31,7 +31,7 @@ export const ProfileCardRedesignedError = () => {
 };
 
 export const ProfileCardRedesignedSkeleton = () => (
-  <Card max padding='24'>
+  <Card border='partial' max padding='16'>
     <VStack gap='32'>
       <HStack justify='center' max>
         <Skeleton border='100%' height={128} width={128} />
@@ -83,7 +83,7 @@ export const ProfileCardRedesigned = memo(
     }
 
     return (
-      <Card className={classNames('', {}, [className])} max padding='24'>
+      <Card border='partial' className={classNames('', {}, [className])} max padding='16'>
         <VStack gap='32'>
           {data?.avatar && (
             <HStack justify='center' max>
