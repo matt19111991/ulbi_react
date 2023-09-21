@@ -57,6 +57,8 @@
     border: 2px solid var(--cancel-redesigned);
 
     &:hover {
+      opacity: .6;
+
       .addonLeft svg,
       .addonRight svg {
         color: var(--cancel-redesigned);
@@ -68,6 +70,8 @@
     border: 2px solid var(--icon-redesigned);
 
     &:hover {
+      opacity: .6;
+
       .addonLeft svg,
       .addonRight svg {
         color: var(--icon-redesigned);
@@ -79,18 +83,12 @@
     border: 2px solid var(--save-redesigned);
 
     &:hover {
+      opacity: .6;
+
       .addonLeft svg,
       .addonRight svg {
         color: var(--save-redesigned);
       }
-    }
-  }
-
-  &.error,
-  &.normal,
-  &.success {
-    &:hover {
-      opacity: .6;
     }
   }
 }
