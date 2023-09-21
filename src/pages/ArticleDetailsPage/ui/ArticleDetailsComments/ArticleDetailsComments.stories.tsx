@@ -5,12 +5,19 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 import Image1 from '@/shared/assets/tests/storybook.jpg';
 import Image2 from '@/shared/assets/tests/storybook2.jpg';
 
+import {
+  RedesignDecorator,
+  redesignState,
+} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
+
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
 
 import { ArticleDetailsComments } from './ArticleDetailsComments';
+
+const stateArticleDetailsCommentsRedesigned: DeepPartial<StateSchema> = redesignState;
 
 const stateArticleDetailsComments: DeepPartial<StateSchema> = {
   articleDetailsPage: {
@@ -53,28 +60,63 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Primary article details comments
+// Primary article details comments old
 
-export const Primary: Story = {
+export const PrimaryOld: Story = {
   args: {},
 };
 
-Primary.decorators = [StoreDecorator(stateArticleDetailsComments)];
+PrimaryOld.decorators = [StoreDecorator(stateArticleDetailsComments)];
 
-// Dark article details comments
+// Dark article details comments old
 
-export const Dark: Story = {
+export const DarkOld: Story = {
   args: {},
 };
 
-Dark.decorators = [StoreDecorator(stateArticleDetailsComments), ThemeDecorator(Theme.DARK)];
+DarkOld.decorators = [StoreDecorator(stateArticleDetailsComments), ThemeDecorator(Theme.DARK)];
 
-// Orange article details comments
+// Orange article details comments old
 
-export const Orange: Story = {
+export const OrangeOld: Story = {
   args: {},
 };
 
-Orange.decorators = [StoreDecorator(stateArticleDetailsComments), ThemeDecorator(Theme.ORANGE)];
+OrangeOld.decorators = [StoreDecorator(stateArticleDetailsComments), ThemeDecorator(Theme.ORANGE)];
+
+// Primary article details comments new
+
+export const PrimaryNew: Story = {
+  args: {},
+};
+
+PrimaryNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator({ ...stateArticleDetailsComments, ...stateArticleDetailsCommentsRedesigned }),
+];
+
+// Dark article details comments new
+
+export const DarkNew: Story = {
+  args: {},
+};
+
+DarkNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator({ ...stateArticleDetailsComments, ...stateArticleDetailsCommentsRedesigned }),
+  ThemeDecorator(Theme.DARK),
+];
+
+// Orange article details comments new
+
+export const OrangeNew: Story = {
+  args: {},
+};
+
+OrangeNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator({ ...stateArticleDetailsComments, ...stateArticleDetailsCommentsRedesigned }),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 export default meta;
