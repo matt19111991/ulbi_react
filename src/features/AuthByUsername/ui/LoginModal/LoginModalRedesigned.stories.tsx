@@ -2,6 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
+import {
+  RedesignDecorator,
+  redesignState,
+} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
+
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -16,14 +21,17 @@ const stateLoginModal: DeepPartial<StateSchema> = {
   },
 };
 
+const stateLoginModalRedesigned: DeepPartial<StateSchema> = redesignState;
+
 const meta = {
-  title: 'features/LoginModal',
+  title: 'features/LoginModal/new',
   component: LoginModal,
   argTypes: {
     backgroundColor: {
       control: 'color',
     },
   },
+  decorators: [RedesignDecorator, StoreDecorator(stateLoginModalRedesigned)],
 } as Meta<typeof LoginModal>;
 
 type Story = StoryObj<typeof meta>;

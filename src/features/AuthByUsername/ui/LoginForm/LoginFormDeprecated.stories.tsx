@@ -17,7 +17,7 @@ const stateLoginForm: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'features/LoginForm',
+  title: 'features/LoginForm/old',
   component: LoginForm,
   argTypes: {
     backgroundColor: {
