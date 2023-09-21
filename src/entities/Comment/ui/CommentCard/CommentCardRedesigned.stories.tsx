@@ -1,7 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { StateSchema } from '@/app/providers/StoreProvider';
+
 import Avatar from '@/shared/assets/tests/storybook.jpg';
 
+import {
+  RedesignDecorator,
+  redesignState,
+} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
+
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -20,14 +28,17 @@ const comment: Comment = {
   },
 };
 
+const stateCommentCardRedesigned: DeepPartial<StateSchema> = redesignState;
+
 const meta = {
-  title: 'entities/Comment/CommentCard',
+  title: 'entities/Comment/CommentCard/new',
   component: CommentCard,
   argTypes: {
     backgroundColor: {
       control: 'color',
     },
   },
+  decorators: [RedesignDecorator, StoreDecorator(stateCommentCardRedesigned)],
 } as Meta<typeof CommentCard>;
 
 type Story = StoryObj<typeof meta>;

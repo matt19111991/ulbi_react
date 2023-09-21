@@ -3,13 +3,19 @@ import { memo } from 'react';
 import { getRouteProfile } from '@/shared/const/router';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { toggleFeatures, ToggleFeatures } from '@/shared/lib/features';
 
-import { AppLink } from '@/shared/ui/deprecated/AppLink';
-import { Avatar } from '@/shared/ui/deprecated/Avatar';
-import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
-import { Text } from '@/shared/ui/deprecated/Text';
+import { AppLink as AppLinkDeprecated } from '@/shared/ui/deprecated/AppLink';
+import { Avatar as AvatarDeprecated } from '@/shared/ui/deprecated/Avatar';
+import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
+import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
 
-import { VStack } from '@/shared/ui/redesigned/Stack';
+import { AppLink as AppLinkRedesigned } from '@/shared/ui/redesigned/AppLink';
+import { Avatar as AvatarRedesigned } from '@/shared/ui/redesigned/Avatar';
+import { Card } from '@/shared/ui/redesigned/Card';
+import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
+import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
+import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 
 import { Comment } from '../../model/types/comment';
 
@@ -22,6 +28,12 @@ interface CommentCardProps {
 }
 
 export const CommentCard = memo(({ className, comment, isLoading }: CommentCardProps) => {
+  const Skeleton = toggleFeatures({
+    name: 'isAppRedesigned',
+    on: () => SkeletonRedesigned,
+    off: () => SkeletonDeprecated,
+  });
+
   if (isLoading) {
     return (
       <VStack
@@ -43,23 +55,55 @@ export const CommentCard = memo(({ className, comment, isLoading }: CommentCardP
 
   if (comment) {
     return (
-      <VStack
-        align='start'
-        className={classNames(classes.CommentCard, {}, [className])}
-        data-testid='CommentCard.Content'
-        gap='8'
-        max
-      >
-        <AppLink className={classes.header} to={getRouteProfile(comment.user.id)}>
-          {comment.user.avatar ? (
-            <Avatar className={classes.avatar} size={30} src={comment.user.avatar} />
-          ) : null}
+      <ToggleFeatures
+        feature='isAppRedesigned'
+        on={
+          <Card border='round' max padding='24'>
+            <VStack
+              align='start'
+              className={classNames('', {}, [className])}
+              data-testid='CommentCard.Content'
+              gap='8'
+              max
+            >
+              <AppLinkRedesigned to={getRouteProfile(comment.user.id)}>
+                <HStack gap='8'>
+                  {comment.user.avatar ? (
+                    <AvatarRedesigned
+                      className={classes.avatar}
+                      size={30}
+                      src={comment.user.avatar}
+                    />
+                  ) : null}
 
-          <Text title={comment.user.username} />
-        </AppLink>
+                  <TextRedesigned bold text={comment.user.username} />
+                </HStack>
+              </AppLinkRedesigned>
 
-        <Text text={comment.text} />
-      </VStack>
+              <TextRedesigned text={comment.text} />
+            </VStack>
+          </Card>
+        }
+        off={
+          <VStack
+            align='start'
+            className={classNames(classes.CommentCard, {}, [className])}
+            data-testid='CommentCard.Content'
+            gap='8'
+            max
+          >
+            <AppLinkDeprecated className={classes.header} to={getRouteProfile(comment.user.id)}>
+              {comment.user.avatar ? (
+                <AvatarDeprecated className={classes.avatar} size={30} src={comment.user.avatar} />
+              ) : null}
+
+              <TextDeprecated title={comment.user.username} />
+            </AppLinkDeprecated>
+
+            <TextDeprecated text={comment.text} />
+          </VStack>
+        }
+      />
     );
   }
 
