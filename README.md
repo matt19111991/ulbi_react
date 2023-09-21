@@ -12,7 +12,6 @@
 - Пересмотреть stories LoginForm
 - Добавить stories для EditableProfileCard
 - Добавить stories для EditableProfilePageHeader
-- Добавить stories для цветов Button redesigned
 
 ---- 
 

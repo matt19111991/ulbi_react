@@ -177,7 +177,7 @@ export const SquareExtraLarge: Story = {
 
 export const Disabled: Story = {
   args: {
-    children: '>',
+    children: 'Text',
     disabled: true,
     variant: 'outline',
   },
@@ -187,7 +187,7 @@ export const Disabled: Story = {
 
 export const FullWidth: Story = {
   args: {
-    children: '>',
+    children: 'Text',
     fullWidth: true,
     variant: 'outline',
   },
@@ -202,7 +202,7 @@ export const AddonLeft: Story = {
         <IconSvg />
       </div>
     ),
-    children: '>',
+    children: 'Text',
     variant: 'outline',
   },
 };
@@ -216,8 +216,26 @@ export const AddonRight: Story = {
         <IconSvg />
       </div>
     ),
-    children: '>',
+    children: 'Text',
     variant: 'outline',
+  },
+};
+
+// Button error
+
+export const Error: Story = {
+  args: {
+    children: 'Text',
+    color: 'error',
+  },
+};
+
+// Success error
+
+export const Success: Story = {
+  args: {
+    children: 'Text',
+    color: 'success',
   },
 };
 
