@@ -3,6 +3,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
+import {
+  RedesignDecorator,
+  redesignState,
+} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
+
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -10,13 +15,7 @@ import { Theme } from '@/shared/const/theme';
 
 import AddCommentForm from './AddCommentForm';
 
-const stateAddCommentFormActive: DeepPartial<StateSchema> = {
-  articleDetailsPage: {
-    comments: {
-      areLoading: false,
-    },
-  },
-};
+const stateAddCommentFormRedesigned: DeepPartial<StateSchema> = redesignState;
 
 const meta = {
   title: 'features/AddCommentForm',
@@ -30,52 +29,90 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Primary add comment form
+// Primary add comment form old
 
-export const Primary: Story = {
+export const PrimaryOld: Story = {
   args: {
     onSendComment: action('onSendComment'),
   },
 };
 
-Primary.decorators = [StoreDecorator(stateAddCommentFormActive)];
+// Dark add comment form old
 
-// Dark add comment form
-
-export const Dark: Story = {
+export const DarkOld: Story = {
   args: {
     onSendComment: action('onSendComment'),
   },
 };
 
-Dark.decorators = [StoreDecorator(stateAddCommentFormActive), ThemeDecorator(Theme.DARK)];
+DarkOld.decorators = [ThemeDecorator(Theme.DARK)];
 
-// Orange add comment form
+// Orange add comment form old
 
-export const Orange: Story = {
+export const OrangeOld: Story = {
   args: {
     onSendComment: action('onSendComment'),
   },
 };
 
-Orange.decorators = [StoreDecorator(stateAddCommentFormActive), ThemeDecorator(Theme.ORANGE)];
+OrangeOld.decorators = [ThemeDecorator(Theme.ORANGE)];
 
-// Disabled add comment form
+// Disabled add comment form old
 
-const stateAddCommentFormDisabled: DeepPartial<StateSchema> = {
-  articleDetailsPage: {
-    comments: {
-      areLoading: true,
-    },
+export const DisabledOld: Story = {
+  args: {
+    isLoading: true,
+    onSendComment: action('onSendComment'),
   },
 };
 
-export const Disabled: Story = {
+// Primary add comment form new
+
+export const PrimaryNew: Story = {
   args: {
     onSendComment: action('onSendComment'),
   },
 };
 
-Disabled.decorators = [StoreDecorator(stateAddCommentFormDisabled)];
+PrimaryNew.decorators = [RedesignDecorator, StoreDecorator(stateAddCommentFormRedesigned)];
+
+// Dark add comment form new
+
+export const DarkNew: Story = {
+  args: {
+    onSendComment: action('onSendComment'),
+  },
+};
+
+DarkNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator(stateAddCommentFormRedesigned),
+  ThemeDecorator(Theme.DARK),
+];
+
+// Orange add comment form new
+
+export const OrangeNew: Story = {
+  args: {
+    onSendComment: action('onSendComment'),
+  },
+};
+
+OrangeNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator(stateAddCommentFormRedesigned),
+  ThemeDecorator(Theme.ORANGE),
+];
+
+// Disabled add comment form new
+
+export const DisabledNew: Story = {
+  args: {
+    isLoading: true,
+    onSendComment: action('onSendComment'),
+  },
+};
+
+DisabledNew.decorators = [RedesignDecorator, StoreDecorator(stateAddCommentFormRedesigned)];
 
 export default meta;
