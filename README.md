@@ -10,7 +10,6 @@
 - Исправить stories для Navbar
 - Исправить цвета для redesigned ArticleViewSelector
 - Пересмотреть stories LoginForm
-- Добавить stories для EditableProfileCard
 
 ---- 
 

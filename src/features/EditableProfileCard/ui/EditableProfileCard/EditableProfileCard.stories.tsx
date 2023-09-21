@@ -7,6 +7,11 @@ import { Currency } from '@/entities/Currency';
 
 import Avatar from '@/shared/assets/tests/storybook.jpg';
 
+import {
+  RedesignDecorator,
+  redesignState,
+} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
+
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -29,6 +34,8 @@ const stateEditableProfileCard: DeepPartial<StateSchema> = {
   },
 };
 
+const stateEditableProfileCardRedesigned: DeepPartial<StateSchema> = redesignState;
+
 const meta = {
   title: 'features/EditableProfileCard',
   component: EditableProfileCard,
@@ -41,28 +48,63 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Primary editable profile card
+// Primary editable profile card old
 
-export const Primary: Story = {
+export const PrimaryOld: Story = {
   args: {},
 };
 
-Primary.decorators = [StoreDecorator(stateEditableProfileCard)];
+PrimaryOld.decorators = [StoreDecorator(stateEditableProfileCard)];
 
-// Dark editable profile card
+// Dark editable profile card old
 
-export const Dark: Story = {
+export const DarkOld: Story = {
   args: {},
 };
 
-Dark.decorators = [StoreDecorator(stateEditableProfileCard), ThemeDecorator(Theme.DARK)];
+DarkOld.decorators = [StoreDecorator(stateEditableProfileCard), ThemeDecorator(Theme.DARK)];
 
-// Orange editable profile card
+// Orange editable profile card old
 
-export const Orange: Story = {
+export const OrangeOld: Story = {
   args: {},
 };
 
-Orange.decorators = [StoreDecorator(stateEditableProfileCard), ThemeDecorator(Theme.ORANGE)];
+OrangeOld.decorators = [StoreDecorator(stateEditableProfileCard), ThemeDecorator(Theme.ORANGE)];
+
+// Primary editable profile card new
+
+export const PrimaryNew: Story = {
+  args: {},
+};
+
+PrimaryNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator({ ...stateEditableProfileCard, ...stateEditableProfileCardRedesigned }),
+];
+
+// Dark editable profile card new
+
+export const DarkNew: Story = {
+  args: {},
+};
+
+DarkNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator({ ...stateEditableProfileCard, ...stateEditableProfileCardRedesigned }),
+  ThemeDecorator(Theme.DARK),
+];
+
+// Orange editable profile card new
+
+export const OrangeNew: Story = {
+  args: {},
+};
+
+OrangeNew.decorators = [
+  RedesignDecorator,
+  StoreDecorator({ ...stateEditableProfileCard, ...stateEditableProfileCardRedesigned }),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 export default meta;
