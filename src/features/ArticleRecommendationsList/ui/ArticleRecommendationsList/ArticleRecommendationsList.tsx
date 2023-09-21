@@ -4,10 +4,12 @@ import { useTranslation } from 'react-i18next';
 import { ArticleList } from '@/entities/Article';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { ToggleFeatures } from '@/shared/lib/features';
 
-import { Text, TextSize, TextTheme } from '@/shared/ui/deprecated/Text';
+import { Text as TextDeprecated, TextSize, TextTheme } from '@/shared/ui/deprecated/Text';
 
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
+import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 
 import { useGetArticleRecommendationsListQuery } from '../../api/articleRecommedationsApi';
 
@@ -28,7 +30,16 @@ export const ArticleRecommendationsList = memo(
     if (error) {
       return (
         <HStack className={classNames('', {}, [className])} max>
-          <Text theme={TextTheme.ERROR} title={t('Ошибка при загрузке рекомендаций')} />
+          <ToggleFeatures
+            feature='isAppRedesigned'
+            on={<TextRedesigned title={t('Ошибка при загрузке рекомендаций')} variant='error' />}
+            off={
+              <TextDeprecated
+                theme={TextTheme.ERROR}
+                title={t('Ошибка при загрузке рекомендаций')}
+              />
+            }
+          />
         </HStack>
       );
     }
@@ -41,7 +52,11 @@ export const ArticleRecommendationsList = memo(
         gap='8'
         max
       >
-        <Text size={TextSize.L} title={t('Рекомендуем')} />
+        <ToggleFeatures
+          feature='isAppRedesigned'
+          on={<TextRedesigned size='l' title={t('Рекомендуем')} />}
+          off={<TextDeprecated size={TextSize.L} title={t('Рекомендуем')} />}
+        />
 
         <ArticleList
           articles={articles}
