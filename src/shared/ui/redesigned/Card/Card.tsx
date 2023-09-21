@@ -4,7 +4,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 
 import classes from './Card.module.scss';
 
-export type CardBorder = 'keen' | 'round';
+export type CardBorder = 'keen' | 'partial' | 'round';
 
 export type CardPadding = '0' | '8' | '16' | '24';
 

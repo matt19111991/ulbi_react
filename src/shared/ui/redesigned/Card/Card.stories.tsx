@@ -225,6 +225,20 @@ export const Padding24: Story = {
   },
 };
 
+// Card partial round
+
+export const PartialRound: Story = {
+  args: {
+    border: 'partial',
+    children: (
+      <Text
+        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
+        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
+      />
+    ),
+  },
+};
+
 // Card round
 
 export const Round: Story = {
