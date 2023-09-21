@@ -42,7 +42,7 @@ const comments: Comment[] = [
 ];
 
 const meta = {
-  title: 'entities/Comment/CommentList',
+  title: 'entities/Comment/CommentList/old',
   component: CommentList,
   argTypes: {
     backgroundColor: {
