@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
@@ -6,11 +7,7 @@ import { UserRole } from '@/entities/User';
 
 import Avatar from '@/shared/assets/tests/storybook.jpg';
 
-import {
-  RedesignDecorator,
-  redesignState,
-} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
-
+import { RedesignDecorator } from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -18,7 +15,11 @@ import { Theme } from '@/shared/const/theme';
 
 import { Navbar } from './Navbar';
 
-const stateNavbarRedesigned: DeepPartial<StateSchema> = redesignState;
+const FullWidthDecorator = (Story: StoryFn) => (
+  <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
+    <Story />
+  </div>
+);
 
 const meta = {
   title: 'widgets/Navbar',
@@ -80,7 +81,7 @@ export const PrimaryNew: Story = {
   args: {},
 };
 
-PrimaryNew.decorators = [RedesignDecorator, StoreDecorator(stateNavbarRedesigned)];
+PrimaryNew.decorators = [FullWidthDecorator, RedesignDecorator];
 
 // Dark navbar new
 
@@ -88,11 +89,7 @@ export const DarkNew: Story = {
   args: {},
 };
 
-DarkNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateNavbarRedesigned),
-  ThemeDecorator(Theme.DARK),
-];
+DarkNew.decorators = [FullWidthDecorator, RedesignDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange navbar new
 
@@ -100,11 +97,7 @@ export const OrangeNew: Story = {
   args: {},
 };
 
-OrangeNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateNavbarRedesigned),
-  ThemeDecorator(Theme.ORANGE),
-];
+OrangeNew.decorators = [FullWidthDecorator, RedesignDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Authorized navbar new
 
@@ -127,6 +120,10 @@ export const AuthorizedNew: Story = {
   },
 };
 
-AuthorizedNew.decorators = [RedesignDecorator, StoreDecorator(stateAuthorizedNew)];
+AuthorizedNew.decorators = [
+  FullWidthDecorator,
+  RedesignDecorator,
+  StoreDecorator(stateAuthorizedNew),
+];
 
 export default meta;
