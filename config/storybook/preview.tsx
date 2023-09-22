@@ -3,6 +3,7 @@ import type { Preview } from '@storybook/react';
 
 import { StateSchema } from '../../src/app/providers/StoreProvider';
 
+import { FeatureFlagsDecorator } from '../../src/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { GlobalStyleDecorator } from '../../src/shared/config/storybook/GlobalStyleDecorator/GlobalStyleDecorator';
 import { IndentsDecorator } from '../../src/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { RouterDecorator } from '../../src/shared/config/storybook/RouterDecorator/RouterDecorator';
@@ -37,6 +38,9 @@ const state: DeepPartial<StateSchema> = {}; // заглушка 'state'
 */
 
 export const decorators = [
+  // по умолчанию отображаем старый дизайн для каждой story
+  FeatureFlagsDecorator({ isAppRedesigned: false }),
+
   GlobalStyleDecorator,
   IndentsDecorator,
   RouterDecorator,

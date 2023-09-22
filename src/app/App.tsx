@@ -1,4 +1,4 @@
-import { Suspense, useEffect } from 'react';
+import { memo, Suspense, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { getUserMounted, initAuthData } from '@/entities/User';
@@ -16,6 +16,7 @@ import { Sidebar } from '@/widgets/Sidebar';
 import { useAppToolbar } from './lib/hooks/useAppToolbar/useAppToolbar';
 
 import { AppRouter } from './providers/Router';
+import { withTheme } from './providers/ThemeProvider/lib/withTheme/withTheme';
 
 /*
   В большинстве случаев не стоит оборачивать в 'memo' компоненты с 'children':
@@ -25,7 +26,7 @@ import { AppRouter } from './providers/Router';
   Но, если мы точно знаем, что 'children' - это примитив, тогда можно использовать обертку 'memo'
 */
 
-const App = () => {
+const App = memo(() => {
   const dispatch = useAppDispatch();
   const toolbar = useAppToolbar();
 
@@ -85,6 +86,8 @@ const App = () => {
       }
     />
   );
-};
+});
 
-export default App;
+App.displayName = 'App';
+
+export default withTheme(App);

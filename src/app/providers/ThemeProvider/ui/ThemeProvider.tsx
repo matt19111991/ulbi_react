@@ -1,7 +1,5 @@
 import { ReactNode, useEffect, useMemo, useState } from 'react';
 
-import { useJsonSettings } from '@/entities/User';
-
 import { THEME_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { Theme } from '@/shared/const/theme';
 
@@ -17,8 +15,6 @@ const fallbackTheme = localStorage.getItem(THEME_LOCALSTORAGE_KEY) as Theme;
 
 // В типе FC уже описан 'children' prop для версий React меньше v.18)
 const ThemeProvider = ({ children, initialTheme }: ThemeProviderProps) => {
-  const { theme: jsonSettingsTheme } = useJsonSettings();
-
   const [isThemeInited, setIsThemeInited] = useState(false);
 
   /*
@@ -29,13 +25,13 @@ const ThemeProvider = ({ children, initialTheme }: ThemeProviderProps) => {
 
   // данные о теме, сохраненные в объект с авторизованным пользователем прилетают не сразу
   useEffect(() => {
-    // поэтому реагируем на изменение 'jsonSettingsTheme'
-    if (!isThemeInited && jsonSettingsTheme) {
-      setTheme(jsonSettingsTheme);
+    // поэтому реагируем на изменение 'initialTheme'
+    if (!isThemeInited && initialTheme) {
+      setTheme(initialTheme);
 
       setIsThemeInited(true);
     }
-  }, [isThemeInited, jsonSettingsTheme]);
+  }, [initialTheme, isThemeInited]);
 
   useEffect(() => {
     // может не меняться цвет скролла при переключении темы, поэтому добавляем класс на 'body'
