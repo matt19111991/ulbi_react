@@ -7,7 +7,7 @@ import { Theme } from '@/shared/const/theme';
 import { StickyContentLayout } from './StickyContentLayout';
 
 const meta = {
-  title: 'shared/StickyContentLayout',
+  title: 'shared/layouts/StickyContentLayout',
   component: StickyContentLayout,
   argTypes: {
     backgroundColor: {

@@ -7,7 +7,7 @@ import { Theme } from '@/shared/const/theme';
 import { MainLayout } from './MainLayout';
 
 const meta = {
-  title: 'shared/MainLayout',
+  title: 'shared/layouts/MainLayout',
   component: MainLayout,
   argTypes: {
     backgroundColor: {

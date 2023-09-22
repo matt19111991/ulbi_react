@@ -3,9 +3,10 @@ import { useSelector } from 'react-redux';
 
 import { getUserMounted, initAuthData } from '@/entities/User';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { ToggleFeatures } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+
+import { AppLoaderLayout } from '@/shared/layouts/AppLoaderLayout';
 import { MainLayout } from '@/shared/layouts/MainLayout';
 
 import { Navbar } from '@/widgets/Navbar';
@@ -35,7 +36,17 @@ const App = () => {
   }, [dispatch, mounted]);
 
   if (!mounted) {
-    return <PageLoader />;
+    return (
+      <ToggleFeatures
+        feature='isAppRedesigned'
+        on={
+          <div className='app_redesigned' id='app'>
+            <AppLoaderLayout />
+          </div>
+        }
+        off={<PageLoader />}
+      />
+    );
   }
 
   // <Suspense /> для переводов
@@ -45,7 +56,7 @@ const App = () => {
       feature='isAppRedesigned'
       // приложение после редизайна
       on={
-        <div className={classNames('app_redesigned', {}, [])} id='app'>
+        <div className='app_redesigned' id='app'>
           <Suspense fallback=''>
             <MainLayout content={<AppRouter />} header={<Navbar />} sidebar={<Sidebar />} />
           </Suspense>
@@ -53,7 +64,7 @@ const App = () => {
       }
       // приложение до редизайна
       off={
-        <div className={classNames('app', {}, [])} id='app'>
+        <div className='app' id='app'>
           <Suspense fallback=''>
             <Navbar />
 

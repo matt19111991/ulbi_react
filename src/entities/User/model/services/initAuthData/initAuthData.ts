@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 
-import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
+import { LAST_DESIGN_LOCALSTORAGE_KEY, USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 
 import { getUserDataByIdQuery } from '../../../api/userApi';
 
@@ -28,7 +28,14 @@ export const initAuthData = createAsyncThunk<User, User | undefined, ThunkConfig
       }
 
       // 'unwrap' - чтобы был доступ к данным
-      return await thunkApi.dispatch(getUserDataByIdQuery(userId))?.unwrap();
+      const response = await thunkApi.dispatch(getUserDataByIdQuery(userId))?.unwrap();
+
+      localStorage.setItem(
+        LAST_DESIGN_LOCALSTORAGE_KEY,
+        response?.features?.isAppRedesigned ? 'new' : 'old',
+      );
+
+      return response;
     } catch (e) {
       return thunkApi.rejectWithValue('error');
     }

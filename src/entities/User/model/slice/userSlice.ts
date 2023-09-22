@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
+import { LAST_DESIGN_LOCALSTORAGE_KEY, USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { Theme } from '@/shared/const/theme';
 import { setFeatureFlags } from '@/shared/lib/features';
 
@@ -32,6 +32,12 @@ export const userSlice = createSlice({
         // инициализируем тему, сохраненную для пользователя
         document.body.className = action.payload.jsonSettings?.theme;
       }
+
+      // сохраняем выбранный дизайн для текущего пользователя в хранилище
+      localStorage.setItem(
+        LAST_DESIGN_LOCALSTORAGE_KEY,
+        action.payload.features?.isAppRedesigned ? 'new' : 'old',
+      );
     },
 
     logout: (state) => {
