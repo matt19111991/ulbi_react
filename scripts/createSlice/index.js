@@ -14,7 +14,7 @@ const layers = ['features', 'entities', 'pages'];
 const [, , layer, sliceName] = process.argv;
 
 if (!layer || !layers.includes(layer)) {
-  throw new Error(`Укажите слой ${layers.join(' или')}`);
+  throw new Error(`Укажите слой ${layers.join(' или ')}`);
 }
 
 if (!sliceName) {

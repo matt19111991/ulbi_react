@@ -1,4 +1,4 @@
-import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
+import { LAST_DESIGN_LOCALSTORAGE_KEY, USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { Theme } from '@/shared/const/theme';
 
 import { initAuthData } from '../services/initAuthData/initAuthData';
@@ -32,6 +32,8 @@ describe('userSlice', () => {
       expect(userReducer(state as UserSchema, userActions.setAuthData(authData))).toEqual({
         authData,
       });
+
+      expect(window.localStorage.getItem(LAST_DESIGN_LOCALSTORAGE_KEY)).toBe('old');
 
       expect(window.localStorage.getItem(USER_LOCALSTORAGE_KEY)).toBe(authData.id);
     });

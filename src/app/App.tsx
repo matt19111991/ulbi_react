@@ -13,6 +13,8 @@ import { Navbar } from '@/widgets/Navbar';
 import { PageLoader } from '@/widgets/PageLoader';
 import { Sidebar } from '@/widgets/Sidebar';
 
+import { useAppToolbar } from './lib/hooks/useAppToolbar/useAppToolbar';
+
 import { AppRouter } from './providers/Router';
 
 /*
@@ -25,6 +27,7 @@ import { AppRouter } from './providers/Router';
 
 const App = () => {
   const dispatch = useAppDispatch();
+  const toolbar = useAppToolbar();
 
   const mounted = useSelector(getUserMounted);
 
@@ -58,7 +61,12 @@ const App = () => {
       on={
         <div className='app_redesigned' id='app'>
           <Suspense fallback=''>
-            <MainLayout content={<AppRouter />} header={<Navbar />} sidebar={<Sidebar />} />
+            <MainLayout
+              content={<AppRouter />}
+              header={<Navbar />}
+              sidebar={<Sidebar />}
+              toolbar={toolbar}
+            />
           </Suspense>
         </div>
       }
