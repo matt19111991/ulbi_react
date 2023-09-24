@@ -5,19 +5,13 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 import Image1 from '@/shared/assets/tests/storybook.jpg';
 import Image2 from '@/shared/assets/tests/storybook2.jpg';
 
-import {
-  RedesignDecorator,
-  redesignState,
-} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
-
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
 
 import { ArticleDetailsComments } from './ArticleDetailsComments';
-
-const stateArticleDetailsCommentsRedesigned: DeepPartial<StateSchema> = redesignState;
 
 const stateArticleDetailsComments: DeepPartial<StateSchema> = {
   articleDetailsPage: {
@@ -91,8 +85,8 @@ export const PrimaryNew: Story = {
 };
 
 PrimaryNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator({ ...stateArticleDetailsComments, ...stateArticleDetailsCommentsRedesigned }),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateArticleDetailsComments),
 ];
 
 // Dark article details comments new
@@ -102,8 +96,8 @@ export const DarkNew: Story = {
 };
 
 DarkNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator({ ...stateArticleDetailsComments, ...stateArticleDetailsCommentsRedesigned }),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateArticleDetailsComments),
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -114,8 +108,8 @@ export const OrangeNew: Story = {
 };
 
 OrangeNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator({ ...stateArticleDetailsComments, ...stateArticleDetailsCommentsRedesigned }),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateArticleDetailsComments),
   ThemeDecorator(Theme.ORANGE),
 ];
 

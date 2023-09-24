@@ -7,11 +7,7 @@ import { ArticleBlockType, ArticleType } from '@/entities/Article';
 import Image1 from '@/shared/assets/tests/storybook.jpg';
 import Image2 from '@/shared/assets/tests/storybook2.jpg';
 
-import {
-  RedesignDecorator,
-  redesignState,
-} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
-
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -161,8 +157,6 @@ const stateArticleDetails: DeepPartial<StateSchema> = {
   },
 };
 
-const stateArticlesPageRedesigned: DeepPartial<StateSchema> = redesignState;
-
 const meta = {
   title: 'pages/ArticleDetailsPage/new',
   component: ArticleDetailsPage,
@@ -174,7 +168,7 @@ const meta = {
   args: {
     isStorybook: true,
   },
-  decorators: [RedesignDecorator, StoreDecorator(stateArticlesPageRedesigned)],
+  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true })],
 } as Meta<typeof ArticleDetailsPage>;
 
 type Story = StoryObj<typeof meta>;

@@ -4,11 +4,7 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 
 import { ArticleSortField, ArticleView } from '@/entities/Article';
 
-import {
-  RedesignDecorator,
-  redesignState,
-} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
-
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -56,8 +52,6 @@ const stateArticlesError = {
     error: 'Error',
   },
 };
-
-const stateArticlesPageRedesigned: DeepPartial<StateSchema> = redesignState;
 
 const meta = {
   title: 'pages/ArticlesPage',
@@ -110,8 +104,8 @@ export const PrimaryNew: Story = {
 };
 
 PrimaryNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator({ ...stateArticles, ...stateArticlesPageRedesigned }),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateArticles),
 ];
 
 // Dark articles page new
@@ -121,8 +115,8 @@ export const DarkNew: Story = {
 };
 
 DarkNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator({ ...stateArticles, ...stateArticlesPageRedesigned }),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateArticles),
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -133,8 +127,8 @@ export const OrangeNew: Story = {
 };
 
 OrangeNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator({ ...stateArticles, ...stateArticlesPageRedesigned }),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateArticles),
   ThemeDecorator(Theme.ORANGE),
 ];
 
@@ -145,8 +139,8 @@ export const LoadingNew: Story = {
 };
 
 LoadingNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator({ ...stateArticlesLoading, ...stateArticlesPageRedesigned }),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateArticlesLoading),
 ];
 
 // Error articles page
@@ -156,8 +150,8 @@ export const Error: Story = {
 };
 
 Error.decorators = [
-  RedesignDecorator,
-  StoreDecorator({ ...stateArticlesError, ...stateArticlesPageRedesigned }),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateArticlesError),
 ];
 
 export default meta;
