@@ -2,22 +2,13 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import Icon from '@/shared/assets/tests/storybook3.svg';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
-
-import {
-  RedesignDecorator,
-  redesignState,
-} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
-
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { getRouteMain } from '@/shared/const/router';
 import { Theme } from '@/shared/const/theme';
 
 import { SidebarItem } from './SidebarItem';
-
-const stateSidebarItemRedesigned: DeepPartial<StateSchema> = redesignState;
 
 const sidebarItem = {
   Icon,
@@ -74,7 +65,7 @@ export const PrimaryNew: Story = {
   },
 };
 
-PrimaryNew.decorators = [RedesignDecorator, StoreDecorator(stateSidebarItemRedesigned)];
+PrimaryNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 // Dark sidebar item new
 
@@ -84,11 +75,7 @@ export const DarkNew: Story = {
   },
 };
 
-DarkNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateSidebarItemRedesigned),
-  ThemeDecorator(Theme.DARK),
-];
+DarkNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
 
 // Orange sidebar item new
 
@@ -99,8 +86,7 @@ export const OrangeNew: Story = {
 };
 
 OrangeNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateSidebarItemRedesigned),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
   ThemeDecorator(Theme.ORANGE),
 ];
 

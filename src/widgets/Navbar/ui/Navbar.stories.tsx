@@ -7,7 +7,7 @@ import { UserRole } from '@/entities/User';
 
 import Avatar from '@/shared/assets/tests/storybook.jpg';
 
-import { RedesignDecorator } from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -81,7 +81,7 @@ export const PrimaryNew: Story = {
   args: {},
 };
 
-PrimaryNew.decorators = [FullWidthDecorator, RedesignDecorator];
+PrimaryNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), FullWidthDecorator];
 
 // Dark navbar new
 
@@ -89,7 +89,11 @@ export const DarkNew: Story = {
   args: {},
 };
 
-DarkNew.decorators = [FullWidthDecorator, RedesignDecorator, ThemeDecorator(Theme.DARK)];
+DarkNew.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  FullWidthDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange navbar new
 
@@ -97,7 +101,11 @@ export const OrangeNew: Story = {
   args: {},
 };
 
-OrangeNew.decorators = [FullWidthDecorator, RedesignDecorator, ThemeDecorator(Theme.ORANGE)];
+OrangeNew.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  FullWidthDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Authorized navbar new
 
@@ -121,8 +129,8 @@ export const AuthorizedNew: Story = {
 };
 
 AuthorizedNew.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
   FullWidthDecorator,
-  RedesignDecorator,
   StoreDecorator(stateAuthorizedNew),
 ];
 

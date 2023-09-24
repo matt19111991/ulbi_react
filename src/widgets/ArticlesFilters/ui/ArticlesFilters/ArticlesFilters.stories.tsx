@@ -1,23 +1,14 @@
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
-
 import { ArticleSortField, ArticleType } from '@/entities/Article';
 
-import {
-  RedesignDecorator,
-  redesignState,
-} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
-
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
 
 import { ArticlesFilters } from './ArticlesFilters';
-
-const stateArticlesFiltersRedesigned: DeepPartial<StateSchema> = redesignState;
 
 const meta = {
   title: 'widgets/ArticlesFilters',
@@ -27,6 +18,7 @@ const meta = {
       control: 'color',
     },
   },
+  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true })],
 } as Meta<typeof ArticlesFilters>;
 
 type Story = StoryObj<typeof meta>;
@@ -46,8 +38,6 @@ export const Primary: Story = {
   },
 };
 
-Primary.decorators = [RedesignDecorator, StoreDecorator(stateArticlesFiltersRedesigned)];
-
 // Dark article filters
 
 export const Dark: Story = {
@@ -63,11 +53,7 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateArticlesFiltersRedesigned),
-  ThemeDecorator(Theme.DARK),
-];
+Dark.decorators = [ThemeDecorator(Theme.DARK)];
 
 // Orange article filters
 
@@ -84,11 +70,7 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateArticlesFiltersRedesigned),
-  ThemeDecorator(Theme.ORANGE),
-];
+Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
 
 // Loading article filters
 
@@ -100,7 +82,5 @@ export const Loading: Story = {
     type: ArticleType.ECONOMICS,
   },
 };
-
-Loading.decorators = [RedesignDecorator, StoreDecorator(stateArticlesFiltersRedesigned)];
 
 export default meta;
