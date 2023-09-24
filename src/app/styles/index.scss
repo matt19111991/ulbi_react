@@ -52,6 +52,13 @@ body {
 
 .sb-container {
   padding: 16px;
+
+  .app > *[class$='theme'] {
+    background: var(--bg-color);
+    color: var(--primary-color);
+    font: var(--font-m);
+    min-height: 100vh;
+  }
 }
 
 // Scroll bar redesigned
