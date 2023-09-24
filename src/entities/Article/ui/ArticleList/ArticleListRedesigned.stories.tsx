@@ -1,13 +1,6 @@
 import type { Meta, StoryFn, StoryObj } from '@storybook/react';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
-
-import {
-  RedesignDecorator,
-  redesignState,
-} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
-
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -18,8 +11,6 @@ import { ArticleView } from '../../model/consts/articleConsts';
 
 import { ArticleList } from './ArticleList';
 
-const stateArticleListRedesigned: DeepPartial<StateSchema> = redesignState;
-
 const meta = {
   title: 'entities/ArticleList/new',
   component: ArticleList,
@@ -28,6 +19,7 @@ const meta = {
       control: 'color',
     },
   },
+  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true })],
 } as Meta<typeof ArticleList>;
 
 type Story = StoryObj<typeof meta>;
@@ -48,8 +40,6 @@ export const PrimaryList: Story = {
   },
 };
 
-PrimaryList.decorators = [RedesignDecorator, StoreDecorator(stateArticleListRedesigned)];
-
 // Dark article list
 
 export const DarkList: Story = {
@@ -60,11 +50,7 @@ export const DarkList: Story = {
   },
 };
 
-DarkList.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateArticleListRedesigned),
-  ThemeDecorator(Theme.DARK),
-];
+DarkList.decorators = [ThemeDecorator(Theme.DARK)];
 
 // Orange article list
 
@@ -76,11 +62,7 @@ export const OrangeList: Story = {
   },
 };
 
-OrangeList.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateArticleListRedesigned),
-  ThemeDecorator(Theme.ORANGE),
-];
+OrangeList.decorators = [ThemeDecorator(Theme.ORANGE)];
 
 // Primary article plates
 
@@ -93,11 +75,7 @@ export const PrimaryPlates: Story = {
   },
 };
 
-PrimaryPlates.decorators = [
-  PlateViewDecorator,
-  RedesignDecorator,
-  StoreDecorator(stateArticleListRedesigned),
-];
+PrimaryPlates.decorators = [PlateViewDecorator];
 
 // Dark article plates
 
@@ -110,12 +88,7 @@ export const DarkPlates: Story = {
   },
 };
 
-DarkPlates.decorators = [
-  PlateViewDecorator,
-  RedesignDecorator,
-  StoreDecorator(stateArticleListRedesigned),
-  ThemeDecorator(Theme.DARK),
-];
+DarkPlates.decorators = [PlateViewDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange article plates
 
@@ -128,12 +101,7 @@ export const OrangePlates: Story = {
   },
 };
 
-OrangePlates.decorators = [
-  PlateViewDecorator,
-  RedesignDecorator,
-  StoreDecorator(stateArticleListRedesigned),
-  ThemeDecorator(Theme.ORANGE),
-];
+OrangePlates.decorators = [PlateViewDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Horizontally scrollable articles
 
@@ -146,8 +114,6 @@ export const HorizontallyScrollable: Story = {
   },
 };
 
-HorizontallyScrollable.decorators = [RedesignDecorator, StoreDecorator(stateArticleListRedesigned)];
-
 // Loading article list
 
 export const LoadingList: Story = {
@@ -158,8 +124,6 @@ export const LoadingList: Story = {
     virtualized: true,
   },
 };
-
-LoadingList.decorators = [RedesignDecorator, StoreDecorator(stateArticleListRedesigned)];
 
 // Loading article plates
 
@@ -172,11 +136,7 @@ export const LoadingPlates: Story = {
   },
 };
 
-LoadingPlates.decorators = [
-  PlateViewDecorator,
-  RedesignDecorator,
-  StoreDecorator(stateArticleListRedesigned),
-];
+LoadingPlates.decorators = [PlateViewDecorator];
 
 // Empty article list
 
@@ -186,7 +146,5 @@ export const Empty: Story = {
     isLoading: false,
   },
 };
-
-Empty.decorators = [RedesignDecorator, StoreDecorator(stateArticleListRedesigned)];
 
 export default meta;

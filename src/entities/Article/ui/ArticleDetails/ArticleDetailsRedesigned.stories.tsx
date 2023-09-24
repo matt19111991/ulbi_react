@@ -2,11 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
-import {
-  RedesignDecorator,
-  redesignState,
-} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
-
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -102,8 +98,6 @@ const stateArticleDetails: DeepPartial<StateSchema> = {
   },
 };
 
-const stateArticleDetailsRedesigned: DeepPartial<StateSchema> = redesignState;
-
 const meta = {
   title: 'entities/ArticleDetails/new',
   component: ArticleDetails,
@@ -112,7 +106,7 @@ const meta = {
       control: 'color',
     },
   },
-  decorators: [RedesignDecorator, StoreDecorator(stateArticleDetailsRedesigned)],
+  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true })],
 } as Meta<typeof ArticleDetails>;
 
 type Story = StoryObj<typeof meta>;

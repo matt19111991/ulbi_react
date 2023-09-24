@@ -1,25 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
-
 import { Country } from '@/entities/Country';
 import { Currency } from '@/entities/Currency';
 
 import Avatar from '@/shared/assets/tests/storybook.jpg';
 
-import {
-  RedesignDecorator,
-  redesignState,
-} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
-
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
 
 import { ProfileCard } from './ProfileCard';
-
-const stateProfileCard: DeepPartial<StateSchema> = redesignState;
 
 const meta = {
   title: 'entities/ProfileCard',
@@ -105,7 +96,7 @@ export const PrimaryNew: Story = {
   },
 };
 
-PrimaryNew.decorators = [RedesignDecorator, StoreDecorator(stateProfileCard)];
+PrimaryNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 // Dark profile card new
 
@@ -124,11 +115,7 @@ export const DarkNew: Story = {
   },
 };
 
-DarkNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateProfileCard),
-  ThemeDecorator(Theme.DARK),
-];
+DarkNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
 
 // Orange profile card new
 
@@ -148,8 +135,7 @@ export const OrangeNew: Story = {
 };
 
 OrangeNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateProfileCard),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
   ThemeDecorator(Theme.ORANGE),
 ];
 

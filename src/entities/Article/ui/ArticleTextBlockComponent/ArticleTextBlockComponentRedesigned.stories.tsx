@@ -1,13 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
-
-import {
-  RedesignDecorator,
-  redesignState,
-} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
-
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -28,8 +21,6 @@ const block: ArticleTextBlock = {
   type: ArticleBlockType.TEXT,
 };
 
-const stateArticleTextBlockComponentRedesigned: DeepPartial<StateSchema> = redesignState;
-
 const meta = {
   title: 'entities/ArticleDetails/blocks/Text/new',
   component: ArticleTextBlockComponent,
@@ -38,7 +29,7 @@ const meta = {
       control: 'color',
     },
   },
-  decorators: [RedesignDecorator, StoreDecorator(stateArticleTextBlockComponentRedesigned)],
+  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true })],
 } as Meta<typeof ArticleTextBlockComponent>;
 
 type Story = StoryObj<typeof meta>;

@@ -1,13 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
-
-import {
-  RedesignDecorator,
-  redesignState,
-} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
-
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -17,8 +10,6 @@ import { article } from '@/shared/lib/generators/articles';
 import { ArticleView } from '../../model/consts/articleConsts';
 
 import { ArticleListItem } from './ArticleListItem';
-
-const stateArticleListItemRedesigned: DeepPartial<StateSchema> = redesignState;
 
 const meta = {
   title: 'entities/ArticleListItem',
@@ -103,7 +94,7 @@ export const PrimaryListItemNew: Story = {
   },
 };
 
-PrimaryListItemNew.decorators = [RedesignDecorator, StoreDecorator(stateArticleListItemRedesigned)];
+PrimaryListItemNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 // Dark article list item new
 
@@ -115,8 +106,7 @@ export const DarkListItemNew: Story = {
 };
 
 DarkListItemNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateArticleListItemRedesigned),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -130,8 +120,7 @@ export const OrangeListItemNew: Story = {
 };
 
 OrangeListItemNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateArticleListItemRedesigned),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
   ThemeDecorator(Theme.ORANGE),
 ];
 
@@ -144,10 +133,7 @@ export const PrimaryPlateItemNew: Story = {
   },
 };
 
-PrimaryPlateItemNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateArticleListItemRedesigned),
-];
+PrimaryPlateItemNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 // Dark article plate item new
 
@@ -159,8 +145,7 @@ export const DarkPlateItemNew: Story = {
 };
 
 DarkPlateItemNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateArticleListItemRedesigned),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -174,8 +159,7 @@ export const OrangePlateItemNew: Story = {
 };
 
 OrangePlateItemNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateArticleListItemRedesigned),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
   ThemeDecorator(Theme.ORANGE),
 ];
 

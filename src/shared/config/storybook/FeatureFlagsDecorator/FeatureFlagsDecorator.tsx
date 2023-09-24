@@ -12,12 +12,18 @@ export const FeatureFlagsDecorator =
   (Story: StoryFn): ReactElement<unknown> => {
     setFeatureFlags(features);
 
+    const appClass = features.isAppRedesigned ? 'app_redesigned' : 'app';
+
     /*
       Если вернуть JSX то будет ошибка ESLint:
       Component definition is missing display name(react/display-name)
     */
 
-    const getStory = () => <Story />;
+    const getStory = () => (
+      <div className={appClass}>
+        <Story />
+      </div>
+    );
 
     return getStory();
   };
