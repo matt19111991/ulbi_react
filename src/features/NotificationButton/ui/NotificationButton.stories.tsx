@@ -1,21 +1,12 @@
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
-
-import {
-  redesignState,
-  RedesignDecorator,
-} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
-
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
 
 import { NotificationButton } from './NotificationButton';
-
-const stateNotificationButtonRedesigned: DeepPartial<StateSchema> = redesignState;
 
 const meta = {
   title: 'features/NotificationButton',
@@ -115,10 +106,7 @@ export const PrimaryDesktopNew: Story = {
   args: {},
 };
 
-PrimaryDesktopNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateNotificationButtonRedesigned),
-];
+PrimaryDesktopNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 // Dark desktop notification button new
 
@@ -127,8 +115,7 @@ export const DarkDesktopNew: Story = {
 };
 
 DarkDesktopNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateNotificationButtonRedesigned),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -139,8 +126,7 @@ export const OrangeDesktopNew: Story = {
 };
 
 OrangeDesktopNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateNotificationButtonRedesigned),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
   ThemeDecorator(Theme.ORANGE),
 ];
 
@@ -152,10 +138,7 @@ export const PrimaryMobileNew: Story = {
   },
 };
 
-PrimaryMobileNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateNotificationButtonRedesigned),
-];
+PrimaryMobileNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 PrimaryMobileNew.parameters = {
   viewport: {
@@ -172,8 +155,7 @@ export const DarkMobileNew: Story = {
 };
 
 DarkMobileNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateNotificationButtonRedesigned),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -192,8 +174,7 @@ export const OrangeMobileNew: Story = {
 };
 
 OrangeMobileNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateNotificationButtonRedesigned),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
   ThemeDecorator(Theme.ORANGE),
 ];
 

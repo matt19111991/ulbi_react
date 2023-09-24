@@ -1,13 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
-
-import {
-  RedesignDecorator,
-  redesignState,
-} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
-
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -15,8 +8,6 @@ import { Theme } from '@/shared/const/theme';
 import { generateNotifications } from '@/shared/lib/generators/notifications';
 
 import { NotificationItem } from './NotificationItem';
-
-const stateNotificationItemRedesigned: DeepPartial<StateSchema> = redesignState;
 
 const [notificationWithLink] = generateNotifications(1);
 
@@ -88,7 +79,7 @@ export const PrimaryNew: Story = {
   },
 };
 
-PrimaryNew.decorators = [RedesignDecorator, StoreDecorator(stateNotificationItemRedesigned)];
+PrimaryNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 // Dark notification item new
 
@@ -101,11 +92,7 @@ export const DarkNew: Story = {
   },
 };
 
-DarkNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateNotificationItemRedesigned),
-  ThemeDecorator(Theme.DARK),
-];
+DarkNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
 
 // Orange notification item new
 
@@ -119,8 +106,7 @@ export const OrangeNew: Story = {
 };
 
 OrangeNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateNotificationItemRedesigned),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
   ThemeDecorator(Theme.ORANGE),
 ];
 
@@ -132,6 +118,6 @@ export const LinkNew: Story = {
   },
 };
 
-LinkNew.decorators = [RedesignDecorator, StoreDecorator(stateNotificationItemRedesigned)];
+LinkNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 export default meta;

@@ -1,25 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
-
 import { Country } from '@/entities/Country';
 import { Currency } from '@/entities/Currency';
 
 import Avatar from '@/shared/assets/tests/storybook.jpg';
 
-import {
-  RedesignDecorator,
-  redesignState,
-} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
-
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
 
 import { ProfileCardRedesigned } from './ProfileCardRedesigned';
-
-const stateProfileCardRedesigned: DeepPartial<StateSchema> = redesignState;
 
 const meta = {
   title: 'entities/ProfileCard/new',
@@ -29,7 +20,7 @@ const meta = {
       control: 'color',
     },
   },
-  decorators: [RedesignDecorator, StoreDecorator(stateProfileCardRedesigned)],
+  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true })],
 } as Meta<typeof ProfileCardRedesigned>;
 
 type Story = StoryObj<typeof meta>;

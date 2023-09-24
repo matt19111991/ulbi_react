@@ -2,11 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
-import {
-  RedesignDecorator,
-  redesignState,
-} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
-
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -21,8 +17,6 @@ const stateLoginForm: DeepPartial<StateSchema> = {
   },
 };
 
-const stateLoginFormRedesigned: DeepPartial<StateSchema> = redesignState;
-
 const meta = {
   title: 'features/LoginForm/new',
   component: LoginForm,
@@ -31,7 +25,7 @@ const meta = {
       control: 'color',
     },
   },
-  decorators: [RedesignDecorator, StoreDecorator(stateLoginFormRedesigned)],
+  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true })],
 } as Meta<typeof LoginForm>;
 
 type Story = StoryObj<typeof meta>;

@@ -1,20 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
-
-import {
-  RedesignDecorator,
-  redesignState,
-} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
-
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
 
 import { ThemeSwitcher } from './ThemeSwitcher';
-
-const stateThemeSwitcherRedesigned: DeepPartial<StateSchema> = redesignState;
 
 const meta = {
   title: 'features/ThemeSwitcher',
@@ -56,7 +47,7 @@ export const PrimaryNew: Story = {
   args: {},
 };
 
-PrimaryNew.decorators = [RedesignDecorator, StoreDecorator(stateThemeSwitcherRedesigned)];
+PrimaryNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 // Dark theme switcher new
 
@@ -64,11 +55,7 @@ export const DarkNew: Story = {
   args: {},
 };
 
-DarkNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateThemeSwitcherRedesigned),
-  ThemeDecorator(Theme.DARK),
-];
+DarkNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
 
 // Orange theme switcher new
 
@@ -77,8 +64,7 @@ export const OrangeNew: Story = {
 };
 
 OrangeNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateThemeSwitcherRedesigned),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
   ThemeDecorator(Theme.ORANGE),
 ];
 

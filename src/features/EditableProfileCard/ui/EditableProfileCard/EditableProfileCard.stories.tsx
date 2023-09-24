@@ -7,11 +7,7 @@ import { Currency } from '@/entities/Currency';
 
 import Avatar from '@/shared/assets/tests/storybook.jpg';
 
-import {
-  RedesignDecorator,
-  redesignState,
-} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
-
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -33,8 +29,6 @@ const stateEditableProfileCard: DeepPartial<StateSchema> = {
     },
   },
 };
-
-const stateEditableProfileCardRedesigned: DeepPartial<StateSchema> = redesignState;
 
 const meta = {
   title: 'features/EditableProfileCard',
@@ -79,8 +73,8 @@ export const PrimaryNew: Story = {
 };
 
 PrimaryNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator({ ...stateEditableProfileCard, ...stateEditableProfileCardRedesigned }),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateEditableProfileCard),
 ];
 
 // Dark editable profile card new
@@ -90,8 +84,8 @@ export const DarkNew: Story = {
 };
 
 DarkNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator({ ...stateEditableProfileCard, ...stateEditableProfileCardRedesigned }),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateEditableProfileCard),
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -102,8 +96,8 @@ export const OrangeNew: Story = {
 };
 
 OrangeNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator({ ...stateEditableProfileCard, ...stateEditableProfileCardRedesigned }),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateEditableProfileCard),
   ThemeDecorator(Theme.ORANGE),
 ];
 

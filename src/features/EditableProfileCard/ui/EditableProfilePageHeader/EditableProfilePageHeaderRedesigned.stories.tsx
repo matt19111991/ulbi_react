@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
-import { RedesignDecorator } from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -36,7 +36,7 @@ const meta = {
       control: 'color',
     },
   },
-  decorators: [RedesignDecorator],
+  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true })],
 } as Meta<typeof EditableProfilePageHeader>;
 
 type Story = StoryObj<typeof meta>;

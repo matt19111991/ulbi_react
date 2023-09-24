@@ -1,16 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
-
 import FirstAvatar from '@/shared/assets/tests/storybook.jpg';
 import SecondAvatar from '@/shared/assets/tests/storybook2.jpg';
 
-import {
-  RedesignDecorator,
-  redesignState,
-} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
-
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -49,8 +42,6 @@ const comments: Comment[] = [
   },
 ];
 
-const stateCommentListRedesigned: DeepPartial<StateSchema> = redesignState;
-
 const meta = {
   title: 'entities/Comment/CommentList/new',
   component: CommentList,
@@ -59,7 +50,7 @@ const meta = {
       control: 'color',
     },
   },
-  decorators: [RedesignDecorator, StoreDecorator(stateCommentListRedesigned)],
+  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true })],
 } as Meta<typeof CommentList>;
 
 type Story = StoryObj<typeof meta>;

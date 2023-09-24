@@ -1,23 +1,14 @@
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
-
 import { ArticleType } from '@/entities/Article';
 
-import {
-  RedesignDecorator,
-  redesignState,
-} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
-
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
 
 import { ArticleTypeTabs } from './ArticleTypeTabs';
-
-const stateArticleTypeTabsRedesigned: DeepPartial<StateSchema> = redesignState;
 
 const meta = {
   title: 'features/ArticleTypeTabs',
@@ -71,7 +62,7 @@ export const PrimaryNew: Story = {
   },
 };
 
-PrimaryNew.decorators = [RedesignDecorator, StoreDecorator(stateArticleTypeTabsRedesigned)];
+PrimaryNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 // Dark article type tabs new
 
@@ -82,11 +73,7 @@ export const DarkNew: Story = {
   },
 };
 
-DarkNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateArticleTypeTabsRedesigned),
-  ThemeDecorator(Theme.DARK),
-];
+DarkNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
 
 // Orange article type tabs new
 
@@ -98,8 +85,7 @@ export const OrangeNew: Story = {
 };
 
 OrangeNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateArticleTypeTabsRedesigned),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
   ThemeDecorator(Theme.ORANGE),
 ];
 

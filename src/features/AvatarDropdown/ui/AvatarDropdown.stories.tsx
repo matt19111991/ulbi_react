@@ -6,19 +6,13 @@ import { UserRole } from '@/entities/User';
 
 import Avatar from '@/shared/assets/tests/storybook.jpg';
 
-import {
-  RedesignDecorator,
-  redesignState,
-} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
-
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
 
 import { AvatarDropdown } from './AvatarDropdown';
-
-const stateAvatarDropdownRedesigned: DeepPartial<StateSchema> = redesignState;
 
 const stateAuthUser: DeepPartial<StateSchema> = {
   user: {
@@ -135,7 +129,7 @@ export const PrimaryNew: Story = {
   },
 };
 
-PrimaryNew.decorators = [RedesignDecorator, StoreDecorator(stateAvatarDropdownRedesigned)];
+PrimaryNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 // Dark avatar dropdown new
 
@@ -145,11 +139,7 @@ export const DarkNew: Story = {
   },
 };
 
-DarkNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateAvatarDropdownRedesigned),
-  ThemeDecorator(Theme.DARK),
-];
+DarkNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
 
 // Orange avatar dropdown new
 
@@ -160,8 +150,7 @@ export const OrangeNew: Story = {
 };
 
 OrangeNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateAvatarDropdownRedesigned),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -174,7 +163,7 @@ export const AuthorizedUserNew: Story = {
 };
 
 AuthorizedUserNew.decorators = [
-  RedesignDecorator,
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
   StoreDecorator({
     user: {
       ...stateAuthUser.user,
@@ -197,7 +186,7 @@ export const AuthorizedManagerNew: Story = {
 };
 
 AuthorizedManagerNew.decorators = [
-  RedesignDecorator,
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
   StoreDecorator({
     user: {
       ...stateAuthManager.user,
@@ -220,7 +209,7 @@ export const AuthorizedAdminNew: Story = {
 };
 
 AuthorizedAdminNew.decorators = [
-  RedesignDecorator,
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
   StoreDecorator({
     user: {
       ...stateAuthAdmin.user,

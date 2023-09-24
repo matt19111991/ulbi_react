@@ -1,20 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
-
-import {
-  RedesignDecorator,
-  redesignState,
-} from '@/shared/config/storybook/RedesignDecorator/RedesignDecorator';
-
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
 
 import { ArticleRecommendationsList } from './ArticleRecommendationsList';
-
-const stateArticleRecommendationsListRedesigned: DeepPartial<StateSchema> = redesignState;
 
 const meta = {
   title: 'features/ArticleRecommendationsList',
@@ -64,10 +55,7 @@ export const PrimaryNew: Story = {
   args: {},
 };
 
-PrimaryNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateArticleRecommendationsListRedesigned),
-];
+PrimaryNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 // Dark article recommendations list new
 
@@ -75,11 +63,7 @@ export const DarkNew: Story = {
   args: {},
 };
 
-DarkNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateArticleRecommendationsListRedesigned),
-  ThemeDecorator(Theme.DARK),
-];
+DarkNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
 
 // Orange article recommendations list new
 
@@ -88,8 +72,7 @@ export const OrangeNew: Story = {
 };
 
 OrangeNew.decorators = [
-  RedesignDecorator,
-  StoreDecorator(stateArticleRecommendationsListRedesigned),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
   ThemeDecorator(Theme.ORANGE),
 ];
 
