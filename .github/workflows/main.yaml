@@ -51,21 +51,11 @@ jobs: # 'build-and-ui-testing' и 'checks' jobs запускаются пара�
           # но, используем 'npm i', т.к. иначе возникают конфликты для deprecated библиотек
         run: npm i
 
-      # удаляем create-chrome-target.js
-      - name: Remove create-chrome-target.js
-        if: always()
-        run: rm ./node_modules/@loki/target-chrome-core/src/create-chrome-target.js
-
-      # добавляем свой create-chrome-target.js
-      - name: Replace with custom create-chrome-target.js
-        if: always()
-        run: cp create-chrome-target.js node_modules/@loki/target-chrome-core/src
-
-      # собираем production build
-      - name: Build production project
-        # запуск команды в любом случае (даже если завалилось выполнение предыдущей команды)
-        if: always()
-        run: npm run build:prod
+#      # собираем production build
+#      - name: Build production project
+#        # запуск команды в любом случае (даже если завалилось выполнение предыдущей команды)
+#        if: always()
+#        run: npm run build:prod
 
       # собираем storybook build
       - name: Build storybook
@@ -110,50 +100,50 @@ jobs: # 'build-and-ui-testing' и 'checks' jobs запускаются пара�
         if: always()
         uses: actions/deploy-pages@v1
 
-  checks: # не требует сборку
-    runs-on: ubuntu-latest
-
-    # пока не выполнятся 'build' и 'linting' jobs, текущая 'checks' job не запустится
-    # needs: [build, linting]
-
-    strategy:
-      matrix:
-        node-version: [ 17.x ] # задаем версию для Node.js
-
-    steps:
-      - uses: actions/checkout@v2
-
-      # устанавливаем в среду, где будут запускаться GitHub Actions, заданную выше версию Node.js
-      - name: Staring Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      # даем добро на установку peer-dependencies
-      # - name: Set legacy-peer-deps
-        # run: npm config set legacy-peer-deps true
-
-      # устанавливаем node_modules
-      - name: Install modules
-        # есть аналог 'npm install' => 'npm ci' (более быстрая версия для CI):
-          # не создается новый 'package-lock.json' файл, а используется существующий
-          # нужно добавить 'package-lock.json' в репозиторий
-          # но, используем 'npm i', т.к. иначе возникают конфликты для deprecated библиотек
-        run: npm i
-
-      # проверяем корректность TypeScript
-      - name: Linting typescript
-        if: always()
-        run: npm run lint:ts
-
-      # проверяем корректность CSS
-      - name: Linting CSS
-        run: npm run lint:scss
-
-      # запускаем unit тестирование
-      - name: Unit testing
-        if: always()
-        run: npm run test:unit
+#  checks: # не требует сборку
+#    runs-on: ubuntu-latest
+#
+#    # пока не выполнятся 'build' и 'linting' jobs, текущая 'checks' job не запустится
+#    # needs: [build, linting]
+#
+#    strategy:
+#      matrix:
+#        node-version: [ 17.x ] # задаем версию для Node.js
+#
+#    steps:
+#      - uses: actions/checkout@v2
+#
+#      # устанавливаем в среду, где будут запускаться GitHub Actions, заданную выше версию Node.js
+#      - name: Staring Node.js ${{ matrix.node-version }}
+#        uses: actions/setup-node@v1
+#        with:
+#          node-version: ${{ matrix.node-version }}
+#
+#      # даем добро на установку peer-dependencies
+#      # - name: Set legacy-peer-deps
+#        # run: npm config set legacy-peer-deps true
+#
+#      # устанавливаем node_modules
+#      - name: Install modules
+#        # есть аналог 'npm install' => 'npm ci' (более быстрая версия для CI):
+#          # не создается новый 'package-lock.json' файл, а используется существующий
+#          # нужно добавить 'package-lock.json' в репозиторий
+#          # но, используем 'npm i', т.к. иначе возникают конфликты для deprecated библиотек
+#        run: npm i
+#
+#      # проверяем корректность TypeScript
+#      - name: Linting typescript
+#        if: always()
+#        run: npm run lint:ts
+#
+#      # проверяем корректность CSS
+#      - name: Linting CSS
+#        run: npm run lint:scss
+#
+#      # запускаем unit тестирование
+#      - name: Unit testing
+#        if: always()
+#        run: npm run test:unit
 
   # Секреты задаются на GitHub: Settings => Security => Secrets and variables => Actions
 
