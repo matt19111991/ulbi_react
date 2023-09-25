@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
+import { AsyncDecorator } from '@/shared/config/storybook/AsyncDecorator/AsyncDecorator';
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -117,7 +118,7 @@ export const Primary: Story = {
   args: {},
 };
 
-Primary.decorators = [StoreDecorator(stateArticleDetails)];
+Primary.decorators = [AsyncDecorator, StoreDecorator(stateArticleDetails)];
 
 // Dark article details
 
@@ -125,7 +126,11 @@ export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [StoreDecorator(stateArticleDetails), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+  AsyncDecorator,
+  StoreDecorator(stateArticleDetails),
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange article details
 
@@ -133,7 +138,11 @@ export const Orange: Story = {
   args: {},
 };
 
-Orange.decorators = [StoreDecorator(stateArticleDetails), ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  AsyncDecorator,
+  StoreDecorator(stateArticleDetails),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Loading article details
 
