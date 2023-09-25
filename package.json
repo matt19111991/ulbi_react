@@ -23,7 +23,7 @@
     "storybook:build": "storybook build -c ./config/storybook",
     "test:e2e": "cypress open",
     "test:ui": "npx loki test",
-    "test:ui:ok": "npx loki approve",
+    "test:ui:ok": "npx loki approve --diffOnly",
     "test:ui:ci": "npx loki --requireReference --reactUri file:./storybook-static",
     "test:ui:json": "node scripts/generateVisualJsonReport.js",
     "test:ui:html": "reg-cli --from .loki/report.json --report .loki/report.html",
@@ -145,6 +145,7 @@
     ]
   },
   "loki": {
+    "diffingEngine": "pixelmatch",
     "looks-same": {
       "ignoreCaret": true
     },
