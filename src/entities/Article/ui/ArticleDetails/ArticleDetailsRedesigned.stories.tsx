@@ -126,11 +126,7 @@ export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [
-  AsyncDecorator,
-  StoreDecorator(stateArticleDetails),
-  ThemeDecorator(Theme.DARK),
-];
+Dark.decorators = [AsyncDecorator, StoreDecorator(stateArticleDetails), ThemeDecorator(Theme.DARK)];
 
 // Orange article details
 
