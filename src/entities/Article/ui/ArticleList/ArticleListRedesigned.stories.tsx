@@ -1,4 +1,4 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -6,6 +6,8 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 import { Theme } from '@/shared/const/theme';
 
 import { generateArticles } from '@/shared/lib/generators/articles';
+
+import { customViewports } from '../../../../../config/storybook/preview';
 
 import { ArticleView } from '../../model/consts/articleConsts';
 
@@ -20,15 +22,14 @@ const meta = {
     },
   },
   decorators: [FeatureFlagsDecorator({ isAppRedesigned: true })],
+  parameters: {
+    viewport: {
+      viewports: customViewports,
+    },
+  },
 } as Meta<typeof ArticleList>;
 
 type Story = StoryObj<typeof meta>;
-
-const PlateViewDecorator = (Story: StoryFn) => (
-  <div style={{ width: 1244 }}>
-    <Story />
-  </div>
-);
 
 // Primary article list
 
@@ -73,9 +74,12 @@ export const PrimaryPlates: Story = {
     view: ArticleView.PLATE,
     virtualized: true,
   },
+  parameters: {
+    viewport: {
+      defaultViewport: 'lg',
+    },
+  },
 };
-
-PrimaryPlates.decorators = [PlateViewDecorator];
 
 // Dark article plates
 
@@ -86,9 +90,14 @@ export const DarkPlates: Story = {
     view: ArticleView.PLATE,
     virtualized: true,
   },
+  parameters: {
+    viewport: {
+      defaultViewport: 'lg',
+    },
+  },
 };
 
-DarkPlates.decorators = [PlateViewDecorator, ThemeDecorator(Theme.DARK)];
+DarkPlates.decorators = [ThemeDecorator(Theme.DARK)];
 
 // Orange article plates
 
@@ -99,9 +108,14 @@ export const OrangePlates: Story = {
     view: ArticleView.PLATE,
     virtualized: true,
   },
+  parameters: {
+    viewport: {
+      defaultViewport: 'lg',
+    },
+  },
 };
 
-OrangePlates.decorators = [PlateViewDecorator, ThemeDecorator(Theme.ORANGE)];
+OrangePlates.decorators = [ThemeDecorator(Theme.ORANGE)];
 
 // Horizontally scrollable articles
 
@@ -134,9 +148,12 @@ export const LoadingPlates: Story = {
     view: ArticleView.PLATE,
     virtualized: true,
   },
+  parameters: {
+    viewport: {
+      defaultViewport: 'lg',
+    },
+  },
 };
-
-LoadingPlates.decorators = [PlateViewDecorator];
 
 // Empty article list
 

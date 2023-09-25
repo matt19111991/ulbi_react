@@ -145,9 +145,10 @@
     ]
   },
   "loki": {
-    "diffingEngine": "pixelmatch",
+    "diffingEngine": "looks-same",
     "looks-same": {
-      "ignoreCaret": true
+      "ignoreCaret": true,
+      "strict": false
     },
     "configurations": {
       "chrome.laptop": {
