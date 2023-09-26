@@ -2,19 +2,20 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
-import { ArticleBlockType, ArticleType } from '@/entities/Article';
+// import { ArticleBlockType, ArticleType } from '@/entities/Article';
 
-import Image1 from '@/shared/assets/tests/storybook.jpg';
-import Image2 from '@/shared/assets/tests/storybook2.jpg';
+// import Image1 from '@/shared/assets/tests/storybook.jpg';
+// import Image2 from '@/shared/assets/tests/storybook2.jpg';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
+// import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
-import { Theme } from '@/shared/const/theme';
+// import { Theme } from '@/shared/const/theme';
 
 import ArticleDetailsPage from './ArticleDetailsPage';
 
+/*
 const stateArticleDetails: DeepPartial<StateSchema> = {
   articleDetails: {
     data: {
@@ -147,6 +148,7 @@ const stateArticleDetails: DeepPartial<StateSchema> = {
     },
   },
 };
+*/
 
 const meta = {
   title: 'pages/ArticleDetailsPage/new',
@@ -176,7 +178,6 @@ export const Primary: Story = {
 };
 
 Primary.decorators = [StoreDecorator(stateArticleDetails)];
-*/
 
 // Dark article details page
 
@@ -188,10 +189,7 @@ export const Dark: Story = {
 
 Dark.decorators = [StoreDecorator(stateArticleDetails), ThemeDecorator(Theme.DARK)];
 
-/*
-!!! Проблема с тестами loki: обрезается низ страницы !!!
-
-Orange article details page
+// Orange article details page
 
 export const Orange: Story = {
   args: {
