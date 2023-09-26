@@ -22,6 +22,8 @@ jobs: # 'build-and-ui-testing' и 'checks' jobs запускаются пара�
 
     concurrency: ci-${{ github.ref }}
 
+    timeout-minutes: 30
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
