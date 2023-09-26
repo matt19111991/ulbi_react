@@ -103,15 +103,6 @@ const stateArticleDetails: DeepPartial<StateSchema> = {
     comments: {
       areLoading: false,
       entities: {
-        1: {
-          id: '1',
-          text: 'First comment',
-          user: {
-            avatar: Image1,
-            id: '1',
-            username: 'Jack',
-          },
-        },
         2: {
           id: '1',
           text: 'Nice article!',
@@ -122,7 +113,7 @@ const stateArticleDetails: DeepPartial<StateSchema> = {
           },
         },
       },
-      ids: ['1', '2'],
+      ids: ['2'],
     },
     recommendations: {
       entities: {
