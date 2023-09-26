@@ -3,6 +3,7 @@ import { UserRole } from '@/entities/User';
 import { AboutPage } from '@/pages/AboutPage';
 import { AdminPanelPage } from '@/pages/AdminPanelPage';
 import { ArticleDetailsPage } from '@/pages/ArticleDetailsPage';
+import { ArticleCreatePage } from '@/pages/ArticleCreatePage';
 import { ArticleEditPage } from '@/pages/ArticleEditPage';
 import { ArticlesPage } from '@/pages/ArticlesPage';
 import { ForbiddenPage } from '@/pages/ForbiddenPage';
@@ -40,8 +41,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   },
   [AppRoutes.ARTICLE_CREATE]: {
     authOnly: true,
-    // можно создать отдельно <ArticleCreatePage />, но скорее всего она будет не сильно отличаться от <ArticleEditPage />
-    element: <ArticleEditPage />,
+    element: <ArticleCreatePage />,
     path: getRouteArticleCreate(),
   },
   [AppRoutes.ARTICLE_DETAILS]: {
