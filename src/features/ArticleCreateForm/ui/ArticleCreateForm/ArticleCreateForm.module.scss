@@ -1,0 +1,49 @@
+.blockContainer {
+  position: relative;
+}
+
+.block {
+  border-bottom: 1px solid var(--light-bg-redesigned);
+  padding: 16px;
+}
+
+.formContainer {
+  margin-bottom: 16px;
+  width: 500px;
+}
+
+.errorIndents {
+  margin-bottom: 40px;
+}
+
+.input {
+  display: flex;
+  margin-right: 20px;
+  overflow: hidden;
+}
+
+.loading {
+  opacity: .7;
+  pointer-events: none;
+}
+
+.removeBlockIcon {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.sendContainer {
+  width: 500px;
+}
+
+.types {
+  border-bottom: 1px solid var(--light-bg-redesigned);
+  padding-bottom: 16px;
+  width: 100%;
+}
