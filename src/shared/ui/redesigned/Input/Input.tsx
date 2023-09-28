@@ -11,7 +11,7 @@ import {
 
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 
-import { HStack } from '../Stack';
+import { HStack, VStack } from '../Stack';
 import { Text } from '../Text';
 
 import classes from './Input.module.scss';
@@ -33,12 +33,13 @@ interface InputProps extends HTMLInputProps {
   className?: string;
   fullWidth?: boolean;
   label?: string;
-  onChange?: (value: string) => void;
+  onChange?: (value: string, name: string) => void;
   placeholder?: string;
   readOnly?: boolean;
   size?: InputSize;
   type?: HTMLInputTypeAttribute;
   value?: string | number;
+  verticalLabel?: boolean;
 }
 
 export const Input = memo(
@@ -55,6 +56,7 @@ export const Input = memo(
     size = 'm',
     type = 'text',
     value,
+    verticalLabel = false,
     ...rest
   }: InputProps) => {
     const [isFocused, setIsFocused] = useState(false);
@@ -62,7 +64,7 @@ export const Input = memo(
     const ref = useRef<HTMLInputElement>(null);
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-      onChange?.(e.target.value); // 'onChange?.()' => функция не будет вызвана, если не будет передана
+      onChange?.(e.target.value, e.target.name); // 'onChange?.()' => функция не будет вызвана, если не будет передана
     };
 
     const onBlur = (): void => {
@@ -114,12 +116,15 @@ export const Input = memo(
     );
 
     if (label) {
+      const align = verticalLabel ? 'start' : 'center';
+      const StackForLabel = verticalLabel ? VStack : HStack;
+
       return (
-        <HStack gap='8' max>
+        <StackForLabel align={align} gap='8' max>
           <Text text={label} />
 
           {input}
-        </HStack>
+        </StackForLabel>
       );
     }
 

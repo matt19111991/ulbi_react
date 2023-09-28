@@ -2,7 +2,6 @@ import type { Meta, StoryFn, StoryObj } from '@storybook/react';
 
 import IconSvg from '@/shared/assets/tests/storybook3.svg';
 
-import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -23,7 +22,6 @@ const meta = {
       control: 'color',
     },
   },
-  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true })],
 } as Meta<typeof Input>;
 
 type Story = StoryObj<typeof meta>;
@@ -122,16 +120,28 @@ export const AddonRight: Story = {
 
 AddonRight.decorators = [InlineBlockDecorator];
 
-// Input with label
+// Input with horizontal label
 
-export const Label: Story = {
+export const HorizontalLabel: Story = {
   args: {
     label: 'Input',
     value: '12345',
   },
 };
 
-Label.decorators = [InlineBlockDecorator];
+HorizontalLabel.decorators = [InlineBlockDecorator];
+
+// Input with vertical label
+
+export const VerticalLabel: Story = {
+  args: {
+    label: 'Input',
+    value: '12345',
+    verticalLabel: true,
+  },
+};
+
+VerticalLabel.decorators = [InlineBlockDecorator];
 
 // Small input
 
