@@ -17,19 +17,19 @@ import {
   ArticleTextBlock,
 } from '../../model/types/article';
 
-import classes from './ArticleCreateBlock.module.scss';
+import classes from './ArticleFormBlock.module.scss';
 
 export interface CommonForm {
   title: string;
   text: string;
 }
 
-export interface ArticleCreateBlockProps {
+export interface ArticleFormBlockProps {
   onSubmit: (newBlock: ArticleBlock) => void;
   type: ArticleBlockType;
 }
 
-export const ArticleCreateBlock = memo(({ onSubmit, type }: ArticleCreateBlockProps) => {
+export const ArticleFormBlock = memo(({ onSubmit, type }: ArticleFormBlockProps) => {
   const { t } = useTranslation();
 
   const [blockData, setBlockData] = useState<CommonForm>({
@@ -105,10 +105,10 @@ export const ArticleCreateBlock = memo(({ onSubmit, type }: ArticleCreateBlockPr
   switch (type) {
     case ArticleBlockType.CODE:
       return (
-        <VStack align='start' className={classes.ArticleCreateBlock} gap='16' max>
+        <VStack align='start' className={classes.ArticleFormBlock} gap='16' max>
           <TextArea
             className={classes.input}
-            data-testid='ArticleCreateBlock.Text'
+            data-testid='ArticleFormBlock.Text'
             fullWidth
             label={t('Разметка')}
             name='text'
@@ -120,7 +120,7 @@ export const ArticleCreateBlock = memo(({ onSubmit, type }: ArticleCreateBlockPr
           />
 
           <Button
-            data-testid='ArticleCreateBlock.Button'
+            data-testid='ArticleFormBlock.Button'
             disabled={!blockData.text.length}
             onClick={onCreateBlock}
             variant='outline'
@@ -132,10 +132,10 @@ export const ArticleCreateBlock = memo(({ onSubmit, type }: ArticleCreateBlockPr
 
     case ArticleBlockType.IMAGE:
       return (
-        <VStack align='start' className={classes.ArticleCreateBlock} gap='16' max>
+        <VStack align='start' className={classes.ArticleFormBlock} gap='16' max>
           <Input
             className={classes.input}
-            data-testid='ArticleCreateBlock.Title'
+            data-testid='ArticleFormBlock.Title'
             fullWidth
             label={t('Название изображения')}
             name='title'
@@ -147,7 +147,7 @@ export const ArticleCreateBlock = memo(({ onSubmit, type }: ArticleCreateBlockPr
 
           <Input
             className={classes.input}
-            data-testid='ArticleCreateBlock.Text'
+            data-testid='ArticleFormBlock.Text'
             fullWidth
             label={t('Ссылка на изображение')}
             name='text'
@@ -158,7 +158,7 @@ export const ArticleCreateBlock = memo(({ onSubmit, type }: ArticleCreateBlockPr
           />
 
           <Button
-            data-testid='ArticleCreateBlock.Button'
+            data-testid='ArticleFormBlock.Button'
             disabled={!blockData.text.length || !blockData.title.length}
             onClick={onCreateBlock}
             variant='outline'
@@ -170,10 +170,10 @@ export const ArticleCreateBlock = memo(({ onSubmit, type }: ArticleCreateBlockPr
 
     case ArticleBlockType.TEXT:
       return (
-        <VStack align='start' className={classes.ArticleCreateBlock} gap='16' max>
+        <VStack align='start' className={classes.ArticleFormBlock} gap='16' max>
           <Input
             className={classes.input}
-            data-testid='ArticleCreateBlock.Title'
+            data-testid='ArticleFormBlock.Title'
             fullWidth
             label={t('Название блока')}
             name='title'
@@ -196,7 +196,7 @@ export const ArticleCreateBlock = memo(({ onSubmit, type }: ArticleCreateBlockPr
 
               <TextArea
                 className={classes.input}
-                data-testid='ArticleCreateBlock.Paragraph'
+                data-testid='ArticleFormBlock.Paragraph'
                 fullWidth
                 label={`${t('Параграф')} ${idx + 1}`}
                 onChange={onChangeParagraph}
@@ -207,12 +207,12 @@ export const ArticleCreateBlock = memo(({ onSubmit, type }: ArticleCreateBlockPr
             </HStack>
           ))}
 
-          <AppLink data-testid='ArticleCreateBlock.AddParagraph' onClick={onCreateParagraph} to=''>
+          <AppLink data-testid='ArticleFormBlock.AddParagraph' onClick={onCreateParagraph} to=''>
             <Text text={`+ ${t('Добавить новый параграф')}`} variant='accent' />
           </AppLink>
 
           <Button
-            data-testid='ArticleCreateBlock.Button'
+            data-testid='ArticleFormBlock.Button'
             disabled={!blockData.title.length || paragraphs.some((paragraph) => !paragraph.length)}
             onClick={onCreateBlock}
             variant='outline'
@@ -227,4 +227,4 @@ export const ArticleCreateBlock = memo(({ onSubmit, type }: ArticleCreateBlockPr
   }
 });
 
-ArticleCreateBlock.displayName = 'ArticleCreateBlock';
+ArticleFormBlock.displayName = 'ArticleFormBlock';

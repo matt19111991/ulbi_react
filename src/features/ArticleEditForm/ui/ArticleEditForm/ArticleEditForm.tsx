@@ -1,9 +1,10 @@
-import { memo, MemoExoticComponent, useCallback, useMemo, useState } from 'react';
+import { memo, MemoExoticComponent, useCallback, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import {
+  Article,
   ArticleBlock,
   ArticleBlockType,
   ArticleCodeBlockComponent,
@@ -11,9 +12,12 @@ import {
   ArticleImageBlockComponent,
   ArticleTextBlockComponent,
   ArticleType,
+  fetchArticleById,
 } from '@/entities/Article';
 
-import { getRouteArticles } from '@/shared/const/router';
+import { User } from '@/entities/User';
+
+import { getRouteArticleDetails } from '@/shared/const/router';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
@@ -23,6 +27,8 @@ import {
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+
+import { article } from '@/shared/lib/generators/articles';
 
 import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import { Button } from '@/shared/ui/redesigned/Button';
@@ -36,36 +42,37 @@ import { TextArea } from '@/shared/ui/redesigned/TextArea';
 import { TabItem } from '@/shared/types/ui';
 
 import {
-  getCreateArticleFormError,
-  getCreateArticleFormIsLoading,
-} from '../../model/selectors/createArticleFormSelectors';
+  getEditArticleFormError,
+  getEditArticleFormIsLoading,
+} from '../../model/selectors/editArticleFormSelectors';
 
-import { createArticle } from '../../model/services/createArticle/createArticle';
+import { editArticle } from '../../model/services/editArticle/editArticle';
 
 import {
-  createArticleFormActions,
-  createArticleFormReducer,
-} from '../../model/slice/createArticleFormSlice';
+  editArticleFormActions,
+  editArticleFormReducer,
+} from '../../model/slice/editArticleFormSlice';
 
-import { CreateArticleForm } from '../../model/types/createArticleFormSchema';
+import { EditArticleForm } from '../../model/types/editArticleFormSchema';
 
-import classes from './ArticleCreateForm.module.scss';
+import classes from './ArticleEditForm.module.scss';
 
-export interface ArticleCreateFormProps {
+export interface ArticleEditFormProps {
+  articleId: string;
   className?: string;
 }
 
 const reducers: ReducersList = {
-  createArticleForm: createArticleFormReducer,
+  editArticleForm: editArticleFormReducer,
 };
 
-const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
+const ArticleEditForm = ({ articleId, className }: ArticleEditFormProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const error = useSelector(getCreateArticleFormError);
-  const isLoading = useSelector(getCreateArticleFormIsLoading);
+  const error = useSelector(getEditArticleFormError);
+  const isLoading = useSelector(getEditArticleFormIsLoading);
 
   const blockButtons = useMemo<TabItem[]>(
     () => [
@@ -85,22 +92,33 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
     [t],
   );
 
-  const [inputs, setInputs] = useState<Omit<CreateArticleForm, 'blocks' | 'type'>>({
+  const [inputs, setInputs] = useState<Omit<EditArticleForm, 'blocks' | 'type'>>({
     img: '',
     subtitle: '',
     title: '',
   });
 
+  const [loading, setLoading] = useState(true);
+
   const [selectedBlock, setSelectedBlock] = useState('');
 
   const [blocks, setBlocks] = useState<ArticleBlock[]>([]);
 
+  const [createdAt, setCreatedAt] = useState('');
+
   const [type, setType] = useState(ArticleType.IT);
+
+  const [userData, setUserData] = useState<User>({
+    id: '',
+    username: '',
+  });
+
+  const [views, setViews] = useState(0);
 
   const onArticleInputsChange = useCallback(
     (value: string, name: string) => {
       if (error?.length) {
-        dispatch(createArticleFormActions.clearError());
+        dispatch(editArticleFormActions.clearError());
       }
 
       setInputs((prev) => ({ ...prev, [name]: value }));
@@ -129,19 +147,66 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
     [],
   );
 
-  const onCreateArticle = useCallback(async () => {
+  const onEditArticle = useCallback(async () => {
     const form = {
       ...inputs,
       blocks,
+      createdAt,
+      id: articleId,
       type: [type],
+      user: userData,
+      views,
     };
 
-    const response = await dispatch(createArticle(form));
+    const response = await dispatch(editArticle(form));
 
     if (response.meta.requestStatus === 'fulfilled') {
-      navigate(getRouteArticles());
+      navigate(getRouteArticleDetails(articleId));
     }
-  }, [blocks, dispatch, inputs, navigate, type]);
+  }, [articleId, blocks, createdAt, dispatch, inputs, navigate, type, userData, views]);
+
+  useEffect(() => {
+    const setInitialArticleData = async () => {
+      let response;
+
+      if (__PROJECT__ === 'storybook') {
+        response = {
+          payload: article,
+        };
+      } else {
+        response = await dispatch(fetchArticleById(articleId));
+      }
+
+      if (response && response.payload) {
+        const {
+          createdAt: articleCreatedAt,
+          blocks: articleBlocks,
+          img,
+          subtitle,
+          title,
+          type: articleType,
+          user,
+          views: articleViews,
+        } = response.payload as Article;
+
+        setBlocks(articleBlocks);
+
+        setCreatedAt(articleCreatedAt);
+
+        setInputs({ img, subtitle, title });
+
+        setLoading(false);
+
+        setType(articleType[0]);
+
+        setUserData(user);
+
+        setViews(articleViews);
+      }
+    };
+
+    setInitialArticleData();
+  }, [articleId, dispatch]);
 
   const renderBlocks = () =>
     blocks.map((block) => {
@@ -180,19 +245,19 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
       <Card
         border='partial'
         className={classNames('', { [classes.loading]: isLoading }, [className])}
-        data-testid='CreateArticleForm'
+        data-testid='EditArticleForm'
         max
         padding='24'
       >
         <VStack align='start' className={classes.formContainer} gap='16'>
           <Text
             className={classNames('', { [classes.errorIndents]: !error?.length })}
-            title={t('Создание новой статьи')}
+            title={`${t('Редактирование статьи с ID')} ${articleId}`}
           />
 
           {error?.length ? (
             <Text
-              data-testid='CreateArticleForm.Error'
+              data-testid='EditArticleForm.Error'
               text={t('Заполните полностью форму')}
               variant='error'
             />
@@ -200,7 +265,7 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
 
           <Input
             className={classes.input}
-            data-testid='CreateArticleForm.Input.Title'
+            data-testid='EditArticleForm.Input.Title'
             fullWidth
             label={t('Название статьи')}
             name='title'
@@ -212,7 +277,7 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
 
           <TextArea
             className={classes.input}
-            data-testid='CreateArticleForm.Input.Subtitle'
+            data-testid='EditArticleForm.Input.Subtitle'
             fullWidth
             label={t('Подзаголовок статьи')}
             name='subtitle'
@@ -224,7 +289,7 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
 
           <Input
             className={classes.input}
-            data-testid='CreateArticleForm.Input.Image'
+            data-testid='EditArticleForm.Input.Image'
             fullWidth
             label={t('Изображение для статьи')}
             name='img'
@@ -262,9 +327,9 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
 
         <HStack className={classes.sendContainer} justify='end' max>
           <Button
-            data-testid='CreateArticleForm.Button'
-            disabled={!inputs.title.length}
-            onClick={onCreateArticle}
+            data-testid='EditArticleForm.Button'
+            disabled={!inputs.title.length || loading}
+            onClick={onEditArticle}
             variant='outline'
           >
             {t('Отправить')}
@@ -275,4 +340,4 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
   );
 };
 
-export default memo(ArticleCreateForm);
+export default memo(ArticleEditForm);
