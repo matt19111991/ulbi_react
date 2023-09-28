@@ -2,9 +2,14 @@ import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
+import { ArticleEditForm } from '@/features/ArticleEditForm';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { ToggleFeatures } from '@/shared/lib/features';
 
 import { Page } from '@/widgets/Page';
+
+import { Text } from '@/shared/ui/deprecated/Text';
 
 import classes from './ArticleEditPage.module.scss';
 
@@ -15,19 +20,17 @@ interface ArticleDetailsPageProps {
 
 const ArticleDetailsPage = ({ className, idFromStorybook }: ArticleDetailsPageProps) => {
   const { id } = useParams<{ id: string }>();
-  const { t } = useTranslation('article-details');
+  const { t } = useTranslation();
 
-  let articleId = id;
-
-  if (__PROJECT__ === 'storybook' && idFromStorybook) {
-    articleId = idFromStorybook;
-  }
-
-  const isEdit = Boolean(articleId);
+  const articleId = idFromStorybook || id;
 
   return (
     <Page className={classNames(classes.ArticleEditPage, {}, [className])}>
-      {isEdit ? `${t('Редактирование статьи с ID')} = ${articleId}` : t('Создание новой статьи')}
+      <ToggleFeatures
+        feature='isAppRedesigned'
+        on={<ArticleEditForm articleId={articleId!} />}
+        off={<Text title={`${t('Скоро будет')} ...`} />}
+      />
     </Page>
   );
 };

@@ -1,15 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
-
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
 
 import ArticleEditPage from './ArticleEditPage';
-
-const stateArticleEditPage: DeepPartial<StateSchema> = {};
 
 const meta = {
   title: 'pages/ArticleEditPage',
@@ -23,58 +19,65 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Primary article create page
+// Primary article edit page old
 
-export const PrimaryCreate: Story = {
-  args: {},
-};
-
-PrimaryCreate.decorators = [StoreDecorator(stateArticleEditPage)];
-
-// Dark article create page
-
-export const DarkCreate: Story = {
-  args: {},
-};
-
-DarkCreate.decorators = [StoreDecorator(stateArticleEditPage), ThemeDecorator(Theme.DARK)];
-
-// Orange article create page
-
-export const OrangeCreate: Story = {
-  args: {},
-};
-
-OrangeCreate.decorators = [StoreDecorator(stateArticleEditPage), ThemeDecorator(Theme.ORANGE)];
-
-// Primary article edit page
-
-export const PrimaryEdit: Story = {
+export const PrimaryOld: Story = {
   args: {
     idFromStorybook: '1',
   },
 };
 
-PrimaryEdit.decorators = [StoreDecorator(stateArticleEditPage)];
+// Dark article edit page old
 
-// Dark article edit page
-
-export const DarkEdit: Story = {
+export const DarkOld: Story = {
   args: {
     idFromStorybook: '1',
   },
 };
 
-DarkEdit.decorators = [StoreDecorator(stateArticleEditPage), ThemeDecorator(Theme.DARK)];
+DarkOld.decorators = [ThemeDecorator(Theme.DARK)];
 
-// Orange article edit page
+// Orange article edit page old
 
-export const OrangeEdit: Story = {
+export const OrangeOld: Story = {
   args: {
     idFromStorybook: '1',
   },
 };
 
-OrangeEdit.decorators = [StoreDecorator(stateArticleEditPage), ThemeDecorator(Theme.ORANGE)];
+OrangeOld.decorators = [ThemeDecorator(Theme.ORANGE)];
+
+// Primary article edit page new
+
+export const PrimaryNew: Story = {
+  args: {
+    idFromStorybook: '1',
+  },
+};
+
+PrimaryNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
+// Dark article edit page new
+
+export const DarkNew: Story = {
+  args: {
+    idFromStorybook: '1',
+  },
+};
+
+DarkNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
+
+// Orange article edit page new
+
+export const OrangeNew: Story = {
+  args: {
+    idFromStorybook: '1',
+  },
+};
+
+OrangeNew.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 export default meta;
