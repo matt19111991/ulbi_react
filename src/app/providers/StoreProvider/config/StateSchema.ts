@@ -16,6 +16,7 @@ import { UserSchema } from '@/entities/User';
 
 import { AddCommentFormSchema } from '@/features/AddCommentForm';
 import { CreateArticleFormSchema } from '@/features/ArticleCreateForm';
+import { EditArticleFormSchema } from '@/features/ArticleEditForm';
 import { LoginSchema } from '@/features/AuthByUsername';
 import { ProfileSchema } from '@/features/EditableProfileCard';
 
@@ -38,6 +39,7 @@ export interface StateSchema {
   articleDetailsPage?: ArticleDetailsPageSchema;
   articlesPage?: ArticlesPageSchema;
   createArticleForm?: CreateArticleFormSchema;
+  editArticleForm?: EditArticleFormSchema;
   loginForm?: LoginSchema;
   profile?: ProfileSchema;
 }

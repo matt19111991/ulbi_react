@@ -136,9 +136,11 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
       type: [type],
     };
 
-    await dispatch(createArticle(form));
+    const response = await dispatch(createArticle(form));
 
-    navigate(getRouteArticles());
+    if (response.meta.requestStatus === 'fulfilled') {
+      navigate(getRouteArticles());
+    }
   }, [blocks, dispatch, inputs, navigate, type]);
 
   const renderBlocks = () =>
@@ -174,7 +176,7 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
     });
 
   return (
-    <DynamicModuleLoader reducers={reducers}>
+    <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
       <Card
         border='partial'
         className={classNames('', { [classes.loading]: isLoading }, [className])}

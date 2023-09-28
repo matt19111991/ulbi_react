@@ -5,6 +5,8 @@ export {
   ArticleView,
 } from './model/consts/articleConsts';
 
+export { fetchArticleById } from './model/services/fetchArticleById/fetchArticleById';
+
 export {
   getArticleDetailsData,
   getArticleDetailsIsLoading,
