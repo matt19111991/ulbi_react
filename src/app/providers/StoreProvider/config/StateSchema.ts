@@ -15,6 +15,7 @@ import { CounterSchema } from '@/entities/Counter';
 import { UserSchema } from '@/entities/User';
 
 import { AddCommentFormSchema } from '@/features/AddCommentForm';
+import { CreateArticleFormSchema } from '@/features/ArticleCreateForm';
 import { LoginSchema } from '@/features/AuthByUsername';
 import { ProfileSchema } from '@/features/EditableProfileCard';
 
@@ -36,6 +37,7 @@ export interface StateSchema {
   articleDetails?: ArticleDetailsSchema;
   articleDetailsPage?: ArticleDetailsPageSchema;
   articlesPage?: ArticlesPageSchema;
+  createArticleForm?: CreateArticleFormSchema;
   loginForm?: LoginSchema;
   profile?: ProfileSchema;
 }
