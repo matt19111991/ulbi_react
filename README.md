@@ -1,5 +1,4 @@
 ## TODO
-- Добавить функционал создания статьи (widget)
 - Добавить функционал редактирования статьи (widget)
 - Добавить функционал оценки профиля (feature)
 - Добавить unit тесты для всех rtkApi.injectEndpoints
@@ -275,6 +274,7 @@ storybook и линтинг и деплой на сервер.
 ## Фичи (features)
 
 - [AddCommentForm](/src/features/AddCommentForm/README.md)
+- [ArticleCreateForm](/src/features/ArticleCreateForm/README.md)
 - [ArticleRating](/src/features/ArticleRating/README.md)
 - [ArticleRecommendationsList](/src/features/ArticleRecommendationsList/README.md)
 - [ArticleSortSelector](/src/features/ArticleSortSelector/README.md)
