@@ -60,7 +60,7 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
         // Navbar после редизайна для авторизованного пользователя
         on={
           <header className={classNames(mainClass, {}, [className])}>
-            <HStack className={classes.actions} gap='16'>
+            <HStack className={classes.actions} gap='8'>
               <AppLinkRedesigned
                 className={classes.createLinkRedesigned}
                 to={getRouteArticleCreate()}
