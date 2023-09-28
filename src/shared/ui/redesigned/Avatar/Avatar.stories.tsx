@@ -34,9 +34,18 @@ export const Small: Story = {
   },
 };
 
-// Fallback primary avatar
+// Clickable avatar
 
-export const FallbackPrimary: Story = {
+export const Clickable: Story = {
+  args: {
+    profileId: '1',
+    src: AvatarImg,
+  },
+};
+
+// Fallback avatar
+
+export const Fallback: Story = {
   args: {
     src: '',
   },
