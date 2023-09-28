@@ -33,7 +33,7 @@ export const ArticleAdditionalInfo = memo(
     return (
       <VStack align='start' className={classNames('', {}, [className])} gap='16'>
         <HStack gap='8'>
-          <Avatar size={32} src={author.avatar} />
+          <Avatar profileId={author.id} size={32} src={author.avatar} />
 
           <Text bold text={author.username} />
 

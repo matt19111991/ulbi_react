@@ -1,6 +1,4 @@
 ## TODO
-- Добавить функционал редактирования статьи (widget)
-- Добавить функционал оценки профиля (feature)
 - Добавить unit тесты для всех rtkApi.injectEndpoints
 - Добавить документацию и README.md для всех файлов
 - Добавить E2E тесты на поиск и сортировку статей
@@ -285,5 +283,6 @@ storybook и линтинг и деплой на сервер.
 - [EditableProfileCard](/src/features/EditableProfileCard/README.md)
 - [LangSwitcher](/src/features/LangSwitcher/README.md)
 - [NotificationButton](/src/features/NotificationButton/README.md)
+- [ProfileRating](/src/features/ProfileRating/README.md)
 - [ThemeSwitcher](/src/features/ThemeSwitcher/README.md)
 - [UIDesignSwitcher](/src/features/UIDesignSwitcher/README.md)
