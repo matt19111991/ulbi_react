@@ -81,6 +81,36 @@ export const Orange: Story = {
 
 Orange.decorators = [StoreDecorator(stateProfile), ThemeDecorator(Theme.ORANGE)];
 
+// Primary profile page with rating
+
+export const PrimaryRating: Story = {
+  args: {
+    storybookUserId: '2',
+  },
+};
+
+PrimaryRating.decorators = [StoreDecorator(stateProfile)];
+
+// Dark profile page with rating
+
+export const DarkRating: Story = {
+  args: {
+    storybookUserId: '2',
+  },
+};
+
+DarkRating.decorators = [StoreDecorator(stateProfile), ThemeDecorator(Theme.DARK)];
+
+// Orange profile page with rating
+
+export const OrangeRating: Story = {
+  args: {
+    storybookUserId: '2',
+  },
+};
+
+OrangeRating.decorators = [StoreDecorator(stateProfile), ThemeDecorator(Theme.ORANGE)];
+
 // Error profile page
 
 export const Error: Story = {
