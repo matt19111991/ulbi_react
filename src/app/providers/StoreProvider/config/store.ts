@@ -42,6 +42,14 @@ export const createReduxStore = (
     */
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
+        /*
+          иначе ошибки в тестах вида:
+            'A non-serializable value was detected in the state, in the path:
+            `api.queries.getArticleRecommendationsList(4).data.0.user.avatar`.
+            Value: [Function: JestEmptyComponent]'
+        */
+        serializableCheck: false,
+
         thunk: {
           extraArgument,
         },

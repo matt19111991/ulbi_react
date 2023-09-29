@@ -7,6 +7,13 @@ import '@testing-library/jest-dom';
 
 import './jestLocalStorage';
 
+/*
+  Добавляем глобально объект 'fetch', чтобы избавиться от предупреждения в unit тестах:
+    'Warning: `fetch` is not available.
+    Please supply a custom `fetchFn` property to use `fetchBaseQuery` on SSR environments.'
+*/
+global.fetch = require('jest-fetch-mock');
+
 /* Поддержка
    React v.18+ <=> @testing-library/react v.13+
    React v.17- <=> @testing-library/react v.12.1.5-
