@@ -9,7 +9,14 @@ import { ArticleCodeBlock } from '../../model/types/article';
 import classes from './ArticleCodeBlockComponent.module.scss';
 
 interface ArticleCodeBlockComponentProps {
+  /**
+   * Компонент с блоком, содержащим код
+   */
   block: ArticleCodeBlock;
+
+  /**
+   * Внешний класс
+   */
   className?: string;
 }
 

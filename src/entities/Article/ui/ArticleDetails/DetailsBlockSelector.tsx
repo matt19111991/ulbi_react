@@ -6,6 +6,9 @@ import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleC
 import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 
+/**
+ * Принимаем на вход тип блока
+ */
 export const DetailsBlockSelector = (block: ArticleBlock) => {
   const { id, type } = block;
 

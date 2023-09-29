@@ -23,17 +23,43 @@ import { ArticleListItemSkeleton } from '../ArticleListItemSkeleton/ArticleListI
 import classes from './ArticleList.module.scss';
 
 interface ArticleSkeleton {
+  /**
+   * ID скелетона
+   */
   id: string;
 }
 
 type ArticleBlock = Article | ArticleSkeleton;
 
 interface ArticleListProps {
+  /**
+   * Список статей
+   */
   articles: Article[];
+
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Состояние загрузки
+   */
   isLoading?: boolean;
+
+  /**
+   * При target === '_blank' отрисовываем список рекомендаций
+   */
   target?: HTMLAttributeAnchorTarget;
+
+  /**
+   * Вид списка статей
+   */
   view?: ArticleView;
+
+  /**
+   * Состояние виртуализации
+   */
   virtualized?: boolean;
 }
 

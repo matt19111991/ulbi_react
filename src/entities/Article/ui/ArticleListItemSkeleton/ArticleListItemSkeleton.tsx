@@ -14,7 +14,14 @@ import { ArticleView } from '../../model/consts/articleConsts';
 import classes from './ArticleListItemSkeleton.module.scss';
 
 interface ArticleListItemSkeletonProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Вид статьи
+   */
   view: ArticleView;
 }
 

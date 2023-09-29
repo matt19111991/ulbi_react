@@ -42,7 +42,14 @@ import { DetailsBlockSelector } from './DetailsBlockSelector';
 import classes from './ArticleDetails.module.scss';
 
 interface ArticleDetailsProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * ID статьи
+   */
   id?: string;
 }
 

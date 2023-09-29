@@ -12,7 +12,14 @@ import { ArticleTextBlock } from '../../model/types/article';
 import classes from './ArticleTextBlockComponent.module.scss';
 
 interface ArticleTextBlockComponentProps {
+  /**
+   * Тип блока
+   */
   block: ArticleTextBlock;
+
+  /**
+   * Внешний класс
+   */
   className?: string;
 }
 

@@ -12,7 +12,14 @@ import { ArticleImageBlock } from '../../model/types/article';
 import classes from './ArticleImageBlockComponent.module.scss';
 
 interface ArticleImageBlockComponentProps {
+  /**
+   * Тип блока
+   */
   block: ArticleImageBlock;
+
+  /**
+   * Внешний класс
+   */
   className?: string;
 }
 

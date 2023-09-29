@@ -20,12 +20,26 @@ import {
 import classes from './ArticleFormBlock.module.scss';
 
 export interface CommonForm {
+  /**
+   * Заголовок
+   */
   title: string;
+
+  /**
+   * Описание
+   */
   text: string;
 }
 
 export interface ArticleFormBlockProps {
+  /**
+   * Обработчик для подтверждения создания блока
+   */
   onSubmit: (newBlock: ArticleBlock) => void;
+
+  /**
+   * Тип блока
+   */
   type: ArticleBlockType;
 }
 
@@ -39,18 +53,30 @@ export const ArticleFormBlock = memo(({ onSubmit, type }: ArticleFormBlockProps)
 
   const [paragraphs, setParagraphs] = useState<string[]>([]);
 
+  /**
+   * Обработчик для изменения полей блока
+   */
   const onBlockInputsChange = useCallback((value: string, name: string) => {
     setBlockData((prev) => ({ ...prev, [name]: value }));
   }, []);
 
+  /**
+   * Обработчик для создания параграфа
+   */
   const onCreateParagraph = useCallback(() => {
     setParagraphs((prev) => [...prev, '']);
   }, []);
 
+  /**
+   * Обработчик для изменения полей параграфа
+   */
   const onChangeParagraph = useCallback((value: string) => {
     setParagraphs((prev) => [...prev.slice(0, prev.length - 1), value]);
   }, []);
 
+  /**
+   * Обработчик для удаления параграфа
+   */
   const onRemoveParagraph = useCallback(
     (text: string) => () => {
       setParagraphs((prev) => prev.filter((paragraph) => paragraph !== text));
@@ -58,6 +84,9 @@ export const ArticleFormBlock = memo(({ onSubmit, type }: ArticleFormBlockProps)
     [],
   );
 
+  /**
+   * Функция для очистки инпутов при создания блока
+   */
   const onResetBlock = () => {
     setBlockData({
       title: '',
@@ -65,6 +94,9 @@ export const ArticleFormBlock = memo(({ onSubmit, type }: ArticleFormBlockProps)
     });
   };
 
+  /**
+   * Обработчик создания блока
+   */
   const onCreateBlock = useCallback(() => {
     const codeBlock: Partial<ArticleCodeBlock> = {};
     const imageBlock: Partial<ArticleImageBlock> = {};

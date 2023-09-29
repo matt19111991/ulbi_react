@@ -28,6 +28,10 @@ import { ArticleTextBlockComponent } from '../../ArticleTextBlockComponent/Artic
 
 import classes from './ArticleListItemDeprecated.module.scss';
 
+/**
+ * Устарел, используем новые компоненты из папки 'redesigned'
+ * @deprecated
+ */
 export const ArticleListItemDeprecated = memo(
   ({ article, className, target, view }: ArticleListItemProps) => {
     // const [isHover, hoverHandlers] = useHover();

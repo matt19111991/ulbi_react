@@ -10,9 +10,24 @@ import { ArticleListItemDeprecated } from './ArticleListItemDeprecated/ArticleLi
 import { ArticleListItemRedesigned } from './ArticleListItemRedesigned/ArticleListItemRedesigned';
 
 export interface ArticleListItemProps {
+  /**
+   * Статья
+   */
   article: Article;
+
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Открытие в новой вкладке
+   */
   target?: HTMLAttributeAnchorTarget;
+
+  /**
+   * Вид статьи
+   */
   view: ArticleView;
 }
 
