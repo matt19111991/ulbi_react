@@ -25,6 +25,22 @@ describe('userSlice', () => {
     window.localStorage.clear();
   });
 
+  beforeAll(() => {
+    Object.defineProperty(window, 'location', {
+      configurable: true,
+      value: {
+        reload: jest.fn(),
+      },
+    });
+  });
+
+  afterAll(() => {
+    Object.defineProperty(window, 'location', {
+      configurable: true,
+      value: 'original',
+    });
+  });
+
   describe('setAuthData', () => {
     test('test set auth data', () => {
       const state: DeepPartial<UserSchema> = {};
@@ -52,6 +68,8 @@ describe('userSlice', () => {
       });
 
       expect(window.localStorage.getItem(USER_LOCALSTORAGE_KEY)).toBe(undefined);
+
+      expect(window.location.reload).toHaveBeenCalledTimes(1);
     });
   });
 

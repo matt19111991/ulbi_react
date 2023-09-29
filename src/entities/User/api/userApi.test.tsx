@@ -3,11 +3,33 @@ import { act, renderHook, waitFor } from '@testing-library/react';
 
 import { StoreProvider } from '@/app/providers/StoreProvider';
 
-import { user as userMock } from '@/shared/lib/generators/user';
+import { Theme } from '@/shared/const/theme';
+
+import { UserRole } from '../model/consts/userConsts';
 
 import { JsonSettings } from '../model/types/jsonSettings';
 
 import { useGetUserDataByIdQuery, useSetJsonSettingsMutation } from './userApi';
+
+const mockUser = {
+  id: '1',
+  avatar:
+    'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
+  features: {
+    isAppRedesigned: true,
+    isArticleRatingEnabled: false,
+    isCounterEnabled: true,
+  },
+  jsonSettings: {
+    isArticlesPageHasBeenOpened: true,
+    isFirstVisit: false,
+    settingsPageHasBeenOpen: false,
+    theme: Theme.DARK,
+  },
+  password: '12345',
+  roles: [UserRole.ADMIN],
+  username: 'Jack',
+};
 
 const wrapper = ({ children }: { children: ReactNode }) => (
   <StoreProvider>{children}</StoreProvider>
@@ -28,7 +50,7 @@ describe('userApi', () => {
       });
 
       await waitFor(() => {
-        expect(result.current.currentData).toEqual(userMock);
+        expect(result.current.currentData).toEqual(mockUser);
       });
     });
   });
@@ -55,7 +77,7 @@ describe('userApi', () => {
       await waitFor(() => {
         const [, response] = result.current;
 
-        expect(response.data).toEqual(jsonSettingsArgs.jsonSettings);
+        expect(response.data).toEqual({ ...mockUser, ...jsonSettingsArgs.jsonSettings });
       });
     });
   });
