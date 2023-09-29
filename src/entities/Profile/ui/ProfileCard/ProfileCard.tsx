@@ -20,20 +20,79 @@ import {
 } from '../ProfileCardRedesigned/ProfileCardRedesigned';
 
 export interface ProfileCardProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Данные профиля
+   */
   data?: Profile;
+
+  /**
+   * Ошибка
+   */
   error?: string;
+
+  /**
+   * Состояние загрузки
+   */
   isLoading?: boolean;
+
+  /**
+   * Обработчик изменения возраста
+   */
   onChangeAge?: (value?: string) => void;
+
+  /**
+   * Обработчик изменения ссылки для аватара
+   */
   onChangeAvatar?: (value?: string) => void;
+
+  /**
+   * Обработчик изменения города
+   */
   onChangeCity?: (value?: string) => void;
+
+  /**
+   * Обработчик изменения страны
+   */
   onChangeCountry?: (country: Country) => void;
+
+  /**
+   * Обработчик изменения валюты
+   */
   onChangeCurrency?: (currency: Currency) => void;
+
+  /**
+   * Обработчик изменения имени пользователя
+   */
   onChangeFirstName?: (value?: string) => void;
+
+  /**
+   * Обработчик изменения фамилии пользователя
+   */
   onChangeLastName?: (value?: string) => void;
+
+  /**
+   * Обработчик изменения юзернейма пользователя
+   */
   onChangeUserName?: (value?: string) => void;
+
+  /**
+   * Только для чтения
+   */
   readOnly?: boolean;
+
+  /**
+   * Состояние загрузки, пробрасываемое из storybook
+   */
   storybookLoading?: boolean;
+
+  /**
+   * Ошибка, пробрасываемая из storybook
+   */
   storybookError?: boolean;
 }
 

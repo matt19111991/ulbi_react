@@ -10,7 +10,7 @@ import { ArticleView } from '../../model/consts/articleConsts';
 import { ArticleListItemSkeleton } from './ArticleListItemSkeleton';
 
 const meta = {
-  title: 'entities/ArticleListItemSkeleton',
+  title: 'entities/Article/ArticleList/ArticleListItem/skeleton/ArticleListItemSkeleton',
   component: ArticleListItemSkeleton,
   argTypes: {
     backgroundColor: {

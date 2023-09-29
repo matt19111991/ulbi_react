@@ -98,7 +98,7 @@ const stateArticleDetails: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'entities/ArticleDetails/old',
+  title: 'entities/Article/ArticleDetails/old',
   component: ArticleDetails,
   argTypes: {
     backgroundColor: {

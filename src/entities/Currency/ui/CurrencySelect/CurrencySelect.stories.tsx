@@ -8,7 +8,7 @@ import { Theme } from '@/shared/const/theme';
 import { CurrencySelect } from './CurrencySelect';
 
 const meta = {
-  title: 'entities/CurrencySelect',
+  title: 'entities/Currency/CurrencySelect',
   component: CurrencySelect,
   argTypes: {
     backgroundColor: {

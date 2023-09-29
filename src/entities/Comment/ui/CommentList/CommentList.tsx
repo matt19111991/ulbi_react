@@ -14,8 +14,19 @@ import { Comment } from '../../model/types/comment';
 import { CommentCard } from '../CommentCard/CommentCard';
 
 interface CommentListProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Список комментариев
+   */
   comments?: Comment[];
+
+  /**
+   * Состояние загрузки
+   */
   isLoading?: boolean;
 }
 

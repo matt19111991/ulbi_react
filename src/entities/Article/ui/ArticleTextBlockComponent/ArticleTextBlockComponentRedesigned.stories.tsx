@@ -22,14 +22,13 @@ const block: ArticleTextBlock = {
 };
 
 const meta = {
-  title: 'entities/ArticleDetails/blocks/Text/new',
+  title: 'entities/Article/ArticleDetails/blocks/Text/new',
   component: ArticleTextBlockComponent,
   argTypes: {
     backgroundColor: {
       control: 'color',
     },
   },
-  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true })],
 } as Meta<typeof ArticleTextBlockComponent>;
 
 type Story = StoryObj<typeof meta>;
@@ -40,13 +39,15 @@ export const Primary: Story = {
   args: { block },
 };
 
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Dark article text block
 
 export const Dark: Story = {
   args: { block },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
 
 // Orange article text block
 
@@ -54,6 +55,9 @@ export const Orange: Story = {
   args: { block },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 export default meta;

@@ -22,13 +22,44 @@ import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 import classes from './RatingCard.module.scss';
 
 interface RatingCardProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Заголовок для фидбэка
+   */
   feedbackTitle?: string;
+
+  /**
+   * Наличие фидбэка
+   */
   hasFeedback?: boolean;
+
+  /**
+   * Обработчик для выставления рейтинга
+   */
   onAccept?: (starsCount: number, feedback?: string) => void;
+
+  /**
+   * Обработчик для отмены выставления рейтинга
+   */
   onCancel?: (starsCount: number) => void;
-  rate?: number; // существующая оценка пользователя
+
+  /**
+   * Существующая оценка пользователя
+   */
+  rate?: number;
+
+  /**
+   * Активация мобильного режима для storybook
+   */
   storybookMobile?: boolean;
+
+  /**
+   * Заголовок
+   */
   title?: string;
 }
 

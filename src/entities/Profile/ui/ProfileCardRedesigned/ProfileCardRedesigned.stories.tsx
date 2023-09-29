@@ -13,14 +13,13 @@ import { Theme } from '@/shared/const/theme';
 import { ProfileCardRedesigned } from './ProfileCardRedesigned';
 
 const meta = {
-  title: 'entities/ProfileCard/new',
+  title: 'entities/Profile/ProfileCard/new',
   component: ProfileCardRedesigned,
   argTypes: {
     backgroundColor: {
       control: 'color',
     },
   },
-  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true })],
 } as Meta<typeof ProfileCardRedesigned>;
 
 type Story = StoryObj<typeof meta>;
@@ -42,6 +41,8 @@ export const Primary: Story = {
   },
 };
 
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Dark profile card new
 
 export const Dark: Story = {
@@ -59,7 +60,7 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
 
 // Orange profile card new
 
@@ -78,7 +79,10 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Loading profile card new
 
@@ -88,6 +92,8 @@ export const Loading: Story = {
   },
 };
 
+Loading.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Error profile card new
 
 export const Error: Story = {
@@ -95,5 +101,7 @@ export const Error: Story = {
     storybookError: true,
   },
 };
+
+Error.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 export default meta;

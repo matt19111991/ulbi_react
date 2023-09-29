@@ -13,10 +13,29 @@ import { ListBox } from '@/shared/ui/redesigned/Popups';
 import { Currency } from '../../model/types/currency';
 
 interface CurrencySelectProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Направление местоположения
+   */
   direction?: DropdownDirection;
+
+  /**
+   * Обработчик изменения значения валюты
+   */
   onChange?: (value: Currency) => void;
+
+  /**
+   * Только для чтения
+   */
   readOnly?: boolean;
+
+  /**
+   * Текущее значение валюты
+   */
   value?: Currency;
 }
 

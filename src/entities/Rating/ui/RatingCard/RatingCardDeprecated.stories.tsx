@@ -9,7 +9,7 @@ import { Theme } from '@/shared/const/theme';
 import { RatingCard } from './RatingCard';
 
 const meta = {
-  title: 'entities/RatingCard/old',
+  title: 'entities/Rating/RatingCard/old',
   component: RatingCard,
   argTypes: {
     backgroundColor: {

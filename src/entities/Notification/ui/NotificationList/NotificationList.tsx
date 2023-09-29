@@ -18,8 +18,19 @@ import { NotificationItem } from '../NotificationItem/NotificationItem';
 import classes from './NotificationList.module.scss';
 
 interface NotificationListProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Пробрасываемая ошибка из storybook
+   */
   storybookError?: string;
+
+  /**
+   * Пробрасываемое состояние загрузки из storybook
+   */
   storybookLoading?: boolean;
 }
 

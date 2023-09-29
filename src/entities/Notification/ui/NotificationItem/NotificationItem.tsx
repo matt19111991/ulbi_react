@@ -14,7 +14,14 @@ import { Notification } from '../../model/types/notification';
 import classes from './NotificationItem.module.scss';
 
 interface NotificationItemProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Уведомление
+   */
   notification: Notification;
 }
 

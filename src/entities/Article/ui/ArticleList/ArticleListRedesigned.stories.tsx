@@ -14,7 +14,7 @@ import { ArticleView } from '../../model/consts/articleConsts';
 import { ArticleList } from './ArticleList';
 
 const meta = {
-  title: 'entities/ArticleList/new',
+  title: 'entities/Article/ArticleList/new',
   component: ArticleList,
   argTypes: {
     backgroundColor: {

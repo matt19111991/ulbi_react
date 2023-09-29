@@ -11,7 +11,7 @@ import { ArticleView } from '../../../model/consts/articleConsts';
 import { ArticleListItemDeprecated } from './ArticleListItemDeprecated';
 
 const meta = {
-  title: 'entities/ArticleListItem/old',
+  title: 'entities/Article/ArticleList/ArticleListItem/old',
   component: ArticleListItemDeprecated,
   argTypes: {
     backgroundColor: {

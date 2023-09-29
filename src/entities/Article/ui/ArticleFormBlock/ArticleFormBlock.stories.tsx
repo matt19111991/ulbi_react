@@ -10,7 +10,7 @@ import { ArticleBlockType } from '../../model/consts/articleConsts';
 import { ArticleFormBlock } from './ArticleFormBlock';
 
 const meta = {
-  title: 'entities/ArticleFormBlock',
+  title: 'entities/Article/ArticleDetails/form/ArticleFormBlock',
   component: ArticleFormBlock,
   argTypes: {
     backgroundColor: {

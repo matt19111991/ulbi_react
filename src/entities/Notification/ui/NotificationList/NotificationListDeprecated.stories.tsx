@@ -7,7 +7,7 @@ import { Theme } from '@/shared/const/theme';
 import { NotificationList } from './NotificationList';
 
 const meta = {
-  title: 'entities/NotificationList/old',
+  title: 'entities/Notification/NotificationList/old',
   component: NotificationList,
   argTypes: {
     backgroundColor: {

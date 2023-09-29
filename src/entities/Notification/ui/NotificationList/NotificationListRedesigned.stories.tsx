@@ -8,14 +8,13 @@ import { Theme } from '@/shared/const/theme';
 import { NotificationList } from './NotificationList';
 
 const meta = {
-  title: 'entities/NotificationList/new',
+  title: 'entities/Notification/NotificationList/new',
   component: NotificationList,
   argTypes: {
     backgroundColor: {
       control: 'color',
     },
   },
-  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true })],
 } as Meta<typeof NotificationList>;
 
 type Story = StoryObj<typeof meta>;
@@ -26,13 +25,15 @@ export const Primary: Story = {
   args: {},
 };
 
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Dark notification list
 
 export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
 
 // Orange notification list
 
@@ -40,7 +41,10 @@ export const Orange: Story = {
   args: {},
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Loading notification list
 
@@ -50,6 +54,8 @@ export const Loading: Story = {
   },
 };
 
+Loading.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Error notification list
 
 export const Error: Story = {
@@ -57,5 +63,7 @@ export const Error: Story = {
     storybookError: 'Error',
   },
 };
+
+Error.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 export default meta;

@@ -21,14 +21,13 @@ const block: ArticleImageBlock = {
 };
 
 const meta = {
-  title: 'entities/ArticleDetails/blocks/Image/new',
+  title: 'entities/Article/ArticleDetails/blocks/Image/new',
   component: ArticleImageBlockComponent,
   argTypes: {
     backgroundColor: {
       control: 'color',
     },
   },
-  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true })],
 } as Meta<typeof ArticleImageBlockComponent>;
 
 type Story = StoryObj<typeof meta>;
@@ -39,13 +38,15 @@ export const Primary: Story = {
   args: { block },
 };
 
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Dark article image block
 
 export const Dark: Story = {
   args: { block },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
 
 // Orange article image block
 
@@ -53,6 +54,9 @@ export const Orange: Story = {
   args: { block },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 export default meta;

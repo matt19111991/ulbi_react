@@ -12,7 +12,7 @@ import { NotificationItem } from './NotificationItem';
 const [notificationWithLink] = generateNotifications(1);
 
 const meta = {
-  title: 'entities/NotificationItem',
+  title: 'entities/Notification/NotificationItem',
   component: NotificationItem,
   argTypes: {
     backgroundColor: {

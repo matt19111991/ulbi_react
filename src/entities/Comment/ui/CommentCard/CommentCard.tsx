@@ -22,8 +22,19 @@ import { Comment } from '../../model/types/comment';
 import classes from './CommentCard.module.scss';
 
 interface CommentCardProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Данные комментария
+   */
   comment?: Comment;
+
+  /**
+   * Состояние загрузки
+   */
   isLoading?: boolean;
 }
 

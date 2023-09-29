@@ -10,7 +10,7 @@ import { Theme } from '@/shared/const/theme';
 import { RatingCard } from './RatingCard';
 
 const meta = {
-  title: 'entities/RatingCard/new',
+  title: 'entities/Rating/RatingCard/new',
   component: RatingCard,
   argTypes: {
     backgroundColor: {
@@ -22,7 +22,6 @@ const meta = {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true })],
 } as Meta<typeof RatingCard>;
 
 type Story = StoryObj<typeof meta>;
@@ -36,6 +35,8 @@ export const Primary: Story = {
   },
 };
 
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Dark rating card
 
 export const Dark: Story = {
@@ -45,7 +46,7 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
 
 // Orange rating card
 
@@ -56,7 +57,10 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Title rating card
 
@@ -67,6 +71,8 @@ export const Title: Story = {
     title: 'Рейтинг',
   },
 };
+
+Title.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 // Feedback rating card
 
@@ -80,6 +86,8 @@ export const Feedback: Story = {
   },
 };
 
+Feedback.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // With rate rating card
 
 export const WithRate: Story = {
@@ -89,6 +97,8 @@ export const WithRate: Story = {
     rate: 4,
   },
 };
+
+WithRate.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 // Primary mobile rating card
 
@@ -102,6 +112,8 @@ export const PrimaryMobile: Story = {
     title: 'Рейтинг',
   },
 };
+
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 PrimaryMobile.parameters = {
   viewport: {
@@ -122,7 +134,10 @@ export const DarkMobile: Story = {
   },
 };
 
-DarkMobile.decorators = [ThemeDecorator(Theme.DARK)];
+DarkMobile.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  ThemeDecorator(Theme.DARK),
+];
 
 DarkMobile.parameters = {
   viewport: {
@@ -143,7 +158,10 @@ export const OrangeMobile: Story = {
   },
 };
 
-OrangeMobile.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeMobile.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 OrangeMobile.parameters = {
   viewport: {

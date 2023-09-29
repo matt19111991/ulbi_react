@@ -99,14 +99,13 @@ const stateArticleDetails: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'entities/ArticleDetails/new',
+  title: 'entities/Article/ArticleDetails/new',
   component: ArticleDetails,
   argTypes: {
     backgroundColor: {
       control: 'color',
     },
   },
-  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true })],
 } as Meta<typeof ArticleDetails>;
 
 type Story = StoryObj<typeof meta>;
@@ -117,7 +116,10 @@ export const Primary: Story = {
   args: {},
 };
 
-Primary.decorators = [StoreDecorator(stateArticleDetails)];
+Primary.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateArticleDetails),
+];
 
 // Dark article details
 
@@ -125,7 +127,11 @@ export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [StoreDecorator(stateArticleDetails), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateArticleDetails),
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange article details
 
@@ -133,7 +139,11 @@ export const Orange: Story = {
   args: {},
 };
 
-Orange.decorators = [StoreDecorator(stateArticleDetails), ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateArticleDetails),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Loading article details
 
@@ -147,7 +157,10 @@ export const Loading: Story = {
   args: {},
 };
 
-Loading.decorators = [StoreDecorator(stateArticleDetailsLoading)];
+Loading.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateArticleDetailsLoading),
+];
 
 // Error article details
 
@@ -161,6 +174,9 @@ export const Error: Story = {
   args: {},
 };
 
-Error.decorators = [StoreDecorator(stateArticleDetailsError)];
+Error.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateArticleDetailsError),
+];
 
 export default meta;

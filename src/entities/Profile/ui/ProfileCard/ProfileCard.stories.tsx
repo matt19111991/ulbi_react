@@ -13,7 +13,7 @@ import { Theme } from '@/shared/const/theme';
 import { ProfileCard } from './ProfileCard';
 
 const meta = {
-  title: 'entities/ProfileCard',
+  title: 'entities/Profile/ProfileCard',
   component: ProfileCard,
   argTypes: {
     backgroundColor: {

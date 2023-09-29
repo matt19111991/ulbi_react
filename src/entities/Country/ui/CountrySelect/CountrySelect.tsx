@@ -13,10 +13,29 @@ import { ListBox } from '@/shared/ui/redesigned/Popups';
 import { Country } from '../../model/types/country';
 
 interface CountrySelectProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Направление местоположения
+   */
   direction?: DropdownDirection;
+
+  /**
+   * Обработчик изменения значения страны
+   */
   onChange?: (value: Country) => void;
+
+  /**
+   * Только для чтения
+   */
   readOnly?: boolean;
+
+  /**
+   * Текущее значение страны
+   */
   value?: Country;
 }
 
