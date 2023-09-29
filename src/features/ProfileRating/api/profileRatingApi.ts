@@ -9,10 +9,6 @@ interface GetProfileRatingArgs {
   userId: string;
 }
 
-interface GetProfileRatingResponse {
-  data: Rating[];
-}
-
 interface RateProfileArgs {
   feedback?: string;
   profileId: string;
@@ -20,26 +16,36 @@ interface RateProfileArgs {
   userId: string;
 }
 
+interface ProfileRatingResponse {
+  data: Rating[];
+}
+
 const profileRatingApi = rtkApi.injectEndpoints({
   endpoints: (build) => ({
     getProfileRating: build.query<Rating[], GetProfileRatingArgs>({
-      queryFn: ({ profileId, userId }, api, extraOptions, baseQuery) => {
-        if (__PROJECT__ === 'storybook') {
+      queryFn: (args, api, extraOptions, baseQuery) => {
+        if (__PROJECT__ !== 'front-end') {
           return { data: [generateRating(4)] };
         }
 
         return baseQuery({
           url: '/profile-ratings',
-          params: { profileId, userId },
-        }) as GetProfileRatingResponse;
+          params: args,
+        }) as ProfileRatingResponse;
       },
     }),
-    rateProfile: build.mutation<void, RateProfileArgs>({
-      query: (args) => ({
-        url: 'profile-ratings',
-        method: 'POST',
-        body: args,
-      }),
+    rateProfile: build.mutation<Rating[], RateProfileArgs>({
+      queryFn: (args, api, extraOptions, baseQuery) => {
+        if (__PROJECT__ !== 'front-end') {
+          return { data: [generateRating(args.rate)] };
+        }
+
+        return baseQuery({
+          url: 'profile-ratings',
+          method: 'POST',
+          body: args,
+        }) as ProfileRatingResponse;
+      },
     }),
   }),
 });
