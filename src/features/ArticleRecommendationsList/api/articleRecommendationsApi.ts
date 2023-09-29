@@ -19,7 +19,7 @@ const recommendationsApi = rtkApi.injectEndpoints({
     */
     getArticleRecommendationsList: build.query<Article[], number>({
       queryFn: (limit, api, extraOptions, baseQuery) => {
-        if (__PROJECT__ === 'storybook') {
+        if (__PROJECT__ !== 'front-end') {
           return { data: generateArticles(4) };
         }
 

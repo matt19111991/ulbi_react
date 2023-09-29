@@ -11,7 +11,7 @@ import { Text as TextDeprecated, TextSize, TextTheme } from '@/shared/ui/depreca
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 
-import { useGetArticleRecommendationsListQuery } from '../../api/articleRecommedationsApi';
+import { useGetArticleRecommendationsListQuery } from '../../api/articleRecommendationsApi';
 
 interface ArticleRecommendationsListProps {
   className?: string;
