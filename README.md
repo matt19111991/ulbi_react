@@ -285,3 +285,9 @@ storybook и линтинг и деплой на сервер.
 - [ProfileRating](/src/features/ProfileRating/README.md)
 - [ThemeSwitcher](/src/features/ThemeSwitcher/README.md)
 - [UIDesignSwitcher](/src/features/UIDesignSwitcher/README.md)
+
+## Провайдеры (providers)
+- [ErrorBoundary](/src/app/providers/ErrorBoundary/README.md)
+- [Router](/src/app/providers/Router/README.md)
+- [StoreProvider](/src/app/providers/StoreProvider/README.md)
+- [ThemeProvider](/src/app/providers/ThemeProvider/README.md)

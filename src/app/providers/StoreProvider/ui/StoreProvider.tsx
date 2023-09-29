@@ -7,8 +7,19 @@ import { StateSchema } from '../config/StateSchema';
 import { createReduxStore } from '../config/store';
 
 interface StoreProviderProps {
+  /**
+   * Асинхронно подгружаемые редюсеры
+   */
   asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>;
+
+  /**
+   * Содержимое провайдера
+   */
   children?: ReactNode;
+
+  /**
+   * Начальное состояние
+   */
   initialState?: DeepPartial<StateSchema>;
 }
 

@@ -7,7 +7,14 @@ import { getUserAuthData, getUserMounted, getUserRoles, UserRole } from '@/entit
 import { getRouteForbidden, getRouteMain } from '@/shared/const/router';
 
 interface RequireAuthProps {
+  /**
+   * Содержимое компонента
+   */
   children: JSX.Element;
+
+  /**
+   * Роли пользователя
+   */
   roles?: UserRole[];
 }
 

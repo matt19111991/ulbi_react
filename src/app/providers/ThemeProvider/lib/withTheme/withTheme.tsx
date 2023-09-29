@@ -2,14 +2,15 @@ import { ComponentType } from 'react';
 
 import { useJsonSettings } from '@/entities/User';
 
-import ThemeProvider from '../../ui/ThemeProvider';
+import ThemeProvider from '../../ui/ThemeProvider/ThemeProvider';
 
-// HOC
-
-// принимаем компонент на вход
+/**
+ * HOC
+ *
+ * Принимаем компонент на вход
+ * На выходе новый компонент (класс в старом 'React' или функциональный компонент, как у нас)
+ */
 export const withTheme = (Component: ComponentType) => {
-  // на выходе новый компонент (класс в старом 'React' или функциональный компонент, как у нас)
-
   const ThemedComponent = () => {
     const { theme: jsonSettingsTheme } = useJsonSettings();
 

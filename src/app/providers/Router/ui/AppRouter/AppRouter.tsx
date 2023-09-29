@@ -5,9 +5,9 @@ import { AppRoutesProps } from '@/shared/types/router';
 
 import { PageLoader } from '@/widgets/PageLoader';
 
-import { routeConfig } from '../config/routeConfig';
+import { routeConfig } from '../../config/routeConfig';
 
-import { RequireAuth } from './RequireAuth';
+import { RequireAuth } from '../RequiredAuth/RequireAuth';
 
 export const AppRouter = memo(() => {
   const renderWithWrapper = useCallback((route: AppRoutesProps) => {

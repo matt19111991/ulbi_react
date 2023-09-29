@@ -26,14 +26,21 @@ import { ArticlesPageSchema } from '@/pages/ArticlesPage';
 import { PageScrollSchema } from '@/widgets/Page';
 
 export interface StateSchema {
-  // Синхронные редюсеры
+  /**
+   * Синхронные редюсеры
+   */
   counter: CounterSchema;
   pageScroll: PageScrollSchema;
   user: UserSchema;
 
+  /**
+   * Редюсер для rtkApi
+   */
   [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
-  // Асинхронные редюсеры
+  /**
+   * Асинхронные редюсеры
+   */
   addCommentForm?: AddCommentFormSchema;
   articleDetails?: ArticleDetailsSchema;
   articleDetailsPage?: ArticleDetailsPageSchema;
@@ -44,18 +51,36 @@ export interface StateSchema {
   profile?: ProfileSchema;
 }
 
-export type StateSchemaKey = keyof StateSchema; // ['counter', 'loginForm, 'user']
+/**
+ * ['counter', 'loginForm, 'user']
+ */
+export type StateSchemaKey = keyof StateSchema;
 
 // используем 'OptionalRecord', т.к. не все редюсеры обязательные
 export type MountedReducers = OptionalRecord<StateSchemaKey, boolean>;
 
 export interface ReducerManager {
+  /**
+   * Возвращает список редюсеров
+   */
   getReducerMap: () => ReducersMapObject<StateSchema>;
+
+  /**
+   * Если какие-то редюсеры были удалены, очищаем 'state' от них
+   */
   reduce: (s: StateSchema, a: AnyAction) => CombinedState<StateSchema>;
+
+  /**
+   * По ключу добавляем редюсер
+   */
   add: (k: StateSchemaKey, r: Reducer) => void;
+
+  /**
+   * Удаляем редюсер по ключу
+   */
   remove: (k: StateSchemaKey) => void;
 
-  /*
+  /**
     'getMountedReducers'() - чтобы не монтировать заново уже смонтированные редюсеры
     (true - вмонтирован, false - демонтирован)
   */
@@ -64,15 +89,32 @@ export interface ReducerManager {
 
 // расширение дефолтного типа для 'store'
 export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
+  /**
+   * Используется для асинхронной подгрузки редюсеров
+   */
   reducerManager: ReducerManager;
 }
 
 export interface ThunkExtraArg {
+  /**
+   * Экземпляр axios
+   */
   api: AxiosInstance;
 }
 
 export interface ThunkConfig<T> {
+  /**
+   * Дополнительные конфигурационные опции
+   */
   extra: ThunkExtraArg;
+
+  /**
+   * Можно задавать свои собственные типы для ошибки
+   */
   rejectValue: T;
+
+  /**
+   * Схема хранилища всего приложения
+   */
   state: StateSchema;
 }

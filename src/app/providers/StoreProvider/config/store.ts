@@ -26,7 +26,9 @@ export const createReduxStore = (
     ...asyncReducers,
   };
 
-  // для возможности использования асинхронных редюсеров
+  /**
+   * Для возможности использования асинхронных редюсеров
+   */
   const reducerManager = createReducerManager(rootReducers);
 
   const extraArgument: ThunkExtraArg = {
@@ -34,6 +36,9 @@ export const createReduxStore = (
   };
 
   const store = configureStore({
+    /**
+     * Включаем инструменты разработчика только в режиме разработки
+     */
     devTools: __IS_DEV__,
 
     /*
@@ -42,25 +47,32 @@ export const createReduxStore = (
     */
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
-        /*
-          иначе ошибки в тестах вида:
-            'A non-serializable value was detected in the state, in the path:
-            `api.queries.getArticleRecommendationsList(4).data.0.user.avatar`.
-            Value: [Function: JestEmptyComponent]'
-        */
+        /**
+         * Иначе ошибки в тестах вида:
+         *  'A non-serializable value was detected in the state, in the path:
+         * `api.queries.getArticleRecommendationsList(4).data.0.user.avatar`.
+         * Value: [Function: JestEmptyComponent]'
+         */
         serializableCheck: false,
 
+        /**
+         * Дополнительные конфигурационные опции
+         */
         thunk: {
           extraArgument,
         },
       }).concat(rtkApi.middleware),
 
-    // инициализация 'store' заранее подготовленными данными для тестов, storybook и т.д.
+    /**
+     * Инициализация 'store' заранее подготовленными данными для тестов, storybook и т.д.
+     */
     preloadedState: initialState,
 
     // reducer: rootReducers, // по умолчанию, когда все редюсеры синхронные
 
-    // для работы с асинхронными редюсерами
+    /**
+     * Для работы с асинхронными редюсерами
+     */
     reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
   });
 
@@ -71,7 +83,8 @@ export const createReduxStore = (
   return store;
 };
 
-// кастомная типизация 'dispatch', чтобы типы экшенов, схем, хранилища подхватывались TypeScript-ом
-
-//                        возвращаем  тип   хранилища (store), затем извлекаем метод 'dispatch' из типа
+/**
+ * Кастомная типизация 'dispatch', чтобы типы экшенов, схем, хранилища подхватывались TypeScript-ом
+ * возвращаем тип хранилища (store), затем извлекаем метод 'dispatch' из типа
+ */
 export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch']; // === typeof store.dispatch
