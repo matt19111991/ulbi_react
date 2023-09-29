@@ -58,7 +58,14 @@ import { EditArticleForm } from '../../model/types/editArticleFormSchema';
 import classes from './ArticleEditForm.module.scss';
 
 export interface ArticleEditFormProps {
+  /**
+   * ID статьи
+   */
   articleId: string;
+
+  /**
+   * Внешний класс
+   */
   className?: string;
 }
 
@@ -115,6 +122,9 @@ const ArticleEditForm = ({ articleId, className }: ArticleEditFormProps) => {
 
   const [views, setViews] = useState(0);
 
+  /**
+   * Обработчик для изменения основных полей формы статьи
+   */
   const onArticleInputsChange = useCallback(
     (value: string, name: string) => {
       if (error?.length) {
@@ -126,20 +136,32 @@ const ArticleEditForm = ({ articleId, className }: ArticleEditFormProps) => {
     [dispatch, error],
   );
 
+  /**
+   * Обработчик для изменения типа статьи
+   */
   const onArticleTypeChange = useCallback(({ value }: TabItem) => {
     setType(value as ArticleType);
   }, []);
 
+  /**
+   * Обработчик для добавления (выбора) блока
+   */
   const onArticleBlockClick = useCallback(({ value }: TabItem) => {
     setSelectedBlock((prev) => (prev === value ? '' : (value as ArticleBlockType)));
   }, []);
 
+  /**
+   * Обработчик для добавления блока
+   */
   const onAddBlock = useCallback((newBlockData: ArticleBlock) => {
     setBlocks((prev) => [...prev, { ...newBlockData, id: `${prev.length + 1}` }]);
 
     setSelectedBlock('');
   }, []);
 
+  /**
+   * Обработчик для удаления блока
+   */
   const onRemoveBlock = useCallback(
     (id: string) => () => {
       setBlocks((prev) => prev.filter((block) => block.id !== id));
@@ -147,6 +169,9 @@ const ArticleEditForm = ({ articleId, className }: ArticleEditFormProps) => {
     [],
   );
 
+  /**
+   * Обработчик для обновления статьи
+   */
   const onEditArticle = useCallback(async () => {
     const form = {
       ...inputs,
@@ -208,6 +233,9 @@ const ArticleEditForm = ({ articleId, className }: ArticleEditFormProps) => {
     setInitialArticleData();
   }, [articleId, dispatch]);
 
+  /**
+   * Функция для отрисовки блоков
+   */
   const renderBlocks = () =>
     blocks.map((block) => {
       let BlockComponent: MemoExoticComponent<any> = ArticleTextBlockComponent;

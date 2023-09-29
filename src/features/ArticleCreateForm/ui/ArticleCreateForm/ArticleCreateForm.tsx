@@ -52,6 +52,9 @@ import { CreateArticleForm } from '../../model/types/createArticleFormSchema';
 import classes from './ArticleCreateForm.module.scss';
 
 export interface ArticleCreateFormProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
 }
 
@@ -97,6 +100,9 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
 
   const [type, setType] = useState(ArticleType.IT);
 
+  /**
+   * Обработчик для изменения основных полей формы статьи
+   */
   const onArticleInputsChange = useCallback(
     (value: string, name: string) => {
       if (error?.length) {
@@ -108,20 +114,32 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
     [dispatch, error],
   );
 
+  /**
+   * Обработчик для изменения типа статьи
+   */
   const onArticleTypeChange = useCallback(({ value }: TabItem) => {
     setType(value as ArticleType);
   }, []);
 
+  /**
+   * Обработчик для добавления (выбора) блока
+   */
   const onArticleBlockClick = useCallback(({ value }: TabItem) => {
     setSelectedBlock((prev) => (prev === value ? '' : (value as ArticleBlockType)));
   }, []);
 
+  /**
+   * Обработчик для добавления блока
+   */
   const onAddBlock = useCallback((newBlockData: ArticleBlock) => {
     setBlocks((prev) => [...prev, { ...newBlockData, id: `${prev.length + 1}` }]);
 
     setSelectedBlock('');
   }, []);
 
+  /**
+   * Обработчик для удаления блока
+   */
   const onRemoveBlock = useCallback(
     (id: string) => () => {
       setBlocks((prev) => prev.filter((block) => block.id !== id));
@@ -129,6 +147,9 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
     [],
   );
 
+  /**
+   * Обработчик для создания статьи
+   */
   const onCreateArticle = useCallback(async () => {
     const form = {
       ...inputs,
@@ -143,6 +164,9 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
     }
   }, [blocks, dispatch, inputs, navigate, type]);
 
+  /**
+   * Функция для отрисовки блоков
+   */
   const renderBlocks = () =>
     blocks.map((block) => {
       let BlockComponent: MemoExoticComponent<any> = ArticleTextBlockComponent;

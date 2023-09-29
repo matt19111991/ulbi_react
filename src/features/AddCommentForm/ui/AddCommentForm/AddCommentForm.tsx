@@ -30,8 +30,19 @@ import {
 import classes from './AddCommentForm.module.scss';
 
 export interface AddCommentFormProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Состояние загрузки
+   */
   isLoading: boolean;
+
+  /**
+   * Обработчик отправки комментария
+   */
   onSendComment: (text: string) => void;
 }
 
