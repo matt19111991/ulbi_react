@@ -18,14 +18,13 @@ const stateLoginForm: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'features/LoginForm/new',
+  title: 'features/Login/LoginForm/new',
   component: LoginForm,
   argTypes: {
     backgroundColor: {
       control: 'color',
     },
   },
-  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true })],
 } as Meta<typeof LoginForm>;
 
 type Story = StoryObj<typeof meta>;
@@ -36,7 +35,10 @@ export const Primary: Story = {
   args: {},
 };
 
-Primary.decorators = [StoreDecorator(stateLoginForm)];
+Primary.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateLoginForm),
+];
 
 // Dark login form
 
@@ -44,7 +46,11 @@ export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [StoreDecorator(stateLoginForm), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateLoginForm),
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange login form
 
@@ -52,7 +58,11 @@ export const Orange: Story = {
   args: {},
 };
 
-Orange.decorators = [StoreDecorator(stateLoginForm), ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateLoginForm),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Loading login form
 
@@ -66,7 +76,10 @@ export const Loading: Story = {
   args: {},
 };
 
-Loading.decorators = [StoreDecorator(stateLoading)];
+Loading.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateLoading),
+];
 
 // Error login form
 
@@ -82,6 +95,6 @@ export const Error: Story = {
   args: {},
 };
 
-Error.decorators = [StoreDecorator(stateError)];
+Error.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), StoreDecorator(stateError)];
 
 export default meta;

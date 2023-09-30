@@ -9,7 +9,14 @@ import { Button as ButtonDeprecated, ButtonTheme } from '@/shared/ui/deprecated/
 import { Button } from '@/shared/ui/redesigned/Button';
 
 interface LangSwitcherProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Краткое название для языка
+   */
   short?: boolean;
 }
 

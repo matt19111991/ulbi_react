@@ -17,10 +17,29 @@ import { SortOrder } from '@/shared/types/sort';
 import classes from './ArticleSortSelector.module.scss';
 
 interface ArticleSortSelectorProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Обработчик для изменения направления сортировки
+   */
   onChangeOrder: (newOrder: SortOrder) => void;
+
+  /**
+   * Обработчик для изменения поля сортировки
+   */
   onChangeSort: (newSort: ArticleSortField) => void;
+
+  /**
+   * Направление сортировки
+   */
   order: SortOrder;
+
+  /**
+   * Поле сортировки
+   */
   sort: ArticleSortField;
 }
 

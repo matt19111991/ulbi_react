@@ -14,7 +14,14 @@ import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 import { useGetArticleRecommendationsListQuery } from '../../api/articleRecommendationsApi';
 
 interface ArticleRecommendationsListProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Пробрасываемая ошибка из storybook
+   */
   storybookError?: string;
 }
 

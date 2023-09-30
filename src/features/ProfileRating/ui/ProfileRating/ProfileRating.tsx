@@ -10,9 +10,24 @@ import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { useGetProfileRatingQuery, useRateProfileMutation } from '../../api/profileRatingApi';
 
 export interface ProfileRatingProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * ID профиля
+   */
   profileId: string;
+
+  /**
+   * Пробрасываемое состояние загрузки из storybook
+   */
   storybookLoading?: boolean;
+
+  /**
+   * Пробрасываемое пустое значение рейтинга из storybook
+   */
   storybookRatingEmpty?: boolean;
 }
 

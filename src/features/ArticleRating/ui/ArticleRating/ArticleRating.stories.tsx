@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -18,7 +19,7 @@ const stateArticleRating: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'features/ArticleRating',
+  title: 'features/Article/ArticleRating',
   component: ArticleRating,
   argTypes: {
     backgroundColor: {
@@ -29,56 +30,125 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Primary article rating
+// Primary article rating old
 
-export const Primary: Story = {
+export const PrimaryOld: Story = {
   args: {
     articleId: '1',
   },
 };
 
-Primary.decorators = [StoreDecorator(stateArticleRating)];
+PrimaryOld.decorators = [StoreDecorator(stateArticleRating)];
 
-// Dark article rating
+// Dark article rating old
 
-export const Dark: Story = {
+export const DarkOld: Story = {
   args: {
     articleId: '1',
   },
 };
 
-Dark.decorators = [StoreDecorator(stateArticleRating), ThemeDecorator(Theme.DARK)];
+DarkOld.decorators = [StoreDecorator(stateArticleRating), ThemeDecorator(Theme.DARK)];
 
-// Orange article rating
+// Orange article rating old
 
-export const Orange: Story = {
+export const OrangeOld: Story = {
   args: {
     articleId: '1',
   },
 };
 
-Orange.decorators = [StoreDecorator(stateArticleRating), ThemeDecorator(Theme.ORANGE)];
+OrangeOld.decorators = [StoreDecorator(stateArticleRating), ThemeDecorator(Theme.ORANGE)];
 
-// Loading article rating
+// Loading article rating old
 
-export const Loading: Story = {
+export const LoadingOld: Story = {
   args: {
     articleId: '1',
     storybookLoading: true,
   },
 };
 
-Loading.decorators = [StoreDecorator(stateArticleRating)];
+LoadingOld.decorators = [StoreDecorator(stateArticleRating)];
 
-// Empty article rating
+// Empty article rating old
 
-export const Empty: Story = {
+export const EmptyOld: Story = {
   args: {
     articleId: '1',
     storybookRatingEmpty: true,
   },
 };
 
-Empty.decorators = [StoreDecorator(stateArticleRating)];
+EmptyOld.decorators = [StoreDecorator(stateArticleRating)];
+
+// Primary article rating new
+
+export const PrimaryNew: Story = {
+  args: {
+    articleId: '1',
+  },
+};
+
+PrimaryNew.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateArticleRating),
+];
+
+// Dark article rating new
+
+export const DarkNew: Story = {
+  args: {
+    articleId: '1',
+  },
+};
+
+DarkNew.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateArticleRating),
+  ThemeDecorator(Theme.DARK),
+];
+
+// Orange article rating new
+
+export const OrangeNew: Story = {
+  args: {
+    articleId: '1',
+  },
+};
+
+OrangeNew.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateArticleRating),
+  ThemeDecorator(Theme.ORANGE),
+];
+
+// Loading article rating new
+
+export const LoadingNew: Story = {
+  args: {
+    articleId: '1',
+    storybookLoading: true,
+  },
+};
+
+LoadingNew.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateArticleRating),
+];
+
+// Empty article rating new
+
+export const EmptyNew: Story = {
+  args: {
+    articleId: '1',
+    storybookRatingEmpty: true,
+  },
+};
+
+EmptyNew.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateArticleRating),
+];
 
 export default meta;

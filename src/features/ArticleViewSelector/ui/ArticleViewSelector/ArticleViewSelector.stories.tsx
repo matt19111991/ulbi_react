@@ -10,7 +10,7 @@ import { Theme } from '@/shared/const/theme';
 import { ArticleViewSelector } from './ArticleViewSelector';
 
 const meta = {
-  title: 'features/ArticleViewSelector',
+  title: 'features/Article/ArticleViewSelector',
   component: ArticleViewSelector,
   argTypes: {
     backgroundColor: {

@@ -18,14 +18,13 @@ const stateLoginModal: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'features/LoginModal/new',
+  title: 'features/Login/LoginModal/new',
   component: LoginModal,
   argTypes: {
     backgroundColor: {
       control: 'color',
     },
   },
-  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true })],
 } as Meta<typeof LoginModal>;
 
 type Story = StoryObj<typeof meta>;
@@ -38,7 +37,10 @@ export const Primary: Story = {
   },
 };
 
-Primary.decorators = [StoreDecorator(stateLoginModal)];
+Primary.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateLoginModal),
+];
 
 // Dark login modal
 
@@ -48,7 +50,11 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [StoreDecorator(stateLoginModal), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateLoginModal),
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange login modal
 
@@ -58,7 +64,11 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [StoreDecorator(stateLoginModal), ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateLoginModal),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Loading login modal
 
@@ -74,7 +84,10 @@ export const Loading: Story = {
   },
 };
 
-Loading.decorators = [StoreDecorator(stateLoading)];
+Loading.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateLoading),
+];
 
 // Error login modal
 
@@ -92,6 +105,6 @@ export const Error: Story = {
   },
 };
 
-Error.decorators = [StoreDecorator(stateError)];
+Error.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), StoreDecorator(stateError)];
 
 export default meta;

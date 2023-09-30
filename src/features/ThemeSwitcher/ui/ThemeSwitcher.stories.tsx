@@ -8,7 +8,7 @@ import { Theme } from '@/shared/const/theme';
 import { ThemeSwitcher } from './ThemeSwitcher';
 
 const meta = {
-  title: 'features/ThemeSwitcher',
+  title: 'features/Theme/ThemeSwitcher',
   component: ThemeSwitcher,
   argTypes: {
     backgroundColor: {

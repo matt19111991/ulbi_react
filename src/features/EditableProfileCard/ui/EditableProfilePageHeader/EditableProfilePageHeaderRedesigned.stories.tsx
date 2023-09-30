@@ -29,14 +29,13 @@ const stateEditableProfileHeader: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'features/EditableProfilePageHeader/new',
+  title: 'features/Profile/EditableProfilePageHeader/new',
   component: EditableProfilePageHeader,
   argTypes: {
     background: {
       control: 'color',
     },
   },
-  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true })],
 } as Meta<typeof EditableProfilePageHeader>;
 
 type Story = StoryObj<typeof meta>;
@@ -47,7 +46,10 @@ export const PrimaryEditing: Story = {
   args: {},
 };
 
-PrimaryEditing.decorators = [StoreDecorator(stateEditableProfileHeader)];
+PrimaryEditing.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateEditableProfileHeader),
+];
 
 // Dark editing editable profile page header
 
@@ -55,7 +57,11 @@ export const DarkEditing: Story = {
   args: {},
 };
 
-DarkEditing.decorators = [StoreDecorator(stateEditableProfileHeader), ThemeDecorator(Theme.DARK)];
+DarkEditing.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateEditableProfileHeader),
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange editing editable profile page header
 
@@ -64,6 +70,7 @@ export const OrangeEditing: Story = {
 };
 
 OrangeEditing.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
   StoreDecorator(stateEditableProfileHeader),
   ThemeDecorator(Theme.ORANGE),
 ];
@@ -93,7 +100,10 @@ const stateEditableProfileHeaderNotEditing: DeepPartial<StateSchema> = {
   },
 };
 
-NotEditing.decorators = [StoreDecorator(stateEditableProfileHeaderNotEditing)];
+NotEditing.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateEditableProfileHeaderNotEditing),
+];
 
 // Not editable profile page header
 
@@ -119,6 +129,9 @@ const stateEditableProfileHeaderNotEditable: DeepPartial<StateSchema> = {
   },
 };
 
-NotEditable.decorators = [StoreDecorator(stateEditableProfileHeaderNotEditable)];
+NotEditable.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateEditableProfileHeaderNotEditable),
+];
 
 export default meta;

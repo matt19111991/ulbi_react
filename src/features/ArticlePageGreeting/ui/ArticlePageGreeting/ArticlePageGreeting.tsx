@@ -15,6 +15,9 @@ import { VStack } from '@/shared/ui/redesigned/Stack';
 import classes from './ArticlePageGreeting.module.scss';
 
 interface ArticlePageGreetingProps {
+  /**
+   * Активация мобильного режима для storybook
+   */
   storybookMobile?: boolean;
 }
 
@@ -27,7 +30,13 @@ export const ArticlePageGreeting = memo(({ storybookMobile }: ArticlePageGreetin
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    if (__PROJECT__ !== 'storybook' && !isArticlesPageHasBeenOpened) {
+    if (__PROJECT__ === 'storybook') {
+      setIsOpen(true);
+
+      dispatch(saveJsonSettings({ isArticlesPageHasBeenOpened: true }));
+    }
+
+    if (!isArticlesPageHasBeenOpened) {
       setIsOpen(true);
 
       dispatch(saveJsonSettings({ isArticlesPageHasBeenOpened: true }));

@@ -13,8 +13,19 @@ import { Tabs as TabsDeprecated } from '@/shared/ui/deprecated/Tabs';
 import { Tabs } from '@/shared/ui/redesigned/Tabs';
 
 interface ArticleTypeTabsProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Обработчик изменения типа статьи
+   */
   onChangeType: (type: ArticleType) => void;
+
+  /**
+   * Значение типа статьи
+   */
   value: ArticleType;
 }
 

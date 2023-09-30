@@ -33,7 +33,14 @@ import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import classes from './LoginForm.module.scss';
 
 export interface LoginFormProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Коллбэк при успешном логине
+   */
   onSuccess?: () => void;
 }
 

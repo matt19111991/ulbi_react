@@ -45,7 +45,7 @@ const stateAuthAdmin: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'features/AvatarDropdown',
+  title: 'features/Header/AvatarDropdown',
   component: AvatarDropdown,
   argsTypes: {
     backgroundColor: {
@@ -151,7 +151,7 @@ export const OrangeNew: Story = {
 
 OrangeNew.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
-  ThemeDecorator(Theme.DARK),
+  ThemeDecorator(Theme.ORANGE),
 ];
 
 // Authorized user avatar dropdown new

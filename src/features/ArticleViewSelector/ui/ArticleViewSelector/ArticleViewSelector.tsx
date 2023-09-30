@@ -21,13 +21,31 @@ import { Icon } from '@/shared/ui/redesigned/Icon';
 import classes from './ArticleViewSelector.module.scss';
 
 interface ViewType {
+  /**
+   * Иконка для вида списка статей
+   */
   icon: VFC<SVGProps<SVGSVGElement>>;
+
+  /**
+   * Значение вида списка статей
+   */
   view: ArticleView;
 }
 
 interface ArticleViewSelectorProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Обработчик изменения вида списка статей
+   */
   onViewClick?: (view: ArticleView) => void;
+
+  /**
+   * Выбранный вид списка статей
+   */
   selectedView?: ArticleView;
 }
 

@@ -8,7 +8,7 @@ import { Theme } from '@/shared/const/theme';
 import { LangSwitcher } from './LangSwitcher';
 
 const meta = {
-  title: 'features/LangSwitcher',
+  title: 'features/Language/LangSwitcher',
   component: LangSwitcher,
   argTypes: {
     backgroundColor: {

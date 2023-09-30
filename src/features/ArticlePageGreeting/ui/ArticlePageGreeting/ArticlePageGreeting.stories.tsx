@@ -8,7 +8,7 @@ import { Theme } from '@/shared/const/theme';
 import { ArticlePageGreeting } from './ArticlePageGreeting';
 
 const meta = {
-  title: 'features/ArticlePageGreeting',
+  title: 'features/Article/ArticlePageGreeting',
   component: ArticlePageGreeting,
   argTypes: {
     backgroundColor: {

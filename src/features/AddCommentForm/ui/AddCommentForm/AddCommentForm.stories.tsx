@@ -9,7 +9,7 @@ import { Theme } from '@/shared/const/theme';
 import AddCommentForm from './AddCommentForm';
 
 const meta = {
-  title: 'features/AddCommentForm',
+  title: 'features/Comment/AddCommentForm',
   component: AddCommentForm,
   argTypes: {
     backgroundColor: {

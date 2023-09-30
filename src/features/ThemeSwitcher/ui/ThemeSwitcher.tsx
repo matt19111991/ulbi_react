@@ -16,6 +16,9 @@ import { Icon as IconDeprecated } from '@/shared/ui/deprecated/Icon';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 
 interface ThemeSwitcherProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
 }
 

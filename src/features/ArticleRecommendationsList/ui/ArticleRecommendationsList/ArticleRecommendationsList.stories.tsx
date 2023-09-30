@@ -8,7 +8,7 @@ import { Theme } from '@/shared/const/theme';
 import { ArticleRecommendationsList } from './ArticleRecommendationsList';
 
 const meta = {
-  title: 'features/ArticleRecommendationsList',
+  title: 'features/Article/ArticleRecommendationsList',
   component: ArticleRecommendationsList,
   argTypes: {
     backgroundColor: {

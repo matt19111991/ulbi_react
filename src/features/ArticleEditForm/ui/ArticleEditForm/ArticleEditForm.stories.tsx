@@ -7,7 +7,7 @@ import { Theme } from '@/shared/const/theme';
 import ArticleEditForm from './ArticleEditForm';
 
 const meta = {
-  title: 'features/ArticleEditForm',
+  title: 'features/Article/ArticleEditForm',
   component: ArticleEditForm,
   argTypes: {
     backgroundColor: {

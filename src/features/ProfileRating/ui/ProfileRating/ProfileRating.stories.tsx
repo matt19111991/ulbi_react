@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -18,7 +19,7 @@ const stateProfileRating: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'features/ProfileRating',
+  title: 'features/Profile/ProfileRating',
   component: ProfileRating,
   argTypes: {
     backgroundColor: {
@@ -29,56 +30,125 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Primary profile rating
+// Primary profile rating old
 
-export const Primary: Story = {
+export const PrimaryOld: Story = {
   args: {
     profileId: '1',
   },
 };
 
-Primary.decorators = [StoreDecorator(stateProfileRating)];
+PrimaryOld.decorators = [StoreDecorator(stateProfileRating)];
 
-// Dark profile rating
+// Dark profile rating old
 
-export const Dark: Story = {
+export const DarkOld: Story = {
   args: {
     profileId: '1',
   },
 };
 
-Dark.decorators = [StoreDecorator(stateProfileRating), ThemeDecorator(Theme.DARK)];
+DarkOld.decorators = [StoreDecorator(stateProfileRating), ThemeDecorator(Theme.DARK)];
 
-// Orange profile rating
+// Orange profile rating old
 
-export const Orange: Story = {
+export const OrangeOld: Story = {
   args: {
     profileId: '1',
   },
 };
 
-Orange.decorators = [StoreDecorator(stateProfileRating), ThemeDecorator(Theme.ORANGE)];
+OrangeOld.decorators = [StoreDecorator(stateProfileRating), ThemeDecorator(Theme.ORANGE)];
 
-// Loading profile rating
+// Loading profile rating old
 
-export const Loading: Story = {
+export const LoadingOld: Story = {
   args: {
     profileId: '1',
     storybookLoading: true,
   },
 };
 
-Loading.decorators = [StoreDecorator(stateProfileRating)];
+LoadingOld.decorators = [StoreDecorator(stateProfileRating)];
 
-// Empty profile rating
+// Empty profile rating old
 
-export const Empty: Story = {
+export const EmptyOld: Story = {
   args: {
     profileId: '1',
     storybookRatingEmpty: true,
   },
 };
 
-Empty.decorators = [StoreDecorator(stateProfileRating)];
+EmptyOld.decorators = [StoreDecorator(stateProfileRating)];
+
+// Primary profile rating new
+
+export const PrimaryNew: Story = {
+  args: {
+    profileId: '1',
+  },
+};
+
+PrimaryNew.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateProfileRating),
+];
+
+// Dark profile rating new
+
+export const DarkNew: Story = {
+  args: {
+    profileId: '1',
+  },
+};
+
+DarkNew.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateProfileRating),
+  ThemeDecorator(Theme.DARK),
+];
+
+// Orange profile rating new
+
+export const OrangeNew: Story = {
+  args: {
+    profileId: '1',
+  },
+};
+
+OrangeNew.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateProfileRating),
+  ThemeDecorator(Theme.ORANGE),
+];
+
+// Loading profile rating new
+
+export const LoadingNew: Story = {
+  args: {
+    profileId: '1',
+    storybookLoading: true,
+  },
+};
+
+LoadingNew.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateProfileRating),
+];
+
+// Empty profile rating new
+
+export const EmptyNew: Story = {
+  args: {
+    profileId: '1',
+    storybookRatingEmpty: true,
+  },
+};
+
+EmptyNew.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateProfileRating),
+];
 
 export default meta;

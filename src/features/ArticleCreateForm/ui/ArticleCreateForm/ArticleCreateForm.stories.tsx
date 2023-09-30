@@ -7,7 +7,7 @@ import { Theme } from '@/shared/const/theme';
 import ArticleCreateForm from './ArticleCreateForm';
 
 const meta = {
-  title: 'features/ArticleCreateForm',
+  title: 'features/Article/ArticleCreateForm',
   component: ArticleCreateForm,
   argTypes: {
     backgroundColor: {

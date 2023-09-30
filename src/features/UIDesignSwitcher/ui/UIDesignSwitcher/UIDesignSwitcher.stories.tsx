@@ -7,7 +7,7 @@ import { Theme } from '@/shared/const/theme';
 import { UIDesignSwitcher } from './UIDesignSwitcher';
 
 const meta = {
-  title: 'features/UIDesignSwitcher',
+  title: 'features/Theme/UIDesignSwitcher',
   component: UIDesignSwitcher,
   argTypes: {
     backgroundColor: {

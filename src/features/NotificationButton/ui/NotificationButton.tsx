@@ -20,7 +20,14 @@ import { Popover } from '@/shared/ui/redesigned/Popups';
 import classes from './NotificationButton.module.scss';
 
 interface NotificationButtonProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Активация мобильного режима для storybook
+   */
   storybookMobile?: boolean;
 }
 

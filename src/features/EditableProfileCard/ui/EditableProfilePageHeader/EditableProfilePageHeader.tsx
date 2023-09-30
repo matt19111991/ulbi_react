@@ -22,6 +22,9 @@ import { updateProfileData } from '../../model/services/updateProfileData/update
 import { profileActions } from '../../model/slice/profileSlice';
 
 interface EditableProfilePageHeaderProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
 }
 

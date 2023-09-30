@@ -272,6 +272,8 @@ storybook и линтинг и деплой на сервер.
 
 - [AddCommentForm](/src/features/AddCommentForm/README.md)
 - [ArticleCreateForm](/src/features/ArticleCreateForm/README.md)
+- [ArticleEditForm](/src/features/ArticleEditForm/README.md)
+- [ArticlePageGreeting](/src/features/ArticlePageGreeting/README.md)
 - [ArticleRating](/src/features/ArticleRating/README.md)
 - [ArticleRecommendationsList](/src/features/ArticleRecommendationsList/README.md)
 - [ArticleSortSelector](/src/features/ArticleSortSelector/README.md)
@@ -283,6 +285,7 @@ storybook и линтинг и деплой на сервер.
 - [LangSwitcher](/src/features/LangSwitcher/README.md)
 - [NotificationButton](/src/features/NotificationButton/README.md)
 - [ProfileRating](/src/features/ProfileRating/README.md)
+- [ScrollToTopButton](/src/features/ScrollToTopButton/README.md)
 - [ThemeSwitcher](/src/features/ThemeSwitcher/README.md)
 - [UIDesignSwitcher](/src/features/UIDesignSwitcher/README.md)
 

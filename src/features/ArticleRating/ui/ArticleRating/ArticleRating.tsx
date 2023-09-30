@@ -10,9 +10,24 @@ import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
 import { useGetArticleRatingQuery, useRateArticleMutation } from '../../api/articleRatingApi';
 
 export interface ArticleRatingProps {
+  /**
+   * ID статьи
+   */
   articleId: string;
+
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Пробрасываемое состояние загрузки из storybook
+   */
   storybookLoading?: boolean;
+
+  /**
+   * Пробрасываемое пустое значение рейтинга из storybook
+   */
   storybookRatingEmpty?: boolean;
 }
 

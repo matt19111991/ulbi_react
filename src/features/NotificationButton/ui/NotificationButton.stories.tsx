@@ -9,7 +9,7 @@ import { Theme } from '@/shared/const/theme';
 import { NotificationButton } from './NotificationButton';
 
 const meta = {
-  title: 'features/NotificationButton',
+  title: 'features/Notifications/NotificationButton',
   component: NotificationButton,
   argTypes: {
     backgroundColor: {

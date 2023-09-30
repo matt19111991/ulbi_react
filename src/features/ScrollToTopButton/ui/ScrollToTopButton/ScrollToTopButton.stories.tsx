@@ -7,7 +7,7 @@ import { Theme } from '@/shared/const/theme';
 import { ScrollToTopButton } from './ScrollToTopButton';
 
 const meta = {
-  title: 'features/ScrollToTopButton',
+  title: 'features/Scroll/ScrollToTopButton',
   component: ScrollToTopButton,
   argTypes: {
     backgroundColor: {

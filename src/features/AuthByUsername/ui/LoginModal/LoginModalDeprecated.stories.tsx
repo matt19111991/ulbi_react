@@ -17,7 +17,7 @@ const stateLoginModal: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'features/LoginModal/old',
+  title: 'features/Login/LoginModal/old',
   component: LoginModal,
   argTypes: {
     backgroundColor: {

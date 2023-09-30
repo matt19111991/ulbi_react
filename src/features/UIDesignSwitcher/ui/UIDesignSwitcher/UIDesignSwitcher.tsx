@@ -17,6 +17,9 @@ import { Text } from '@/shared/ui/redesigned/Text';
 import classes from './UIDesignSwitcher.module.scss';
 
 interface UIDesignSwitcherProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
 }
 

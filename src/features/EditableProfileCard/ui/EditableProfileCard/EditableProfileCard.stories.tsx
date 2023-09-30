@@ -31,7 +31,7 @@ const stateEditableProfileCard: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'features/EditableProfileCard',
+  title: 'features/Profile/EditableProfileCard',
   component: EditableProfileCard,
   argTypes: {
     backgroundColor: {

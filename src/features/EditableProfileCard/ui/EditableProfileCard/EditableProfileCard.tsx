@@ -33,7 +33,14 @@ import { fetchProfileData } from '../../model/services/fetchProfileData/fetchPro
 import { profileActions, profileReducer } from '../../model/slice/profileSlice';
 
 interface EditableProfileCardProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * ID профиля
+   */
   id?: string;
 }
 
@@ -69,6 +76,9 @@ export const EditableProfileCard = memo(({ className, id }: EditableProfileCardP
     }
   });
 
+  /**
+   * Обработчик изменения возраста
+   */
   const onChangeAge = useCallback(
     (value?: string) => {
       // валидация только на числа и пустую строку
@@ -79,6 +89,9 @@ export const EditableProfileCard = memo(({ className, id }: EditableProfileCardP
     [dispatch],
   );
 
+  /**
+   * Обработчик изменения ссылки на аватар пользователя
+   */
   const onChangeAvatar = useCallback(
     (value?: string) => {
       dispatch(profileActions.updateProfile({ avatar: value || '' }));
@@ -86,6 +99,9 @@ export const EditableProfileCard = memo(({ className, id }: EditableProfileCardP
     [dispatch],
   );
 
+  /**
+   * Обработчик изменения города
+   */
   const onChangeCity = useCallback(
     (value?: string) => {
       dispatch(profileActions.updateProfile({ city: value || '' }));
@@ -93,6 +109,9 @@ export const EditableProfileCard = memo(({ className, id }: EditableProfileCardP
     [dispatch],
   );
 
+  /**
+   * Обработчик изменения страны
+   */
   const onChangeCountry = useCallback(
     (country: Country) => {
       dispatch(profileActions.updateProfile({ country }));
@@ -100,6 +119,9 @@ export const EditableProfileCard = memo(({ className, id }: EditableProfileCardP
     [dispatch],
   );
 
+  /**
+   * Обработчик изменения валюты
+   */
   const onChangeCurrency = useCallback(
     (currency: Currency) => {
       dispatch(profileActions.updateProfile({ currency }));
@@ -107,6 +129,9 @@ export const EditableProfileCard = memo(({ className, id }: EditableProfileCardP
     [dispatch],
   );
 
+  /**
+   * Обработчик изменения имени пользователя
+   */
   const onChangeFirstName = useCallback(
     (value?: string) => {
       dispatch(profileActions.updateProfile({ first: value || '' }));
@@ -114,6 +139,9 @@ export const EditableProfileCard = memo(({ className, id }: EditableProfileCardP
     [dispatch],
   );
 
+  /**
+   * Обработчик изменения фамилии пользователя
+   */
   const onChangeLastName = useCallback(
     (value?: string) => {
       dispatch(profileActions.updateProfile({ lastname: value || '' }));
@@ -121,6 +149,9 @@ export const EditableProfileCard = memo(({ className, id }: EditableProfileCardP
     [dispatch],
   );
 
+  /**
+   * Обработчик изменения юзернейма пользователя
+   */
   const onChangeUserName = useCallback(
     (value?: string) => {
       dispatch(profileActions.updateProfile({ username: value || '' }));

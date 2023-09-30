@@ -17,7 +17,14 @@ import { Avatar } from '@/shared/ui/redesigned/Avatar';
 import { DropDown } from '@/shared/ui/redesigned/Popups';
 
 interface NotificationButtonProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Аватар, пробрасываемый из storybook
+   */
   storybookAvatar?: string;
 }
 
