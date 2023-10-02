@@ -20,10 +20,29 @@ jest.mock('axios'); // при помощи Jest делаем заглушку д
 const mockedAxios = jest.mocked(axios, { shallow: false }); // 'jest.mocked', чтобы TS работал корректно
 
 export class TestAsyncThunk<Return, Arg, RejectedValue> {
+  /**
+   * Создатель действия
+   */
   actionCreator: ActionCreatorType<Return, Arg, RejectedValue>;
+
+  /**
+   * API инстанс
+   */
   api: jest.MockedFunctionDeep<AxiosStatic>;
+
+  /**
+   * Вызов асинхронных действий
+   */
   dispatch: Dispatch;
+
+  /**
+   * Функция для получения объекта хранилища целиком
+   */
   getState: () => StateSchema;
+
+  /**
+   * Функция для навигации
+   */
   navigate: jest.MockedFn<any>;
 
   constructor(

@@ -1,5 +1,10 @@
 import { useCallback, useRef } from 'react';
 
+/**
+ * Хук, который позволяет выполнять коллбэк не чаще указанного промежутка времени 'delay'
+ * @param callback
+ * @param delay - задержка в мс
+ */
 export const useThrottle = (callback: (...args: any[]) => void, delay: number) => {
   const canRunCallback = useRef(true); // триггер для запуска 'callback'
 

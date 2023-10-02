@@ -12,14 +12,36 @@ import i18nForTests from '@/shared/config/i18n/i18nForTests';
 import { Theme } from '@/shared/const/theme';
 
 export interface ComponentTestRendererOptions {
+  /**
+   * Асинхронные редюсеры
+   */
   asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>;
+
+  /**
+   * Начальное состояние
+   */
   initialState?: DeepPartial<StateSchema>;
-  route?: string; // путь по умолчанию
+
+  /**
+   * Путь по умолчанию
+   */
+  route?: string;
+
+  /**
+   * Тема
+   */
   theme?: Theme;
 }
 
 export interface TestProviderProps {
+  /**
+   * Дочерние компоненты
+   */
   children: ReactNode;
+
+  /**
+   * Дополнительные опции
+   */
   options?: ComponentTestRendererOptions;
 }
 

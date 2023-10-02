@@ -3,11 +3,21 @@ import { rtkApi } from '@/shared/api/rtkApi';
 import { FeatureFlags } from '@/shared/types/featureFlags';
 
 interface UpdateFeatureFlagsOptions {
+  /**
+   * Список фич
+   */
   features: Partial<FeatureFlags>;
+
+  /**
+   * ID пользователя
+   */
   userId: string;
 }
 
 interface UpdateFeatureFlagsResponse {
+  /**
+   * Ответ от сервера
+   */
   data: UpdateFeatureFlagsOptions;
 }
 

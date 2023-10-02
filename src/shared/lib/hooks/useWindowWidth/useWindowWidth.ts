@@ -1,5 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 
+/**
+ * Хук для слежения за изменением размеров окна
+ */
 export const useWindowWidth = () => {
   const [width, setWidth] = useState(0);
 

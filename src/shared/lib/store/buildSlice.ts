@@ -8,7 +8,11 @@ import {
   SliceCaseReducers,
 } from '@reduxjs/toolkit';
 
-// 'buildSlice' - аналог 'createSlice' из '@reduxjs/toolkit' с аналогичными типами
+/**
+ * Аналог 'createSlice' из '@reduxjs/toolkit', но без необходимости вызывать 'dispatch'
+ * каждый раз в компонентах
+ * @param options
+ */
 
 export const buildSlice = <
   State,

@@ -3,8 +3,19 @@ import { FeatureFlags } from '@/shared/types/featureFlags';
 import { getFeatureFlag } from '../setGetFeatures/setGetFeatures';
 
 interface ToggleFeaturesOptions<T> {
+  /**
+   * Название фичи
+   */
   name: keyof FeatureFlags;
+
+  /**
+   * Коллбэк, который возвращает элемент, если feature flag включен
+   */
   on: () => T;
+
+  /**
+   * Коллбэк, который возвращает элемент, если feature flag выключен
+   */
   off: () => T;
 }
 

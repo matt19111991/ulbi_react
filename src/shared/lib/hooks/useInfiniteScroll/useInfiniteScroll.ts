@@ -1,9 +1,24 @@
 import { MutableRefObject, useEffect } from 'react';
 
+/**
+ * Хук для использования бесконечной прокрутки
+ */
+
 interface UseInfiniteScrollOptions {
-  callback?: () => void; // функция, которая вызывается, когда пересекли элемент
-  triggerRef: MutableRefObject<HTMLElement>; // элемент, при пересечении которого вызывается callback
-  wrapperRef?: MutableRefObject<HTMLElement>; // элемент, внутри которого находится scroll
+  /**
+   * Функция, которая вызывается, когда пересекли элемент
+   */
+  callback?: () => void;
+
+  /**
+   * Элемент, при пересечении которого вызывается callback
+   */
+  triggerRef: MutableRefObject<HTMLElement>;
+
+  /**
+   * Элемент, внутри которого находится scroll
+   */
+  wrapperRef?: MutableRefObject<HTMLElement>;
 }
 
 export const useInfiniteScroll = ({

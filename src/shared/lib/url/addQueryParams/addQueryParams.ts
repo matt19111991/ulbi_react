@@ -1,3 +1,8 @@
+/**
+ * Функция получения параметров строки запроса в URL
+ *
+ * @param params
+ */
 export const getQueryParams = (params: OptionalRecord<string, string>): string => {
   // получаем все параметры из URL в адресной строке
   const searchParams = new URLSearchParams(window.location.search);
@@ -18,7 +23,6 @@ export const getQueryParams = (params: OptionalRecord<string, string>): string =
  *
  * @param params
  */
-
 export const addQueryParams = (params: OptionalRecord<string, string>): void => {
   // программно устанавливаем свой 'url' в адресной строке;
   window.history.pushState(null, '', getQueryParams(params));

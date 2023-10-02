@@ -1,9 +1,18 @@
 import { useCallback, useMemo, useState } from 'react';
 
-// для управления наведением мыши через JS
+/**
+ * Хук для управления наведением мыши через JS
+ */
 
 interface UseHoverHandlers {
+  /**
+   * Обработчик события наведения мыши
+   */
   onMouseEnter: () => void;
+
+  /**
+   * Обработчик события потери наведения мыши
+   */
   onMouseLeave: () => void;
 }
 

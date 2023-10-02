@@ -8,8 +8,19 @@ import {
 } from 'react';
 
 interface UseModalProps {
+  /**
+   * Задержка анимации
+   */
   animationDelay: number;
+
+  /**
+   * Состояние (открыто / закрыто)
+   */
   isOpen?: boolean;
+
+  /**
+   * Коллбэк, отрабатывающий на закрытие окна
+   */
   onClose?: () => void;
 }
 

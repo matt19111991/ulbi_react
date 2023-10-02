@@ -9,7 +9,14 @@ import { updateFeatureFlagsMutation } from '../api/featureFlagsApi';
 import { getAllFeatureFlags, setFeatureFlags } from '../lib/setGetFeatures/setGetFeatures';
 
 interface UpdateFeatureFlagsOptions {
+  /**
+   * Список новых feature flags
+   */
   newFeatures: Partial<FeatureFlags>;
+
+  /**
+   * ID пользователя
+   */
   userId: string;
 }
 

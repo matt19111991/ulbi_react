@@ -2,6 +2,9 @@ import { Article, ArticleBlockType, ArticleType } from '@/entities/Article';
 
 import UserAvatar from '@/shared/assets/tests/storybook.jpg';
 
+/**
+ * Шаблон статьи
+ */
 export const article: Article = {
   id: '1',
   blocks: [
@@ -40,9 +43,17 @@ export const article: Article = {
   views: 1022,
 };
 
+/**
+ * Генератор статей
+ * @param amount - количество необходимых статей
+ */
 export const generateArticles = (amount: number): Article[] =>
   new Array(amount).fill(amount).map((_, idx) => ({ ...article, id: String(idx + 1) }));
 
+/**
+ * Генератор нормализованных статей
+ * @param amount - количество необходимых статей
+ */
 export const generateNormalizedArticles = (
   amount: number,
 ): { entities: Record<string, Article>; ids: Array<string> } => {

@@ -22,8 +22,19 @@ export type ReducersList = {
 };
 
 interface DynamicModuleLoaderProps {
+  /**
+   * Дочерние компоненты
+   */
   children: JSX.Element;
+
+  /**
+   * Список редюсеров
+   */
   reducers: ReducersList;
+
+  /**
+   * Нужно ли удалять редюсер после размонтирования компонента?
+   */
   removeAfterUnmount?: boolean;
 }
 

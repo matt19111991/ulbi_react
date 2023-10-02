@@ -3,6 +3,9 @@ import { matchPath, useLocation } from 'react-router-dom';
 
 import { AppRouteByPathPattern, AppRoutes } from '@/shared/const/router';
 
+/**
+ * Хук для отслеживания изменения роута
+ */
 export const useRouteChange = () => {
   const location = useLocation();
 

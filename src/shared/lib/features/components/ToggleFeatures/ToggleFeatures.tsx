@@ -5,8 +5,19 @@ import { FeatureFlags } from '@/shared/types/featureFlags';
 import { getFeatureFlag } from '../../lib/setGetFeatures/setGetFeatures';
 
 interface ToggleFeaturesProps {
+  /**
+   * Название фичи
+   */
   feature: keyof FeatureFlags;
+
+  /**
+   * Элемент, если feature flag включен
+   */
   on: ReactElement;
+
+  /**
+   * Элемент, если feature flag выключен
+   */
   off: ReactElement;
 }
 

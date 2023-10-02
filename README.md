@@ -4,7 +4,6 @@
 - Проверить очистку всех созданных сущностей в БД после прогона E2E тестов
 - Проверить возврат к проскролленному месту (старый и новый дизайн)
 - Ошибка при переходе между страницами
-- Рефакторинг для IndentsDecorator
 
 ---- 
 
@@ -254,9 +253,22 @@ storybook и линтинг и деплой на сервер.
 1. Название удаляемого feature flag
 2. Состояние (on/off)
 
+Подробнее о feature flags - [документация feature flags](./docs/feature_flags.md)
+
 ---
 
+### Работа с хранилищем
+
+[buildSlice](/src/shared/lib/store/buildSlice.ts) - аналог 'createSlice' из '@reduxjs/toolkit', 
+но без необходимости вызывать 'dispatch' каждый раз в компонентах
+
+[buildSelector](/src/shared/lib/store/buildSelector.ts) - избавляемся от необходимости использовать 'useSelector' 
+каждый раз внутри компонентов
+
+----
+
 ## Слои (layers)
+
 - [AppLoaderLayout](/src/shared/layouts/AppLoaderLayout/README.md)
 - [MainLayout](/src/shared/layouts/MainLayout/README.md)
 - [StickyContentLayout](/src/shared/layouts/StickyContentLayout/README.md)
@@ -295,7 +307,9 @@ storybook и линтинг и деплой на сервер.
 - [UIDesignSwitcher](/src/features/UIDesignSwitcher/README.md)
 
 ## Провайдеры (providers)
+- [AnimationProvider](/src/shared/lib/components/AnimationProvider/README.md)
 - [ErrorBoundary](/src/app/providers/ErrorBoundary/README.md)
+- [ForceUpdateProvider](/src/shared/lib/render/README.md)
 - [Router](/src/app/providers/Router/README.md)
 - [StoreProvider](/src/app/providers/StoreProvider/README.md)
 - [ThemeProvider](/src/app/providers/ThemeProvider/README.md)
@@ -312,3 +326,22 @@ storybook и линтинг и деплой на сервер.
 - [NotFoundPage](/src/pages/NotFoundPage/README.md)
 - [ProfilePage](/src/pages/ProfilePage/README.md)
 - [SettingsPage](/src/pages/SettingsPage/README.md)
+
+## Хуки (hooks)
+
+- [useAppDispatch](/src/shared/lib/hooks/useAppDispatch/README.md)
+- [useDebounce](/src/shared/lib/hooks/useDebounce/README.md)
+- [useForceUpdate](/src/shared/lib/render/README.md)
+- [useHover](/src/shared/lib/hooks/useHover/README.md)
+- [useInfiniteScroll](/src/shared/lib/hooks/useInfiniteScroll/README.md)
+- [useInitialEffect](/src/shared/lib/hooks/useInitialEffect/README.md)
+- [useModal](/src/shared/lib/hooks/useModal/README.md)
+- [useRouteChange](/src/shared/lib/router/useRouteChange/README.md)
+- [useTheme](/src/shared/lib/hooks/useTheme/README.md)
+- [useThrottle](/src/shared/lib/hooks/useThrottle/README.md)
+- [useWindowWidth](/src/shared/lib/hooks/useWindowWidth/README.md)
+
+
+## Генераторы (generators)
+
+- [Generators](/src/shared/lib/generators/README.md)

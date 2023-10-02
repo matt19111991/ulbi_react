@@ -8,7 +8,10 @@ type Selector<T, Args extends any[]> = (state: StateSchema, ...args: Args) => T;
 
 type Result<T, Args extends any[]> = [Hook<T, Args>, Selector<T, Args>];
 
-// избавляемся от необходимости использовать 'useSelector' каждый раз внутри компонентов
+/**
+ * Избавляемся от необходимости использовать 'useSelector' каждый раз внутри компонентов
+ * @param selector
+ */
 
 export const buildSelector = <T, Args extends any[]>(
   selector: Selector<T, Args>,

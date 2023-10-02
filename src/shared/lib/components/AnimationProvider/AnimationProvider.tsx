@@ -5,9 +5,19 @@ type GestureType = typeof import('@use-gesture/react'); // библиотека 
 type SpringType = typeof import('@react-spring/web'); // библиотека для анимаций
 
 interface AnimationContextPayload {
+  /**
+   * Жест
+   */
   Gesture?: GestureType;
+
+  /**
+   * Анимация
+   */
   Spring?: SpringType;
 
+  /**
+   * Компонент с анимацией уже загружен?
+   */
   isLoaded?: boolean;
 }
 

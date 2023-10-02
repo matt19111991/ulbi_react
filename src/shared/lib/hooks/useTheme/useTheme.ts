@@ -4,12 +4,23 @@ import { Theme } from '../../../const/theme';
 
 import { ThemeContext } from '../../context/ThemeContext';
 
+/**
+ * Хук для использования темы
+ */
+
 interface UseThemeResults {
+  /**
+   * Значение темы
+   */
   theme: Theme;
+
+  /**
+   * Функция для переключения темы
+   */
   toggleTheme: (saveAction?: (theme: Theme) => void) => void;
 }
 
-export function useTheme(): UseThemeResults {
+export const useTheme = (): UseThemeResults => {
   const { setTheme, theme } = useContext(ThemeContext);
 
   const toggleTheme = (saveAction?: (theme: Theme) => void) => {
@@ -45,4 +56,4 @@ export function useTheme(): UseThemeResults {
     theme: theme || Theme.LIGHT,
     toggleTheme,
   };
-}
+};
