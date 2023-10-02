@@ -1,10 +1,11 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
 import { ArticleSortField, ArticleView } from '@/entities/Article';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -56,12 +57,6 @@ const meta = {
 } as Meta<typeof ArticlesPageFilters>;
 
 type Story = StoryObj<typeof meta>;
-
-const IndentsDecorator = (Story: StoryFn) => (
-  <div style={{ padding: 16 }}>
-    <Story />
-  </div>
-);
 
 // Primary articles page filters old
 

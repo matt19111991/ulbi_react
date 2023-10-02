@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -7,7 +8,7 @@ import { Theme } from '@/shared/const/theme';
 import { MainLayout } from './MainLayout';
 
 const meta = {
-  title: 'shared/layouts/MainLayout',
+  title: 'shared/layouts/MainLayout/old',
   component: MainLayout,
   argTypes: {
     backgroundColor: {
@@ -28,6 +29,8 @@ export const Primary: Story = {
   },
 };
 
+Primary.decorators = [IndentsDecorator];
+
 // Dark main layout
 
 export const Dark: Story = {
@@ -38,7 +41,7 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange main layout
 
@@ -50,7 +53,7 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Primary main layout with toolbar
 
@@ -67,6 +70,8 @@ export const PrimaryWithToolbar: Story = {
   },
 };
 
+PrimaryWithToolbar.decorators = [IndentsDecorator];
+
 // Dark main layout with toolbar
 
 export const DarkWithToolbar: Story = {
@@ -82,7 +87,7 @@ export const DarkWithToolbar: Story = {
   },
 };
 
-DarkWithToolbar.decorators = [ThemeDecorator(Theme.DARK)];
+DarkWithToolbar.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange main layout with toolbar
 
@@ -99,6 +104,6 @@ export const OrangeWithToolbar: Story = {
   },
 };
 
-OrangeWithToolbar.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeWithToolbar.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 export default meta;

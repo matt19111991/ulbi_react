@@ -5,10 +5,29 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './MainLayout.module.scss';
 
 interface MainLayoutProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Основной контент
+   */
   content: ReactElement;
+
+  /**
+   * Заголовок
+   */
   header: ReactElement;
+
+  /**
+   * Левое боковое меню
+   */
   sidebar: ReactElement;
+
+  /**
+   * Правый тулбар
+   */
   toolbar?: ReactElement;
 }
 

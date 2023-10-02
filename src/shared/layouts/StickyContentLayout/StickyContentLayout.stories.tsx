@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -30,6 +31,8 @@ export const Primary: Story = {
   },
 };
 
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Dark sticky content layout
 
 export const Dark: Story = {
@@ -40,7 +43,7 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
 
 // Orange sticky content layout
 
@@ -54,7 +57,10 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Sticky content layout with only left component
 
@@ -67,6 +73,8 @@ export const OnlyLeft: Story = {
   },
 };
 
+OnlyLeft.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Sticky content layout with only right component
 
 export const OnlyRight: Story = {
@@ -77,5 +85,7 @@ export const OnlyRight: Story = {
     right: <div style={{ border: '1px solid #D0D0D0', height: '90vh', padding: 8 }}>Right</div>,
   },
 };
+
+OnlyRight.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 export default meta;

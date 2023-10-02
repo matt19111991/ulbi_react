@@ -5,9 +5,24 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './StickyContentLayout.module.scss';
 
 interface StickyContentLayoutProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Основной контент
+   */
   content: ReactElement;
+
+  /**
+   * Левый липкий компонент
+   */
   left?: ReactElement;
+
+  /**
+   * Правый липкий компонент
+   */
   right?: ReactElement;
 }
 

@@ -1,4 +1,4 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
@@ -8,6 +8,7 @@ import { Currency } from '@/entities/Currency';
 import Avatar from '@/shared/assets/tests/storybook.jpg';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -51,12 +52,6 @@ const meta = {
 } as Meta<typeof ProfilePage>;
 
 type Story = StoryObj<typeof meta>;
-
-const IndentsDecorator = (Story: StoryFn) => (
-  <div style={{ padding: 16 }}>
-    <Story />
-  </div>
-);
 
 // Primary profile page
 

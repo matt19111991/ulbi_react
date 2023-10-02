@@ -256,6 +256,11 @@ storybook и линтинг и деплой на сервер.
 
 ---
 
+## Слои (layers)
+- [AppLoaderLayout](/src/shared/layouts/AppLoaderLayout/README.md)
+- [MainLayout](/src/shared/layouts/MainLayout/README.md)
+- [StickyContentLayout](/src/shared/layouts/StickyContentLayout/README.md)
+
 ## Сущности (entities)
 
 - [Article](/src/entities/Article/README.md)

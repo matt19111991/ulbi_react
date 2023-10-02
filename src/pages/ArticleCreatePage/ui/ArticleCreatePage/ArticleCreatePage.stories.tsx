@@ -1,6 +1,7 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -18,12 +19,6 @@ const meta = {
 } as Meta<typeof ArticleCreatePage>;
 
 type Story = StoryObj<typeof meta>;
-
-const IndentsDecorator = (Story: StoryFn) => (
-  <div style={{ padding: 16 }}>
-    <Story />
-  </div>
-);
 
 // Primary article create page old
 
