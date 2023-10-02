@@ -341,7 +341,11 @@ storybook и линтинг и деплой на сервер.
 - [useThrottle](/src/shared/lib/hooks/useThrottle/README.md)
 - [useWindowWidth](/src/shared/lib/hooks/useWindowWidth/README.md)
 
-
 ## Генераторы (generators)
 
 - [Generators](/src/shared/lib/generators/README.md)
+
+## Компоненты (components)
+
+- [deprecated](/src/shared/ui/deprecated/README.md)
+- [redesigned](/src/shared/ui/redesigned/README.md)

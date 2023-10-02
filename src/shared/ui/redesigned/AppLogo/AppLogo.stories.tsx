@@ -1,5 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryFn, StoryObj } from '@storybook/react';
 
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -7,23 +8,22 @@ import { Theme } from '@/shared/const/theme';
 import { AppLogo } from './AppLogo';
 
 const meta = {
-  title: 'shared/AppLogo',
+  title: 'shared/components/new/AppLogo',
   component: AppLogo,
   argTypes: {
     backgroundColor: {
       control: 'color',
     },
   },
-  decorators: [
-    (Story) => (
-      <div style={{ fill: 'var(--icon-redesigned)', height: 120, width: 120 }}>
-        <Story />
-      </div>
-    ),
-  ],
 } as Meta<typeof AppLogo>;
 
 type Story = StoryObj<typeof meta>;
+
+const LogoDecorator = (Story: StoryFn) => (
+  <div style={{ fill: 'var(--icon-redesigned)', height: 120, width: '100%' }}>
+    <Story />
+  </div>
+);
 
 // Primary app logo
 
@@ -31,13 +31,19 @@ export const Primary: Story = {
   args: {},
 };
 
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), LogoDecorator];
+
 // Dark app logo
 
 export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  LogoDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange app logo
 
@@ -45,7 +51,11 @@ export const Orange: Story = {
   args: {},
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  LogoDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Primary custom size app logo
 
@@ -55,6 +65,8 @@ export const PrimaryCustomSize: Story = {
   },
 };
 
+PrimaryCustomSize.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), LogoDecorator];
+
 // Dark custom size app logo
 
 export const DarkCustomSize: Story = {
@@ -63,7 +75,11 @@ export const DarkCustomSize: Story = {
   },
 };
 
-DarkCustomSize.decorators = [ThemeDecorator(Theme.DARK)];
+DarkCustomSize.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  LogoDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange custom size app logo
 
@@ -73,6 +89,10 @@ export const OrangeCustomSize: Story = {
   },
 };
 
-OrangeCustomSize.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeCustomSize.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  LogoDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 export default meta;

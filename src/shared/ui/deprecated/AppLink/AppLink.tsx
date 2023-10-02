@@ -5,6 +5,9 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 
 import classes from './AppLink.module.scss';
 
+/**
+ * Внешний вид ссылки
+ */
 export enum AppLinkTheme {
   PRIMARY = 'primary',
   RED = 'red',
@@ -12,8 +15,19 @@ export enum AppLinkTheme {
 }
 
 interface AppLinkProps extends LinkProps {
+  /**
+   * Содержимое ссылки
+   */
   children?: ReactNode;
+
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Инвертированная тема
+   */
   invertedTheme?: AppLinkTheme;
 }
 

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -9,7 +10,7 @@ import { Text } from '../Text/Text';
 import { Card, CardTheme } from './Card';
 
 const meta = {
-  title: 'shared/old/Card',
+  title: 'shared/components/old/Card',
   component: Card,
   argTypes: {
     backgroundColor: {
@@ -33,6 +34,8 @@ export const PrimaryNormal: Story = {
   },
 };
 
+PrimaryNormal.decorators = [IndentsDecorator];
+
 // Dark normal card
 
 export const DarkNormal: Story = {
@@ -46,7 +49,7 @@ export const DarkNormal: Story = {
   },
 };
 
-DarkNormal.decorators = [ThemeDecorator(Theme.DARK)];
+DarkNormal.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange normal card
 
@@ -61,7 +64,7 @@ export const OrangeNormal: Story = {
   },
 };
 
-OrangeNormal.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeNormal.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Primary outlined card
 
@@ -77,6 +80,8 @@ export const PrimaryOutlined: Story = {
   },
 };
 
+PrimaryOutlined.decorators = [IndentsDecorator];
+
 // Dark outlined card
 
 export const DarkOutlined: Story = {
@@ -91,7 +96,7 @@ export const DarkOutlined: Story = {
   },
 };
 
-DarkOutlined.decorators = [ThemeDecorator(Theme.DARK)];
+DarkOutlined.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange outlined card
 
@@ -107,7 +112,7 @@ export const OrangeOutlined: Story = {
   },
 };
 
-OrangeOutlined.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeOutlined.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Full width card
 

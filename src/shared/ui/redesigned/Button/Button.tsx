@@ -4,17 +4,35 @@ import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 
 import classes from './Button.module.scss';
 
+/**
+ * Цвет кнопки
+ */
 export type ButtonColor = 'error' | 'normal' | 'success';
 
+/**
+ * Внешний вид кнопки
+ */
 export type ButtonVariant = 'clear' | 'filled' | 'outline';
 
+/**
+ * Размеры кнопки
+ */
 export type ButtonSize = 's' | 'm' | 'l' | 'xl';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  /**
+   * Левой компонент-аддон
+   */
   addonLeft?: ReactNode;
 
+  /**
+   * Правый компонент-аддон
+   */
   addonRight?: ReactNode;
 
+  /**
+   * Внешний класс
+   */
   className?: string;
 
   /**

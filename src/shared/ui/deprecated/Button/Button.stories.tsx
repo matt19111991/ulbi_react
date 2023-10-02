@@ -7,7 +7,7 @@ import { Theme } from '@/shared/const/theme';
 import { Button, ButtonSize, ButtonTheme } from './Button';
 
 const meta = {
-  title: 'shared/old/Button',
+  title: 'shared/components/old/Button',
   component: Button,
   argTypes: {
     backgroundColor: { control: 'color' },
@@ -15,14 +15,6 @@ const meta = {
 } as Meta<typeof Button>;
 
 type Story = StoryObj<typeof meta>;
-
-// Primary light button
-
-export const PrimaryLight: Story = {
-  args: {
-    children: 'Text',
-  },
-};
 
 // Clear light button
 

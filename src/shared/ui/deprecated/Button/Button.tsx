@@ -4,6 +4,9 @@ import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 
 import classes from './Button.module.scss';
 
+/**
+ * Внешний вид кнопки
+ */
 export enum ButtonTheme {
   BACKGROUND = 'background',
   BACKGROUND_INVERTED = 'backgroundInverted',
@@ -13,6 +16,9 @@ export enum ButtonTheme {
   OUTLINE_RED = 'outlineRed',
 }
 
+/**
+ * Размеры кнопки
+ */
 export enum ButtonSize {
   M = 'size_m',
   L = 'size_l',
@@ -20,6 +26,9 @@ export enum ButtonSize {
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  /**
+   * Внешний класс
+   */
   className?: string;
 
   /**

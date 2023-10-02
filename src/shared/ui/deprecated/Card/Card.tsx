@@ -4,6 +4,9 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 
 import classes from './Card.module.scss';
 
+/**
+ * Внешний вид карточки
+ */
 export enum CardTheme {
   NORMAL = 'normal',
   OUTLINED = 'outlined',
@@ -11,9 +14,24 @@ export enum CardTheme {
 
 // расширяем интерфейс, чтобы TS понимал 'props', если мы захотим пробросить данные из 'useHover' и т.п.
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
+  /**
+   * Содержимое карточки
+   */
   children?: ReactNode;
+
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Растягивать на всю доступную ширину?
+   */
   max?: boolean;
+
+  /**
+   * Тема карточки
+   */
   theme?: CardTheme;
 }
 

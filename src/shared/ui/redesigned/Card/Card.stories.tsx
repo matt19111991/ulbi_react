@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -9,7 +10,7 @@ import { Text } from '../Text/Text';
 import { Card } from './Card';
 
 const meta = {
-  title: 'shared/new/Card',
+  title: 'shared/components/new/Card',
   component: Card,
   argTypes: {
     backgroundColor: {
@@ -33,6 +34,8 @@ export const PrimaryNormal: Story = {
   },
 };
 
+PrimaryNormal.decorators = [IndentsDecorator];
+
 // Dark normal card
 
 export const DarkNormal: Story = {
@@ -46,7 +49,7 @@ export const DarkNormal: Story = {
   },
 };
 
-DarkNormal.decorators = [ThemeDecorator(Theme.DARK)];
+DarkNormal.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange normal card
 
@@ -61,7 +64,7 @@ export const OrangeNormal: Story = {
   },
 };
 
-OrangeNormal.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeNormal.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Primary outlined card
 
@@ -77,6 +80,8 @@ export const PrimaryOutlined: Story = {
   },
 };
 
+PrimaryOutlined.decorators = [IndentsDecorator];
+
 // Dark outlined card
 
 export const DarkOutlined: Story = {
@@ -91,7 +96,7 @@ export const DarkOutlined: Story = {
   },
 };
 
-DarkOutlined.decorators = [ThemeDecorator(Theme.DARK)];
+DarkOutlined.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange outlined card
 
@@ -107,7 +112,7 @@ export const OrangeOutlined: Story = {
   },
 };
 
-OrangeOutlined.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeOutlined.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Primary light card
 
@@ -123,6 +128,8 @@ export const PrimaryLight: Story = {
   },
 };
 
+PrimaryLight.decorators = [IndentsDecorator];
+
 // Dark light card
 
 export const DarkLight: Story = {
@@ -137,7 +144,7 @@ export const DarkLight: Story = {
   },
 };
 
-DarkLight.decorators = [ThemeDecorator(Theme.DARK)];
+DarkLight.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange light card
 
@@ -153,7 +160,7 @@ export const OrangeLight: Story = {
   },
 };
 
-OrangeLight.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeLight.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Full width card
 
@@ -169,6 +176,8 @@ export const FullWidth: Story = {
   },
 };
 
+FullWidth.decorators = [IndentsDecorator];
+
 // Card without padding
 
 export const NoPadding: Story = {
@@ -182,6 +191,8 @@ export const NoPadding: Story = {
     padding: '0',
   },
 };
+
+NoPadding.decorators = [IndentsDecorator];
 
 // Card with 8px padding
 
@@ -197,6 +208,8 @@ export const Padding8: Story = {
   },
 };
 
+Padding8.decorators = [IndentsDecorator];
+
 // Card with 16px padding
 
 export const Padding16: Story = {
@@ -210,6 +223,8 @@ export const Padding16: Story = {
     padding: '16',
   },
 };
+
+Padding16.decorators = [IndentsDecorator];
 
 // Card with 24px padding
 
@@ -225,6 +240,8 @@ export const Padding24: Story = {
   },
 };
 
+Padding24.decorators = [IndentsDecorator];
+
 // Card partial round
 
 export const PartialRound: Story = {
@@ -239,6 +256,8 @@ export const PartialRound: Story = {
   },
 };
 
+PartialRound.decorators = [IndentsDecorator];
+
 // Card round
 
 export const Round: Story = {
@@ -252,5 +271,7 @@ export const Round: Story = {
     ),
   },
 };
+
+Round.decorators = [IndentsDecorator];
 
 export default meta;

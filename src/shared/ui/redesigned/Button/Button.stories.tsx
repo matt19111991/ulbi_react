@@ -9,7 +9,7 @@ import { Theme } from '@/shared/const/theme';
 import { Button } from './Button';
 
 const meta = {
-  title: 'shared/new/Button',
+  title: 'shared/components/new/Button',
   component: Button,
   argTypes: {
     backgroundColor: { control: 'color' },

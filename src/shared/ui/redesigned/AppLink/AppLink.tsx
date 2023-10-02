@@ -8,9 +8,24 @@ import classes from './AppLink.module.scss';
 export type AppLinkVariant = 'primary' | 'red';
 
 interface AppLinkProps extends LinkProps {
+  /**
+   * Класс для активной ссылки
+   */
   activeClassName?: string;
+
+  /**
+   * Содержимое ссылки
+   */
   children?: ReactNode;
+
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Внешний вид ссылки
+   */
   variant?: AppLinkVariant;
 }
 

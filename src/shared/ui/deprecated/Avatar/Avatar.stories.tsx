@@ -5,7 +5,7 @@ import AvatarImg from '@/shared/assets/tests/storybook.jpg';
 import { Avatar } from './Avatar';
 
 const meta = {
-  title: 'shared/old/Avatar',
+  title: 'shared/components/old/Avatar',
   component: Avatar,
   argTypes: {
     backgroundColor: {

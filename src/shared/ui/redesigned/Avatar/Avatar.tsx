@@ -14,10 +14,29 @@ import { Skeleton } from '../Skeleton/Skeleton';
 import classes from './Avatar.module.scss';
 
 interface AvatarProps {
+  /**
+   * Альтернативный текст для изображения
+   */
   alt?: string;
+
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * ID профиля
+   */
   profileId?: string;
+
+  /**
+   * Размер аватара
+   */
   size?: number;
+
+  /**
+   * Ссылка для аватара
+   */
   src?: string;
 }
 

@@ -4,19 +4,51 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 
 import classes from './Card.module.scss';
 
+/**
+ * Закругления углов карточки
+ */
 export type CardBorder = 'keen' | 'partial' | 'round';
 
+/**
+ * Отступы от контента
+ */
 export type CardPadding = '0' | '8' | '16' | '24';
 
+/**
+ * Внешний вид карточки
+ */
 export type CardVariant = 'light' | 'normal' | 'outlined';
 
 // расширяем интерфейс, чтобы TS понимал 'props', если мы захотим пробросить данные из 'useHover' и т.п.
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
+  /**
+   * Закругления углов карточки
+   */
   border?: CardBorder;
+
+  /**
+   * Содержимое карточки
+   */
   children?: ReactNode;
+
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Растягивать на всю доступную ширину?
+   */
   max?: boolean;
+
+  /**
+   * Отступы от контента
+   */
   padding?: CardPadding;
+
+  /**
+   * Внешний вид карточки
+   */
   variant?: CardVariant;
 }
 

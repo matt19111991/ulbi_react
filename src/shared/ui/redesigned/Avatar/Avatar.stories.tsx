@@ -2,10 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import AvatarImg from '@/shared/assets/tests/storybook.jpg';
 
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
+
 import { Avatar } from './Avatar';
 
 const meta = {
-  title: 'shared/new/Avatar',
+  title: 'shared/components/new/Avatar',
   component: Avatar,
   argTypes: {
     backgroundColor: {
@@ -25,6 +27,8 @@ export const Primary: Story = {
   },
 };
 
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Small avatar
 
 export const Small: Story = {
@@ -33,6 +37,8 @@ export const Small: Story = {
     src: AvatarImg,
   },
 };
+
+Small.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 // Clickable avatar
 
@@ -43,6 +49,8 @@ export const Clickable: Story = {
   },
 };
 
+Clickable.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Fallback avatar
 
 export const Fallback: Story = {
@@ -50,5 +58,7 @@ export const Fallback: Story = {
     src: '',
   },
 };
+
+Fallback.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 export default meta;

@@ -1,9 +1,24 @@
 import { ImgHTMLAttributes, memo, ReactElement, useLayoutEffect, useState } from 'react';
 
 interface AppImageProps extends ImgHTMLAttributes<HTMLImageElement> {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Изображение-заглушка для ошибки
+   */
   errorFallback?: ReactElement;
+
+  /**
+   * Изображение-заглушка для загрузки
+   */
   loadingFallback?: ReactElement;
+
+  /**
+   * Пробрасываемое состояние загрузки из storybook
+   */
   storybookLoading?: boolean;
 }
 

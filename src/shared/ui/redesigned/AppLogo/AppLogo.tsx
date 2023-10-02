@@ -10,7 +10,14 @@ import { Icon } from '../Icon';
 import classes from './AppLogo.module.scss';
 
 interface AppLogoProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Размер изображения
+   */
   size?: number;
 }
 

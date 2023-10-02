@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import BaseImg from '@/shared/assets/tests/storybook.jpg';
 import ErrorImg from '@/shared/assets/tests/storybook4.svg';
 
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -14,7 +15,7 @@ import { Icon } from '../Icon/Icon';
 import { AppImage } from './AppImage';
 
 const meta = {
-  title: 'shared/AppImage',
+  title: 'shared/components/new/AppImage',
   component: AppImage,
   argTypes: {
     backgroundColor: {
@@ -35,6 +36,8 @@ export const Primary: Story = {
   },
 };
 
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Dark app image
 
 export const Dark: Story = {
@@ -45,7 +48,7 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
 
 // Orange app image
 
@@ -57,7 +60,10 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Loading app image
 
@@ -68,6 +74,8 @@ export const Loading: Story = {
   },
 };
 
+Loading.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Error app image
 
 export const Error: Story = {
@@ -76,6 +84,8 @@ export const Error: Story = {
   },
 };
 
+Error.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Alt app image
 
 export const Alt: Story = {
@@ -83,5 +93,7 @@ export const Alt: Story = {
     alt: 'image',
   },
 };
+
+Alt.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 export default meta;
