@@ -8,6 +8,9 @@ import { Page } from '@/widgets/Page';
 import classes from './ForbiddenPage.module.scss';
 
 interface ForbiddenPageProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
 }
 

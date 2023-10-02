@@ -8,7 +8,7 @@ import { Theme } from '@/shared/const/theme';
 import ArticleEditPage from './ArticleEditPage';
 
 const meta = {
-  title: 'pages/ArticleEditPage',
+  title: 'pages/Article/ArticleEditPage',
   component: ArticleEditPage,
   argTypes: {
     backgroundColor: {

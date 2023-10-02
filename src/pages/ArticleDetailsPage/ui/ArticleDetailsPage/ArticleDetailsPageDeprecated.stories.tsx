@@ -157,7 +157,7 @@ const stateArticleDetails: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'pages/ArticleDetailsPage/old',
+  title: 'pages/Article/ArticleDetailsPage/ArticleDetailsPage/old',
   component: ArticleDetailsPage,
   argTypes: {
     backgroundColor: {

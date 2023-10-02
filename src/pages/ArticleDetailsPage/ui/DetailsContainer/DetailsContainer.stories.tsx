@@ -4,6 +4,7 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 
 import { ArticleBlockType, ArticleType } from '@/entities/Article';
 
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -98,7 +99,7 @@ const stateDetailsContainer: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'pages/ArticleDetailsPage/DetailsContainer',
+  title: 'pages/Article/ArticleDetailsPage/DetailsContainer',
   component: DetailsContainer,
   argTypes: {
     backgroundColor: {
@@ -115,7 +116,10 @@ export const Primary: Story = {
   args: {},
 };
 
-Primary.decorators = [StoreDecorator(stateDetailsContainer)];
+Primary.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateDetailsContainer),
+];
 
 // Dark details container
 
@@ -123,7 +127,11 @@ export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [StoreDecorator(stateDetailsContainer), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateDetailsContainer),
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange details container
 
@@ -131,6 +139,10 @@ export const Orange: Story = {
   args: {},
 };
 
-Orange.decorators = [StoreDecorator(stateDetailsContainer), ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(stateDetailsContainer),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 export default meta;

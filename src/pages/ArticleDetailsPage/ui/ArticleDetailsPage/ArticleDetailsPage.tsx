@@ -35,9 +35,24 @@ import { DetailsContainer } from '../DetailsContainer/DetailsContainer';
 import classes from './ArticleDetailsPage.module.scss';
 
 interface ArticleDetailsPageProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Проверка: рендерится ли компонент для storybook
+   */
   isStorybook?: boolean;
+
+  /**
+   * Пробрасываемая ошибка из storybook
+   */
   storybookError?: string;
+
+  /**
+   * ID статьи для storybook
+   */
   storybookId?: string;
 }
 

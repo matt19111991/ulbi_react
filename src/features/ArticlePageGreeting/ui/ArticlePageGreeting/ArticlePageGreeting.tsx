@@ -30,12 +30,6 @@ export const ArticlePageGreeting = memo(({ storybookMobile }: ArticlePageGreetin
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    if (__PROJECT__ === 'storybook') {
-      setIsOpen(true);
-
-      dispatch(saveJsonSettings({ isArticlesPageHasBeenOpened: true }));
-    }
-
     if (!isArticlesPageHasBeenOpened) {
       setIsOpen(true);
 

@@ -17,7 +17,14 @@ import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Page } from '@/widgets/Page';
 
 interface ProfilePageProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Пробрасываемый ID пользователя для storybook
+   */
   storybookUserId?: string;
 }
 

@@ -6,6 +6,9 @@ import { ArticleDetails } from '@/entities/Article';
 import { Card } from '@/shared/ui/redesigned/Card';
 
 interface DetailsContainerProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
 }
 

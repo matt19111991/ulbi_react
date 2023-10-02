@@ -1,7 +1,7 @@
 server {
   # Start listening :80 port
   listen 80;
-  listen [::]80;
+  listen [::]:80;
 
   # Directory with static files
   root /var/www/ulbi_react/html;
@@ -12,17 +12,6 @@ server {
   # Our domain name (without 'www' or any prefix)
   server_name ulbireact.ru;
 
-  # Proxying for backend (HTTPS)
-  location ~ ^/api/(.*)$ { # catch all /api/ requests and redirect them to the backend
-    # $1$is_args$args - for correct work with query params
-    proxy_pass $scheme://103.13.210.44:8443/$1$is_args$args;
-
-    proxy_redirect off;
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded_For $proxy_add_x_forwarded_for;
-  }
-
   # Catch all routes after slash
   location / {
     # We use Single Page Application (SPA) and routing should be fully on client side
@@ -30,22 +19,4 @@ server {
     # Without this we will catch 404 error after page refresh
     try_files $uri $uri/ /index.html;
   }
-
-  listen [::]:443 ssl ipv6only=on; # managed by Certbot
-  listen 443 ssl; # managed by Certbot
-  ssl_certificate /etc/letsencrypt/live/ulbireact.ru/fullchain.pem; # managed by Certbot
-  ssl_certificate_key /etc/letsencrypt/live/ulbireact.ru/privkey.pem; # managed by Certbot
-  include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
-  ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
-}
-
-server {
-  if ($host = ulbireact.ru) {
-    return 301 https://$host$request_uri;
-  } # managed by Certbot
-
-    listen 80;
-    listen [::]:80;
-    server_name ulbireact.ru;
-  return 404; # managed by Certbot
 }

@@ -17,6 +17,9 @@ import { useArticleFilters } from '../../lib/hooks/useArticleFilters';
 import classes from './ArticlesPageFilters.module.scss';
 
 interface ArticlesPageFiltersProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
 }
 

@@ -24,7 +24,14 @@ import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByAr
 import { getArticleComments } from '../../model/slices/articleDetailsCommentsSlice/articleDetailsCommentsSlice';
 
 interface ArticleDetailsCommentsProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * ID статьи
+   */
   id?: string;
 }
 

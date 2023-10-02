@@ -11,6 +11,9 @@ import {
 import { getArticles } from '../../model/slice/articlesPageSlice';
 
 interface ArticleInfiniteListProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
 }
 

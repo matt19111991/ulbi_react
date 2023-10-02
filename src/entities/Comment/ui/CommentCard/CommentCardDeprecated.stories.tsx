@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryFn, StoryObj } from '@storybook/react';
 
 import Avatar from '@/shared/assets/tests/storybook.jpg';
 
@@ -32,11 +32,19 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
+const IndentsDecorator = (Story: StoryFn) => (
+  <div style={{ padding: 16 }}>
+    <Story />
+  </div>
+);
+
 // Primary comment card
 
 export const Primary: Story = {
   args: { comment },
 };
+
+Primary.decorators = [IndentsDecorator];
 
 // Dark comment card
 
@@ -44,7 +52,7 @@ export const Dark: Story = {
   args: { comment },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange comment card
 
@@ -52,7 +60,7 @@ export const Orange: Story = {
   args: { comment },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Loading primary comment card
 
@@ -62,6 +70,8 @@ export const LoadingPrimary: Story = {
   },
 };
 
+LoadingPrimary.decorators = [IndentsDecorator];
+
 // Loading dark comment card
 
 export const LoadingDark: Story = {
@@ -70,7 +80,7 @@ export const LoadingDark: Story = {
   },
 };
 
-LoadingDark.decorators = [ThemeDecorator(Theme.DARK)];
+LoadingDark.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Loading orange comment card
 
@@ -80,6 +90,6 @@ export const LoadingOrange: Story = {
   },
 };
 
-LoadingOrange.decorators = [ThemeDecorator(Theme.ORANGE)];
+LoadingOrange.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 export default meta;

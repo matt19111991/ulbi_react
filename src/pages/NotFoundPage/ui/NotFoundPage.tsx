@@ -8,6 +8,9 @@ import { Page } from '@/widgets/Page';
 import classes from './NotFoundPage.module.scss';
 
 interface NotFoundPageProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
 }
 

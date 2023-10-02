@@ -31,12 +31,21 @@ export const useArticleFilters = () => {
   const type = useSelector(getArticlesPageType);
   const view = useSelector(getArticlesPageView);
 
+  /**
+   * Получение данных
+   */
   const fetchData = useCallback(() => {
     dispatch(fetchArticlesList({ replace: true }));
   }, [dispatch]);
 
+  /**
+   * Получение данных отложенно
+   */
   const debouncedFetchData = useDebounce(fetchData, 500);
 
+  /**
+   * Обработчик изменения направления сортировки
+   */
   const onChangeOrder = useCallback(
     (newOrder: SortOrder) => {
       dispatch(articlesPageActions.setOrder(newOrder));
@@ -48,6 +57,9 @@ export const useArticleFilters = () => {
     [dispatch, fetchData],
   );
 
+  /**
+   * Обработчик изменения поля поиска
+   */
   const onChangeSearch = useCallback(
     (searchValue: string) => {
       dispatch(articlesPageActions.setSearch(searchValue));
@@ -59,6 +71,9 @@ export const useArticleFilters = () => {
     [dispatch, debouncedFetchData],
   );
 
+  /**
+   * Обработчик изменения поля для сортировки
+   */
   const onChangeSort = useCallback(
     (newSort: ArticleSortField) => {
       dispatch(articlesPageActions.setSort(newSort));
@@ -70,6 +85,9 @@ export const useArticleFilters = () => {
     [dispatch, fetchData],
   );
 
+  /**
+   * Обработчик изменения типа статьи
+   */
   const onChangeType = useCallback(
     (value: ArticleType) => {
       dispatch(articlesPageActions.setType(value));
@@ -81,6 +99,9 @@ export const useArticleFilters = () => {
     [dispatch, fetchData],
   );
 
+  /**
+   * Обработчик изменения вида статей
+   */
   const onChangeView = useCallback(
     (newView: ArticleView) => {
       dispatch(articlesPageActions.setView(newView));

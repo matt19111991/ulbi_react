@@ -13,6 +13,9 @@ import { Page } from '@/widgets/Page';
 import classes from './ArticleCreatePage.module.scss';
 
 interface ArticleCreatePageProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
 }
 

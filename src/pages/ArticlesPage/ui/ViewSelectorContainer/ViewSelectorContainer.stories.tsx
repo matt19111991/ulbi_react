@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryFn, StoryObj } from '@storybook/react';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -8,7 +8,7 @@ import { Theme } from '@/shared/const/theme';
 import { ViewSelectorContainer } from './ViewSelectorContainer';
 
 const meta = {
-  title: 'pages/ArticlesPage/ViewSelectorContainer',
+  title: 'pages/Article/Articles/ViewSelectorContainer',
   component: ViewSelectorContainer,
   argTypes: {
     backgroundColor: {
@@ -19,11 +19,19 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
+const IndentsDecorator = (Story: StoryFn) => (
+  <div style={{ padding: 16 }}>
+    <Story />
+  </div>
+);
+
 // Primary articles page view selector container old
 
 export const PrimaryOld: Story = {
   args: {},
 };
+
+PrimaryOld.decorators = [IndentsDecorator];
 
 // Dark articles page view selector container old
 
@@ -31,7 +39,7 @@ export const DarkOld: Story = {
   args: {},
 };
 
-DarkOld.decorators = [ThemeDecorator(Theme.DARK)];
+DarkOld.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange articles page view selector container old
 
@@ -39,7 +47,7 @@ export const OrangeOld: Story = {
   args: {},
 };
 
-OrangeOld.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeOld.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Primary articles page view selector container new
 
@@ -47,7 +55,7 @@ export const PrimaryNew: Story = {
   args: {},
 };
 
-PrimaryNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+PrimaryNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Dark articles page view selector container new
 
@@ -55,7 +63,11 @@ export const DarkNew: Story = {
   args: {},
 };
 
-DarkNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
+DarkNew.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange articles page view selector container new
 
@@ -65,6 +77,7 @@ export const OrangeNew: Story = {
 
 OrangeNew.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
   ThemeDecorator(Theme.ORANGE),
 ];
 

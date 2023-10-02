@@ -5,6 +5,9 @@ import { ArticleViewSelector } from '@/features/ArticleViewSelector';
 import { useArticleFilters } from '../../lib/hooks/useArticleFilters';
 
 interface ViewSelectorContainerProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
 }
 

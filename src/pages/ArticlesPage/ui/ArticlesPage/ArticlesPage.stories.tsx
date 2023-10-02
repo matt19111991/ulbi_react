@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryFn, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
@@ -29,6 +29,13 @@ const stateArticles: DeepPartial<StateSchema> = {
     sort: ArticleSortField.CREATED,
     view: ArticleView.LIST,
   },
+  user: {
+    authData: {
+      jsonSettings: {
+        isArticlesPageHasBeenOpened: true,
+      },
+    },
+  },
 };
 
 const stateArticlesLoading = {
@@ -43,6 +50,13 @@ const stateArticlesLoading = {
     sort: ArticleSortField.CREATED,
     view: ArticleView.LIST,
   },
+  user: {
+    authData: {
+      jsonSettings: {
+        isArticlesPageHasBeenOpened: true,
+      },
+    },
+  },
 };
 
 const stateArticlesError = {
@@ -51,10 +65,17 @@ const stateArticlesError = {
     ...stateArticles.articlesPage,
     error: 'Error',
   },
+  user: {
+    authData: {
+      jsonSettings: {
+        isArticlesPageHasBeenOpened: true,
+      },
+    },
+  },
 };
 
 const meta = {
-  title: 'pages/ArticlesPage',
+  title: 'pages/Article/Articles/ArticlesPage',
   component: ArticlesPage,
   argTypes: {
     backgroundColor: {
@@ -64,6 +85,12 @@ const meta = {
 } as Meta<typeof ArticlesPage>;
 
 type Story = StoryObj<typeof meta>;
+
+const IndentsDecorator = (Story: StoryFn) => (
+  <div style={{ padding: 16 }}>
+    <Story />
+  </div>
+);
 
 // Primary articles page old
 
@@ -105,6 +132,7 @@ export const PrimaryNew: Story = {
 
 PrimaryNew.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
   StoreDecorator(stateArticles),
 ];
 
@@ -116,6 +144,7 @@ export const DarkNew: Story = {
 
 DarkNew.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
   StoreDecorator(stateArticles),
   ThemeDecorator(Theme.DARK),
 ];
@@ -128,6 +157,7 @@ export const OrangeNew: Story = {
 
 OrangeNew.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
   StoreDecorator(stateArticles),
   ThemeDecorator(Theme.ORANGE),
 ];
@@ -140,6 +170,7 @@ export const LoadingNew: Story = {
 
 LoadingNew.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
   StoreDecorator(stateArticlesLoading),
 ];
 
@@ -151,6 +182,7 @@ export const Error: Story = {
 
 Error.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
   StoreDecorator(stateArticlesError),
 ];
 

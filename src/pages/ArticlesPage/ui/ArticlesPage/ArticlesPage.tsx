@@ -37,6 +37,9 @@ import { ViewSelectorContainer } from '../ViewSelectorContainer/ViewSelectorCont
 import classes from './ArticlesPage.module.scss';
 
 interface ArticlesPageProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
 }
 

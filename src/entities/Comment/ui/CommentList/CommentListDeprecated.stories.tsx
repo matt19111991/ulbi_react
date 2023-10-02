@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryFn, StoryObj } from '@storybook/react';
 
 import FirstAvatar from '@/shared/assets/tests/storybook.jpg';
 import SecondAvatar from '@/shared/assets/tests/storybook2.jpg';
@@ -53,11 +53,19 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
+const IndentsDecorator = (Story: StoryFn) => (
+  <div style={{ padding: 16 }}>
+    <Story />
+  </div>
+);
+
 // Primary comment list
 
 export const Primary: Story = {
   args: { comments },
 };
+
+Primary.decorators = [IndentsDecorator];
 
 // Dark comment list
 
@@ -65,7 +73,7 @@ export const Dark: Story = {
   args: { comments },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange comment list
 
@@ -73,7 +81,7 @@ export const Orange: Story = {
   args: { comments },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Empty primary comment list
 
@@ -81,13 +89,15 @@ export const EmptyPrimary: Story = {
   args: {},
 };
 
+EmptyPrimary.decorators = [IndentsDecorator];
+
 // Empty dark comment list
 
 export const EmptyDark: Story = {
   args: {},
 };
 
-EmptyDark.decorators = [ThemeDecorator(Theme.DARK)];
+EmptyDark.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Empty orange comment list
 
@@ -95,7 +105,7 @@ export const EmptyOrange: Story = {
   args: {},
 };
 
-EmptyOrange.decorators = [ThemeDecorator(Theme.ORANGE)];
+EmptyOrange.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Loading primary comment list
 
@@ -105,6 +115,8 @@ export const LoadingPrimary: Story = {
   },
 };
 
+LoadingPrimary.decorators = [IndentsDecorator];
+
 // Loading dark comment list
 
 export const LoadingDark: Story = {
@@ -113,7 +125,7 @@ export const LoadingDark: Story = {
   },
 };
 
-LoadingDark.decorators = [ThemeDecorator(Theme.DARK)];
+LoadingDark.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Loading orange comment list
 
@@ -123,6 +135,6 @@ export const LoadingOrange: Story = {
   },
 };
 
-LoadingOrange.decorators = [ThemeDecorator(Theme.ORANGE)];
+LoadingOrange.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 export default meta;

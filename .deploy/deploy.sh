@@ -15,8 +15,11 @@ npm run build:prod
 # удаляем прошлую сборку
 rm -rf ~/../var/www/ulbi_react/html
 
-# переносим папку с билдом в папку для статики
-mv ~/ulbi_react/build ~/../var/www/ulbi_react/html
+# создаем необходимые папки
+mkdir ~/../var/www/ulbi_react/html
+
+# переносим файлы билда в папку для статики
+mv ~/ulbi_react/build/* ~/../var/www/ulbi_react/html/
 
 # запускаем сервер в фоне
 pm2 start json-server/index.js

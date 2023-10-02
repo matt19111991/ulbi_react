@@ -149,38 +149,38 @@ jobs: # 'build-and-ui-testing' и 'checks' jobs запускаются пара�
 
   # Секреты задаются на GitHub: Settings => Security => Secrets and variables => Actions
 
-  # HOST = 103.13.210.44
+  # HOST = 91.223.169.133
   # USERNAME = root
-  # PASSWORD = 1234567qwertyA
+  # PASSWORD = 942$kis$701KIS
 
-#  build:
-#    name: deploy
-#    runs-on: ubuntu-latest
-#
-#    needs: [build-and-ui-testing]
-#
-#    strategy:
-#      matrix:
-#        node-version: [ 17.x ]
-#
-#    steps:
-#      - name: Executing remote SSH commands using password
-#        uses: appleboy/ssh-action@master
-#        with:
-#          host: ${{ secrets.HOST }}
-#          username: ${{ secrets.USERNAME }}
-#          password: ${{ secrets.PASSWORD }}
-#
-#          # команды, чтобы избежать ошибки 'npm: command not found'
-#            # export NVM_DIR="$HOME/.nvm"
-#            # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-#
-#          script: |
-#            cd ~/ulbi_react
-#
-#            export NVM_DIR="$HOME/.nvm"
-#            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-#
-#            git pull
-#
-#            ~/ulbi_react/.deploy/deploy.sh
+  build:
+    name: deploy
+    runs-on: ubuntu-latest
+
+    needs: [build-and-ui-testing]
+
+    strategy:
+      matrix:
+        node-version: [ 17.x ]
+
+    steps:
+      - name: Executing remote SSH commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+
+          # команды, чтобы избежать ошибки 'npm: command not found'
+            # export NVM_DIR="$HOME/.nvm"
+            # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+          script: |
+            cd ~/ulbi_react
+
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+            git pull
+
+            ~/ulbi_react/.deploy/deploy.sh

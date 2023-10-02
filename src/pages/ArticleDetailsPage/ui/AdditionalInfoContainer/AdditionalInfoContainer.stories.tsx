@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryFn, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
@@ -40,7 +40,7 @@ const stateLoading: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'pages/ArticleDetailsPage/AdditionalInfoContainer',
+  title: 'pages/Article/ArticleDetailsPage/AdditionalInfoContainer',
   component: AdditionalInfoContainer,
   argTypes: {
     background: {
@@ -54,13 +54,19 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
+const IndentsDecorator = (Story: StoryFn) => (
+  <div style={{ padding: 16 }}>
+    <Story />
+  </div>
+);
+
 // Primary additional info container
 
 export const Primary: Story = {
   args: {},
 };
 
-Primary.decorators = [StoreDecorator(stateBase)];
+Primary.decorators = [IndentsDecorator, StoreDecorator(stateBase)];
 
 // Dark additional info container
 
@@ -68,7 +74,7 @@ export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [StoreDecorator(stateBase), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [IndentsDecorator, StoreDecorator(stateBase), ThemeDecorator(Theme.DARK)];
 
 // Orange additional info container
 
@@ -76,7 +82,7 @@ export const Orange: Story = {
   args: {},
 };
 
-Orange.decorators = [StoreDecorator(stateBase), ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [IndentsDecorator, StoreDecorator(stateBase), ThemeDecorator(Theme.ORANGE)];
 
 // Loading additional info container
 
@@ -84,6 +90,6 @@ export const Loading: Story = {
   args: {},
 };
 
-Loading.decorators = [StoreDecorator(stateLoading)];
+Loading.decorators = [IndentsDecorator, StoreDecorator(stateLoading)];
 
 export default meta;

@@ -4,7 +4,7 @@
 - Проверить очистку всех созданных сущностей в БД после прогона E2E тестов
 - Проверить возврат к проскролленному месту (старый и новый дизайн)
 - Ошибка при переходе между страницами
-- Перенести все на другой сервер
+- Рефакторинг для IndentsDecorator
 
 ---- 
 
@@ -294,3 +294,16 @@ storybook и линтинг и деплой на сервер.
 - [Router](/src/app/providers/Router/README.md)
 - [StoreProvider](/src/app/providers/StoreProvider/README.md)
 - [ThemeProvider](/src/app/providers/ThemeProvider/README.md)
+
+## Страницы (pages)
+- [AboutPage](/src/pages/AboutPage/README.md)
+- [AdminPanelPage](/src/pages/AdminPanelPage/README.md)
+- [ArticleCreatePage](/src/pages/ArticleCreatePage/README.md)
+- [ArticleDetailsPage](/src/pages/ArticleDetailsPage/README.md)
+- [ArticleEditPage](/src/pages/ArticleEditPage/README.md)
+- [ArticlesPage](/src/pages/ArticlesPage/README.md)
+- [ForbiddenPage](/src/pages/ForbiddenPage/README.md)
+- [MainPage](/src/pages/MainPage/README.md)
+- [NotFoundPage](/src/pages/NotFoundPage/README.md)
+- [ProfilePage](/src/pages/ProfilePage/README.md)
+- [SettingsPage](/src/pages/SettingsPage/README.md)

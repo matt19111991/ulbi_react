@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryFn, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
@@ -151,7 +151,7 @@ const stateArticleDetails: DeepPartial<StateSchema> = {
 */
 
 const meta = {
-  title: 'pages/ArticleDetailsPage/new',
+  title: 'pages/Article/ArticleDetailsPage/ArticleDetailsPage/new',
   component: ArticleDetailsPage,
   argTypes: {
     backgroundColor: {
@@ -161,10 +161,15 @@ const meta = {
   args: {
     isStorybook: true,
   },
-  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true })],
 } as Meta<typeof ArticleDetailsPage>;
 
 type Story = StoryObj<typeof meta>;
+
+const IndentsDecorator = (Story: StoryFn) => (
+  <div style={{ padding: 16 }}>
+    <Story />
+  </div>
+);
 
 /*
 !!! Проблема с тестами loki: обрезается низ страницы !!!
@@ -177,7 +182,11 @@ export const Primary: Story = {
   },
 };
 
-Primary.decorators = [StoreDecorator(stateArticleDetails)];
+Primary.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  StoreDecorator(stateArticleDetails),
+];
 
 // Dark article details page
 
@@ -187,7 +196,12 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [StoreDecorator(stateArticleDetails), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  StoreDecorator(stateArticleDetails),
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange article details page
 
@@ -197,7 +211,12 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [StoreDecorator(stateArticleDetails), ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  StoreDecorator(stateArticleDetails),
+  ThemeDecorator(Theme.ORANGE),
+];
 */
 
 // Loading article details page
@@ -221,7 +240,11 @@ const stateArticleLoading: DeepPartial<StateSchema> = {
   },
 };
 
-Loading.decorators = [StoreDecorator(stateArticleLoading)];
+Loading.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  StoreDecorator(stateArticleLoading),
+];
 
 // Error article details page
 
@@ -245,7 +268,11 @@ const stateArticleError: DeepPartial<StateSchema> = {
   },
 };
 
-Error.decorators = [StoreDecorator(stateArticleError)];
+Error.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  StoreDecorator(stateArticleError),
+];
 
 // Not found article details page
 
@@ -257,6 +284,10 @@ const stateArticleNotFound: DeepPartial<StateSchema> = {
   articleDetails: {},
 };
 
-NotFound.decorators = [StoreDecorator(stateArticleNotFound)];
+NotFound.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  StoreDecorator(stateArticleNotFound),
+];
 
 export default meta;

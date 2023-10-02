@@ -15,6 +15,9 @@ import { ArticleAdditionalInfo } from '@/widgets/ArticleAdditionalInfo';
 import classes from './AdditionalInfoContainer.module.scss';
 
 interface AdditionalInfoContainerProps {
+  /**
+   * Проверка: рендерится ли компонент для storybook
+   */
   isStorybook?: boolean;
 }
 

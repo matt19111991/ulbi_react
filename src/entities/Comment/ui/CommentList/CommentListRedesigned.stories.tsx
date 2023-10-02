@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryFn, StoryObj } from '@storybook/react';
 
 import FirstAvatar from '@/shared/assets/tests/storybook.jpg';
 import SecondAvatar from '@/shared/assets/tests/storybook2.jpg';
@@ -54,13 +54,19 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
+const IndentsDecorator = (Story: StoryFn) => (
+  <div style={{ padding: 16 }}>
+    <Story />
+  </div>
+);
+
 // Primary comment list
 
 export const Primary: Story = {
   args: { comments },
 };
 
-Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Dark comment list
 
@@ -68,7 +74,11 @@ export const Dark: Story = {
   args: { comments },
 };
 
-Dark.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange comment list
 
@@ -78,6 +88,7 @@ export const Orange: Story = {
 
 Orange.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
   ThemeDecorator(Theme.ORANGE),
 ];
 
@@ -87,7 +98,7 @@ export const EmptyPrimary: Story = {
   args: {},
 };
 
-EmptyPrimary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+EmptyPrimary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Empty dark comment list
 
@@ -97,6 +108,7 @@ export const EmptyDark: Story = {
 
 EmptyDark.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -108,6 +120,7 @@ export const EmptyOrange: Story = {
 
 EmptyOrange.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
   ThemeDecorator(Theme.ORANGE),
 ];
 
@@ -119,7 +132,7 @@ export const LoadingPrimary: Story = {
   },
 };
 
-LoadingPrimary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+LoadingPrimary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Loading dark comment list
 
@@ -131,6 +144,7 @@ export const LoadingDark: Story = {
 
 LoadingDark.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -144,6 +158,7 @@ export const LoadingOrange: Story = {
 
 LoadingOrange.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
   ThemeDecorator(Theme.ORANGE),
 ];
 

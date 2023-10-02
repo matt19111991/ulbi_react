@@ -16,6 +16,9 @@ import { HStack } from '@/shared/ui/redesigned/Stack';
 import { getCanEditArticle } from '../../model/selectors/article/article';
 
 interface ArticleDetailsPageHeaderProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
 }
 

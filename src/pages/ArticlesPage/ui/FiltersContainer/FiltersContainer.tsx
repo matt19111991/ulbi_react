@@ -5,6 +5,9 @@ import { ArticlesFilters } from '@/widgets/ArticlesFilters';
 import { useArticleFilters } from '../../lib/hooks/useArticleFilters';
 
 interface FiltersContainerProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
 }
 

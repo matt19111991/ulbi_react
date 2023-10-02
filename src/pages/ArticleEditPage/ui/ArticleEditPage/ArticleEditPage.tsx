@@ -13,12 +13,19 @@ import { Text } from '@/shared/ui/deprecated/Text';
 
 import classes from './ArticleEditPage.module.scss';
 
-interface ArticleDetailsPageProps {
+interface ArticleEditPageProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * ID статьи для storybook
+   */
   idFromStorybook?: string;
 }
 
-const ArticleDetailsPage = ({ className, idFromStorybook }: ArticleDetailsPageProps) => {
+const ArticleEditPage = ({ className, idFromStorybook }: ArticleEditPageProps) => {
   const { id } = useParams<{ id: string }>();
   const { t } = useTranslation();
 
@@ -35,4 +42,4 @@ const ArticleDetailsPage = ({ className, idFromStorybook }: ArticleDetailsPagePr
   );
 };
 
-export default memo(ArticleDetailsPage);
+export default memo(ArticleEditPage);
