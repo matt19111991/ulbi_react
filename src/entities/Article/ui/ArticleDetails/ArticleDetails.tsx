@@ -92,7 +92,7 @@ const Redesigned = () => {
 
   return (
     <>
-      <TextRedesigned bold size='l' title={article?.title} />
+      <TextRedesigned bold data-testid='ArticleDetails.Info' size='l' title={article?.title} />
 
       <TextRedesigned title={article?.subtitle} />
 
