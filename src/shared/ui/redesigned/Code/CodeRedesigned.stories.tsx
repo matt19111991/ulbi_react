@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -11,7 +12,7 @@ const codeText =
   '<!DOCTYPE html>\n<html>\n  <body>\n    <p id="hello"></p>\n\n    <script>\n      document.getElementById("hello").innerHTML = "Hello, world!";\n    </script>\n  </body>\n</html>;';
 
 const meta = {
-  title: 'shared/Code',
+  title: 'shared/components/new/Code',
   component: Code,
   argTypes: {
     backgroundColor: {
@@ -22,64 +23,41 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Primary code old
+// Primary code
 
-export const PrimaryOld: Story = {
+export const Primary: Story = {
   args: {
     text: codeText,
   },
 };
 
-// Dark code old
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
-export const DarkOld: Story = {
+// Dark code
+
+export const Dark: Story = {
   args: {
     text: codeText,
   },
 };
 
-DarkOld.decorators = [ThemeDecorator(Theme.DARK)];
-
-// Orange code old
-
-export const OrangeOld: Story = {
-  args: {
-    text: codeText,
-  },
-};
-
-OrangeOld.decorators = [ThemeDecorator(Theme.ORANGE)];
-
-// Primary code new
-
-export const PrimaryNew: Story = {
-  args: {
-    text: codeText,
-  },
-};
-
-PrimaryNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
-
-// Dark code new
-
-export const DarkNew: Story = {
-  args: {
-    text: codeText,
-  },
-};
-
-DarkNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
-
-// Orange code new
-
-export const OrangeNew: Story = {
-  args: {
-    text: codeText,
-  },
-};
-
-OrangeNew.decorators = [
+Dark.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
+
+// Orange code
+
+export const Orange: Story = {
+  args: {
+    text: codeText,
+  },
+};
+
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
   ThemeDecorator(Theme.ORANGE),
 ];
 
