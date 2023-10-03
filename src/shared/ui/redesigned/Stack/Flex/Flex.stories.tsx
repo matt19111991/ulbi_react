@@ -1,15 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
+
 import { Flex } from './Flex';
 
 const meta = {
-  title: 'shared/Flex',
+  title: 'shared/components/new/Flex',
   component: Flex,
   argTypes: {
     backgroundColor: {
       control: 'color',
     },
   },
+  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator],
 } as Meta<typeof Flex>;
 
 type Story = StoryObj<typeof meta>;

@@ -7,16 +7,46 @@ import { genericMemo } from '@/shared/lib/components/genericMemo/genericMemo';
 import classes from './Select.module.scss';
 
 export interface SelectOption<T extends string> {
+  /**
+   * Содержимое
+   */
   content: string;
+
+  /**
+   * Значение пункта
+   */
   value: T;
 }
 
 interface SelectProps<T extends string> {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Label
+   */
   label?: string;
+
+  /**
+   * Обработчик для выбора пункта меню
+   */
   onChange?: (value: T) => void;
+
+  /**
+   * Пункты меню
+   */
   options?: SelectOption<T>[];
+
+  /**
+   * Режим только для чтения
+   */
   readOnly?: boolean;
+
+  /**
+   * Выбранное значение
+   */
   value?: T;
 }
 

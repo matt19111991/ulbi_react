@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -7,7 +9,7 @@ import { Theme } from '@/shared/const/theme';
 import { Text } from './Text';
 
 const meta = {
-  title: 'shared/new/Text',
+  title: 'shared/components/new/Text',
   component: Text,
   argTypes: {
     background: {
@@ -27,6 +29,11 @@ export const PrimaryTitleAndText: Story = {
   },
 };
 
+PrimaryTitleAndText.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+];
+
 // Primary only title
 
 export const PrimaryOnlyTitle: Story = {
@@ -35,6 +42,8 @@ export const PrimaryOnlyTitle: Story = {
   },
 };
 
+PrimaryOnlyTitle.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Primary only text
 
 export const PrimaryOnlyText: Story = {
@@ -42,6 +51,8 @@ export const PrimaryOnlyText: Story = {
     text: 'Description Description Description Description',
   },
 };
+
+PrimaryOnlyText.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Dark title & text
 
@@ -52,7 +63,11 @@ export const DarkTitleAndText: Story = {
   },
 };
 
-DarkTitleAndText.decorators = [ThemeDecorator(Theme.DARK)];
+DarkTitleAndText.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Dark only title
 
@@ -62,7 +77,11 @@ export const DarkOnlyTitle: Story = {
   },
 };
 
-DarkOnlyTitle.decorators = [ThemeDecorator(Theme.DARK)];
+DarkOnlyTitle.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Dark only text
 
@@ -72,7 +91,11 @@ export const DarkOnlyText: Story = {
   },
 };
 
-DarkOnlyText.decorators = [ThemeDecorator(Theme.DARK)];
+DarkOnlyText.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange title & text
 
@@ -83,7 +106,11 @@ export const OrangeTitleAndText: Story = {
   },
 };
 
-OrangeTitleAndText.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeTitleAndText.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Orange only title
 
@@ -93,7 +120,11 @@ export const OrangeOnlyTitle: Story = {
   },
 };
 
-OrangeOnlyTitle.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeOnlyTitle.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Orange only text
 
@@ -103,7 +134,11 @@ export const OrangeOnlyText: Story = {
   },
 };
 
-OrangeOnlyText.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeOnlyText.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Error
 
@@ -115,6 +150,8 @@ export const Error: Story = {
   },
 };
 
+Error.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Accent primary
 
 export const AccentPrimary: Story = {
@@ -124,6 +161,8 @@ export const AccentPrimary: Story = {
     variant: 'accent',
   },
 };
+
+AccentPrimary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Accent dark
 
@@ -135,7 +174,11 @@ export const AccentDark: Story = {
   },
 };
 
-AccentDark.decorators = [ThemeDecorator(Theme.DARK)];
+AccentDark.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Accent orange
 
@@ -147,7 +190,11 @@ export const AccentOrange: Story = {
   },
 };
 
-AccentOrange.decorators = [ThemeDecorator(Theme.ORANGE)];
+AccentOrange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Large size
 
@@ -159,6 +206,8 @@ export const SizeLarge: Story = {
   },
 };
 
+SizeLarge.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Medium size
 
 export const SizeMedium: Story = {
@@ -168,6 +217,8 @@ export const SizeMedium: Story = {
     text: 'Description Description Description Description',
   },
 };
+
+SizeMedium.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Small size
 
@@ -179,6 +230,8 @@ export const SizeSmall: Story = {
   },
 };
 
+SizeSmall.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Bold
 
 export const Bold: Story = {
@@ -188,5 +241,7 @@ export const Bold: Story = {
     text: 'Description Description Description Description',
   },
 };
+
+Bold.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 export default meta;

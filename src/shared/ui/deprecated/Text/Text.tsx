@@ -4,26 +4,41 @@ import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 
 import classes from './Text.module.scss';
 
+/**
+ * Выравнивание текста
+ */
 export enum TextAlign {
   CENTER = 'center',
   LEFT = 'left',
   RIGHT = 'right',
 }
 
+/**
+ * Размер текста
+ */
 export enum TextSize {
   S = 'size_s',
   M = 'size_m',
   L = 'size_l',
 }
 
+/**
+ * Внешний вид текста
+ */
 export enum TextTheme {
   ERROR = 'error',
   INVERTED = 'inverted',
   PRIMARY = 'primary',
 }
 
+/**
+ * Тип заголовка
+ */
 type HeaderTagType = 'h1' | 'h2' | 'h3';
 
+/**
+ * Классы для размера заголовков
+ */
 const mapSizeToHeaderTag: Record<TextSize, HeaderTagType> = {
   [TextSize.S]: 'h3',
   [TextSize.M]: 'h2',
@@ -31,12 +46,39 @@ const mapSizeToHeaderTag: Record<TextSize, HeaderTagType> = {
 };
 
 interface TextProps {
+  /**
+   * Выравнивание текста
+   */
   align?: TextAlign;
+
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * ID для тестов
+   */
   'data-testid'?: string;
+
+  /**
+   * Размера текста
+   */
   size?: TextSize;
+
+  /**
+   * Значение текста
+   */
   text?: string;
+
+  /**
+   * Внешний вид текста
+   */
   theme?: TextTheme;
+
+  /**
+   * Значение текста
+   */
   title?: string;
 }
 

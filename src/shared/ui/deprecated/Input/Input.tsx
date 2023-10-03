@@ -22,13 +22,44 @@ type HTMLInputProps = Omit<
 >;
 
 interface InputProps extends HTMLInputProps {
+  /**
+   * Фокус при монтировании
+   */
   autoFocus?: boolean;
+
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Растягивать на всю доступную ширину?
+   */
   fullWidth?: boolean;
+
+  /**
+   * Обработчик для изменения значения поля
+   */
   onChange?: (value: string) => void;
+
+  /**
+   * Placeholder
+   */
   placeholder?: string;
+
+  /**
+   * Режим только для чтения
+   */
   readOnly?: boolean;
+
+  /**
+   * Тип поля ввода
+   */
   type?: HTMLInputTypeAttribute;
+
+  /**
+   * Значение поля ввода
+   */
   value?: string | number;
 }
 

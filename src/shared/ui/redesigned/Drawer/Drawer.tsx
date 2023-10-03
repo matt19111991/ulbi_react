@@ -18,15 +18,40 @@ import { Portal } from '../Portal/Portal';
 import classes from './Drawer.module.scss';
 
 interface DrawerProps {
+  /**
+   * Содержимое
+   */
   children: ReactNode;
+
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Состояние (Drawer закрыт или открыт)
+   */
   isOpen?: boolean;
+
+  /**
+   * Должен компонент лениво загружаться?
+   */
   lazy?: boolean;
+
+  /**
+   * Коллбэк при закрытии Drawera
+   */
   onClose?: () => void;
 }
 
-const height = window.innerHeight - 100; // общая высота окна - 100px
+/**
+ * Общая высота окна - 100px
+ */
+const height = window.innerHeight - 100;
 
+/**
+ * Компонент с основным контентом
+ */
 export const DrawerContent = ({ children, className, isOpen, lazy, onClose }: DrawerProps) => {
   const { Gesture, Spring } = useAnimationLibraries();
 
@@ -128,6 +153,9 @@ export const DrawerContent = ({ children, className, isOpen, lazy, onClose }: Dr
   );
 };
 
+/**
+ * Асинхронный компонент
+ */
 const DrawerAsync = ({ children, ...rest }: DrawerProps) => {
   const { isLoaded } = useAnimationLibraries();
 
@@ -138,6 +166,9 @@ const DrawerAsync = ({ children, ...rest }: DrawerProps) => {
   return <DrawerContent {...rest}>{children}</DrawerContent>;
 };
 
+/**
+ * Асинхронный компонент с анимацией
+ */
 export const Drawer = ({ children, ...rest }: DrawerProps) => (
   <AnimationProvider>
     <DrawerAsync {...rest}>{children}</DrawerAsync>

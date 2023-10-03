@@ -11,9 +11,24 @@ import popupClasses from '../../styles/popup.module.scss';
 import classes from './Popover.module.scss';
 
 interface PopoverProps {
+  /**
+   * Содержимое
+   */
   children: ReactNode;
+
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Направление для выпадения пунктов меню
+   */
   direction?: DropdownDirection;
+
+  /**
+   * Компонент-триггер открытия меню
+   */
   trigger: ReactNode;
 }
 

@@ -8,7 +8,7 @@ import { Theme } from '@/shared/const/theme';
 import { StarRating } from './StarRating';
 
 const meta = {
-  title: 'shared/old/StarRating',
+  title: 'shared/components/old/StarRating',
   component: StarRating,
   argTypes: {
     backgroundColor: {

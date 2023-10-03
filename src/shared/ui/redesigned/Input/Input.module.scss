@@ -2,9 +2,13 @@
   align-items: center;
   border: 2px solid var(--icon-redesigned);
   border-radius: 48px;
-  display: flex;
+  display: inline-flex;
   padding: 8px 16px;
-  width: 100%;
+
+  &:has(.fullWidth) {
+    display: flex;
+    width: 100%;
+  }
 }
 
 .addonLeft,

@@ -11,10 +11,29 @@ import { Portal } from '../Portal/Portal';
 import classes from './Modal.module.scss';
 
 interface ModalProps {
+  /**
+   * Содержимое
+   */
   children?: ReactNode;
+
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Состояние модального окна (открыто или закрыто)
+   */
   isOpen?: boolean;
+
+  /**
+   * Должен компонент лениво загружаться?
+   */
   lazy?: boolean;
+
+  /**
+   * Коллбэк при закрытии модального окна
+   */
   onClose: () => void;
 }
 

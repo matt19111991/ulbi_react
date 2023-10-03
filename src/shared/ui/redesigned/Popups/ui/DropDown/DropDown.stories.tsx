@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -9,7 +11,7 @@ import { Button } from '../../../Button/Button';
 import { DropDown } from './DropDown';
 
 const meta = {
-  title: 'shared/new/DropDown',
+  title: 'shared/components/new/DropDown',
   component: DropDown,
   argTypes: {
     backgroundColor: {
@@ -29,6 +31,8 @@ export const Primary: Story = {
   },
 };
 
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Dark dropdown
 
 export const Dark: Story = {
@@ -38,7 +42,11 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange dropdown
 
@@ -49,7 +57,11 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Top-left dropdown
 
@@ -67,6 +79,7 @@ TopLeft.decorators = [
       <Story />
     </div>
   ),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
 ];
 
 // Top-right dropdown
@@ -85,6 +98,7 @@ TopRight.decorators = [
       <Story />
     </div>
   ),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
 ];
 
 // Bottom-left dropdown
@@ -96,6 +110,8 @@ export const BottomLeft: Story = {
     trigger: <Button>Open</Button>,
   },
 };
+
+BottomLeft.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Bottom-right dropdown
 
@@ -113,6 +129,8 @@ BottomRight.decorators = [
       <Story />
     </div>
   ),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
 ];
 
 // Justify left dropdown
@@ -125,6 +143,8 @@ export const JustifyLeft: Story = {
   },
 };
 
+JustifyLeft.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Justify center dropdown
 
 export const JustifyCenter: Story = {
@@ -134,6 +154,8 @@ export const JustifyCenter: Story = {
     trigger: <Button>Open</Button>,
   },
 };
+
+JustifyCenter.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Justify right dropdown
 
@@ -145,6 +167,8 @@ export const JustifyRight: Story = {
   },
 };
 
+JustifyRight.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Small dropdown
 
 export const Small: Story = {
@@ -155,6 +179,8 @@ export const Small: Story = {
   },
 };
 
+Small.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Medium dropdown
 
 export const Medium: Story = {
@@ -164,5 +190,7 @@ export const Medium: Story = {
     trigger: <Button>Open</Button>,
   },
 };
+
+Medium.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 export default meta;

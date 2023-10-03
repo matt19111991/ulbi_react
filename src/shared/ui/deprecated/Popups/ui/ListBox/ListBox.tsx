@@ -18,19 +18,61 @@ import popupClasses from '../../styles/popup.module.scss';
 import classes from './ListBox.module.scss';
 
 export interface ListBoxItem {
+  /**
+   * Содержимое
+   */
   content: ReactNode;
+
+  /**
+   * Элемент меню активен или нет?
+   */
   disabled?: boolean;
+
+  /**
+   * Значение пункта меню
+   */
   value: string;
 }
 
 interface ListBoxProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Значение по умолчанию
+   */
   defaultValue?: string;
+
+  /**
+   * Направление для выпадения пунктов меню
+   */
   direction?: DropdownDirection;
+
+  /**
+   * Элементы меню
+   */
   items?: ListBoxItem[];
+
+  /**
+   * Label
+   */
   label?: string;
+
+  /**
+   * Обработчик для выбора пункта меню
+   */
   onChange: (value: string) => void;
+
+  /**
+   * Режим только для чтения
+   */
   readonly?: boolean;
+
+  /**
+   * Выбранное значение
+   */
   value?: string;
 }
 

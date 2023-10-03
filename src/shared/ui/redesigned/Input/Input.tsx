@@ -16,29 +16,84 @@ import { Text } from '../Text';
 
 import classes from './Input.module.scss';
 
-/* без 'Omit' будет конфликт типов: 'onChange' принимает 'event', а не 'string',
-   а в InputHTMLAttributes<HTMLInputElement есть свое 'readOnly' свойство
-*/
+/**
+ *  Без 'Omit' будет конфликт типов: 'onChange' принимает 'event', а не 'string',
+ *  а в InputHTMLAttributes<HTMLInputElement есть свое 'readOnly' свойство
+ */
 type HTMLInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
   'onChange' | 'readOnly' | 'size' | 'value'
 >;
 
+/**
+ * Размеры поля ввода
+ */
 type InputSize = 's' | 'm' | 'l';
 
 interface InputProps extends HTMLInputProps {
+  /**
+   * Левый компонент-аддон
+   */
   addonLeft?: ReactNode;
+
+  /**
+   * Правый компонент-аддон
+   */
   addonRight?: ReactNode;
+
+  /**
+   * Фокус при монтировании
+   */
   autoFocus?: boolean;
+
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Растягивать на всю доступную ширину?
+   */
   fullWidth?: boolean;
+
+  /**
+   * Label
+   */
   label?: string;
+
+  /**
+   * Обработчик для изменения значения поля
+   */
   onChange?: (value: string, name: string) => void;
+
+  /**
+   * Placeholder
+   */
   placeholder?: string;
+
+  /**
+   * Режим только для чтения
+   */
   readOnly?: boolean;
+
+  /**
+   * Размер поля ввода
+   */
   size?: InputSize;
+
+  /**
+   * Тип поля ввода
+   */
   type?: HTMLInputTypeAttribute;
+
+  /**
+   * Значение поля ввода
+   */
   value?: string | number;
+
+  /**
+   * Выравнять label и поле ввода по вертикали
+   */
   verticalLabel?: boolean;
 }
 

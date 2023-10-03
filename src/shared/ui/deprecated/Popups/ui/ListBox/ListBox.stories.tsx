@@ -1,6 +1,7 @@
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -8,7 +9,7 @@ import { Theme } from '@/shared/const/theme';
 import { ListBox } from './ListBox';
 
 const meta = {
-  title: 'shared/old/ListBox',
+  title: 'shared/components/old/ListBox',
   component: ListBox,
   argTypes: {
     backgroundColor: {
@@ -34,6 +35,8 @@ export const Primary: Story = {
   },
 };
 
+Primary.decorators = [IndentsDecorator];
+
 // Dark list box
 
 export const Dark: Story = {
@@ -49,7 +52,7 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange list box
 
@@ -66,7 +69,7 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Read only list box
 
@@ -83,6 +86,8 @@ export const ReadOnly: Story = {
   },
 };
 
+ReadOnly.decorators = [IndentsDecorator];
+
 // Disabled option list box
 
 export const DisabledOption: Story = {
@@ -97,6 +102,8 @@ export const DisabledOption: Story = {
     value: 'Первый пункт',
   },
 };
+
+DisabledOption.decorators = [IndentsDecorator];
 
 // Default value list box
 
@@ -113,6 +120,8 @@ export const DefaultValue: Story = {
   },
 };
 
+DefaultValue.decorators = [IndentsDecorator];
+
 // Bottom left direction list box
 
 export const BottomLeftDirection: Story = {
@@ -127,6 +136,8 @@ export const BottomLeftDirection: Story = {
     value: '123',
   },
 };
+
+BottomLeftDirection.decorators = [IndentsDecorator];
 
 // Bottom right direction list box
 

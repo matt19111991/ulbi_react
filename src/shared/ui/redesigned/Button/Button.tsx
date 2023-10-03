@@ -21,7 +21,7 @@ export type ButtonSize = 's' | 'm' | 'l' | 'xl';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
-   * Левой компонент-аддон
+   * Левый компонент-аддон
    */
   addonLeft?: ReactNode;
 

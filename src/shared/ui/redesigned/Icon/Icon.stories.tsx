@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import IconSvg from '@/shared/assets/tests/storybook3.svg';
 
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -9,7 +10,7 @@ import { Theme } from '@/shared/const/theme';
 import { Icon } from './Icon';
 
 const meta = {
-  title: 'shared/new/Icon',
+  title: 'shared/components/new/Icon',
   component: Icon,
   argTypes: {
     backgroundColor: {
@@ -28,6 +29,8 @@ export const Primary: Story = {
   },
 };
 
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Dark icon
 
 export const Dark: Story = {
@@ -36,7 +39,7 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
 
 // Orange icon
 
@@ -46,7 +49,10 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Icon clickable
 
@@ -58,6 +64,8 @@ export const Clickable: Story = {
   },
 };
 
+Clickable.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Icon custom size
 
 export const CustomSize: Story = {
@@ -67,5 +75,7 @@ export const CustomSize: Story = {
     width: 40,
   },
 };
+
+CustomSize.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 export default meta;

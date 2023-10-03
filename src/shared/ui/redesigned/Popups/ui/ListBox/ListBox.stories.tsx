@@ -1,6 +1,8 @@
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -8,7 +10,7 @@ import { Theme } from '@/shared/const/theme';
 import { ListBox } from './ListBox';
 
 const meta = {
-  title: 'shared/new/ListBox',
+  title: 'shared/components/new/ListBox',
   component: ListBox,
   argTypes: {
     backgroundColor: {
@@ -34,6 +36,8 @@ export const Primary: Story = {
   },
 };
 
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Dark list box
 
 export const Dark: Story = {
@@ -49,7 +53,11 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange list box
 
@@ -66,7 +74,11 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Read only list box
 
@@ -83,6 +95,8 @@ export const ReadOnly: Story = {
   },
 };
 
+ReadOnly.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Disabled option list box
 
 export const DisabledOption: Story = {
@@ -98,6 +112,8 @@ export const DisabledOption: Story = {
   },
 };
 
+DisabledOption.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Default value list box
 
 export const DefaultValue: Story = {
@@ -112,6 +128,8 @@ export const DefaultValue: Story = {
     onChange: action('onChange'),
   },
 };
+
+DefaultValue.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Horizontal list box
 
@@ -129,6 +147,8 @@ export const Horizontal: Story = {
   },
 };
 
+Horizontal.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Bottom left direction list box
 
 export const BottomLeftDirection: Story = {
@@ -143,6 +163,11 @@ export const BottomLeftDirection: Story = {
     value: '123',
   },
 };
+
+BottomLeftDirection.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+];
 
 // Bottom right direction list box
 
@@ -163,6 +188,7 @@ export const BottomRightDirection: Story = {
         <Story />
       </div>
     ),
+    FeatureFlagsDecorator({ isAppRedesigned: true }),
   ],
 };
 
@@ -185,6 +211,7 @@ export const TopLeftDirection: Story = {
         <Story />
       </div>
     ),
+    FeatureFlagsDecorator({ isAppRedesigned: true }),
   ],
 };
 
@@ -207,6 +234,7 @@ export const TopRightDirection: Story = {
         <Story />
       </div>
     ),
+    FeatureFlagsDecorator({ isAppRedesigned: true }),
   ],
 };
 

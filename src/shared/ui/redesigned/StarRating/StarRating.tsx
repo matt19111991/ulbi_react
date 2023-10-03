@@ -13,9 +13,24 @@ import { Icon as IconRedesigned } from '../Icon';
 import classes from './StarRating.module.scss';
 
 interface StarRatingProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Обработчик нажатия на звезду
+   */
   onSelect?: (starsCount: number) => void;
+
+  /**
+   * Количество выбранных звезд
+   */
   selectedStars?: number;
+
+  /**
+   * Размер звезд
+   */
   size?: number;
 }
 
@@ -23,7 +38,7 @@ const stars = [1, 2, 3, 4, 5];
 
 export const StarRating = memo(
   ({ className, onSelect, selectedStars = 0, size = 30 }: StarRatingProps) => {
-    // подсвечиваем текущую и все предыдующие звезды
+    // подсвечиваем текущую и все предыдущие звезды
     const [currentStarsCount, setCurrentStarsCount] = useState(selectedStars);
 
     const [isSelected, setIsSelected] = useState(Boolean(selectedStars));
@@ -32,18 +47,27 @@ export const StarRating = memo(
       setCurrentStarsCount(selectedStars);
     }, [selectedStars]);
 
+    /**
+     * Обработчик наведения на звезду
+     */
     const onHover = (starsCount: number) => () => {
       if (!isSelected) {
         setCurrentStarsCount(starsCount);
       }
     };
 
+    /**
+     * Обработчик ухода с компонента звезды
+     */
     const onLeave = () => {
       if (!isSelected) {
         setCurrentStarsCount(0);
       }
     };
 
+    /**
+     * Обработчик клика по звезде
+     */
     const onClick = (starsCount: number) => () => {
       if (!isSelected) {
         onSelect?.(starsCount);

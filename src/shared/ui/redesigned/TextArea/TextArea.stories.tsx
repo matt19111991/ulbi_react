@@ -1,19 +1,14 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
 
 import { TextArea } from './TextArea';
 
-const TableCellDecorator = (Story: StoryFn) => (
-  <div style={{ display: 'table-cell' }}>
-    <Story />
-  </div>
-);
-
 const meta = {
-  title: 'shared/new/TextArea',
+  title: 'shared/components/new/TextArea',
   component: TextArea,
   argTypes: {
     backgroundColor: {
@@ -33,7 +28,7 @@ export const Primary: Story = {
   },
 };
 
-Primary.decorators = [TableCellDecorator];
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 // Dark textarea
 
@@ -44,7 +39,7 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [TableCellDecorator, ThemeDecorator(Theme.DARK)];
+Dark.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
 
 // Orange textarea
 
@@ -55,7 +50,10 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [TableCellDecorator, ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Textarea with auto focus
 
@@ -66,7 +64,7 @@ export const AutoFocus: Story = {
   },
 };
 
-AutoFocus.decorators = [TableCellDecorator];
+AutoFocus.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 // Full width textarea
 
@@ -77,6 +75,8 @@ export const FullWidth: Story = {
   },
 };
 
+FullWidth.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Read only textarea
 
 export const ReadOnly: Story = {
@@ -86,7 +86,7 @@ export const ReadOnly: Story = {
   },
 };
 
-ReadOnly.decorators = [TableCellDecorator];
+ReadOnly.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 // Textarea with horizontal label
 
@@ -97,7 +97,7 @@ export const HorizontalLabel: Story = {
   },
 };
 
-HorizontalLabel.decorators = [TableCellDecorator];
+HorizontalLabel.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 // Textarea with vertical label
 
@@ -109,6 +109,6 @@ export const VerticalLabel: Story = {
   },
 };
 
-VerticalLabel.decorators = [TableCellDecorator];
+VerticalLabel.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 export default meta;

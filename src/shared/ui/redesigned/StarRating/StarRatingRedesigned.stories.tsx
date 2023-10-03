@@ -9,14 +9,13 @@ import { Theme } from '@/shared/const/theme';
 import { StarRating } from './StarRating';
 
 const meta = {
-  title: 'shared/new/StarRating',
+  title: 'shared/components/new/StarRating',
   component: StarRating,
   argTypes: {
     backgroundColor: {
       control: 'color',
     },
   },
-  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true })],
 } as Meta<typeof StarRating>;
 
 type Story = StoryObj<typeof meta>;
@@ -29,6 +28,8 @@ export const Primary: Story = {
   },
 };
 
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Dark star rating
 
 export const Dark: Story = {
@@ -37,7 +38,7 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
 
 // Orange star rating
 
@@ -47,7 +48,10 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Selected star rating
 
@@ -58,6 +62,8 @@ export const Selected: Story = {
   },
 };
 
+Selected.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Small star rating
 
 export const Small: Story = {
@@ -67,6 +73,8 @@ export const Small: Story = {
   },
 };
 
+Small.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Large star rating
 
 export const Large: Story = {
@@ -75,5 +83,7 @@ export const Large: Story = {
     size: 50,
   },
 };
+
+Large.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 export default meta;

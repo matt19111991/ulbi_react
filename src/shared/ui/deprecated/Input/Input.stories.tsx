@@ -7,7 +7,7 @@ import { Theme } from '@/shared/const/theme';
 import { Input } from './Input';
 
 const meta = {
-  title: 'shared/old/Input',
+  title: 'shared/components/old/Input',
   component: Input,
   argTypes: {
     backgroundColor: {

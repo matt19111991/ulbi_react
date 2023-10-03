@@ -2,8 +2,15 @@ import { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
 interface PortalProps {
-  children: ReactNode; // что?
-  element?: HTMLElement; // куда?
+  /**
+   * Что рендерим?
+   */
+  children: ReactNode;
+
+  /**
+   * Куда рендерим?
+   */
+  element?: HTMLElement;
 }
 
 export const Portal = ({ children, element = document.body }: PortalProps) =>

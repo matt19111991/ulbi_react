@@ -9,7 +9,7 @@ import { Theme } from '@/shared/const/theme';
 import { Icon } from './Icon';
 
 const meta = {
-  title: 'shared/old/Icon',
+  title: 'shared/components/old/Icon',
   component: Icon,
   argTypes: {
     backgroundColor: {

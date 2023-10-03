@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -9,7 +10,7 @@ import { Button } from '../../../Button/Button';
 import { Popover } from './Popover';
 
 const meta = {
-  title: 'shared/old/Popover',
+  title: 'shared/components/old/Popover',
   component: Popover,
   argTypes: {
     backgroundColor: {
@@ -29,6 +30,8 @@ export const Primary: Story = {
   },
 };
 
+Primary.decorators = [IndentsDecorator];
+
 // Dark popover
 
 export const Dark: Story = {
@@ -38,7 +41,7 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange popover
 
@@ -49,7 +52,7 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Bottom left direction popover
 
@@ -60,6 +63,8 @@ export const BottomLeftDirection: Story = {
     trigger: <Button>Open</Button>,
   },
 };
+
+BottomLeftDirection.decorators = [IndentsDecorator];
 
 // Bottom right direction popover
 

@@ -13,7 +13,14 @@ import { Icon as IconRedesigned } from '../Icon';
 import classes from './Code.module.scss';
 
 interface CodeProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Содержимое
+   */
   text: string;
 }
 

@@ -1,6 +1,8 @@
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -14,7 +16,7 @@ const tabs = [
 ];
 
 const meta = {
-  title: 'shared/new/Tabs',
+  title: 'shared/components/new/Tabs',
   component: Tabs,
   argTypes: {
     backgroundColor: {
@@ -35,6 +37,8 @@ export const Primary: Story = {
   },
 };
 
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Dark tabs
 
 export const Dark: Story = {
@@ -45,7 +49,11 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange tabs
 
@@ -57,7 +65,11 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Tabs in column
 
@@ -69,5 +81,7 @@ export const Column: Story = {
     value: 'tab 2',
   },
 };
+
+Column.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 export default meta;

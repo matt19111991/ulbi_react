@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -7,7 +8,7 @@ import { Theme } from '@/shared/const/theme';
 import { Select } from './Select';
 
 const meta = {
-  title: 'shared/Select',
+  title: 'shared/components/old/Select',
   component: Select,
   argTypes: {
     backgroundColor: {
@@ -31,6 +32,8 @@ export const Primary: Story = {
   },
 };
 
+Primary.decorators = [IndentsDecorator];
+
 // Dark select
 
 export const Dark: Story = {
@@ -44,7 +47,7 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange select
 
@@ -59,6 +62,6 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 export default meta;

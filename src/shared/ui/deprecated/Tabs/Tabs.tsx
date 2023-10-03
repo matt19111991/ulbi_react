@@ -9,9 +9,24 @@ import { Card, CardTheme } from '../Card/Card';
 import classes from './Tabs.module.scss';
 
 interface TabsProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Обработчик клика по вкладке
+   */
   onTabClick: (tab: TabItem) => void;
+
+  /**
+   * Вкладки
+   */
   tabs: TabItem[];
+
+  /**
+   * Выбранная вкладка
+   */
   value: string;
 }
 

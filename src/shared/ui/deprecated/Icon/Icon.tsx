@@ -5,8 +5,19 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './Icon.module.scss';
 
 interface IconProps extends SVGProps<SVGSVGElement> {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Инвертировать тему для иконки?
+   */
   inverted?: boolean;
+
+  /**
+   * SVG изображение
+   */
   Svg: VFC<SVGProps<SVGSVGElement>>;
 }
 

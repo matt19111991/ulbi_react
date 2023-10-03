@@ -8,6 +8,7 @@
 }
 
 .item {
+  cursor: pointer;
   padding: 10px 20px;
 }
 
@@ -17,6 +18,16 @@
   box-shadow: 4px 4px 8px var(--listbox-bg);
   position: absolute;
   z-index: var(--menu-z-index);
+
+  & > :first-child {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+
+  & > :last-child {
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
 }
 
 .trigger {

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -9,7 +10,7 @@ import { Button } from '../../../Button/Button';
 import { DropDown } from './DropDown';
 
 const meta = {
-  title: 'shared/old/DropDown',
+  title: 'shared/components/old/DropDown',
   component: DropDown,
   argTypes: {
     backgroundColor: {
@@ -29,6 +30,8 @@ export const Primary: Story = {
   },
 };
 
+Primary.decorators = [IndentsDecorator];
+
 // Dark dropdown
 
 export const Dark: Story = {
@@ -38,7 +41,7 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange dropdown
 
@@ -49,7 +52,7 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Top-left dropdown
 
@@ -97,6 +100,8 @@ export const BottomLeft: Story = {
   },
 };
 
+BottomLeft.decorators = [IndentsDecorator];
+
 // Bottom-right dropdown
 
 export const BottomRight: Story = {
@@ -113,6 +118,7 @@ BottomRight.decorators = [
       <Story />
     </div>
   ),
+  IndentsDecorator,
 ];
 
 // Justify left dropdown
@@ -125,6 +131,8 @@ export const JustifyLeft: Story = {
   },
 };
 
+JustifyLeft.decorators = [IndentsDecorator];
+
 // Justify center dropdown
 
 export const JustifyCenter: Story = {
@@ -134,6 +142,8 @@ export const JustifyCenter: Story = {
     trigger: <Button>Open</Button>,
   },
 };
+
+JustifyCenter.decorators = [IndentsDecorator];
 
 // Justify right dropdown
 
@@ -145,7 +155,7 @@ export const JustifyRight: Story = {
   },
 };
 
-// Small dropdown
+JustifyRight.decorators = [IndentsDecorator];
 
 export const Small: Story = {
   args: {
@@ -154,6 +164,8 @@ export const Small: Story = {
     trigger: <Button>Open</Button>,
   },
 };
+
+Small.decorators = [IndentsDecorator];
 
 // Medium dropdown
 
@@ -164,5 +176,7 @@ export const Medium: Story = {
     trigger: <Button>Open</Button>,
   },
 };
+
+Medium.decorators = [IndentsDecorator];
 
 export default meta;

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -7,7 +8,7 @@ import { Theme } from '@/shared/const/theme';
 import { Text, TextSize, TextTheme } from './Text';
 
 const meta = {
-  title: 'shared/old/Text',
+  title: 'shared/components/old/Text',
   component: Text,
   argTypes: {
     background: {
@@ -27,6 +28,8 @@ export const PrimaryTitleAndText: Story = {
   },
 };
 
+PrimaryTitleAndText.decorators = [IndentsDecorator];
+
 // Primary only title
 
 export const PrimaryOnlyTitle: Story = {
@@ -35,6 +38,8 @@ export const PrimaryOnlyTitle: Story = {
   },
 };
 
+PrimaryOnlyTitle.decorators = [IndentsDecorator];
+
 // Primary only text
 
 export const PrimaryOnlyText: Story = {
@@ -42,6 +47,8 @@ export const PrimaryOnlyText: Story = {
     text: 'Description Description Description Description',
   },
 };
+
+PrimaryOnlyText.decorators = [IndentsDecorator];
 
 // Dark title & text
 
@@ -52,7 +59,7 @@ export const DarkTitleAndText: Story = {
   },
 };
 
-DarkTitleAndText.decorators = [ThemeDecorator(Theme.DARK)];
+DarkTitleAndText.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Dark only title
 
@@ -62,7 +69,7 @@ export const DarkOnlyTitle: Story = {
   },
 };
 
-DarkOnlyTitle.decorators = [ThemeDecorator(Theme.DARK)];
+DarkOnlyTitle.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Dark only text
 
@@ -72,7 +79,7 @@ export const DarkOnlyText: Story = {
   },
 };
 
-DarkOnlyText.decorators = [ThemeDecorator(Theme.DARK)];
+DarkOnlyText.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange title & text
 
@@ -83,7 +90,7 @@ export const OrangeTitleAndText: Story = {
   },
 };
 
-OrangeTitleAndText.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeTitleAndText.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Orange only title
 
@@ -93,7 +100,7 @@ export const OrangeOnlyTitle: Story = {
   },
 };
 
-OrangeOnlyTitle.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeOnlyTitle.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Orange only text
 
@@ -103,7 +110,7 @@ export const OrangeOnlyText: Story = {
   },
 };
 
-OrangeOnlyText.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeOnlyText.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Error
 
@@ -115,6 +122,8 @@ export const Error: Story = {
   },
 };
 
+Error.decorators = [IndentsDecorator];
+
 // Inverted primary
 
 export const InvertedPrimary: Story = {
@@ -124,6 +133,8 @@ export const InvertedPrimary: Story = {
     theme: TextTheme.INVERTED,
   },
 };
+
+InvertedPrimary.decorators = [IndentsDecorator];
 
 // Inverted dark
 
@@ -135,7 +146,7 @@ export const InvertedDark: Story = {
   },
 };
 
-InvertedDark.decorators = [ThemeDecorator(Theme.DARK)];
+InvertedDark.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Inverted orange
 
@@ -147,7 +158,7 @@ export const InvertedOrange: Story = {
   },
 };
 
-InvertedOrange.decorators = [ThemeDecorator(Theme.ORANGE)];
+InvertedOrange.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Large size
 
@@ -159,6 +170,8 @@ export const SizeLarge: Story = {
   },
 };
 
+SizeLarge.decorators = [IndentsDecorator];
+
 // Medium size
 
 export const SizeMedium: Story = {
@@ -169,6 +182,8 @@ export const SizeMedium: Story = {
   },
 };
 
+SizeMedium.decorators = [IndentsDecorator];
+
 // Small size
 
 export const SizeSmall: Story = {
@@ -178,5 +193,7 @@ export const SizeSmall: Story = {
     text: 'Description Description Description Description',
   },
 };
+
+SizeSmall.decorators = [IndentsDecorator];
 
 export default meta;

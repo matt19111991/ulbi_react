@@ -24,12 +24,14 @@
 .modalNew {
   .content {
     background-color: var(--light-bg-redesigned);
+    color: var(--text-redesigned);
   }
 }
 
 .modalOld {
   .content {
     background-color: var(--bg-color);
+    color: var(--primary-color);
   }
 }
 

@@ -2,20 +2,22 @@ import type { Meta, StoryFn, StoryObj } from '@storybook/react';
 
 import IconSvg from '@/shared/assets/tests/storybook3.svg';
 
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
 
 import { Input } from './Input';
 
-const InlineBlockDecorator = (Story: StoryFn) => (
-  <div style={{ color: 'var(--icon-redesigned)', display: 'inline-block' }}>
+const ColoredDecorator = (Story: StoryFn) => (
+  <div style={{ color: 'var(--icon-redesigned)' }}>
     <Story />
   </div>
 );
 
 const meta = {
-  title: 'shared/new/Input',
+  title: 'shared/components/new/Input',
   component: Input,
   argTypes: {
     backgroundColor: {
@@ -35,7 +37,11 @@ export const Primary: Story = {
   },
 };
 
-Primary.decorators = [InlineBlockDecorator];
+Primary.decorators = [
+  ColoredDecorator,
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+];
 
 // Dark input
 
@@ -46,7 +52,12 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [InlineBlockDecorator, ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+  ColoredDecorator,
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange input
 
@@ -57,7 +68,12 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [InlineBlockDecorator, ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  ColoredDecorator,
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Input with auto focus
 
@@ -68,7 +84,11 @@ export const AutoFocus: Story = {
   },
 };
 
-AutoFocus.decorators = [InlineBlockDecorator];
+AutoFocus.decorators = [
+  ColoredDecorator,
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+];
 
 // Full width input
 
@@ -79,6 +99,8 @@ export const FullWidth: Story = {
   },
 };
 
+FullWidth.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Read only input
 
 export const ReadOnly: Story = {
@@ -88,7 +110,11 @@ export const ReadOnly: Story = {
   },
 };
 
-ReadOnly.decorators = [InlineBlockDecorator];
+ReadOnly.decorators = [
+  ColoredDecorator,
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+];
 
 // Input with addon left
 
@@ -103,7 +129,11 @@ export const AddonLeft: Story = {
   },
 };
 
-AddonLeft.decorators = [InlineBlockDecorator];
+AddonLeft.decorators = [
+  ColoredDecorator,
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+];
 
 // Input with addon right
 
@@ -118,7 +148,11 @@ export const AddonRight: Story = {
   },
 };
 
-AddonRight.decorators = [InlineBlockDecorator];
+AddonRight.decorators = [
+  ColoredDecorator,
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+];
 
 // Input with horizontal label
 
@@ -129,7 +163,11 @@ export const HorizontalLabel: Story = {
   },
 };
 
-HorizontalLabel.decorators = [InlineBlockDecorator];
+HorizontalLabel.decorators = [
+  ColoredDecorator,
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+];
 
 // Input with vertical label
 
@@ -141,7 +179,11 @@ export const VerticalLabel: Story = {
   },
 };
 
-VerticalLabel.decorators = [InlineBlockDecorator];
+VerticalLabel.decorators = [
+  ColoredDecorator,
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+];
 
 // Small input
 
@@ -152,7 +194,11 @@ export const Small: Story = {
   },
 };
 
-Small.decorators = [InlineBlockDecorator];
+Small.decorators = [
+  ColoredDecorator,
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+];
 
 // Large input
 
@@ -163,6 +209,10 @@ export const Large: Story = {
   },
 };
 
-Large.decorators = [InlineBlockDecorator];
+Large.decorators = [
+  ColoredDecorator,
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+];
 
 export default meta;

@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -9,7 +11,7 @@ import { Button } from '../../../Button/Button';
 import { Popover } from './Popover';
 
 const meta = {
-  title: 'shared/new/Popover',
+  title: 'shared/components/new/Popover',
   component: Popover,
   argTypes: {
     backgroundColor: {
@@ -29,6 +31,8 @@ export const Primary: Story = {
   },
 };
 
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Dark popover
 
 export const Dark: Story = {
@@ -38,7 +42,11 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange popover
 
@@ -49,7 +57,11 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Bottom left direction popover
 
@@ -60,6 +72,11 @@ export const BottomLeftDirection: Story = {
     trigger: <Button>Open</Button>,
   },
 };
+
+BottomLeftDirection.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+];
 
 // Bottom right direction popover
 
@@ -75,6 +92,7 @@ export const BottomRightDirection: Story = {
         <Story />
       </div>
     ),
+    FeatureFlagsDecorator({ isAppRedesigned: true }),
   ],
 };
 
@@ -92,6 +110,7 @@ export const TopLeftDirection: Story = {
         <Story />
       </div>
     ),
+    FeatureFlagsDecorator({ isAppRedesigned: true }),
   ],
 };
 
@@ -109,6 +128,7 @@ export const TopRightDirection: Story = {
         <Story />
       </div>
     ),
+    FeatureFlagsDecorator({ isAppRedesigned: true }),
   ],
 };
 

@@ -5,7 +5,14 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './Overlay.module.scss';
 
 interface OverlayProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Обработчик клика по наложению
+   */
   onClick?: () => void;
 }
 

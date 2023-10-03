@@ -12,34 +12,84 @@ import { mapDirectionClass } from '../../styles/consts';
 import popupClasses from '../../styles/popup.module.scss';
 import classes from './DropDown.module.scss';
 
+/**
+ * Выравнивание пунктов меню
+ */
 type DropdownJustify = 'left' | 'center' | 'right';
 
+/**
+ * Классы для выравнивания пунктов меню
+ */
 const mapJustifyClass: Record<DropdownJustify, string> = {
   left: classes.justifyLeft,
   center: classes.justifyCenter,
   right: classes.justifyRight,
 };
 
+/**
+ * Размер пунктов меню
+ */
 type DropdownOptionSize = 'S' | 'M';
 
+/**
+ * Классы для размеров пунктов меню
+ */
 const mapOptionSizeClass: Record<DropdownOptionSize, string> = {
   S: classes.size_s,
   M: classes.size_m,
 };
 
 export interface DropDownItem {
+  /**
+   * Содержимое
+   */
   content?: ReactNode;
+
+  /**
+   * Элемент меню активен или нет?
+   */
   disabled?: boolean;
+
+  /**
+   * Ссылка
+   */
   href?: string;
+
+  /**
+   * Обработчик для клика
+   */
   onClick?: () => void;
 }
 
 interface DropDownProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Направление для выпадения пунктов меню
+   */
   direction?: DropdownDirection;
+
+  /**
+   * Элементы меню
+   */
   items: DropDownItem[];
+
+  /**
+   * Выравнивание пунктов меню
+   */
   justify?: DropdownJustify;
+
+  /**
+   * Размеры пунктов меню
+   */
   optionSize?: DropdownOptionSize;
+
+  /**
+   * Компонент-триггер открытия меню
+   */
   trigger: ReactNode;
 }
 

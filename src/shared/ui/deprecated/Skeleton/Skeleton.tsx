@@ -5,9 +5,24 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import classes from './Skeleton.module.scss';
 
 interface SkeletonProps {
+  /**
+   * Закругление границ
+   */
   border?: string;
+
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Высота
+   */
   height?: string | number;
+
+  /**
+   * Ширина
+   */
   width?: string | number;
 }
 

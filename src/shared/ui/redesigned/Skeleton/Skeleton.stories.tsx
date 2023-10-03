@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -7,7 +9,7 @@ import { Theme } from '@/shared/const/theme';
 import { Skeleton } from './Skeleton';
 
 const meta = {
-  title: 'shared/new/Skeleton',
+  title: 'shared/components/new/Skeleton',
   component: Skeleton,
   argTypes: {
     backgroundColor: {
@@ -27,6 +29,8 @@ export const NormalPrimary: Story = {
   },
 };
 
+NormalPrimary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Circle primary skeleton
 
 export const CirclePrimary: Story = {
@@ -37,6 +41,8 @@ export const CirclePrimary: Story = {
   },
 };
 
+CirclePrimary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Normal dark skeleton
 
 export const NormalDark: Story = {
@@ -46,7 +52,11 @@ export const NormalDark: Story = {
   },
 };
 
-NormalDark.decorators = [ThemeDecorator(Theme.DARK)];
+NormalDark.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Circle dark skeleton
 
@@ -58,7 +68,11 @@ export const CircleDark: Story = {
   },
 };
 
-CircleDark.decorators = [ThemeDecorator(Theme.DARK)];
+CircleDark.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Normal orange skeleton
 
@@ -69,7 +83,11 @@ export const NormalOrange: Story = {
   },
 };
 
-NormalOrange.decorators = [ThemeDecorator(Theme.ORANGE)];
+NormalOrange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Circle orange skeleton
 
@@ -81,6 +99,10 @@ export const CircleOrange: Story = {
   },
 };
 
-CircleOrange.decorators = [ThemeDecorator(Theme.ORANGE)];
+CircleOrange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 export default meta;

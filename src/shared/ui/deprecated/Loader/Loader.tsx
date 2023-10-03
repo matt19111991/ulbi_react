@@ -5,6 +5,9 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import './Loader.scss'; // для упрощения используемых классов
 
 interface LoaderProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
 }
 
