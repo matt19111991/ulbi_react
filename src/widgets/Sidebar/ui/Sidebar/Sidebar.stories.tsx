@@ -10,14 +10,14 @@ import { Theme } from '@/shared/const/theme';
 
 import { Sidebar } from './Sidebar';
 
-const stateAuthorizedOld: DeepPartial<StateSchema> = {
+const stateAuthorized: DeepPartial<StateSchema> = {
   user: {
     authData: {},
   },
 };
 
 const meta = {
-  title: 'widgets/Sidebar',
+  title: 'widgets/Sidebar/Sidebar',
   component: Sidebar,
   argTypes: {
     backgroundColor: {
@@ -29,7 +29,7 @@ const meta = {
 type Story = StoryObj<typeof meta>;
 
 const FullHeightDecorator = (Story: StoryFn) => (
-  <div style={{ height: '100vh' }}>
+  <div style={{ display: 'grid' }}>
     <Story />
   </div>
 );
@@ -40,7 +40,7 @@ export const PrimaryOld: Story = {
   args: {},
 };
 
-PrimaryOld.decorators = [StoreDecorator(stateAuthorizedOld)];
+PrimaryOld.decorators = [StoreDecorator(stateAuthorized)];
 
 // Dark sidebar old
 
@@ -48,7 +48,7 @@ export const DarkOld: Story = {
   args: {},
 };
 
-DarkOld.decorators = [StoreDecorator(stateAuthorizedOld), ThemeDecorator(Theme.DARK)];
+DarkOld.decorators = [StoreDecorator(stateAuthorized), ThemeDecorator(Theme.DARK)];
 
 // Orange sidebar old
 
@@ -56,7 +56,7 @@ export const OrangeOld: Story = {
   args: {},
 };
 
-OrangeOld.decorators = [StoreDecorator(stateAuthorizedOld), ThemeDecorator(Theme.ORANGE)];
+OrangeOld.decorators = [StoreDecorator(stateAuthorized), ThemeDecorator(Theme.ORANGE)];
 
 // Unauthorized sidebar old
 
@@ -70,7 +70,11 @@ export const PrimaryNew: Story = {
   args: {},
 };
 
-PrimaryNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), FullHeightDecorator];
+PrimaryNew.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  FullHeightDecorator,
+  StoreDecorator(stateAuthorized),
+];
 
 // Dark sidebar new
 
@@ -81,6 +85,7 @@ export const DarkNew: Story = {
 DarkNew.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   FullHeightDecorator,
+  StoreDecorator(stateAuthorized),
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -93,6 +98,7 @@ export const OrangeNew: Story = {
 OrangeNew.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   FullHeightDecorator,
+  StoreDecorator(stateAuthorized),
   ThemeDecorator(Theme.ORANGE),
 ];
 
@@ -102,6 +108,9 @@ export const UnauthorizedNew: Story = {
   args: {},
 };
 
-UnauthorizedNew.decorators = [FullHeightDecorator];
+UnauthorizedNew.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  FullHeightDecorator,
+];
 
 export default meta;

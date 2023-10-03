@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -21,7 +22,7 @@ const content = new Array(100)
   .map((_, idx) => <div key={idx}>Test block {idx}</div>);
 
 const meta = {
-  title: 'widgets/Page',
+  title: 'widgets/Page/Page',
   component: Page,
   argTypes: {
     backgroundColor: {
@@ -40,7 +41,7 @@ export const Primary: Story = {
   },
 };
 
-Primary.decorators = [StoreDecorator(statePage)];
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), StoreDecorator(statePage)];
 
 // Dark page
 
@@ -50,7 +51,11 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [StoreDecorator(statePage), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(statePage),
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange page
 
@@ -60,6 +65,10 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [StoreDecorator(statePage), ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  StoreDecorator(statePage),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 export default meta;

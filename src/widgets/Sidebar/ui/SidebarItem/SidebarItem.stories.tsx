@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Icon from '@/shared/assets/tests/storybook3.svg';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { getRouteMain } from '@/shared/const/router';
@@ -18,7 +19,7 @@ const sidebarItem = {
 };
 
 const meta = {
-  title: 'widgets/SidebarItem',
+  title: 'widgets/Sidebar/SidebarItem',
   component: SidebarItem,
   argTypes: {
     backgroundColor: {
@@ -37,6 +38,8 @@ export const PrimaryOld: Story = {
   },
 };
 
+PrimaryOld.decorators = [IndentsDecorator];
+
 // Dark sidebar item old
 
 export const DarkOld: Story = {
@@ -45,7 +48,7 @@ export const DarkOld: Story = {
   },
 };
 
-DarkOld.decorators = [ThemeDecorator(Theme.DARK)];
+DarkOld.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange sidebar item old
 
@@ -55,7 +58,7 @@ export const OrangeOld: Story = {
   },
 };
 
-OrangeOld.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeOld.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Primary sidebar item new
 
@@ -65,7 +68,7 @@ export const PrimaryNew: Story = {
   },
 };
 
-PrimaryNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+PrimaryNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Dark sidebar item new
 
@@ -75,7 +78,11 @@ export const DarkNew: Story = {
   },
 };
 
-DarkNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
+DarkNew.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange sidebar item new
 
@@ -87,6 +94,7 @@ export const OrangeNew: Story = {
 
 OrangeNew.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
   ThemeDecorator(Theme.ORANGE),
 ];
 

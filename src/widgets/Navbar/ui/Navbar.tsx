@@ -28,7 +28,14 @@ import { HStack } from '@/shared/ui/redesigned/Stack';
 import classes from './Navbar.module.scss';
 
 interface NavbarProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Аватар, пробрасываемый из storybook
+   */
   storybookAvatar?: string;
 }
 

@@ -1,3 +1,1 @@
-import { ArticlesFilters } from './ui/ArticlesFilters/ArticlesFilters';
-
-export { ArticlesFilters };
+export { ArticlesFilters } from './ui/ArticlesFilters/ArticlesFilters';

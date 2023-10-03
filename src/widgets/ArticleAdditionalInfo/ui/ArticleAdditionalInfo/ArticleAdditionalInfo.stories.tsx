@@ -5,6 +5,8 @@ import { User } from '@/entities/User';
 
 import Avatar from '@/shared/assets/tests/storybook.jpg';
 
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -20,7 +22,7 @@ const user: User = {
 };
 
 const meta = {
-  title: 'widgets/ArticleAdditionalInfo',
+  title: 'widgets/Article/ArticleAdditionalInfo',
   component: ArticleAdditionalInfo,
   argTypes: {
     backgroundColor: {
@@ -44,13 +46,19 @@ export const Primary: Story = {
   args: {},
 };
 
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Dark article additional info
 
 export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange article additional info
 
@@ -58,6 +66,10 @@ export const Orange: Story = {
   args: {},
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 export default meta;

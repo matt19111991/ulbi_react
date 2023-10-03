@@ -21,8 +21,19 @@ import { pageScrollActions } from '../model/slice/pageScrollSlice';
 import classes from './Page.module.scss';
 
 interface PageProps extends TestProps {
+  /**
+   * Содержимое
+   */
   children: ReactNode;
+
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Коллбэк, который будет запускаться при достижении самого низа страницы
+   */
   onScrollEnd?: () => void;
 }
 

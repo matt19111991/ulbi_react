@@ -21,6 +21,9 @@ import { SidebarItem } from '../SidebarItem/SidebarItem';
 import classes from './Sidebar.module.scss';
 
 interface SidebarProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
 }
 

@@ -17,7 +17,14 @@ import { SidebarItemType } from '../../model/types/sidebar';
 import classes from './SidebarItem.module.scss';
 
 interface SidebarItemProps {
+  /**
+   * Свернутое / развернутое состояние
+   */
   collapsed: boolean;
+
+  /**
+   * Элемент бокового меню
+   */
   item: SidebarItemType;
 }
 

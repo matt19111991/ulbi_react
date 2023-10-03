@@ -7,7 +7,7 @@ import { Theme } from '@/shared/const/theme';
 import { PageLoader } from './PageLoader';
 
 const meta = {
-  title: 'widgets/PageLoader',
+  title: 'widgets/Page/PageLoader',
   component: PageLoader,
   argTypes: {
     backgroundColor: {

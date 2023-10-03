@@ -4,6 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ArticleSortField, ArticleType } from '@/entities/Article';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -11,14 +12,13 @@ import { Theme } from '@/shared/const/theme';
 import { ArticlesFilters } from './ArticlesFilters';
 
 const meta = {
-  title: 'widgets/ArticlesFilters',
+  title: 'widgets/Article/ArticlesFilters',
   component: ArticlesFilters,
   argTypes: {
     backgroundColor: {
       control: 'color',
     },
   },
-  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true })],
 } as Meta<typeof ArticlesFilters>;
 
 type Story = StoryObj<typeof meta>;
@@ -38,6 +38,8 @@ export const Primary: Story = {
   },
 };
 
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Dark article filters
 
 export const Dark: Story = {
@@ -53,7 +55,11 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange article filters
 
@@ -70,7 +76,11 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Loading article filters
 
@@ -82,5 +92,7 @@ export const Loading: Story = {
     type: ArticleType.ECONOMICS,
   },
 };
+
+Loading.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 export default meta;

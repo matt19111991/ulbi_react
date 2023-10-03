@@ -47,7 +47,8 @@
 
 .SidebarRedesigned {
   background-color: var(--light-bg-redesigned);
-  border-radius: 32px;
+  border-bottom-right-radius: 32px;
+  border-top-right-radius: 32px;
   height: 100%;
   position: relative;
   transition: width .1s ease-in;

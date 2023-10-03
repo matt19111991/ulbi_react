@@ -11,11 +11,34 @@ import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 
 interface ArticleAdditionalInfoProps {
+  /**
+   * Автор статьи
+   */
   author: User;
+
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Дата создания
+   */
   createdAt: string;
+
+  /**
+   * Компонент запущен из storybook
+   */
   isStorybook?: boolean;
+
+  /**
+   * Обработчик редактирования статьи
+   */
   onEdit: () => void;
+
+  /**
+   * Количество просмотров статьи
+   */
   views: number;
 }
 

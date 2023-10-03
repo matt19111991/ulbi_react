@@ -20,15 +20,54 @@ import { SortOrder } from '@/shared/types/sort';
 import classes from './ArticlesFilters.module.scss';
 
 interface ArticlesFiltersProps {
+  /**
+   * Статьи загружаются
+   */
   areLoading: boolean;
+
+  /**
+   * Внешний класс
+   */
   className?: string;
+
+  /**
+   * Обработчик для изменения направления сортировки
+   */
   onChangeOrder: (newOrder: SortOrder) => void;
+
+  /**
+   * Обработчик изменения поля поиска
+   */
   onChangeSearch: (value: string) => void;
+
+  /**
+   * Обработчик для изменения поля сортировки
+   */
   onChangeSort: (newSort: ArticleSortField) => void;
+
+  /**
+   * Обработчик изменения типа статьи для фильтрации
+   */
   onChangeType: (type: ArticleType) => void;
+
+  /**
+   * Направление сортировки
+   */
   order: SortOrder;
+
+  /**
+   * Поле поиска
+   */
   search: string;
+
+  /**
+   * Поле сортировки
+   */
   sort: ArticleSortField;
+
+  /**
+   * Тип статей
+   */
   type: ArticleType;
 }
 

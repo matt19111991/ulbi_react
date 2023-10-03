@@ -9,20 +9,21 @@ import { VStack } from '@/shared/ui/redesigned/Stack';
 import classes from './ScrollToolbar.module.scss';
 
 interface ScrollToolbarProps {
+  /**
+   * Внешний класс
+   */
   className?: string;
 }
 
-export const ScrollToolbar = memo(({ className }: ScrollToolbarProps) => {
-  return (
-    <VStack
-      align='center'
-      className={classNames(classes.ScrollToolbar, {}, [className])}
-      justify='end'
-      max
-    >
-      <ScrollToTopButton className={classes.icon} />
-    </VStack>
-  );
-});
+export const ScrollToolbar = memo(({ className }: ScrollToolbarProps) => (
+  <VStack
+    align='center'
+    className={classNames(classes.ScrollToolbar, {}, [className])}
+    justify='end'
+    max
+  >
+    <ScrollToTopButton className={classes.icon} />
+  </VStack>
+));
 
 ScrollToolbar.displayName = 'ScrollToolbar';

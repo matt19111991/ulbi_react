@@ -1,5 +1,4 @@
 ## TODO
-- Добавить документацию и README.md для всех файлов
 - Добавить E2E тесты на поиск и сортировку статей
 - Проверить очистку всех созданных сущностей в БД после прогона E2E тестов
 - Проверить возврат к проскролленному месту (старый и новый дизайн)
@@ -267,11 +266,42 @@ storybook и линтинг и деплой на сервер.
 
 ----
 
+## Генераторы (generators)
+
+- [Generators](/src/shared/lib/generators/README.md)
+
+----
+
+## Хуки (hooks)
+
+- [useAppDispatch](/src/shared/lib/hooks/useAppDispatch/README.md)
+- [useDebounce](/src/shared/lib/hooks/useDebounce/README.md)
+- [useForceUpdate](/src/shared/lib/render/README.md)
+- [useHover](/src/shared/lib/hooks/useHover/README.md)
+- [useInfiniteScroll](/src/shared/lib/hooks/useInfiniteScroll/README.md)
+- [useInitialEffect](/src/shared/lib/hooks/useInitialEffect/README.md)
+- [useModal](/src/shared/lib/hooks/useModal/README.md)
+- [useRouteChange](/src/shared/lib/router/useRouteChange/README.md)
+- [useTheme](/src/shared/lib/hooks/useTheme/README.md)
+- [useThrottle](/src/shared/lib/hooks/useThrottle/README.md)
+- [useWindowWidth](/src/shared/lib/hooks/useWindowWidth/README.md)
+
+----
+
 ## Слои (layers)
 
 - [AppLoaderLayout](/src/shared/layouts/AppLoaderLayout/README.md)
 - [MainLayout](/src/shared/layouts/MainLayout/README.md)
 - [StickyContentLayout](/src/shared/layouts/StickyContentLayout/README.md)
+
+----
+
+## Компоненты (components)
+
+- [deprecated](/src/shared/ui/deprecated/README.md)
+- [redesigned](/src/shared/ui/redesigned/README.md)
+
+----
 
 ## Сущности (entities)
 
@@ -284,6 +314,8 @@ storybook и линтинг и деплой на сервер.
 - [Profile](/src/entities/Profile/README.md)
 - [Rating](/src/entities/Rating/README.md)
 - [User](/src/entities/User/README.md)
+
+----
 
 ## Фичи (features)
 
@@ -306,13 +338,18 @@ storybook и линтинг и деплой на сервер.
 - [ThemeSwitcher](/src/features/ThemeSwitcher/README.md)
 - [UIDesignSwitcher](/src/features/UIDesignSwitcher/README.md)
 
-## Провайдеры (providers)
-- [AnimationProvider](/src/shared/lib/components/AnimationProvider/README.md)
-- [ErrorBoundary](/src/app/providers/ErrorBoundary/README.md)
-- [ForceUpdateProvider](/src/shared/lib/render/README.md)
-- [Router](/src/app/providers/Router/README.md)
-- [StoreProvider](/src/app/providers/StoreProvider/README.md)
-- [ThemeProvider](/src/app/providers/ThemeProvider/README.md)
+----
+
+## Виджеты (widgets)
+- [ArticleAdditionalInfo](/src/widgets/ArticleAdditionalInfo/README.md)
+- [ArticlesFilters](/src/widgets/ArticlesFilters/README.md)
+- [Navbar](/src/widgets/Navbar/README.md)
+- [Page](/src/widgets/Page/README.md)
+- [PageError](/src/widgets/PageError/README.md)
+- [PageLoader](/src/widgets/PageLoader/README.md)
+- [ScrollToolbar](/src/widgets/ScrollToolbar/README.md)
+- [Sidebar](/src/widgets/Sidebar/README.md)
+----
 
 ## Страницы (pages)
 - [AboutPage](/src/pages/AboutPage/README.md)
@@ -327,25 +364,13 @@ storybook и линтинг и деплой на сервер.
 - [ProfilePage](/src/pages/ProfilePage/README.md)
 - [SettingsPage](/src/pages/SettingsPage/README.md)
 
-## Хуки (hooks)
+----
 
-- [useAppDispatch](/src/shared/lib/hooks/useAppDispatch/README.md)
-- [useDebounce](/src/shared/lib/hooks/useDebounce/README.md)
-- [useForceUpdate](/src/shared/lib/render/README.md)
-- [useHover](/src/shared/lib/hooks/useHover/README.md)
-- [useInfiniteScroll](/src/shared/lib/hooks/useInfiniteScroll/README.md)
-- [useInitialEffect](/src/shared/lib/hooks/useInitialEffect/README.md)
-- [useModal](/src/shared/lib/hooks/useModal/README.md)
-- [useRouteChange](/src/shared/lib/router/useRouteChange/README.md)
-- [useTheme](/src/shared/lib/hooks/useTheme/README.md)
-- [useThrottle](/src/shared/lib/hooks/useThrottle/README.md)
-- [useWindowWidth](/src/shared/lib/hooks/useWindowWidth/README.md)
+## Провайдеры (providers)
+- [AnimationProvider](/src/shared/lib/components/AnimationProvider/README.md)
+- [ErrorBoundary](/src/app/providers/ErrorBoundary/README.md)
+- [ForceUpdateProvider](/src/shared/lib/render/README.md)
+- [Router](/src/app/providers/Router/README.md)
+- [StoreProvider](/src/app/providers/StoreProvider/README.md)
+- [ThemeProvider](/src/app/providers/ThemeProvider/README.md)
 
-## Генераторы (generators)
-
-- [Generators](/src/shared/lib/generators/README.md)
-
-## Компоненты (components)
-
-- [deprecated](/src/shared/ui/deprecated/README.md)
-- [redesigned](/src/shared/ui/redesigned/README.md)
