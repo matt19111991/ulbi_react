@@ -15,6 +15,11 @@ interface TabsProps {
   className?: string;
 
   /**
+   * ID для тестов
+   */
+  'data-testid'?: string;
+
+  /**
    * Обработчик клика по вкладке
    */
   onTabClick: (tab: TabItem) => void;
@@ -34,28 +39,31 @@ interface TabsProps {
  * Устарел, используем новые компоненты из папки 'redesigned'
  * @deprecated
  */
-export const Tabs = memo(({ className, onTabClick, tabs, value }: TabsProps) => {
-  const onClickHandler = useCallback(
-    (tab: TabItem) => () => {
-      onTabClick(tab);
-    },
-    [onTabClick],
-  );
+export const Tabs = memo(
+  ({ className, 'data-testid': dataTestId = 'Tab', onTabClick, tabs, value }: TabsProps) => {
+    const onClickHandler = useCallback(
+      (tab: TabItem) => () => {
+        onTabClick(tab);
+      },
+      [onTabClick],
+    );
 
-  return (
-    <div className={classNames(classes.Tabs, {}, [className])}>
-      {tabs.map((tab) => (
-        <Card
-          className={classes.tab}
-          key={tab.value}
-          onClick={onClickHandler(tab)}
-          theme={tab.value === value ? CardTheme.NORMAL : CardTheme.OUTLINED}
-        >
-          {tab.content}
-        </Card>
-      ))}
-    </div>
-  );
-});
+    return (
+      <div className={classNames(classes.Tabs, {}, [className])}>
+        {tabs.map((tab) => (
+          <Card
+            className={classes.tab}
+            data-testid={`${dataTestId}.${tab.value}`}
+            key={tab.value}
+            onClick={onClickHandler(tab)}
+            theme={tab.value === value ? CardTheme.NORMAL : CardTheme.OUTLINED}
+          >
+            {tab.content}
+          </Card>
+        ))}
+      </div>
+    );
+  },
+);
 
 Tabs.displayName = 'Tabs';

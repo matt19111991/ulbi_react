@@ -87,15 +87,26 @@ export const ArticleSortSelector = memo(
             <VStack align='start' gap='8'>
               <Text text={`${t('Сортировать по')}:`} />
 
-              <ListBox items={sortFieldOptions} onChange={onChangeSort} value={sort} />
+              <ListBox
+                data-testid='Articles.SortField'
+                items={sortFieldOptions}
+                onChange={onChangeSort}
+                value={sort}
+              />
 
-              <ListBox items={orderOptions} onChange={onChangeOrder} value={order} />
+              <ListBox
+                data-testid='Articles.Order'
+                items={orderOptions}
+                onChange={onChangeOrder}
+                value={order}
+              />
             </VStack>
           </div>
         }
         off={
           <div className={classNames(classes.ArticleSortSelector, {}, [className])}>
             <Select<ArticleSortField>
+              data-testid='Articles.SortField'
               label={t('Сортировать по')}
               onChange={onChangeSort}
               options={sortFieldOptions}
@@ -103,6 +114,7 @@ export const ArticleSortSelector = memo(
             />
 
             <Select<SortOrder>
+              data-testid='Articles.Order'
               label={t('по').toLowerCase()}
               onChange={onChangeOrder}
               options={orderOptions}

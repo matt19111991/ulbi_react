@@ -68,7 +68,7 @@ export const ArticleListItemRedesigned = memo(
               <Text text={article.createdAt} />
             </HStack>
 
-            <Text bold title={article.title} />
+            <Text bold data-testid='Article' title={article.title} />
 
             <Text className={classes.subtitle} size='s' title={article.subtitle} />
 
@@ -114,7 +114,7 @@ export const ArticleListItemRedesigned = memo(
           />
 
           <VStack align='start' className={classes.info} gap='4' max>
-            <Text className={classes.title} text={article.title} />
+            <Text className={classes.title} data-testid='Article' text={article.title} />
 
             <VStack className={classes.footer} gap='4' max>
               <HStack justify='between' max>

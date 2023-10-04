@@ -37,6 +37,11 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
 
   /**
+   * ID для тестов
+   */
+  'data-testid'?: string;
+
+  /**
    * Растягивать на всю доступную ширину?
    */
   max?: boolean;
@@ -64,6 +69,7 @@ export const Card = memo(
     border = 'keen',
     className,
     children,
+    'data-testid': dataTestId = 'Card',
     max,
     padding = '8',
     variant = 'normal',
@@ -79,6 +85,7 @@ export const Card = memo(
           classes[paddingClass],
           classes[variant],
         ])}
+        data-testid={dataTestId}
         {...rest}
       >
         {children}

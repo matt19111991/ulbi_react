@@ -40,7 +40,7 @@ describe('Роутинг', () => {
     it('Переход на страницу со списком статей', () => {
       cy.visit('/articles');
 
-      cy.getByTestId('ArticlesPage').should('exist');
+      cy.articlesAreReady();
     });
   });
 });

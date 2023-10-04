@@ -14,7 +14,9 @@ describe('Пользователь заходит на страницу стат
   });
 
   afterEach(() => {
-    cy.removeArticle(currentArticleId);
+    if (currentArticleId) {
+      cy.removeArticle(currentArticleId);
+    }
   });
 
   it('Статья успешно загружена с сервера и отображается', () => {
@@ -45,6 +47,16 @@ describe('Пользователь заходит на страницу стат
 
     cy.setRate(4, 'feedback');
 
+    cy.intercept('POST', '**/article-ratings', (req) => {
+      req.continue((res) => {
+        res.send(res.body.id);
+      });
+    }).as('setRating');
+
     cy.get('[data-selected=true]').should('have.length', 4);
+
+    cy.wait('@setRating').then(({ response }) => {
+      cy.removeRate(response?.body);
+    });
   });
 });

@@ -55,6 +55,7 @@ export const ArticleTypeTabs = memo(({ className, onChangeType, value }: Article
       on={
         <Tabs
           className={classNames('', {}, [className])}
+          data-testid='Articles.Type'
           direction='column'
           onTabClick={onTabClick}
           tabs={tabs}
@@ -64,6 +65,7 @@ export const ArticleTypeTabs = memo(({ className, onChangeType, value }: Article
       off={
         <TabsDeprecated
           className={classNames('', {}, [className])}
+          data-testid='Articles.Type'
           onTabClick={onTabClick}
           tabs={tabs}
           value={value}

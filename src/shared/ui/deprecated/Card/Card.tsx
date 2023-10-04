@@ -25,6 +25,11 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
 
   /**
+   * ID для тестов
+   */
+  'data-testid'?: string;
+
+  /**
    * Растягивать на всю доступную ширину?
    */
   max?: boolean;
@@ -40,9 +45,17 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
  * @deprecated
  */
 export const Card = memo(
-  ({ className, children, max, theme = CardTheme.NORMAL, ...rest }: CardProps) => (
+  ({
+    className,
+    children,
+    'data-testid': dataTestId = 'Card',
+    max,
+    theme = CardTheme.NORMAL,
+    ...rest
+  }: CardProps) => (
     <div
       className={classNames(classes.Card, { [classes.max]: max }, [className, classes[theme]])}
+      data-testid={dataTestId}
       {...rest}
     >
       {children}

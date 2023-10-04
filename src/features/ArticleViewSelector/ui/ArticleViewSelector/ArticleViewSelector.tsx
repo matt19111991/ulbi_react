@@ -102,6 +102,7 @@ export const ArticleViewSelector = memo(
                     [classes.selected]: viewType.view === selectedView,
                   })}
                   clickable
+                  data-testid={`ArticleView.${viewType.view}`}
                   key={viewType.view}
                   onClick={onClick(viewType.view)} // эквивалент onClick={(e) => onClick(viewType.view)}
                   Svg={viewType.icon}
@@ -122,6 +123,7 @@ export const ArticleViewSelector = memo(
                   className={classNames(classes.icon, {
                     [classes.selected]: viewType.view === selectedView,
                   })}
+                  data-testid={`ArticleView.${viewType.view}`}
                   height={24}
                   Svg={viewType.icon}
                   width={24}

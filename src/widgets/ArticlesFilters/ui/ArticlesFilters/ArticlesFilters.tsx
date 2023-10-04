@@ -92,6 +92,7 @@ export const ArticlesFilters = memo(
           <Input
             addonLeft={<Icon Svg={SearchIcon} />}
             className={classNames('', { [classes.loading]: areLoading })}
+            data-testid='Articles.Search'
             fullWidth
             onChange={onChangeSearch}
             placeholder={t('Поиск')}

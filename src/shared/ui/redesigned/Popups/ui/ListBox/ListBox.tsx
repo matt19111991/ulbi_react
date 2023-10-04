@@ -42,6 +42,11 @@ interface ListBoxProps<T> {
   className?: string;
 
   /**
+   * ID для тестов
+   */
+  'data-testid'?: string;
+
+  /**
    * Значение по умолчанию
    */
   defaultValue?: string;
@@ -85,6 +90,7 @@ interface ListBoxProps<T> {
 const ListBox = <T extends string>({
   className,
   defaultValue,
+  'data-testid': dataTestId = 'ListBox',
   direction = 'bottom-left',
   items,
   label,
@@ -117,7 +123,12 @@ const ListBox = <T extends string>({
         value={value}
       >
         <HeadlessListBox.Button as='div' className={classes.trigger}>
-          <Button addonRight={<Icon Svg={ArrowIcon} />} disabled={readonly} variant='filled'>
+          <Button
+            addonRight={<Icon Svg={ArrowIcon} />}
+            data-testid={`${dataTestId}.Button`}
+            disabled={readonly}
+            variant='filled'
+          >
             {selectedItem?.content ?? defaultValue}
           </Button>
         </HeadlessListBox.Button>
@@ -141,6 +152,7 @@ const ListBox = <T extends string>({
                     },
                     [],
                   )}
+                  data-testid={`${dataTestId}.Option.${item.value}`}
                 >
                   <HStack gap='4'>
                     {item.content}

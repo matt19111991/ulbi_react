@@ -25,6 +25,11 @@ interface SelectProps<T extends string> {
   className?: string;
 
   /**
+   * ID для тестов
+   */
+  'data-testid'?: string;
+
+  /**
    * Label
    */
   label?: string;
@@ -56,6 +61,7 @@ interface SelectProps<T extends string> {
  */
 const Select = <T extends string>({
   className,
+  'data-testid': dataTestId = 'Select',
   label,
   onChange,
   options,
@@ -84,6 +90,7 @@ const Select = <T extends string>({
 
       <select
         className={classes.select}
+        data-testid={dataTestId}
         disabled={readOnly}
         onChange={onChangeHandler}
         value={value}

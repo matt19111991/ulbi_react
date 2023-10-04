@@ -46,6 +46,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: ButtonColor;
 
   /**
+   * ID для тестов
+   */
+  'data-testid'?: string;
+
+  /**
    * Флаг, отвечающий за работу кнопки
    */
   disabled?: boolean;
@@ -78,6 +83,7 @@ export const Button = memo(
     className,
     children,
     color = 'normal',
+    'data-testid': dataTestId = 'Button',
     disabled,
     fullWidth,
     size = 'm',
@@ -97,6 +103,7 @@ export const Button = memo(
     return (
       <button
         className={classNames(classes.Button, mods, additionalClasses)}
+        data-testid={dataTestId}
         disabled={disabled}
         {...rest}
       >

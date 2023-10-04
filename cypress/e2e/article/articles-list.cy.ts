@@ -5,8 +5,9 @@ describe('Пользователь заходит на страницу со с�
     });
   });
 
-  it.skip('Статьи успешно загружаются с сервера', () => {
-    cy.getByTestId('ArticleList').should('exist');
+  it('Статьи успешно загружаются с сервера', () => {
+    cy.articlesAreReady();
+
     cy.getByTestId('ArticleListItem').should('have.length.greaterThan', 3);
   });
 
@@ -16,7 +17,8 @@ describe('Пользователь заходит на страницу со с�
 
     // при запуске dev сборки через 'vite' будет ошибка, т.к. 'vite' не работает корректно с 'react-virtualized'
 
-    cy.getByTestId('ArticleList').should('exist');
+    cy.articlesAreReady();
+
     cy.getByTestId('ArticleListItem').should('have.length.greaterThan', 3);
   });
 });
