@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
+import { Page } from '@/entities/Page';
+
 import { ArticlePageGreeting } from '@/features/ArticlePageGreeting';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -19,8 +21,6 @@ import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitial
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 
 import { Text, TextAlign, TextTheme } from '@/shared/ui/deprecated/Text';
-
-import { Page } from '@/widgets/Page';
 
 import { getArticlesPageError } from '../../model/selectors/articlesPageSelectors';
 
@@ -87,6 +87,7 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
               className={classNames(classes.ArticlesPage, {}, [className])}
               data-testid='ArticlesPage'
               onScrollEnd={onLoadNextPart}
+              storableScroll
             >
               <ArticleInfiniteList />
 
@@ -102,6 +103,7 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
           className={classNames(classes.ArticlesPage, {}, [className])}
           data-testid='ArticlesPage'
           onScrollEnd={onLoadNextPart}
+          storableScroll
         >
           <ArticlesPageFilters />
 

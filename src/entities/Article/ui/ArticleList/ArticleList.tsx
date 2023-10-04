@@ -1,11 +1,15 @@
 import { HTMLAttributeAnchorTarget, memo, ReactNode, useEffect, useMemo, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { AutoSizer, List, ListRowProps, WindowScroller } from 'react-virtualized';
+
+import { pageScrollActions } from '@/entities/Page';
 
 import { PAGE_ID } from '@/shared/const/page';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { toggleFeatures, ToggleFeatures } from '@/shared/lib/features';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useWindowWidth } from '@/shared/lib/hooks/useWindowWidth/useWindowWidth';
 
 import { Text as TextDeprecated, TextTheme } from '@/shared/ui/deprecated/Text';
@@ -48,6 +52,11 @@ interface ArticleListProps {
   isLoading?: boolean;
 
   /**
+   * Положение прокрутки
+   */
+  scrollPosition?: number;
+
+  /**
    * При target === '_blank' отрисовываем список рекомендаций
    */
   target?: HTMLAttributeAnchorTarget;
@@ -68,14 +77,18 @@ export const ArticleList = memo(
     articles,
     className,
     isLoading,
+    scrollPosition = 0,
     target,
     view = ArticleView.PLATE,
     virtualized = true,
   }: ArticleListProps) => {
+    const dispatch = useAppDispatch();
+    const location = useLocation();
     const { t } = useTranslation();
     const windowWidth = useWindowWidth();
 
     const [articleItems, setArticleItems] = useState<ArticleBlock[]>(articles);
+    const [hasStoredScroll, setHasStoredScroll] = useState(false);
     const [skeletonsAmount, setSkeletonsAmount] = useState<number>(0);
 
     const pageNodeId = __PROJECT__ === 'storybook' ? 'storybook-root' : PAGE_ID;
@@ -191,6 +204,28 @@ export const ArticleList = memo(
         </div>
       );
     };
+
+    useEffect(() => {
+      if (!isLoading && pageNode && virtualized) {
+        pageNode.scrollTop = scrollPosition
+          ? scrollPosition + 30 // + gap между карточками
+          : scrollPosition;
+
+        setHasStoredScroll(true);
+      }
+      /* eslint-disable react-hooks/exhaustive-deps */
+    }, [isLoading, pageNode, virtualized]);
+
+    useEffect(() => {
+      if (hasStoredScroll && virtualized) {
+        dispatch(
+          pageScrollActions.setScrollPosition({
+            path: location.pathname,
+            position: 0,
+          }),
+        );
+      }
+    }, [dispatch, location.pathname, hasStoredScroll]);
 
     if (!isLoading && !articles.length) {
       return (

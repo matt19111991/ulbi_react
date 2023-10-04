@@ -12,6 +12,7 @@ import { rtkApi } from '@/shared/api/rtkApi';
 
 import { ArticleDetailsSchema } from '@/entities/Article';
 import { CounterSchema } from '@/entities/Counter';
+import { PageScrollSchema } from '@/entities/Page';
 import { UserSchema } from '@/entities/User';
 
 import { AddCommentFormSchema } from '@/features/AddCommentForm';
@@ -22,8 +23,6 @@ import { ProfileSchema } from '@/features/EditableProfileCard';
 
 import { ArticleDetailsPageSchema } from '@/pages/ArticleDetailsPage';
 import { ArticlesPageSchema } from '@/pages/ArticlesPage';
-
-import { PageScrollSchema } from '@/widgets/Page';
 
 export interface StateSchema {
   /**

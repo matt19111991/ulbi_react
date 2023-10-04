@@ -1,6 +1,5 @@
 ## TODO
 - Проверить возврат к проскролленному месту (старый и новый дизайн)
-- Ошибка при переходе между страницами
 - Добавить responsive верстку
 
 ---- 
@@ -310,6 +309,7 @@ storybook и линтинг и деплой на сервер.
 - [Country](/src/entities/Country/README.md)
 - [Currency](/src/entities/Currency/README.md)
 - [Notification](/src/entities/Notification/README.md)
+- [Page](/src/entities/Page/README.md)
 - [Profile](/src/entities/Profile/README.md)
 - [Rating](/src/entities/Rating/README.md)
 - [User](/src/entities/User/README.md)
@@ -343,7 +343,6 @@ storybook и линтинг и деплой на сервер.
 - [ArticleAdditionalInfo](/src/widgets/ArticleAdditionalInfo/README.md)
 - [ArticlesFilters](/src/widgets/ArticlesFilters/README.md)
 - [Navbar](/src/widgets/Navbar/README.md)
-- [Page](/src/widgets/Page/README.md)
 - [PageError](/src/widgets/PageError/README.md)
 - [PageLoader](/src/widgets/PageLoader/README.md)
 - [ScrollToolbar](/src/widgets/ScrollToolbar/README.md)

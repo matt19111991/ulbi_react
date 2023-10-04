@@ -1,4 +1,4 @@
-import { MutableRefObject, ReactNode, UIEvent, useRef } from 'react';
+import { MutableRefObject, ReactNode, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
@@ -7,10 +7,9 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 import { PAGE_ID } from '@/shared/const/page';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { toggleFeatures } from '@/shared/lib/features';
+import { getFeatureFlag, toggleFeatures } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfiniteScroll';
-import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
 
 import { TestProps } from '@/shared/types/tests';
@@ -35,9 +34,22 @@ interface PageProps extends TestProps {
    * Коллбэк, который будет запускаться при достижении самого низа страницы
    */
   onScrollEnd?: () => void;
+
+  /**
+   * Нужно ли сохранять позицию прокрутки?
+   */
+  storableScroll?: boolean;
 }
 
-export const Page = ({ children, className, onScrollEnd, ...rest }: PageProps) => {
+export const Page = ({
+  children,
+  className,
+  onScrollEnd,
+  storableScroll = false,
+  ...rest
+}: PageProps) => {
+  const isAppRedesigned = getFeatureFlag('isAppRedesigned');
+
   const dispatch = useAppDispatch();
   const location = useLocation();
 
@@ -59,28 +71,37 @@ export const Page = ({ children, className, onScrollEnd, ...rest }: PageProps) =
     }),
   });
 
-  useInitialEffect(() => {
-    wrapperRef.current.scrollTop = scrollPosition;
-
-    dispatch(
-      pageScrollActions.setScrollPosition({
-        path: location.pathname,
-        position: 0,
-      }),
-    );
-  });
-
-  const onScroll = useThrottle((e: UIEvent<HTMLDivElement>) => {
-    // избегаем очистки скролла при возврате на страницу, где скролл уже был выставлен
-    if (!scrollPosition || (e.currentTarget.scrollTop && scrollPosition)) {
-      dispatch(
-        pageScrollActions.setScrollPosition({
-          path: location.pathname,
-          position: e.currentTarget.scrollTop,
-        }),
-      );
+  const onScroll = useThrottle((scrollTop: number) => {
+    if (storableScroll) {
+      // избегаем очистки скролла при возврате на страницу, где скролл уже был выставлен
+      if (!scrollPosition || (scrollTop && scrollPosition)) {
+        dispatch(
+          pageScrollActions.setScrollPosition({
+            path: location.pathname,
+            position: scrollTop,
+          }),
+        );
+      }
     }
   }, 500);
+
+  useEffect(() => {
+    if (isAppRedesigned) {
+      window.document.addEventListener('scroll', () => {
+        onScroll(window.scrollY);
+      });
+
+      if (!storableScroll) {
+        window.scrollTo({ behavior: 'auto', top: 0 });
+      }
+    }
+
+    return () => {
+      if (isAppRedesigned) {
+        window.removeEventListener('scroll', onScroll);
+      }
+    };
+  }, [isAppRedesigned, onScroll, storableScroll]);
 
   const toggleFeaturePageClass = toggleFeatures({
     name: 'isAppRedesigned',
@@ -93,7 +114,7 @@ export const Page = ({ children, className, onScrollEnd, ...rest }: PageProps) =
       className={classNames(toggleFeaturePageClass, {}, [className])}
       data-testid={rest['data-testid'] ?? 'Page'}
       id={PAGE_ID}
-      onScroll={onScroll}
+      onScroll={(e) => onScroll(e.currentTarget.scrollTop)}
       ref={wrapperRef}
     >
       {children}

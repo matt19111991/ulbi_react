@@ -1,9 +1,12 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg';
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
+
+import { getRouteArticles } from '@/shared/const/router';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
@@ -23,6 +26,7 @@ import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton'
 import { Text as TextDeprecated, TextSize, TextTheme } from '@/shared/ui/deprecated/Text';
 
 import { AppImage } from '@/shared/ui/redesigned/AppImage';
+import { Button } from '@/shared/ui/redesigned/Button';
 import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
@@ -88,11 +92,24 @@ const Deprecated = () => {
 };
 
 const Redesigned = () => {
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+
   const article = useSelector(getArticleDetailsData);
+
+  const onBackToList = useCallback(() => {
+    navigate(getRouteArticles());
+  }, [navigate]);
 
   return (
     <>
-      <TextRedesigned bold data-testid='ArticleDetails.Info' size='l' title={article?.title} />
+      <HStack justify='between' max>
+        <TextRedesigned bold data-testid='ArticleDetails.Info' size='l' title={article?.title} />
+
+        <Button onClick={onBackToList} variant='outline'>
+          {t('Назад к списку')}
+        </Button>
+      </HStack>
 
       <TextRedesigned title={article?.subtitle} />
 

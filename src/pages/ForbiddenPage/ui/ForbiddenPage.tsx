@@ -1,9 +1,9 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { Page } from '@/entities/Page';
 
-import { Page } from '@/widgets/Page';
+import { classNames } from '@/shared/lib/classNames/classNames';
 
 import classes from './ForbiddenPage.module.scss';
 

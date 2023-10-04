@@ -4,6 +4,7 @@ import type { StoryFn } from '@storybook/react';
 import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider';
 
 import { articleDetailsReducer } from '@/entities/Article/testing';
+import { pageScrollReducer } from '@/entities/Page';
 
 import { addCommentFormReducer } from '@/features/AddCommentForm/testing';
 import { loginReducer } from '@/features/AuthByUsername/testing';
@@ -11,8 +12,6 @@ import { profileReducer } from '@/features/EditableProfileCard/testing';
 
 import { articleDetailsPageReducer } from '@/pages/ArticleDetailsPage/testing';
 import { articlesPageReducer } from '@/pages/ArticlesPage/testing';
-
-import { pageScrollReducer } from '@/widgets/Page';
 
 import { ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 

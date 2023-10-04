@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
+import { Page } from '@/entities/Page';
 import { getUserAuthData } from '@/entities/User';
 
 import { EditableProfileCard } from '@/features/EditableProfileCard';
@@ -13,8 +14,6 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { Text, TextAlign, TextTheme } from '@/shared/ui/deprecated/Text';
 
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
-
-import { Page } from '@/widgets/Page';
 
 interface ProfilePageProps {
   /**

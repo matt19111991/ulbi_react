@@ -22,7 +22,7 @@ const content = new Array(100)
   .map((_, idx) => <div key={idx}>Test block {idx}</div>);
 
 const meta = {
-  title: 'widgets/Page/Page',
+  title: 'entities/Page/Page',
   component: Page,
   argTypes: {
     backgroundColor: {
