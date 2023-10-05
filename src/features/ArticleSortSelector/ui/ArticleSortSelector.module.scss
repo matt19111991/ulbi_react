@@ -3,3 +3,17 @@
   display: flex;
   gap: 8px;
 }
+
+@media screen and (max-width: 1800px) {
+  .stack {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .stack {
+    display: flex;
+    flex-direction: column;
+  }
+}

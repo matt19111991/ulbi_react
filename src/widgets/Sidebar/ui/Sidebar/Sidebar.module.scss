@@ -71,6 +71,7 @@
 
   .items {
     margin-top: 40px;
+    z-index: 2;
   }
 
   .switchers {
@@ -80,6 +81,43 @@
     padding-left: 24px;
     position: absolute;
     width: 100%;
+    z-index: 1;
+  }
+
+  @media screen and (max-width: 1800px) {
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    height: 48px;
+    width: 100%;
+
+    .appLogo {
+      height: 60px;
+      width: 60px;
+    }
+
+    .collapseBtn {
+      display: none;
+    }
+
+    .items {
+      align-items: center;
+      flex-direction: row;
+      margin-top: 0;
+    }
+
+    .switchers {
+      bottom: 10px;
+      left: 100px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .switchers {
+      left: 52px;
+      overflow: hidden;
+      width: 79px;
+    }
   }
 }
 

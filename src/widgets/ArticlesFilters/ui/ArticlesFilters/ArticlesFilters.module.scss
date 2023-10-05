@@ -6,3 +6,41 @@
   opacity: .7;
   pointer-events: none;
 }
+
+@media screen and (max-width: 1800px) {
+  .ArticlesFilters {
+    border-radius: 8px;
+    padding: 12px;
+    width: 100%;
+  }
+
+  .search {
+    max-width: 300px;
+  }
+
+  .stack {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .tabs {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .stack {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .tabs {
+    display: flex;
+    flex-direction: column;
+  }
+}

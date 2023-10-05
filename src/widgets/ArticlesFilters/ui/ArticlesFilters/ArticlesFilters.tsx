@@ -88,10 +88,10 @@ export const ArticlesFilters = memo(
 
     return (
       <Card className={classNames(classes.ArticlesFilters, {}, [className])} padding='24'>
-        <VStack align='start' gap='32'>
+        <VStack align='start' className={classes.stack} gap='32'>
           <Input
             addonLeft={<Icon Svg={SearchIcon} />}
-            className={classNames('', { [classes.loading]: areLoading })}
+            className={classNames(classes.search, { [classes.loading]: areLoading })}
             data-testid='Articles.Search'
             fullWidth
             onChange={onChangeSearch}

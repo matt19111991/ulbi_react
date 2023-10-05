@@ -26,3 +26,24 @@
   position: sticky;
   top: 32px;
 }
+
+@media screen and (max-width: 1800px) {
+  .content {
+    position: sticky;
+    top: 200px;
+  }
+
+  .left {
+    left: 8px;
+    position: fixed;
+    top: 372px;
+  }
+
+  .right {
+    left: 8px;
+    position: fixed;
+    right: 8px;
+    top: 72px;
+    width: calc(100% - 16px);
+  }
+}

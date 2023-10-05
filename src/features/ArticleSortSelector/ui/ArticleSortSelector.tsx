@@ -84,7 +84,7 @@ export const ArticleSortSelector = memo(
         feature='isAppRedesigned'
         on={
           <div className={className}>
-            <VStack align='start' gap='8'>
+            <VStack align='start' className={classes.stack} gap='8'>
               <Text text={`${t('Сортировать по')}:`} />
 
               <ListBox
