@@ -29,21 +29,48 @@
 
 @media screen and (max-width: 1800px) {
   .content {
-    position: sticky;
-    top: 200px;
+    position: relative;
+    top: 170px;
   }
 
   .left {
     left: 8px;
     position: fixed;
-    top: 372px;
+    top: 256px;
+    z-index: 2;
   }
 
   .right {
     left: 8px;
     position: fixed;
     right: 8px;
-    top: 72px;
+    top: 124px;
     width: calc(100% - 16px);
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .left {
+    top: 304px;
+  }
+
+  .right {
+    min-height: 160px;
+  }
+}
+
+@media screen and (max-width: 510px) {
+  .left {
+    top: 320px;
+  }
+
+  .right {
+    min-height: 180px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .left {
+    top: 520px;
   }
 }

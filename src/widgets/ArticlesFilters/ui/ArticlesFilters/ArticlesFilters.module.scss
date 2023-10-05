@@ -31,6 +31,12 @@
   }
 }
 
+@media screen and (max-width: 840px) {
+  .ArticlesFilters {
+    min-height: inherit;
+  }
+}
+
 @media screen and (max-width: 480px) {
   .stack {
     display: flex;

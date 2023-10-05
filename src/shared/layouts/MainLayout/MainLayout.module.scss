@@ -47,18 +47,21 @@
 
   .content {
     max-width: none;
-    width: 100%;
     z-index: 1;
   }
 
   .rightBar {
     display: flex;
+    position: fixed;
     max-width: none;
-    width: 100%;
+    right: 8px;
+    top: 48px;
+    z-index: 2;
   }
 
   .sidebar {
     display: flex;
+    height: auto;
     max-width: none;
     padding: 8px;
     position: fixed;
