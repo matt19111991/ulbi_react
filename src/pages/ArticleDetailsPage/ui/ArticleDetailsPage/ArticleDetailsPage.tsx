@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { ArticleDetails } from '@/entities/Article';
-import { Page } from '@/entities/Page';
 
 import { ArticleRating } from '@/features/ArticleRating';
 import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
@@ -23,6 +22,8 @@ import { Card } from '@/shared/ui/deprecated/Card';
 import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
 
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
+
+import { Page } from '@/widgets/Page';
 
 import { articleDetailsPageReducer } from '../../model/slices';
 

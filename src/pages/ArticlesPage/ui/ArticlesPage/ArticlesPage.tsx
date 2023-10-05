@@ -3,8 +3,6 @@ import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { Page } from '@/entities/Page';
-
 import { ArticlePageGreeting } from '@/features/ArticlePageGreeting';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -22,7 +20,12 @@ import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 
 import { Text, TextAlign, TextTheme } from '@/shared/ui/deprecated/Text';
 
-import { getArticlesPageError } from '../../model/selectors/articlesPageSelectors';
+import { Page } from '@/widgets/Page';
+
+import {
+  getArticlesPageAreLoading,
+  getArticlesPageError,
+} from '../../model/selectors/articlesPageSelectors';
 
 import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
@@ -53,6 +56,7 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
   const { t } = useTranslation();
 
   const error = useSelector(getArticlesPageError);
+  const loading = useSelector(getArticlesPageAreLoading);
 
   const onLoadNextPart = useCallback(() => {
     // иначе в 'storybook' одновременно улетает множество запросов
@@ -86,6 +90,7 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
             <Page
               className={classNames(classes.ArticlesPage, {}, [className])}
               data-testid='ArticlesPage'
+              loading={loading}
               onScrollEnd={onLoadNextPart}
               storableScroll
             >
@@ -102,6 +107,7 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
         <Page
           className={classNames(classes.ArticlesPage, {}, [className])}
           data-testid='ArticlesPage'
+          loading={loading}
           onScrollEnd={onLoadNextPart}
           storableScroll
         >

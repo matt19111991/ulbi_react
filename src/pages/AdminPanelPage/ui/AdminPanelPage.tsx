@@ -1,10 +1,9 @@
 import { memo } from 'react';
-
-import { Page } from '@/entities/Page';
+import { useTranslation } from 'react-i18next';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
-import { useTranslation } from 'react-i18next';
+import { Page } from '@/widgets/Page';
 
 import classes from './AdminPanelPage.module.scss';
 

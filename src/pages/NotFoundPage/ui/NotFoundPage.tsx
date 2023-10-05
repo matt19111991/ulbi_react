@@ -1,9 +1,9 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Page } from '@/entities/Page';
-
 import { classNames } from '@/shared/lib/classNames/classNames';
+
+import { Page } from '@/widgets/Page';
 
 import classes from './NotFoundPage.module.scss';
 

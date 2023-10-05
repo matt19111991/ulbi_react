@@ -2,14 +2,14 @@ import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { Page } from '@/entities/Page';
-
 import { ArticleEditForm } from '@/features/ArticleEditForm';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { ToggleFeatures } from '@/shared/lib/features';
 
 import { Text } from '@/shared/ui/deprecated/Text';
+
+import { Page } from '@/widgets/Page';
 
 import classes from './ArticleEditPage.module.scss';
 

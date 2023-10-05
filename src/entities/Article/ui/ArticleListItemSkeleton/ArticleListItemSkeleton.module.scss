@@ -107,6 +107,8 @@
       display: flex;
       justify-content: space-between;
       margin-top: 12px;
+      position: relative;
+      top: 8px;
 
       & > div {
         height: 320px;
@@ -119,7 +121,7 @@
     }
 
     .image {
-      height: 320px !important;
+      min-height: 320px !important;
       margin: 16px 0;
       width: 100%;
     }
