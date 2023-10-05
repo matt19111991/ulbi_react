@@ -86,7 +86,7 @@ export const ArticleListItemRedesigned = memo(
               />
             )}
 
-            <HStack justify='between' max>
+            <HStack className={classes.floor} justify='between' max>
               <AppLink target={target} to={getRouteArticleDetails(article.id)}>
                 <Button variant='outline'>{t('Читать далее')}...</Button>
               </AppLink>

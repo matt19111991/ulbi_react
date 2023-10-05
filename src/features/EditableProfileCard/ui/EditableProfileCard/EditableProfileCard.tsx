@@ -32,6 +32,8 @@ import { fetchProfileData } from '../../model/services/fetchProfileData/fetchPro
 
 import { profileActions, profileReducer } from '../../model/slice/profileSlice';
 
+import classes from './EditableProfileCard.module.scss';
+
 interface EditableProfileCardProps {
   /**
    * Внешний класс
@@ -161,7 +163,7 @@ export const EditableProfileCard = memo(({ className, id }: EditableProfileCardP
 
   return (
     <DynamicModuleLoader reducers={reducers}>
-      <VStack className={classNames('', {}, [className])} gap='16' max>
+      <VStack className={classNames(classes.stack, {}, [className])} gap='16' max>
         <EditableProfilePageHeader />
 
         {validateErrors?.length &&

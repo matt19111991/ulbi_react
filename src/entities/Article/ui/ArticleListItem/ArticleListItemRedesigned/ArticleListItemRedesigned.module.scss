@@ -19,6 +19,23 @@
     min-height: 75px;
     overflow-y: hidden;
   }
+
+  @media screen and (max-width: 840px) {
+    .subtitle > * {
+      width: calc(100% - 260px);
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .floor {
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .subtitle > * {
+      width: 170px;
+    }
+  }
 }
 
 .plate {

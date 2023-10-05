@@ -15,6 +15,8 @@ import { Text } from '@/shared/ui/redesigned/Text';
 
 import { ProfileCardProps } from '../ProfileCard/ProfileCard';
 
+import classes from './ProfileCardRedesigned.module.scss';
+
 export const ProfileCardRedesignedError = () => {
   const { t } = useTranslation('profile');
 
@@ -91,7 +93,7 @@ export const ProfileCardRedesigned = memo(
             </HStack>
           )}
 
-          <HStack align='start' gap='24' max>
+          <HStack align='start' className={classes.inputs} gap='24' max>
             <VStack gap='16' max>
               <Input
                 data-testid='ProfileCard.firstName'
