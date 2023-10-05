@@ -33,7 +33,7 @@ export const ProfileCardRedesignedError = () => {
 };
 
 export const ProfileCardRedesignedSkeleton = () => (
-  <Card border='partial' max padding='16'>
+  <Card border='partial' className={classes.skeleton} max padding='16'>
     <VStack gap='32' max>
       <HStack justify='center' max>
         <Skeleton border='100%' height={128} width={128} />

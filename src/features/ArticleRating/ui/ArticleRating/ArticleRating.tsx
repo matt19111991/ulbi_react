@@ -9,6 +9,8 @@ import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
 
 import { useGetArticleRatingQuery, useRateArticleMutation } from '../../api/articleRatingApi';
 
+import classes from './ArticleRating.module.scss';
+
 export interface ArticleRatingProps {
   /**
    * ID статьи
@@ -82,7 +84,7 @@ const ArticleRating = ({
   );
 
   if (isLoading) {
-    return <Skeleton height={120} width='100%' />;
+    return <Skeleton className={classes.skeleton} height={120} width='100%' />;
   }
 
   const rating = storybookRatingEmpty ? { rate: 0 } : data?.at(0);

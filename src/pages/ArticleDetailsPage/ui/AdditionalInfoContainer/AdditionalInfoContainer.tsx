@@ -36,7 +36,7 @@ export const AdditionalInfoContainer = memo(
 
     if (loading) {
       return (
-        <Card border='partial' className={classes.card} padding='24'>
+        <Card border='partial' className={classes.skeletonCard} padding='24'>
           <VStack align='start' gap='16'>
             <Skeleton height={28} width={165} />
             <Skeleton height={28} width={137} />

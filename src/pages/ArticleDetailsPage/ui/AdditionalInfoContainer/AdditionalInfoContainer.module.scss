@@ -1,4 +1,5 @@
-.card {
+.card,
+.skeletonCard {
   width: 220px;
 }
 
@@ -6,5 +7,9 @@
   .card {
     position: relative;
     top: -48px;
+  }
+
+  .skeletonCard {
+    display: none;
   }
 }

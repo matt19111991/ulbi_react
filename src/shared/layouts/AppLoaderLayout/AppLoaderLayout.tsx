@@ -9,6 +9,7 @@ import classes from './AppLoaderLayout.module.scss';
 
 export const AppLoaderLayout = memo(() => (
   <MainLayout
+    className={classes.layout}
     content={
       <VStack align='start' className={classes.content} gap='16'>
         <Skeleton border='16px' height={32} width='70%' />
