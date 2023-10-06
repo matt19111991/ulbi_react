@@ -23,6 +23,8 @@ import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByAr
 
 import { getArticleComments } from '../../model/slices/articleDetailsCommentsSlice/articleDetailsCommentsSlice';
 
+import classes from './ArticleDetailsComments.module.scss';
+
 interface ArticleDetailsCommentsProps {
   /**
    * Внешний класс
@@ -60,7 +62,12 @@ export const ArticleDetailsComments = memo(({ className, id }: ArticleDetailsCom
   );
 
   return (
-    <VStack align='start' className={classNames('', {}, [className])} gap='16' max>
+    <VStack
+      align='start'
+      className={classNames('', { [classes.hidden]: commentsAreLoading }, [className])}
+      gap='16'
+      max
+    >
       <ToggleFeatures
         feature='isAppRedesigned'
         on={<TextRedesigned size='l' title={t('Комментарии')} />}

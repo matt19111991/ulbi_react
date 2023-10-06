@@ -13,6 +13,8 @@ import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 
 import { useGetArticleRecommendationsListQuery } from '../../api/articleRecommendationsApi';
 
+import classes from './ArticleRecommendationsList.module.scss';
+
 interface ArticleRecommendationsListProps {
   /**
    * Внешний класс
@@ -54,7 +56,7 @@ export const ArticleRecommendationsList = memo(
     return (
       <VStack
         align='start'
-        className={classNames('', {}, [className])}
+        className={classNames('', { [classes.hidden]: isLoading }, [className])}
         data-testid='ArticleRecommendationsList'
         gap='8'
         max
