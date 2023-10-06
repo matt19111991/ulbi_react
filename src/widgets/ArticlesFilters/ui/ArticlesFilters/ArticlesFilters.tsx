@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ArticleSortField, ArticleType } from '@/entities/Article';
@@ -6,6 +6,7 @@ import { ArticleSortField, ArticleType } from '@/entities/Article';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 import { ArticleTypeTabs } from '@/features/ArticleTypeTabs';
 
+import SidebarArrowIcon from '@/shared/assets/icons/sidebar-arrow-redesigned.svg';
 import SearchIcon from '@/shared/assets/icons/search-redesigned.svg';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -13,7 +14,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import { Input } from '@/shared/ui/redesigned/Input';
-import { VStack } from '@/shared/ui/redesigned/Stack';
+import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 
 import { SortOrder } from '@/shared/types/sort';
 
@@ -86,8 +87,19 @@ export const ArticlesFilters = memo(
   }: ArticlesFiltersProps) => {
     const { t } = useTranslation();
 
+    const [collapsedFilters, setCollapsedFilters] = useState(false);
+
+    const onCollapse = () => {
+      setCollapsedFilters((prev) => !prev);
+    };
+
     return (
-      <Card className={classNames(classes.ArticlesFilters, {}, [className])} padding='24'>
+      <Card
+        className={classNames(classes.ArticlesFilters, { [classes.collapsed]: collapsedFilters }, [
+          className,
+        ])}
+        padding='24'
+      >
         <VStack align='start' className={classes.stack} gap='32'>
           <Input
             addonLeft={<Icon Svg={SearchIcon} />}
@@ -101,7 +113,7 @@ export const ArticlesFilters = memo(
           />
 
           <ArticleSortSelector
-            className={classNames('', { [classes.loading]: areLoading })}
+            className={classNames(classes.sort, { [classes.loading]: areLoading })}
             onChangeOrder={onChangeOrder}
             onChangeSort={onChangeSort}
             order={order}
@@ -113,6 +125,12 @@ export const ArticlesFilters = memo(
             onChangeType={onChangeType}
             value={type}
           />
+
+          <HStack
+            className={classNames(classes.collapseBtn, { [classes.collapsed]: collapsedFilters })}
+          >
+            <Icon clickable onClick={onCollapse} Svg={SidebarArrowIcon} />
+          </HStack>
         </VStack>
       </Card>
     );

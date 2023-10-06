@@ -21,3 +21,10 @@
     fill: var(--text-redesigned);
   }
 }
+
+@media screen and (max-width: 1800px) {
+  .ArticleViewSelectorRedesigned {
+    position: absolute;
+    top: -190px;
+  }
+}

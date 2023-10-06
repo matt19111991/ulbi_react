@@ -13,3 +13,10 @@
     right: -48px;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .icon {
+    bottom: 64px;
+    right: -16px;
+  }
+}

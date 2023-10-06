@@ -50,27 +50,13 @@
 }
 
 @media screen and (max-width: 840px) {
-  .left {
-    top: 304px;
-  }
-
   .right {
     min-height: 160px;
   }
 }
 
 @media screen and (max-width: 510px) {
-  .left {
-    top: 320px;
-  }
-
   .right {
     min-height: 180px;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .left {
-    top: 520px;
   }
 }

@@ -2,6 +2,10 @@
   width: 264px;
 }
 
+.collapseBtn {
+  display: none;
+}
+
 .loading {
   opacity: .7;
   pointer-events: none;
@@ -38,15 +42,48 @@
 }
 
 @media screen and (max-width: 480px) {
+  .tabs {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ArticlesFilters {
+    height: 380px;
+    overflow: hidden;
+    position: relative;
+    transition: all .5s ease-in-out;
+
+    &.collapsed {
+      min-height: 60px;
+      height: 60px;
+      overflow: visible;
+
+      .sort,
+      .tabs {
+        display: none;
+      }
+    }
+  }
+
+  .collapseBtn {
+    bottom: -25px;
+    color: var(--hint-redesigned);
+    display: block;
+    left: 50%;
+    position: absolute;
+    transform: rotate(180deg);
+
+    &.collapsed {
+      bottom: -39px;
+      transform: rotate(0deg);
+    }
+  }
+
   .stack {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     gap: 16px;
-  }
-
-  .tabs {
-    display: flex;
-    flex-direction: column;
+    position: relative;
   }
 }
