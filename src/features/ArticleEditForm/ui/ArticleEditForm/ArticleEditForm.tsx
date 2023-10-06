@@ -272,7 +272,9 @@ const ArticleEditForm = ({ articleId, className }: ArticleEditFormProps) => {
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
       <Card
         border='partial'
-        className={classNames('', { [classes.loading]: isLoading }, [className])}
+        className={classNames(classes.ArticleEditForm, { [classes.loading]: isLoading }, [
+          className,
+        ])}
         data-testid='EditArticleForm'
         max
         padding='24'
@@ -330,7 +332,7 @@ const ArticleEditForm = ({ articleId, className }: ArticleEditFormProps) => {
           <Text text={t('Тип статьи')} />
 
           <Tabs
-            className={classes.types}
+            className={classes.articleTypes}
             direction='row'
             onTabClick={onArticleTypeChange}
             tabs={types}
@@ -342,6 +344,7 @@ const ArticleEditForm = ({ articleId, className }: ArticleEditFormProps) => {
           <Text text={t('Добавить блок')} />
 
           <Tabs
+            className={classes.addBlockTypes}
             direction='row'
             onTabClick={onArticleBlockClick}
             tabs={blockButtons}

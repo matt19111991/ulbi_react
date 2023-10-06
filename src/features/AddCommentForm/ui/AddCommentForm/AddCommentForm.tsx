@@ -76,7 +76,7 @@ const AddCommentForm = ({ className, isLoading, onSendComment }: AddCommentFormP
         on={
           <Card border='partial' max padding='24'>
             <HStack
-              className={classNames('', { [classes.loading]: isLoading }, [className])}
+              className={classNames(classes.stack, { [classes.loading]: isLoading }, [className])}
               data-testid='AddCommentForm'
               gap='16'
               justify='between'

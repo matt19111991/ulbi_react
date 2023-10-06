@@ -59,7 +59,7 @@ export const UIDesignSwitcher = memo(({ className }: UIDesignSwitcherProps) => {
   };
 
   return (
-    <HStack gap='16' max>
+    <HStack className={classes.stack} gap='16' max>
       <Text className={classes.text} text={t('Вариант интерфейса')} />
 
       {isLoading ? (

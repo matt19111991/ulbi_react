@@ -1,3 +1,13 @@
+.ArticleCreateForm {
+  flex-direction: column;
+}
+
+.articleTypes {
+  border-bottom: 1px solid var(--light-bg-redesigned);
+  padding-bottom: 16px;
+  width: 100%;
+}
+
 .blockContainer {
   position: relative;
 }
@@ -42,8 +52,23 @@
   width: 500px;
 }
 
-.types {
-  border-bottom: 1px solid var(--light-bg-redesigned);
-  padding-bottom: 16px;
-  width: 100%;
+@media screen and (max-width: 840px) {
+  .formContainer,
+  .sendContainer {
+    width: 100%;
+  }
+
+  .addBlockTypes,
+  .articleTypes {
+    flex-direction: column;
+
+    & > div {
+      width: 100%;
+    }
+  }
+
+  .sendContainer {
+    justify-content: flex-start;
+    padding: 0 16px;
+  }
 }

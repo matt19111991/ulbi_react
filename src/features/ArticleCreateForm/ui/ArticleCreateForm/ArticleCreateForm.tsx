@@ -203,7 +203,9 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
       <Card
         border='partial'
-        className={classNames('', { [classes.loading]: isLoading }, [className])}
+        className={classNames(classes.ArticleCreateForm, { [classes.loading]: isLoading }, [
+          className,
+        ])}
         data-testid='CreateArticleForm'
         max
         padding='24'
@@ -261,7 +263,7 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
           <Text text={t('Тип статьи')} />
 
           <Tabs
-            className={classes.types}
+            className={classes.articleTypes}
             direction='row'
             onTabClick={onArticleTypeChange}
             tabs={types}
@@ -273,6 +275,7 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
           <Text text={t('Добавить блок')} />
 
           <Tabs
+            className={classes.addBlockTypes}
             direction='row'
             onTabClick={onArticleBlockClick}
             tabs={blockButtons}

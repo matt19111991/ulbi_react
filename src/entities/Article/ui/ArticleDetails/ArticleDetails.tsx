@@ -103,15 +103,21 @@ const Redesigned = () => {
 
   return (
     <>
-      <HStack justify='between' max>
-        <TextRedesigned bold data-testid='ArticleDetails.Info' size='l' title={article?.title} />
+      <HStack className={classes.stack} justify='between' max>
+        <TextRedesigned
+          className={classes.title}
+          bold
+          data-testid='ArticleDetails.Info'
+          size='l'
+          title={article?.title}
+        />
 
         <Button onClick={onBackToList} variant='outline'>
           {t('Назад к списку')}
         </Button>
       </HStack>
 
-      <TextRedesigned title={article?.subtitle} />
+      <TextRedesigned className={classes.subtitle} title={article?.subtitle} />
 
       <AppImage
         className={classes.img}

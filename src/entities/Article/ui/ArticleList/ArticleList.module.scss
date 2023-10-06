@@ -55,3 +55,21 @@
   display: flex;
   gap: 16px;
 }
+
+@media screen and (max-width: 1200px) {
+  .inlineRedesigned {
+    width: 730px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .inlineRedesigned {
+    width: 483px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .inlineRedesigned {
+    width: 233px;
+  }
+}

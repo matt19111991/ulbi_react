@@ -8,8 +8,8 @@
 
 .copyBtn {
   position: absolute;
-  right: 20px;
-  top: 20px;
+  right: 0;
+  top: 0;
 }
 
 .copyIcon {
@@ -28,4 +28,10 @@
   position: relative;
   overflow: auto;
   white-space: inherit;
+}
+
+@media screen and (max-width: 640px) {
+  .CodeRedesigned {
+    width: 50vw;
+  }
 }

@@ -16,3 +16,26 @@
     display: none;
   }
 }
+
+@media screen and (max-width: 840px) {
+  .stack {
+    align-items: flex-start;
+    flex-direction: column-reverse;
+    gap: 16px;
+  }
+
+  .subtitle h2 {
+    font: var(--font-m-redesigned) !important;
+  }
+
+  .title h1 {
+    font: var(--font-l-redesigned) !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .img {
+    height: 100px;
+    width: 100px;
+  }
+}

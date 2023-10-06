@@ -69,9 +69,10 @@
     bottom: -25px;
     color: var(--hint-redesigned);
     display: block;
-    left: 50%;
     position: absolute;
+    text-align: center;
     transform: rotate(180deg);
+    width: 90vw;
 
     &.collapsed {
       bottom: -39px;

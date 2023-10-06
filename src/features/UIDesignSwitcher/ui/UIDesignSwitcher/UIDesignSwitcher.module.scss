@@ -8,3 +8,10 @@
   display: inline-block;
   white-space: nowrap;
 }
+
+@media screen and (max-width: 840px) {
+  .stack {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
