@@ -52,6 +52,13 @@
   width: 500px;
 }
 
+@media screen and (max-width: 1800px) {
+  .ArticleEditForm {
+    display: table;
+    height: calc(100vh - 90px);
+  }
+}
+
 @media screen and (max-width: 840px) {
   .formContainer,
   .sendContainer {

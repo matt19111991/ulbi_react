@@ -8,11 +8,13 @@ import { Text } from '@/shared/ui/redesigned/Text';
 
 import { Page } from '@/widgets/Page';
 
+import classes from './SettingsPage.module.scss';
+
 const SettingsPage = () => {
   const { t } = useTranslation();
 
   return (
-    <Page>
+    <Page className={classes.SettingsPage}>
       <VStack align='start' gap='24'>
         <Text title={t('Настройки пользователя')} />
 

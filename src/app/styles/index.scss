@@ -93,3 +93,9 @@ body {
   border: 1px solid var(--scroll-border-color); // закругления для ползунка
   border-radius: 20px;                          // padding вокруг ползунка
 }
+
+@media screen and (max-width: 1800px) {
+  body {
+    overflow: hidden;
+  }
+}

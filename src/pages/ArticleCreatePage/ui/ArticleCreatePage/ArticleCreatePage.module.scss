@@ -1,3 +1,11 @@
 .ArticleCreatePage {
   display: flex;
 }
+
+@media screen and (max-width: 1800px) {
+  .ArticleCreatePage {
+    height: calc(100vh - 180px);
+    position: relative;
+    top: 100px;
+  }
+}

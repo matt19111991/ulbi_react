@@ -6,3 +6,26 @@
   justify-content: center;
   padding-top: 16px;
 }
+
+@media screen and (max-width: 1800px) {
+  .NotFoundPage {
+    position: relative;
+    top: 26px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .NotFoundPage {
+    font: var(--font-m-redesigned);
+    justify-content: flex-start;
+    padding-left: 0;
+    top: 32px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .NotFoundPage {
+    font: var(--font-s-redesigned);
+    top: 33px;
+  }
+}

@@ -87,7 +87,7 @@ export const ArticlesFilters = memo(
   }: ArticlesFiltersProps) => {
     const { t } = useTranslation();
 
-    const [collapsedFilters, setCollapsedFilters] = useState(false);
+    const [collapsedFilters, setCollapsedFilters] = useState(true);
 
     const onCollapse = () => {
       setCollapsedFilters((prev) => !prev);

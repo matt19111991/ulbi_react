@@ -16,6 +16,8 @@ import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 
 import { Page } from '@/widgets/Page';
 
+import classes from './ProfilePage.module.scss';
+
 interface ProfilePageProps {
   /**
    * Внешний класс
@@ -47,7 +49,7 @@ const ProfilePage = ({ className, storybookUserId }: ProfilePageProps) => {
   }
 
   return (
-    <Page className={classNames('', {}, [className])} data-testid='ProfilePage'>
+    <Page className={classNames(classes.ProfilePage, {}, [className])} data-testid='ProfilePage'>
       <VStack gap='16' max>
         <EditableProfileCard id={id} />
 

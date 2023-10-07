@@ -74,7 +74,7 @@ const AddCommentForm = ({ className, isLoading, onSendComment }: AddCommentFormP
       <ToggleFeatures
         feature='isAppRedesigned'
         on={
-          <Card border='partial' max padding='24'>
+          <Card border='partial' className={classes.card} max padding='24'>
             <HStack
               className={classNames(classes.stack, { [classes.loading]: isLoading }, [className])}
               data-testid='AddCommentForm'

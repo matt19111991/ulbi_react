@@ -3,3 +3,23 @@
   font: var(--font-l);
   padding: 16px 24px;
 }
+
+@media screen and (max-width: 1800px) {
+  .MainPage {
+    position: relative;
+    top: 32px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .MainPage {
+    font: var(--font-m-redesigned);
+    padding-left: 8px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .MainPage {
+    font: var(--font-s-redesigned);
+  }
+}

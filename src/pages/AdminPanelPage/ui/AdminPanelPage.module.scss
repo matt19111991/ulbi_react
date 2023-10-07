@@ -3,3 +3,24 @@
   font: var(--font-l);
   padding: 16px 24px;
 }
+
+@media screen and (max-width: 1800px) {
+  .AdminPanelPage {
+    position: relative;
+    top: 32px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .AdminPanelPage {
+    font: var(--font-m-redesigned);
+    padding-left: 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .AdminPanelPage {
+    font: var(--font-s-redesigned);
+    width: 160px;
+  }
+}

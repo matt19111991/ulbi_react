@@ -21,6 +21,8 @@ import { updateProfileData } from '../../model/services/updateProfileData/update
 
 import { profileActions } from '../../model/slice/profileSlice';
 
+import classes from './EditableProfilePageHeader.module.scss';
+
 interface EditableProfilePageHeaderProps {
   /**
    * Внешний класс
@@ -53,7 +55,7 @@ export const EditableProfilePageHeader = memo(({ className }: EditableProfilePag
       feature='isAppRedesigned'
       on={
         <Card border='partial' max padding='24'>
-          <HStack className={classNames('', {}, [className])} justify='between' max>
+          <HStack className={classNames(classes.stack, {}, [className])} justify='between' max>
             <TextRedesigned title={t('Профиль')} />
 
             {canEdit && (
@@ -66,7 +68,7 @@ export const EditableProfilePageHeader = memo(({ className }: EditableProfilePag
                     {t('Редактировать')}
                   </ButtonRedesigned>
                 ) : (
-                  <HStack gap='8'>
+                  <HStack className={classes.buttonsStack} gap='8'>
                     <ButtonRedesigned
                       color='error'
                       data-testid='EditableProfileCardHeader.CancelButton'

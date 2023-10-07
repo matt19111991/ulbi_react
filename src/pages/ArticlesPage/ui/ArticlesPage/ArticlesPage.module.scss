@@ -5,3 +5,25 @@
     margin-top: 30px;
   }
 }
+
+@media screen and (max-width: 1800px) {
+  .ArticlesPage {
+    height: calc(100vh - 300px);
+    position: relative;
+    top: 240px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .ArticlesPage {
+    height: calc(100vh - 320px);
+    top: 264px;
+  }
+}
+
+@media screen and (max-width: 510px) {
+  .ArticlesPage {
+    height: calc(100vh - 220px);
+    top: 166px;
+  }
+}

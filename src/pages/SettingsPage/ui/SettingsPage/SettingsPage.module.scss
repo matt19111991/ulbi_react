@@ -1,0 +1,13 @@
+@media screen and (max-width: 1800px) {
+  .SettingsPage {
+    position: relative;
+    top: 42px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .SettingsPage {
+    top: 92px;
+  }
+}
+

@@ -15,6 +15,12 @@
   pointer-events: none;
 }
 
+@media screen and (max-width: 1800px) {
+  .card {
+    width: calc(100% - 24px);
+  }
+}
+
 @media screen and (max-width: 480px) {
   .stack {
     align-items: flex-start;

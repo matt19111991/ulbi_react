@@ -6,6 +6,9 @@
 
 @media screen and (max-width: 1800px) {
   .ArticleDetailsPage {
+    height: calc(100vh - 300px);
     min-width: auto;
+    position: relative;
+    top: 240px;
   }
 }
