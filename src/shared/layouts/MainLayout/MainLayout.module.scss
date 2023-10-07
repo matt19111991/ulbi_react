@@ -51,12 +51,7 @@
   }
 
   .rightBar {
-    display: flex;
-    position: fixed;
-    max-width: none;
-    right: 8px;
-    top: 48px;
-    z-index: 2;
+    display: none;
   }
 
   .sidebar {
