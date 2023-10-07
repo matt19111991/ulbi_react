@@ -1,6 +1,5 @@
 ## TODO
-- Прогнать все E2E тесты
-- Залить проект на netlify и vercel
+- Залить проект на Netlify и Vercel
 - Остановить сервер на Kamatera
 
 ---- 

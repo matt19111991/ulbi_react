@@ -1,6 +1,10 @@
 // cy.getByTestId() - кастомная функция ('commands/common.ts')
 
 describe('Роутинг', () => {
+  beforeEach(() => {
+    cy.viewport(1920, 1080);
+  });
+
   describe('Пользователь не авторизован', () => {
     it('Переход на главную страницу', () => {
       cy.visit('/');

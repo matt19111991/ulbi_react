@@ -1,5 +1,7 @@
 describe('Пользователь заходит на страницу со списком статей', () => {
   beforeEach(() => {
+    cy.viewport(1920, 1080);
+
     cy.login().then(() => {
       cy.visit('articles');
     });

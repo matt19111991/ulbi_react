@@ -2,6 +2,8 @@ let currentArticleId = '';
 
 describe('Пользователь заходит на страницу статьи', () => {
   beforeEach(() => {
+    cy.viewport(1920, 1080);
+
     cy.login();
 
     cy.createArticle().then((article) => {
