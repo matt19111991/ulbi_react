@@ -1,3 +1,7 @@
+## TODO
+- Исправить ошибку в unit тестах 'Error: Error: connect ECONNREFUSED 127.0.0.1:80'
+---- 
+
 ## Доп. информация
 - [Создание и настройка доменного имени](DOMAIN_NAME.md)
 - [Настройка SSL](SSL.md)

@@ -14,6 +14,12 @@ import './jestLocalStorage';
 */
 global.fetch = require('jest-fetch-mock');
 
+/*
+  Добавляем глобально функцию 'scrollTo', чтобы избавиться от ошибки в unit тестах:
+    'Error: Not implemented: window.scrollTo'
+*/
+window.scrollTo = jest.fn();
+
 /* Поддержка
    React v.18+ <=> @testing-library/react v.13+
    React v.17- <=> @testing-library/react v.12.1.5-
