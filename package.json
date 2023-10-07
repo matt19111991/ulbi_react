@@ -18,7 +18,7 @@
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
     "postinstall": "node ./scripts/clearCache.js",
     "prettify": "npx prettier --write **/*.{json,ts,tsx}",
-    "remove:feature": "ts-node scripts/removeFeature/index.ts",
+    "set:feature": "ts-node scripts/removeFeature/index.ts",
     "storybook": " storybook dev -p 6006 -c ./config/storybook",
     "storybook:build": "storybook build -c ./config/storybook",
     "test:e2e": "cypress open",
