@@ -1,6 +1,8 @@
 ## TODO
 - Исправить ошибку в unit тестах 'Error: Error: connect ECONNREFUSED 127.0.0.1:80'
 - Прогнать все скрипты из package.json
+- Залить проект на netlify и vercel
+- Остановить сервер на Kamatera
 
 ---- 
 
@@ -22,7 +24,7 @@
 
 ## Deploy проекта
    1. Создаем облачный сервер (можно бесплатно на https://console.kamatera.com)
-   2. Подключаемся по SSH: `ssh root@103.13.210.44` или через Remove Console
+   2. Подключаемся по SSH: `ssh root@91.223.169.133` или через Remove Console
       (https://console.kamatera.com => Servers => Наш сервер => Connect => 
       Open Remote Console)
   
