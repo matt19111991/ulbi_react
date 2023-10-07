@@ -1,5 +1,4 @@
 ## TODO
-- Исправить ошибку в unit тестах 'Error: Error: connect ECONNREFUSED 127.0.0.1:80'
 - Прогнать все скрипты из package.json
 - Залить проект на netlify и vercel
 - Остановить сервер на Kamatera

@@ -14,6 +14,17 @@ import { profileReducer } from '../../model/slice/profileSlice';
 
 import { EditableProfileCard } from './EditableProfileCard';
 
+// иначе ошибка: 'Error: Error: connect ECONNREFUSED 127.0.0.1:80'
+jest.mock('axios', () => ({
+  create: jest.fn(() => ({
+    put: jest.fn(),
+    interceptors: {
+      request: { use: jest.fn(), eject: jest.fn() },
+      response: { use: jest.fn(), eject: jest.fn() },
+    },
+  })),
+}));
+
 const profile: Profile = {
   age: 22,
   avatar:

@@ -12,3 +12,15 @@
   margin-left: auto;
   margin-top: 15px;
 }
+
+@media screen and (max-width: 840px) {
+  .LoginForm {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .input {
+    max-width: 200px;
+  }
+}
