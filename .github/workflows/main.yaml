@@ -157,7 +157,7 @@ jobs: # 'build-and-ui-testing' и 'checks' jobs запускаются пара�
     name: deploy
     runs-on: ubuntu-latest
 
-    needs: [build-and-ui-testing]
+#    needs: [build-and-ui-testing]
 
     strategy:
       matrix:
