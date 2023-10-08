@@ -51,7 +51,10 @@
   }
 
   .rightBar {
-    display: none;
+    height: 40px;
+    position: absolute;
+    right: 0;
+    top: 48px;
   }
 
   .sidebar {
@@ -63,6 +66,11 @@
     top: 0;
     width: 100%;
     z-index: 2;
+  }
+
+  .toolbar {
+    bottom: -90vh;
+    position: absolute;
   }
 }
 
