@@ -22,7 +22,7 @@
   Нужно указать 'server_name' в /etc/nginx/sites-enabled/default и перезапустить nginx
 
 8 Если возникла ошибка "Mixed Content: The page at 'https://ulbireact.ru/' was loaded over HTTPS,
-  but requested an insecure XMLHttpRequest endpoint 'http://103.13.210.44:8000/login'. 
+  but requested an insecure XMLHttpRequest endpoint 'http://91.223.169.133:8000/login'. 
   This request has been blocked; the content must be served over HTTPS."
   
   - Нужно наш json server [настроить под HTTPS](./HTTPS.md)

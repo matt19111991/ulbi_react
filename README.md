@@ -1,5 +1,5 @@
 ## TODO
-- Залить проект на Netlify и Vercel
+- Настроить редирект с http://ulbireact.ru/ на https://ulbireact.netlify.app/
 - Остановить сервер на Kamatera
 
 ---- 
@@ -72,7 +72,7 @@
    16. Проверяем целостность nginx конфига: `nginx -t`
    17. Останавливаем Apache сервис перед обновлением nginx: `sudo service apache2 stop`
    18. Перезапускаем nginx: `sudo service nginx restart`
-   19. http://103.13.210.44 должен выдавать 404 Not Found | nginx/1.18.0 (Ubuntu)
+   19. http://91.223.169.133 должен выдавать 404 Not Found | nginx/1.18.0 (Ubuntu)
    20. Идем в папку www: `cd ../../../var/www/`
    21. Создаем папку с названием проекта: `mkdir ulbi_react`
    22. Переходим в папку с проектом: `../../root/ulbi_react/`
