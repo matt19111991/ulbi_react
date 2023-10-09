@@ -158,13 +158,12 @@ jobs: # 'build-and-ui-testing' и 'checks' jobs запускаются пара�
     runs-on: ubuntu-latest
 
     needs:
-      job: build-and-ui-testing
+    - job: build-and-ui-testing
       optional: true
 
     strategy:
       matrix:
         node-version: [ 17.x ]
-
     steps:
       - name: Executing remote SSH commands using password
         uses: appleboy/ssh-action@master
