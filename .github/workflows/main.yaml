@@ -163,6 +163,8 @@ jobs: # 'build-and-ui-testing' и 'checks' jobs запускаются пара�
       matrix:
         node-version: [ 17.x ]
 
+    when: manual
+
     steps:
       - name: Executing remote SSH commands using password
         uses: appleboy/ssh-action@master
