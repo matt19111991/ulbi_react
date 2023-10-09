@@ -1,5 +1,4 @@
 ## TODO
-- Настроить редирект с http://ulbireact.ru/ на https://ulbireact.netlify.app/
 - Остановить сервер на Kamatera
 
 ---- 
