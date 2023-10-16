@@ -1,4 +1,4 @@
-##Настройка HTTPS
+## Настройка HTTPS
 
 1. Генерируем key.pem: `openssl genrsa -out ./json-server/key.pem`
 2. Генерируем csr.pem: `openssl req -new -key ./json-server/key.pem -out ./json-server/csr.pem`
@@ -12,7 +12,12 @@
    
    7.2. Запросы в браузере по HTTPS должны успешно проходить
 
-8. [Добавляем проксирование для backend в настройках nginx](./config/nginx/sites-enabled/default)
+8. [Добавляем проксирование для backend в настройках nginx](./config/nginx/sites-enabled/default_with_ssl)
    Если не добавить проксирование, то после первого запроса на backend будет слетать
-   безопасное соединение 
-9. Выставляем API_URL=https://ulbi_react/api в .env при сборке билда
+   безопасное соединение
+9. Выставляем `API_URL`:
+
+   9.1 `API_URL=https://ulbi_react/api` в `.env` при сборке билда или
+
+   9.2 `API_URL=https://ulbi-express-ammiaf2w8-matt19111991.vercel.app` в `Environment variables` на 'Netlify'.
+   Хэш для `API_URL` на 'Vercel' будет меняться с каждым коммитом

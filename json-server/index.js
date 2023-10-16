@@ -4,6 +4,22 @@ const http = require('http');
 const https = require('https');
 const jsonServer = require('json-server');
 const path = require('path');
+const os = require('os');
+
+/*
+  Нужно использовать временное хранилище для 'db.json', иначе '500 Internal Server Error' для 'POST' и 'PUT' запросов:
+  'Error: erofs: read-only file system, open '/var/task/db.json' at object.opensync (node:fs:601:3)
+  at writefilesync (node:fs:2249:35) at filesync.write'
+*/
+fs.copyFile('db.json', `${os.tmpdir()}/db.json`, (err) => {
+  if (err) {
+    // eslint-disable-next-line no-console
+    console.log(err);
+  } else {
+    // eslint-disable-next-line no-console
+    console.log(`Copy file succeed to ${os.tmpdir()}`);
+  }
+});
 
 const options = {
   cert: fs.readFileSync(path.resolve(__dirname, 'cert.pem')),
@@ -12,7 +28,8 @@ const options = {
 
 const server = jsonServer.create();
 
-const router = jsonServer.router(path.resolve(__dirname, 'db.json'));
+const router = jsonServer.router(path.resolve(`${os.tmpdir()}/db.json`));
+// const router = jsonServer.router(path.resolve(__dirname, 'db.json'));
 
 // middleware для небольшой задержки, чтобы запрос проходил не мгновенно; имитация реального API
 server.use(async (req, res, next) => {
