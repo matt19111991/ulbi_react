@@ -50,7 +50,16 @@ export default defineConfig({
     __IS_DEV__: JSON.stringify(true),
     __PROJECT__: JSON.stringify('front-end'),
   },
-  plugins: [react(), reactVirtualizedHack(), svgr({ exportAsDefault: true })],
+  plugins: [
+    react(),
+    reactVirtualizedHack(),
+    svgr({
+      // Иначе ошибка: 'getDerivedStateFromProps error: DOMException:
+      // Failed to execute 'createElement' on 'Document': The tag name
+      // provided ('/src/shared/assets/icons/theme-old.svg') is not a valid name.
+      include: '**/*.svg',
+    }),
+  ],
   resolve: {
     alias: [{ find: '@', replacement: '/src' }],
   },

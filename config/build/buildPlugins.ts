@@ -68,10 +68,12 @@ export function buildPlugins({
     Если 'HotModuleReplacementPlugin' будет работать нестабильно, можно использовать 'react-refresh-webpack-plugin'
     plugins.push(new ReactRefreshWebpackPlugin());
 
-*/  plugins.push(new webpack.HotModuleReplacementPlugin());
+    plugins.push(new webpack.HotModuleReplacementPlugin());
+*/
 
 //  BundleAnalyzerPlugin позволяет анализировать размер bundle и размеры зависимостей
     plugins.push(new BundleAnalyzerPlugin({
+      logLevel: 'error',
       openAnalyzer: false, // не открывать страницу с BundleAnalyzerPlugin при каждом запуске приложения
     }));
   }

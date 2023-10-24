@@ -43,9 +43,10 @@
 */  "allowSyntheticDefaultImports": true
   },
 
-/* если поле 'includes' не указано: tsconfig работает для всех .ts(x) файлов
+/* если поле 'include' не указано: tsconfig работает для всех .ts(x) файлов
    если указано: нужно перечислить все папки, которые должны проверяться TypeScript-ом
 */"include": [
+    "./config/build/**/*.ts",
     "./config/jest/setupTests.ts",
     "./src/**/*.ts",
     "./src/**/*.tsx"

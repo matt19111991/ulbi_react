@@ -1,6 +1,6 @@
 import webpack from 'webpack';
 
-//  DefinePlugin позволяет прокидывать глобальные переменные во всё приложение
+// DefinePlugin позволяет прокидывать глобальные переменные во всё приложение
 
 export const buildDefinePlugin = (
   apiUrl: string,

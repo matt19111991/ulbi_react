@@ -9,8 +9,8 @@
 
 ## Запуск проекта
 - `npm install` - устанавливаем зависимости
-- `npm run start:vite` - запуск сервера + frontend проекта в development режиме (Vite сборщик)
-- `npm run start:webpack` - запуск сервера + frontend проекта в development режиме (Webpack сборщик)
+- `npm run start:vite:dev` - запуск сервера + frontend проекта в development режиме (Vite сборщик)
+- `npm run start:webpack:dev` - запуск сервера + frontend проекта в development режиме (Webpack сборщик)
 
 ----
 
@@ -90,7 +90,12 @@
 
 - `npm run start:client:webpack` - Запуск frontend проекта на Webpack dev server
 - `npm run start:client:vite` - Запуск frontend проекта на Vite
-- `npm run start:server` - Запуск backend сервера
+- `npm run start:server:dev` - Запуск backend сервера в development режиме
+- `npm run start:server:prod` - Запуск backend сервера в production режиме
+- `npm run start:vite:dev` - Запуск frontend проекта на Vite и сервера в development режиме
+- `npm run start:webpack:dev` - Запуск frontend проекта на Webpack и сервера в development режиме
+- `npm run start:vite:prod` - Запуск frontend проекта на Vite и сервера в production режиме
+- `npm run start:webpack:prod` - Запуск frontend проекта на Webpack и сервера в production режиме
 - `npm run build:dev` - Сборка в development режиме (не минимизирован)
 - `npm run build:prod` - Сборка в production режиме (минимизирован)
 - `npm run generate:template` - Скрипт для генерации FSD слайсов

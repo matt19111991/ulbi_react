@@ -11,6 +11,9 @@ i18n.use(initReactI18next).init({
     escapeValue: false, // не нужно для React
   },
 
+  // убираем все логи о ненайденных ключах для переводов
+  missingKeyHandler: false,
+
   resources: {
     ru: {
       translations: {},
