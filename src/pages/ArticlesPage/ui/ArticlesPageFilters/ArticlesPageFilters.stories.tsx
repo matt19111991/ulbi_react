@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
-import { ArticleSortField, ArticleView } from '@/entities/Article';
+import { ArticleSortField, ArticleView } from '@/entities/Article/testing';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';

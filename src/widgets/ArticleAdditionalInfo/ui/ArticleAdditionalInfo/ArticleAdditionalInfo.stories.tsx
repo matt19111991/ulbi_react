@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { User } from '@/entities/User';
+import { User } from '@/entities/User/testing';
 
 import Avatar from '@/shared/assets/tests/storybook.jpg';
 

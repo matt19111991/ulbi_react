@@ -13,8 +13,8 @@ const isDevelopment = server.settings.env === 'development';
 /*
   Нужно использовать временное хранилище для 'db.json' в production режиме,
   иначе '500 Internal Server Error' для 'POST' и 'PUT' запросов:
-  'Error: erofs: read-only file system, open '/var/task/db.json' at object.opensync (node:fs:601:3)
-  at writefilesync (node:fs:2249:35) at filesync.write'
+  "Error: erofs: read-only file system, open '/var/task/db.json' at object.opensync (node:fs:601:3)
+  at writefilesync (node:fs:2249:35) at filesync.write"
 */
 if (!isDevelopment) {
   fs.copyFile('db.json', `${os.tmpdir()}/db.json`, (err) => {
@@ -58,7 +58,7 @@ server.use(jsonServer.defaults());
 // иначе в роутах 'req.body === undefined'
 server.use(jsonServer.bodyParser);
 
-// login endpoint (POST)
+// '/login' endpoint (POST)
 server.post('/login', (req, res) => {
   try {
     const { username, password } = req.body;
@@ -93,7 +93,7 @@ if (isDevelopment) {
 
   httpServer.listen(HTTP_PORT, () => {
     // eslint-disable-next-line no-console
-    console.log(`---Server is running on ${HTTP_PORT} port---`);
+    console.log(`--- Server is running on ${HTTP_PORT} port ---`);
   });
 } else {
   // HTTPS сервер (443 порт по умолчанию) для 'production' сборки
@@ -110,7 +110,7 @@ if (isDevelopment) {
 
   httpsServer.listen(HTTPS_PORT, () => {
     // eslint-disable-next-line no-console
-    console.log(`---Server is running on ${HTTPS_PORT} port---`);
+    console.log(`--- Server is running on ${HTTPS_PORT} port ---`);
   });
 }
 

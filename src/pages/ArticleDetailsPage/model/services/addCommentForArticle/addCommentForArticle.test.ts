@@ -1,6 +1,6 @@
 import { StateSchema } from '@/app/providers/StoreProvider';
 
-import { Comment } from '@/entities/Comment';
+import { Comment } from '@/entities/Comment/testing';
 
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 

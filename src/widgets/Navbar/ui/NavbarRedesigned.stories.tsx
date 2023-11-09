@@ -2,7 +2,7 @@ import type { Meta, StoryFn, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
-import { UserRole } from '@/entities/User';
+import { UserRole } from '@/entities/User/testing';
 
 import Avatar from '@/shared/assets/tests/storybook.jpg';
 

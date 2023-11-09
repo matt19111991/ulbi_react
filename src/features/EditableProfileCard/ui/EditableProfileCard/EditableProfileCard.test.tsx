@@ -3,9 +3,9 @@ import { screen } from '@testing-library/react';
 // userEvent должен быть асинхронным: 'await userEvent.click(...);'
 import userEvent from '@testing-library/user-event';
 
-import { Country } from '@/entities/Country';
-import { Currency } from '@/entities/Currency';
-import { Profile } from '@/entities/Profile';
+import { Country } from '@/entities/Country/testing';
+import { Currency } from '@/entities/Currency/testing';
+import { Profile } from '@/entities/Profile/testing';
 
 import { $api } from '@/shared/api/api';
 import { componentTestRenderer } from '@/shared/lib/tests/componentTestRenderer/componentTestRenderer';

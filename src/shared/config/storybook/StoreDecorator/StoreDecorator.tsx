@@ -14,7 +14,7 @@ import { articlesPageReducer } from '@/pages/ArticlesPage/testing';
 
 import { ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
-import { pageScrollReducer } from '@/widgets/Page';
+import { pageScrollReducer } from '@/widgets/Page/testing';
 
 const defaultReducers: ReducersList = {
   addCommentForm: addCommentFormReducer,

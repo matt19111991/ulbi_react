@@ -1,5 +1,5 @@
-import { Article } from '@/entities/Article';
-import { Comment } from '@/entities/Comment';
+import { Article } from '@/entities/Article/testing';
+import { Comment } from '@/entities/Comment/testing';
 
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 

@@ -1,6 +1,6 @@
 import { StateSchema } from '@/app/providers/StoreProvider';
 
-import { ArticleSortField, ArticleType, ArticleView } from '@/entities/Article';
+import { ArticleSortField, ArticleType, ArticleView } from '@/entities/Article/testing';
 
 import {
   getArticlesPageAreLoading,

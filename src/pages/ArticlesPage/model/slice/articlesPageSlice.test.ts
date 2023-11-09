@@ -1,4 +1,4 @@
-import { ArticleSortField, ArticleType, ArticleView } from '@/entities/Article';
+import { ArticleSortField, ArticleType, ArticleView } from '@/entities/Article/testing';
 
 import { ARTICLE_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { generateNormalizedArticles } from '@/shared/lib/generators/articles';

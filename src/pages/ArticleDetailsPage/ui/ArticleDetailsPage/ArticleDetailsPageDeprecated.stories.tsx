@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
-import { ArticleBlockType, ArticleType } from '@/entities/Article';
+import { ArticleBlockType, ArticleType } from '@/entities/Article/testing';
 
 import Image1 from '@/shared/assets/tests/storybook.jpg';
 import Image2 from '@/shared/assets/tests/storybook2.jpg';

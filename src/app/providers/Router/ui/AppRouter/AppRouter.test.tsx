@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 
-import { UserRole } from '@/entities/User';
+import { UserRole } from '@/entities/User/testing';
 
 import { getRouteAbout, getRouteAdmin, getRouteProfile } from '@/shared/const/router';
 

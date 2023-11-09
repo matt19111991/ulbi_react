@@ -10,14 +10,14 @@
    
    7.1. Должна появиться ошибка `{ "message": "AUTH ERROR" }`, а не страница с ошибкой, отдаваемая браузером
    
-   7.2. Запросы в браузере по HTTPS должны успешно проходить
+   7.2. Запросы в браузере по `HTTPS` должны успешно проходить
 
 8. [Добавляем проксирование для backend в настройках nginx](./config/nginx/sites-enabled/default_with_ssl)
-   Если не добавить проксирование, то после первого запроса на backend будет слетать
+   Если не добавить проксирование, то после первого запроса на `backend` будет слетать
    безопасное соединение
 9. Выставляем `API_URL`:
 
    9.1 `API_URL=https://ulbi_react/api` в `.env` при сборке билда или
 
-   9.2 `API_URL=https://ulbi-express-ammiaf2w8-matt19111991.vercel.app` в `Environment variables` на 'Netlify'.
-   Хэш для `API_URL` на 'Vercel' будет меняться с каждым коммитом
+   9.2 `API_URL=https://ulbi-express-6buiqt34c-matt19111991.vercel.app` в `Environment variables` на `Netlify`.
+   Хэш для `API_URL` на `Vercel` будет меняться с каждым коммитом

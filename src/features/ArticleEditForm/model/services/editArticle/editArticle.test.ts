@@ -1,6 +1,6 @@
 import { StateSchema } from '@/app/providers/StoreProvider';
 
-import { Article, ArticleBlockType, ArticleType } from '@/entities/Article';
+import { Article, ArticleBlockType, ArticleType } from '@/entities/Article/testing';
 
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 
