@@ -9,7 +9,7 @@ server {
   # Possible entry points
   index index.html index.htm index.nginx-debian.html;
 
-  # Our domain name (without 'www' or any prefix)
+  # Our requests domain name (https://ulbireact.ru/api) without 'http(s)' and 'api'
   server_name ulbireact.ru;
 
   # Proxying for backend (HTTPS)
@@ -44,8 +44,10 @@ server {
     return 301 https://$host$request_uri;
   } # managed by Certbot
 
-    listen 80;
-    listen [::]:80;
-    server_name ulbireact.ru;
+  listen 80;
+  listen [::]:80;
+
+  server_name ulbireact.ru;
+
   return 404; # managed by Certbot
 }

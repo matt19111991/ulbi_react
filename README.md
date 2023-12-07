@@ -4,6 +4,13 @@
 - [Настройка HTTPS](HTTPS.md)
 - [Loki Ui Screenshot testing](LOKI.md)
 - [Модели ветвления Git](GIT_BRANCHES.md)
+- [Webpack](WEBPACK.md)
+
+---- 
+
+## Инициализация проекта
+
+- `npm init -y` - создание `package.json` с настройками по умолчанию
 
 ---- 
 
