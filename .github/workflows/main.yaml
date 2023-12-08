@@ -30,7 +30,7 @@ jobs: # 'build-and-ui-testing' и 'checks' jobs запускаются пара�
 
     strategy:
       matrix:
-        node-version: [ 17.x ] # задаем версию для Node.js
+        node-version: [ 21.x ] # задаем версию для Node.js
 
     steps:
       - uses: actions/checkout@v2
@@ -110,7 +110,7 @@ jobs: # 'build-and-ui-testing' и 'checks' jobs запускаются пара�
 
     strategy:
       matrix:
-        node-version: [ 17.x ] # задаем версию для Node.js
+        node-version: [ 21.x ] # задаем версию для Node.js
 
     steps:
       - uses: actions/checkout@v2
@@ -163,7 +163,7 @@ jobs: # 'build-and-ui-testing' и 'checks' jobs запускаются пара�
 
     strategy:
       matrix:
-        node-version: [ 17.x ]
+        node-version: [ 21.x ]
 
     steps:
       - name: Executing remote SSH commands using password
