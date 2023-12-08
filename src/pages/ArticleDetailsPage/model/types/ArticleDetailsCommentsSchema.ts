@@ -6,7 +6,7 @@ import { Comment } from '@/entities/Comment';
 
    export interface EntityState<T, I> {
      ids: I[]
-     entities: Dictionary<T>
+     entities: Record<I, T>
    }
 */
 
