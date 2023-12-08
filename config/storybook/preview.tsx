@@ -1,4 +1,3 @@
-import type { DeepPartial } from '@reduxjs/toolkit';
 import type { Preview } from '@storybook/react';
 
 import { StateSchema } from '../../src/app/providers/StoreProvider';

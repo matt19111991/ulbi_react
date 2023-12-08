@@ -1,6 +1,5 @@
-import { memo } from 'react';
-
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { genericMemo } from '@/shared/lib/components/genericMemo/genericMemo';
 import { ToggleFeatures } from '@/shared/lib/features';
 
 import { Text as TextDeprecated, TextAlign } from '@/shared/ui/deprecated/Text';
@@ -23,20 +22,20 @@ interface ArticleImageBlockComponentProps {
   className?: string;
 }
 
-export const ArticleImageBlockComponent = memo(
-  ({ block, className }: ArticleImageBlockComponentProps) => (
-    <div className={classNames(classes.ArticleImageBlockComponent, {}, [className])}>
-      <img alt={block.title} className={classes.img} src={block.src} />
+const ArticleImageBlockComponent = ({ block, className }: ArticleImageBlockComponentProps) => (
+  <div className={classNames(classes.ArticleImageBlockComponent, {}, [className])}>
+    <img alt={block.title} className={classes.img} src={block.src} />
 
-      {block.title && (
-        <ToggleFeatures
-          feature='isAppRedesigned'
-          on={<TextRedesigned align='center' text={block.title} />}
-          off={<TextDeprecated align={TextAlign.CENTER} text={block.title} />}
-        />
-      )}
-    </div>
-  ),
+    {block.title && (
+      <ToggleFeatures
+        feature='isAppRedesigned'
+        on={<TextRedesigned align='center' text={block.title} />}
+        off={<TextDeprecated align={TextAlign.CENTER} text={block.title} />}
+      />
+    )}
+  </div>
 );
 
-ArticleImageBlockComponent.displayName = 'ArticleImageBlockComponent';
+const MemoizedArticleImageBlockComponent = genericMemo(ArticleImageBlockComponent);
+
+export { MemoizedArticleImageBlockComponent as ArticleImageBlockComponent };

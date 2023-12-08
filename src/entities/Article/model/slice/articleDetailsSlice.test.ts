@@ -1,3 +1,5 @@
+import { Action } from '@reduxjs/toolkit';
+
 import { article } from '@/shared/lib/generators/articles';
 
 import { fetchArticleById } from '../services/fetchArticleById/fetchArticleById';
@@ -13,7 +15,10 @@ describe('articleDetailsSlice', () => {
       isLoading: false,
     };
 
-    const reducer = articleDetailsReducer(state as ArticleDetailsSchema, fetchArticleById.pending);
+    const reducer = articleDetailsReducer(
+      state as ArticleDetailsSchema,
+      fetchArticleById.pending as Action,
+    );
 
     expect(reducer).toEqual({ error: undefined, isLoading: true });
   });

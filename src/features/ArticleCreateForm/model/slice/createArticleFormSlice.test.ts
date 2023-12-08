@@ -1,3 +1,5 @@
+import { Action } from '@reduxjs/toolkit';
+
 import { createArticle } from '../services/createArticle/createArticle';
 
 import { CreateArticleFormSchema } from '../types/createArticleFormSchema';
@@ -30,7 +32,7 @@ describe('createArticleFormSlice', () => {
       };
 
       expect(
-        createArticleFormReducer(state as CreateArticleFormSchema, createArticle.pending),
+        createArticleFormReducer(state as CreateArticleFormSchema, createArticle.pending as Action),
       ).toEqual({
         error: undefined,
         isLoading: true,
@@ -44,7 +46,10 @@ describe('createArticleFormSlice', () => {
       };
 
       expect(
-        createArticleFormReducer(state as CreateArticleFormSchema, createArticle.fulfilled),
+        createArticleFormReducer(
+          state as CreateArticleFormSchema,
+          createArticle.fulfilled as Action,
+        ),
       ).toEqual({
         error: undefined,
         isLoading: false,

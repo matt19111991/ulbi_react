@@ -12,7 +12,7 @@ export {
   getArticleDetailsIsLoading,
 } from './model/selectors/articleDetails';
 
-export type { Article, ArticleBlock } from './model/types/article';
+export type { Article, ArticleBlock, ArticleBlockComponentMemoized } from './model/types/article';
 
 export type { ArticleDetailsSchema } from './model/types/articleDetailsSchema';
 

@@ -1,3 +1,5 @@
+import { Action } from '@reduxjs/toolkit';
+
 import { editArticle } from '../services/editArticle/editArticle';
 
 import { EditArticleFormSchema } from '../types/editArticleFormSchema';
@@ -26,7 +28,9 @@ describe('editArticleFormSlice', () => {
         isLoading: false,
       };
 
-      expect(editArticleFormReducer(state as EditArticleFormSchema, editArticle.pending)).toEqual({
+      expect(
+        editArticleFormReducer(state as EditArticleFormSchema, editArticle.pending as Action),
+      ).toEqual({
         error: undefined,
         isLoading: true,
       });
@@ -38,12 +42,12 @@ describe('editArticleFormSlice', () => {
         isLoading: true,
       };
 
-      expect(editArticleFormReducer(state as EditArticleFormSchema, editArticle.fulfilled)).toEqual(
-        {
-          error: undefined,
-          isLoading: false,
-        },
-      );
+      expect(
+        editArticleFormReducer(state as EditArticleFormSchema, editArticle.fulfilled as Action),
+      ).toEqual({
+        error: undefined,
+        isLoading: false,
+      });
     });
   });
 });

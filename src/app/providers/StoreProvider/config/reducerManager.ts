@@ -1,8 +1,13 @@
-import { AnyAction, combineReducers, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
+import { combineReducers, Reducer, ReducersMapObject, UnknownAction } from '@reduxjs/toolkit';
 
 import { MountedReducers, ReducerManager, StateSchema, StateSchemaKey } from './StateSchema';
 
 // для асинхронной подгрузки редюсеров, 'createReducerManager' взят из документации
+
+// все необязательные поля будут удалены из типа объекта
+type RequiredFieldsOnly<T> = {
+  [K in keyof T as T[K] extends Required<T>[K] ? K : never]: T[K];
+};
 
 export const createReducerManager = (
   initialReducers: ReducersMapObject<StateSchema>,
@@ -25,7 +30,7 @@ export const createReducerManager = (
     getMountedReducers: () => mountedReducers,
 
     // Root reducer без редюсеров, указанных в 'keysToRemove'
-    reduce: (state: StateSchema, action: AnyAction) => {
+    reduce: (state: StateSchema, action: UnknownAction) => {
       // Если какие-то редюсеры были удалены, очищаем 'state' от них
       if (keysToRemove.length > 0) {
         state = { ...state };
@@ -38,7 +43,7 @@ export const createReducerManager = (
       }
 
       // Передаем очищенный 'state' в 'combined reducer'
-      return combinedReducer(state, action);
+      return combinedReducer(state as RequiredFieldsOnly<StateSchema>, action);
     },
 
     add: (key: StateSchemaKey, reducer: Reducer) => {

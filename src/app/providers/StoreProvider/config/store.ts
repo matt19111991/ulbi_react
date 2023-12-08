@@ -1,4 +1,4 @@
-import { CombinedState, configureStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
+import { configureStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 
 import { counterReducer } from '@/entities/Counter';
 import { userReducer } from '@/entities/User';
@@ -73,7 +73,7 @@ export const createReduxStore = (
     /**
      * Для работы с асинхронными редюсерами
      */
-    reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
+    reducer: reducerManager.reduce as Reducer<StateSchema>,
   });
 
   // для возможности использования асинхронных редюсеров

@@ -1,4 +1,4 @@
-import { memo, MemoExoticComponent, useCallback, useEffect, useMemo, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import {
   Article,
   ArticleBlock,
+  ArticleBlockComponentMemoized,
   ArticleBlockType,
   ArticleCodeBlockComponent,
   ArticleFormBlock,
@@ -238,19 +239,19 @@ const ArticleEditForm = ({ articleId, className }: ArticleEditFormProps) => {
    */
   const renderBlocks = () =>
     blocks.map((block) => {
-      let BlockComponent: MemoExoticComponent<any> = ArticleTextBlockComponent;
+      let BlockComponent = ArticleTextBlockComponent as ArticleBlockComponentMemoized;
 
       switch (block.type) {
         case ArticleBlockType.CODE:
-          BlockComponent = ArticleCodeBlockComponent;
+          BlockComponent = ArticleCodeBlockComponent as ArticleBlockComponentMemoized;
           break;
 
         case ArticleBlockType.IMAGE:
-          BlockComponent = ArticleImageBlockComponent;
+          BlockComponent = ArticleImageBlockComponent as ArticleBlockComponentMemoized;
           break;
 
         case ArticleBlockType.TEXT:
-          BlockComponent = ArticleTextBlockComponent;
+          BlockComponent = ArticleTextBlockComponent as ArticleBlockComponentMemoized;
           break;
 
         default:

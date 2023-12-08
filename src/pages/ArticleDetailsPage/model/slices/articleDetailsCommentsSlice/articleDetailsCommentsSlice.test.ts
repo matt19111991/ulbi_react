@@ -1,3 +1,5 @@
+import { Action } from '@reduxjs/toolkit';
+
 import { Comment } from '@/entities/Comment/testing';
 
 import { fetchCommentsByArticleId } from '../../services/fetchCommentsByArticleId/fetchCommentsByArticleId';
@@ -56,7 +58,7 @@ describe('articleDetailsCommentsSlice', () => {
     expect(
       articleDetailsCommentsReducer(
         state as ArticleDetailsCommentsSchema,
-        fetchCommentsByArticleId.pending,
+        fetchCommentsByArticleId.pending as Action,
       ),
     ).toEqual({ areLoading: true, error: undefined });
   });

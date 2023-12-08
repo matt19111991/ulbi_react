@@ -1,3 +1,5 @@
+import { Action } from '@reduxjs/toolkit';
+
 import { generateArticles, generateNormalizedArticles } from '@/shared/lib/generators/articles';
 
 import { fetchArticleRecommendations } from '../../services/fetchArticleRecommendations/fetchArticleRecommendations';
@@ -16,7 +18,7 @@ describe('articleDetailsPageRecommendationsSlice', () => {
     expect(
       articleDetailsPageRecommendationsReducer(
         state as ArticleDetailsRecommendationsSchema,
-        fetchArticleRecommendations.pending,
+        fetchArticleRecommendations.pending as Action,
       ),
     ).toEqual({ areLoading: true, error: undefined });
   });

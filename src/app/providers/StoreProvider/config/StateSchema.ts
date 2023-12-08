@@ -1,12 +1,5 @@
 import { AxiosInstance } from 'axios';
-
-import {
-  AnyAction,
-  CombinedState,
-  EnhancedStore,
-  Reducer,
-  ReducersMapObject,
-} from '@reduxjs/toolkit';
+import { EnhancedStore, Reducer, ReducersMapObject, UnknownAction } from '@reduxjs/toolkit';
 
 import { rtkApi } from '@/shared/api/rtkApi';
 
@@ -68,7 +61,7 @@ export interface ReducerManager {
   /**
    * Если какие-то редюсеры были удалены, очищаем 'state' от них
    */
-  reduce: (s: StateSchema, a: AnyAction) => CombinedState<StateSchema>;
+  reduce: (s: StateSchema, a: UnknownAction) => StateSchema;
 
   /**
    * По ключу добавляем редюсер

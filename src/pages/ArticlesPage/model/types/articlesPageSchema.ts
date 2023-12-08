@@ -4,7 +4,7 @@ import { Article, ArticleSortField, ArticleType, ArticleView } from '@/entities/
 
 import { SortOrder } from '@/shared/types/sort';
 
-export interface ArticlesPageSchema extends EntityState<Article> {
+export interface ArticlesPageSchema extends EntityState<Article, Article['id']> {
   /*
     загрузили список статей => перешли на конкретную статью => вернулись обратно к списку =>
     снова началась подгрузка (а должен отобразиться предыдущий загруженный список)

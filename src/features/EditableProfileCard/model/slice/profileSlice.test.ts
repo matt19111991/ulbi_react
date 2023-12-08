@@ -1,3 +1,5 @@
+import { Action } from '@reduxjs/toolkit';
+
 import { Country } from '@/entities/Country/testing';
 import { Currency } from '@/entities/Currency/testing';
 
@@ -82,7 +84,7 @@ describe('profileSlice', () => {
         isLoading: false,
       };
 
-      expect(profileReducer(state as ProfileSchema, fetchProfileData.pending)).toEqual({
+      expect(profileReducer(state as ProfileSchema, fetchProfileData.pending as Action)).toEqual({
         error: undefined,
         isLoading: true,
       });
@@ -110,7 +112,7 @@ describe('profileSlice', () => {
         validateErrors: [ValidateProfileError.SERVER_ERROR],
       };
 
-      expect(profileReducer(state as ProfileSchema, updateProfileData.pending)).toEqual({
+      expect(profileReducer(state as ProfileSchema, updateProfileData.pending as Action)).toEqual({
         isLoading: true,
         validateErrors: undefined,
       });

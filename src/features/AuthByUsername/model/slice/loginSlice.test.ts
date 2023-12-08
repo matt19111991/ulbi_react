@@ -1,3 +1,5 @@
+import { Action } from '@reduxjs/toolkit';
+
 import { loginByUsername } from '../services/loginByUsername/loginByUsername';
 
 import { LoginSchema } from '../types/loginSchema';
@@ -32,7 +34,7 @@ describe('loginSlice', () => {
       isLoading: false,
     };
 
-    const reducer = loginReducer(state as LoginSchema, loginByUsername.pending);
+    const reducer = loginReducer(state as LoginSchema, loginByUsername.pending as Action);
 
     expect(reducer).toEqual({ isLoading: true });
   });
@@ -42,7 +44,7 @@ describe('loginSlice', () => {
       isLoading: true,
     };
 
-    const reducer = loginReducer(state as LoginSchema, loginByUsername.fulfilled);
+    const reducer = loginReducer(state as LoginSchema, loginByUsername.fulfilled as Action);
 
     expect(reducer).toEqual({ isLoading: false });
   });
