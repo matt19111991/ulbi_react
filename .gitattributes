@@ -6,6 +6,6 @@
 # binary - Файлы будут проигнорированы нормализацией
 # Иначе .png файлы в GitHub будут выдавать "Invalid file signature" ошибку
 
-# *.png binary
+*.png binary
 
 # * text eol=lf
