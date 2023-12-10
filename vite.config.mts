@@ -7,6 +7,12 @@ import svgr from 'vite-plugin-svgr';
 import react from '@vitejs/plugin-react';
 
 /*
+  для файла конфигурации 'vite.config.mts' устанавливает расширение '.mts', чтобы
+  запускать vite в режиме ESM (ES modules) и избегать предупреждения
+  "The CJS build of Vite's Node API is deprecated"
+*/
+
+/*
   для 'vite' нужен отдельный 'index.html' файл в корне проекта:
   в '<body />' после '<div id="root" />' нужно добавить '<script />' к '/src/index.tsx' корневому файлу
 */
