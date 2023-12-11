@@ -19,13 +19,13 @@
    - stylelint-config-recommended-scss > 4.3.0
 */
 
-@import url('reset.scss');
+@import 'reset';
 
-@import url('themes/normal.scss');
-@import url('themes/dark.scss');
-@import url('themes/orange.scss');
+@import 'themes/normal';
+@import 'themes/dark';
+@import 'themes/orange';
 
-@import url('variables/global.scss');
+@import 'variables/global';
 
 body {
   color: var(--primary-color);

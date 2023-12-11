@@ -52,15 +52,15 @@
     "react-device-detect": "^2.2.3",
     "react-dom": "^18.2.0",
     "react-i18next": "^13.5.0",
-    "react-redux": "^9.0.2",
+    "react-redux": "^9.0.3",
     "react-router-dom": "^6.20.1",
     "react-virtualized": "^9.22.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.2",
-    "@babel/plugin-transform-runtime": "^7.23.4",
-    "@babel/plugin-transform-typescript": "^7.23.5",
-    "@babel/preset-env": "^7.23.5",
+    "@babel/core": "^7.23.6",
+    "@babel/plugin-transform-runtime": "^7.23.6",
+    "@babel/plugin-transform-typescript": "^7.23.6",
+    "@babel/preset-env": "^7.23.6",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
     "@storybook/addon-actions": "^7.6.4",
@@ -79,7 +79,7 @@
     "@types/circular-dependency-plugin": "^5.0.8",
     "@types/jest": "^29.5.11",
     "@types/node": "^20.10.4",
-    "@types/react": "^18.2.42",
+    "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@types/react-router-dom": "^5.3.3",
     "@types/react-virtualized": "^9.21.29",
@@ -121,21 +121,21 @@
     "lint-staged": "^15.2.0",
     "loki": "^0.33.1",
     "mini-css-extract-plugin": "^2.7.6",
-    "prettier": "^3.1.0",
+    "prettier": "^3.1.1",
     "reg-cli": "^0.17.7",
     "regenerator-runtime": "^0.14.0",
     "sass": "^1.69.5",
     "sass-loader": "^13.3.2",
     "storybook": "^7.6.4",
     "style-loader": "^3.3.3",
-    "stylelint": "^16.0.1",
+    "stylelint": "^16.0.2",
     "stylelint-codeguide": "^1.0.1",
     "stylelint-config-standard": "35.0.0",
     "ts-loader": "^9.5.1",
     "ts-morph": "^21.0.1",
-    "ts-node": "^10.9.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
-    "vite": "^5.0.6",
+    "vite": "^5.0.7",
     "vite-plugin-svgr": "^4.2.0",
     "webpack": "^5.89.0",
     "webpack-bundle-analyzer": "^4.10.1",
@@ -166,6 +166,11 @@
         "target": "chrome.docker",
         "preset": "iPhone 7"
       }
+    }
+  },
+  "overrides": {
+    "loki": {
+      "@storybook/react": "^7.6.4"
     }
   }
 }
