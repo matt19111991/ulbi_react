@@ -34,14 +34,17 @@ export function buildPlugins({
 }: BuildOptions): webpack.WebpackPluginInstance[] {
   const plugins = [ // порядок плагинов не имеет значения
     new HTMLWebpackPlugin({
-/*    без опции 'template' в файле ./build/index.html не будет <div class='root'></div>
-      указывает шаблон из папки ./public/index.html для файла ./build/index.html
+/*    без опции 'template' в файле './build/index.html' не будет "<div id='root'></div>",
+      а создастся шаблонный html файл
+
+      нужно указать свой шаблон из папки './public/index.html' для файла './build/index.html'
 */
       template: paths.html,
     }),
 
-//  ProgressPlugin отображает прогресс компиляции
-    new webpack.ProgressPlugin(),
+/*  ProgressPlugin отображает прогресс компиляции
+    (в 'production' лучше отключать, т.к. может замедлять сборку)
+*/  new webpack.ProgressPlugin(),
 
     buildDefinePlugin(apiUrl, isDev, project),
 
