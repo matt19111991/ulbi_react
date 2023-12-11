@@ -62,7 +62,7 @@
    6. Устанавливаем nvm: `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash`
    7. Настраиваем nvm: `export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
                         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"`
-   8. Устанавливаем Node: `nvm install 18.16.0`
+   8. Устанавливаем Node: `nvm install 21.4.0`
    9. Устанавливаем зависимости: `npm i`
    10?. Запускаем development сборку (vite не работает): `npm run start:client:webpack`
    11. Устанавливаем nginx: `sudo apt install nginx`

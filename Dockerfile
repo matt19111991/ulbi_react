@@ -6,8 +6,8 @@
 
 # Этап 1 (builder)
 
-# Cобираем образ на основе Node v.18.16.0
-FROM node:18-alpine3.16 as builder
+# Cобираем образ на основе Node v.21.4.0
+FROM node:21.0-alpine3.17 as builder
 
 # Копируем package.json файлы внутрь образа для ускорения сборки образов
 COPY package.json package-lock.json ./
