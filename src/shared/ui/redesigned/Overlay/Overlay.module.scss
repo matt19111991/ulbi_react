@@ -1,13 +1,10 @@
 .Overlay {
   align-items: center;
   background-color: var(--overlay-color);
-  bottom: 0;
   cursor: pointer;
   display: flex;
+  inset: 0;
   justify-content: center;
-  left: 0;
   position: fixed;
-  right: 0;
-  top: 0;
   z-index: var(--overlay-z-index);
 }

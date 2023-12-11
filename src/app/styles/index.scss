@@ -19,13 +19,13 @@
    - stylelint-config-recommended-scss > 4.3.0
 */
 
-@import 'reset';
+@import url('reset.scss');
 
-@import 'themes/normal';
-@import 'themes/dark';
-@import 'themes/orange';
+@import url('themes/normal.scss');
+@import url('themes/dark.scss');
+@import url('themes/orange.scss');
 
-@import 'variables/global';
+@import url('variables/global.scss');
 
 body {
   color: var(--primary-color);
@@ -64,34 +64,35 @@ body {
 // Scroll bar redesigned
 
 *::-webkit-scrollbar {
-  height: 6px; // высота скролл бара
-  width: 6px;  // ширина скролл бара
+  height: 6px; /* высота скролл бара */
+  width: 6px;  /* ширина скролл бара */
 }
 
 *::-webkit-scrollbar-track {
-  background: var(--light-bg-redesigned); // цвет дорожки
+  background: var(--light-bg-redesigned); /* цвет дорожки */
 }
+
 *::-webkit-scrollbar-thumb {
-  background-color: var(--icon-redesigned);   // цвет ползунка
-  border: 1px solid var(--accent-redesigned); // закругления для ползунка
-  border-radius: 20px;                        // padding вокруг ползунка
+  background-color: var(--icon-redesigned);   /* цвет ползунка */
+  border: 1px solid var(--accent-redesigned); /* закругления для ползунка */
+  border-radius: 20px;                        /* padding вокруг ползунка */
 }
 
 // Scroll bar deprecated
 
 .app *::-webkit-scrollbar {
-  height: 6px; // высота скролл бара
-  width: 6px;  // ширина скролл бара
+  height: 6px; /* высота скролл бара */
+  width: 6px;  /* ширина скролл бара */
 }
 
 .app *::-webkit-scrollbar-track {
-  background: var(--scroll-track-color); // цвет дорожки
+  background: var(--scroll-track-color); /* цвет дорожки */
 }
 
 .app *::-webkit-scrollbar-thumb {
-  background-color: var(--scroll-thumb-color);  // цвет ползунка
-  border: 1px solid var(--scroll-border-color); // закругления для ползунка
-  border-radius: 20px;                          // padding вокруг ползунка
+  background-color: var(--scroll-thumb-color);  /* цвет ползунка */
+  border: 1px solid var(--scroll-border-color); /* закругления для ползунка */
+  border-radius: 20px;                          /* padding вокруг ползунка */
 }
 
 @media screen and (max-width: 1800px) {

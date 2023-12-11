@@ -80,6 +80,9 @@ module.exports = {
     // webpack и плагины должны быть в dependencies (откл.), т.к. их место в devDependencies
     'import/no-extraneous-dependencies': 0,
 
+    // относительные импорты запрещены (откл.)
+    'import/no-relative-packages': 0,
+
     // импорты вида 'export const Sidebar' запрещены; нужен export default (откл.)
     'import/prefer-default-export': 0,
 

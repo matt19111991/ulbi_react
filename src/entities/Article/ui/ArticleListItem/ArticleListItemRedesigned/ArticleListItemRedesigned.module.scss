@@ -57,7 +57,7 @@
 
   &:hover {
     opacity: .8;
-    transform: scale(1.01); // увеличение карточки при наведении
+    transform: scale(1.01); /* увеличение карточки при наведении */
   }
 
   .footer {
@@ -74,7 +74,7 @@
 
   .info {
     height: 100%;
-    padding: 8px 8px 16px 8px;
+    padding: 8px 8px 16px;
   }
 
   .title > * {

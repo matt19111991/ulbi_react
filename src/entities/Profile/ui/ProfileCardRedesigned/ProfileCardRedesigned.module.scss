@@ -7,7 +7,6 @@
 @media screen and (max-width: 840px) {
   .inputs {
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    flex-flow: column wrap;
   }
 }

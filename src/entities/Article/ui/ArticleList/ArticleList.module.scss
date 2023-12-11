@@ -17,8 +17,7 @@
 
 .inline {
   flex-wrap: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: auto hidden;
   width: 100%;
 }
 
@@ -46,8 +45,7 @@
 
 .inlineRedesigned {
   flex-wrap: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: auto hidden;
   width: 101%;
 }
 

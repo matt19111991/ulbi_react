@@ -24,8 +24,7 @@
 
   .stack {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     gap: 16px;
   }
 
@@ -82,8 +81,7 @@
 
   .stack {
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    flex-flow: column wrap;
     gap: 16px;
     position: relative;
   }

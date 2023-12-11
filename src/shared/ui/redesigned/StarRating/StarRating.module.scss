@@ -1,11 +1,11 @@
 .StarRatingDeprecated {
   .hovered {
-    fill: var(--primary-color); // закрашиваем звезды
+    fill: var(--primary-color); /* закрашиваем звезды */
   }
 }
 
 .normal {
-  fill: none; // не закрашиваем звезды
+  fill: none; /* не закрашиваем звезды */
 }
 
 .selected {
@@ -20,6 +20,6 @@
 
 .StarRatingRedesigned {
   .hovered {
-    fill: var(--icon-redesigned); // закрашиваем звезды
+    fill: var(--icon-redesigned); /* закрашиваем звезды */
   }
 }

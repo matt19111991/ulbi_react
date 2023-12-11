@@ -128,9 +128,9 @@
     "sass-loader": "^13.3.2",
     "storybook": "^7.6.4",
     "style-loader": "^3.3.3",
-    "stylelint": "^15.11.0",
-    "stylelint-config-recommended-scss": "^13.1.0",
-    "stylelint-scss": "^5.3.1",
+    "stylelint": "^16.0.1",
+    "stylelint-codeguide": "^1.0.1",
+    "stylelint-config-standard": "35.0.0",
     "ts-loader": "^9.5.1",
     "ts-morph": "^21.0.1",
     "ts-node": "^10.9.1",
@@ -166,11 +166,6 @@
         "target": "chrome.docker",
         "preset": "iPhone 7"
       }
-    }
-  },
-  "overrides": {
-    "loki": {
-      "@storybook/react": "^7.6.4"
     }
   }
 }

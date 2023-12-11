@@ -7,7 +7,7 @@ import svgr from 'vite-plugin-svgr';
 import react from '@vitejs/plugin-react';
 
 /*
-  для файла конфигурации 'vite.config.mts' устанавливает расширение '.mts', чтобы
+  для файла конфигурации 'vite.config.mts' устанавливаем расширение '.mts', чтобы
   запускать vite в режиме ESM (ES modules) и избегать предупреждения
   "The CJS build of Vite's Node API is deprecated"
 */
