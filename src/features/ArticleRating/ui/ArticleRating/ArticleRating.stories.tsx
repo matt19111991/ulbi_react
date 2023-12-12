@@ -69,7 +69,7 @@ export const LoadingOld: Story = {
   },
 };
 
-LoadingOld.decorators = [StoreDecorator(stateArticleRating)];
+LoadingOld.decorators = [StoreDecorator(stateArticleRating), ThemeDecorator(Theme.DARK)];
 
 // Empty article rating old
 

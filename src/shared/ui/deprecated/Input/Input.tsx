@@ -147,7 +147,7 @@ export const Input = memo(
             <span
               className={classes.caret}
               style={{
-                left: `${caretPosition * 9}px`,
+                left: `${caretPosition * 8}px`,
               }}
             />
           )}

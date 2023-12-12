@@ -93,8 +93,11 @@
       padding: 24px;
       width: 100%;
 
+      /* скрываем скелетоны только в приложении (не в storybook) */
       @media screen and (max-width: 1800px) {
-        display: none;
+        body:has(> div#root) {
+          display: none;
+        }
       }
     }
 
@@ -154,8 +157,11 @@
       padding: 0;
       width: 233px;
 
+      /* скрываем скелетоны только в приложении (не в storybook) */
       @media screen and (max-width: 1800px) {
-        display: none;
+        body:has(> div#root) {
+          display: none;
+        }
       }
     }
 

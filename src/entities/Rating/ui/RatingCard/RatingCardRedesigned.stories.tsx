@@ -113,7 +113,7 @@ export const PrimaryMobile: Story = {
   },
 };
 
-Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+PrimaryMobile.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 PrimaryMobile.parameters = {
   viewport: {

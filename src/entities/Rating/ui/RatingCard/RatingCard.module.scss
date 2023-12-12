@@ -1,3 +1,12 @@
+.fullWidth {
+  overflow: hidden;
+  width: 100%;
+
+  input {
+    width: 100%;
+  }
+}
+
 .mobile {
   :last-child {
     max-width: 400px;

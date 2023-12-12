@@ -113,22 +113,24 @@ export const RatingCard = memo(
       <ToggleFeatures
         feature='isAppRedesigned'
         on={
-          <>
+          <VStack align='start' gap='16' max>
             <TextRedesigned title={feedbackTitle} />
 
             <InputRedesigned
               data-testid='RatingCard.Input'
+              fullWidth
               onChange={setFeedback}
               placeholder={t('Ваш отзыв')}
               value={feedback}
             />
-          </>
+          </VStack>
         }
         off={
           <>
             <TextDeprecated title={feedbackTitle} />
 
             <InputDeprecated
+              className={classes.fullWidth}
               data-testid='RatingCard.Input'
               onChange={setFeedback}
               placeholder={t('Ваш отзыв')}

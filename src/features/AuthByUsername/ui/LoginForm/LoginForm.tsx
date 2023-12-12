@@ -106,6 +106,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
             <InputRedesigned
               autoFocus
               className={classes.input}
+              fullWidth
               onChange={onChangeUsername}
               placeholder={t('Имя пользователя')}
               type='text'
@@ -114,6 +115,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
 
             <InputRedesigned
               className={classes.input}
+              fullWidth
               onChange={onChangePassword}
               placeholder={t('Пароль')}
               type='text'

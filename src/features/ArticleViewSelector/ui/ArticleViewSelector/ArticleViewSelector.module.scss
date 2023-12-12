@@ -22,9 +22,12 @@
   }
 }
 
+// задаем смещение только в приложении (не в storybook)
 @media screen and (max-width: 1800px) {
-  .ArticleViewSelectorRedesigned {
-    position: absolute;
-    top: -190px;
+  body:has(> div#root) {
+    .ArticleViewSelectorRedesigned {
+      position: absolute;
+      top: -190px;
+    }
   }
 }
