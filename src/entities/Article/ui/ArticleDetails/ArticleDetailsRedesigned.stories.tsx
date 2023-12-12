@@ -160,6 +160,7 @@ export const Loading: Story = {
 Loading.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   StoreDecorator(stateArticleDetailsLoading),
+  ThemeDecorator(Theme.ORANGE),
 ];
 
 // Error article details

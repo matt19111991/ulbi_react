@@ -145,7 +145,7 @@ export const Loading: Story = {
   args: {},
 };
 
-Loading.decorators = [StoreDecorator(stateArticleDetailsLoading)];
+Loading.decorators = [StoreDecorator(stateArticleDetailsLoading), ThemeDecorator(Theme.ORANGE)];
 
 // Error article details
 

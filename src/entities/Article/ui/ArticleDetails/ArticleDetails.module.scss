@@ -11,9 +11,12 @@
   width: 100%;
 }
 
+// скрываем скелетоны только в приложении (не в storybook)
 @media screen and (max-width: 1800px) {
-  .skeleton {
-    display: none;
+  body:has(> div#root) {
+    .skeleton {
+      display: none;
+    }
   }
 }
 
