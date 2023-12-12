@@ -143,6 +143,8 @@ export const LoadingList: Story = {
   },
 };
 
+LoadingList.decorators = [ThemeDecorator(Theme.ORANGE)];
+
 // Loading article plates
 
 export const LoadingPlates: Story = {
@@ -158,6 +160,8 @@ export const LoadingPlates: Story = {
     },
   },
 };
+
+LoadingPlates.decorators = [ThemeDecorator(Theme.ORANGE)];
 
 // Empty article list
 
