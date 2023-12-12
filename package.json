@@ -22,7 +22,7 @@
     "postinstall": "node ./scripts/clearCache.js",
     "prettify": "npx prettier --write **/*.{json,ts,tsx}",
     "set:feature": "ts-node scripts/removeFeature/index.ts",
-    "storybook": " storybook dev -p 6006 -c ./config/storybook",
+    "storybook": "export SET NODE_OPTIONS=--no-warnings='DEP0040' && storybook dev -p 6006 -c ./config/storybook",
     "storybook:build": "storybook build -c ./config/storybook",
     "test:e2e": "cypress open",
     "test:ui": "npx loki test",
