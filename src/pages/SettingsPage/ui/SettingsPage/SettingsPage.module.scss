@@ -1,7 +1,10 @@
+// добавляем отступ только в приложении (не в storybook)
 @media screen and (max-width: 1800px) {
-  .SettingsPage {
-    position: relative;
-    top: 42px;
+  body:has(> div#root) {
+    .SettingsPage {
+      position: relative;
+      top: 42px;
+    }
   }
 }
 

@@ -11,26 +11,29 @@
   pointer-events: none;
 }
 
+// добавляем стили только в приложении (не в storybook)
 @media screen and (max-width: 1800px) {
-  .ArticlesFilters {
-    border-radius: 8px;
-    padding: 12px;
-    width: 100%;
-  }
+  body:has(> div#root) {
+    .ArticlesFilters {
+      border-radius: 8px;
+      padding: 12px;
+      width: 100%;
+    }
 
-  .search {
-    max-width: 300px;
-  }
+    .search {
+      max-width: 300px;
+    }
 
-  .stack {
-    display: flex;
-    flex-flow: row wrap;
-    gap: 16px;
-  }
+    .stack {
+      display: flex;
+      flex-flow: row wrap;
+      gap: 16px;
+    }
 
-  .tabs {
-    display: flex;
-    flex-direction: row;
+    .tabs {
+      display: flex;
+      flex-direction: row;
+    }
   }
 }
 

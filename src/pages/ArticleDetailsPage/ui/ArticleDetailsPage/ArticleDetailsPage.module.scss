@@ -4,11 +4,14 @@
   overflow-x: hidden;
 }
 
+// добавляем смещение только в приложении (не в storybook)
 @media screen and (max-width: 1800px) {
-  .ArticleDetailsPage {
-    height: calc(87vh - 300px);
-    min-width: auto;
-    position: relative;
-    top: 240px;
+  body:has(> div#root) {
+    .ArticleDetailsPage {
+      height: calc(87vh - 300px);
+      min-width: auto;
+      position: relative;
+      top: 240px;
+    }
   }
 }

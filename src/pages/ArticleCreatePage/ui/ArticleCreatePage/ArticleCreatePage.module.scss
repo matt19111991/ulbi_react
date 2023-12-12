@@ -2,10 +2,13 @@
   display: flex;
 }
 
+// добавляем отступ только в приложении (не в storybook)
 @media screen and (max-width: 1800px) {
-  .ArticleCreatePage {
-    height: calc(87vh - 180px);
-    position: relative;
-    top: 100px;
+  body:has(> div#root) {
+    .ArticleCreatePage {
+      height: calc(87vh - 180px);
+      position: relative;
+      top: 100px;
+    }
   }
 }

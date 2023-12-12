@@ -3,14 +3,17 @@
   width: 220px;
 }
 
+// добавляем стили только в приложении (не в storybook)
 @media screen and (max-width: 1800px) {
-  .card {
-    position: relative;
-    top: -48px;
-  }
+  body:has(> div#root) {
+    .card {
+      position: relative;
+      top: -48px;
+    }
 
-  .skeletonCard {
-    display: none;
+    .skeletonCard {
+      display: none;
+    }
   }
 }
 

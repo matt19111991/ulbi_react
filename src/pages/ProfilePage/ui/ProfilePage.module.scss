@@ -1,8 +1,11 @@
+// добавляем отступ только в приложении (не в storybook)
 @media screen and (max-width: 1800px) {
-  .ProfilePage {
-    height: calc(87vh - 160px);
-    padding-right: 16px;
-    position: relative;
-    top: 100px;
+  body:has(> div#root) {
+    .ProfilePage {
+      height: calc(87vh - 160px);
+      padding-right: 16px;
+      position: relative;
+      top: 100px;
+    }
   }
 }
