@@ -6,7 +6,7 @@ export const buildCssLoader = (isDev: boolean): webpack.RuleSetRule => ({
     exclude: /node_modules/,
     use: [ // cssLoaders работают в определенном порядке:
       isDev
-        ? 'style-loader'               // 3. создает стили в виде JS строк и помещает их финальный бандл
+        ? 'style-loader'               // 3. внедряет стили (по умолчанию через теги <style />) в DOM
         : MiniCssExtractPlugin.loader, // 3. стили выносятся в отдельные файлы
 /*
       loader можно задавать строкой: 'css-loader'
@@ -16,7 +16,7 @@ export const buildCssLoader = (isDev: boolean): webpack.RuleSetRule => ({
 //      @import 'style.css' => require('./style.css') | url(image.png) => require('./image.png')
 
         options: {
-          modules: {
+          modules: { // настройки CSS-модулей
 /*          css-loader применяем только для файлов '*.module.*',
             в остальных случаях CSS файлы обрабатываются как обычно
 */          auto: (resPath: string) => resPath.includes('.module.'),
@@ -28,15 +28,12 @@ export const buildCssLoader = (isDev: boolean): webpack.RuleSetRule => ({
         },
       },
 
-      'sass-loader', // 1. компилирует SASS/SCSS в CSS
-
-/*     .test {
-          &.custom {
-            &.extend {
-              display: none; => .test.custom.extend{display:none}
-            }
-          }
-       }
-*/
-    ],
+      'sass-loader', // 1. компилирует SASS/SCSS в CSS: .test {
+/*                                                        &.custom {
+                                                            &.extend {
+                                                              display: none; => .test.custom.extend{display:none}
+                                                            }
+                                                          }
+                                                        }
+*/  ],
 });
