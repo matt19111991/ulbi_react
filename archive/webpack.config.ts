@@ -4,12 +4,19 @@
    чтобы использовать такой формат импортов. Иначе require
 
    Благодаря модулям и типам выше можно перейти от webpack.config.js к webpack.config.ts
-*/ import path from 'path';
+*/ // @ts-ignore
+import path from 'path';
 
+// @ts-ignore
 import dotenv from 'dotenv';
+// @ts-ignore
 import webpack from 'webpack';
 
+// @ts-ignore
+// eslint-disable-next-line import/extensions,import/no-unresolved
 import { buildWebpackConfig } from './config/build/buildWebpackConfig';
+// @ts-ignore
+// eslint-disable-next-line import/extensions,import/no-unresolved
 import { BuildEnv, BuildMode, BuildPaths } from './config/build/types/config';
 
 // используем переменные из '.env' файла; будут доступны в 'process.env.API_URL'

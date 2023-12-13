@@ -6,10 +6,15 @@ export const buildCssLoader = (isDev: boolean): webpack.RuleSetRule => ({
     exclude: /node_modules/,
     use: [ // cssLoaders работают в определенном порядке:
       isDev
-        ? 'style-loader'               // 3. создает стили из JS строк и помещает их DOM
+        ? 'style-loader'               // 3. создает стили в виде JS строк и помещает их финальный бандл
         : MiniCssExtractPlugin.loader, // 3. стили выносятся в отдельные файлы
-      {
-        loader: 'css-loader', // loader может быть как объектом, так и строкой
+/*
+      loader можно задавать строкой: 'css-loader'
+
+*/    { // и объектом
+        loader: 'css-loader', // 2. преобразовывает CSS в JS (CommonJS)
+//      @import 'style.css' => require('./style.css') | url(image.png) => require('./image.png')
+
         options: {
           modules: {
 /*          css-loader применяем только для файлов '*.module.*',
@@ -19,11 +24,10 @@ export const buildCssLoader = (isDev: boolean): webpack.RuleSetRule => ({
             localIdentName: isDev
               ? '[path][name]__[local]--[hash:base64:5]' // для удобства отладки
               : '[hash:base64:8]',
-
           },
         },
       },
-      // 'css-loader', // 2. преобразовывает CSS в JS (CommonJS)
-      'sass-loader',   // 1. компилирует SASS в CSS
+
+      'sass-loader', // 1. компилирует SASS/SCSS в CSS
     ],
 });
