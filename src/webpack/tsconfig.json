@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/", // куда производится сборка. Значение неважно, т.к. за это отвечает Webpack
+
+    "noImplicitAny": true, // тип 'any' можно указывать только явно
+
+    "module": "ESNext", // система модулей. Чаще всего 'ESNext' или 'es6'
+
+    // конечная версия стандарта EcmaScript, в которую будет компилироваться код (для улучшения поддержки браузеров)
+    "target": "es5",
+
+    "jsx": "react-jsx",
+
+    "allowJs": true, // компилятор будет обрабатывать не только TS, но и JS файлы
+
+/*  позволяет избавиться от расширений файлов в импортах:
+    "import { add } from './math'" вместо "import { add } from './math.ts'"
+*/  "moduleResolution": "node", // 99% случаев => применяем 'node' стратегию
+
+/*  esModuleInterop позволяет работать с пакетами, которые используют CommonJS, как с ES6 модулями:
+    const path = require('path') | module.exports => import path from 'path';
+*/  "esModuleInterop": true,
+
+/*
+    Если какая-то библиотека не имеет default import, то ts-loader или babel-loader создадут их:
+    import * as path from 'path'; => import path from 'path';
+*/  "allowSyntheticDefaultImports": true
+  },
+
+  "include": ["./src/webpack/**/*.ts", "./src/webpack/**/*.tsx"],
+
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS" // исправляет SyntaxError: Cannot use import statement outside a module для webpack.config
+    }
+  }
+}
