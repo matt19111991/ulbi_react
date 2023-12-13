@@ -32,7 +32,7 @@
     "test:ui:html": "reg-cli --from .loki/report.json --report .loki/report.html",
     "test:ui:report": "npm run test:ui:json && npm run test:ui:html",
     "test:ui:update": "npx loki update",
-    "test:unit": "jest --config ./config/jest/jest.config.ts"
+    "test:unit": "export SET NODE_OPTIONS=--no-warnings='DEP0040' && jest --config ./config/jest/jest.config.ts"
   },
   "keywords": [],
   "author": "",

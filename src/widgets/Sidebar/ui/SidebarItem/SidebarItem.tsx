@@ -53,7 +53,13 @@ export const SidebarItem = memo(({ collapsed, item }: SidebarItemProps) => {
         >
           <RedesignedIcon inheritParentClassName Svg={Icon} />
 
-          <span className={classes.link}>{t(text)}</span>
+          {/*
+            Без контекста будет предупреждение: "babel-plugin-i18next-extract: Extraction error in
+            /home/dmitry/WebstormProjects/ulbi_react/src/widgets/Sidebar/ui/SidebarItem/SidebarItem.tsx
+            at line 68. Couldn't evaluate i18next key. You should either make the key evaluable or skip
+            the line using a skip comment"
+         */}
+          <span className={classes.link}>{t('Меню', { context: text.toString() })}</span>
         </AppLink>
       }
       off={
@@ -63,7 +69,7 @@ export const SidebarItem = memo(({ collapsed, item }: SidebarItemProps) => {
           to={path}
         >
           <Icon className={classes.icon} />
-          <span className={classes.link}>{t(text)}</span>
+          <span className={classes.link}>{t('Меню', { context: text.toString() })}</span>
         </AppLinkDeprecated>
       }
     />
