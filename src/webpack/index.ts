@@ -1,4 +1,4 @@
-import { calc } from './test';
+import { calc } from './second';
 
 import './style.scss';
 
