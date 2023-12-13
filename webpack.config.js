@@ -4,7 +4,7 @@ const webpack = require('webpack');
 
 module.exports = (env) => {
   return {
-    entry: path.resolve(__dirname, 'src', 'webpack', 'index.js'),
+    entry: path.resolve(__dirname, 'src', 'webpack', 'index.ts'),
     mode: env.mode ?? 'development',
     module: {
       rules: [
