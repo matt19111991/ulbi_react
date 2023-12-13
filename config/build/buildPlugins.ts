@@ -42,10 +42,6 @@ export function buildPlugins({
       template: paths.html,
     }),
 
-/*  ProgressPlugin отображает прогресс компиляции
-    (в 'production' лучше отключать, т.к. может замедлять сборку)
-*/  new webpack.ProgressPlugin(),
-
     buildDefinePlugin(apiUrl, isDev, project),
 
     new CircularDependencyPlugin({
@@ -79,6 +75,9 @@ export function buildPlugins({
       logLevel: 'error',
       openAnalyzer: false, // не открывать страницу с BundleAnalyzerPlugin при каждом запуске приложения
     }));
+
+//  ProgressPlugin отображает прогресс компиляции (в 'production' лучше отключать, т.к. может замедлять сборку)
+    plugins.push(new webpack.ProgressPlugin());
   }
 
   if (!isDev) {

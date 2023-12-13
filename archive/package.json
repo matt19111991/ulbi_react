@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:client:webpack": "webpack serve --env port=3000",
+    "start:client:webpack": "webpack serve -- --env port=3000 --env mode=development",
     "start:client:vite": "vite",
     "start:server:dev": "NODE_ENV=development node ./json-server/index.js",
     "start:server:prod": "NODE_ENV=production node ./json-server/index.js",

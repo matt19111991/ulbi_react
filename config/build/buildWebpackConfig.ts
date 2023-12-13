@@ -28,9 +28,9 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
 
     devServer: isDev ? buildDevServer(options) : undefined,
 
-    devtool: isDev
+    devtool: isDev // source-maps (карты исходного кода) нужны для отладочной информации в бандле
       ? 'eval-cheap-module-source-map' // build slow, rebuild fast - best practice
-      : undefined, // в production нужно отключать source-map для минимизации кода
+      : false, // в production нужно отключать source-map для минимизации кода
 
     output: { // настройка конечной сборки
 /*    при использовании статичного названия ('build.js') файл билда будет кешироваться,
