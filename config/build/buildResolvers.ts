@@ -12,7 +12,7 @@ export function buildResolvers(options: BuildOptions): webpack.ResolveOptions {
 
 /*      при импорте файлов с этими расширениями, можно указывать только название файла:
         (component.tsx => component): import Component from './component';
-*/      extensions: ['.tsx', '.ts', '.js'],
+*/      extensions: ['.tsx', '.ts', '.js'], // порядок важен, приоритет: .tsx => .ts => .js
 
 //      главный файл для каждого модуля
         mainFiles: ['index'],

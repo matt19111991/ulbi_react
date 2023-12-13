@@ -31,7 +31,10 @@
 
     "jsx": "react-jsx", // можно избавиться от "import React from 'react';" в каждом файле с JSX
     "allowJs": true, // компилятор будет обрабатывать не только TS, но и JS файлы
-    "moduleResolution": "node", // определяет: какие будут импорты. 99% случаев => 'node'
+
+/*  позволяет избавиться от расширений файлов в импортах:
+    "import { add } from './math'" вместо "import { add } from './math.ts'"
+*/  "moduleResolution": "node", // 99% случаев => применяем 'node' стратегию
 
 /*  esModuleInterop позволяет работать с пакетами, которые используют CommonJS, как с ES6 модулями:
     const path = require('path') | module.exports => import path from 'path';

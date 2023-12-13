@@ -9,6 +9,11 @@ module.exports = (env) => {
     module: {
       rules: [
         {
+          test: /\.tsx?$/,
+          exclude: /node_modules/,
+          use: 'ts-loader',
+        },
+        {
           test: /\.s[ac]ss$/i,
           exclude: /node_modules/,
           use: ['style-loader', 'css-loader', 'sass-loader'],
@@ -26,6 +31,9 @@ module.exports = (env) => {
       clean: true,
       filename: '[name].[contenthash].js',
       path: path.resolve(__dirname, 'build'),
+    },
+    resolve: {
+      extensions: ['.js', '.ts', '.tsx'],
     },
   };
 };

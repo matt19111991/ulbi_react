@@ -9,10 +9,13 @@
     // конечная версия стандарта EcmaScript, в которую будет компилироваться код (для улучшения поддержки браузеров)
     "target": "es5",
 
-    "jsx": "react",
+    "jsx": "react-jsx",
 
     "allowJs": true, // компилятор будет обрабатывать не только TS, но и JS файлы
 
-    "moduleResolution": "node", // определяет: какие будут импорты. 99% случаев => 'node'
+/*  позволяет избавиться от расширений файлов в импортах:
+    "import { add } from './math'" вместо "import { add } from './math.ts'"
+*/  "moduleResolution": "node" // 99% случаев => применяем 'node' стратегию
   },
+  "include": ["./src/webpack/**/*.ts", "./src/webpack/**/*.tsx"]
 }
