@@ -1,0 +1,9 @@
+@import 'optional';
+
+.test {
+  &.custom {
+    &.extend {
+      display: none;
+    }
+  }
+}

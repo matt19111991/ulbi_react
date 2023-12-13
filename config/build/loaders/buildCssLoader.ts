@@ -10,8 +10,8 @@ export const buildCssLoader = (isDev: boolean): webpack.RuleSetRule => ({
         : MiniCssExtractPlugin.loader, // 3. стили выносятся в отдельные файлы
 /*
       loader можно задавать строкой: 'css-loader'
-
-*/    { // и объектом
+      или объектом:
+*/    {
         loader: 'css-loader', // 2. преобразовывает CSS в JS (CommonJS)
 //      @import 'style.css' => require('./style.css') | url(image.png) => require('./image.png')
 
@@ -29,5 +29,14 @@ export const buildCssLoader = (isDev: boolean): webpack.RuleSetRule => ({
       },
 
       'sass-loader', // 1. компилирует SASS/SCSS в CSS
+
+/*     .test {
+          &.custom {
+            &.extend {
+              display: none; => .test.custom.extend{display:none}
+            }
+          }
+       }
+*/
     ],
 });

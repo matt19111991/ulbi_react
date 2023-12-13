@@ -1,4 +1,6 @@
-import { calc } from './test.ts';
+import { calc } from './test';
+
+import './style.scss';
 
 console.log('---Hello world---');
 console.log('---calc---', calc(5, 5));
