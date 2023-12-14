@@ -1,15 +1,15 @@
 // Глобальная декларация типов
 
-// Типизация css-modules для файлов вида '*.module.scss'
+// Типизация CSS-modules для файлов вида '*.module.scss'
 
-declare module '*.scss' {
+declare module '*.module.scss' {
   interface IClassNames {
     [className: string]: string;
   }
 
   const classNames: IClassNames;
 
-  export = classNames;
+  export default classNames;
 }
 
 // По умолчанию TypeScript не понимает импортируемые SVG изображения

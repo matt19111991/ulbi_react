@@ -9,14 +9,8 @@
 Решения:
     1. БЭМ: .modal__element_open и .block__element_open
 
-    2. CSS модули генерируют уникальные классы для .open:
+    2. CSS-modules генерируют уникальные классы для .open:
     .WJfas66YqMo9vlVy3cDg и Xwga441YqMo9vXCy5tXb
-*/
-
-/* WebStorm v.2020.1.2 выдает ошибку: 'stylelint format invalid option --syntax ...':
-   - stylelint > 13.13.1
-   - stylelint-scss > 3.21.0
-   - stylelint-config-recommended-scss > 4.3.0
 */
 
 @import 'reset';

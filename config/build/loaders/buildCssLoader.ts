@@ -1,39 +1,52 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import webpack from 'webpack';
 
-export const buildCssLoader = (isDev: boolean): webpack.RuleSetRule => ({
-    test: /\.s[ac]ss$/i,
-    exclude: /node_modules/,
-    use: [ // cssLoaders работают в определенном порядке:
-      isDev
-        ? 'style-loader'               // 3. внедряет стили (по умолчанию через теги <style />) в DOM
-        : MiniCssExtractPlugin.loader, // 3. стили выносятся в отдельные файлы
-/*
-      loader можно задавать строкой: 'css-loader'
-      или объектом:
-*/    {
-        loader: 'css-loader', // 2. преобразовывает CSS в JS (CommonJS)
-//      @import 'style.css' => require('./style.css') | url(image.png) => require('./image.png')
+export const buildCssLoader = (isDev: boolean): webpack.RuleSetRule => {
+  const styleLoader = isDev
+    ? 'style-loader'               // 3. внедряет стили (по умолчанию через теги <style />) в DOM
+    : MiniCssExtractPlugin.loader; // 3. стили выносятся в отдельные файлы
 
-        options: {
-          modules: { // настройки CSS-модулей
-/*          css-loader применяем только для файлов '*.module.*',
-            в остальных случаях CSS файлы обрабатываются как обычно
-*/          auto: (resPath: string) => resPath.includes('.module.'),
+  const cssLoader = { // 2. преобразовывает CSS в JS (CommonJS):
+    loader: 'css-loader',                         //    - @import 'style.css' => require('./style.css')
+    options: {                                    //    - url(image.png) => require('./image.png')
+      modules: { // настройки CSS-modules
+//      css-loader применяем только для файлов '*.module.*', в остальных случаях CSS файлы обрабатываются как обычно
+        auto: (resPath: string) => resPath.includes('.module.'),
 
-            localIdentName: isDev
-              ? '[path][name]__[local]--[hash:base64:5]' // для удобства отладки
-              : '[hash:base64:8]',
-          },
-        },
+        localIdentName: isDev
+/*        для удобства отладки:     path      name     local  hash
+                                     |          |        |      |
+                            V----V---V---V V----V---V    V      V
+             <h1 className='src-components-App-module__title--pDE3u'>Title</h1>
+*/        ? '[path][name]__[local]--[hash:base64:5]'
+
+          : '[hash:base64:8]', // <h1 className='pDE3uX9A'>Title</h1>
       },
+    },
+  };
 
-      'sass-loader', // 1. компилирует SASS/SCSS в CSS: .test {
-/*                                                        &.custom {
+  const sassLoader = 'sass-loader'; // 1. компилирует SASS/SCSS в CSS:
+/*                                                      .test {
+                                                          &.custom {
                                                             &.extend {
                                                               display: none; => .test.custom.extend{display:none}
                                                             }
                                                           }
                                                         }
-*/  ],
-});
+*/
+  return { // cssLoaders работают в определенном порядке: 1 => 2 => 3
+    test: /\.s[ac]ss$/i,
+    exclude: /node_modules/,
+    use: [
+      styleLoader,
+
+/*    loader можно задавать строкой:
+      'css-loader'
+
+      или объектом:
+*/    cssLoader,
+
+      sassLoader,
+    ],
+  };
+};

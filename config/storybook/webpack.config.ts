@@ -12,13 +12,13 @@ import { BuildPaths } from '../build/types/config';
   отдельный webpack.config для storybook, чтобы была возможность
     - использовать относительные пути
     - не указывать расширения файлов
-    - использовать CSS модули
+    - использовать CSS-modules
 */
 
 type Rule = webpack.RuleSetRule | string | 0 | false | undefined | null;
 
 export default ({ config }: { config: webpack.Configuration }) => {
-  // настройка CSS модулей
+  // настройка CSS-modules
   config.module!.rules!.push(buildCssLoader(true)); // storybook используем только в режиме разработки
 
   /*
