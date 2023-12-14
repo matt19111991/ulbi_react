@@ -21,7 +21,7 @@ export default (env: EnvVariables) => {
         }
       : undefined,
     devtool: isDev && 'inline-source-map',
-    entry: path.resolve(__dirname, 'src', 'webpack', 'index.ts'),
+    entry: path.resolve(__dirname, 'src', 'webpack', 'index.tsx'),
     mode: env.mode ?? 'development',
     module: {
       rules: [

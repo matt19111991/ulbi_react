@@ -10,7 +10,7 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 /*
   для оптимизации сборки в dev-режиме, мы используем только 'babel-loader' без 'ts-loader'
 
-  НО!!! 'babel-loader не умеет в 'runtime' проверять типы,
+  НО!!! 'babel-loader' не умеет в 'runtime' проверять типы,
   Нужно вынести проверку типов в отдельный процесс ('fork-ts-checker-webpack-plugin')
 */
 
