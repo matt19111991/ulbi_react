@@ -47,7 +47,7 @@ export default {
   // allow to stub out resources with a single module;
 
   moduleNameMapper: {
-    // для корректной работы CSS модулей в тестах ('identity-obj-proxy' mocks CSS modules)
+    // для корректной работы CSS-modules в тестах ('identity-obj-proxy' mocks CSS modules)
     '\\.s?css$': 'identity-obj-proxy',
 
     // для корректной работы изображений в тестах создаем заглушку
