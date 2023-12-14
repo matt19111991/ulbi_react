@@ -1,4 +1,5 @@
 import HTMLWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 import webpack from 'webpack';
 import type { Configuration as DevServerConfiguration } from 'webpack-dev-server';
@@ -33,7 +34,7 @@ export default (env: EnvVariables) => {
         {
           test: /\.s[ac]ss$/i,
           exclude: /node_modules/,
-          use: ['style-loader', 'css-loader', 'sass-loader'],
+          use: [isDev ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
         },
       ],
     },
@@ -43,6 +44,12 @@ export default (env: EnvVariables) => {
       }),
 
       isDev && new webpack.ProgressPlugin(),
+
+      !isDev &&
+        new MiniCssExtractPlugin({
+          chunkFilename: 'css/[name].[contenthash:8].css',
+          filename: 'css/[name].[contenthash:8].css',
+        }),
     ],
     output: {
       clean: true,

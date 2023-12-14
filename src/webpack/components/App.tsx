@@ -1,8 +1,19 @@
-import React from 'react';
+import { useState } from 'react';
 
-export const App = () => (
-  <div>
-    {/* eslint-disable-next-line i18next/no-literal-string */}
-    <h1>App</h1>
-  </div>
-);
+import './App.scss';
+
+export const App = () => {
+  const [count, setCount] = useState<number>(0);
+
+  const increment = () => setCount((prev) => prev + 1);
+
+  return (
+    <>
+      <h1>{count}</h1>
+
+      <button onClick={increment}>
+        <span>+</span>
+      </button>
+    </>
+  );
+};
