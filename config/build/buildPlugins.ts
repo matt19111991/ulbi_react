@@ -70,12 +70,6 @@ export function buildPlugins({
     plugins.push(new webpack.HotModuleReplacementPlugin());
 */
 
-//  BundleAnalyzerPlugin позволяет анализировать размер bundle и размеры зависимостей
-    plugins.push(new BundleAnalyzerPlugin({
-      logLevel: 'error',
-      openAnalyzer: false, // не открывать страницу с BundleAnalyzerPlugin при каждом запуске приложения
-    }));
-
 //  ProgressPlugin отображает прогресс компиляции (в 'production' лучше отключать, т.к. может замедлять сборку)
     plugins.push(new webpack.ProgressPlugin());
   }
@@ -90,6 +84,13 @@ export function buildPlugins({
         filename: 'css/[name].[contenthash:8].css',
       }),
     );
+/*
+    BundleAnalyzerPlugin позволяет анализировать размер bundle и размеры зависимостей
+    (нет смысла использовать в 'development' режиме, т.к. bundle не минимизирован и имеет множество зависимостей)
+*/  plugins.push(new BundleAnalyzerPlugin({
+      logLevel: 'error',
+      openAnalyzer: false, // не открывать страницу с BundleAnalyzerPlugin при каждом запуске приложения
+    }));
 
     plugins.push(
       new CopyPlugin({
