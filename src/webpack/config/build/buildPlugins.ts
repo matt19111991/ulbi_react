@@ -6,7 +6,7 @@ import webpack, { Configuration } from 'webpack';
 import { BuildOptions } from './types/types';
 
 export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
-  const { analyzer, mode, paths } = options;
+  const { analyzer, mode, paths, platform } = options;
 
   const isDev = mode === 'development';
   const isProd = mode === 'production';
@@ -14,6 +14,10 @@ export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
   const plugins: Configuration['plugins'] = [
     new HTMLWebpackPlugin({
       template: paths.html,
+    }),
+
+    new webpack.DefinePlugin({
+      __PLATFORM__: JSON.stringify(platform),
     }),
   ];
 

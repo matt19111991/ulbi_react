@@ -16,7 +16,6 @@
   },
 
   "include": [
-    "./src/app/types/global.d.ts",
     "./src/webpack/**/*.ts",
     "./src/webpack/**/*.tsx",
   ],
