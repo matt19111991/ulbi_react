@@ -1,11 +1,13 @@
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HTMLWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import webpack, { Configuration } from 'webpack';
 
 import { BuildOptions } from './types/types';
 
 export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
-  const { mode, paths } = options;
+  const { analyzer, mode, paths, platform } = options;
 
   const isDev = mode === 'development';
   const isProd = mode === 'production';
@@ -14,10 +16,16 @@ export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
     new HTMLWebpackPlugin({
       template: paths.html,
     }),
+
+    new webpack.DefinePlugin({
+      __PLATFORM__: JSON.stringify(platform),
+    }),
   ];
 
   if (isDev) {
     plugins.push(new webpack.ProgressPlugin());
+
+    plugins.push(new ForkTsCheckerWebpackPlugin());
   }
 
   if (isProd) {
@@ -27,6 +35,10 @@ export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
         filename: 'css/[name].[contenthash:8].css',
       })
     );
+  }
+
+  if (analyzer) {
+    plugins.push(new BundleAnalyzerPlugin());
   }
 
   return plugins;

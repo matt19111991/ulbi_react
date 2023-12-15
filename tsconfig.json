@@ -55,6 +55,8 @@
     "./src/**/*.tsx"
   ],
 
+  "exclude": ["./src/webpack/**"],
+
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS" // исправляет SyntaxError: Cannot use import statement outside a module для webpack.config

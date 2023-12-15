@@ -8,10 +8,14 @@ import { BuildOptions } from './types/config';
 
 export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 /*
-  для оптимизации сборки в dev-режиме, мы используем только 'babel-loader' без 'ts-loader'
+  Для оптимизации сборки в dev-режиме, мы используем что-то одно из:
+    1. Только 'babel-loader' без 'ts-loader'. НО!!! 'babel-loader' не умеет в 'runtime' проверять типы
 
-  НО!!! 'babel-loader' не умеет в 'runtime' проверять типы,
-  Нужно вынести проверку типов в отдельный процесс ('fork-ts-checker-webpack-plugin')
+    2. Опцию 'transpileOnly: true' для 'ts-loader':
+         'ts-loader' будет заниматься только компиляцией ts кода во время сборки БЕЗ ПРОВЕРКИ ТИПОВ
+         (прирост времени сборки почти в 2 раза)
+
+    Для обоих вариантов нужно вынести проверку типов в отдельный процесс ('fork-ts-checker-webpack-plugin')
 */
 
   const tsBabelLoader = buildBabelLoader(false, options.isDev);
@@ -19,6 +23,14 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 
   const cssLoaders = buildCssLoader(options.isDev);
 
+/*
+  'raw-loader', 'url-loader' и 'file-loader' можно заменить на Asset Modules (Webpack 5)
+
+  const assetLoader = { // замена для 'file-loader'
+    test: /\.(png|jpe?g|gif)$/i, // обрабатывает только PNG, JPG, JPEG и GIF изображения
+    type: 'asset/resource',
+  };
+*/
   const fileLoader = {
   // если нужно будет добавить обработку шрифтов, достаточно расширить регулярку "/\.(png|jpe?g|gif|woff)$/i"
   test: /\.(png|jpe?g|gif)$/i, // обрабатывает только PNG, JPG, JPEG и GIF изображения
@@ -35,12 +47,17 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
   ts-loader умеет обрабатывать JSX. Для нативного JS нужен дополнительно 'babel-loader'
   const typeScriptLoader = {
     test: /\.tsx?$/,
-    use: 'ts-loader',
-      exclude: '/node-modules/',
+    exclude: '/node-modules/',
+    use: {
+      loader: 'ts-loader',
+      options: {
+        transpileOnly: options.isDev, // компиляция ts кода во время сборки БЕЗ ПРОВЕРКИ ТИПОВ
+      },
     },
   };
 */
   return [ // порядок лоадеров в массиве имеет значение
+    // assetLoader,
     fileLoader,
     svgLoader,
 

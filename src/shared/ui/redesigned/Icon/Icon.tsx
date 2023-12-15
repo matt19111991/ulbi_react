@@ -1,4 +1,4 @@
-import { memo, MouseEvent, SVGProps, VFC } from 'react';
+import { FC, memo, MouseEvent, SVGProps } from 'react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
@@ -23,7 +23,7 @@ interface IconBaseProps extends SvgProps {
   /**
    * SVG изображение
    */
-  Svg: VFC<SVGProps<SVGSVGElement>>;
+  Svg: FC<SVGProps<SVGSVGElement>>;
 }
 
 interface NonClickableIconProps extends IconBaseProps {

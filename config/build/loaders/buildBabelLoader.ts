@@ -7,17 +7,14 @@ export const buildBabelLoader = (isTsx?: boolean, isDev?: boolean): webpack.Rule
   exclude: /node_modules/,
   use: {
     loader: 'babel-loader',
-    options: {
-//    должна быть консистентность между 'buildLoaders' в webpack и 'babel.config.json
-
+    options: { // должна быть консистентность между 'buildBabelLoader' в 'Webpack' и 'babel.config.json'
       cacheDirectory: true, // разрешаем кеширование
 
       plugins: [
         [
-/*        babel-plugin-i18next-extract извлекает все ключи переводов при сборке и
-          сохраняет в виде JSON по пути '<root>/extractedTranslations/'
-
-          обновляет переводы новыми значениями в runtime (во время запущенной сборки)
+/*        babel-plugin-i18next-extract:
+          - извлекает все ключи переводов при сборке и сохраняет их в виде JSON по пути '<root>/extractedTranslations/'
+          - обновляет переводы новыми значениями в runtime (во время запущенной сборки)
 */
           'i18next-extract',
           { // i18next-extract options
@@ -38,18 +35,16 @@ export const buildBabelLoader = (isTsx?: boolean, isDev?: boolean): webpack.Rule
         чтобы эти фичи брались не из глобального скоупа, а импортировались из 'babel-runtime'
 */      '@babel/plugin-transform-runtime',
 
-//      для '.tsx' удаляем все 'data-testid' из финальной сборки
         isTsx && !isDev && [
-          babelRemovePropsPlugin,
+          babelRemovePropsPlugin, // для '.tsx' удаляем все 'data-testid' из финальной сборки
           {
             props: ['data-testid'],
           },
         ],
 
-/*       Если 'HotModuleReplacementPlugin' будет работать нестабильно,
-         можно использовать 'react-refresh-webpack-plugin':
-*/       // isDev && require.resolve('react-refresh/babel'),
-      ].filter(Boolean), // отфильтровываем неактивные плагины
+/*       Если 'HotModuleReplacementPlugin' будет работать нестабильно, можно применить 'react-refresh-webpack-plugin':
+         isDev && require.resolve('react-refresh/babel'),
+*/     ].filter(Boolean), // отфильтровываем неактивные плагины
 
 //    настройки для преобразования новых стандартов в старые (поддержка старых браузеров)
       presets: [
@@ -61,10 +56,8 @@ export const buildBabelLoader = (isTsx?: boolean, isDev?: boolean): webpack.Rule
           },
         ],
       ],
-
-/*    для React / JSX (без 'ts-loader')
-      presets: ['@babel/preset-env', '@babel/preset-react'],
-*/
-    },
+/*
+      presets: ['@babel/preset-env', '@babel/preset-react'], // для React / JSX (без 'ts-loader'):
+*/ },
   },
 });
