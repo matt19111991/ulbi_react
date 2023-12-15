@@ -23,7 +23,7 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 
   const cssLoaders = buildCssLoader(options.isDev);
 
-/*
+/* TODO: перейти с file-loader на Asset Modules
   'raw-loader', 'url-loader' и 'file-loader' можно заменить на Asset Modules (Webpack 5)
 
   const assetLoader = { // замена для 'file-loader'
