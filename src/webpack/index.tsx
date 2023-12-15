@@ -4,8 +4,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { App } from './components/App';
 
-import { About } from './pages/about';
-import { Shop } from './pages/shop';
+import { About } from '@/pages/about';
+import { Shop } from '@/pages/shop';
 
 import './style.scss';
 
