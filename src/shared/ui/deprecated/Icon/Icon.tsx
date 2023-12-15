@@ -1,4 +1,4 @@
-import { memo, SVGProps, VFC } from 'react';
+import { FC, memo, SVGProps } from 'react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
@@ -18,7 +18,7 @@ interface IconProps extends SVGProps<SVGSVGElement> {
   /**
    * SVG изображение
    */
-  Svg: VFC<SVGProps<SVGSVGElement>>;
+  Svg: FC<SVGProps<SVGSVGElement>>;
 }
 
 // Обёртка для SVG (чтобы применялся цвет соответствующей темы к SVG)

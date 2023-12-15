@@ -10,12 +10,12 @@ export const buildSvgLoader = (): webpack.RuleSetRule => ({
         svgoConfig: {
           plugins: [
             {
-              name: 'convertColors', // заменяет в SVG все цвета на 'currentColor'
-              params: {
+              name: 'convertColors', // заменяет в SVG все цвета на 'currentColor', после чего
+              params: {              // в JSX можно задавать цвет для SVG через color (CSS)
                 currentColor: true,
-              },
-            },
-          ],
+              },                     // в .svg файле на корневом '<svg></svg>' компоненте должно быть
+            },                       // выставлено любое значение fill="..."
+          ],                         // иначе установка через CSS не сработает
         },
       },
     },

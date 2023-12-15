@@ -1,4 +1,4 @@
-import { MouseEvent, memo, SVGProps, VFC } from 'react';
+import { FC, MouseEvent, memo, SVGProps } from 'react';
 
 import { ArticleView } from '@/entities/Article';
 
@@ -24,7 +24,7 @@ interface ViewType {
   /**
    * Иконка для вида списка статей
    */
-  icon: VFC<SVGProps<SVGSVGElement>>;
+  icon: FC<SVGProps<SVGSVGElement>>;
 
   /**
    * Значение вида списка статей

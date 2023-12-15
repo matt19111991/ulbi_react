@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
+import jpgImage from '@/assets/cat.jpg';
+import pngImage from '@/assets/spot.png';
+
+import Calendar from '@/assets/calendar.svg';
+
 import classes from './App.module.scss';
 
 export const App = () => {
@@ -10,6 +15,15 @@ export const App = () => {
 
   return (
     <>
+      <div>
+        <img alt='' height={150} src={pngImage} width={300} />
+        <img alt='' height={150} src={jpgImage} width={120} />
+      </div>
+
+      <div>
+        <Calendar className={classes.icon} height={50} width={50} />
+      </div>
+
       <Link to='/'>Home</Link><br />
       <Link to='about'>About</Link><br />
       <Link to='shop'>Shop</Link>

@@ -19,6 +19,14 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 
   const cssLoaders = buildCssLoader(options.isDev);
 
+/*
+  'raw-loader', 'url-loader' и 'file-loader' можно заменить на Asset Modules (Webpack 5)
+
+  const assetLoader = { // замена для 'file-loader'
+    test: /\.(png|jpe?g|gif)$/i, // обрабатывает только PNG, JPG, JPEG и GIF изображения
+    type: 'asset/resource',
+  };
+*/
   const fileLoader = {
   // если нужно будет добавить обработку шрифтов, достаточно расширить регулярку "/\.(png|jpe?g|gif|woff)$/i"
   test: /\.(png|jpe?g|gif)$/i, // обрабатывает только PNG, JPG, JPEG и GIF изображения
@@ -41,6 +49,7 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
   };
 */
   return [ // порядок лоадеров в массиве имеет значение
+    // assetLoader,
     fileLoader,
     svgLoader,
 
