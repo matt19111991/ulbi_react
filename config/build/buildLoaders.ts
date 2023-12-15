@@ -8,10 +8,14 @@ import { BuildOptions } from './types/config';
 
 export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 /*
-  для оптимизации сборки в dev-режиме, мы используем только 'babel-loader' без 'ts-loader'
+  Для оптимизации сборки в dev-режиме, мы используем что-то одно из:
+    1. Только 'babel-loader' без 'ts-loader'. НО!!! 'babel-loader' не умеет в 'runtime' проверять типы
 
-  НО!!! 'babel-loader' не умеет в 'runtime' проверять типы,
-  Нужно вынести проверку типов в отдельный процесс ('fork-ts-checker-webpack-plugin')
+    2. Опцию 'transpileOnly: true' для 'ts-loader':
+         'ts-loader' будет заниматься только компиляцией ts кода во время сборки БЕЗ ПРОВЕРКИ ТИПОВ
+         (прирост времени сборки почти в 2 раза)
+
+    Для обоих вариантов нужно вынести проверку типов в отдельный процесс ('fork-ts-checker-webpack-plugin')
 */
 
   const tsBabelLoader = buildBabelLoader(false, options.isDev);
@@ -43,8 +47,12 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
   ts-loader умеет обрабатывать JSX. Для нативного JS нужен дополнительно 'babel-loader'
   const typeScriptLoader = {
     test: /\.tsx?$/,
-    use: 'ts-loader',
-      exclude: '/node-modules/',
+    exclude: '/node-modules/',
+    use: {
+      loader: 'ts-loader',
+      options: {
+        transpileOnly: options.isDev, // компиляция ts кода во время сборки БЕЗ ПРОВЕРКИ ТИПОВ
+      },
     },
   };
 */
