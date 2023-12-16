@@ -53,14 +53,11 @@ export function buildPlugins({
     }),
   ];
 
-  if (isDev) {
-/*  HotModuleReplacementPlugin позволяет применить правки в коде без перезагрузки страницы
+  if (isDev) { // TODO: перейти на 'react-refresh-webpack-plugin'
+/*  'react-refresh-webpack-plugin' позволяет применить правки в коде без перезагрузки страницы
     Обеспечивает более стабильную работу, чем функционал 'webpack-dev-server' из коробки
 
-    Если 'HotModuleReplacementPlugin' будет работать нестабильно, можно использовать 'react-refresh-webpack-plugin'
     plugins.push(new ReactRefreshWebpackPlugin());
-
-    plugins.push(new webpack.HotModuleReplacementPlugin());
 */
 
 //  ProgressPlugin отображает прогресс компиляции (в 'production' лучше отключать, т.к. может замедлять сборку)

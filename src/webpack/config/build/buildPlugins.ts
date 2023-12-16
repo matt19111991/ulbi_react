@@ -1,3 +1,4 @@
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HTMLWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
@@ -26,6 +27,8 @@ export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
     plugins.push(new webpack.ProgressPlugin());
 
     plugins.push(new ForkTsCheckerWebpackPlugin());
+
+    plugins.push(new ReactRefreshWebpackPlugin());
   }
 
   if (isProd) {

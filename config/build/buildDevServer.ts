@@ -13,7 +13,7 @@ export function buildDevServer(options: BuildOptions): DevServerConfiguration {
         Иначе, если обновить страницу '/about', будет 'Cannot GET /about'
 */      historyApiFallback: true,
 
-        hot: true, // Hot Module Replacement включен
+        hot: true, // HMR режим включен (достаточно для чистого JS/TS, но недостаточно для React)
         port: options.port,
         open: false, // 'open: true' автоматически открывает страницу при запуске сервера
     };

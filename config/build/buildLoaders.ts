@@ -1,3 +1,7 @@
+/*
+  библиотека для корректной работы 'react-refresh-webpack-plugin' при использовании 'ts-loader'
+  import ReactRefreshTypeScript from 'react-refresh-typescript';
+*/
 import webpack from 'webpack';
 
 import { buildBabelLoader } from './loaders/buildBabelLoader';
@@ -51,6 +55,9 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     use: {
       loader: 'ts-loader',
       options: {
+        getCustomTransformers: () => ({ // для корректной работы 'react-refresh-webpack-plugin'
+          before: [isDev && ReactRefreshTypeScript()].filter(Boolean)
+        }),
         transpileOnly: options.isDev, // компиляция ts кода во время сборки БЕЗ ПРОВЕРКИ ТИПОВ
       },
     },

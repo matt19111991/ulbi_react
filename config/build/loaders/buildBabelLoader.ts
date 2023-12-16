@@ -42,8 +42,8 @@ export const buildBabelLoader = (isTsx?: boolean, isDev?: boolean): webpack.Rule
           },
         ],
 
-/*       Если 'HotModuleReplacementPlugin' будет работать нестабильно, можно применить 'react-refresh-webpack-plugin':
-         isDev && require.resolve('react-refresh/babel'),
+/*      TODO: перейти на 'react-refresh-webpack-plugin' (нужны дополнительные настройки для 'babel-loader')
+        isDev && require.resolve('react-refresh/babel'),
 */     ].filter(Boolean), // отфильтровываем неактивные плагины
 
 //    настройки для преобразования новых стандартов в старые (поддержка старых браузеров)
