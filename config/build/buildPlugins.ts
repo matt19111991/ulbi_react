@@ -93,6 +93,7 @@ export function buildPlugins({
     BundleAnalyzerPlugin позволяет анализировать размер bundle и размеры зависимостей
     (нет смысла использовать в 'development' режиме, т.к. bundle не минимизирован и имеет множество зависимостей)
 */  plugins.push(new BundleAnalyzerPlugin({
+      analyzerMode: 'static', // сгенерируется отдельный html файл с отчетом
       logLevel: 'error',
       openAnalyzer: false, // не открывать страницу с BundleAnalyzerPlugin при каждом запуске приложения
     }));
