@@ -13,8 +13,6 @@ export const App = () => {
 
   const increment = () => setCount((prev) => prev + 1);
 
-  increment('3311');
-
   return (
     <>
       <h1>Platform: {__PLATFORM__}</h1>
