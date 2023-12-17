@@ -2,6 +2,14 @@ import webpack from 'webpack';
 
 import babelRemovePropsPlugin from '../babel/babelRemovePropsPlugin';
 
+// для работы 'babel-loader' нужно установить '@babel/core' библиотеку
+
+/*
+  'babel.config.json' файл
+  - если в проекте не используется 'Webpack', то все настройки для 'babel-loader' задаются в 'babel.config.json'
+  - также для 'Jest' среды настройки 'babel-loader' выносятся в 'babel.config.json'
+*/
+
 export const buildBabelLoader = (isTsx?: boolean, isDev?: boolean): webpack.RuleSetRule => ({
   test: isTsx ? /\.(jsx|tsx)$/ : /\.(js|ts)$/,
   exclude: /node_modules/,
@@ -48,11 +56,12 @@ export const buildBabelLoader = (isTsx?: boolean, isDev?: boolean): webpack.Rule
 
 //    настройки для преобразования новых стандартов в старые (поддержка старых браузеров)
       presets: [
-        '@babel/preset-env',
-        '@babel/preset-typescript',
+        '@babel/preset-env', // позволяет использовать новейшие функции JS
+        '@babel/preset-typescript', // для поддержки TS
         [
-          '@babel/preset-react', {
-            runtime: 'automatic',
+          '@babel/preset-react', // для поддержки JSX
+          { // без этой опции получаем ошибку: 'ReferenceError: React is not defined'
+            runtime: isDev ? 'automatic' : 'classic',
           },
         ],
       ],
