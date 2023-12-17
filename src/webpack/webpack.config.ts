@@ -15,13 +15,14 @@ export default (env: EnvVariables) => {
     entry: path.resolve(__dirname, 'src', 'webpack', 'index.tsx'),
     html: path.resolve(__dirname, 'public', 'index.html'),
     output: path.resolve(__dirname, 'build'),
+    public: path.resolve(__dirname, 'public'),
     src: path.resolve(__dirname, 'src', 'webpack'),
   };
 
   const config = buildWebpack({
     analyzer: env.analyzer ?? false,
     mode: env.mode ?? 'development',
-    paths: paths,
+    paths,
     platform: env.platform ?? 'desktop',
     port: env.port ?? 3000,
   });

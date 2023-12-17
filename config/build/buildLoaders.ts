@@ -10,6 +10,12 @@ import { buildSvgLoader } from './loaders/buildSvgLoader';
 
 import { BuildOptions } from './types/config';
 
+/*
+  Альтернативные и более современные варианты загрузчиков вместо 'babel-loader' и 'ts-loader':
+  - 'swc-loader'
+  - 'esbuild-loader'
+*/
+
 export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 /*
   Для оптимизации сборки в dev-режиме, мы используем что-то одно из:
