@@ -1,6 +1,8 @@
-import { PluginItem } from '@babel/core';
+import type { PluginItem } from '@babel/core';
 
-export default (): PluginItem => {
+// для корректной работы с TS нужно установить '@types/babel__core'
+
+export default (): PluginItem => { // использование: babelRemovePropsPlugin(['data-testid', '...']);
   return {
     visitor: {
 /*   'Program' - название ноды в AST дереве; используем для того, чтобы можно было
@@ -9,7 +11,8 @@ export default (): PluginItem => {
         const attributesToRemove = state.opts.props || []; // массив атрибутов для удаления
 
         path.traverse({ // проходимся по всем нодам AST дерева
-          JSXIdentifier(current) { // JSXIdentifier === атрибут (как, например, 'data-testid')
+//        JSXIdentifier === атрибут (как, например, 'data-testid')
+          JSXIdentifier(current) {
             const nodeName = current.node.name; // получаем имя текущей ноды
 
             if (attributesToRemove.includes(nodeName)) {
@@ -21,5 +24,3 @@ export default (): PluginItem => {
     },
   };
 };
-
-// babelRemovePropsPlugin(['data-testid', '...']);
