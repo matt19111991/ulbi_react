@@ -11,6 +11,8 @@ import babelRemovePropsPlugin from '../babel/babelRemovePropsPlugin';
   - для 'Jest' среды настройки 'babel-loader' выносятся в 'babel.config.json'
 */
 
+// TODO: перенести все options в 'babel.config.json' файл
+
 export const buildBabelLoader = (isTsx?: boolean, isDev?: boolean): webpack.RuleSetRule => ({
   test: isTsx ? /\.(jsx|tsx)$/ : /\.(js|ts)$/,
   exclude: /node_modules/,
