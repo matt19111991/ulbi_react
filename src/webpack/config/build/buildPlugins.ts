@@ -1,8 +1,10 @@
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HTMLWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import path from 'path';
 import webpack, { Configuration } from 'webpack';
 
 import { BuildOptions } from './types/types';
@@ -15,6 +17,7 @@ export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
 
   const plugins: Configuration['plugins'] = [
     new HTMLWebpackPlugin({
+      favicon: path.resolve(paths.public, 'favicon.ico'),
       template: paths.html,
     }),
 
@@ -37,6 +40,17 @@ export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
         chunkFilename: 'css/[name].[contenthash:8].css',
         filename: 'css/[name].[contenthash:8].css',
       })
+    );
+
+    plugins.push(
+      new CopyPlugin({
+        patterns: [
+          {
+            from: path.resolve(paths.public, 'locales'),
+            to: path.resolve(paths.output, 'locales'),
+          },
+        ],
+      }),
     );
   }
 
