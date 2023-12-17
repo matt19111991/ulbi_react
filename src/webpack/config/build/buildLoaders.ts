@@ -2,10 +2,13 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ReactRefreshTypeScript from 'react-refresh-typescript';
 import type { ModuleOptions } from 'webpack';
 
+import babelRemovePropsPlugin from '../../../../config/build/babel/babelRemovePropsPlugin';
+
 import { BuildOptions } from './types/types';
 
 export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
   const isDev = options.mode === 'development';
+  const isProd = options.mode === 'production';
 
   const assetLoader = {
     test: /\.(png|jpe?g|gif)$/i,
@@ -58,6 +61,16 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
       {
         loader: 'babel-loader',
         options: {
+          plugins: isProd
+            ? [
+              [
+                babelRemovePropsPlugin,
+                {
+                  props: ['data-testid'],
+                },
+              ],
+            ]
+          : undefined,
           presets: [
             '@babel/preset-env',
             '@babel/preset-typescript',
