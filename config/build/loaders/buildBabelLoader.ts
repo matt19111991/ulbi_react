@@ -5,9 +5,10 @@ import babelRemovePropsPlugin from '../babel/babelRemovePropsPlugin';
 // для работы 'babel-loader' нужно установить '@babel/core' библиотеку
 
 /*
-  'babel.config.json' файл
+  'babel.config.json' файл vs buildBabelLoader для 'Webpack'
+  - используем что-то одно, нет смысла дублировать настройки
   - если в проекте не используется 'Webpack', то все настройки для 'babel-loader' задаются в 'babel.config.json'
-  - также для 'Jest' среды настройки 'babel-loader' выносятся в 'babel.config.json'
+  - для 'Jest' среды настройки 'babel-loader' выносятся в 'babel.config.json'
 */
 
 export const buildBabelLoader = (isTsx?: boolean, isDev?: boolean): webpack.RuleSetRule => ({
@@ -15,7 +16,7 @@ export const buildBabelLoader = (isTsx?: boolean, isDev?: boolean): webpack.Rule
   exclude: /node_modules/,
   use: {
     loader: 'babel-loader',
-    options: { // должна быть консистентность между 'buildBabelLoader' в 'Webpack' и 'babel.config.json'
+    options: {
       cacheDirectory: true, // разрешаем кеширование
 
       plugins: [
