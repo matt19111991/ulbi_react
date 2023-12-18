@@ -58,10 +58,9 @@ Orange.decorators = [
 
 export const Clickable: Story = {
   args: {
-    // @ts-ignore
     clickable: true,
     Svg: IconSvg,
-  },
+  } as Record<string, boolean | typeof IconSvg>,
 };
 
 Clickable.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
