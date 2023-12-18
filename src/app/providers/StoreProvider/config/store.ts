@@ -9,7 +9,7 @@ import { rtkApi } from '@/shared/api/rtkApi';
 import { pageScrollReducer } from '@/widgets/Page';
 
 import { createReducerManager } from './reducerManager';
-import { StateSchema, ThunkExtraArg } from './StateSchema';
+import { ReduxStoreWithManager, StateSchema, ThunkExtraArg } from './StateSchema';
 
 // оборачиваем в дополнительную функцию для переиспользования 'store' в 'jest', 'storybook' и других местах
 export const createReduxStore = (
@@ -74,10 +74,9 @@ export const createReduxStore = (
      * Для работы с асинхронными редюсерами
      */
     reducer: reducerManager.reduce as Reducer<StateSchema>,
-  });
+  }) as ReduxStoreWithManager;
 
   // для возможности использования асинхронных редюсеров
-  // @ts-ignore
   store.reducerManager = reducerManager;
 
   return store;

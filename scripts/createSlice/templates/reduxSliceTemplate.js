@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/extensions,import/no-unresolved
-const firstCharUpperCase = require('../firstCharUpperCase');
+const firstCharUpperCase = require('../firstCharUpperCase.js');
 
 module.exports = (sliceName) => {
   const typeName = `${firstCharUpperCase(sliceName)}Schema`;

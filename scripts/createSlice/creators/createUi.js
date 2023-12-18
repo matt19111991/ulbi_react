@@ -1,16 +1,11 @@
 const fs = require('fs/promises');
 
-// eslint-disable-next-line import/extensions,import/no-unresolved
-const firstCharUpperCase = require('../firstCharUpperCase');
-// eslint-disable-next-line import/extensions,import/no-unresolved
-const resolveRoot = require('../resolveRoot');
+const firstCharUpperCase = require('../firstCharUpperCase.js');
+const resolveRoot = require('../resolveRoot.js');
 
-// eslint-disable-next-line import/extensions,import/no-unresolved
-const componentTemplate = require('../templates/componentTemplate');
-// eslint-disable-next-line import/extensions,import/no-unresolved
-const storyTemplate = require('../templates/storyTemplate');
-// eslint-disable-next-line import/extensions,import/no-unresolved
-const styleTemplate = require('../templates/styleTemplate');
+const componentTemplate = require('../templates/componentTemplate.js');
+const storyTemplate = require('../templates/storyTemplate.js');
+const styleTemplate = require('../templates/styleTemplate.js');
 
 module.exports = async (layer, sliceName) => {
   const resolveUiPath = (...segments) => resolveRoot('src', layer, sliceName, 'ui', ...segments);

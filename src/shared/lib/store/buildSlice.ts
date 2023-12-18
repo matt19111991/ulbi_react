@@ -32,7 +32,6 @@ export const buildSlice = <
       не приходилось вызывать каждый раз в компонентах
    */
 
-    // @ts-ignore
     return useMemo(() => bindActionCreators(slice.actions, dispatch), [dispatch]);
   };
 

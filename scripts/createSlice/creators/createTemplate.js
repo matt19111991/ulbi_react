@@ -1,14 +1,10 @@
 const fs = require('fs/promises'); // работаем с 'file system' из 'Node.js'
 
-// eslint-disable-next-line import/extensions,import/no-unresolved
-const resolveRoot = require('../resolveRoot');
+const resolveRoot = require('../resolveRoot.js');
 
-// eslint-disable-next-line import/extensions,import/no-unresolved
-const createModel = require('./createModel');
-// eslint-disable-next-line import/extensions,import/no-unresolved
-const createPublicApi = require('./createPublicApi');
-// eslint-disable-next-line import/extensions,import/no-unresolved
-const createUi = require('./createUi');
+const createModel = require('./createModel.js');
+const createPublicApi = require('./createPublicApi.js');
+const createUi = require('./createUi.js');
 
 module.exports = async (layer, sliceName) => {
   try {

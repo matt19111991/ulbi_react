@@ -1,33 +1,25 @@
 const fs = require('fs/promises');
 
-// eslint-disable-next-line import/extensions,import/no-unresolved
-const resolveRoot = require('../resolveRoot');
+const resolveRoot = require('../resolveRoot.js');
 
-// eslint-disable-next-line import/extensions,import/no-unresolved
-const reduxSliceTemplate = require('../templates/reduxSliceTemplate');
-// eslint-disable-next-line import/extensions,import/no-unresolved
-const reduxSliceTestTemplate = require('../templates/reduxSliceTestTemplate');
+const reduxSliceTemplate = require('../templates/reduxSliceTemplate.js');
+const reduxSliceTestTemplate = require('../templates/reduxSliceTestTemplate.js');
 
-// eslint-disable-next-line import/extensions,import/no-unresolved
-const schemaTypeTemplate = require('../templates/schemaTypeTemplate');
+const schemaTypeTemplate = require('../templates/schemaTypeTemplate.js');
 
-// eslint-disable-next-line import/extensions,import/no-unresolved
-const selectorTemplate = require('../templates/selectorTemplate');
-// eslint-disable-next-line import/extensions,import/no-unresolved
-const selectorTestTemplate = require('../templates/selectorTestTemplate');
+const selectorTemplate = require('../templates/selectorTemplate.js');
+const selectorTestTemplate = require('../templates/selectorTestTemplate.js');
 
-// eslint-disable-next-line import/extensions,import/no-unresolved
-const serviceTemplate = require('../templates/serviceTemplate');
-// eslint-disable-next-line import/extensions,import/no-unresolved
-const serviceTestTemplate = require('../templates/serviceTestTemplate');
+const serviceTemplate = require('../templates/serviceTemplate.js');
+const serviceTestTemplate = require('../templates/serviceTestTemplate.js');
 
 module.exports = async (layer, sliceName) => {
-  const resolveModelPath = (
-    ...segments
-  ) => resolveRoot('src', layer, sliceName, 'model', ...segments);
+  const resolveModelPath = (...segments) =>
+    resolveRoot('src', layer, sliceName, 'model', ...segments);
 
   const createModelStructure = async () => {
-    try { // создаем необходимые папки
+    // создаем необходимые папки
+    try {
       await fs.mkdir(resolveModelPath());
       await fs.mkdir(resolveModelPath('types'));
       await fs.mkdir(resolveModelPath('slices'));
@@ -39,14 +31,16 @@ module.exports = async (layer, sliceName) => {
     }
   };
 
-  const createReduxSlice  = async () => {
+  const createReduxSlice = async () => {
     try {
-      await fs.writeFile( // создаем файл для слайса
+      // создаем файл для слайса
+      await fs.writeFile(
         resolveModelPath('slices', `${sliceName}Slice.ts`), // по этому пути
         reduxSliceTemplate(sliceName), // c этим шаблоном
       );
 
-      await fs.writeFile( // создаем файл для тестов слайса
+      // создаем файл для тестов слайса
+      await fs.writeFile(
         resolveModelPath('slices', `${sliceName}Slice.test.ts`), // по этому пути
         reduxSliceTestTemplate(sliceName), // c этим шаблоном
       );
@@ -56,9 +50,10 @@ module.exports = async (layer, sliceName) => {
     }
   };
 
-  const createSchemaType  = async () => {
+  const createSchemaType = async () => {
     try {
-      await fs.writeFile( // создаем файл для типов
+      // создаем файл для типов
+      await fs.writeFile(
         resolveModelPath('types', `${sliceName}Schema.ts`), // по этому пути
         schemaTypeTemplate(sliceName), // c этим шаблоном
       );
@@ -68,14 +63,16 @@ module.exports = async (layer, sliceName) => {
     }
   };
 
-  const createSelector  = async () => {
+  const createSelector = async () => {
     try {
-      await fs.writeFile( // создаем файл для селекторов
+      // создаем файл для селекторов
+      await fs.writeFile(
         resolveModelPath('selectors', `${sliceName}.ts`), // по этому пути
         selectorTemplate(sliceName, `${sliceName}Selector`), // c этим шаблоном
       );
 
-      await fs.writeFile( // создаем файл для тестов селекторов
+      // создаем файл для тестов селекторов
+      await fs.writeFile(
         resolveModelPath('selectors', `${sliceName}.test.ts`), // по этому пути
         selectorTestTemplate(sliceName, `${sliceName}Selector`), // c этим шаблоном
       );
@@ -85,14 +82,16 @@ module.exports = async (layer, sliceName) => {
     }
   };
 
-  const createService  = async () => {
+  const createService = async () => {
     try {
-      await fs.writeFile( // создаем файл для сервиса
+      // создаем файл для сервиса
+      await fs.writeFile(
         resolveModelPath('services', `${sliceName}.ts`), // по этому пути
         serviceTemplate(sliceName, `${sliceName}Service`), // c этим шаблоном
       );
 
-      await fs.writeFile( // создаем файл для тестов сервиса
+      // создаем файл для тестов сервиса
+      await fs.writeFile(
         resolveModelPath('services', `${sliceName}.test.ts`), // по этому пути
         serviceTestTemplate(sliceName, `${sliceName}Service`), // c этим шаблоном
       );

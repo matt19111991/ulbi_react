@@ -26,7 +26,6 @@ export default ({ config }: { config: webpack.Configuration }) => {
     подключение '@svgr/webpack' лоадера
   */
 
-  // eslint-disable-next-line no-param-reassign
   config.module!.rules = config.module!.rules!.map((rule: Rule) => {
     const iteratedRule = rule as webpack.RuleSetRule;
 

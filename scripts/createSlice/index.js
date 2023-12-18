@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/extensions,import/no-unresolved
-const createTemplate = require('./creators/createTemplate');
+const createTemplate = require('./creators/createTemplate.js');
 
 /*                [0]              [1]                     [2], [3], [4], ...
   process.argv[путь_до_ноды, путь_до_скрипта, ...все_аргументы_которые_сами_передадим]

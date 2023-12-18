@@ -137,7 +137,7 @@ export const Page = ({
         window.scrollTo({ behavior: 'auto', top: 0 });
       }
     }
-    /* eslint-disable react-hooks/exhaustive-deps */
+    /* eslint-disable-next-line react-hooks/exhaustive-deps */
   }, [isAppRedesigned, mounted, storableScroll]);
 
   const toggleFeaturePageClass = toggleFeatures({

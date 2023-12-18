@@ -4,10 +4,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { App } from './components/App/App';
 
-// @ts-ignore
-import { About } from '@/pages/about';
-// @ts-ignore
-import { Shop } from '@/pages/shop';
+import { About } from '../webpack/pages/about';
+import { Shop } from '../webpack/pages/shop';
 
 import './style.scss';
 

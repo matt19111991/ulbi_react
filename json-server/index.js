@@ -92,7 +92,6 @@ if (isDevelopment) {
   const HTTP_PORT = 8000;
 
   httpServer.listen(HTTP_PORT, () => {
-    // eslint-disable-next-line no-console
     console.log(`--- Server is running on ${HTTP_PORT} port ---`);
   });
 } else {
@@ -109,7 +108,6 @@ if (isDevelopment) {
   const HTTPS_PORT = 8443;
 
   httpsServer.listen(HTTPS_PORT, () => {
-    // eslint-disable-next-line no-console
     console.log(`--- Server is running on ${HTTPS_PORT} port ---`);
   });
 }

@@ -1,9 +1,7 @@
 const fs = require('fs/promises');
 
-// eslint-disable-next-line import/extensions,import/no-unresolved
-const firstCharUpperCase = require('../firstCharUpperCase');
-// eslint-disable-next-line import/extensions,import/no-unresolved
-const resolveRoot = require('../resolveRoot');
+const firstCharUpperCase = require('../firstCharUpperCase.js');
+const resolveRoot = require('../resolveRoot.js');
 
 module.exports = async (layer, sliceName) => {
   const componentName = firstCharUpperCase(sliceName);
@@ -11,7 +9,8 @@ module.exports = async (layer, sliceName) => {
   const schemaName = `${sliceName}Schema`;
 
   try {
-    await fs.writeFile( // создаем файл c PUBLIC API
+    // создаем файл c PUBLIC API
+    await fs.writeFile(
       resolveRoot('src', layer, sliceName, 'index.ts'), // по этому пути
       `export { ${componentName} } from './ui/${componentName}/${componentName}';
 

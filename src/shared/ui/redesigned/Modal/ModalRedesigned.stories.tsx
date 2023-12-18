@@ -23,7 +23,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    // eslint-disable-next-line i18next/no-literal-string
     children: <>Modal content text</>,
     isOpen: true,
   },
@@ -35,7 +34,6 @@ Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 export const Dark: Story = {
   args: {
-    // eslint-disable-next-line i18next/no-literal-string
     children: <>Modal content text</>,
     isOpen: true,
   },
@@ -47,7 +45,6 @@ Dark.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecora
 
 export const Orange: Story = {
   args: {
-    // eslint-disable-next-line i18next/no-literal-string
     children: <>Modal content text</>,
     isOpen: true,
   },
