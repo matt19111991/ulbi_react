@@ -1,5 +1,5 @@
 ## Модели ветвления Git
-### [Git Flow](src/shared/assets/git/git-flow.png)
+### [Git Flow](../src/shared/assets/git/git-flow.png)
   - Классический пример использования
   
   - `Master` ветка - источник истины, production состояние. Делать коммиты напрямую в нее нельзя
@@ -18,7 +18,7 @@
   - Минусы: потенциальные `merge conflicts` в большом количестве
   - Плюсы: подходит больше для монолитов и больших проектов
 
-### [Trunk based](src/shared/assets/git/trunk-based.png)
+### [Trunk based](../src/shared/assets/git/trunk-based.png)
   - `Master` ветка - основная ветка, от которой ответвляются `release` ветки,
     `production` состояние
 

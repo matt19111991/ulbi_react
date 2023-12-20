@@ -25,5 +25,5 @@
   but requested an insecure XMLHttpRequest endpoint 'http://91.223.169.133:8000/login'. 
   This request has been blocked; the content must be served over HTTPS."
   
-  - Нужно наш json server [настроить под HTTPS](./HTTPS.md)
-  - Добавить [проксирование через nginx](config/nginx/sites-enabled/default)
+  - Нужно наш json server [настроить под HTTPS](https.md)
+  - Добавить [проксирование через nginx](../config/nginx/sites-enabled/default)
