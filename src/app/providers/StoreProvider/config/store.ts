@@ -86,4 +86,4 @@ export const createReduxStore = (
  * Кастомная типизация 'dispatch', чтобы типы экшенов, схем, хранилища подхватывались TypeScript-ом
  * возвращаем тип хранилища (store), затем извлекаем метод 'dispatch' из типа
  */
-export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch']; // === typeof store.dispatch
+export type AppDispatch = any; // === typeof store.dispatch

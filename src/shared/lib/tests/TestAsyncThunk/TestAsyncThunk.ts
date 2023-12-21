@@ -14,7 +14,7 @@ type ActionCreatorType<Return, Arg, RejectedValue> = (
 
 jest.mock('axios'); // при помощи Jest делаем заглушку для 'axios'
 
-/* shallow: true  (неглубокое копирование вложенных элементов)
+/* shallow: true (неглубокое копирование вложенных элементов)
    shallow: false (глубокое копирование вложенных элементов); по умолчанию
 */
 const mockedAxios = jest.mocked(axios, { shallow: false }); // 'jest.mocked', чтобы TS работал корректно

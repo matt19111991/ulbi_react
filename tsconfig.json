@@ -55,7 +55,7 @@
     "./src/**/*.tsx"
   ],
 
-  "exclude": ["./src/webpack/**"],
+  "exclude": ["node_modules", "./src/webpack/**"],
 
   "ts-node": {
     "compilerOptions": {
