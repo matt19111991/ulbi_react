@@ -8,6 +8,8 @@ const os = require('os');
 
 const server = jsonServer.create();
 
+// Библиотека 'cross-env' позволяет передавать NODE_ENV переменные в Windows
+
 const isDevelopment = server.settings.env === 'development';
 
 /*

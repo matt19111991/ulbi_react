@@ -1,4 +1,4 @@
-import { MutableRefObject, ReactNode, useEffect, useRef, useState } from 'react';
+import { MutableRefObject, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
@@ -98,6 +98,10 @@ export const Page = ({
     }
   }, 500);
 
+  const onSetScrollEventCallback = useCallback(() => {
+    onSetScroll(window.scrollY);
+  }, [onSetScroll]);
+
   // отлавливаем состояние страницы, когда все данные загружены
   useEffect(() => {
     if (!mounted && !loading) {
@@ -108,15 +112,13 @@ export const Page = ({
   // вешаем обработчики прокрутки на документ для страниц в новом дизайне
   useEffect(() => {
     if (isAppRedesigned && storableScroll) {
-      window.document.addEventListener('scroll', () => {
-        onSetScroll(window.scrollY);
-      });
+      window.addEventListener('scroll', onSetScrollEventCallback);
     }
 
     return () => {
-      window.removeEventListener('scroll', onSetScroll);
+      window.removeEventListener('scroll', onSetScrollEventCallback);
     };
-  }, [isAppRedesigned, onSetScroll, storableScroll]);
+  }, [isAppRedesigned, onSetScrollEventCallback, storableScroll]);
 
   useEffect(() => {
     // все загрузки для страницы закончены

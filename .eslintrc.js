@@ -14,6 +14,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:storybook/recommended',
     'plugin:prettier/recommended', // ошибки Prettier передаются Eslinty и подчеркиваются
+    'plugin:@typescript-eslint/recommended',
   ],
   globals: {
     __API__: 'readonly',
@@ -60,6 +61,9 @@ module.exports = {
   */
 
   rules: {
+    // запретить использование namespaces (выкл.), для 'cypress' используются namespaces
+    '@typescript-eslint/no-namespace': 0,
+
     // запретить теневое копирование (вкл.)
     // (переменная имеет то же имя, что и переменная в содержащей ее области)
     '@typescript-eslint/no-shadow': 2,

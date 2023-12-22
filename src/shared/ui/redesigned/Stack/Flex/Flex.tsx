@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, HTMLAttributes, memo, ReactNode } from 'react';
+import { DetailedHTMLProps, ForwardedRef, HTMLAttributes, memo, ReactNode } from 'react';
 
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 
@@ -105,6 +105,11 @@ export interface FlexProps extends DivProps {
    * Растянуть на максимально доступную ширину
    */
   max?: boolean;
+
+  /**
+   * Прокинутая ссылка на элемент
+   */
+  ref?: ForwardedRef<HTMLDivElement | null>;
 
   /**
    * Flex wrap

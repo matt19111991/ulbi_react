@@ -6,8 +6,8 @@
   "scripts": {
     "start:client:webpack": "webpack serve -- --env port=3000 --env mode=development",
     "start:client:vite": "vite",
-    "start:server:dev": "NODE_ENV=development node ./json-server/index.js",
-    "start:server:prod": "NODE_ENV=production node ./json-server/index.js",
+    "start:server:dev": "cross-env NODE_ENV=development node ./json-server/index.js",
+    "start:server:prod": "cross-env NODE_ENV=production node ./json-server/index.js",
     "start:vite:dev": "concurrently \"npm run start:client:vite\" \"npm run start:server:dev\"",
     "start:webpack:dev": "concurrently \"npm run start:client:webpack\" \"npm run start:server:dev\"",
     "start:vite:prod": "concurrently \"npm run start:client:vite\" \"npm run start:server:prod\"",
@@ -44,6 +44,7 @@
     "@use-gesture/react": "^10.3.0",
     "axios": "^1.6.2",
     "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.3.1",
     "i18next": "^23.7.8",
     "i18next-browser-languagedetector": "^7.2.0",

@@ -43,7 +43,7 @@ export class TestAsyncThunk<Return, Arg, RejectedValue> {
   /**
    * Функция для навигации
    */
-  navigate: jest.MockedFn<any>;
+  navigate: jest.MockedFn<typeof jest.fn>;
 
   constructor(
     actionCreator: ActionCreatorType<Return, Arg, RejectedValue>,

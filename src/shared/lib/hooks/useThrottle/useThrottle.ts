@@ -5,11 +5,11 @@ import { useCallback, useRef } from 'react';
  * @param callback
  * @param delay - задержка в мс
  */
-export const useThrottle = (callback: (...args: any[]) => void, delay: number) => {
+export const useThrottle = <T>(callback: (...args: T[]) => void, delay: number) => {
   const canRunCallback = useRef(true); // триггер для запуска 'callback'
 
   return useCallback(
-    (...args: any[]) => {
+    (...args: T[]) => {
       if (canRunCallback.current) {
         // 'callback' отрабатывает, только если 'canRunCallback' === true
         callback(...args);

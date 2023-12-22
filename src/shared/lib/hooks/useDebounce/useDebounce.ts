@@ -6,11 +6,11 @@ import { MutableRefObject, useCallback, useRef } from 'react';
  * @param delay - задержка в мс
  */
 
-export const useDebounce = (callback: (...args: any[]) => void, delay: number) => {
+export const useDebounce = <T>(callback: (...args: T[]) => void, delay: number) => {
   const timer = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
 
   return useCallback(
-    (...args: any[]) => {
+    (...args: T[]) => {
       /*
         2. если вызовем функцию (обернутую в 'useDebounce') ещё раз,
         а таймер уже запущен ('timer.current !== null'),
