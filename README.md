@@ -124,6 +124,7 @@
 - `npm run test:ui:report` - Генерация полного отчета для скриншотных тестов Loki
 - `npm run test:ui:update` - Обновление скриншотных тестов Loki
 - `npm run test:unit` - Запуск unit тестов с Jest
+- `npm run types:check` - Запуск проверку типов TypeScript
 
 ----
 

@@ -3,6 +3,7 @@ import { createContext, ReactNode, useContext, useEffect, useMemo, useRef, useSt
 // для корректной типизации библиотек
 type GestureType = typeof import('@use-gesture/react'); // библиотека для свайпов, тача, drag'n'drop
 type SpringType = typeof import('@react-spring/web'); // библиотека для анимаций
+// необходимо дополнительно установить библиотеку '@react-spring/rafz'
 
 interface AnimationContextPayload {
   /**

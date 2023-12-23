@@ -1,4 +1,10 @@
-import { configureStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
+import {
+  configureStore,
+  Reducer,
+  ReducersMapObject,
+  ThunkDispatch,
+  UnknownAction,
+} from '@reduxjs/toolkit';
 
 import { counterReducer } from '@/entities/Counter';
 import { userReducer } from '@/entities/User';
@@ -84,6 +90,5 @@ export const createReduxStore = (
 
 /**
  * Кастомная типизация 'dispatch', чтобы типы экшенов, схем, хранилища подхватывались TypeScript-ом
- * возвращаем тип хранилища (store), затем извлекаем метод 'dispatch' из типа
  */
-export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch']; // === typeof store.dispatch
+export type AppDispatch = ThunkDispatch<StateSchema, ThunkExtraArg, UnknownAction>;
