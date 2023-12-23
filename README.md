@@ -115,7 +115,7 @@
 - `npm run set:feature` - Установка feature flag
 - `npm run storybook` - Запуск Storybook
 - `npm run storybook:build` - Сборка storybook билда
-- `npm run test:e2e` - Запуск интеграционных тестов с Сypress
+- `npm run test:e2e` - Запуск интеграционных тестов с Cypress
 - `npm run test:ui` - Запуск скриншотных тестов с Loki
 - `npm run test:ui:ok` - Подтверждение новых скриншотов Loki
 - `npm run test:ui:ci` - Запуск скриншотных тестов Loki в CI
@@ -218,8 +218,6 @@
 
 В [main.yaml](.github/workflows/main.yaml) прогоняются все виды тестов, сборка проекта,
 storybook и линтинг и деплой на сервер.
-
-В [server.yaml](.github/deploy/server.yaml) проект деплоется на ulbireact.ru 
 
 В Pre-commit hooks проверяем проект линтерами, [конфигурация здесь](./.husky)
 

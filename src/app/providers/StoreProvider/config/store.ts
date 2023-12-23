@@ -32,6 +32,8 @@ export const createReduxStore = (
     ...asyncReducers,
   };
 
+  // TODO: перейти с reducerManager на combineSlices
+
   /**
    * Для возможности использования асинхронных редюсеров
    */
