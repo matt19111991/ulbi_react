@@ -55,8 +55,9 @@ export function buildPlugins({
     }),
   ];
 
-  if (isDev) { // TODO: перейти на 'react-refresh-webpack-plugin'
-/*  'react-refresh-webpack-plugin' позволяет применить правки в коде без перезагрузки страницы
+  if (isDev) {
+/*
+    'react-refresh-webpack-plugin' позволяет применить правки в коде без перезагрузки страницы
     Обеспечивает более стабильную работу, чем функционал 'webpack-dev-server' из коробки
 
     plugins.push(new ReactRefreshWebpackPlugin());

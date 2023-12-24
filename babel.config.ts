@@ -56,7 +56,8 @@ export default function config(isTsx?: boolean, isDev?: boolean): webpack.RuleSe
             ],
 
           /*
-            TODO: перейти на 'react-refresh-webpack-plugin' (нужны дополнительные настройки для 'babel-loader')
+            'react-refresh-webpack-plugin' позволяет применить правки в коде без перезагрузки страницы
+            Обеспечивает более стабильную работу, чем функционал 'webpack-dev-server' из коробки
             isDev && require.resolve('react-refresh/babel'),
           */
         ].filter(Boolean), // отфильтровываем неактивные плагины
