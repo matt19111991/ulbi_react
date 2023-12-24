@@ -6,10 +6,9 @@ if [ -z "$husky_skip_init" ]; then
     fi
   }
 
-  :'
-   Без 14-15 строк, ошибка при коммите - не видит установленную версию Node.js:
-  "To run storybook you need to have node 16 or higher"
-  "husky - pre-commit hook exited with code 1 (error)"'
+  # Без 14-15 строк, ошибка при коммите - не видит установленную версию Node.js:
+  # To run storybook you need to have node 16 or higher"
+  # husky - pre-commit hook exited with code 1 (error)"'
 
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"

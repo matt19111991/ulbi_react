@@ -5,13 +5,12 @@ import babelRemovePropsPlugin from '../babel/babelRemovePropsPlugin';
 // для работы 'babel-loader' нужно установить '@babel/core' библиотеку
 
 /*
-  'babel.config.json' файл vs buildBabelLoader для 'Webpack'
+  'babel.config.json или babel.config.ts' файл vs buildBabelLoader для 'Webpack'
   - используем что-то одно, нет смысла дублировать настройки
-  - если в проекте не используется 'Webpack', то все настройки для 'babel-loader' задаются в 'babel.config.json'
-  - для 'Jest' среды настройки 'babel-loader' выносятся в 'babel.config.json'
+  - если в проекте не используется 'Webpack', то все настройки для 'babel-loader' задаются в
+    'babel.config.json или в babel.config.ts'
+  - для 'Jest' среды настройки 'babel-loader' выносятся в 'babel.config.json' или 'babel.config.ts'
 */
-
-// TODO: перенести все options в 'babel.config.json' файл
 
 export const buildBabelLoader = (isTsx?: boolean, isDev?: boolean): webpack.RuleSetRule => ({
   test: isTsx ? /\.(jsx|tsx)$/ : /\.(js|ts)$/,

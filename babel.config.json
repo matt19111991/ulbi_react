@@ -2,7 +2,12 @@
   "plugins": [
     "@babel/plugin-transform-runtime",
     "@babel/plugin-transform-typescript",
-    "i18next-extract"
+    [
+      "i18next-extract", {
+        "keyAsDefaultValue": true,
+        "locales": ["ru", "en"]
+      }
+    ]
   ],
   "presets": [
     "@babel/preset-env",
