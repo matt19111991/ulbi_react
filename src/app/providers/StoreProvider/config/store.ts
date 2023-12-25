@@ -18,7 +18,6 @@ import { /* pageScrollReducer, */ pageScrollSlice } from '@/widgets/Page';
 // import { createReducerManager } from './reducerManager'; // RTK v1 code splitting
 
 import {
-  AsyncReducers,
   // ReduxStoreWithManager, // RTK v1 code splitting
   StateSchema,
   StateSchemaKey,
@@ -34,7 +33,7 @@ export const rootReducer = combineSlices(
   userSlice,
 
   rtkApi,
-).withLazyLoadedSlices<AsyncReducers>();
+);
 
 // оборачиваем в дополнительную функцию для переиспользования 'store' в 'jest', 'storybook' и других местах
 export const createReduxStore = (
