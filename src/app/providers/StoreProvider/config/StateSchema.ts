@@ -18,19 +18,7 @@ import { ArticlesPageSchema } from '@/pages/ArticlesPage';
 
 import { PageScrollSchema } from '@/widgets/Page';
 
-export interface StateSchema {
-  /**
-   * Синхронные редюсеры
-   */
-  counter: CounterSchema;
-  pageScroll: PageScrollSchema;
-  user: UserSchema;
-
-  /**
-   * Редюсер для rtkApi
-   */
-  [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
-
+export interface AsyncReducers {
   /**
    * Асинхронные редюсеры
    */
@@ -42,6 +30,20 @@ export interface StateSchema {
   editArticleForm?: EditArticleFormSchema;
   loginForm?: LoginSchema;
   profile?: ProfileSchema;
+}
+
+export interface StateSchema extends AsyncReducers {
+  /**
+   * Синхронные редюсеры
+   */
+  counter: CounterSchema;
+  pageScroll: PageScrollSchema;
+  user: UserSchema;
+
+  /**
+   * Редюсер для rtkApi
+   */
+  [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 }
 
 /**

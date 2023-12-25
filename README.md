@@ -230,8 +230,11 @@ storybook и линтинг и деплой на сервер.
 
 Запросы на сервер отправляются с помощью [RTK query](/src/shared/api/rtkApi.ts)
 
-Для асинхронного подключения редюсеров (чтобы не тянуть их в общий бандл) используется
+Для асинхронного подключения редюсеров (чтобы не тянуть их в общий бандл) используется (RTK v.1)
 [DynamicModuleLoader](/src/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader.tsx)
+
+Для асинхронного подключения редюсеров (чтобы не тянуть их в общий бандл) используется RTK v.2)
+[DynamicModuleLoaderV2](/src/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2.tsx)
 
 ----
 

@@ -7,9 +7,9 @@ import { Currency } from '@/entities/Currency';
 import { ProfileCard } from '@/entities/Profile';
 
 import {
-  DynamicModuleLoader,
+  DynamicModuleLoaderV2,
   ReducersList,
-} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+} from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -162,7 +162,7 @@ export const EditableProfileCard = memo(({ className, id }: EditableProfileCardP
   );
 
   return (
-    <DynamicModuleLoader reducers={reducers}>
+    <DynamicModuleLoaderV2 reducers={reducers}>
       <VStack className={classNames(classes.stack, {}, [className])} gap='16' max>
         <EditableProfilePageHeader />
 
@@ -191,7 +191,7 @@ export const EditableProfileCard = memo(({ className, id }: EditableProfileCardP
           readOnly={readOnly}
         />
       </VStack>
-    </DynamicModuleLoader>
+    </DynamicModuleLoaderV2>
   );
 });
 

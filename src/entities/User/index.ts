@@ -14,6 +14,6 @@ export {
   isUserManager,
 } from './model/selectors/getUserRoleSelectors/getUserRoleSelectors';
 
-export { userActions, userReducer } from './model/slice/userSlice';
+export { userActions, userReducer, userSlice } from './model/slice/userSlice';
 
 export type { User, UserSchema } from './model/types/user';

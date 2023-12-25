@@ -6,9 +6,9 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { ToggleFeatures } from '@/shared/lib/features';
 
 import {
-  DynamicModuleLoader,
+  DynamicModuleLoaderV2,
   ReducersList,
-} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+} from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
 
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
@@ -70,7 +70,7 @@ const AddCommentForm = ({ className, isLoading, onSendComment }: AddCommentFormP
   }, [onCommentTextChange, onSendComment, text]);
 
   return (
-    <DynamicModuleLoader reducers={reducers}>
+    <DynamicModuleLoaderV2 reducers={reducers}>
       <ToggleFeatures
         feature='isAppRedesigned'
         on={
@@ -129,7 +129,7 @@ const AddCommentForm = ({ className, isLoading, onSendComment }: AddCommentFormP
           </HStack>
         }
       />
-    </DynamicModuleLoader>
+    </DynamicModuleLoaderV2>
   );
 };
 

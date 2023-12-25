@@ -10,9 +10,9 @@ import { ToggleFeatures } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 import {
-  DynamicModuleLoader,
+  DynamicModuleLoaderV2,
   ReducersList,
-} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+} from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
 
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 
@@ -122,9 +122,9 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
   );
 
   return (
-    <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
+    <DynamicModuleLoaderV2 reducers={reducers} removeAfterUnmount={false}>
       {content}
-    </DynamicModuleLoader>
+    </DynamicModuleLoaderV2>
   );
 };
 

@@ -11,9 +11,9 @@ import { getRouteArticles } from '@/shared/const/router';
 import { classNames } from '@/shared/lib/classNames/classNames';
 
 import {
-  DynamicModuleLoader,
+  DynamicModuleLoaderV2,
   ReducersList,
-} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+} from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
 
 import { ToggleFeatures } from '@/shared/lib/features';
 
@@ -185,7 +185,7 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
   }
 
   return (
-    <DynamicModuleLoader reducers={reducers}>
+    <DynamicModuleLoaderV2 reducers={reducers}>
       <VStack
         align='start'
         className={classNames(classes.ArticleDetails, {}, [className])}
@@ -194,7 +194,7 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
       >
         {content}
       </VStack>
-    </DynamicModuleLoader>
+    </DynamicModuleLoaderV2>
   );
 });
 

@@ -1,10 +1,12 @@
 import { JSX, useEffect } from 'react';
 import { useStore } from 'react-redux';
-import { Reducer } from '@reduxjs/toolkit';
+import { EnhancedStore, Reducer } from '@reduxjs/toolkit';
 
-import { ReduxStoreWithManager, StateSchema, StateSchemaKey } from '@/app/providers/StoreProvider';
+import { rootReducer, StateSchema, StateSchemaKey } from '@/app/providers/StoreProvider';
 
 import { useAppDispatch } from '../../hooks/useAppDispatch/useAppDispatch';
+
+type ReducerItem<K extends StateSchemaKey> = Reducer<NonNullable<StateSchema[K]>>;
 
 // на случай подгрузки сразу нескольких редюсеров
 export type ReducersList = {
@@ -18,10 +20,10 @@ export type ReducersList = {
      Если в 'store' мы перепутаем редюсер и присвоим не под тем ключом => TS выдаст ошибку, т.к.
      'StateSchema' не соответствует созданному 'store'
   */
-  [name in StateSchemaKey]?: Reducer<NonNullable<StateSchema[name]>>;
+  [name in StateSchemaKey]?: ReducerItem<name>;
 };
 
-interface DynamicModuleLoaderProps {
+interface DynamicModuleLoaderV2Props {
   /**
    * Дочерние компоненты
    */
@@ -38,44 +40,47 @@ interface DynamicModuleLoaderProps {
   removeAfterUnmount?: boolean;
 }
 
-export const DynamicModuleLoader = ({
+export const DynamicModuleLoaderV2 = ({
   children,
   reducers,
   removeAfterUnmount = true,
-}: DynamicModuleLoaderProps) => {
+}: DynamicModuleLoaderV2Props) => {
   const dispatch = useAppDispatch();
+  const store = useStore() as EnhancedStore<StateSchema>;
 
-  const store = useStore() as ReduxStoreWithManager;
+  const state = store.getState();
 
   useEffect(() => {
-    const mountedReducers = store.reducerManager.getMountedReducers();
-
-    // пробегаемся по всем редюсерам
-
     Object.entries(reducers).forEach(([name, reducer]) => {
-      const mounted = mountedReducers[name as StateSchemaKey];
+      const mounted = name in state;
 
       if (!mounted) {
         // асинхронно подгружаем редюсер при монтировании компонента
-
-        /* без 'name as StateSchemaKey' => ошибка "Argument of type 'string' is not assignable
-           to parameter of type 'keyof StateSchema'"
-        */
-        store.reducerManager.add(name as StateSchemaKey, reducer);
+        rootReducer.inject({
+          reducerPath: name,
+          reducer: reducer as ReducerItem<StateSchemaKey>,
+        });
 
         dispatch({ type: `@INIT ${name} reducer` }); // для индикации подгрузки редюсера
       }
     });
 
+    // удаляем редюсер при демонтировании компонента
     return () => {
       if (removeAfterUnmount) {
         Object.keys(reducers).forEach((name) => {
-          // удаляем редюсер при демонтировании компонента
+          /*
+            документация рекомендует передавать функцию 'reducer: () => null',
+            что правильно, т.к. редюсер - это функция, но в таком случае после удаления редюсера в хранилище
+            получаем { api: { ... }, user: { ... }, [reducerName]: null }
 
-          /* без 'name as StateSchemaKey' => ошибка "Argument of type 'string' is not assignable
-             to parameter of type 'keyof StateSchema'"
+            чтобы полностью удалить редюсер из стора, передаем 'reducer: null as unknown as Reducer<undefined>'
           */
-          store.reducerManager.remove(name as StateSchemaKey);
+
+          rootReducer.inject(
+            { reducerPath: name, reducer: null as unknown as Reducer<undefined> },
+            { overrideExisting: true },
+          );
 
           dispatch({ type: `@DESTROY ${name} reducer` }); // для индикации удаления редюсера
         });

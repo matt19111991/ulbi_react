@@ -12,9 +12,9 @@ import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 import { classNames } from '@/shared/lib/classNames/classNames';
 
 import {
-  DynamicModuleLoader,
+  DynamicModuleLoaderV2,
   ReducersList,
-} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+} from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
 
 import { ToggleFeatures } from '@/shared/lib/features';
 
@@ -84,7 +84,7 @@ const ArticleDetailsPage = ({
   }
 
   return (
-    <DynamicModuleLoader reducers={reducers}>
+    <DynamicModuleLoaderV2 reducers={reducers}>
       <ToggleFeatures
         feature='isAppRedesigned'
         on={
@@ -125,7 +125,7 @@ const ArticleDetailsPage = ({
           </Page>
         }
       />
-    </DynamicModuleLoader>
+    </DynamicModuleLoaderV2>
   );
 };
 

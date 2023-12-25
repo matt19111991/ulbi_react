@@ -8,6 +8,6 @@ export type {
 
 export type { AppDispatch } from './config/store';
 
-export { createReduxStore } from './config/store';
+export { createReduxStore, rootReducer } from './config/store';
 
 export { StoreProvider } from './ui/StoreProvider';

@@ -19,9 +19,9 @@ import { getRouteArticles } from '@/shared/const/router';
 import { classNames } from '@/shared/lib/classNames/classNames';
 
 import {
-  DynamicModuleLoader,
+  DynamicModuleLoaderV2,
   ReducersList,
-} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+} from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
 
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
@@ -201,7 +201,7 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
     });
 
   return (
-    <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
+    <DynamicModuleLoaderV2 reducers={reducers} removeAfterUnmount>
       <Card
         border='partial'
         className={classNames(classes.ArticleCreateForm, { [classes.loading]: isLoading }, [
@@ -299,7 +299,7 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
           </Button>
         </HStack>
       </Card>
-    </DynamicModuleLoader>
+    </DynamicModuleLoaderV2>
   );
 };
 

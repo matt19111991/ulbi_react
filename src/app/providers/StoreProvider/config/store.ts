@@ -1,4 +1,5 @@
 import {
+  combineSlices,
   configureStore,
   Reducer,
   ReducersMapObject,
@@ -6,38 +7,70 @@ import {
   UnknownAction,
 } from '@reduxjs/toolkit';
 
-import { counterReducer } from '@/entities/Counter';
-import { userReducer } from '@/entities/User';
+import { /* counterReducer, */ counterSlice } from '@/entities/Counter';
+import { /* userReducer, */ userSlice } from '@/entities/User';
 
 import { $api } from '@/shared/api/api';
 import { rtkApi } from '@/shared/api/rtkApi';
 
-import { pageScrollReducer } from '@/widgets/Page';
+import { /* pageScrollReducer, */ pageScrollSlice } from '@/widgets/Page';
 
-import { createReducerManager } from './reducerManager';
-import { ReduxStoreWithManager, StateSchema, ThunkExtraArg } from './StateSchema';
+// import { createReducerManager } from './reducerManager'; // RTK v1 code splitting
+
+import {
+  AsyncReducers,
+  // ReduxStoreWithManager, // RTK v1 code splitting
+  StateSchema,
+  StateSchemaKey,
+  ThunkExtraArg,
+} from './StateSchema';
+
+/**
+ * Для возможности использования асинхронных редюсеров (RTK v2 code splitting)
+ */
+export const rootReducer = combineSlices(
+  counterSlice,
+  pageScrollSlice,
+  userSlice,
+
+  rtkApi,
+).withLazyLoadedSlices<AsyncReducers>();
 
 // оборачиваем в дополнительную функцию для переиспользования 'store' в 'jest', 'storybook' и других местах
 export const createReduxStore = (
   initialState?: StateSchema,
   asyncReducers?: ReducersMapObject<StateSchema>,
 ) => {
-  const rootReducers: ReducersMapObject<StateSchema> = {
-    counter: counterReducer,
-    pageScroll: pageScrollReducer,
-    user: userReducer,
+  // при наличии внешних асинхронных редюсеров ('jest', 'storybook')
+  if (asyncReducers) {
+    Object.entries(asyncReducers).forEach(([name, reducer]) => {
+      // асинхронно подгружаем редюсер
+      rootReducer.inject({
+        reducerPath: name,
+        reducer: reducer as Reducer<NonNullable<StateSchema[StateSchemaKey]>>,
+      });
+    });
+  }
 
-    [rtkApi.reducerPath]: rtkApi.reducer,
+  /*
+    RTK v1 code splitting
 
-    ...asyncReducers,
-  };
+    const rootReducers: ReducersMapObject<StateSchema> = {
+      counter: counterReducer,
+      pageScroll: pageScrollReducer,
+      user: userReducer,
 
-  // TODO: перейти с reducerManager на combineSlices
+      [rtkApi.reducerPath]: rtkApi.reducer,
 
-  /**
-   * Для возможности использования асинхронных редюсеров
-   */
-  const reducerManager = createReducerManager(rootReducers);
+      ...asyncReducers,
+    };
+
+    /**
+     * Для возможности использования асинхронных редюсеров
+    /**
+
+    const reducerManager = createReducerManager(rootReducers);
+*/
 
   const extraArgument: ThunkExtraArg = {
     api: $api, // добавляем в 'RTK' возможность использовать кастомный инстанс 'axios'
@@ -49,10 +82,6 @@ export const createReduxStore = (
      */
     devTools: __IS_DEV__,
 
-    /*
-      'reducerManager.reduce as ReducersMapObject<StateSchema>' в поле 'reducer' помогает избежать
-      ошибки типов в поле 'middleware', которая возникает из-за использования 'reducerManager'
-    */
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         /**
@@ -76,17 +105,26 @@ export const createReduxStore = (
      */
     preloadedState: initialState,
 
-    // reducer: rootReducers, // по умолчанию, когда все редюсеры синхронные
+    /**
+     * Установка редюсеров по умолчанию, когда все редюсеры синхронные
+     */
+    reducer: rootReducer, // RTK v2 code splitting
+    // reducer: rootReducers, // RTK v1 code splitting
 
     /**
-     * Для работы с асинхронными редюсерами
+     * Для работы с асинхронными редюсерами (RTK v1 code splitting)
+     *
+     * 'reducerManager.reduce as Reducer<StateSchema>' в поле 'reducer' помогает избежать
+     * ошибки типов в поле 'middleware', которая возникает из-за использования 'reducerManager'
+     *
      */
-    reducer: reducerManager.reduce as Reducer<StateSchema>,
-  }) as ReduxStoreWithManager;
+    // reducer: reducerManager.reduce as Reducer<StateSchema>,
+  });
 
-  // для возможности использования асинхронных редюсеров
-  store.reducerManager = reducerManager;
-
+  /*
+    для возможности использования асинхронных редюсеров (RTK v1 code splitting)
+    store.reducerManager = reducerManager;
+  */
   return store;
 };
 

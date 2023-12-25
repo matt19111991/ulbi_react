@@ -1,4 +1,4 @@
-export { counterReducer } from './model/slice/counterSlice';
+export { counterReducer, counterSlice } from './model/slice/counterSlice';
 
 export type { CounterSchema } from './model/types/counterSchema';
 

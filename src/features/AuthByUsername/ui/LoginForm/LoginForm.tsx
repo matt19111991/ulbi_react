@@ -6,9 +6,9 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { ToggleFeatures } from '@/shared/lib/features';
 
 import {
-  DynamicModuleLoader,
+  DynamicModuleLoaderV2,
   ReducersList,
-} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+} from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
 
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
@@ -88,7 +88,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
   }, [dispatch, forceUpdate, onSuccess, password, username]);
 
   return (
-    <DynamicModuleLoader
+    <DynamicModuleLoaderV2
       // плохой вариант (пересоздание объекта на каждый ререндер)
       // reducers={{ loginForm: loginReducer }}
       reducers={initialReducers} // 'initialReducers' ссылка меняться не будет
@@ -170,7 +170,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
           </div>
         }
       />
-    </DynamicModuleLoader>
+    </DynamicModuleLoaderV2>
   );
 });
 
