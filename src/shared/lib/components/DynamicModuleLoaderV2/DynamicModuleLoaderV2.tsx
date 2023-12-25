@@ -77,6 +77,8 @@ export const DynamicModuleLoaderV2 = ({
             чтобы полностью удалить редюсер из стора, передаем 'reducer: null as unknown as Reducer<undefined>'
           */
 
+          // TODO: избавиться от { api: { ... }, user: { ... }, [reducerName]: null }
+
           rootReducer.inject(
             { reducerPath: name, reducer: null as unknown as Reducer<undefined> },
             { overrideExisting: true },
