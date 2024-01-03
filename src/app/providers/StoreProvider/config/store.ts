@@ -1,11 +1,5 @@
-import {
-  combineSlices,
-  configureStore,
-  Reducer,
-  ReducersMapObject,
-  ThunkDispatch,
-  UnknownAction,
-} from '@reduxjs/toolkit';
+import { combineSlices, configureStore } from '@reduxjs/toolkit';
+import type { Reducer, ReducersMapObject, ThunkDispatch, UnknownAction } from '@reduxjs/toolkit';
 
 import { /* counterReducer, */ counterSlice } from '@/entities/Counter';
 import { /* userReducer, */ userSlice } from '@/entities/User';
@@ -16,6 +10,8 @@ import { rtkApi } from '@/shared/api/rtkApi';
 import { /* pageScrollReducer, */ pageScrollSlice } from '@/widgets/Page';
 
 // import { createReducerManager } from './reducerManager'; // RTK v1 code splitting
+
+import { combineSlicesAvoidErrorMessageMiddleware } from './combineSlicesMiddleware'; // RTK v2 code splitting
 
 import {
   // ReduxStoreWithManager, // RTK v1 code splitting
@@ -97,7 +93,7 @@ export const createReduxStore = (
         thunk: {
           extraArgument,
         },
-      }).concat(rtkApi.middleware),
+      }).concat(rtkApi.middleware, combineSlicesAvoidErrorMessageMiddleware),
 
     /**
      * Инициализация 'store' заранее подготовленными данными для тестов, storybook и т.д.

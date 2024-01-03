@@ -72,12 +72,14 @@ export const DynamicModuleLoaderV2 = ({
           /*
             документация рекомендует передавать функцию 'reducer: () => null',
             что правильно, т.к. редюсер - это функция, но в таком случае после удаления редюсера в хранилище
-            получаем { api: { ... }, user: { ... }, [reducerName]: null }
+            получаем { api: { ... }, user: { ... }, [reducerName]: null } и слайс заново не
+            инжектится, т.к. ключ для редюсера уже есть в сторе
 
-            чтобы полностью удалить редюсер из стора, передаем 'reducer: null as unknown as Reducer<undefined>'
+            чтобы полностью удалить редюсер из стора, передаем 'reducer: null as unknown as Reducer<undefined>',
+            но в таком случаем получаем ошибку в консоли: "Unexpected key [reducerKey] found in previous state
+            received by the reducer. Expected to find one of the known reducer keys instead: 'counter',
+            'pageScroll', 'user', 'api'. Unexpected keys will be ignored."
           */
-
-          // TODO: избавиться от { api: { ... }, user: { ... }, [reducerName]: null }
 
           rootReducer.inject(
             { reducerPath: name, reducer: null as unknown as Reducer<undefined> },
