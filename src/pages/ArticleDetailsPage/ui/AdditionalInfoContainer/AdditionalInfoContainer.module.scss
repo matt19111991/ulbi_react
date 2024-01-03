@@ -5,7 +5,7 @@
 
 // добавляем стили только в приложении (не в storybook)
 @media screen and (max-width: 1800px) {
-  body:has(> div#root) {
+  body:has(> div[id='root']) {
     .card {
       position: relative;
       top: -48px;

@@ -6,7 +6,7 @@
 
 // добавляем смещение только в приложении (не в storybook)
 @media screen and (max-width: 1800px) {
-  body:has(> div#root) {
+  body:has(> div[id='root']) {
     .ArticleDetailsPage {
       height: calc(87vh - 300px);
       min-width: auto;
