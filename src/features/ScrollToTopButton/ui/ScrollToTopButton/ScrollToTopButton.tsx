@@ -13,6 +13,8 @@ interface ScrollToTopButtonProps {
   className?: string;
 }
 
+// TODO: Исправить прокрутку вверх страницы на responsive девайсах
+
 export const ScrollToTopButton = memo(({ className }: ScrollToTopButtonProps) => {
   const onClick = () => {
     window.scrollTo({ behavior: 'smooth', top: 0 });
