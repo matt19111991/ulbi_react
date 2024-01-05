@@ -16,8 +16,9 @@
 
 ## Запуск проекта
 - `npm install` - устанавливаем зависимости
-- `npm run start:vite:dev` - запуск сервера + frontend проекта в development режиме (Vite сборщик)
-- `npm run start:webpack:dev` - запуск сервера + frontend проекта в development режиме (Webpack сборщик)
+- `npm run start:vite:dev` - запуск сервера и клиента в development режиме (Vite сборщик)
+- `npm run start:webpack:dev` - запуск сервера и клиента в development режиме (Webpack сборщик)
+- `npm outdated` - вывести список устаревших зависимостей
 
 ----
 
@@ -95,18 +96,18 @@
 
 ## Скрипты
 
-- `npm run start:client:webpack` - Запуск frontend проекта на Webpack dev server
-- `npm run start:client:vite` - Запуск frontend проекта на Vite
-- `npm run start:server:dev` - Запуск backend сервера в development режиме
-- `npm run start:server:prod` - Запуск backend сервера в production режиме
-- `npm run start:vite:dev` - Запуск frontend проекта на Vite и сервера в development режиме
-- `npm run start:webpack:dev` - Запуск frontend проекта на Webpack и сервера в development режиме
-- `npm run start:vite:prod` - Запуск frontend проекта на Vite и сервера в production режиме
-- `npm run start:webpack:prod` - Запуск frontend проекта на Webpack и сервера в production режиме
-- `npm run build:dev` - Сборка в development режиме (не минимизирован)
-- `npm run build:prod` - Сборка в production режиме (минимизирован)
+- `npm run start:client:webpack` - Запуск клиента на Webpack в режиме dev сервера
+- `npm run start:client:vite` - Запуск клиента на Vite
+- `npm run start:server:dev` - Запуск сервера в development режиме
+- `npm run start:server:prod` - Запуск сервера в production режиме
+- `npm run start:vite:dev` - Запуск клиента на Vite и сервера в development режиме
+- `npm run start:webpack:dev` - Запуск клиента на Webpack и сервера в development режиме
+- `npm run start:vite:prod` - Запуск клиента на Vite и сервера в production режиме
+- `npm run start:webpack:prod` - Запуск клиента на Webpack и сервера в production режиме
+- `npm run build:dev` - Сборка клиента в development режиме (не минимизирован)
+- `npm run build:prod` - Сборка клиента в production режиме (минимизирован)
 - `npm run generate:template` - Скрипт для генерации FSD слайсов
-- `npm run lint:ts` - Проверка TS файлов линтером
+- `npm run lint:ts` - Проверка TS файлов линтером и tsc
 - `npm run lint:ts:fix` - Исправление TS файлов линтером
 - `npm run lint:scss` - Проверка SCSS файлов style линтером
 - `npm run lint:scss:fix` - Исправление SCSS файлов style линтером
@@ -116,15 +117,15 @@
 - `npm run storybook` - Запуск Storybook
 - `npm run storybook:build` - Сборка storybook билда
 - `npm run test:e2e` - Запуск интеграционных тестов с Cypress
-- `npm run test:ui` - Запуск скриншотных тестов с Loki
+- `npm run test:ui` - Запуск скриншотных тестов Loki
 - `npm run test:ui:ok` - Подтверждение новых скриншотов Loki
-- `npm run test:ui:ci` - Запуск скриншотных тестов Loki в CI
+- `npm run test:ui:ci` - Запуск скриншотных тестов Loki для CI
 - `npm run test:ui:json` - Генерация json отчета для скриншотных тестов Loki
 - `npm run test:ui:html` - Генерация HTML отчета для скриншотных тестов Loki
 - `npm run test:ui:report` - Генерация полного отчета для скриншотных тестов Loki
 - `npm run test:ui:update` - Обновление скриншотных тестов Loki
 - `npm run test:unit` - Запуск unit тестов с Jest
-- `npm run types:check` - Запуск проверку типов TypeScript
+- `npm run types:check` - Запуск проверки типов TypeScript
 
 ----
 

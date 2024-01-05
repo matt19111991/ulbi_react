@@ -10,6 +10,8 @@
 
 Loki не работает напрямую со Storybook v.7+
 
+'reg-cli' - инструмент для визуального регрессионного тестирования с HTML-репортером
+
 После установки loki как devDependency, необходима инициализация с указанием пути к конфигу Storybook:
 `npx loki init --config ./config/storybook`
 

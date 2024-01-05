@@ -40,9 +40,11 @@ export const buildBabelLoader = (isTsx?: boolean, isDev?: boolean): webpack.Rule
           '@babel/plugin-transform-typescript',
           { isTsx }, // отвечает за парсинг .tsx
         ],
-
-/*      смотрит код на наличие ES6 фич и если они есть, трансформирует код так,
+/*
+        смотрит код на наличие ES6 фич и, если они есть, трансформирует код так,
         чтобы эти фичи брались не из глобального скоупа, а импортировались из 'babel-runtime'
+
+        плагин позволяет повторно использовать внедренный вспомогательный код Babel для экономии размера кода
 */      '@babel/plugin-transform-runtime',
 
         isTsx && !isDev && [
