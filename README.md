@@ -131,20 +131,20 @@
 
 ## Архитектура проекта
 
-Проект написан в соответствии с методологией Feature sliced design
+Проект написан в соответствии с методологией Feature Sliced Design
 
-Ссылка на документацию - [feature sliced design](https://feature-sliced.design/docs/get-started/tutorial)
+Ссылка на документацию - [Feature Sliced Design](https://feature-sliced.design/ru/docs/get-started/tutorial)
 
 ----
 
 ## Работа с переводами
 
-В проекте используется библиотека i18next для работы с переводами.
-Файлы с переводами хранятся в public/locales.
+В проекте используется библиотека 'i18next' для работы с переводами.
+Файлы с переводами хранятся в 'public/locales'.
 
-Для комфортной работы рекомендуем установить плагин для webstorm/vscode
+Для комфортной работы рекомендуем установить плагин для WebStorm / VSCode
 
-Документация i18next - [https://react.i18next.com/](https://react.i18next.com/)
+Документация 'i18next' - [https://react.i18next.com/](https://react.i18next.com/)
 
 ----
 
@@ -170,20 +170,23 @@
 1) **layer-imports** - проверяет корректность использования слоев с точки зрения 'FSD'
    (например: 'widgets' нельзя использовать в 'features' и 'entities')
 
-2) **path-checker** - запрещает использовать абсолютные импорты в рамках одного модуля
+2) **path-checker** - запрещает использовать абсолютные импорты в рамках одного модуля. Имеет возможность auto-fix
 
 3) **public-api-imports** - разрешает импорт из других модулей только из Public API. Имеет возможность auto-fix
 
 ##### Запуск линтеров
-- `npm run lint:ts` - Проверка TS файлов линтером
+- `npm run lint:ts` - Проверка TS файлов линтером и tsc
 - `npm run lint:ts:fix` - Исправление TS файлов линтером
 - `npm run lint:scss` - Проверка SCSS файлов style линтером
 - `npm run lint:scss:fix` - Исправление SCSS файлов style линтером
+- `npm run prettify` - Выравнивание кода при помощи Prettier
+- `npm run types:check` - Запуск проверки типов TypeScript
 
 ----
 ## Storybook
 
 В проекте для каждого компонента описываются story-кейсы.
+
 Запросы на сервер мокаются с помощью функции 'queryFn' из 'RTK Query' и возвращаются захардкоженные данные.
 
 Файлы со story-кейсами создаем рядом с компонентом с расширением '.stories.tsx'
@@ -198,16 +201,17 @@
 ## Конфигурация проекта
 
 Для разработки проект содержит 2 конфига:
-1. Webpack - ./config/build
-2. Vite - vite.config.ts
+1. Webpack - ./config/build/
+2. Vite - vite.config.mts
 
 Оба сборщика адаптированы под основные фичи приложения.
 
 Вся конфигурация хранится в
-- babel.config.json - конфигурация Babel
-- /config/build - конфигурация Webpack
-- /config/jest - конфигурация тестовой среды
-- /config/storybook - конфигурация Storybook
+- babel.config.json (babel.config.ts) - конфигурация Babel
+- ./config/build/ - конфигурация Webpack
+- ./config/jest/ - конфигурация тестовой среды
+- ./config/nginx/ - конфигурация для nginx
+- ./config/storybook/ - конфигурация Storybook
 
 В папке `scripts` находятся различные скрипты для рефакторинга / упрощения написания кода / генерации отчетов и т.д.
 
@@ -217,37 +221,38 @@
 
 Конфигурация Github Actions находится в ./github/workflows/main.yaml.
 
-В [main.yaml](.github/workflows/main.yaml) прогоняются все виды тестов, сборка проекта,
-storybook и линтинг и деплой на сервер.
+В [main.yaml](.github/workflows/main.yaml) прогоняются все виды тестов, происходит сборка проекта и
+storybook, линтинг и деплой на сервер.
 
 В Pre-commit hooks проверяем проект линтерами, [конфигурация здесь](./.husky)
 
 ----
 
-### Работа с данными
+## Работа с данными
 
 Взаимодействие с данными осуществляется с помощью 'Redux ToolKit'.
+
 По возможности переиспользуемые сущности необходимо нормализовать с помощью 'EntityAdapter'
 
-Запросы на сервер отправляются с помощью [RTK query](/src/shared/api/rtkApi.ts)
+Запросы на сервер отправляются с помощью [RTK query](./src/shared/api/rtkApi.ts)
 
-Для асинхронного подключения редюсеров (чтобы не тянуть их в общий бандл) используется (RTK v.1)
-[DynamicModuleLoader](/src/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader.tsx)
-
-Для асинхронного подключения редюсеров (чтобы не тянуть их в общий бандл) используется RTK v.2)
-[DynamicModuleLoaderV2](/src/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2.tsx)
+Для асинхронного подключения редюсеров (чтобы не тянуть их в общий бандл) используются:
+- RTK v1: [DynamicModuleLoader](./src/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader.tsx)
+- RTK v2: [DynamicModuleLoaderV2](./src/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2.tsx)
 
 ----
 
-### Работа с feature flags
+## Работа с Feature Flags
 
-Разрешено использование feature flags только с помощью `toggleFeatures`
+Разрешено использование Feature Flags только при помощи 
+- функции `toggleFeatures()` или
+- компонента `<ToggleFeatures />`
 
-В него передается объект с опциями:
+Внутрь функции / компонента передаются опции:
 
 ```
 {
-    name: название feature flag,
+    name: название Feature Flag,
     on: функция, которая отрабатывает после включения feature,
     off: функция, которая отрабатывает после выключения feature,
 }
@@ -259,125 +264,125 @@ storybook и линтинг и деплой на сервер.
 1. Название удаляемого feature flag
 2. Состояние (on/off)
 
-Подробнее о feature flags - [документация feature flags](./docs/feature_flags.md)
+Подробнее о Feature Flags - [документация Feature Flags](./docs/feature_flags.md)
 
 ---
 
-### Работа с хранилищем
+## Работа с хранилищем
 
-[buildSlice](/src/shared/lib/store/buildSlice.ts) - аналог 'createSlice' из '@reduxjs/toolkit', 
+[buildSlice](./src/shared/lib/store/buildSlice.ts) - аналог 'createSlice' из '@reduxjs/toolkit', 
 но без необходимости вызывать 'dispatch' каждый раз в компонентах
 
-[buildSelector](/src/shared/lib/store/buildSelector.ts) - избавляемся от необходимости использовать 'useSelector' 
+[buildSelector](./src/shared/lib/store/buildSelector.ts) - избавляемся от необходимости использовать 'useSelector' 
 каждый раз внутри компонентов
 
 ----
 
-## Генераторы (generators)
+## Генераторы сущностей(generators)
 
-- [Generators](/src/shared/lib/generators/README.md)
+- [Generators](./src/shared/lib/generators/README.md)
 
 ----
 
 ## Хуки (hooks)
 
-- [useAppDispatch](/src/shared/lib/hooks/useAppDispatch/README.md)
-- [useDebounce](/src/shared/lib/hooks/useDebounce/README.md)
-- [useForceUpdate](/src/shared/lib/render/README.md)
-- [useHover](/src/shared/lib/hooks/useHover/README.md)
-- [useInfiniteScroll](/src/shared/lib/hooks/useInfiniteScroll/README.md)
-- [useInitialEffect](/src/shared/lib/hooks/useInitialEffect/README.md)
-- [useModal](/src/shared/lib/hooks/useModal/README.md)
-- [useRouteChange](/src/shared/lib/router/useRouteChange/README.md)
-- [useTheme](/src/shared/lib/hooks/useTheme/README.md)
-- [useThrottle](/src/shared/lib/hooks/useThrottle/README.md)
-- [useWindowWidth](/src/shared/lib/hooks/useWindowWidth/README.md)
+- [useAppDispatch](./src/shared/lib/hooks/useAppDispatch/README.md)
+- [useDebounce](./src/shared/lib/hooks/useDebounce/README.md)
+- [useForceUpdate](./src/shared/lib/render/README.md)
+- [useHover](./src/shared/lib/hooks/useHover/README.md)
+- [useInfiniteScroll](./src/shared/lib/hooks/useInfiniteScroll/README.md)
+- [useInitialEffect](./src/shared/lib/hooks/useInitialEffect/README.md)
+- [useModal](./src/shared/lib/hooks/useModal/README.md)
+- [useRouteChange](./src/shared/lib/router/useRouteChange/README.md)
+- [useTheme](./src/shared/lib/hooks/useTheme/README.md)
+- [useThrottle](./src/shared/lib/hooks/useThrottle/README.md)
+- [useWindowWidth](./src/shared/lib/hooks/useWindowWidth/README.md)
 
 ----
 
 ## Слои (layers)
 
-- [AppLoaderLayout](/src/shared/layouts/AppLoaderLayout/README.md)
-- [MainLayout](/src/shared/layouts/MainLayout/README.md)
-- [StickyContentLayout](/src/shared/layouts/StickyContentLayout/README.md)
+- [AppLoaderLayout](./src/shared/layouts/AppLoaderLayout/README.md)
+- [MainLayout](./src/shared/layouts/MainLayout/README.md)
+- [StickyContentLayout](./src/shared/layouts/StickyContentLayout/README.md)
 
 ----
 
 ## Компоненты (components)
 
-- [deprecated](/src/shared/ui/deprecated/README.md)
-- [redesigned](/src/shared/ui/redesigned/README.md)
+- [deprecated](./src/shared/ui/deprecated/README.md)
+- [redesigned](./src/shared/ui/redesigned/README.md)
 
 ----
 
 ## Сущности (entities)
 
-- [Article](/src/entities/Article/README.md)
-- [Comment](/src/entities/Comment/README.md)
-- [Counter](/src/entities/Counter/README.md)
-- [Country](/src/entities/Country/README.md)
-- [Currency](/src/entities/Currency/README.md)
-- [Notification](/src/entities/Notification/README.md)
-- [Profile](/src/entities/Profile/README.md)
-- [Rating](/src/entities/Rating/README.md)
-- [User](/src/entities/User/README.md)
+- [Article](./src/entities/Article/README.md)
+- [Comment](./src/entities/Comment/README.md)
+- [Counter](./src/entities/Counter/README.md)
+- [Country](./src/entities/Country/README.md)
+- [Currency](./src/entities/Currency/README.md)
+- [Notification](./src/entities/Notification/README.md)
+- [Profile](./src/entities/Profile/README.md)
+- [Rating](./src/entities/Rating/README.md)
+- [User](./src/entities/User/README.md)
 
 ----
 
 ## Фичи (features)
 
-- [AddCommentForm](/src/features/AddCommentForm/README.md)
-- [ArticleCreateForm](/src/features/ArticleCreateForm/README.md)
-- [ArticleEditForm](/src/features/ArticleEditForm/README.md)
-- [ArticlePageGreeting](/src/features/ArticlePageGreeting/README.md)
-- [ArticleRating](/src/features/ArticleRating/README.md)
-- [ArticleRecommendationsList](/src/features/ArticleRecommendationsList/README.md)
-- [ArticleSortSelector](/src/features/ArticleSortSelector/README.md)
-- [ArticleTypeTabs](/src/features/ArticleTypeTabs/README.md)
-- [ArticleViewSelector](/src/features/ArticleViewSelector/README.md)
-- [AuthByUsername](/src/features/AuthByUsername/README.md)
-- [AvatarDropdown](/src/features/AvatarDropdown/README.md)
-- [EditableProfileCard](/src/features/EditableProfileCard/README.md)
-- [LangSwitcher](/src/features/LangSwitcher/README.md)
-- [NotificationButton](/src/features/NotificationButton/README.md)
-- [ProfileRating](/src/features/ProfileRating/README.md)
-- [ScrollToTopButton](/src/features/ScrollToTopButton/README.md)
-- [ThemeSwitcher](/src/features/ThemeSwitcher/README.md)
-- [UIDesignSwitcher](/src/features/UIDesignSwitcher/README.md)
+- [AddCommentForm](./src/features/AddCommentForm/README.md)
+- [ArticleCreateForm](./src/features/ArticleCreateForm/README.md)
+- [ArticleEditForm](./src/features/ArticleEditForm/README.md)
+- [ArticlePageGreeting](./src/features/ArticlePageGreeting/README.md)
+- [ArticleRating](./src/features/ArticleRating/README.md)
+- [ArticleRecommendationsList](./src/features/ArticleRecommendationsList/README.md)
+- [ArticleSortSelector](./src/features/ArticleSortSelector/README.md)
+- [ArticleTypeTabs](./src/features/ArticleTypeTabs/README.md)
+- [ArticleViewSelector](./src/features/ArticleViewSelector/README.md)
+- [AuthByUsername](./src/features/AuthByUsername/README.md)
+- [AvatarDropdown](./src/features/AvatarDropdown/README.md)
+- [EditableProfileCard](./src/features/EditableProfileCard/README.md)
+- [LangSwitcher](./src/features/LangSwitcher/README.md)
+- [NotificationButton](./src/features/NotificationButton/README.md)
+- [ProfileRating](./src/features/ProfileRating/README.md)
+- [ScrollToTopButton](./src/features/ScrollToTopButton/README.md)
+- [ThemeSwitcher](./src/features/ThemeSwitcher/README.md)
+- [UIDesignSwitcher](./src/features/UIDesignSwitcher/README.md)
 
 ----
 
 ## Виджеты (widgets)
-- [ArticleAdditionalInfo](/src/widgets/ArticleAdditionalInfo/README.md)
-- [ArticlesFilters](/src/widgets/ArticlesFilters/README.md)
-- [Navbar](/src/widgets/Navbar/README.md)
-- [Page](/src/widgets/Page/README.md)
-- [PageError](/src/widgets/PageError/README.md)
-- [PageLoader](/src/widgets/PageLoader/README.md)
-- [ScrollToolbar](/src/widgets/ScrollToolbar/README.md)
-- [Sidebar](/src/widgets/Sidebar/README.md)
+- [ArticleAdditionalInfo](./src/widgets/ArticleAdditionalInfo/README.md)
+- [ArticlesFilters](./src/widgets/ArticlesFilters/README.md)
+- [Navbar](./src/widgets/Navbar/README.md)
+- [Page](./src/widgets/Page/README.md)
+- [PageError](./src/widgets/PageError/README.md)
+- [PageLoader](./src/widgets/PageLoader/README.md)
+- [ScrollToolbar](./src/widgets/ScrollToolbar/README.md)
+- [Sidebar](./src/widgets/Sidebar/README.md)
 ----
 
 ## Страницы (pages)
-- [AboutPage](/src/pages/AboutPage/README.md)
-- [AdminPanelPage](/src/pages/AdminPanelPage/README.md)
-- [ArticleCreatePage](/src/pages/ArticleCreatePage/README.md)
-- [ArticleDetailsPage](/src/pages/ArticleDetailsPage/README.md)
-- [ArticleEditPage](/src/pages/ArticleEditPage/README.md)
-- [ArticlesPage](/src/pages/ArticlesPage/README.md)
-- [ForbiddenPage](/src/pages/ForbiddenPage/README.md)
-- [MainPage](/src/pages/MainPage/README.md)
-- [NotFoundPage](/src/pages/NotFoundPage/README.md)
-- [ProfilePage](/src/pages/ProfilePage/README.md)
-- [SettingsPage](/src/pages/SettingsPage/README.md)
+- [AboutPage](./src/pages/AboutPage/README.md)
+- [AdminPanelPage](./src/pages/AdminPanelPage/README.md)
+- [ArticleCreatePage](./src/pages/ArticleCreatePage/README.md)
+- [ArticleDetailsPage](./src/pages/ArticleDetailsPage/README.md)
+- [ArticleEditPage](./src/pages/ArticleEditPage/README.md)
+- [ArticlesPage](./src/pages/ArticlesPage/README.md)
+- [ForbiddenPage](./src/pages/ForbiddenPage/README.md)
+- [MainPage](./src/pages/MainPage/README.md)
+- [NotFoundPage](./src/pages/NotFoundPage/README.md)
+- [ProfilePage](./src/pages/ProfilePage/README.md)
+- [SettingsPage](./src/pages/SettingsPage/README.md)
 
 ----
 
 ## Провайдеры (providers)
-- [AnimationProvider](/src/shared/lib/components/AnimationProvider/README.md)
-- [ErrorBoundary](/src/app/providers/ErrorBoundary/README.md)
-- [ForceUpdateProvider](/src/shared/lib/render/README.md)
-- [Router](/src/app/providers/Router/README.md)
-- [StoreProvider](/src/app/providers/StoreProvider/README.md)
-- [ThemeProvider](/src/app/providers/ThemeProvider/README.md)
+- [AnimationProvider](./src/shared/lib/components/AnimationProvider/README.md)
+- [ErrorBoundary](./src/app/providers/ErrorBoundary/README.md)
+- [ForceUpdateProvider](./src/shared/lib/render/README.md)
+- [Router](./src/app/providers/Router/README.md)
+- [StoreProvider](./src/app/providers/StoreProvider/README.md)
+- [ThemeProvider](./src/app/providers/ThemeProvider/README.md)
 
