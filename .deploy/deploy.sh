@@ -4,7 +4,7 @@
 # chmod +x .deploy/deploy.sh
 
 # идем в папку с проектом
-cd ~/ulbi_react
+cd ~/ulbi_react || return
 
 # останавливаем сервер (id процесса === 0)
 pm2 stop 0
