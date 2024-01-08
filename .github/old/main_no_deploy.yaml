@@ -16,15 +16,15 @@ jobs:
         node-version: [ 17.x ] # задаем версию для Node.js
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2 # синхронизация с репозиторием
 
-      # устанавливаем в среду, где будут запускаться GitHub Actions, заданную выше версию Node.js
+      # устанавливаем в среду, где будут запускаться 'GitHub Actions', заданную выше версию Node.js
       - name: Starting Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
 
-      # даем добро на установку peer-dependencies
+      # даем добро на установку 'peer-dependencies'
       # - name: Set legacy-peer-deps
         # run: npm config set legacy-peer-deps true
 
