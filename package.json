@@ -150,7 +150,6 @@
   "lint-staged": {
     "**/*.{html,json}": "prettier --list-different",
     "**/*.{scss}": "stylelint",
-    "**/*.test.{ts,tsx}": "export SET NODE_OPTIONS=--no-warnings='DEP0040' && jest --config ./config/jest/jest.config.ts",
     "**/*.{ts,tsx}": [
       "prettier --list-different",
       "eslint",
