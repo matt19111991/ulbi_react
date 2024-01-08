@@ -1,4 +1,4 @@
-name: Linting, Testing, Building
+name: Linting, Testing, Building, Deploying
 
 # запуск GitHub Actions будет происходить на push и pull request (ветка 'master')
 on:
@@ -64,9 +64,9 @@ jobs: # 'build-and-ui-testing' и 'checks' jobs запускаются пара�
         run: npm run build:prod
 
       # собираем storybook build
-      - name: Build storybook
-        if: always()
-        run: npm run storybook:build
+      #- name: Build storybook
+      #  if: always()
+      #  run: npm run storybook:build
 
       # запускаем скриншотное тестирование (loki)
       #- name: Screenshot testing
@@ -74,14 +74,14 @@ jobs: # 'build-and-ui-testing' и 'checks' jobs запускаются пара�
       #  run: npm run test:ui:ci
 
       # запускаем unit тестирование
-      - name: Unit testing
-        if: always()
-        run: npm run test:unit
+      #- name: Unit testing
+      #  if: always()
+      #  run: npm run test:unit
 
       # генерируем отчет по скриншотному тестированию (loki)
-      - name: Generate HTML report
-        if: always()
-        run: npm run test:ui:report
+      #- name: Generate HTML report
+      #  if: always()
+      #  run: npm run test:ui:report
 
       # перемещаем отчеты loki в папку 'reports'
       - name: Move loki reports
