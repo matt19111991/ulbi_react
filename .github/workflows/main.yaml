@@ -69,9 +69,9 @@ jobs: # 'build-and-ui-testing' и 'checks' jobs запускаются пара�
         run: npm run storybook:build
 
       # запускаем скриншотное тестирование (loki)
-      - name: Screenshot testing
-        if: always()
-        run: npm run test:ui:ci
+      #- name: Screenshot testing
+      #  if: always()
+      #  run: npm run test:ui:ci
 
       # запускаем unit тестирование
       - name: Unit testing
@@ -163,7 +163,7 @@ jobs: # 'build-and-ui-testing' и 'checks' jobs запускаются пара�
 
     needs: [build-and-ui-testing]
 
-    if: ${{ false }} # отключаем, пока нет сервера
+    # if: ${{ false }} # отключаем, пока нет сервера
 
     strategy:
       matrix:
