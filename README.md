@@ -226,10 +226,13 @@
 
 ## CI Pipeline и Pre-commit hooks
 
-Конфигурация Github Actions находится в ./github/workflows/main.yaml.
+Конфигурация `Github Actions` находится [здесь](.github/workflows/main.yaml).
 
 В [main.yaml](.github/workflows/main.yaml) прогоняются все виды тестов, происходит сборка проекта и
-storybook, линтинг и деплой на сервер.
+storybooka, линтинг и деплой на сервер.
+
+В [main_no_deploy.yaml](.github/old/main_no_deploy.yaml) прогоняются все виды тестов, происходит сборка проекта и
+storybooka, линтинг. Нет деплоя на сервер.
 
 В Pre-commit hooks проверяем проект линтерами, [конфигурация здесь](./.husky)
 

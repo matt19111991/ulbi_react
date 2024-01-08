@@ -1,6 +1,6 @@
 name: Linting, Testing, Building
 
-# запуск GitHub actions будет происходить на push и pull request (ветка 'master')
+# запуск GitHub Actions будет происходить на push и pull request (ветка 'master')
 on:
   push:
     branches: [ master ]
@@ -10,6 +10,7 @@ on:
 jobs:
   pipeline: # любое название для job
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
         node-version: [ 17.x ] # задаем версию для Node.js

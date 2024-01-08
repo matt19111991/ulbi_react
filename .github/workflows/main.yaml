@@ -1,29 +1,33 @@
 name: Linting, Testing, Building
 
-# запуск GitHub actions будет происходить на push и pull request (ветка 'master')
+# запуск GitHub Actions будет происходить на push и pull request (ветка 'master')
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
 
+# предоставляем разрешения для 'GITHUB_TOKEN', которые необходимы для деплоя
 permissions:
-  contents: write
-  id-token: write
-  pages: write
+  id-token: write # чтобы убедиться, что развертывание происходит из соответствующего источника
+  pages: write # разрешает деплой
 
 concurrency:
-  cancel-in-progress: true
+  cancel-in-progress: true # для возможности отмены любой 'job' в concurrency группе
   group: "pages"
 
 jobs: # 'build-and-ui-testing' и 'checks' jobs запускаются параллельно
   build-and-ui-testing: # требует сборку
     runs-on: ubuntu-latest
 
-    concurrency: ci-${{ github.ref }}
-
     timeout-minutes: 30
 
+    # задаем ограничение для деплоя только из 'master' ветки:
+      # 'GitHub' => 'Settings' для репозитория => 'Environments' => 'New environment' =>
+      # Вводим любое название, например 'github-pages' => 'Configure environment'
+
+      # Переходим в настройки для переменной => в 'Deployment branches and tags' выбираем
+      # 'Selected branches and tags' => Добавляем 'master' ветку
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

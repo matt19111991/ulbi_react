@@ -8,12 +8,12 @@
 # команду "npm run prepare" можно удалить из package.json после инициализации husky,
 # т.к. заново инициализировать husky незачем
 
-npm run build:prod
-npm run lint:ts
-npm run lint:scss
-npm run test:unit
-npm run storybook:build
-npm run test:ui:ci
+# npm run build:prod
+# npm run lint:ts
+# npm run lint:scss
+# npm run test:unit
+# npm run storybook:build
+# npm run test:ui:ci
 
 # 'lint-staged' запускает проверки только для измененных файлов, а не для всех
 # настройки 'lint-staged' в 'package.json'
