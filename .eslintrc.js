@@ -34,6 +34,14 @@ module.exports = {
         'max-len': 0, // отключить правило для тестов и stories
       },
     },
+    {
+      files: ['**/json-server/*.js'],
+      rules: {
+        // запретить использование импортов вида "require('path')" (откл.)
+        // отключаем, т.к. такие импорты используются для 'json-server'
+        '@typescript-eslint/no-var-requires': 0,
+      },
+    },
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {

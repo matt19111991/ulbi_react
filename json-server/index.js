@@ -21,8 +21,10 @@ const isDevelopment = server.settings.env === 'development';
 if (!isDevelopment) {
   fs.copyFile('db.json', `${os.tmpdir()}/db.json`, (err) => {
     if (err) {
+      // eslint-disable-next-line no-console
       console.log(err);
     } else {
+      // eslint-disable-next-line no-console
       console.log(`Copy file succeed to ${os.tmpdir()}`);
     }
   });
@@ -94,6 +96,7 @@ if (isDevelopment) {
   const HTTP_PORT = 8000;
 
   httpServer.listen(HTTP_PORT, () => {
+    // eslint-disable-next-line no-console
     console.log(`--- Server is running on ${HTTP_PORT} port ---`);
   });
 } else {
@@ -110,6 +113,7 @@ if (isDevelopment) {
   const HTTPS_PORT = 8443;
 
   httpsServer.listen(HTTPS_PORT, () => {
+    // eslint-disable-next-line no-console
     console.log(`--- Server is running on ${HTTPS_PORT} port ---`);
   });
 }
