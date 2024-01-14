@@ -5,7 +5,7 @@ import babelRemovePropsPlugin from '../babel/babelRemovePropsPlugin';
 // для работы 'babel-loader' нужно установить '@babel/core' библиотеку
 
 /*
-  'babel.config.json или babel.config.ts' файл vs buildBabelLoader для 'Webpack'
+  'babel.config.json' или 'babel.config.ts' файл vs 'buildBabelLoader' для 'Webpack':
   - используем что-то одно, нет смысла дублировать настройки
   - если в проекте не используется 'Webpack', то все настройки для 'babel-loader' задаются в
     'babel.config.json или в babel.config.ts'
@@ -22,7 +22,7 @@ export const buildBabelLoader = (isTsx?: boolean, isDev?: boolean): webpack.Rule
 
       plugins: [
         [
-/*        babel-plugin-i18next-extract:
+/*        'babel-plugin-i18next-extract':
           - извлекает все ключи переводов при сборке и сохраняет их в виде JSON по пути '<root>/extractedTranslations/'
           - обновляет переводы новыми значениями в runtime (во время запущенной сборки)
 */

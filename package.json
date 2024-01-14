@@ -150,7 +150,7 @@
   "lint-staged": {
     "**/*.{html,json}": "prettier --list-different",
     "**/*.scss": "stylelint",
-    "**/*.{ts,tsx}": [
+    "src/**/*.{ts,tsx}": [
       "prettier --list-different",
       "eslint",
       "tsc --noemit"
