@@ -4,5 +4,5 @@
 # иначе '.png' файлы в 'GitHub' будут выдавать 'Invalid file signature' ошибку
 *.png binary
 
-# text - файлы будут нормализованы ('CRLF' сконвертируется к 'LF')
+# text - текст в файлах будет нормализован ('CRLF' сконвертируется к 'LF')
 \!*.png text eol=lf

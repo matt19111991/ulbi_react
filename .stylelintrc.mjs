@@ -14,7 +14,7 @@ export default {
     'at-rule-empty-line-before': null, // игнорируем пустые строки
     'custom-property-empty-line-before': null, // игнорируем пустые строки
 
-    'import-notation': 'string', // разрешаем импорты вида "@import 'themes/normal"
+    'import-notation': 'string', // разрешаем импорты вида "@import 'themes/normal'"
 
     // в '@media screen and (max-width: 840px)' можно вводить одно значение, а не только диапазон
     'media-feature-range-notation': null,
@@ -27,5 +27,5 @@ export default {
     'codeguide/indentation': [2], // количество пробельных отступов
     'codeguide/number-leading-zero': 'never', // не должно быть нуля (0.7 => .7)
     'codeguide/string-quotes': 'single' // только одинарные кавычки
-  }
-}
+  },
+};

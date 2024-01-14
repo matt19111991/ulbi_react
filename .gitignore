@@ -1,5 +1,5 @@
 .idea
-/build
+build
 dist
 extractedTranslations
 node_modules
