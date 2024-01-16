@@ -1,19 +1,28 @@
-# Использование Docker в текущем проекте избыточно
+# Использование 'Docker' в текущем проекте избыточно
 
-# Здесь как пример аналога для .deploy/deploy.sh скрипта
+# Здесь как пример создания аналога '.deploy/deploy.sh' скрипта
 
 ###################################################################################
 
 # Этап 1 (builder)
 
-# Cобираем образ на основе Node v.21.4.0
-FROM node:21.0-alpine3.17 as builder
+# Cобираем образ на основе 'Node' v.21.4.0
+FROM node:21.4-alpine as builder
 
-# Копируем package.json файлы внутрь образа для ускорения сборки образов
+# Копируем 'package.json' файлы внутрь образа для ускорения сборки образов
 COPY package.json package-lock.json ./
 
-# Устанавливаем зависимости и создаем нужные папки
-RUN npm install && mkdir /ulbi_react && mv ./node_modules ./ulbi_react
+# Устанавливаем зависимости
+    # 'npm ci' использует 'package-lock.json' файл для установки точных версий зависимостей,
+    # позволяет 'Docker' кэшировать зависимости для более быстрой сборки
+
+    # --loglevel error - собираем только ошибки в логах 'npm'
+    # --ignore-scripts - отключаем 'npm' скрипты, в том числе и команду 'postinstall' для очистки
+    #   кэша после установки новых модулей
+RUN npm ci --loglevel error --ignore-scripts
+
+# Cоздаем нужные папки
+RUN mkdir ./ulbi_react && mv node_modules ./ulbi_react
 
 # Задаем рабочую директорию в образе
 WORKDIR /ulbi_react
