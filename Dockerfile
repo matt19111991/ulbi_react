@@ -12,6 +12,9 @@ FROM node:21.4-alpine as builder
 # Копируем 'package.json' файлы внутрь образа для ускорения сборки образов
 COPY package.json package-lock.json ./
 
+# Обновляем 'npm'
+RUN npm install -g npm@10.3.0
+
 # Устанавливаем зависимости
     # 'npm ci' использует 'package-lock.json' файл для установки точных версий зависимостей,
     # ускоряет установку, но удаляет 'node_modules' целиком
@@ -45,8 +48,8 @@ RUN npm run build:prod
 FROM nginx:alpine
 
 # Копируем локальный конфиг 'nginx' в папку с 'nginx' в образе
-COPY ./config/nginx/nginx_with_ssl.conf /etc/nginx/nginx.conf
-COPY ./config/nginx/sites-enabled/default_with_ssl /etc/nginx/sites-enabled/default
+# COPY ./config/nginx/nginx_with_ssl.conf /etc/nginx/nginx.conf
+# COPY ./config/nginx/sites-enabled/default_with_ssl /etc/nginx/sites-enabled/default
 
 # Удаляем 'index.html' страницу 'nginx', заданную по умолчанию
 RUN rm -rf /usr/share/nginx/html/*
@@ -54,8 +57,8 @@ RUN rm -rf /usr/share/nginx/html/*
 # Копируем все файлы из этапа 1 в корневое расположение, откуда он может обслуживать содержимое
 COPY --from=builder /ulbi_react/build /usr/share/nginx/html
 
-# Выставляем наружу 8443 порт
-EXPOSE 8443
+# Выставляем наружу 80 порт
+EXPOSE 80
 
 # Задаем точку входа для 'nginx'
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
