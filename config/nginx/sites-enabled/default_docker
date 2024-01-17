@@ -1,0 +1,28 @@
+server {
+  # Start listening :80 port
+  listen 80;
+  # listen [::]:80;
+
+  # Our requests domain name (http://localhost/api) without 'http(s)' and 'api'
+  server_name localhost;
+
+  # Proxying for backend
+  location ~ ^/api/(.*)$ { # catch all /api/ requests and redirect them to the backend
+    # $1$is_args$args - for correct work with query params
+    proxy_pass $scheme://localhost:8000/$1$is_args$args;
+
+    proxy_redirect off;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded_For $proxy_add_x_forwarded_for;
+  }
+
+  # Catch all routes after slash
+  location / {
+    # We use Single Page Application (SPA) and routing should be fully on client side
+    # So we put all redirects to index.html page
+    # Without this we will catch 404 error after page refresh
+    root   /usr/share/nginx/html; # Directory with static files
+    index  index.html index.htm;  # Possible entry points
+  }
+}

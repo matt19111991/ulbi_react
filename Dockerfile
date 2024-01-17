@@ -9,7 +9,7 @@
 # Cобираем образ на основе 'Node' v.21.4.0 ('alpine' - легковесная версия 'Ubuntu')
 FROM node:21.4-alpine as builder
 
-# Копируем 'package.json' файлы внутрь образа для ускорения сборки образов
+# Копируем 'package.json' файлы внутрь образа для ускорения повторной установки модулей
 COPY package.json package-lock.json ./
 
 # Обновляем 'npm'
@@ -47,25 +47,18 @@ RUN npm run build:prod
 # Используем базовый образ для 'nginx'
 FROM nginx:alpine
 
-# Копируем локальный конфиг 'nginx' в папку с 'nginx' в образе
-# COPY ./config/nginx/nginx_with_ssl.conf /etc/nginx/nginx.conf
-# COPY ./config/nginx/sites-enabled/default_with_ssl /etc/nginx/sites-enabled/default
-
-# Удаляем 'index.html' страницу 'nginx', заданную по умолчанию
+# Удаляем 'index.html' страницу 'nginx' и конфиги, заданные по умолчанию
 RUN rm -rf /usr/share/nginx/html/*
 
-# Копируем все файлы из этапа 1 в корневое расположение, откуда он может обслуживать содержимое
+RUN rm ./etc/nginx/nginx.conf
+RUN rm -rf /etc/nginx/conf.d/*
+
+# Копируем файлы билда из этапа 1 в корневое расположение для статики 'nginx', откуда он может обслуживать содержимое
 COPY --from=builder /ulbi_react/build /usr/share/nginx/html
 
-# Удаляем конфиг 'nginx' сгенерированный по умолчанию
-# RUN rm ./etc/nginx/nginx.conf
-
-# Создаем папку 'sites-enabled' для 'nginx'
-RUN mkdir etc/nginx/sites-enabled
-
-# Копируем локальный конфиг 'nginx' в папку с 'nginx' в образе
-#COPY ./config/nginx/nginx_with_ssl.conf /etc/nginx/nginx.conf
-#COPY ./config/nginx/sites-enabled/default_with_ssl /etc/nginx/sites-enabled/default
+# Копируем локальные конфиги 'nginx' в папку с 'nginx' в образе
+COPY ./config/nginx/nginx_docker.conf ./etc/nginx/nginx.conf
+COPY ./config/nginx/sites-enabled/default_docker ./etc/nginx/conf.d/default
 
 # Выставляем наружу 80 порт
 EXPOSE 80
