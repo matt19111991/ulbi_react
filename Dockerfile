@@ -57,6 +57,16 @@ RUN rm -rf /usr/share/nginx/html/*
 # Копируем все файлы из этапа 1 в корневое расположение, откуда он может обслуживать содержимое
 COPY --from=builder /ulbi_react/build /usr/share/nginx/html
 
+# Удаляем конфиг 'nginx' сгенерированный по умолчанию
+# RUN rm ./etc/nginx/nginx.conf
+
+# Создаем папку 'sites-enabled' для 'nginx'
+RUN mkdir etc/nginx/sites-enabled
+
+# Копируем локальный конфиг 'nginx' в папку с 'nginx' в образе
+#COPY ./config/nginx/nginx_with_ssl.conf /etc/nginx/nginx.conf
+#COPY ./config/nginx/sites-enabled/default_with_ssl /etc/nginx/sites-enabled/default
+
 # Выставляем наружу 80 порт
 EXPOSE 80
 
