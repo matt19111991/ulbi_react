@@ -2,6 +2,9 @@
 
 # Здесь как пример создания аналога '.deploy/deploy.sh' скрипта
 
+# Создание образа: docker build -t ulbi .
+# Создание и запуск контейнера: docker run --rm -d -p 80:80 ulbi
+
 ###################################################################################
 
 # Этап 1 (builder)
@@ -34,6 +37,9 @@ RUN mkdir ./ulbi_react && mv node_modules ./ulbi_react
 # Задаем рабочую директорию в образе
 WORKDIR /ulbi_react
 
+# Задаем глобальную переменную для API
+ENV API_URL='http://localhost:8000'
+
 # Копируем все локальные файлы в образ (из текущей локальной папки в корень 'WORKDIR')
 COPY . .
 
@@ -58,7 +64,7 @@ COPY --from=builder /ulbi_react/build /usr/share/nginx/html
 
 # Копируем локальные конфиги 'nginx' в папку с 'nginx' в образе
 COPY ./config/nginx/nginx_docker.conf ./etc/nginx/nginx.conf
-COPY ./config/nginx/sites-enabled/default_docker ./etc/nginx/conf.d/default
+COPY ./config/nginx/sites-enabled/default_docker.conf ./etc/nginx/conf.d/default.conf
 
 # Выставляем наружу 80 порт
 EXPOSE 80
