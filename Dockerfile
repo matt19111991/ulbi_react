@@ -38,13 +38,22 @@ RUN mkdir ./ulbi_react && mv node_modules ./ulbi_react
 WORKDIR /ulbi_react
 
 # Задаем глобальную переменную для API
-ENV API_URL='http://localhost:8000'
+ENV API_URL="http://localhost:8000"
 
 # Копируем все локальные файлы в образ (из текущей локальной папки в корень 'WORKDIR')
 COPY . .
 
 # Собираем build
 RUN npm run build:prod
+
+# Устанавливаем 'pm2' (process manager для управления процессами)
+RUN npm install --loglevel error -g pm2
+
+# Выставляем наружу 8000 порт
+EXPOSE 8000
+
+# Запускаем сервер в фоне
+ENTRYPOINT ["pm2-runtime", "start", "json-server/index.js"]
 
 ###################################################################################
 
