@@ -1,22 +1,13 @@
-# Использование 'Docker' в текущем проекте избыточно
-
-# Здесь как пример создания аналога '.deploy/deploy.sh' скрипта
-
-# Создание образа: docker build -t ulbi .
-# Создание и запуск контейнера: docker run --rm -d -p 80:80 ulbi
-
-###################################################################################
-
 # Этап 1 (builder)
 
 # Cобираем образ на основе 'Node' v.21.4.0 ('alpine' - легковесная версия 'Ubuntu')
 FROM node:21.4-alpine as builder
 
 # Копируем 'package.json' файлы внутрь образа для ускорения повторной установки модулей
-COPY package.json package-lock.json ./
+COPY package*.json ./
 
 # Обновляем 'npm'
-RUN npm install -g npm@10.3.0
+RUN npm install -g npm@latest
 
 # Устанавливаем зависимости
     # 'npm ci' использует 'package-lock.json' файл для установки точных версий зависимостей,
@@ -45,15 +36,6 @@ COPY . .
 
 # Собираем build
 RUN npm run build:prod
-
-# Устанавливаем 'pm2' (process manager для управления процессами)
-RUN npm install --loglevel error -g pm2
-
-# Выставляем наружу 8000 порт
-EXPOSE 8000
-
-# Запускаем сервер в фоне
-ENTRYPOINT ["pm2-runtime", "start", "json-server/index.js"]
 
 ###################################################################################
 

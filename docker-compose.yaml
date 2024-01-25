@@ -1,0 +1,18 @@
+version: '3.5' # версия docker compose
+
+services: # docker контейнеры
+  json-server: # любое название контейнера
+    build: # позволяет задать параметры конфигурации при сборке образов
+      context: . # путь к корню
+      args:
+        - NODE_ENV=development
+      dockerfile: docker/server/Dockerfile
+    ports:
+      - '8000:8000'
+
+  build-and-serve:
+    build:
+      context: .
+      dockerfile: docker/builder_and_nginx/Dockerfile
+    ports:
+      - '80:80'

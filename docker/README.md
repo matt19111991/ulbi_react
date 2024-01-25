@@ -1,0 +1,21 @@
+## Работа с Docker
+
+Использование `Docker` в текущем проекте избыточно
+
+Здесь как пример создания аналога [скрипта для деплоя](../.deploy/deploy.sh)
+
+### Запуск образов по отдельности
+- #### Сборка и раздача статики через `nginx`:
+  - ##### Создание образа:
+    `docker build -t ulbi -f ./docker/builder_and_nginx/Dockerfile .`
+    ##### Создание и запуск контейнера в фоне:
+    `docker run --rm -d -p 80:80 ulbi`
+
+- #### Запуск `json-server` в фоне:
+  - ##### Создание образа:
+    `docker build -t ulbi -f ./docker/server/Dockerfile .`
+    ##### Создание и запуск контейнера в фоне:
+    `docker run --rm -d -p 8000:8000 ulbi`
+
+### Запуск всех образов
+`docker-compose up`
