@@ -13,8 +13,5 @@
   "dependencies": {
     "cors": "^2.8.5",
     "json-server": "^0.17.4"
-  },
-  "devDependencies": {
-    "cross-env": "^7.0.3"
   }
 }
