@@ -4,7 +4,7 @@
 - [Настройка HTTPS](docs/https.md)
 - [Loki Ui Screenshot testing](docs/loki.md)
 - [Модели ветвления Git](docs/git_branches.md)
-- [Docker](docker/README.md)
+- [Docker](docs/README.md)
 - [Webpack](docs/webpack.md)
 
 ---- 
