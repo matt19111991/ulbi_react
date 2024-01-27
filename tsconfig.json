@@ -44,9 +44,12 @@
 */  "esModuleInterop": true,
 
 /*
-    Если какая-то библиотека не имеет default import, то ts-loader или babel-loader создадут их:
+    если какая-то библиотека не имеет default import, то ts-loader или babel-loader создадут их:
     import * as path from 'path'; => import path from 'path';
-*/  "allowSyntheticDefaultImports": true
+*/  "allowSyntheticDefaultImports": true,
+
+//  компилятор не будет проверять типы в файлах библиотек с расширением '.d.ts'
+    "skipLibCheck": true
   },
 
 /* если поле 'include' не указано: tsconfig работает для всех .ts(x) файлов
