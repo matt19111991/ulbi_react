@@ -4,7 +4,7 @@
 - [Настройка HTTPS](docs/https.md)
 - [Loki Ui Screenshot testing](docs/loki.md)
 - [Модели ветвления Git](docs/git_branches.md)
-- [Docker](docs/README.md)
+- [Docker](docs/docker.md)
 - [Webpack](docs/webpack.md)
 
 ---- 
@@ -139,67 +139,71 @@
 
 ## Архитектура проекта
 
-Проект написан в соответствии с методологией Feature Sliced Design
+Проект написан в соответствии с методологией `Feature Sliced Design`
 
-Ссылка на документацию - [Feature Sliced Design](https://feature-sliced.design/ru/docs/get-started/tutorial)
+[Ссылка на документацию](https://feature-sliced.design/ru/docs/get-started/tutorial)
 
 ----
 
 ## Работа с переводами
 
-В проекте используется библиотека 'i18next' для работы с переводами.
-Файлы с переводами хранятся в 'public/locales'.
+В проекте используется библиотека `i18next` для работы с переводами
 
-Для комфортной работы рекомендуем установить плагин для WebStorm / VSCode
+Файлы с переводами хранятся в [директории](public/locales)
 
-Документация 'i18next' - [https://react.i18next.com/](https://react.i18next.com/)
+Для комфортной работы рекомендуется установить плагин для `Webstorm` или `VSCode`
+
+[Документация i18next](https://react.i18next.com/)
 
 ----
 
 ## Тесты
 
 В проекте используются 4 вида тестов:
-1) Обычные unit тесты на Jest - `npm run test:unit`
-2) Тесты на компоненты с React Testing Library -`npm run test:unit`
-3) Скриншотное тестирование с Loki `npm run test:ui`
-4) E2E тестирование с Cypress `npm run test:e2e`
+1) Обычные `unit` тесты на `Jest`:
+- `npm run test:unit`
+2) Тесты на компоненты с `React Testing Library`
+- `npm run test:unit`
+3) Скриншотное тестирование с `Loki`:
+- `npm run test:ui`
+4) `E2E тестирование` с `Cypress`:
+- `npm run test:e2e`
 
-Подробнее о тестах - [документация тестирование](./docs/tests.md)
+[Подробнее о тестах](./docs/tests.md)
 
 ----
 
 ## Линтинг
 
-В проекте используется Eslint для проверки TypeScript кода и StyleLint для проверки файлов со стилями.
+В проекте используется `Eslint` для проверки `TypeScript` кода и `Stylelint` для проверки файлов со стилями
 
-Также для строгого контроля главных архитектурных принципов
-используется собственный Eslint plugin `eslint-plugin-path-checker-1911`,
-который содержит 3 правила:
-1) **layer-imports** - проверяет корректность использования слоев с точки зрения 'FSD'
-   (например: 'widgets' нельзя использовать в 'features' и 'entities')
+Для строгого контроля главных архитектурных принципов используется собственный 
+`eslint-plugin-path-checker-1911`, который содержит 3 правила:
+1) **layer-imports** - проверяет корректность использования слоев с точки зрения `FSD`
+   (например: `widgets` нельзя использовать в `features` и `entities`)
 
-2) **path-checker** - запрещает использовать абсолютные импорты в рамках одного модуля. Имеет возможность auto-fix
+2) **path-checker** - запрещает использовать абсолютные импорты в рамках одного модуля. Имеет возможность `auto-fix`
 
-3) **public-api-imports** - разрешает импорт из других модулей только из Public API. Имеет возможность auto-fix
+3) **public-api-imports** - разрешает импорт из других модулей только через `Public API`. Имеет возможность `auto-fix`
 
 ##### Запуск линтеров
-- `npm run lint:ts` - Проверка TS файлов линтером и tsc
-- `npm run lint:ts:fix` - Исправление TS файлов линтером
-- `npm run lint:scss` - Проверка SCSS файлов style линтером
-- `npm run lint:scss:fix` - Исправление SCSS файлов style линтером
-- `npm run prettify` - Выравнивание кода при помощи Prettier
-- `npm run types:check` - Запуск проверки типов TypeScript
+- `npm run lint:ts` - Проверка `.ts` файлов линтером и `tsc`
+- `npm run lint:ts:fix` - Исправление `.ts` файлов линтером
+- `npm run lint:scss` - Проверка `.scss` файлов `style линтером`
+- `npm run lint:scss:fix` - Исправление `.scss` файлов `style линтером`
+- `npm run prettify` - Выравнивание кода при помощи `Prettier`
+- `npm run types:check` - Запуск проверки типов `TypeScript`
 
 ----
 ## Storybook
 
-В проекте для каждого компонента описываются story-кейсы.
+В проекте для каждого компонента описываются `story-кейсы`
 
-Запросы на сервер мокаются с помощью функции 'queryFn' из 'RTK Query' и возвращаются захардкоженные данные.
+Запросы на сервер мокаются с помощью функции `queryFn` из `RTK Query` и возвращаются захардкоженные данные
 
-Файлы со story-кейсами создаем рядом с компонентом с расширением '.stories.tsx'
+Файлы со `story-кейсами` создаем рядом с компонентом с расширением `.stories.tsx`
 
-Запустить Storybook можно командой:
+Запустить `storybook` можно командой:
 - `npm run storybook`
 
 Подробнее о [Storybook](./docs/storybook.md)
@@ -209,17 +213,18 @@
 ## Конфигурация проекта
 
 Для разработки проект содержит 2 конфига:
-1. Webpack - ./config/build/
-2. Vite - vite.config.mts
+* [Webpack](webpack.config.ts)
+* [Vite](vite.config.mts)
 
-Оба сборщика адаптированы под основные фичи приложения.
+Оба сборщика адаптированы под основные фичи приложения
 
-Вся конфигурация хранится в
-- babel.config.json (babel.config.ts) - конфигурация Babel
-- ./config/build/ - конфигурация Webpack
-- ./config/jest/ - конфигурация тестовой среды
-- ./config/nginx/ - конфигурация для nginx
-- ./config/storybook/ - конфигурация Storybook
+Вся конфигурация хранится в:
+- [конфигурация Babel](babel.config.ts)
+- [конфигурация Webpack](./config/build)
+- [конфигурация тестовой среды](./config/jest)
+- [конфигурация для nginx](./config/nginx)
+- [конфигурация Storybook](./config/storybook)
+- [конфигурация Docker](docker-compose.yaml)
 
 В папке `scripts` находятся различные скрипты для рефакторинга / упрощения написания кода / генерации отчетов и т.д.
 
@@ -230,20 +235,20 @@
 Конфигурация `Github Actions` находится [здесь](.github/workflows/main.yaml).
 
 В [main.yaml](.github/workflows/main.yaml) прогоняются все виды тестов, происходит сборка проекта и
-storybooka, линтинг и деплой на сервер.
+`storybook`, линтинг и деплой на сервер
 
 В [main_no_deploy.yaml](.github/old/main_no_deploy.yaml) прогоняются все виды тестов, происходит сборка проекта и
-storybooka, линтинг. Нет деплоя на сервер.
+`storybook`, линтинг. Нет деплоя на сервер
 
-В Pre-commit hooks проверяем проект линтерами, [конфигурация здесь](./.husky)
+В `Pre-commit hooks` проверяем проект линтерами, [конфигурация здесь](./.husky)
 
 ----
 
 ## Работа с данными
 
-Взаимодействие с данными осуществляется с помощью 'Redux ToolKit'.
+Взаимодействие с данными осуществляется с помощью `Redux ToolKit`
 
-По возможности переиспользуемые сущности необходимо нормализовать с помощью 'EntityAdapter'
+По возможности переиспользуемые сущности необходимо нормализовать с помощью `EntityAdapter`
 
 Запросы на сервер отправляются с помощью [RTK query](./src/shared/api/rtkApi.ts)
 
@@ -255,7 +260,7 @@ storybooka, линтинг. Нет деплоя на сервер.
 
 ## Работа с Feature Flags
 
-Разрешено использование Feature Flags только при помощи 
+Разрешено использование `Feature Flags` только при помощи
 - функции `toggleFeatures()` или
 - компонента `<ToggleFeatures />`
 
@@ -264,27 +269,27 @@ storybooka, линтинг. Нет деплоя на сервер.
 ```
 {
     name: название Feature Flag,
-    on: функция, которая отрабатывает после включения feature,
-    off: функция, которая отрабатывает после выключения feature,
+    on: функция или компонент, которая(-ый) отработает или отрисуется после включения feature,
+    off: функция или компонент, которая(-ый) отработает или отрисуется после выключения feature,
 }
 ```
 
-Для автоматического удаления feature можно использовать [скрипт](scripts/removeFeature/index.ts) 
+Для автоматического удаления `feature` можно использовать [скрипт](scripts/removeFeature/index.ts) 
 
 Скрипт принимает 2 аргумента:
-1. Название удаляемого feature flag
-2. Состояние (on / off)
+1. Название удаляемого `feature flag`
+2. Состояние (`on / off`)
 
-Подробнее о Feature Flags - [документация Feature Flags](./docs/feature_flags.md)
+[Подробнее о Feature Flags](./docs/feature_flags.md)
 
 ---
 
 ## Работа с хранилищем
 
-[buildSlice](./src/shared/lib/store/buildSlice.ts) - аналог 'createSlice' из '@reduxjs/toolkit', 
-но без необходимости вызывать 'dispatch' каждый раз в компонентах
+[buildSlice](./src/shared/lib/store/buildSlice.ts) - аналог `createSlice` из `@reduxjs/toolkit`, 
+но без необходимости вызывать `dispatch` каждый раз в компонентах
 
-[buildSelector](./src/shared/lib/store/buildSelector.ts) - избавляемся от необходимости использовать 'useSelector' 
+[buildSelector](./src/shared/lib/store/buildSelector.ts) - избавляемся от необходимости использовать `useSelector` 
 каждый раз внутри компонентов
 
 ----
