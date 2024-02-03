@@ -1,3 +1,5 @@
+# Использование 'Docker' в текущем проекте избыточно
+
 version: '3.5' # версия docker compose
 
 services: # docker контейнеры

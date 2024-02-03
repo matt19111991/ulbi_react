@@ -1,6 +1,6 @@
 /*                                  process.argv[2]        process.argv[3]
                                                  v         v
-  Запуск скрипта: npm run remove:feature isArticleEnabled off
+  Запуск скрипта: npm run set:feature isAppRedesigned on
 */
 
 import { Project, SyntaxKind } from 'ts-morph';
