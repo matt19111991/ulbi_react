@@ -19,10 +19,14 @@ const config: StorybookConfig = {
     },
     '@storybook/addon-interactions',
     '@storybook/addon-links',
-    '@storybook/addon-viewport',
 
     // storybook-addon-themes не совместим с Storybook v.7+
   ],
+
+  core: {
+    // отключаем телеметрию и сбор анонимных данных (чтобы не было предупреждения в консоли при запуске)
+    disableTelemetry: true,
+  },
 
   framework: {
     name: '@storybook/react-webpack5',
