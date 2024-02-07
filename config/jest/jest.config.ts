@@ -59,6 +59,13 @@ export default {
   // настройка абсолютных импортов
   modulePaths: ['<rootDir>src'],
 
+  // чтобы избежать ошибки:
+  //    'jest-haste-map: Haste module naming collision: ulbi_react
+  //      The following files share their name; please adjust your hasteImpl:
+  //        * <rootDir>/docker/server/package.json
+  //        * <rootDir>/package.json'
+  modulePathIgnorePatterns: ['<rootDir>/docker/*'],
+
   // Use this configuration option to add custom reporters to Jest
   reporters: [
     'default',
@@ -149,10 +156,6 @@ export default {
   // E.g. maxWorkers: 10% will use 10% of your CPU amount + 1 as the maximum worker number.
   // maxWorkers: 2 will use a maximum of 2 workers.
   // maxWorkers: "50%",
-
-  // An array of regexp pattern strings, matched against all module paths before
-  // considered 'visible' to the module loader
-  // modulePathIgnorePatterns: [],
 
   // Activates notifications for test results
   // notify: false,

@@ -11,135 +11,292 @@
 
 ## Инициализация проекта
 
-- `npm init -y` - создание `package.json` с настройками по умолчанию
+Создание `package.json` с настройками по умолчанию:
 
----- 
+`npm init -y`
+
+----
 
 ## Запуск проекта
-- `npm install` - устанавливаем зависимости
-- `npm run start:vite:dev` - запуск сервера и клиента в development режиме (Vite сборщик)
-- `npm run start:webpack:dev` - запуск сервера и клиента в development режиме (Webpack сборщик)
-- `npm outdated` - вывести список устаревших зависимостей
+
+Установка зависимостей:
+  
+  `npm install`
+
+Запуск сервера и клиента в `development` режиме (`Vite` сборщик):
+
+  `npm run start:vite:dev`
+
+Запуск сервера и клиента в `development` режиме (`Webpack` сборщик):
+
+  `npm run start:webpack:dev`
+
+Список устаревших зависимостей:
+
+  `npm outdated`
 
 ----
 
 ## Deploy проекта
-   1. Создаем облачный сервер (можно бесплатно на [Kamatera](https://console.kamatera.com))
+   1. Создаем облачный сервер (можно на [Kamatera](https://console.kamatera.com))
+
    2. Подключаемся по:
-      * SSH: `ssh root@91.223.169.133`
+      * SSH: `ssh root@91.223.169.133` (login_on_server@created_server_ip)
 
-        Если `ssh` команды не существует, устанавливаем `SSH клиент` и генерируем приватный и 
-        публичный ключи: `ssh-keygen`
+        Если `ssh` команды не существует:
+          * устанавливаем **SSH client**:
 
-      * или через `Remote Console`:
-        `https://console.kamatera.com => Servers => Наш сервер => Connect => Open Remote Console`
+            `sudo apt install openssh-client`
+
+          * генерируем приватный и публичный ключи:
+
+            `ssh-keygen`
+
+      * или через **Remote Console**:
+        ```
+         https://console.kamatera.com =>
+            Servers =>
+               Наш сервер =>
+                  Connect =>
+                     Open Remote Console
+        ```
 
         Вводим пароль от сервера и попадаем в консоль сервера
 
-   3. Обновляем apt зависимости на сервере: `sudo apt update`
-   4. Устанавливаем Git: `sudo apt install git-all`
+   3. Обновляем **apt зависимости** на сервере:
+
+      `sudo apt update`
+
+   4. Устанавливаем **Git**:
+
+      `sudo apt install git-all`
+
    5. Клонируем проект:
 
-      5.1. **Публичный**: `git clone https://github.com/matt19111991/ulbi_react.git`
+      5.1. **Публичный**:
+      
+          git clone https://github.com/matt19111991/ulbi_react.git
 
-      5.2. **Приватный** (возможна ошибка **Authentication failed for https://github.com/matt19111991/ulbi_react.git**)
+      5.2. **Приватный**:
 
-         5.2.1. Генерируем приватный и публичный ключи: `sudo ssh-keygen`
-
-         5.2.2. Указываем путь: `/root/.ssh/project`
-
-         5.2.3. Вводим `passphrase` (просто жмем `Enter`)
-
-         5.2.4. Переходим в папку с .ssh: `cd .ssh`
-
-         5.2.5. Создаем конфигурационный файл для GitHub: `cat > config`
-
-         Host должен быть точным названием проекта в репозитории:
          ```
-         Host ulbi_react
-         Hostname github.com
-         User git
-         IndetityFile ~/.ssh/project
+         Возможна ошибка 'Authentication failed for https://github.com/matt19111991/ulbi_react.git'
+
+         1. Генерируем приватный и публичный ключи:
+            sudo ssh-keygen
+
+         2. Указываем путь:
+            /root/.ssh/project
+
+         3. Вводим 'passphrase' (просто жмем 'Enter')
+
+         4. Переходим в папку с .ssh:
+            cd .ssh
+
+         5. Создаем конфигурационный файл для 'GitHub':
+            cat > config
+
+            Host должен быть точным названием проекта в репозитории:
+                ```
+                Host ulbi_react
+                Hostname github.com
+                User git
+                IndetityFile ~/.ssh/project
+                ```
+
+         6. Берем публичный 'SSH' ключ:
+            sudo cat project.pub
+
+         7. Добавляем публичный 'SSH' ключ в 'GitHub':
+            Расположение на 'GitHub': 'Settings' / 'Deploy keys' / 'Add deploy key'
          ```
+         5.2.1 Клонируем проект:
 
-         5.2.6. Берем публичный SSH ключ: `sudo cat project.pub`
+          git clone git@github.com:matt19111991/ulbi_react.git
 
-         5.2.7. Добавляем публичный SSH ключ в GitHub:
-                `Settings / Deploy keys / Add deploy key`
+   6. Устанавливаем `nvm`:
 
-         5.2.8. Клонируем проект: `git clone git@github.com:matt19111991/ulbi_react.git`
-   6. Устанавливаем nvm: `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash`
-   7. Настраиваем nvm: `export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-                        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"`
-   8. Устанавливаем Node: `nvm install 21.4.0`
-   9. Устанавливаем зависимости: `npm i`
-   10. (опционально) Запускаем development сборку (vite не работает): `npm run start:client:webpack`
-   11. Устанавливаем nginx: `sudo apt install nginx`
-   12. Идем в папку с конфигом nginx: `cd ../../etc/nginx/`
-   13. Раскомментируем все пункты с gzip и сохраняем файл: `vim nginx.conf`
-   14. Идем в папку sites-enabled: `cd sites-enabled/`
-   15. Открываем и редактируем файл конфига nginx: `vim default`
-   16. Проверяем целостность nginx конфига: `nginx -t`
-   17. Останавливаем Apache сервис перед обновлением nginx: `sudo service apache2 stop`
-   18. Перезапускаем nginx: `sudo service nginx restart`
-   19. http://91.223.169.133 должен выдавать `404 Not Found | nginx/1.18.0 (Ubuntu)`
-   20. Идем в папку `www`: `cd ../../../var/www/`
-   21. Создаем папку с названием проекта: `mkdir ulbi_react`
-   22. Переходим в папку с проектом: `../../root/ulbi_react/`
-   23. Делаем билд: `npm run build:prod`
-   24. Перемещаем билд в папку для статики: `mv build/ ../../../var/www/ulbi_react`
-   25. Переходим в папку со статикой: `../../var/www/ulbi_react/`
-   26. Удаляем папку `html` (если есть): `rmdir html/`
-   27. Переименовываем папку с билдом: `mv build/ html/`
-   28. Переходим в папку с проектом: `../../../root/ulbi_react/`
-   29. Устанавливаем `pm2` (process manager для управления процессами): `npm i -g pm2`
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
 
-       Список запущенных процессов: `pm2 list`
+   7. Настраиваем `nvm`:
 
-       Остановить процесс по id = 0: `pm2 stop 0`
-   30. Запускаем сервер в фоне: `pm2 start json-server/index.js`
+    export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")" [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"`
+
+   8. Устанавливаем `Node`:
+
+    nvm install 21.4.0
+
+   9. Устанавливаем зависимости:
+
+    npm i
+
+   10. (опционально) Запускаем `development` сборку (`Vite` не работает):
+
+    npm run start:client:webpack
+
+   11. Устанавливаем `nginx`:
+
+    sudo apt install nginx
+
+   12. Идем в папку с конфигом `nginx`:
+
+    cd ../../etc/nginx/
+
+   13. Раскомментируем все пункты с `gzip` и сохраняем файл:
+
+    vim nginx.conf
+
+   14. Идем в папку `sites-enabled`:
+
+    cd sites-enabled/
+
+   15. Открываем и редактируем файл конфига `nginx`:
+
+    vim default
+
+   16. Проверяем целостность `nginx` конфига:
+
+    nginx -t
+
+   17. Останавливаем `Apache` сервис перед обновлением `nginx`:
+
+    sudo service apache2 stop
+
+   18. Перезапускаем `nginx`:
+
+    sudo service nginx restart
+
+   19. http://91.223.169.133 должен выдавать:
+
+    404 Not Found | nginx/1.18.0 (Ubuntu)`
+
+   20. Идем в папку `www`:
+
+    cd ../../../var/www/
+
+   21. Создаем папку с названием проекта:
+
+    mkdir ulbi_react
+
+   22. Переходим в папку с проектом:
+
+    ../../root/ulbi_react/
+
+   23. Делаем билд:
+
+    npm run build:prod
+
+   24. Перемещаем билд в папку для статики:
+
+    mv build/ ../../../var/www/ulbi_react
+
+   25. Переходим в папку со статикой:
+
+    ../../var/www/ulbi_react/
+
+   26. Удаляем папку `html` (если есть):
+
+    rmdir html/
+
+   27. Переименовываем папку с билдом:
+
+     mv build/ html/
+
+   28. Переходим в папку с проектом: 
+
+    ../../../root/ulbi_react/
+
+   29. Устанавливаем `pm2` (process manager для управления процессами):
+
+    npm i -g pm2
+
+   Список запущенных процессов:
+
+    pm2 list
+
+   Остановить процесс по `id = 0`:
+
+    pm2 stop 0
+
+   30. Запускаем сервер в фоне:
+
+    pm2 start json-server/index.js
+
    31. [Скрипт для деплоя](.deploy/deploy.sh) позволяет автоматизировать деплой на сервере
 
 ----
 
 ## Скрипты
 
-- `npm run start:client:webpack` - Запуск клиента на Webpack в режиме dev сервера
-- `npm run start:client:vite` - Запуск клиента на Vite
-- `npm run start:server:dev` - Запуск сервера в development режиме
-- `npm run start:server:prod` - Запуск сервера в production режиме
-- `npm run start:vite:dev` - Запуск клиента на Vite и сервера в development режиме
-- `npm run start:webpack:dev` - Запуск клиента на Webpack и сервера в development режиме
-- `npm run start:vite:prod` - Запуск клиента на Vite и сервера в production режиме
-- `npm run start:webpack:prod` - Запуск клиента на Webpack и сервера в production режиме
-- `npm run build:dev` - Сборка клиента в development режиме (не минимизирован)
-- `npm run build:prod` - Сборка клиента в production режиме (минимизирован)
-- `npm run generate:template` - Скрипт для генерации FSD слайсов
-- `npm run lint:ts` - Проверка TS файлов линтером и tsc
-- `npm run lint:ts:fix` - Исправление TS файлов линтером
-- `npm run lint:scss` - Проверка SCSS файлов style линтером
-- `npm run lint:scss:fix` - Исправление SCSS файлов style линтером
-- `npm run postinstall` - Очистка кэша после установки новых модулей
-- `npm run prettify` - Выравнивание кода при помощи Prettier
-- `npm run set:feature` - Установка feature flag
-- `npm run storybook` - Запуск Storybook
-- `npm run storybook:build` - Сборка storybook билда
-- `npm run test:e2e` - Запуск интеграционных тестов с Cypress
-- `npm run test:ui` - Запуск скриншотных тестов Loki
-- `npm run test:ui:ok` - Подтверждение новых скриншотов Loki
-- `npm run test:ui:ci` - Запуск скриншотных тестов Loki для CI
-- `npm run test:ui:json` - Генерация json отчета для скриншотных тестов Loki
-- `npm run test:ui:html` - Генерация HTML отчета для скриншотных тестов Loki
-- `npm run test:ui:report` - Генерация полного отчета для скриншотных тестов Loki
-- `npm run test:ui:update` - Обновление скриншотных тестов Loki
-- `npm run test:unit` - Запуск unit тестов с Jest
-- `npm run types:check` - Запуск проверки типов TypeScript
+`npm run start:client:webpack` - запуск клиента на `Webpack` в режиме `dev сервера`
+
+`npm run start:client:vite` - запуск клиента на `Vite`
+
+`npm run start:server:dev` - запуск сервера в `development` режиме
+
+`npm run start:server:prod` - запуск сервера в `production` режиме
+
+`npm run start:vite:dev` - запуск клиента на `Vite` и сервера в `development` режиме
+
+`npm run start:webpack:dev` - запуск клиента на `Webpack` и сервера в `development` режиме
+
+`npm run start:vite:prod` - запуск клиента на `Vite` и сервера в `production` режиме
+
+`npm run start:webpack:prod` - запуск клиента на `Webpack` и сервера в `production` режиме
+
+`npm run build:dev` - сборка клиента в `development` режиме (не минимизирован)
+
+`npm run build:prod` - сборка клиента в `production` режиме (минимизирован)
+
+`npm run generate:template` - скрипт для генерации `FSD` слайсов
+
+`npm run lint:ts` - проверка `.ts` файлов линтером и `tsc`
+
+`npm run lint:ts:fix` - исправление `.ts` файлов линтером
+
+`npm run lint:scss` - проверка `.scss` файлов `style линтером`
+
+`npm run lint:scss:fix` - исправление `.scss` файлов `style линтером`
+
+`npm run postinstall` - очистка кэша после установки новых модулей
+
+`npm run prettify` - выравнивание кода при помощи `Prettier`
+
+`npm run set:feature` - установка состояния `on / off` для `feature flag`
+
+`npm run storybook` - запуск **Storybook**
+
+`npm run storybook:build` - сборка **Storybook** билда
+
+`npm run test:e2e` - запуск интеграционных тестов с `Cypress`
+
+`npm run test:ui` - Запуск скриншотных тестов `Loki`
+
+`npm run test:ui:ok` - Подтверждение новых скриншотов `Loki`
+
+`npm run test:ui:ci` - Запуск скриншотных тестов `Loki` для `CI` (используется билд **Storybook**)
+
+`npm run test:ui:json` - Генерация `JSON` с различиями между скриншотами `Loki`
+
+`npm run test:ui:html` - Генерация `HTML` страницы на базе `JSON` файла с различиями между скриншотами `Loki`
+
+`npm run test:ui:report` - Генерация полного отчета (`JSON` и `HTML`) для скриншотных тестов `Loki`
+
+`npm run test:ui:update` - Обновление скриншотных тестов `Loki`
+
+`npm run test:unit` - Запуск unit тестов с `Jest`
+
+`npm run types:check` - Запуск проверки типов `TypeScript`
 
 ----
 
 ## Архитектура проекта
 
 Проект написан в соответствии с методологией `Feature Sliced Design`
+
+Скрипт для генерации шаблонной структуры компонентов:
+ 
+`npm run generate:template [slice_name] [component_name]`
 
 [Ссылка на документацию](https://feature-sliced.design/ru/docs/get-started/tutorial)
 
@@ -151,23 +308,31 @@
 
 Файлы с переводами хранятся в [директории](public/locales)
 
-Для комфортной работы рекомендуется установить плагин для `Webstorm` или `VSCode`
+Для комфортной работы рекомендуется установить плагин для `Webstorm`
 
-[Документация i18next](https://react.i18next.com/)
+[Документация i18next](https://react.i18next.com)
 
 ----
 
 ## Тесты
 
 В проекте используются 4 вида тестов:
+
 1) Обычные `unit` тесты на `Jest`:
-- `npm run test:unit`
-2) Тесты на компоненты с `React Testing Library`
-- `npm run test:unit`
+
+   `npm run test:unit`
+
+2) Тесты на компоненты с `React Testing Library`:
+
+   `npm run test:unit`
+
 3) Скриншотное тестирование с `Loki`:
-- `npm run test:ui`
+
+   `npm run test:ui`
+
 4) `E2E тестирование` с `Cypress`:
-- `npm run test:e2e`
+
+   `npm run test:e2e`
 
 [Подробнее о тестах](./docs/tests.md)
 
@@ -179,6 +344,7 @@
 
 Для строгого контроля главных архитектурных принципов используется собственный 
 `eslint-plugin-path-checker-1911`, который содержит 3 правила:
+
 1) **layer-imports** - проверяет корректность использования слоев с точки зрения `FSD`
    (например: `widgets` нельзя использовать в `features` и `entities`)
 
@@ -187,12 +353,30 @@
 3) **public-api-imports** - разрешает импорт из других модулей только через `Public API`. Имеет возможность `auto-fix`
 
 ##### Запуск линтеров
-- `npm run lint:ts` - Проверка `.ts` файлов линтером и `tsc`
-- `npm run lint:ts:fix` - Исправление `.ts` файлов линтером
-- `npm run lint:scss` - Проверка `.scss` файлов `style линтером`
-- `npm run lint:scss:fix` - Исправление `.scss` файлов `style линтером`
-- `npm run prettify` - Выравнивание кода при помощи `Prettier`
-- `npm run types:check` - Запуск проверки типов `TypeScript`
+
+- Проверка `.ts` файлов линтером и компилятором `tsc`:
+
+  `npm run lint:ts`
+
+- Исправление `.ts` файлов линтером:
+
+  `npm run lint:ts:fix`
+
+- Проверка `.scss` файлов `style линтером`:
+
+  `npm run lint:scss`
+
+- Исправление `.scss` файлов `style линтером`:
+
+  `npm run lint:scss:fix`
+
+- Выравнивание кода при помощи `Prettier`:
+ 
+  `npm run prettify`
+
+- Запуск проверки типов `TypeScript`:
+
+  `npm run types:check`
 
 ----
 ## Storybook
@@ -203,8 +387,9 @@
 
 Файлы со `story-кейсами` создаем рядом с компонентом с расширением `.stories.tsx`
 
-Запустить `storybook` можно командой:
-- `npm run storybook`
+Запустить storybook можно командой:
+
+`npm run storybook`
 
 Подробнее о [Storybook](./docs/storybook.md)
 
@@ -220,13 +405,14 @@
 
 Вся конфигурация хранится в:
 - [конфигурация Babel](babel.config.ts)
-- [конфигурация Webpack](./config/build)
-- [конфигурация тестовой среды](./config/jest)
-- [конфигурация для nginx](./config/nginx)
-- [конфигурация Storybook](./config/storybook)
 - [конфигурация Docker](docker-compose.yaml)
+- [конфигурация Jest](./config/jest)
+- [конфигурация Nginx](./config/nginx)
+- [конфигурация Storybook](./config/storybook)
+- [конфигурация Webpack](./config/build)
 
-В папке `scripts` находятся различные скрипты для рефакторинга / упрощения написания кода / генерации отчетов и т.д.
+В папке [scripts](scripts) находятся различные скрипты для рефакторинга / упрощения написания кода /
+генерации отчетов и т.д.
 
 ----
 
@@ -235,10 +421,10 @@
 Конфигурация `Github Actions` находится [здесь](.github/workflows/main.yaml).
 
 В [main.yaml](.github/workflows/main.yaml) прогоняются все виды тестов, происходит сборка проекта и
-`storybook`, линтинг и деплой на сервер
+storybooka, линтинг и деплой на сервер
 
 В [main_no_deploy.yaml](.github/old/main_no_deploy.yaml) прогоняются все виды тестов, происходит сборка проекта и
-`storybook`, линтинг. Нет деплоя на сервер
+storybooka, линтинг. Нет деплоя на сервер
 
 В `Pre-commit hooks` проверяем проект линтерами, [конфигурация здесь](./.husky)
 
@@ -274,11 +460,14 @@
 }
 ```
 
-Для автоматического удаления `feature` можно использовать [скрипт](scripts/removeFeature/index.ts) 
+Для автоматического перевода `feature` только в одно определенное состояние (`on` или `off`)
+можно использовать [скрипт](scripts/removeFeature/index.ts):
+
+`npm run set:feature isAppRedesigned on`
 
 Скрипт принимает 2 аргумента:
-1. Название удаляемого `feature flag`
-2. Состояние (`on / off`)
+1. Название `feature flag`
+2. Состояние `on / off`
 
 [Подробнее о Feature Flags](./docs/feature_flags.md)
 
