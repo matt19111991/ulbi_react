@@ -163,7 +163,7 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
     # пока не выполнится 'build-and-ui-testing' job, текущая 'build' job не запустится
     needs: [build-and-ui-testing]
 
-    # if: ${{ false }} # отключаем, пока нет сервера
+    if: ${{ false }} # отключаем, пока нет сервера
 
     strategy:
       matrix:
