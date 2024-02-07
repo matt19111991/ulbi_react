@@ -1,6 +1,6 @@
 name: Linting, Testing, Building
 
-# запуск GitHub Actions будет происходить на push и pull request (ветка 'master')
+# запуск 'GitHub Actions' будет происходить на 'push' и 'pull request' (ветка 'master')
 on:
   push:
     branches: [ master ]
@@ -8,17 +8,17 @@ on:
     branches: [ master ]
 
 jobs:
-  pipeline: # любое название для job
+  pipeline: # любое название для 'job'
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [ 17.x ] # задаем версию для Node.js
+        node-version: [ 17.x ] # задаем версию для 'Node.js'
 
     steps:
       - uses: actions/checkout@v2 # синхронизация с репозиторием
 
-      # устанавливаем в среду, где будут запускаться 'GitHub Actions', заданную выше версию Node.js
+      # устанавливаем в среду, где будут запускаться 'GitHub Actions', заданную выше версию 'Node.js'
       - name: Starting Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -33,7 +33,7 @@ jobs:
        # есть аналог 'npm install' => 'npm ci' (более быстрая версия для CI):
          # не создается новый 'package-lock.json' файл, а используется существующий
          # нужно добавить 'package-lock.json' в репозиторий
-         # но используем 'npm i', т.к. иначе возникают конфликты для deprecated библиотек
+         # но используем 'npm i', т.к. иначе возникают конфликты для 'deprecated' библиотек
         run: npm i
 
       # собираем production build

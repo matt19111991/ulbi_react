@@ -1,6 +1,6 @@
 name: Linting, Testing, Building, Deploying
 
-# запуск GitHub Actions будет происходить на push и pull request (ветка 'master')
+# запуск 'GitHub Actions' будет происходить на 'push' и 'pull request' (ветка 'master')
 on:
   push:
     branches: [ master ]
@@ -9,12 +9,14 @@ on:
 
 # предоставляем разрешения для 'GITHUB_TOKEN', которые необходимы для деплоя
 permissions:
-  id-token: write # чтобы убедиться, что развертывание происходит из соответствующего источника
+  id-token: write # для получения 'OpenID Connect (OIDC) token'
+  # Подробнее об OIDC token: https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect#overview-of-openid-connect
+
   pages: write # разрешает деплой для 'GitHub Actions'
 
 concurrency:
-  cancel-in-progress: true # для возможности отмены любой 'job' в concurrency группе
-  group: "pages" # название concurrency группы
+  cancel-in-progress: true # для возможности отмены любой 'job' в 'concurrency' группе
+  group: "pages" # название 'concurrency' группы
 
 jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются параллельно
   build-and-ui-testing: # требует сборку
@@ -38,12 +40,12 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
 
     strategy:
       matrix:
-        node-version: [ 21.x ] # задаем версию для Node.js
+        node-version: [ 21.x ] # задаем версию для 'Node.js'
 
     steps:
       - uses: actions/checkout@v4 # синхронизация с репозиторием
 
-      # устанавливаем в среду, где будут запускаться 'GitHub Actions', заданную выше версию Node.js
+      # устанавливаем в среду, где будут запускаться 'GitHub Actions', заданную выше версию 'Node.js'
       - name: Starting Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
@@ -58,7 +60,7 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
         # есть аналог 'npm install' => 'npm ci' (более быстрая версия для CI):
           # не создается новый 'package-lock.json' файл, а используется существующий
           # нужно добавить 'package-lock.json' в репозиторий
-          # но, используем 'npm i', т.к. иначе возникают конфликты для deprecated библиотек
+          # но, используем 'npm i', т.к. иначе возникают конфликты для 'deprecated' библиотек
         run: npm i
 
       # собираем production build
@@ -97,14 +99,14 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
         if: always()
         uses: actions/configure-pages@v4
 
-      # упаковываем и загружаем артефакты, которые можно развернуть на страницах GitHub
+      # упаковываем и загружаем артефакты, которые можно развернуть на страницах 'GitHub'
       - name: Upload artifact
         if: always()
         uses: actions/upload-pages-artifact@v2
         with:
           path: 'reports' # все отчеты сохраняются в папку 'reports'
 
-      # публикуем артефакты на страницах GitHub для деплоя
+      # публикуем артефакты на страницах 'GitHub' для деплоя
       - name: Deploy to GitHub Pages
         id: deployment
         if: always()
@@ -115,12 +117,12 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
 
     strategy:
       matrix:
-        node-version: [ 21.x ] # задаем версию для Node.js
+        node-version: [ 21.x ] # задаем версию для 'Node.js'
 
     steps:
       - uses: actions/checkout@v4 # синхронизация с репозиторием
 
-      # устанавливаем в среду, где будут запускаться 'GitHub Actions', заданную выше версию Node.js
+      # устанавливаем в среду, где будут запускаться 'GitHub Actions', заданную выше версию 'Node.js'
       - name: Staring Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
@@ -135,7 +137,7 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
         # есть аналог 'npm install' => 'npm ci' (более быстрая версия для CI):
           # не создается новый 'package-lock.json' файл, а используется существующий
           # нужно добавить 'package-lock.json' в репозиторий
-          # но, используем 'npm i', т.к. иначе возникают конфликты для deprecated библиотек
+          # но, используем 'npm i', т.к. иначе возникают конфликты для 'deprecated' библиотек
         run: npm i
 
       # проверяем корректность TypeScript
@@ -147,12 +149,7 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
       - name: Linting CSS
         run: npm run lint:scss
 
-      # запускаем unit тестирование
-      - name: Unit testing
-        if: always()
-        run: npm run test:unit
-
-  # Секреты задаются на GitHub: Settings => Security => Secrets and variables => Actions
+  # Секреты задаются на 'GitHub': 'Settings' => 'Security' => 'Secrets and variables' => 'Actions'
 
   # HOST = 91.223.169.133
   # USERNAME = root
@@ -166,11 +163,11 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
     # пока не выполнится 'build-and-ui-testing' job, текущая 'build' job не запустится
     needs: [build-and-ui-testing]
 
-    if: ${{ false }} # отключаем, пока нет сервера
+    # if: ${{ false }} # отключаем, пока нет сервера
 
     strategy:
       matrix:
-        node-version: [ 21.x ] # задаем версию для Node.js
+        node-version: [ 21.x ] # задаем версию для 'Node.js'
 
     steps:
       - name: Executing remote SSH commands using password

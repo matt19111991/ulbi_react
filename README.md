@@ -418,6 +418,8 @@
 
 ## CI Pipeline и Pre-commit hooks
 
+[Документация по началу работы](https://docs.github.com/ru/actions/quickstart)
+
 Конфигурация `Github Actions` находится [здесь](.github/workflows/main.yaml).
 
 В [main.yaml](.github/workflows/main.yaml) прогоняются все виды тестов, происходит сборка проекта и
