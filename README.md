@@ -1,11 +1,19 @@
 ## Доп. информация
-- [Создание и настройка доменного имени](docs/domain_name.md)
-- [Настройка SSL](docs/ssl.md)
-- [Настройка HTTPS](docs/https.md)
-- [Loki Ui Screenshot testing](docs/loki.md)
-- [Модели ветвления Git](docs/git_branches.md)
+
 - [Docker](docs/docker.md)
+- [Feature Flags](./docs/feature_flags.md)
+- [Git (модели ветвления)](docs/git_branches.md)
+- [Storybook](./docs/storybook.md)
 - [Webpack](docs/webpack.md)
+
+
+- [Настройка HTTPS](docs/https.md)
+- [Настройка SSL](docs/ssl.md)
+- [Создание и настройка доменного имени](docs/domain_name.md)
+
+
+- [Loki Ui Screenshot testing](docs/loki.md)
+- [Тесты](./docs/tests.md)
 
 ---- 
 

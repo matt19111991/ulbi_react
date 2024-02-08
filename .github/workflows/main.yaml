@@ -123,7 +123,7 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
       - uses: actions/checkout@v4 # синхронизация с репозиторием
 
       # устанавливаем в среду, где будут запускаться 'GitHub Actions', заданную выше версию 'Node.js'
-      - name: Staring Node.js ${{ matrix.node-version }}
+      - name: Starting Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
