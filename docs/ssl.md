@@ -1,23 +1,38 @@
 ## Настройка SSL
 
-1. Идем на сайт https://letsencrypt.org и далее на https://certbot.eff.org
+1. Идем на сайт [Let's Encrypt](https://letsencrypt.org) и на [Certbot](https://certbot.eff.org)
 
-2. Snap
-   * Проверка `snap` версии: `snap --version`
-   * Устанавливаем `snapd` (если не установлен): `sudo apt install snapd`
+2. **Snap**
+   * Проверка `snap` версии: 
+   
+     `snap --version`
+   
+   * Устанавливаем `snapd` (если не установлен):
+   
+     `sudo apt install snapd`
+   
    * Проверка обновлений `snapd`:
-     ```
-     sudo snap install core
-     sudo snap refresh core
-     ```
+     
+     `sudo snap install core`
 
-3. Удаляем предыдущие установки `Certbot`: `sudo apt-get remove certbot`
+     `sudo snap refresh core`
 
-4. Устанавливаем `Certbot`: `sudo snap install --classic certbot`
+3. Удаляем предыдущие установки `Certbot`: 
+   
+   `sudo apt-get remove certbot`
 
-5. Подготовка `Certbot`: `sudo ln -s /snap/bin/certbot /usr/bin/certbot`
+4. Устанавливаем `Certbot`: 
 
-6. Выбираем автоматическую настройку для `nginx` (указываем в опроснике действующий email и доменное имя):
+   `sudo snap install --classic certbot`
+
+5. Подготовка `Certbot`: 
+
+   `sudo ln -s /snap/bin/certbot /usr/bin/certbot`
+
+6. Выбираем автоматическую настройку для `nginx` 
+  
+   (указываем в опроснике действующий `email` и `доменное имя`):
+   
    `sudo certbot --nginx`
 
 7. Если возникла ошибка **"Could not automatically find a matching server block for ulbireact.ru. 
@@ -29,5 +44,5 @@
    but requested an insecure XMLHttpRequest endpoint 'http://91.223.169.133:8000/login'. 
    This request has been blocked; the content must be served over HTTPS."**
 
-   - Нужно наш json server [настроить под HTTPS](https.md)
+   - Нужно наш `json server` [настроить под HTTPS](https.md)
    - Добавить [проксирование через nginx](../config/nginx/sites-enabled/default_with_ssl)

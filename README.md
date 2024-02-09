@@ -150,7 +150,8 @@
 
     cd ../../etc/nginx/
 
-   13. Раскомментируем все пункты с `gzip` и сохраняем файл:
+   13. Раскомментируем все пункты с `gzip` ([пример файлов конфига `nginx`](config/nginx)) и 
+       сохраняем файл:
 
     vim nginx.conf
 
@@ -158,7 +159,9 @@
 
     cd sites-enabled/
 
-   15. Открываем и редактируем файл конфига `nginx`:
+   15. Открываем и редактируем `default` файл конфига `nginx`
+
+       ([пример 'default' файлов конфига `nginx`](config/nginx/sites-enabled)):
 
     vim default
 
