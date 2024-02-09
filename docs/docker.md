@@ -21,4 +21,4 @@
     `docker run --rm -d -p 8000:8000 ulbi`
 
 ### Запуск всех образов
-`docker-compose up`
+`docker-compose up -d`

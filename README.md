@@ -161,7 +161,7 @@
 
    15. Открываем и редактируем `default` файл конфига `nginx`
 
-       ([пример 'default' файлов конфига `nginx`](config/nginx/sites-enabled)):
+       ([пример `default` файлов конфига `nginx`](config/nginx/sites-enabled)):
 
     vim default
 

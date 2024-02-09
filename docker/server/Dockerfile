@@ -29,7 +29,7 @@ COPY json-server /json-server
 # Выставляем наружу 8000 порт
 EXPOSE 8000
 
-# Усианавливаем 'cross-env' глобально, иначе ошибка 'sh: cross-env: not found'
+# Устанавливаем 'cross-env' глобально, иначе ошибка 'sh: cross-env: not found'
 RUN npm install -g cross-env@latest
 
 # Запускаем сервер в фоне
