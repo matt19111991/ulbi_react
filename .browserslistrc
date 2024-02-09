@@ -1,10 +1,11 @@
-# Позволяет уменьшить бандл, избавляясь от ненужных полифиллов от babel
+# Позволяет уменьшить бандл, избавляясь от ненужных полифиллов от 'Babel'
 
-# Browsers that we support
+# Поддерживаемые браузеры в зависимости от режима
 
 [production]
 defaults
-not IE 11
+not Safari < 17
+not iOS < 17
 
 [development]
 last 2 Chrome versions
