@@ -1,4 +1,4 @@
-// Eslint v.8+ работает с WebStorm 2022.2.2+
+// 'ESLint v.8+' работает с 'WebStorm 2022.2.2+'
 
 /*
   'ESLint' сообщает только об ошибках своих собственных линтеров, но не сообщает об ошибках компиляции 'TS'.
@@ -6,7 +6,7 @@
 */
 
 module.exports = {
-  // каждая среда содержит набор предопределенных глобальных переменных, предоставляем доступ к ним для 'EsLint'
+  // каждая среда содержит набор предопределенных глобальных переменных, предоставляем доступ к ним для 'ESLint'
   env: {
     browser: true,
     es2021: true,
@@ -18,7 +18,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:i18next/recommended',
     'plugin:import/recommended',
-    'plugin:prettier/recommended', // ошибки 'Prettier' передаются 'EsLinty' и подчеркиваются
+    'plugin:prettier/recommended', // ошибки 'Prettier' передаются 'ESLinty' и подчеркиваются
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:storybook/recommended',
@@ -37,9 +37,10 @@ module.exports = {
       },
     },
     {
-      files: ['**/json-server/*.js'],
+      files: ['**/json-server/*.js', '**/scripts/**/*.js'],
       rules: {
-        // запретить импорты вида "require('path')" (откл.), т.к. такие импорты используются для 'json-server'
+        // запретить импорты вида "require('path')" (откл.), т.к.
+        // такие импорты используются для содержимого папок 'json-server' и 'scripts'
         '@typescript-eslint/no-var-requires': 0,
       },
     },
@@ -62,7 +63,8 @@ module.exports = {
   plugins: [
     '@typescript-eslint',
 
-    // проверяет на указание i18next переводов для textNodes (не '<p>test</p>', а '<p>{t('test')}</p>')
+    // проверяет на указание 'i18next' переводов для textNodes:
+    // не '<p>test</p>', а '<p>{t('test')}</p>')
     'i18next',
 
     'react',
@@ -89,7 +91,7 @@ module.exports = {
     // }
     '@typescript-eslint/no-shadow': 2,
 
-    // переменная объявлена, но не используется (откл. для аргументов в функциях)
+    // переменная объявлена, но не используется (откл. для параметров в функциях)
     '@typescript-eslint/no-unused-vars': [2, { args: 'none' }],
 
     // при возврате значения из функции избегаем использования 'return'; значение возвращаем сразу без '{}' (откл.)
@@ -99,7 +101,7 @@ module.exports = {
     // должны игнорироваться атрибуты 'data-testid' и 'to' (ссылки) (вкл.)
     'i18next/no-literal-string': [2, { ignoreAttribute: ['data-testid', 'to'], markupOnly: true }],
 
-    // в конце импортов нужно указывать расширения файлов '.ts(x)' (откл.); правило включено для 'node_modules'
+    // в конце импортов нужно указывать расширения файлов (откл. для 'node_modules' и '.ts(x)' файлов)
     'import/extensions': [2, 'ignorePackages', { ts: 'never', tsx: 'never' }],
 
     // 'Webpack' и плагины должны быть в 'dependencies' (откл.), т.к. их место в 'devDependencies'
@@ -125,8 +127,8 @@ module.exports = {
     'jsx-quotes': [2, 'prefer-single'],
 
     // проверка на корректность символов перевода строки (откл.):
-    // - LF в файловой системе Unix: символ перевода строки
-    // - CRLF в файловой системе Windows: символы возврата каретки и перевода строки
+    // - 'LF' в файловой системе 'Unix': символ перевода строки
+    // - 'CRLF' в файловой системе 'Windows': символы возврата каретки и перевода строки
     'linebreak-style': 0,
 
     // должна быть пустая строка между свойствами объекта в классах (откл.)
@@ -147,30 +149,16 @@ module.exports = {
     // конфликт c 'TypeScript', поэтому делегируем в сам 'TypeScript' (@typescript-eslint/no-shadow) (откл.)
     'no-shadow': 0,
 
+    // чтобы была возможность использовать кастомный 'DeepPartial' и
+    // 'TypeScript' не ругался на объявление глобальных переменных, 'var' и т.д.
+    'no-undef': 0,
+
     // запрет на нижнее подчеркивание в переменных (вкл.)
     'no-underscore-dangle': [2, { allow: ['__API__', '__IS_DEV__', '__PROJECT__'] }],
 
-    // чтобы была возможность использовать кастомный 'DeepPartial' и 'TypeScript' не ругался
-    // на объявление глобальных переменных, 'var' и т.д.
-    'no-undef': 0,
-
     // запрещаем конструкции 'obj?.foo' (откл.)
-    // отключаем для корректной работы с Eslint v.7, т.к. сыпет ошибками по всем файлам
+    // отключаем для корректной работы с ESLint v.7, т.к. сыпет ошибками по всем файлам
     // 'no-unsafe-optional-chaining': 0,
-
-    // кастомное правило для проверки относительных путей (вкл.)
-    'path-checker-1911/path-checker': [2, { alias: '@' }],
-
-    // кастомное правило для проверки импортов из 'publicApi' (вкл.)
-    'path-checker-1911/public-api-imports': [
-      2,
-      {
-        alias: '@',
-
-        // игнорируем правило для тестовых файлов, файлов 'storybook' и 'StoreDecorator'
-        testFilesPatterns: ['**/*.test.*', '**/*.stories.*', '**/StoreDecorator.tsx'],
-      },
-    ],
 
     // кастомное правило для проверки вложенности импортов (вкл.)
     'path-checker-1911/layer-imports': [
@@ -190,6 +178,20 @@ module.exports = {
 
         // игнорируем правило для: 'StateSchema' (внутри 'StoreProvider') и 'Testing Public API'
         ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
+      },
+    ],
+
+    // кастомное правило для проверки относительных путей (вкл.)
+    'path-checker-1911/path-checker': [2, { alias: '@' }],
+
+    // кастомное правило для проверки импортов из 'publicApi' (вкл.)
+    'path-checker-1911/public-api-imports': [
+      2,
+      {
+        alias: '@',
+
+        // игнорируем правило для тестовых файлов, файлов 'storybook' и 'StoreDecorator'
+        testFilesPatterns: ['**/*.test.*', '**/*.stories.*', '**/StoreDecorator.tsx'],
       },
     ],
 

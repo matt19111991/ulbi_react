@@ -1,5 +1,5 @@
 ## TODO
-* Lighthouse testing
+* Lighthouse и PageSpeed Insights testing
 
 ## Доп. информация
 
