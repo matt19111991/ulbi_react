@@ -1,10 +1,4 @@
-/*
-  для файла конфигурации '.stylelintrc.mjs' устанавливаем расширение '.mjs', чтобы
-  запускать 'stylelint' в режиме 'ESM (ES modules)' и избегать ошибки
-  "SyntaxError: Unexpected token 'export'"
-*/
-
-export default {
+module.exports = {
   // рекомендуется документацией (покрывает правила 'stylelint-config-recommended')
   extends: ['stylelint-config-standard'],
 
