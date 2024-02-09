@@ -8,7 +8,7 @@ import babelRemovePropsPlugin from '../babel/babelRemovePropsPlugin';
   'babel.config.json' или 'babel.config.ts' файл vs 'buildBabelLoader' для 'Webpack':
   - используем что-то одно, нет смысла дублировать настройки
   - если в проекте не используется 'Webpack', то все настройки для 'babel-loader' задаются в
-    'babel.config.json или в babel.config.ts'
+    'babel.config.json' или в 'babel.config.ts'
   - для 'Jest' среды настройки 'babel-loader' выносятся в 'babel.config.json' или 'babel.config.ts'
 */
 
@@ -41,10 +41,10 @@ export const buildBabelLoader = (isTsx?: boolean, isDev?: boolean): webpack.Rule
           { isTsx }, // отвечает за парсинг .tsx
         ],
 /*
-        смотрит код на наличие ES6 фич и, если они есть, трансформирует код так,
+        смотрит код на наличие 'ES6' фич и, если они есть, трансформирует код так,
         чтобы эти фичи брались не из глобального скоупа, а импортировались из 'babel-runtime'
 
-        плагин позволяет повторно использовать внедренный вспомогательный код Babel для экономии размера кода
+        плагин позволяет повторно использовать внедренный вспомогательный код 'Babel' для экономии размера кода
 */      '@babel/plugin-transform-runtime',
 
         isTsx && !isDev && [
