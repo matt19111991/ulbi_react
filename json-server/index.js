@@ -8,12 +8,12 @@ const os = require('os');
 
 const server = jsonServer.create();
 
-// Библиотека 'cross-env' позволяет передавать NODE_ENV переменные в Windows
+// Библиотека 'cross-env' позволяет передавать 'NODE_ENV' переменные в 'Windows'
 
 const isDevelopment = server.settings.env === 'development';
 
 /*
-  Нужно использовать временное хранилище для 'db.json' в production режиме,
+  Нужно использовать временное хранилище для 'db.json' в 'production' режиме,
   иначе '500 Internal Server Error' для 'POST' и 'PUT' запросов:
   "Error: erofs: read-only file system, open '/var/task/db.json' at object.opensync (node:fs:601:3)
   at writefilesync (node:fs:2249:35) at filesync.write"
