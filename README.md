@@ -1,3 +1,6 @@
+## TODO
+* Lighthouse testing
+
 ## Доп. информация
 
 - [Docker](docs/docker.md)
