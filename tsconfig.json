@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".", // для абсолютных импортов
+    "baseUrl": ".", // начальная директория для абсолютных импортов
 
     "paths": {
 //    должна быть консистентность с 'Webpack' ('buildWebpackConfig' => 'resolve' => 'alias')
@@ -9,51 +9,54 @@
       // "*": ["./src/*"] // для абсолютных импортов ('entities/Article')
     },
 
-    "outDir": "./dist/", // куда производится сборка. Значение неважно, т.к. за это отвечает Webpack
-    "noImplicitAny": true, // тип 'any' можно указывать только явно
-    "module": "ESNext", // система модулей. Чаще всего 'ESNext' или 'es6'
+    "outDir": "./dist/", // куда эмитятся файлы после компиляции. Значение неважно, т.к. за это отвечает 'Webpack'
 
-//  для корректной совместной работы 'document.getElementsByTagName' и 'target': 'es5' в 'tsconfig.json'
+    "noImplicitAny": true, // тип 'any' можно указывать только явно
+
+    "module": "ESNext", // система модулей. Чаще всего 'ESNext' или 'ES6'
+
+//  для корректной совместной работы 'document.getElementsByTagName' и 'target': 'ES5' в 'tsconfig.json'
     "downlevelIteration": true,
 
-//  конечная версия стандарта EcmaScript, в которую будет компилироваться код (для улучшения поддержки браузеров)
+//  конечная версия стандарта 'EcmaScript', в которую будет компилироваться код (для улучшения поддержки браузеров)
     "target": "es5",
 
 /*  строгий режим (лучше всегда включать)
-    Например, при попытке доступа к полю у пустого массива 'data' => data.username
+    Например, при попытке доступа к полю у пустого массива 'data' => 'data.username'
     не будет выброшена ошибка, если 'strict: false';
 
 */  "strict": true,
 
-/*  транспиляция каждого .ts{x} файла в .js{x} будет происходить по отдельности
-    необходимо для корректной работы 'babel-loader'
+/*  транспиляция каждого '.ts{x}' файла в '.js{x}' будет происходить по отдельности,
+    необходимо для корректной работы 'babel-loader',
     позволяет выявить зависимости между файлами и избавиться от них, например:
      - чтобы в бандл не попадали 'enums' или 'namespaces'
      - требуется 'export type' для типов и интерфейсов (чтобы не тащить их в конечную сборку)
 */  "isolatedModules": true,
 
-    "jsx": "react-jsx", // можно избавиться от "import React from 'react';" в каждом файле с JSX
-    "allowJs": true, // компилятор будет обрабатывать не только TS, но и JS файлы
+    "jsx": "react-jsx", // можно избавиться от "import React from 'react';" в каждом файле с 'JSX'
+
+    "allowJs": true, // компилятор будет обрабатывать не только 'TS', но и 'JS' файлы
 
 /*  позволяет избавиться от расширений файлов в импортах:
     "import { add } from './math'" вместо "import { add } from './math.ts'"
 */  "moduleResolution": "node", // 99% случаев => применяем 'node' стратегию
 
-/*  esModuleInterop позволяет работать с пакетами, которые используют CommonJS, как с ES6 модулями:
+/*  'esModuleInterop' позволяет работать с пакетами, которые используют 'CommonJS', как с 'ES6' модулями:
     const path = require('path') | module.exports => import path from 'path';
 */  "esModuleInterop": true,
 
 /*
-    если какая-то библиотека не имеет default import, то ts-loader или babel-loader создадут их:
+    если какая-то библиотека не имеет 'default import', то 'ts-loader' или 'babel-loader' создадут их:
     import * as path from 'path'; => import path from 'path';
 */  "allowSyntheticDefaultImports": true,
 
 //  компилятор не будет проверять типы в файлах библиотек с расширением '.d.ts'
-    "skipLibCheck": true
+    "skipLibCheck": true,
   },
 
-/* если поле 'include' не указано: tsconfig работает для всех .ts(x) файлов
-   если указано: нужно перечислить все папки, которые должны проверяться TypeScript-ом
+/* если поле 'include' не указано: 'tsconfig' работает для всех '.ts(x)' файлов
+   если указано: нужно перечислить все папки, которые должны проверяться 'TypeScript-ом'
 */"include": [
     "./config/build/**/*.ts",
     "./config/jest/setupTests.ts",
@@ -65,7 +68,8 @@
 
   "ts-node": {
     "compilerOptions": {
-      "module": "CommonJS" // исправляет SyntaxError: Cannot use import statement outside a module для webpack.config
-    }
-  }
+      // исправляет 'SyntaxError: Cannot use import statement outside a module' для 'webpack.config.ts'
+      "module": "CommonJS",
+    },
+  },
 }
