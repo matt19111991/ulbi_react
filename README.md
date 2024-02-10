@@ -1,5 +1,6 @@
 ## TODO
 * Lighthouse и PageSpeed Insights testing
+* SEO add
 
 ## Доп. информация
 
