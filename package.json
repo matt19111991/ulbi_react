@@ -5,7 +5,7 @@
   "main": "./src/index.tsx",
   "scripts": {
     "start:client:webpack": "webpack serve -- --env port=3000 --env mode=development",
-    "start:client:vite": "vite",
+    "start:client:vite": "VITE_CJS_IGNORE_WARNING=true vite",
     "start:server:dev": "cross-env NODE_ENV=development node ./json-server/index.js",
     "start:server:prod": "cross-env NODE_ENV=production node ./json-server/index.js",
     "start:vite:dev": "concurrently \"npm run start:client:vite\" \"npm run start:server:dev\"",
@@ -148,7 +148,7 @@
     "webpack-dev-server": "^4.15.1"
   },
   "lint-staged": {
-    "**/*.{html,json}": "prettier --list-different",
+    "**/*.json": "prettier --list-different",
     "**/*.scss": "stylelint",
     "src/**/*.{ts,tsx}": [
       "prettier --list-different",

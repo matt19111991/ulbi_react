@@ -7,18 +7,24 @@ import svgr from 'vite-plugin-svgr';
 import react from '@vitejs/plugin-react';
 
 /*
-  для файла конфигурации 'vite.config.mts' устанавливаем расширение '.mts', чтобы
-  запускать vite в режиме ESM (ES modules) и избегать предупреждения
+  Флаг 'VITE_CJS_IGNORE_WARNING=true' при запуске 'vite' нужен, чтобы избегать предупреждения
   "The CJS build of Vite's Node API is deprecated"
+
+  Вместо использования этого флага, можно переименовать 'vite.config.ts' в 'vite.config.mts'
 */
 
 /*
-  для 'vite' нужен отдельный 'index.html' файл в корне проекта:
-  в '<body />' после '<div id="root" />' нужно добавить '<script />' к '/src/index.tsx' корневому файлу
+  Для 'vite' нужен отдельный 'index.html' файл в корне проекта:
+  Документация: https://vite-docs-ru.vercel.app/guide/#index-html-%D0%B8-%D0%BA%D0%BE%D1%80%D0%B5%D0%BD%D1%8C-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0
 */
 
 /*
-  костыль для совместной работы 'vite' и 'react-virtualized'
+  В '<body />' после '<div id="root" />' нужно добавить
+  '<script type="module" src="/src/index.tsx"></script>' с 'src', ведущим к корневому файлу
+*/
+
+/*
+  Костыль для совместной работы 'vite' и 'react-virtualized'
   'react-virtualized' лучше заменить на 'react-window' или 'react-virtuoso'
 */
 const reactVirtualizedHack = (): PluginOption => {
