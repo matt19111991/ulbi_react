@@ -5,7 +5,7 @@ import babelRemovePropsPlugin from './config/build/babel/babelRemovePropsPlugin'
 // для работы 'babel-loader' нужно установить '@babel/core' библиотеку
 
 /*
-  'babel.config.json' или 'babel.config.ts' файл vs 'buildBabelLoader' для 'Webpack':
+  'babel.config.json' или 'babel.config.ts' файлы vs 'buildBabelLoader' для 'Webpack':
   - используем что-то одно, нет смысла дублировать настройки
   - если в проекте не используется 'Webpack', то все настройки для 'babel-loader' задаются в
     'babel.config.json' или в 'babel.config.ts'
@@ -19,15 +19,16 @@ export default function config(isTsx?: boolean, isDev?: boolean): webpack.RuleSe
     use: {
       loader: 'babel-loader',
       options: {
-        cacheDirectory: true, // разрешаем кеширование
+        // для корректной работы 'babelRemovePropsPlugin' нужно отключить кэширование
+        cacheDirectory: true, // разрешаем кэширование
 
         plugins: [
           [
             /*
               'babel-plugin-i18next-extract':
-              - извлекает все ключи переводов при сборке и сохраняет их в виде JSON по пути
+              - извлекает все ключи переводов при сборке и сохраняет их в виде 'JSON' по пути:
                 '<root>/extractedTranslations/'
-              - обновляет переводы новыми значениями в runtime (во время запущенной сборки)
+              - обновляет переводы новыми значениями в 'runtime' (во время запущенной сборки)
             */
             'i18next-extract',
             {
@@ -44,7 +45,7 @@ export default function config(isTsx?: boolean, isDev?: boolean): webpack.RuleSe
 
           [
             '@babel/plugin-transform-typescript',
-            { isTsx }, // отвечает за парсинг .tsx
+            { isTsx }, // отвечает за парсинг '.tsx'
           ],
 
           /*
@@ -57,6 +58,7 @@ export default function config(isTsx?: boolean, isDev?: boolean): webpack.RuleSe
 
           isTsx &&
             !isDev && [
+              // для корректной работы нужно отключить кэширование
               babelRemovePropsPlugin, // для '.tsx' удаляем все 'data-testid' из финальной сборки
               {
                 props: ['data-testid'],
@@ -64,18 +66,18 @@ export default function config(isTsx?: boolean, isDev?: boolean): webpack.RuleSe
             ],
 
           /*
-            'react-refresh-webpack-plugin' позволяет применить правки в коде без перезагрузки страницы
-            Обеспечивает более стабильную работу, чем функционал 'webpack-dev-server' из коробки
+            '@pmmmwh/react-refresh-webpack-plugin' позволяет применить правки в коде без перезагрузки страницы;
+            обеспечивает более стабильную работу, чем функционал 'webpack-dev-server' из коробки
             isDev && require.resolve('react-refresh/babel'),
           */
         ].filter(Boolean), // отфильтровываем неактивные плагины
 
         // настройки для преобразования новых стандартов в старые (поддержка старых браузеров)
         presets: [
-          '@babel/preset-env', // позволяет использовать новейшие функции JS
-          '@babel/preset-typescript', // для поддержки TS
+          '@babel/preset-env', // позволяет использовать новейшие функции 'JS'
+          '@babel/preset-typescript', // для поддержки 'TS'
           [
-            '@babel/preset-react', // для поддержки JSX
+            '@babel/preset-react', // для поддержки 'JSX'
             {
               // без этой опции получаем ошибку: 'ReferenceError: React is not defined'
               runtime: 'automatic',
@@ -83,7 +85,7 @@ export default function config(isTsx?: boolean, isDev?: boolean): webpack.RuleSe
           ],
         ],
 
-        // presets: ['@babel/preset-env', '@babel/preset-react'], // для React / JSX (без 'ts-loader'):
+        // presets: ['@babel/preset-env', '@babel/preset-react'], // для 'React'/'JSX' (без 'ts-loader'):
       },
     },
   };

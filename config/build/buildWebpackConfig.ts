@@ -5,7 +5,7 @@ import { buildLoaders } from './buildLoaders';
 import { buildPlugins } from './buildPlugins';
 import { buildResolvers } from './buildResolvers';
 
-import { BuildOptions } from './types/config';
+import type { BuildOptions } from './types/config';
 
 export function buildWebpackConfig(options: BuildOptions): webpack.Configuration {
   const { isDev, mode, paths } = options;
@@ -14,7 +14,7 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
     mode,
 
 /*  entry: {
-      first_entry:  path.resolve(__dirname, 'src', 'index1.js'), // несколько entry points
+      first_entry:  path.resolve(__dirname, 'src', 'index1.js'), // несколько 'entry points'
       second_entry: path.resolve(__dirname, 'src', 'index2.js'),
     },
 
@@ -28,18 +28,18 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
 
     devServer: isDev ? buildDevServer(options) : undefined,
 
-    devtool: isDev // source-maps (карты исходного кода) нужны для отладочной информации в бандле
+    devtool: isDev // 'source-maps' (карты исходного кода) нужны для отладочной информации в бандле
       ? 'eval-cheap-module-source-map' // build slow, rebuild fast - best practice
-      : 'eval-cheap-module-source-map', // в production нужно отключать source-map для минимизации кода
+      : false, // в 'production' нужно отключать 'source-map' для минимизации кода
 
     output: { // настройка конечной сборки
-/*    при использовании статичного названия ('build.js') файл билда будет кешироваться,
+/*    при использовании статичного названия ('build.js') файл билда будет кэшироваться;
       браузером не будут подтягиваться новые изменения в файле
 
-      [name] для динамических названий (для кеширования уже загруженных файлов)
+      [name] для динамических названий (для кэширования уже загруженных файлов)
 
-      [contenthash] - уникальный хэш. Браузер кеширует файлы с одинаковыми именами.
-      Если будут изменения в закешированных файлах, то
+      [contenthash] - уникальный хэш. Браузер кэширует файлы с одинаковыми именами.
+      Если будут изменения в закэшированных файлах, то
       при сборке поменяется хэш и сгенерируется новое имя файла
 */    filename: '[name].[contenthash].js',
 
@@ -48,10 +48,10 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
 //    очистка ненужных файлов (файлов, в которых поменялся хэш или файлов с предыдущей сборки)
       clean: true,
 
-/*    Все статические файлы должны запрашиваться из корня (/build), иначе
-      ломаются роуты вида '/articles/:id'. publicPath('/') => корень '/build' + '/'
+/*    Все статические файлы должны запрашиваться из корня (/build), иначе ломаются роуты вида '/articles/:id'
+      publicPath('/') => корень '/build' + '/'
 
-      В dev режиме папки '/build' нет, как и папки '/articles', все хранится в памяти
+      В 'development' режиме папки '/build' нет, как и папки '/articles', все хранится в памяти
 */    publicPath: '/',
     },
 

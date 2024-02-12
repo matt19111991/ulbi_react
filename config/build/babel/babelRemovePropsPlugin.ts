@@ -1,22 +1,42 @@
 import type { PluginItem } from '@babel/core';
 
-// для корректной работы с TS нужно установить '@types/babel__core'
+// для корректной работы с 'TS' нужно установить '@types/babel__core'
 
-export default (): PluginItem => { // использование: babelRemovePropsPlugin(['data-testid', '...']);
+/*
+  использование плагина:
+  {
+    test: ...,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        plugins: [
+          [
+            babelRemovePropsPlugin,
+            {
+              props: ['data-testid', '...'],
+            },
+          ],
+        ],
+      },
+    },
+  },
+*/
+
+export default (): PluginItem => {
+  // чтобы изменять 'AST-дерево', нужно посетить узлы 'AST-дерева'
   return {
-    visitor: {
-/*   'Program' - название ноды в AST дереве; используем для того, чтобы можно было
-      в плагин прокидывать атрибуты, которые хотим убрать из сборки
-*/    Program(path, state) {
+    visitor: { // 'babel' использует шаблон 'посетитель'
+      // 'Program' - корень 'AST-дерева' (скрипт / модуль)
+      Program(path, state) {
         const attributesToRemove = state.opts.props || []; // массив атрибутов для удаления
 
-        path.traverse({ // проходимся по всем нодам AST дерева
-//        JSXIdentifier === атрибут (как, например, 'data-testid')
-          JSXIdentifier(current) {
-            const nodeName = current.node.name; // получаем имя текущей ноды
+        path.traverse({ // проходимся по всем нодам 'AST-дерева'
+          // вносим изменения только для 'JSXIdentifier' и его родителя 'JSXAttribute'
+          JSXIdentifier(current) { // 'JSXIdentifier' === атрибут (например, 'data-testid')
+            const nodeName = current.node.name; // получаем имя текущей ноды-атрибута
 
             if (attributesToRemove.includes(nodeName)) {
-              current.parentPath.remove();
+              current.parentPath.remove(); // удаляем целиком 'JSXIdentifier' и 'JSXAttribute'
             }
           },
         });

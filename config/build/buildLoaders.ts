@@ -1,5 +1,5 @@
 /*
-  библиотека для корректной работы 'react-refresh-webpack-plugin' при использовании 'ts-loader'
+  библиотека для корректной работы '@pmmmwh/react-refresh-webpack-plugin' при использовании 'ts-loader'
   import ReactRefreshTypeScript from 'react-refresh-typescript';
 */
 import webpack from 'webpack';
@@ -8,7 +8,7 @@ import { buildBabelLoader } from './loaders/buildBabelLoader';
 import { buildCssLoader } from './loaders/buildCssLoader';
 import { buildSvgLoader } from './loaders/buildSvgLoader';
 
-import { BuildOptions } from './types/config';
+import type { BuildOptions } from './types/config';
 
 /*
   Альтернативные и более современные варианты загрузчиков вместо 'babel-loader' и 'ts-loader':
@@ -18,11 +18,11 @@ import { BuildOptions } from './types/config';
 
 export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 /*
-  Для оптимизации сборки в dev-режиме, мы используем что-то одно из:
+  Для оптимизации сборки в 'development' режиме, мы используем что-то одно из:
     1. Только 'babel-loader' без 'ts-loader'. НО!!! 'babel-loader' не умеет в 'runtime' проверять типы
 
     2. Опцию 'transpileOnly: true' для 'ts-loader':
-         'ts-loader' будет заниматься только компиляцией ts кода во время сборки БЕЗ ПРОВЕРКИ ТИПОВ
+         'ts-loader' будет заниматься только компиляцией 'TS' кода во время сборки БЕЗ ПРОВЕРКИ ТИПОВ
          (прирост времени сборки почти в 2 раза)
 
     Для обоих вариантов нужно вынести проверку типов в отдельный процесс ('fork-ts-checker-webpack-plugin')
@@ -33,11 +33,11 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 
   const cssLoaders = buildCssLoader(options.isDev);
 
-  // 'raw-loader', 'url-loader' и 'file-loader' можно заменить на Asset Modules (Webpack 5)
+  // 'raw-loader', 'url-loader' и 'file-loader' можно заменить на 'Asset Modules' ('Webpack 5')
 
   // если нужно будет добавить обработку шрифтов, достаточно расширить регулярку "/\.(png|jpe?g|gif|woff)$/i"
   const assetLoader = { // замена для 'file-loader'
-    test: /\.(png|jpe?g|gif)$/i, // обрабатывает только PNG, JPG, JPEG и GIF изображения
+    test: /\.(png|jpe?g|gif)$/i, // обрабатывает только 'PNG', 'JPG', 'JPEG' и 'GIF' изображения
     type: 'asset/resource', // покрывает функционал 'file-loader'
   };
 
@@ -55,36 +55,37 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
   const svgLoader = buildSvgLoader();
 
 /*
-  ts-loader умеет обрабатывать JSX. Для нативного JS нужен дополнительно 'babel-loader'
+  // 'ts-loader' умеет обрабатывать 'JSX'. Для нативного 'JS' нужен дополнительно 'babel-loader'
   const typeScriptLoader = {
     test: /\.tsx?$/,
     exclude: '/node-modules/',
     use: {
       loader: 'ts-loader',
       options: {
-        getCustomTransformers: () => ({ // для корректной работы 'react-refresh-webpack-plugin'
-          before: [isDev && ReactRefreshTypeScript()].filter(Boolean)
+        // задаем для корректной работы '@pmmmwh/react-refresh-webpack-plugin':
+        getCustomTransformers: () => ({
+          // дополнительно нужно добавить '@pmmmwh/react-refresh-webpack-plugin' в массив плагинов:
+          // 'config' => 'build' => 'buildPlugins'
+          before: [options.isDev && ReactRefreshTypeScript()].filter(Boolean) // отфильтровываем неактивные плагины
         }),
-        transpileOnly: options.isDev, // компиляция ts кода во время сборки БЕЗ ПРОВЕРКИ ТИПОВ
+
+        transpileOnly: options.isDev, // компиляция 'TS' кода во время сборки БЕЗ ПРОВЕРКИ ТИПОВ
       },
     },
   };
 */
-  return [ // порядок лоадеров в массиве имеет значение
+  return [ // порядок лоадеров в массиве имеет значение (начинается снизу и идет вверх)
     assetLoader,
 
     // fileLoader,
 
     svgLoader,
 
-    tsBabelLoader,
-    tsxBabelLoader,
-/*
-    'babel-loader' нужно использовать для корректной работы React/JSX; сейчас это покрывается 'ts-loader'
-    babelLoader, // должен идти выше typeScriptLoader
+    tsBabelLoader, // 'babel-loader' и 'ts-loader' взаимозаменяемы, используем что-то одно
+    tsxBabelLoader, // Статья: https://qna.habr.com/q/674304
 
-    typeScriptLoader,
-*/
+    // typeScriptLoader,
+
     cssLoaders,
   ];
 }

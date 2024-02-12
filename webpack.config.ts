@@ -1,26 +1,25 @@
-// const path = require('path'); // Webpack работает в среде Node.js. Есть доступ к 'path'
+// const path = require('path'); // 'Webpack' работает в среде 'Node.js'. Есть доступ к 'path'
 
-/* @types/node, @types/webpack и ts-node нужны,
-   чтобы использовать такой формат импортов. Иначе require
+/*
+  '@types/node', '@types/webpack' и 'ts-node' нужны, чтобы использовать 'ES6 модули', иначе 'require'
 
-   Благодаря модулям и типам выше можно перейти от webpack.config.js к webpack.config.ts
+  Благодаря модулям и типам выше можно перейти от 'webpack.config.js' к 'webpack.config.ts'
 */
-import path from 'path';
-
 import dotenv from 'dotenv';
+import path from 'path';
 import webpack from 'webpack';
 
 import { buildWebpackConfig } from './config/build/buildWebpackConfig';
-import { BuildEnv, BuildMode, BuildPaths } from './config/build/types/config';
+import type { BuildEnv, BuildMode, BuildPaths } from './config/build/types/config';
 
 // используем переменные из '.env' файла; будут доступны в 'process.env.API_URL'
 dotenv.config({ path: './.env' });
 
 /*
-module.exports = { // аналог экспорта для Node.js
+  module.exports = { // аналог 'CommonJS' экспорта
     mode: 'development',
     ...
-}
+  }
 */
 
 const getApiUrl = (mode: BuildMode, apiUrl?: string) => {
@@ -35,8 +34,12 @@ const getApiUrl = (mode: BuildMode, apiUrl?: string) => {
   return 'http://localhost:8000';
 };
 
-// export default config; // если не нужны переменные окружения env, можно вернуть просто config
+// export default config; // если не нужны переменные окружения 'env', можно вернуть просто 'config'
 
+/*
+  'env' переменные передаются при запуске 'npm' команды:
+  'webpack serve --env port=3000 --env mode=development
+*/
 export default (env: BuildEnv) => {
   const mode: BuildMode = env?.mode || 'development';
   const isDev = mode === 'development';
