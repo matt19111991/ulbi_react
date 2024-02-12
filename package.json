@@ -152,8 +152,7 @@
     "**/*.scss": "stylelint",
     "src/**/*.{ts,tsx}": [
       "prettier --list-different",
-      "eslint",
-      "tsc --noemit"
+      "eslint"
     ]
   },
   "loki": {

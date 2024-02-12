@@ -15,6 +15,7 @@
 npm run test:unit
 # npm run storybook:build
 # npm run test:ui:ci
+npm run types:check
 
 # 'lint-staged' запускает проверки только для измененных файлов, а не для всех,
 # настройки 'lint-staged' в 'package.json'
