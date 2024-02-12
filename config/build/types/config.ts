@@ -14,6 +14,7 @@ export interface BuildPaths {
   html: string;
   locales: string; // где лежат файлы переводов
   src: string;
+  robots: string;
 }
 
 export interface BuildOptions {

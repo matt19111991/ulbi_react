@@ -113,6 +113,7 @@ export function buildPlugins({
         patterns: [
           { from: paths.favicon, to: paths.build },
           { from: paths.locales, to: paths.buildLocales },
+          { from: paths.robots, to: paths.build },
         ],
       }),
     );

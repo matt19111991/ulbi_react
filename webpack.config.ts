@@ -55,6 +55,7 @@ export default (env: BuildEnv) => {
     favicon: path.resolve(__dirname, 'src', 'shared', 'assets', 'favicon.ico'),
     html: path.resolve(__dirname, 'public', 'index.html'),
     locales: path.resolve(__dirname, 'public', 'locales'),
+    robots: path.resolve(__dirname, 'robots.txt'),
     src: path.resolve(__dirname, 'src'),
   };
 
