@@ -13,11 +13,13 @@ server {
   server_name ulbireact.ru;
 
   # Proxying for backend (HTTPS)
-  location ~ ^/api/(.*)$ { # catch all /api/ requests and redirect them to the backend
+  location ~ ^/api/(.*)$ { # catch all '/api/' requests and redirect them to the backend
+    # $scheme - 'http' or 'https'
     # $1$is_args$args - for correct work with query params
     proxy_pass $scheme://91.223.169.133:8443/$1$is_args$args;
 
     proxy_redirect off;
+
     proxy_set_header Host $host;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded_For $proxy_add_x_forwarded_for;
