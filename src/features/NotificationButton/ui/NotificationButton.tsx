@@ -42,7 +42,14 @@ export const NotificationButton = memo(
     const trigger = (
       <ToggleFeatures
         feature='isAppRedesigned'
-        on={<Icon clickable onClick={onOpenDrawer} Svg={NotificationIcon} />}
+        on={
+          <Icon
+            aria-label='notification list'
+            clickable
+            onClick={onOpenDrawer}
+            Svg={NotificationIcon}
+          />
+        }
         off={
           <ButtonDeprecated onClick={onOpenDrawer} theme={ButtonTheme.CLEAR}>
             <IconDeprecated inverted Svg={NotificationIconDeprecated} />

@@ -42,11 +42,11 @@ export const Popover = ({
 
   return (
     <HeadlessPopover className={classNames('', {}, [className, popupClasses.popup])}>
-      <HeadlessPopover.Button as='div' className={popupClasses.trigger}>
+      <HeadlessPopover.Button as='div' className={popupClasses.trigger} role='button'>
         {trigger}
       </HeadlessPopover.Button>
 
-      <HeadlessPopover.Panel className={classNames(classes.panel, {}, menuClasses)}>
+      <HeadlessPopover.Panel className={classNames(classes.panel, {}, menuClasses)} role='menu'>
         {children}
       </HeadlessPopover.Panel>
     </HeadlessPopover>

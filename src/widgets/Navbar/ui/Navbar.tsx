@@ -69,6 +69,7 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
           <header className={classNames(mainClass, {}, [className])}>
             <HStack className={classes.actions} gap='8'>
               <AppLinkRedesigned
+                aria-label='create article route'
                 className={classes.createLinkRedesigned}
                 to={getRouteArticleCreate()}
               >

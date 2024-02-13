@@ -36,10 +36,19 @@ export const ThemeSwitcher = memo(({ className }: ThemeSwitcherProps) => {
   return (
     <ToggleFeatures
       feature='isAppRedesigned'
-      on={<Icon clickable height={20} onClick={onToggleHandler} Svg={ThemeIcon} width={20} />}
+      on={
+        <Icon
+          aria-label='theme toggle'
+          clickable
+          height={20}
+          onClick={onToggleHandler}
+          Svg={ThemeIcon}
+          width={20}
+        />
+      }
       off={
         <Button
-          aria-label='change theme'
+          aria-label='theme toggle'
           className={classNames('', {}, [className])}
           onClick={onToggleHandler}
           theme={ButtonTheme.CLEAR}

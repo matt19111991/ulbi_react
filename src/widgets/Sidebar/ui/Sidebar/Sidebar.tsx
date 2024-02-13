@@ -69,6 +69,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
           </VStack>
 
           <Icon
+            aria-label='sidebar toggle'
             className={classes.collapseBtn}
             clickable
             data-testid='sidebar-toggle'
