@@ -1,6 +1,7 @@
 ## TODO
-* Lighthouse и PageSpeed Insights testing
-* SEO add
+* Lighthouse и PageSpeed Insights testing для всех страниц на всех языках и всех темах
+  90% для всех характеристик
+* SEO добавить (ulbi.tv)
 
 ## Доп. информация
 
