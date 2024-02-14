@@ -64,9 +64,8 @@
 /* если поле 'include' не указано: 'tsconfig' работает для всех '.ts(x)' файлов
    если указано: нужно перечислить все папки, которые должны проверяться 'TypeScript-ом'
 */"include": [
-    "./config/build/**/*.ts",
-    "./config/jest/**/*.ts",
-    "./config/jest/**/*.tsx",
+    "./config/**/*.ts",
+    "./config/**/*.tsx",
     "./src/**/*.ts",
     "./src/**/*.tsx",
     "babel.config.ts",

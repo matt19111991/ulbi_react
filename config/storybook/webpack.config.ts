@@ -46,6 +46,7 @@ export default ({ config }: { config: webpack.Configuration }) => {
     favicon: '',
     html: '',
     locales: '',
+    robots: '',
     src: path.resolve(__dirname, '..', '..', 'src'), // единственный важный путь
   };
 
