@@ -7,8 +7,6 @@
 import type { StorybookConfig } from '@storybook/react-webpack5';
 
 const config: StorybookConfig = {
-  stories: ['../../src/**/*.stories.tsx'],
-
   addons: [
     {
       name: '@storybook/addon-essentials',
@@ -18,6 +16,7 @@ const config: StorybookConfig = {
       },
     },
     '@storybook/addon-interactions',
+
     '@storybook/addon-links',
 
     // '@storybook-addon-themes' не совместим с 'Storybook v.7+'
@@ -34,6 +33,8 @@ const config: StorybookConfig = {
   },
 
   staticDirs: ['../../public'],
+
+  stories: ['../../src/**/*.stories.tsx'],
 
   /*
     При ошибке 'Invalid configuration object. Webpack has been initialised using a configuration
