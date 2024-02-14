@@ -1,5 +1,5 @@
 import path from 'path';
-import webpack from 'webpack';
+import type { Configuration, ResolveOptions, RuleSetRule, WebpackPluginInstance } from 'webpack';
 
 import { buildCssLoader } from '../build/loaders/buildCssLoader';
 import { buildSvgLoader } from '../build/loaders/buildSvgLoader';
@@ -9,35 +9,44 @@ import { buildDefinePlugin } from '../build/plugins/buildDefinePlugin';
 import { BuildPaths } from '../build/types/config';
 
 /*
-  отдельный webpack.config для storybook, чтобы была возможность
+  отдельный 'webpack.config' для 'storybook', чтобы была возможность
     - использовать относительные пути
     - не указывать расширения файлов
-    - использовать CSS-modules
+    - использовать 'CSS-modules'
 */
 
-type Rule = webpack.RuleSetRule | string | 0 | false | undefined | null;
+interface StorybookResolveOptions extends ResolveOptions {
+  extensions: string[];
+  modules: string[];
+}
 
-export default ({ config }: { config: webpack.Configuration }) => {
-  // настройка CSS-modules
-  config.module!.rules!.push(buildCssLoader(true)); // storybook используем только в режиме разработки
+interface StorybookWebpackConfiguration extends Configuration {
+  module: {
+    rules: RuleSetRule[];
+  };
+  plugins: WebpackPluginInstance[];
+  resolve: StorybookResolveOptions;
+}
+
+export default ({ config }: { config: StorybookWebpackConfiguration }) => {
+  // настройка 'CSS-modules'
+  config.module.rules.push(buildCssLoader(true)); // 'storybook' используем только в режиме разработки
 
   /*
-    отключение обработки SVG файлов через дефолтные лоадеры storybook-a ('file-loader') и
+    отключение обработки 'SVG' файлов через дефолтные лоадеры 'storybook-a' ('file-loader') и
     подключение '@svgr/webpack' лоадера
   */
 
-  config.module!.rules = config.module!.rules!.map((rule: Rule) => {
-    const iteratedRule = rule as webpack.RuleSetRule;
-
+  config.module.rules = config.module.rules.map((rule: RuleSetRule) => {
     // если в поле 'test' для лоадера есть совпадение по 'svg'
-    if (/svg/.test(iteratedRule.test as string)) {
-      return { ...iteratedRule, exclude: /\.svg$/i }; // исключаем обработку SVG файлов
+    if (/svg/.test(rule.test as string)) {
+      return { ...rule, exclude: /\.svg$/i }; // исключаем обработку 'SVG' файлов
     }
 
-    return iteratedRule;
+    return rule;
   });
 
-  config.module!.rules!.push(buildSvgLoader()); // подключение '@svgr/webpack' лоадера
+  config.module.rules.push(buildSvgLoader()); // подключение '@svgr/webpack' лоадера
 
   const paths: BuildPaths = {
     build: '',
@@ -52,22 +61,22 @@ export default ({ config }: { config: webpack.Configuration }) => {
 
   // плагины
 
-  // storybook используем только в режиме разработки, API не используем
+  // 'storybook' используем только в режиме разработки, 'API' не используем
   const plugins = [buildDefinePlugin('https://testapi.com', true, 'storybook')];
 
-  config.plugins!.push(...plugins);
+  config.plugins.push(...plugins);
 
   // настройка 'alias' для 'Storybook' среды
-  config.resolve!.alias = {
-    ...config.resolve!.alias,
+  config.resolve.alias = {
+    ...config.resolve.alias,
     '@': paths.src,
   };
 
   // убираем указание расширения файлов
-  config.resolve!.extensions!.push('.ts', '.tsx');
+  config.resolve.extensions.push('.ts', '.tsx');
 
   // задаем относительные пути
-  config.resolve!.modules!.push(paths.src);
+  config.resolve.modules.push(paths.src);
 
   return config;
 };
