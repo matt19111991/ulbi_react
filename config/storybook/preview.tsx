@@ -1,6 +1,6 @@
 import type { Preview } from '@storybook/react';
 
-import { StateSchema } from '../../src/app/providers/StoreProvider';
+import type { StateSchema } from '../../src/app/providers/StoreProvider';
 
 import { FeatureFlagsDecorator } from '../../src/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { GlobalStyleDecorator } from '../../src/shared/config/storybook/GlobalStyleDecorator/GlobalStyleDecorator';
@@ -14,7 +14,12 @@ import { Theme } from '../../src/shared/const/theme';
 
 export const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: '^on[A-Z].*' },
+    actions: { argTypesRegex: '^on[A-Z].*' }, // регулярка для экшенов:
+    // export const PrimaryText: Story = {
+    //   args: {
+    //     onSubmit: action('onSubmit'),
+    //   },
+    // };
 
     controls: {
       matchers: {
