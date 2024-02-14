@@ -17,8 +17,8 @@
 
       `npm run test:e2e`
 
-Использование `localStorage` в тестах `Jest` [jestLocalStorage](../config/jest/jestLocalStorage.ts)
+Использование `localStorage` в тестах `Jest`: [jestLocalStorage](../config/jest/jestLocalStorage.ts)
 
-Функция-обертка для тестирования со всеми необходимыми провайдерами [componentTestRenderer](../src/shared/lib/tests/componentTestRenderer/componentTestRenderer.tsx)
+Функция-обертка для тестирования со всеми необходимыми провайдерами: [componentTestRenderer](../src/shared/lib/tests/componentTestRenderer/componentTestRenderer.tsx)
 
-Класс для тестирования асинхронных запросов [TestAsyncThunk](../src/shared/lib/tests/TestAsyncThunk/TestAsyncThunk.ts)
+Класс для тестирования асинхронных запросов: [TestAsyncThunk](../src/shared/lib/tests/TestAsyncThunk/TestAsyncThunk.ts)

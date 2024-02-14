@@ -5,7 +5,7 @@
      or when Jest is not configured to support such syntax."
 
   Оба пресета нужно добавить в 'presets' ('babel.config.json') =>
-    '@babel/preset-react' пресет нужен при работе с 'React'/'JSX'/'DOM'
+    '@babel/preset-react' нужен при работе с 'React'/'JSX'/'DOM'
     '@babel/preset-typescript' хватит для тестирования обычных функций
 */
 
@@ -49,17 +49,10 @@ export default {
     '^@/(.*)$': '<rootDir>/src/$1', // настройка 'alias' для 'Jest' среды
   },
 
-  // чтобы избежать ошибки:
-  //    'jest-haste-map: Haste module naming collision: ulbi_react
-  //       The following files share their name; please adjust your hasteImpl:
-  //         * <rootDir>/docker/server/package.json
-  //         * <rootDir>/package.json'
-  modulePathIgnorePatterns: ['<rootDir>/docker/*'],
-
   // настройка абсолютных импортов
   modulePaths: ['<rootDir>/src'],
 
-  // Use this configuration option to add custom reporters to Jest
+  // Use this configuration option to add custom reporters to 'Jest'
   reporters: [
     'default',
     [
@@ -77,18 +70,22 @@ export default {
     ],
   ],
 
-  // The root directory that Jest should scan for tests and modules within
+  // The root directory that 'Jest' should scan for tests and modules within
   rootDir: '../../', // указываем корень проекта, т.к. конфиг лежит не в корне
 
   // A list of paths to modules that run some code to configure or
   // set up the testing framework before each test
-  setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
+  setupFilesAfterEnv: ['<rootDir>/config/jest/setupTests.ts'],
+
+  // The number of seconds after which a test is considered
+  // as slow and reported as such in the results
+  slowTestThreshold: 15,
 
   // The test environment that will be used for testing
   testEnvironment: 'jsdom',
 
-  // The glob patterns Jest uses to detect test files
-  testMatch: ['<rootDir>/src/**/*(*.)@(spec|test).[tj]s?(x)'],
+  // The glob patterns 'Jest' uses to detect test files
+  testMatch: ['<rootDir>/src/**/*.test.ts?(x)'],
 
   // All imported modules in your tests should be mocked automatically
   // automock: false,
@@ -96,7 +93,7 @@ export default {
   // Stop running tests after `n` failures
   // bail: 0,
 
-  // The directory where Jest should store its cached dependency information
+  // The directory where 'Jest' should store its cached dependency information
   // cacheDirectory: "/tmp/jest_rs",
 
   // Indicates whether the coverage information should be collected while executing the test
@@ -106,13 +103,13 @@ export default {
   // for which coverage information should be collected
   // collectCoverageFrom: undefined,
 
-  // The directory where Jest should output its coverage files
+  // The directory where 'Jest' should output its coverage files
   // coverageDirectory: undefined,
 
   // Indicates which provider should be used to instrument code for coverage
   // coverageProvider: "babel",
 
-  // A list of reporter names that Jest uses when writing coverage reports
+  // A list of reporter names that 'Jest' uses when writing coverage reports
   // coverageReporters: [
   //   "json",
   //   "text",
@@ -126,7 +123,7 @@ export default {
   // A path to a custom dependency extractor
   // dependencyExtractor: undefined,
 
-  // Make calling deprecated APIs throw helpful error messages
+  // Make calling deprecated 'APIs' throw helpful error messages
   // errorOnDeprecated: false,
 
   // The default configuration for fake timers
@@ -150,13 +147,17 @@ export default {
   // maxWorkers: 2 will use a maximum of 2 workers.
   // maxWorkers: "50%",
 
+  // An array of regexp pattern strings, matched against all module paths before
+  // considered 'visible' to the module loader
+  // modulePathIgnorePatterns: [],
+
   // Activates notifications for test results
   // notify: false,
 
   // An enum that specifies notification mode. Requires { notify: true }
   // notifyMode: "failure-change",
 
-  // A preset that is used as a base for Jest's configuration
+  // A preset that is used as a base for 'Jest's' configuration
   // preset: undefined,
 
   // Run tests from one or more projects
@@ -174,23 +175,19 @@ export default {
   // Automatically restore mock state and implementation before every test
   // restoreMocks: false,
 
-  // A list of paths to directories that Jest should use to search for files in
+  // A list of paths to directories that 'Jest' should use to search for files in
   // roots: [
   //   "<rootDir>"
   // ],
 
-  // Allows you to use a custom runner instead of Jest's default test runner
+  // Allows you to use a custom runner instead of 'Jest's' default test runner
   // runner: "jest-runner",
 
   // The paths to modules that run some code to configure or
   // set up the testing environment before each test
   // setupFiles: [],
 
-  // The number of seconds after which a test is considered
-  // as slow and reported as such in the results.
-  // slowTestThreshold: 5,
-
-  // A list of paths to snapshot serializer modules Jest should use for snapshot testing
+  // A list of paths to snapshot serializer modules 'Jest' should use for snapshot testing
   // snapshotSerializers: [],
 
   // Options that will be passed to the testEnvironment
@@ -205,7 +202,7 @@ export default {
   //   "/node_modules/"
   // ],
 
-  // The regexp pattern or array of patterns that Jest uses to detect test files
+  // The regexp pattern or array of patterns that 'Jest' uses to detect test files
   // testRegex: [],
 
   // This option allows the use of a custom results processor

@@ -1,5 +1,5 @@
 {
-  "name": "ulbi_react",
+  "name": "ulbi_react_docker",
   "version": "1.0.0",
   "description": "",
   "main": "../../json-server/index.js",

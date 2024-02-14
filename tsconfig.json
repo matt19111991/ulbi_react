@@ -65,8 +65,10 @@
    если указано: нужно перечислить все папки, которые должны проверяться 'TypeScript-ом'
 */"include": [
     "./config/build/**/*.ts",
-    "./config/jest/**/*.ts?x",
-    "./src/**/*.ts?x",
+    "./config/jest/**/*.ts",
+    "./config/jest/**/*.tsx",
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
     "babel.config.ts",
   ],
 
