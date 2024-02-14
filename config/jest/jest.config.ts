@@ -1,27 +1,19 @@
 /*
-   Установка '@babel/preset-typescript' исправляет ошибку "Jest encountered an unexpected token.
-   Jest failed to parse a file. This happens e.g. when your code or its dependencies use
-   non-standard JavaScript syntax, or when Jest is not configured to support such syntax."
+  Установка '@babel/preset-react' и '@babel/preset-typescript' исправляет ошибку:
+    "Jest encountered an unexpected token. Jest failed to parse a file.
+     This happens e.g. when your code or its dependencies use non-standard JavaScript syntax,
+     or when Jest is not configured to support such syntax."
 
-   @babel/preset-typescript нужно добавить в presets (babel.config.json) =>
-   пресета хватит для тестирования обычных функций
+  Оба пресета нужно добавить в 'presets' ('babel.config.json') =>
+    '@babel/preset-react' пресет нужен при работе с 'React'/'JSX'/'DOM'
+    '@babel/preset-typescript' хватит для тестирования обычных функций
 */
 
 /*
-   Установка '@babel/preset-react' исправляет ошибку "Jest encountered an unexpected token.
-   Jest failed to parse a file. This happens e.g. when your code or its dependencies use
-   non-standard JavaScript syntax, or when Jest is not configured to support such syntax."
-
-   @babel/preset-react нужно добавить в presets (babel.config.json) =>
-   пресет нужен при работе с React/JSX/DOM
+  Установка 'jest-environment-jsdom' исправляет ошибку:
+  "As of Jest 28 'jest-environment-jsdom' is no longer shipped by default,
+   make sure to install it separately.'
 */
-
-/*
-   Установка 'jest-environment-jsdom' исправляет ошибку "As of Jest 28
-   'jest-environment-jsdom' is no longer shipped by default, make sure to install it separately.'
-*/
-
-import path from 'path';
 
 export default {
   // Automatically clear mock calls, instances, contexts and results before every test
@@ -44,27 +36,28 @@ export default {
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'node'],
 
   // A map from regular expressions to module names or to arrays of module names that
-  // allow to stub out resources with a single module;
-
+  // allow to stub out resources with a single module
   moduleNameMapper: {
-    // для корректной работы CSS-modules в тестах ('identity-obj-proxy' mocks CSS modules)
-    '\\.s?css$': 'identity-obj-proxy',
+    // порядок мапперов имеет значение
+
+    // для корректной работы 'CSS-modules' в тестах ('identity-obj-proxy' mocks 'CSS modules')
+    '.s?css$': 'identity-obj-proxy',
 
     // для корректной работы изображений в тестах создаем заглушку
-    '\\.(jpg|svg)$': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+    '.(jpg|svg)$': '<rootDir>/config/jest/jestEmptyComponent.tsx',
 
-    '^@/(.*)$': '<rootDir>/src/$1', // настройка 'alias' для Jest среды
+    '^@/(.*)$': '<rootDir>/src/$1', // настройка 'alias' для 'Jest' среды
   },
-
-  // настройка абсолютных импортов
-  modulePaths: ['<rootDir>src'],
 
   // чтобы избежать ошибки:
   //    'jest-haste-map: Haste module naming collision: ulbi_react
-  //      The following files share their name; please adjust your hasteImpl:
-  //        * <rootDir>/docker/server/package.json
-  //        * <rootDir>/package.json'
+  //       The following files share their name; please adjust your hasteImpl:
+  //         * <rootDir>/docker/server/package.json
+  //         * <rootDir>/package.json'
   modulePathIgnorePatterns: ['<rootDir>/docker/*'],
+
+  // настройка абсолютных импортов
+  modulePaths: ['<rootDir>/src'],
 
   // Use this configuration option to add custom reporters to Jest
   reporters: [
@@ -72,9 +65,9 @@ export default {
     [
       'jest-html-reporters',
       {
-        fileName: 'report.html',
+        filename: 'report.html',
 
-        // не будут создаваться отдельные js файлы, весь отчет в одном html файле
+        // не будут создаваться отдельные 'JS' файлы, весь отчет в одном 'HTML' файле
         inlineSource: true,
 
         openReport: false, // по завершению тестов не открывать новую вкладку с отчетом
@@ -85,7 +78,7 @@ export default {
   ],
 
   // The root directory that Jest should scan for tests and modules within
-  rootDir: '../../', // т.к. конфиг лежит не в корне проекта
+  rootDir: '../../', // указываем корень проекта, т.к. конфиг лежит не в корне
 
   // A list of paths to modules that run some code to configure or
   // set up the testing framework before each test
@@ -95,7 +88,7 @@ export default {
   testEnvironment: 'jsdom',
 
   // The glob patterns Jest uses to detect test files
-  testMatch: ['<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)'],
+  testMatch: ['<rootDir>/src/**/*(*.)@(spec|test).[tj]s?(x)'],
 
   // All imported modules in your tests should be mocked automatically
   // automock: false,
