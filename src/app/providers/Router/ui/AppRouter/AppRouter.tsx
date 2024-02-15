@@ -1,6 +1,7 @@
 import { memo, Suspense, useCallback } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import { ToggleFeatures } from '@/shared/lib/features';
 import { AppRoutesProps } from '@/shared/types/router';
 
 import { PageLoader } from '@/widgets/PageLoader';
@@ -12,7 +13,13 @@ import { RequireAuth } from '../RequiredAuth/RequireAuth';
 export const AppRouter = memo(() => {
   const renderWithWrapper = useCallback((route: AppRoutesProps) => {
     // <Suspense /> для роутинга
-    const element = <Suspense fallback={<PageLoader />}>{route.element}</Suspense>;
+    const element = (
+      <Suspense
+        fallback={<ToggleFeatures feature='isAppRedesigned' on={null} off={<PageLoader />} />}
+      >
+        {route.element}
+      </Suspense>
+    );
 
     return (
       <Route

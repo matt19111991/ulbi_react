@@ -13,12 +13,12 @@ interface ToggleFeaturesProps {
   /**
    * Элемент, если feature flag включен
    */
-  on: ReactElement;
+  on: ReactElement | null;
 
   /**
    * Элемент, если feature flag выключен
    */
-  off: ReactElement;
+  off: ReactElement | null;
 }
 
 // для стандартизации переключения и возможности авто удаления 'feature flags' (для компонентов)

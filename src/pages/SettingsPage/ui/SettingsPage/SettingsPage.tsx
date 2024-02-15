@@ -15,7 +15,7 @@ const SettingsPage = () => {
 
   return (
     <Page className={classes.SettingsPage}>
-      <VStack align='start' gap='24'>
+      <VStack align='start' className={classes.content} gap='24'>
         <Text title={t('Настройки пользователя')} />
 
         <UIDesignSwitcher />
