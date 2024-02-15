@@ -65,9 +65,24 @@ export default ({ config }: { config: StorybookWebpackConfiguration }) => {
   // --- Плагины ---
 
   // 'storybook' используем только в режиме разработки, 'API' не используем
-  const definePlugin = buildDefinePlugin('https://testapi.com', true, 'storybook');
+  const additionalDefinePlugin = buildDefinePlugin('https://testapi.com', true, 'storybook');
 
-  config.plugins.push(definePlugin);
+  /*
+    к существующему 'DefinePlugin':
+
+    DefinePlugin: {
+      definitions: {
+        'process.env.NODE_ENV': '"development"',
+        'process.env.NODE_PATH': '[]',
+        'process.env.STORYBOOK': '"true"',
+        'process.env.PUBLIC_URL': '"."',
+         NODE_ENV: '"development"'
+      }
+    }
+
+    добавляем еще один 'DefinePlugin' со своими переменными окружения; переменные из обоих плагинов мержатся
+  */
+  config.plugins.push(additionalDefinePlugin);
 
   // настройка 'alias' для 'storybook' среды
   config.resolve.alias = {
