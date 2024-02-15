@@ -68,6 +68,10 @@ export default function config(isTsx?: boolean, isDev?: boolean): webpack.RuleSe
           /*
             '@pmmmwh/react-refresh-webpack-plugin' позволяет применить правки в коде без перезагрузки страницы;
             обеспечивает более стабильную работу, чем функционал 'webpack-dev-server' из коробки
+
+            необходимо свойство 'overrides' в 'package.json' с указанием последней версии 'webpack-dev-server',
+            т.к. '@pmmmwh/react-refresh-webpack-plugin' работает только с 'webpack-dev-server' v.4.x
+
             isDev && require.resolve('react-refresh/babel'),
           */
         ].filter(Boolean), // отфильтровываем неактивные плагины
