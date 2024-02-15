@@ -2,28 +2,40 @@
 
 В проекте для каждого компонента описываются `story-кейсы`
 
-Запросы на сервер мокаются с помощью функции `queryFn` из `RTK Query` и возвращаются захардкоженные данные
-
 Файлы со `story-кейсами` создаем рядом с компонентом с расширением `.stories.tsx`
 
-Запуск **storybook** в 'development' режиме:
+### Запросы на сервер
 
-    npm run storybook
+Запросы на сервер мокаются с помощью функции `queryFn` из `RTK Query` и возвращаются захардкоженные данные
 
-Сделать билд **storybookа**:
-
-    npm run storybook:build
+### Запуск
 
 Флаг `--no-open` отключает автоматическое открытие **storybook** в новой вкладке при старте
 
-`export SET NODE_OPTIONS=--no-warnings='DEP0040'` добавляется в команду перед запуском, 
-чтобы избежать предупреждения в `Node v21.x`: '(node:87409) [DEP0040] DeprecationWarning: 
+`export SET NODE_OPTIONS=--no-warnings='DEP0040'` добавляется в команду перед запуском,
+чтобы избежать предупреждения в `Node v21.x`: '(node:87409) [DEP0040] DeprecationWarning:
 The `punycode` module is deprecated. Please use a userland alternative instead.'
 
-`@storybook/blocks` используется для написания документации, добавления мета-информации, заголовков, 
-названий на отдельные `story` страницы
+### Скрипты
 
-### Пример:
+Запуск **storybook** в `development` режиме:
+
+    npm run storybook
+
+Сделать билд **storybook-а**:
+
+    npm run storybook:build
+
+### Конфигурация
+
+[Файлы конфигурации Storybook](../config/storybook)
+
+### Дополнительные библиотеки
+
+`@storybook/blocks` используется для написания документации, добавления мета-информации, заголовков,
+названий на отдельные страницы `story`
+
+### Пример story
 
 ```typescript jsx
 import type { Meta, StoryObj } from '@storybook/react';
