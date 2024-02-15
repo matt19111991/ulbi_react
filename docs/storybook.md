@@ -1,20 +1,29 @@
 ## Storybook
 
-Флаг `--no-open` отключает автоматическое открытие storybook в новой вкладке при старте
+В проекте для каждого компонента описываются `story-кейсы`
 
-В проекте для каждого компонента описываются story-кейсы.
-Запросы на сервер мокаются с помощью функции 'queryFn' из 'RTK Query' и возвращаются захардкоженные данные.
+Запросы на сервер мокаются с помощью функции `queryFn` из `RTK Query` и возвращаются захардкоженные данные
 
-Файлы со story-кейсами создаем рядом с компонентом с расширением '.stories.tsx'
+Файлы со `story-кейсами` создаем рядом с компонентом с расширением `.stories.tsx`
 
-Запустить storybook можно командой:
-- `npm run storybook`
- 
+Запуск **storybook** в 'development' режиме:
+
+    npm run storybook
+
+Сделать билд **storybookа**:
+
+    npm run storybook:build
+
+Флаг `--no-open` отключает автоматическое открытие **storybook** в новой вкладке при старте
+
 `export SET NODE_OPTIONS=--no-warnings='DEP0040'` добавляется в команду перед запуском, 
-чтобы избежать предупреждения в Node v21.x: '(node:87409) [DEP0040] DeprecationWarning: 
+чтобы избежать предупреждения в `Node v21.x`: '(node:87409) [DEP0040] DeprecationWarning: 
 The `punycode` module is deprecated. Please use a userland alternative instead.'
 
-Пример:
+`@storybook/blocks` используется для написания документации, добавления мета-информации, заголовков, 
+названий на отдельные `story` страницы
+
+### Пример:
 
 ```typescript jsx
 import type { Meta, StoryObj } from '@storybook/react';

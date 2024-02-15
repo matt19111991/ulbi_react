@@ -9,15 +9,18 @@ import type { StorybookConfig } from '@storybook/react-webpack5';
 const config: StorybookConfig = {
   addons: [
     {
+      // добавляются секции 'Actions' и 'Controls' в 'storybook'
       name: '@storybook/addon-essentials',
       options: {
         // у нас свое переключение темы, 'backgrounds' не будет работать, поэтому отключаем это свойство
         backgrounds: false,
       },
     },
-    '@storybook/addon-interactions',
 
-    '@storybook/addon-links',
+    // '@storybook/addon-interactions', // можно использовать для написания сценариев и
+    // '@storybook/testing-library', // прогона визуальных тестов
+
+    // '@storybook/addon-links', // можно использовать для навигации между 'stories'
 
     // '@storybook-addon-themes' не совместим с 'Storybook v.7+'
   ],
