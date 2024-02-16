@@ -36,13 +36,9 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
   // 'raw-loader', 'url-loader' и 'file-loader' можно заменить на 'Asset Modules' ('Webpack 5')
 
   const assetLoader = { // замена для 'file-loader'
-    test: /\.(png|jpe?g|gif)$/i, // обрабатывает только 'PNG', 'JPG', 'JPEG' и 'GIF' изображения
+    // обрабатывает 'PNG', 'JPG', 'JPEG', 'GIF' изображения и 'EOT', 'TTF, 'WOFF', 'WOFF2' шрифты
+    test: /\.(png|jpe?g|gif|eot|ttf|woff?2)$/i,
     type: 'asset/resource', // покрывает функционал 'file-loader'
-  };
-
-  const fontsLoader = { // замена для 'file-loader'
-    test: /\.(eot|ttf|woff?2)$/i, // обрабатывает 'EOT', 'TTF, 'WOFF', 'WOFF2' шрифты
-    type: 'asset/inline', // покрывает функционал 'file-loader'
   };
 
 /*
@@ -81,7 +77,6 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 */
   return [ // порядок лоадеров в массиве имеет значение (начинается снизу и идет вверх)
     assetLoader,
-    fontsLoader,
 
     // fileLoader,
 

@@ -13,14 +13,13 @@
     .WJfas66YqMo9vlVy3cDg и Xwga441YqMo9vXCy5tXb
 */
 
+@import 'fonts';
+
 @import 'reset';
 
 @import 'themes/normal';
 @import 'themes/dark';
 @import 'themes/orange';
-
-@import 'fonts/NunitoSans';
-@import 'fonts/Roboto';
 
 body {
   color: var(--primary-color);
