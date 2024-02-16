@@ -32,7 +32,7 @@ const meta = {
   title: 'features/Profile/EditableProfilePageHeader/new',
   component: EditableProfilePageHeader,
   argTypes: {
-    background: {
+    backgroundColor: {
       control: 'color',
     },
   },

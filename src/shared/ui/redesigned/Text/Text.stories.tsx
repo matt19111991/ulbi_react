@@ -12,7 +12,7 @@ const meta = {
   title: 'shared/components/new/Text',
   component: Text,
   argTypes: {
-    background: {
+    backgroundColor: {
       control: 'color',
     },
   },

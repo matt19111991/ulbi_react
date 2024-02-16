@@ -1,6 +1,7 @@
 import { memo } from 'react';
 
-import { classNames, Mods } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import type { Mods } from '@/shared/lib/classNames/classNames';
 
 import classes from './Text.module.scss';
 
@@ -57,7 +58,7 @@ interface TextProps {
   className?: string;
 
   /**
-   * ID для тестов
+   * 'ID' для тестов
    */
   'data-testid'?: string;
 
@@ -67,7 +68,7 @@ interface TextProps {
   size?: TextSize;
 
   /**
-   * Значение текста
+   * Вторичный текст
    */
   text?: string;
 
@@ -77,7 +78,7 @@ interface TextProps {
   theme?: TextTheme;
 
   /**
-   * Значение текста
+   * Заголовок текста
    */
   title?: string;
 }

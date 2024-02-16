@@ -44,7 +44,7 @@ const meta = {
   title: 'pages/Article/ArticleDetailsPage/AdditionalInfoContainer',
   component: AdditionalInfoContainer,
   argTypes: {
-    background: {
+    backgroundColor: {
       control: 'color',
     },
   },

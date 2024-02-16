@@ -34,7 +34,7 @@ const meta = {
   title: 'pages/Article/ArticleDetailsPage/ArticleDetailsPageHeader',
   component: ArticleDetailsPageHeader,
   argTypes: {
-    background: {
+    backgroundColor: {
       control: 'color',
     },
   },

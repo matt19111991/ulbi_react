@@ -11,7 +11,7 @@ const meta = {
   title: 'shared/components/old/Text',
   component: Text,
   argTypes: {
-    background: {
+    backgroundControl: {
       control: 'color',
     },
   },

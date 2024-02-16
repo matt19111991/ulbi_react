@@ -59,7 +59,7 @@ interface TextProps {
   className?: string;
 
   /**
-   * ID для тестов
+   * 'ID' для тестов
    */
   'data-testid'?: string;
 
@@ -69,12 +69,12 @@ interface TextProps {
   size?: TextSize;
 
   /**
-   * Значение текста
+   * Вторичный текст
    */
   text?: string;
 
   /**
-   * Значение заголовка
+   * Заголовок текста
    */
   title?: string;
 

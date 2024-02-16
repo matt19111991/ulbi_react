@@ -45,7 +45,7 @@ const meta = {
   title: 'pages/Profile/ProfilePage/new',
   component: ProfilePage,
   argTypes: {
-    background: {
+    backgroundColor: {
       control: 'color',
     },
   },

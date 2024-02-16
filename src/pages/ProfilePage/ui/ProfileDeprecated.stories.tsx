@@ -44,7 +44,7 @@ const meta = {
   title: 'pages/Profile/ProfilePage/old',
   component: ProfilePage,
   argTypes: {
-    background: {
+    backgroundColor: {
       control: 'color',
     },
   },
