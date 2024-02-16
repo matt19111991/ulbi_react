@@ -21,6 +21,8 @@
 @import 'themes/dark';
 @import 'themes/orange';
 
+@import 'variables/global';
+
 body {
   color: var(--primary-color);
   font: var(--font-m);
