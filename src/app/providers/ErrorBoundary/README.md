@@ -1,7 +1,7 @@
 ## Провайдер для ошибок
 
-- Components
+### Components
 
-`BugButton` - компонент для тестирования ErrorBoundary
+`BugButton` - компонент для тестирования `ErrorBoundary`
 
 `ErrorBoundary` - общий компонент-предохранитель для всего приложения
