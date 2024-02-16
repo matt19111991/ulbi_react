@@ -1,6 +1,8 @@
-import { ButtonHTMLAttributes, memo, ReactNode } from 'react';
+import { memo } from 'react';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
-import { classNames, Mods } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import type { Mods } from '@/shared/lib/classNames/classNames';
 
 import classes from './Button.module.scss';
 
@@ -10,14 +12,14 @@ import classes from './Button.module.scss';
 export type ButtonColor = 'error' | 'normal' | 'success';
 
 /**
- * Внешний вид кнопки
- */
-export type ButtonVariant = 'clear' | 'filled' | 'outline';
-
-/**
  * Размеры кнопки
  */
 export type ButtonSize = 's' | 'm' | 'l' | 'xl';
+
+/**
+ * Внешний вид кнопки
+ */
+export type ButtonVariant = 'clear' | 'filled' | 'outline';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
@@ -46,7 +48,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: ButtonColor;
 
   /**
-   * ID для тестов
+   * 'ID' для тестов
    */
   'data-testid'?: string;
 
@@ -61,7 +63,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   fullWidth?: boolean;
 
   /**
-   * Размер кнопки в соответствии с дизайн системой
+   * Размер кнопки в соответствии с дизайн-системой
    */
   size?: ButtonSize;
 

@@ -1,6 +1,6 @@
-import { ReactElement } from 'react';
+import type { ReactElement } from 'react';
 
-import { FeatureFlags } from '@/shared/types/featureFlags';
+import type { FeatureFlags } from '@/shared/types/featureFlags';
 
 import { getFeatureFlag } from '../../lib/setGetFeatures/setGetFeatures';
 
@@ -11,12 +11,12 @@ interface ToggleFeaturesProps {
   feature: keyof FeatureFlags;
 
   /**
-   * Элемент, если feature flag включен
+   * Элемент, если 'feature flag' включен
    */
   on: ReactElement | null;
 
   /**
-   * Элемент, если feature flag выключен
+   * Элемент, если 'feature flag' выключен
    */
   off: ReactElement | null;
 }

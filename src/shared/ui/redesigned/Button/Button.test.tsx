@@ -12,7 +12,7 @@ describe('Button', () => {
   test('Test clear theme', () => {
     render(<Button variant='clear'>Test</Button>);
 
-    // screen.debug(); // можно посмотреть, что отрисовано в тестовом DOM
+    // screen.debug(); // можно посмотреть, что отрисовано в тестовом 'DOM'
 
     expect(screen.getByText('Test')).toHaveClass('clear');
   });

@@ -1,6 +1,6 @@
 ## Устаревшие компоненты
 
-- Components
+### Components
 
 `AppLink` - компонент ссылки
 

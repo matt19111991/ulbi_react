@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import IconSvg from '@/shared/assets/tests/storybook3.svg';
@@ -11,6 +12,9 @@ import { Button } from './Button';
 const meta = {
   title: 'shared/components/new/Button',
   component: Button,
+  args: {
+    onClick: action('onClick'),
+  },
   argTypes: {
     backgroundColor: { control: 'color' },
   },

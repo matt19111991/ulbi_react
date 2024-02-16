@@ -1,6 +1,8 @@
-import { ButtonHTMLAttributes, memo, ReactNode } from 'react';
+import { memo } from 'react';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
-import { classNames, Mods } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import type { Mods } from '@/shared/lib/classNames/classNames';
 
 import classes from './Button.module.scss';
 
@@ -47,7 +49,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   fullWidth?: boolean;
 
   /**
-   * Размер кнопки в соответствии с дизайн системой
+   * Размер кнопки в соответствии с дизайн-системой
    */
   size?: ButtonSize;
 
@@ -59,7 +61,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Тема кнопки. Отвечает за визуал (в рамке / без стилей / противоположный теме цвет и т.д.)
    */
-  theme?: string;
+  theme?: ButtonTheme;
 }
 
 /**

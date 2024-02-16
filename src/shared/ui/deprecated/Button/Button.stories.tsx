@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -9,6 +10,9 @@ import { Button, ButtonSize, ButtonTheme } from './Button';
 const meta = {
   title: 'shared/components/old/Button',
   component: Button,
+  args: {
+    onClick: action('onClick'),
+  },
   argTypes: {
     backgroundColor: { control: 'color' },
   },
@@ -128,7 +132,7 @@ export const SquareExtraLarge: Story = {
 
 export const Disabled: Story = {
   args: {
-    children: '>',
+    children: 'Text',
     disabled: true,
     theme: ButtonTheme.OUTLINE,
   },
@@ -138,7 +142,7 @@ export const Disabled: Story = {
 
 export const FullWidth: Story = {
   args: {
-    children: '>',
+    children: 'Text',
     fullWidth: true,
     theme: ButtonTheme.OUTLINE,
   },
