@@ -19,29 +19,51 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Primary page error
+// Old primary page error
 
-export const Primary: Story = {
+export const OldPrimary: Story = {
   args: {},
 };
 
-Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+// Old dark page error
 
-// Dark page error
-
-export const Dark: Story = {
+export const OldDark: Story = {
   args: {},
 };
 
-Dark.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
+OldDark.decorators = [ThemeDecorator(Theme.DARK)];
 
-// Orange page error
+// Old orange page error
 
-export const Orange: Story = {
+export const OldOrange: Story = {
   args: {},
 };
 
-Orange.decorators = [
+OldOrange.decorators = [ThemeDecorator(Theme.ORANGE)];
+
+// New primary page error
+
+export const NewPrimary: Story = {
+  args: {},
+};
+
+NewPrimary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
+// New dark page error
+
+export const NewDark: Story = {
+  args: {},
+};
+
+NewDark.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
+
+// New orange page error
+
+export const NewOrange: Story = {
+  args: {},
+};
+
+NewOrange.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   ThemeDecorator(Theme.ORANGE),
 ];

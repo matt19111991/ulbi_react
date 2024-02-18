@@ -16,7 +16,9 @@ const meta = {
     onClick: action('onClick'),
   },
   argTypes: {
-    backgroundColor: { control: 'color' },
+    backgroundColor: {
+      control: 'color',
+    },
   },
 } as Meta<typeof Button>;
 
