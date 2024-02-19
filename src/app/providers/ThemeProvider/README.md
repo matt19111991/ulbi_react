@@ -1,9 +1,9 @@
 ## Провайдер для темы
 
-- HOC
-
-`withTheme` - HOC обертка для темизации компонентов
-
-- Components
+### Components
 
 `ThemeProvider` - компонент-провайдер для темы
+
+### HOC
+
+`withTheme` - `HOC` обертка для темизации компонентов

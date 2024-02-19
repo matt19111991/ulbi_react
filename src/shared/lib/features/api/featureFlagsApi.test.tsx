@@ -3,7 +3,7 @@ import { act, renderHook, waitFor } from '@testing-library/react';
 
 import { StoreProvider } from '@/app/providers/StoreProvider';
 
-import { FeatureFlags } from '@/shared/types/featureFlags';
+import type { FeatureFlags } from '@/shared/types/featureFlags';
 
 import { useUpdateFeatureFlagsMutation } from './featureFlagsApi';
 

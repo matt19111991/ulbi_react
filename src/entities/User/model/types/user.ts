@@ -1,4 +1,4 @@
-import { FeatureFlags } from '@/shared/types/featureFlags';
+import type { FeatureFlags } from '@/shared/types/featureFlags';
 
 import { UserRole } from '../consts/userConsts';
 

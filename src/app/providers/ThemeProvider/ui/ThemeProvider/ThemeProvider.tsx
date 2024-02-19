@@ -1,4 +1,5 @@
-import { ReactNode, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import type { ReactNode } from 'react';
 
 import { THEME_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { Theme } from '@/shared/const/theme';
@@ -20,12 +21,12 @@ interface ThemeProviderProps {
 // последняя выбранная тема у пользователя на устройстве
 const fallbackTheme = localStorage.getItem(THEME_LOCALSTORAGE_KEY) as Theme;
 
-// В типе FC уже описан 'children' prop для версий React меньше v.18)
+// В типе 'FC' уже описан 'children prop' для версий 'React v.17-')
 const ThemeProvider = ({ children, initialTheme }: ThemeProviderProps) => {
   const [isThemeInited, setIsThemeInited] = useState(false);
 
   /*
-    по умолчанию устанавливаем либо 'initialTheme' из props или 'fallbackTheme' из 'localStorage'
+    по умолчанию устанавливаем либо 'initialTheme' из 'props', либо 'fallbackTheme' из 'localStorage'
     если нет ни того, ни другого - берем 'Theme.LIGHT'
   */
   const [theme, setTheme] = useState<Theme>(initialTheme || fallbackTheme || Theme.LIGHT);

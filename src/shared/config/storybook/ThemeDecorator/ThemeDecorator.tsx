@@ -1,15 +1,15 @@
-import { ReactElement } from 'react';
+import type { ReactElement } from 'react';
 import type { StoryFn } from '@storybook/react';
 
 import { ThemeProvider } from '@/app/providers/ThemeProvider';
 
 import { Theme } from '@/shared/const/theme';
 
-// через замыкания пробрасываем тему, затем функцию Story и вызываем её
+// через замыкания пробрасываем тему, затем функцию 'Story' и вызываем её
 
 export const ThemeDecorator =
   (theme: Theme) =>
-  (Story: StoryFn): ReactElement<unknown> => {
+  (Story: StoryFn): ReactElement => {
     // чтобы не вешать дополнительные классы `${theme}` для 'App.tsx' и порталов
     document.body.className = theme;
 
@@ -22,7 +22,7 @@ export const ThemeDecorator =
     );
 
     /*
-      Если вернуть JSX то будет ошибка ESLint:
+      Если вернуть 'JSX' то будет ошибка 'ESLint':
       Component definition is missing display name(react/display-name)
     */
 

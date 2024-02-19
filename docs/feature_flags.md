@@ -1,27 +1,27 @@
-## Работа с feature flags
+## Работа с `feature flags`
 
-- Actions
+### Actions
 
-`getAllFeatureFlags` - получение всех feature flags
+`getAllFeatureFlags` - получение всех `feature flags`
 
-`getFeatureFlag` - получение feature flag по ключу
+`getFeatureFlag` - получение `feature flag` по ключу
 
-`setFeatureFlags` - установка feature flags
+`setFeatureFlags` - установка `feature flags`
 
-`toggleFeatures` - функция для вызова соответствующего коллбэка на основе feature flag
+`toggleFeatures` - функция для вызова соответствующего коллбэка на основе `feature flag`
 
-- API
+### API
 
-`updateFeatureFlags` - изменение и сохранение feature flags
+`updateFeatureFlags` - изменение и сохранение `feature flags`
 
-- Components
+### Components
 
-`ToggleFeatures` - компонент для отрисовки соответствующего компонента на основе feature flag
+`ToggleFeatures` - компонент для отрисовки соответствующего компонента на основе `feature flag`
 
-- Services
+### Services
 
-`updateFeatureFlags` - сервис для изменения и сохранения feature flags
+`updateFeatureFlags` - сервис для изменения и сохранения `feature flags`
 
-- Types
+### Types
 
-`FeatureFlags` - Тип, описывающий возможные feature flags
+`FeatureFlags` - Тип, описывающий возможные `feature flags`
