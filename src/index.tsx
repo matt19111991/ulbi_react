@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { ErrorBoundary } from '@/app/providers/ErrorBoundary';
 import { StoreProvider } from '@/app/providers/StoreProvider';
-import { ThemeProvider } from '@/app/providers/ThemeProvider';
+// import { ThemeProvider } from '@/app/providers/ThemeProvider';
 
 import App from '@/app/App';
 
@@ -39,9 +39,12 @@ root.render(
     <StoreProvider>
       <ErrorBoundary>
         <ForceUpdateProvider>
-          <ThemeProvider>
-            <App />
-          </ThemeProvider>
+          {/*
+            можно использовать '<ThemeProvider />' как здесь, или же 'HOC' 'withTheme' в 'App.tsx'
+          */}
+          {/* <ThemeProvider> */}
+          <App />
+          {/* </ThemeProvider> */}
         </ForceUpdateProvider>
       </ErrorBoundary>
     </StoreProvider>
