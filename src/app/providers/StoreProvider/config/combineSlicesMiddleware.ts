@@ -1,9 +1,9 @@
 import type { Middleware, UnknownAction } from '@reduxjs/toolkit';
 
 /*
-  Костыль, чтобы избавиться от ошибки : "Unexpected key [reducerKey] found in previous state
-  received by the reducer. Expected to find one of the known reducer keys instead: 'counter',
-  'pageScroll', 'user', 'api'. Unexpected keys will be ignored."
+  Костыль, чтобы избавиться от ошибки при удалении редюсера: "Unexpected key [reducerKey]
+  found in previous state received by the reducer. Expected to find one of the known reducer
+  keys instead: 'counter', 'pageScroll', 'user', 'api'. Unexpected keys will be ignored."
 */
 
 export const combineSlicesAvoidErrorMessageMiddleware: Middleware = (api) => (next) => (action) => {

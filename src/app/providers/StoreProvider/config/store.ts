@@ -9,19 +9,19 @@ import { rtkApi } from '@/shared/api/rtkApi';
 
 import { /* pageScrollReducer, */ pageScrollSlice } from '@/widgets/Page';
 
-// import { createReducerManager } from './reducerManager'; // RTK v1 code splitting
+// import { createReducerManager } from './reducerManager'; // RTK v.1 code splitting
 
-import { combineSlicesAvoidErrorMessageMiddleware } from './combineSlicesMiddleware'; // RTK v2 code splitting
+import { combineSlicesAvoidErrorMessageMiddleware } from './combineSlicesMiddleware'; // RTK v.2 code splitting
 
 import {
-  // ReduxStoreWithManager, // RTK v1 code splitting
+  // ReduxStoreWithManager, // RTK v.1 code splitting
   StateSchema,
   StateSchemaKey,
   ThunkExtraArg,
 } from './StateSchema';
 
 /**
- * Для возможности использования асинхронных редюсеров (RTK v2 code splitting)
+ * Для возможности использования асинхронных редюсеров (RTK v.2 code splitting)
  */
 export const rootReducer = combineSlices(
   counterSlice,
@@ -48,7 +48,7 @@ export const createReduxStore = (
   }
 
   /*
-    RTK v1 code splitting
+    RTK v.1 code splitting
 
     const rootReducers: ReducersMapObject<StateSchema> = {
       counter: counterReducer,
@@ -103,11 +103,11 @@ export const createReduxStore = (
     /**
      * Установка редюсеров по умолчанию, когда все редюсеры синхронные
      */
-    reducer: rootReducer, // RTK v2 code splitting
-    // reducer: rootReducers, // RTK v1 code splitting
+    reducer: rootReducer, // RTK v.2 code splitting
+    // reducer: rootReducers, // RTK v.1 code splitting
 
     /**
-     * Для работы с асинхронными редюсерами (RTK v1 code splitting)
+     * Для работы с асинхронными редюсерами (RTK v.1 code splitting)
      *
      * 'reducerManager.reduce as Reducer<StateSchema>' в поле 'reducer' помогает избежать
      * ошибки типов в поле 'middleware', которая возникает из-за использования 'reducerManager'
@@ -117,7 +117,7 @@ export const createReduxStore = (
   });
 
   /*
-    для возможности использования асинхронных редюсеров (RTK v1 code splitting)
+    для возможности использования асинхронных редюсеров (RTK v.1 code splitting)
     store.reducerManager = reducerManager;
   */
   return store;

@@ -36,12 +36,18 @@ declare const __IS_DEV__: boolean;
 declare const __PROJECT__: 'front-end' | 'jest' | 'storybook';
 
 /*
-  'DeepPartial' из '@reduxjs/toolkit' подразумевает, что вся поля будут необязательными;
-   нужна возможность задавать частичный 'store' с обязательными полями (взято из интернета)
+  'DeepPartial' из '@reduxjs/toolkit' требует указания всех обязательных полей в редюсерах и добавляет
+  'undefined' к типам асинхронных редюсеров; из-за этого ломаются декораторы, тесты и 'stories':
+
+  type DeepPartial<T> = {
+    [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K];
+  };
+
+   нужна возможность задавать частичный 'store' (взято из интернета)
 */
-type DeepPartial<T> = T extends object ? { [P in keyof T]?: DeepPartial<T[P]> } : T;
+type DeepPartial<T> = T extends object ? { [K in keyof T]?: DeepPartial<T[K]> } : T;
 
 // Аналог 'Record', но с необязательными полями
-type OptionalRecord<K extends string | number | symbol, T> = {
-  [P in K]?: T;
+type OptionalRecord<K extends string | number | symbol, V> = {
+  [P in K]?: V;
 };

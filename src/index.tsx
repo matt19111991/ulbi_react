@@ -7,8 +7,9 @@ import { StoreProvider } from '@/app/providers/StoreProvider';
 
 import App from '@/app/App';
 
-/* Ошибка 'i18n.changeLanguage is not a function',
-   если импортировать "import i18n from 'shared/config/i18n/i18n";
+/*
+  Ошибка 'i18n.changeLanguage is not a function',
+  если импортировать "import i18n from 'shared/config/i18n/i18n";
 
 */ import '@/shared/config/i18n/i18n';
 
@@ -16,9 +17,10 @@ import { ForceUpdateProvider } from '@/shared/lib/render/forceUpdate';
 
 import './app/styles/index.scss';
 
-/* Ошибка 'Uncaught Error: useNavigate() may be used only in the context of a <Router> component.',
-   если 'StoreProvider' находится в дереве выше чем 'BrowserRouter' и попытаться использовать навигацию в
-   'async thunks'
+/*
+  Ошибка 'Uncaught Error: useNavigate() may be used only in the context of a <Router> component.',
+  если 'StoreProvider' находится в дереве выше чем 'BrowserRouter' и попытаться использовать навигацию в
+  'async thunks'
 */
 
 const container = document.getElementById('root');
@@ -40,11 +42,16 @@ root.render(
       <ErrorBoundary>
         <ForceUpdateProvider>
           {/*
-            можно использовать '<ThemeProvider />' как здесь, или же 'HOC' 'withTheme' в 'App.tsx'
+            можно использовать '<ThemeProvider />':
+
+              <ThemeProvider>
+                <App />
+              </ThemeProvider>,
+
+            или же 'HOC' 'withTheme' в 'App.tsx'
           */}
-          {/* <ThemeProvider> */}
+
           <App />
-          {/* </ThemeProvider> */}
         </ForceUpdateProvider>
       </ErrorBoundary>
     </StoreProvider>

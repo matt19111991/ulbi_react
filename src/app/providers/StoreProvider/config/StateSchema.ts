@@ -1,22 +1,22 @@
-import { AxiosInstance } from 'axios';
-import { EnhancedStore, Reducer, ReducersMapObject, UnknownAction } from '@reduxjs/toolkit';
+import type { AxiosInstance } from 'axios';
+import type { EnhancedStore, Reducer, ReducersMapObject, UnknownAction } from '@reduxjs/toolkit';
 
 import { rtkApi } from '@/shared/api/rtkApi';
 
-import { ArticleDetailsSchema } from '@/entities/Article';
-import { CounterSchema } from '@/entities/Counter';
-import { UserSchema } from '@/entities/User';
+import type { ArticleDetailsSchema } from '@/entities/Article';
+import type { CounterSchema } from '@/entities/Counter';
+import type { UserSchema } from '@/entities/User';
 
-import { AddCommentFormSchema } from '@/features/AddCommentForm';
-import { CreateArticleFormSchema } from '@/features/ArticleCreateForm';
-import { EditArticleFormSchema } from '@/features/ArticleEditForm';
-import { LoginSchema } from '@/features/AuthByUsername';
-import { ProfileSchema } from '@/features/EditableProfileCard';
+import type { AddCommentFormSchema } from '@/features/AddCommentForm';
+import type { CreateArticleFormSchema } from '@/features/ArticleCreateForm';
+import type { EditArticleFormSchema } from '@/features/ArticleEditForm';
+import type { LoginSchema } from '@/features/AuthByUsername';
+import type { ProfileSchema } from '@/features/EditableProfileCard';
 
-import { ArticleDetailsPageSchema } from '@/pages/ArticleDetailsPage';
-import { ArticlesPageSchema } from '@/pages/ArticlesPage';
+import type { ArticleDetailsPageSchema } from '@/pages/ArticleDetailsPage';
+import type { ArticlesPageSchema } from '@/pages/ArticlesPage';
 
-import { PageScrollSchema } from '@/widgets/Page';
+import type { PageScrollSchema } from '@/widgets/Page';
 
 export interface AsyncReducers {
   /**
@@ -41,13 +41,18 @@ export interface StateSchema extends AsyncReducers {
   user: UserSchema;
 
   /**
-   * Редюсер для rtkApi
+   * Редюсер для 'rtkApi'
    */
-  [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
+  [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>; // 'api': combinedReducer(...)
+  /*
+    'rtkApi.reducer' => (state, action) => combinedReducer(resetApiState.match(action) ? void 0 : state, action)
+      'typeof rtkApi.reducer' => function
+        'ReturnType<typeof rtkApi.reducer>' => combinedReducer(resetApiState.match(action) ? void 0 : state, action)
+ */
 }
 
 /**
- * ['counter', 'loginForm, 'user']
+ * Ключи хранилища ['counter', 'loginForm', 'user', ...]
  */
 export type StateSchemaKey = keyof StateSchema;
 
@@ -76,8 +81,8 @@ export interface ReducerManager {
   remove: (k: StateSchemaKey) => void;
 
   /**
-    'getMountedReducers'() - чтобы не монтировать заново уже смонтированные редюсеры
-    (true - вмонтирован, false - демонтирован)
+    'getMountedReducers()' - чтобы не монтировать заново уже смонтированные редюсеры
+    true - вмонтирован, false - демонтирован
   */
   getMountedReducers: () => MountedReducers;
 }
@@ -85,7 +90,7 @@ export interface ReducerManager {
 // расширение дефолтного типа для 'store'
 export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
   /**
-   * Используется для асинхронной подгрузки редюсеров
+   * Используется для асинхронной подгрузки редюсеров в RTK v.1
    */
   reducerManager: ReducerManager;
 }
