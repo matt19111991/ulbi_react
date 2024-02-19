@@ -6,11 +6,13 @@
 
 `AsyncReducers` - тип для асинхронных редюсеров
 
+`createReduxStore` - функция для создания экземпляра хранилища
+
+`rootReducer` - функция для создания корневого редюсера
+
 `StateSchema` - основная схема хранилища
 
 `StateSchemaKey` - ключи хранилища
-
-`store` - функция для создания экземпляра хранилища
 
 ### Components
 
@@ -24,9 +26,9 @@
 
 ### RTK v.1
 
-`MountedReducers` - тип для объекта с уже смонтированными редюсерами
+`createReducerManager` - функция для асинхронной подгрузки редюсеров
 
-`reducerManager` - используется для асинхронной подгрузки редюсеров
+`MountedReducers` - тип для объекта с уже смонтированными редюсерами
 
 `ReducerManager` - тип для `reducerManager`
 
@@ -34,6 +36,6 @@
 
 ### RTK v.2
 
-`combineSlicesMiddleware` - костыль для `RTK v.2`, чтобы избавиться от ошибки при удалении редюсера:
-"Unexpected key [reducerKey] found in previous state received by the reducer. Expected to find one of
-the known reducer keys instead: 'counter', 'pageScroll', 'user', 'api'. Unexpected keys will be ignored."
+`combineSlicesAvoidErrorMessageMiddleware` - костыль для `RTK v.2`, чтобы избавиться от ошибки при удалении 
+редюсера: "Unexpected key [reducerKey] found in previous state received by the reducer. Expected to find one
+of the known reducer keys instead: 'counter', 'pageScroll', 'user', 'api'. Unexpected keys will be ignored."
