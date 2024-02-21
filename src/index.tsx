@@ -38,8 +38,7 @@ root.render(
       <ErrorBoundary>
         <ForceUpdateProvider>
           {/*
-            можно использовать '<ThemeProvider />':
-
+            можно использовать 'ThemeProvider':
               <ThemeProvider>
                 <App />
               </ThemeProvider>,
