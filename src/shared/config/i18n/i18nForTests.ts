@@ -5,10 +5,12 @@ i18n.use(initReactI18next).init({
   debug: false,
 
   fallbackLng: 'ru',
+
   lng: 'ru',
 
   interpolation: {
-    escapeValue: false, // не нужно для React
+    // нет необходимости: 'React' экранирует cтроковые переменные в 'UI' автоматически
+    escapeValue: false,
   },
 
   // убираем все логи о ненайденных ключах для переводов

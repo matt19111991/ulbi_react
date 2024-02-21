@@ -66,6 +66,7 @@ export type StateSchemaKey = keyof StateSchema;
 // используем 'OptionalRecord', т.к. не все редюсеры обязательные
 export type MountedReducers = OptionalRecord<StateSchemaKey, boolean>;
 
+// RTK v.1
 export interface ReducerManager {
   /**
    * Возвращает список редюсеров

@@ -1,18 +1,30 @@
 /*
+  <div className="modal">            <div className="block">
+      <div className="open" />   и      <div className="open" />
+  </div>                             </div>
 
-<div className="modal">            <div className="block">
-    <div className="open" />   и      <div className="open" />
-</div>                             </div>
+  В конечном бандле будет конфликт классов '.open'
 
-В конечном бандле будет конфликт классов .open
+  Решения:
+      1. 'БЭМ': '.modal__element_open' и '.block__element_open'
 
-Решения:
-    1. БЭМ: .modal__element_open и .block__element_open
-
-    2. CSS-modules генерируют уникальные классы для .open:
-    .WJfas66YqMo9vlVy3cDg и Xwga441YqMo9vXCy5tXb
+      2. 'CSS-modules': генерируют уникальные классы для '.open':
+      .WJfas66YqMo9vlVy3cDg и Xwga441YqMo9vXCy5tXb
 */
 
+/*
+  Использование 'CSS' переменных:
+
+  --primary-color: #FFF - создание переменной
+
+   color: var(--primary-color) - использование переменной
+*/
+
+/*
+  '.eot' шрифты устарели, нужны для поддержки 'IE': https://caniuse.com/?search=eot
+  '.ttf' полноценные системные шрифты, их не следует использовать в веб-приложениях, могут быть проблемы с лицензиями
+  '.woff' лучше не использовать, а брать следующую версию '.woff2' (лучше сжатие)
+*/
 @import 'fonts';
 
 @import 'reset';
@@ -57,7 +69,7 @@ body {
   }
 }
 
-// Scroll bar redesigned
+/* Scroll bar redesigned */
 
 *::-webkit-scrollbar {
   height: 6px; /* высота скролл бара */
@@ -70,11 +82,11 @@ body {
 
 *::-webkit-scrollbar-thumb {
   background-color: var(--icon-redesigned);   /* цвет ползунка */
-  border: 1px solid var(--accent-redesigned); /* закругления для ползунка */
-  border-radius: 20px;                        /* padding вокруг ползунка */
+  border: 1px solid var(--accent-redesigned); /* толщина обводки */
+  border-radius: 20px;                        /* закругления для ползунка */
 }
 
-// Scroll bar deprecated
+/* Scroll bar deprecated */
 
 .app *::-webkit-scrollbar {
   height: 6px; /* высота скролл бара */
@@ -87,11 +99,11 @@ body {
 
 .app *::-webkit-scrollbar-thumb {
   background-color: var(--scroll-thumb-color);  /* цвет ползунка */
-  border: 1px solid var(--scroll-border-color); /* закругления для ползунка */
-  border-radius: 20px;                          /* padding вокруг ползунка */
+  border: 1px solid var(--scroll-border-color); /* толщина обводки */
+  border-radius: 20px;                          /* закругления для ползунка */
 }
 
-// скрываем прокрутку только в приложении (не в storybook)
+// скрываем прокрутку только в приложении (не в 'storybook')
 @media screen and (max-width: 1800px) {
   body:has(> div[id='root']) {
     overflow: hidden;

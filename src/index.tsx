@@ -8,11 +8,8 @@ import { StoreProvider } from '@/app/providers/StoreProvider';
 
 import App from '@/app/App';
 
-/*
-  Ошибка 'i18n.changeLanguage is not a function',
-  если импортировать "import i18n from 'shared/config/i18n/i18n";
-
-*/ import '@/shared/config/i18n/i18n';
+// import i18n from '@/shared/config/i18n/i18n' - возможна ошибка 'i18n.changeLanguage is not a function'
+import '@/shared/config/i18n/i18n';
 
 import './app/styles/index.scss';
 

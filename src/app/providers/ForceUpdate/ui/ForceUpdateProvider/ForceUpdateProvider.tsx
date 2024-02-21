@@ -3,17 +3,17 @@ import type { ReactNode } from 'react';
 
 import { ForceUpdateContext } from '@/shared/lib/context/forceUpdate';
 
-// Костыль!
+/*
+  Костыль!
 
-// После вызова 'forceUpdate' переключаем 'value' в 'false' и вычищаем
-// всех 'children'. Далее через минимальный промежуток времени (timeout 0)
-// отрисовываем 'children' обратно (переключаем 'value' в 'true').
+  После вызова 'forceUpdate()' переключаем 'value' в 'false' и вычищаем всех 'children'
 
-// Таким образом DOM полностью обновится
+  Далее через минимальный промежуток времени (timeout 0) отрисовываем 'children' обратно
+  (переключаем 'value' в 'true')
 
-/**
- * Провайдер для принудительного обновления
- */
+  Таким образом 'DOM' полностью обновится
+*/
+
 export const ForceUpdateProvider = ({ children }: { children: ReactNode }) => {
   const [value, setValue] = useState(true);
 

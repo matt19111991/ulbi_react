@@ -72,7 +72,7 @@
 
   .items {
     margin-top: 40px;
-    z-index: 2;
+    z-index: var(--z-index-two);
   }
 
   .switchers {
@@ -82,7 +82,7 @@
     padding-left: 24px;
     position: absolute;
     width: 100%;
-    z-index: 1;
+    z-index: var(--z-index-one);
   }
 
   @media screen and (max-width: 1800px) {

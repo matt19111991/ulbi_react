@@ -38,7 +38,7 @@
       left: 8px;
       position: fixed;
       top: 256px;
-      z-index: 2;
+      z-index: var(--z-index-two);
     }
 
     .right {
