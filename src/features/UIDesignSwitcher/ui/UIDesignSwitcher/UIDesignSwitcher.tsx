@@ -6,8 +6,7 @@ import { getUserAuthData } from '@/entities/User';
 
 import { getFeatureFlag, updateFeatureFlags } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-
-import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
+import { useForceUpdate } from '@/shared/lib/hooks/useForceUpdate/useForceUpdate';
 
 import { ListBox } from '@/shared/ui/redesigned/Popups';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';

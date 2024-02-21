@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import { Theme } from '../../../const/theme';
 
-import { ThemeContext } from '../../context/ThemeContext';
+import { ThemeContext } from '../../context/theme';
 
 /**
  * Хук для использования темы

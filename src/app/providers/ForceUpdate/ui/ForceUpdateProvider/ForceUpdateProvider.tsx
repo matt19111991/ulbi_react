@@ -1,23 +1,7 @@
-import { createContext, ReactNode, useContext, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
+import type { ReactNode } from 'react';
 
-/**
- * Контекст для принудительного обновления
- * @forceUpdate callback
- * @value - заглушка
- */
-const ForceUpdateContext = createContext({
-  forceUpdate: () => {},
-  value: true,
-});
-
-/**
- * Хук для принудительного обновления
- */
-export const useForceUpdate = () => {
-  const { forceUpdate } = useContext(ForceUpdateContext);
-
-  return forceUpdate;
-};
+import { ForceUpdateContext } from '@/shared/lib/context/forceUpdate';
 
 // Костыль!
 

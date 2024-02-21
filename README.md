@@ -512,7 +512,7 @@ storybooka, линтинг. Нет деплоя на сервер
 
 - [useAppDispatch](./src/shared/lib/hooks/useAppDispatch/README.md)
 - [useDebounce](./src/shared/lib/hooks/useDebounce/README.md)
-- [useForceUpdate](./src/shared/lib/render/README.md)
+- [useForceUpdate](src/shared/lib/hooks/useForceUpdate/README.md)
 - [useHover](./src/shared/lib/hooks/useHover/README.md)
 - [useInfiniteScroll](./src/shared/lib/hooks/useInfiniteScroll/README.md)
 - [useInitialEffect](./src/shared/lib/hooks/useInitialEffect/README.md)
@@ -605,7 +605,7 @@ storybooka, линтинг. Нет деплоя на сервер
 ## Провайдеры (providers)
 - [AnimationProvider](./src/shared/lib/components/AnimationProvider/README.md)
 - [ErrorBoundary](./src/app/providers/ErrorBoundary/README.md)
-- [ForceUpdateProvider](./src/shared/lib/render/README.md)
+- [ForceUpdateProvider](src/app/providers/ForceUpdate/README.md)
 - [Router](./src/app/providers/Router/README.md)
 - [StoreProvider](./src/app/providers/StoreProvider/README.md)
 - [ThemeProvider](./src/app/providers/ThemeProvider/README.md)

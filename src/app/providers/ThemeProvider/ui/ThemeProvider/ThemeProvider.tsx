@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 import { THEME_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { Theme } from '@/shared/const/theme';
 
-import { ThemeContext } from '@/shared/lib/context/ThemeContext';
+import { ThemeContext } from '@/shared/lib/context/theme';
 
 interface ThemeProviderProps {
   /**

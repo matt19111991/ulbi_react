@@ -2,6 +2,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
 import { ErrorBoundary } from '@/app/providers/ErrorBoundary';
+import { ForceUpdateProvider } from '@/app/providers/ForceUpdate';
 import { StoreProvider } from '@/app/providers/StoreProvider';
 // import { ThemeProvider } from '@/app/providers/ThemeProvider';
 
@@ -12,8 +13,6 @@ import App from '@/app/App';
   если импортировать "import i18n from 'shared/config/i18n/i18n";
 
 */ import '@/shared/config/i18n/i18n';
-
-import { ForceUpdateProvider } from '@/shared/lib/render/forceUpdate';
 
 import './app/styles/index.scss';
 

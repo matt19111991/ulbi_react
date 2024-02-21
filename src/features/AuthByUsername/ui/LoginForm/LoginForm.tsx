@@ -11,8 +11,7 @@ import {
 } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
 
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-
-import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
+import { useForceUpdate } from '@/shared/lib/hooks/useForceUpdate/useForceUpdate';
 
 import { Button as ButtonDeprecated, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import { Input as InputDeprecated } from '@/shared/ui/deprecated/Input';
