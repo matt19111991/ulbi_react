@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 import { THEME_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { Theme } from '@/shared/const/theme';
 
-import { ThemeContext } from '../../../../../shared/lib/context/ThemeContext';
+import { ThemeContext } from '@/shared/lib/context/ThemeContext';
 
 interface ThemeProviderProps {
   /**
@@ -21,7 +21,7 @@ interface ThemeProviderProps {
 // последняя выбранная тема у пользователя на устройстве
 const fallbackTheme = localStorage.getItem(THEME_LOCALSTORAGE_KEY) as Theme;
 
-// В типе 'FC' уже описан 'children prop' для версий 'React v.17-')
+// В типе 'FC' уже описан 'children prop' для версий 'React v.17-'
 const ThemeProvider = ({ children, initialTheme }: ThemeProviderProps) => {
   const [isThemeInited, setIsThemeInited] = useState(false);
 

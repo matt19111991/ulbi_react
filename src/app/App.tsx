@@ -16,7 +16,7 @@ import { Sidebar } from '@/widgets/Sidebar';
 import { useAppToolbar } from './lib/hooks/useAppToolbar/useAppToolbar';
 
 import { AppRouter } from './providers/Router';
-import { withTheme } from './providers/ThemeProvider/lib/withTheme/withTheme';
+import { withTheme } from './providers/ThemeProvider';
 
 /*
   В большинстве случаев не стоит оборачивать в 'memo' компоненты с 'children':

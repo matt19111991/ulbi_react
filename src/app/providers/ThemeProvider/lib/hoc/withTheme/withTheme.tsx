@@ -2,7 +2,7 @@ import { ComponentType } from 'react';
 
 import { useJsonSettings } from '@/entities/User';
 
-import ThemeProvider from '../../ui/ThemeProvider/ThemeProvider';
+import ThemeProvider from '../../../ui/ThemeProvider/ThemeProvider';
 
 /**
  * HOC

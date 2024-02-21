@@ -7,6 +7,8 @@
   Внутри модулей лучше использовать относительные пути
 */
 
+import { withTheme } from './lib/hoc/withTheme/withTheme';
+
 import ThemeProvider from './ui/ThemeProvider/ThemeProvider';
 
-export { ThemeProvider };
+export { ThemeProvider, withTheme };
