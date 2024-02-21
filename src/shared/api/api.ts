@@ -7,11 +7,11 @@ export const $api = axios.create({
 });
 
 /*
-  перед каждым запросом будем запускать 'interceptor' и добавлять заголовок для авторизации;
-  если оставить добавление заголовка в 'axios.create' => на сервере могут отправляться пустые
-  значения заголовка 'Authorization'
+  перед каждым запросом будем запускать 'interceptor' и добавлять заголовок 'Authorization';
+  если оставить добавление заголовка в 'axios.create' => 'headers':
+  на сервер могут отправляться пустые значения заголовка 'Authorization'
 
-  $api?.interceptors нужно сделать опциональными, иначе ошибка:
+  '$api?.interceptors' нужно сделать опциональными, иначе ошибка:
   "TypeError: Cannot read properties of undefined (reading 'interceptors')"
 */
 $api?.interceptors.request.use((config) => {

@@ -1,5 +1,12 @@
 import type { AxiosInstance } from 'axios';
-import type { EnhancedStore, Reducer, ReducersMapObject, UnknownAction } from '@reduxjs/toolkit';
+
+import type {
+  EnhancedStore,
+  Reducer,
+  ReducersMapObject,
+  ThunkDispatch,
+  UnknownAction,
+} from '@reduxjs/toolkit';
 
 import { rtkApi } from '@/shared/api/rtkApi';
 
@@ -66,9 +73,10 @@ export interface ReducerManager {
   getReducerMap: () => ReducersMapObject<StateSchema>;
 
   /**
-   * Если какие-то редюсеры были удалены, очищаем 'state' от них
+   'getMountedReducers()' - чтобы не монтировать заново уже смонтированные редюсеры
+   true - вмонтирован, false - демонтирован
    */
-  reduce: (s: StateSchema, a: UnknownAction) => StateSchema;
+  getMountedReducers: () => MountedReducers;
 
   /**
    * По ключу добавляем редюсер
@@ -81,10 +89,9 @@ export interface ReducerManager {
   remove: (k: StateSchemaKey) => void;
 
   /**
-    'getMountedReducers()' - чтобы не монтировать заново уже смонтированные редюсеры
-    true - вмонтирован, false - демонтирован
-  */
-  getMountedReducers: () => MountedReducers;
+   * Если какие-то редюсеры были удалены, очищаем 'state' от них
+   */
+  reduce: (s: StateSchema, a: UnknownAction) => StateSchema;
 }
 
 // расширение дефолтного типа для 'store'
@@ -97,7 +104,7 @@ export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
 
 export interface ThunkExtraArg {
   /**
-   * Экземпляр axios
+   * Экземпляр 'axios'
    */
   api: AxiosInstance;
 }
@@ -118,3 +125,8 @@ export interface ThunkConfig<T> {
    */
   state: StateSchema;
 }
+
+/**
+ * Кастомная типизация 'dispatch', чтобы типы экшенов, схем, хранилища подхватывались 'TypeScript-ом'
+ */
+export type AppDispatch = ThunkDispatch<StateSchema, ThunkExtraArg, UnknownAction>;

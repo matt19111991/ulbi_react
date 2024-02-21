@@ -1,35 +1,32 @@
-import { combineReducers, Reducer, ReducersMapObject, UnknownAction } from '@reduxjs/toolkit';
+import { combineReducers } from '@reduxjs/toolkit';
+import type { Reducer, ReducersMapObject, UnknownAction } from '@reduxjs/toolkit';
 
-import { MountedReducers, ReducerManager, StateSchema, StateSchemaKey } from './StateSchema';
+import type { MountedReducers, ReducerManager, StateSchema, StateSchemaKey } from './StateSchema';
 
-// для асинхронной подгрузки редюсеров, 'createReducerManager' взят из документации
+// для асинхронной подгрузки редюсеров (RTK v.1 code splitting)
 
-// все необязательные поля будут удалены из типа объекта
-type RequiredFieldsOnly<T> = {
-  [K in keyof T as T[K] extends Required<T>[K] ? K : never]: T[K];
-};
-
+// 'createReducerManager' взят из документации
 export const createReducerManager = (
   initialReducers: ReducersMapObject<StateSchema>,
 ): ReducerManager => {
   // Создаем клон с редюсерами (т.к. будем этот клон изменять)
-  const reducers = { ...initialReducers };
+  const clonedReducers = { ...initialReducers };
 
   // Создаем корневой редюсер
-  let combinedReducer = combineReducers(reducers);
+  let combinedReducer = combineReducers(clonedReducers);
 
-  // Названия редюсеров, которые хотим удалить (которые будут асинхронными)
+  // Названия асинхронных редюсеров, которые хотим удалить
   let keysToRemove: StateSchemaKey[] = [];
 
   const mountedReducers: MountedReducers = {};
 
   return {
-    getReducerMap: () => reducers,
+    getReducerMap: () => clonedReducers,
 
     // Можно было обойтись 'getReducerMap()', по сути 'getMountedReducers()' дублирующий функционал
     getMountedReducers: () => mountedReducers,
 
-    // Root reducer без редюсеров, указанных в 'keysToRemove'
+    // 'rootReducer' без редюсеров, указанных в 'keysToRemove'
     reduce: (state: StateSchema, action: UnknownAction) => {
       // Если какие-то редюсеры были удалены, очищаем 'state' от них
       if (keysToRemove.length > 0) {
@@ -47,27 +44,28 @@ export const createReducerManager = (
     },
 
     add: (key: StateSchemaKey, reducer: Reducer) => {
-      if (!key || reducers[key]) {
+      // если не передали ключ или ключ уже есть среди редюсеров - ничего не делаем
+      if (!key || clonedReducers[key]) {
         return;
       }
 
       // По ключу добавляем редюсер
-      reducers[key] = reducer;
+      clonedReducers[key] = reducer;
 
       // и отмечаем, что редюсер был вмонтирован
       mountedReducers[key] = true;
 
       // Создаем новый 'combinedReducer'
-      combinedReducer = combineReducers(reducers);
+      combinedReducer = combineReducers(clonedReducers);
     },
 
     remove: (key: StateSchemaKey) => {
-      if (!key || !reducers[key]) {
+      if (!key || !clonedReducers[key]) {
         return;
       }
 
       // Удаляем редюсер по ключу
-      delete reducers[key];
+      delete clonedReducers[key];
 
       // Добавляем ключ в список ключей для очистки
       keysToRemove.push(key);
@@ -76,7 +74,7 @@ export const createReducerManager = (
       mountedReducers[key] = false;
 
       // Создаем новый 'combinedReducer'
-      combinedReducer = combineReducers(reducers);
+      combinedReducer = combineReducers(clonedReducers);
     },
   };
 };

@@ -8,11 +8,9 @@
 
 `createReduxStore` - функция для создания экземпляра хранилища
 
-`rootReducer` - функция для создания корневого редюсера
+`StateSchema` - тип основной схемы хранилища
 
-`StateSchema` - основная схема хранилища
-
-`StateSchemaKey` - ключи хранилища
+`StateSchemaKey` - тип для ключей хранилища
 
 ### Components
 
@@ -39,3 +37,5 @@
 `combineSlicesAvoidErrorMessageMiddleware` - костыль для `RTK v.2`, чтобы избавиться от ошибки при удалении 
 редюсера: "Unexpected key [reducerKey] found in previous state received by the reducer. Expected to find one
 of the known reducer keys instead: 'counter', 'pageScroll', 'user', 'api'. Unexpected keys will be ignored."
+
+`rootReducer` - корневой редюсер с возможностью подключения асинхронных редюсеров

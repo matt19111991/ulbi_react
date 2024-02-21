@@ -24,6 +24,10 @@ interface StoreProviderProps {
 }
 
 export const StoreProvider = ({ asyncReducers, children, initialState }: StoreProviderProps) => {
+  /*
+    дополнительная функция 'createReduxStore' вместо использования 'store' напрямую:
+    для переиспользования 'store' в 'jest', 'storybook' и других местах
+  */
   const store = createReduxStore(
     initialState as StateSchema,
     asyncReducers as ReducersMapObject<StateSchema>,

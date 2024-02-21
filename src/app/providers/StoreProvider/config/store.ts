@@ -1,11 +1,11 @@
 import { combineSlices, configureStore } from '@reduxjs/toolkit';
-import type { Reducer, ReducersMapObject, ThunkDispatch, UnknownAction } from '@reduxjs/toolkit';
-
-import { /* counterReducer, */ counterSlice } from '@/entities/Counter';
-import { /* userReducer, */ userSlice } from '@/entities/User';
+import type { Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 
 import { $api } from '@/shared/api/api';
 import { rtkApi } from '@/shared/api/rtkApi';
+
+import { /* counterReducer, */ counterSlice } from '@/entities/Counter';
+import { /* userReducer, */ userSlice } from '@/entities/User';
 
 import { /* pageScrollReducer, */ pageScrollSlice } from '@/widgets/Page';
 
@@ -13,12 +13,7 @@ import { /* pageScrollReducer, */ pageScrollSlice } from '@/widgets/Page';
 
 import { combineSlicesAvoidErrorMessageMiddleware } from './combineSlicesMiddleware'; // RTK v.2 code splitting
 
-import {
-  // ReduxStoreWithManager, // RTK v.1 code splitting
-  StateSchema,
-  StateSchemaKey,
-  ThunkExtraArg,
-} from './StateSchema';
+import type { StateSchema, StateSchemaKey, ThunkExtraArg } from './StateSchema';
 
 /**
  * Для возможности использования асинхронных редюсеров (RTK v.2 code splitting)
@@ -36,13 +31,13 @@ export const createReduxStore = (
   initialState?: StateSchema,
   asyncReducers?: ReducersMapObject<StateSchema>,
 ) => {
-  // при наличии внешних асинхронных редюсеров ('jest', 'storybook')
+  // при наличии внешних асинхронных редюсеров ('jest', 'storybook') (RTK v.2 code splitting)
   if (asyncReducers) {
     Object.entries(asyncReducers).forEach(([name, reducer]) => {
       // асинхронно подгружаем редюсер
       rootReducer.inject({
         reducerPath: name,
-        reducer: reducer as Reducer<NonNullable<StateSchema[StateSchemaKey]>>,
+        reducer: reducer as Reducer<StateSchema[StateSchemaKey]>,
       });
     });
   }
@@ -59,10 +54,6 @@ export const createReduxStore = (
 
       ...asyncReducers,
     };
-
-    /**
-     * Для возможности использования асинхронных редюсеров
-    /**
 
     const reducerManager = createReducerManager(rootReducers);
 */
@@ -82,8 +73,8 @@ export const createReduxStore = (
         /**
          * Иначе ошибки в тестах вида:
          *  'A non-serializable value was detected in the state, in the path:
-         * `api.queries.getArticleRecommendationsList(4).data.0.user.avatar`.
-         * Value: [Function: JestEmptyComponent]'
+         *  `api.queries.getArticleRecommendationsList(4).data.0.user.avatar`.
+         *  Value: [Function: JestEmptyComponent]'
          */
         serializableCheck: false,
 
@@ -96,34 +87,24 @@ export const createReduxStore = (
       }).concat(rtkApi.middleware, combineSlicesAvoidErrorMessageMiddleware),
 
     /**
-     * Инициализация 'store' заранее подготовленными данными для тестов, storybook и т.д.
+     * Инициализация 'store' заранее подготовленными данными для тестов, 'storybook' и т.д.
      */
     preloadedState: initialState,
 
     /**
-     * Установка редюсеров по умолчанию, когда все редюсеры синхронные
+     * Установка редюсеров
      */
     reducer: rootReducer, // RTK v.2 code splitting
-    // reducer: rootReducers, // RTK v.1 code splitting
+    /*
+      RTK v.1 code splitting
 
-    /**
-     * Для работы с асинхронными редюсерами (RTK v.1 code splitting)
-     *
-     * 'reducerManager.reduce as Reducer<StateSchema>' в поле 'reducer' помогает избежать
-     * ошибки типов в поле 'middleware', которая возникает из-за использования 'reducerManager'
-     *
-     */
-    // reducer: reducerManager.reduce as Reducer<StateSchema>,
+      reducer: rootReducers, // возможна ошибка типов в поле 'middleware'
+
+      reducer: reducerManager.reduce as Reducer<StateSchema>, // решение проблемы выше
+    */
   });
 
-  /*
-    для возможности использования асинхронных редюсеров (RTK v.1 code splitting)
-    store.reducerManager = reducerManager;
-  */
+  // store.reducerManager = reducerManager; // RTK v.1 code splitting
+
   return store;
 };
-
-/**
- * Кастомная типизация 'dispatch', чтобы типы экшенов, схем, хранилища подхватывались TypeScript-ом
- */
-export type AppDispatch = ThunkDispatch<StateSchema, ThunkExtraArg, UnknownAction>;
