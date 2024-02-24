@@ -56,9 +56,9 @@ export const userSlice = createSlice({
       state.authData = action.payload;
 
       // выставляем 'feature flags' для пользователя, чтобы отображать или скрывать функционал
-      setFeatureFlags(action.payload.features);
+      setFeatureFlags(action.payload?.features);
 
-      if (action.payload.jsonSettings?.theme) {
+      if (action.payload?.jsonSettings?.theme) {
         // инициализируем тему, сохраненную для пользователя
         document.body.className = action.payload.jsonSettings?.theme;
       }

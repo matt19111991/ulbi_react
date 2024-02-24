@@ -1,4 +1,5 @@
-import { CSSProperties, memo, useMemo } from 'react';
+import { memo, useMemo } from 'react';
+import type { CSSProperties } from 'react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 

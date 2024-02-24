@@ -23,7 +23,7 @@ const mockUser = {
   jsonSettings: {
     isArticlesPageHasBeenOpened: true,
     isFirstVisit: false,
-    settingsPageHasBeenOpen: false,
+    isSettingsPageHasBeenOpen: false,
     theme: Theme.DARK,
   },
   password: '12345',

@@ -2,7 +2,7 @@ import type { FeatureFlags } from '@/shared/types/featureFlags';
 
 import { UserRole } from '../consts/userConsts';
 
-import { JsonSettings } from './jsonSettings';
+import type { JsonSettings } from './jsonSettings';
 
 export interface User {
   id: string;
@@ -17,18 +17,18 @@ export interface UserSchema {
   authData?: User;
 
   /*
-    AppRouter отрисовывается быстрее, чем инициализируются данные о пользователя из 'Store':
+    'AppRouter' отрисовывается быстрее, чем инициализируются данные о пользователя из 'Store':
 
     useEffect(() => {
-      dispatch(userActions.initAuthData());
+      dispatch(initAuthData());
     }, [dispatch]);
 
     <BrowserRouter>
       <StoreProvider />
     </BrowserRouter>
 
-    Поэтому после успешной авторизации недоступна защищенная страница '/profile'
-    Для корректной работы нужен флаг 'mounted'
+    Поэтому после успешной авторизации недоступна защищенная страница '/profile',
+    для корректной работы нужен флаг 'mounted'
   */
 
   mounted: boolean;

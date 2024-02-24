@@ -20,13 +20,13 @@
 @media screen and (max-width: 840px) {
   .ArticlesPage {
     height: calc(87vh - 320px);
-    top: 264px;
+    top: 264px !important;
   }
 }
 
 @media screen and (max-width: 510px) {
   .ArticlesPage {
     height: calc(87vh - 220px);
-    top: 166px;
+    top: 286px !important;
   }
 }

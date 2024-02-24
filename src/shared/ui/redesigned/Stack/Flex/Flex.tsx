@@ -1,36 +1,37 @@
-import { DetailedHTMLProps, ForwardedRef, HTMLAttributes, memo, ReactNode } from 'react';
+import { memo } from 'react';
+import type { DetailedHTMLProps, ForwardedRef, HTMLAttributes, ReactNode } from 'react';
 
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 
 import classes from './Flex.module.scss';
 
 /**
- * Flex align
+ * 'Flex align'
  */
 export type FlexAlign = 'start' | 'center' | 'end';
 
 /**
- * Flex direction
+ * 'Flex direction'
  */
 export type FlexDirection = 'column' | 'row';
 
 /**
- * Flex gap
+ * 'Flex gap'
  */
 export type FlexGap = '4' | '8' | '16' | '24' | '32';
 
 /**
- * Flex justify
+ * 'Flex justify'
  */
 export type FlexJustify = 'start' | 'center' | 'end' | 'between';
 
 /**
- * Flex wrap
+ * 'Flex wrap'
  */
 export type FlexWrap = 'nowrap' | 'wrap';
 
 /**
- * Классы для flex align
+ * Классы для 'flex align'
  */
 const alignClasses: Record<FlexAlign, string> = {
   start: classes.alignStart,
@@ -39,7 +40,7 @@ const alignClasses: Record<FlexAlign, string> = {
 };
 
 /**
- * Классы для flex direction
+ * Классы для 'flex direction'
  */
 const directionClasses: Record<FlexDirection, string> = {
   column: classes.directionColumn,
@@ -47,7 +48,7 @@ const directionClasses: Record<FlexDirection, string> = {
 };
 
 /**
- * Классы для flex gap
+ * Классы для 'flex gap'
  */
 const gapClasses: Record<FlexGap, string> = {
   4: classes.gap4,
@@ -58,7 +59,7 @@ const gapClasses: Record<FlexGap, string> = {
 };
 
 /**
- * Классы для flex justify
+ * Классы для 'flex justify'
  */
 const justifyClasses: Record<FlexJustify, string> = {
   start: classes.justifyStart,
@@ -67,12 +68,13 @@ const justifyClasses: Record<FlexJustify, string> = {
   between: classes.justifyBetween,
 };
 
+// взято из интернета
 type DivProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 
 // в 'HStack' и 'VStack' можно использовать нативные атрибуты от 'div' ('role' и т.д.)
 export interface FlexProps extends DivProps {
   /**
-   * Flex align
+   * 'Flex align'
    */
   align?: FlexAlign;
 
@@ -87,17 +89,17 @@ export interface FlexProps extends DivProps {
   className?: string;
 
   /**
-   * Flex direction
+   * 'Flex direction'
    */
   direction: FlexDirection;
 
   /**
-   * Flex gap
+   * 'Flex gap'
    */
   gap?: FlexGap;
 
   /**
-   * Flex justify
+   * 'Flex justify'
    */
   justify?: FlexJustify;
 
@@ -112,7 +114,7 @@ export interface FlexProps extends DivProps {
   ref?: ForwardedRef<HTMLDivElement | null>;
 
   /**
-   * Flex wrap
+   * 'Flex wrap'
    */
   wrap?: FlexWrap;
 }

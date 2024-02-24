@@ -1,4 +1,4 @@
-import { forwardRef, ForwardedRef, memo, ReactNode } from 'react';
+import { forwardRef, ForwardedRef, ReactNode } from 'react';
 import { LinkProps, NavLink } from 'react-router-dom';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -29,7 +29,8 @@ interface AppLinkProps extends LinkProps {
   variant?: AppLinkVariant;
 }
 
-const ForwardedAppLink = forwardRef(
+// от 'React.memo' нет смысла, т.к. 'forwardRef()' на каждый ререндер возвращает новую ссылку
+export const AppLink = forwardRef(
   (
     { activeClassName = '', className, children, variant = 'primary', to, ...rest }: AppLinkProps,
     ref: ForwardedRef<HTMLAnchorElement>,
@@ -48,6 +49,4 @@ const ForwardedAppLink = forwardRef(
   ),
 );
 
-ForwardedAppLink.displayName = 'ForwardedAppLink';
-
-export const AppLink = memo(ForwardedAppLink);
+AppLink.displayName = 'AppLink';

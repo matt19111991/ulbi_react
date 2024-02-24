@@ -1457,8 +1457,8 @@
       "jsonSettings": {
         "isArticlesPageHasBeenOpened": true,
         "isFirstVisit": false,
-        "settingsPageHasBeenOpen": false,
-        "theme": "app_dark_theme"
+        "isSettingsPageHasBeenOpen": false,
+        "theme": "app_orange_theme"
       },
       "password": "12345",
       "roles": [
@@ -1476,7 +1476,7 @@
       },
       "jsonSettings": {
         "isFirstVisit": true,
-        "settingsPageHasBeenOpen": false,
+        "isSettingsPageHasBeenOpen": false,
         "theme": "app_dark_theme"
       },
       "password": "12345",
@@ -1494,7 +1494,7 @@
       },
       "jsonSettings": {
         "isFirstVisit": true,
-        "settingsPageHasBeenOpen": true,
+        "isSettingsPageHasBeenOpen": true,
         "theme": "app_dark_theme"
       },
       "password": "12345",

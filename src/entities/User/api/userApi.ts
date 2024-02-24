@@ -4,14 +4,14 @@ import { Theme } from '@/shared/const/theme';
 
 import { UserRole } from '../model/consts/userConsts';
 
-import { JsonSettings } from '../model/types/jsonSettings';
-import { User } from '../model/types/user';
+import type { JsonSettings } from '../model/types/jsonSettings';
+import type { User } from '../model/types/user';
 
 interface GetUserDataByIdResponse {
   data: User;
 }
 
-interface SetJsonSettingsArg {
+interface SetJsonSettingsArgs {
   jsonSettings: JsonSettings;
   userId: string;
 }
@@ -32,7 +32,7 @@ const mockUser = {
   jsonSettings: {
     isArticlesPageHasBeenOpened: true,
     isFirstVisit: false,
-    settingsPageHasBeenOpen: false,
+    isSettingsPageHasBeenOpen: false,
     theme: Theme.DARK,
   },
   password: '12345',
@@ -55,7 +55,7 @@ const userApi = rtkApi.injectEndpoints({
       },
     }),
 
-    setJsonSettings: build.mutation<User, SetJsonSettingsArg>({
+    setJsonSettings: build.mutation<User, SetJsonSettingsArgs>({
       queryFn: ({ jsonSettings, userId }, api, extraOptions, baseQuery) => {
         if (__PROJECT__ !== 'front-end') {
           return {
@@ -73,9 +73,12 @@ const userApi = rtkApi.injectEndpoints({
   }),
 });
 
-// для возможности вызова в 'async thunk' (аналогично хукам в компонентах)
+/*
+  для возможности вызова запросов в 'async thunks' используем метод 'initiate' (вне хуков),
+  в хуках этот метод вызывается под капотом 'React'-ом
+*/
 export const getUserDataByIdQuery = userApi.endpoints.getUserDataById.initiate;
 export const setJsonSettingsMutation = userApi.endpoints.setJsonSettings.initiate;
 
-// для unit тестов
+// для 'unit' тестов
 export const { useGetUserDataByIdQuery, useSetJsonSettingsMutation } = userApi;

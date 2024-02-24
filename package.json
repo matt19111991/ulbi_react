@@ -144,7 +144,6 @@
     "webpack-dev-server": "^5.0.2"
   },
   "lint-staged": {
-    "**/*.json": "prettier --list-different",
     "**/*.scss": "stylelint",
     "src/**/*.{ts,tsx}": [
       "prettier --list-different",

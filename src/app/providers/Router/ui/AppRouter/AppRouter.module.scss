@@ -1,17 +1,3 @@
-.content {
-  height: 100%;
-}
-
-.header {
-  margin: 8px 8px 0 0;
-  padding: 16px 8px;
-}
-
-.sidebar {
-  border-bottom-left-radius: 0 !important;
-  border-top-left-radius: 0 !important;
-}
-
 @media screen and (max-width: 1800px) {
   .content > div {
     height: 48px !important;

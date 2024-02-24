@@ -46,7 +46,7 @@
 @media screen and (max-width: 480px) {
   .tabs {
     display: flex;
-    flex-direction: column;
+    flex-direction: column !important;
   }
 
   .ArticlesFilters {
@@ -54,6 +54,7 @@
     overflow: hidden;
     position: relative;
     transition: all .1s ease-in-out;
+    width: 264px !important;
 
     &.collapsed {
       min-height: 60px;

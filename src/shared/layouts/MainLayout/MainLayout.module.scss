@@ -38,7 +38,7 @@
   width: 100%;
 }
 
-// применяем стили только в приложении (не в storybook)
+// применяем стили только в приложении (не в 'storybook')
 @media screen and (max-width: 1800px) {
   body:has(> div[id='root']) {
     .MainLayout {
