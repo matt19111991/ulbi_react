@@ -15,7 +15,9 @@ interface ScrollToTopButtonProps {
 }
 
 export const ScrollToTopButton = memo(({ className }: ScrollToTopButtonProps) => {
-  const windowWidth = useWindowWidth();
+  const windowWidthAfterResizing = useWindowWidth();
+
+  const windowWidth = windowWidthAfterResizing || window.screen.width;
 
   const onClick = () => {
     if (windowWidth < 1800) {
