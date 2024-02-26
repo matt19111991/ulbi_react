@@ -7,7 +7,37 @@
   position: relative;
 }
 
+/*
+  @keyframes [название_анимации] {
+    [from | проценты] { ...стили }
+    [to   | проценты] { ...стили }
+  }
+*/
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: .01;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .caret {
+  /*
+    animation: [название_анимации] [продолжительность] [animation-fill-mode] [количество_повторений_анимации];
+
+   'animation-fill-mode' определяет: какие стили должны применяться, когда анимация не проигрывается; например, после
+    её завершения или при остановке; по умолчанию, в момент окончания анимации стили элемента возвращаются к исходным
+
+   'animation-fill-mode: forwards' - оставляет стили на момент завершения анимации
+
+    описание механизма работы: https://webref.ru/css/animation-fill-mode
+  */
   animation: blink .7s forwards infinite;
   background: var(--primary-color);
   bottom: 0;
@@ -41,18 +71,4 @@
 
 .readonly {
   opacity: .7;
-}
-
-@keyframes blink {
-  0% {
-    opacity: 0;
-  }
-
-  50% {
-    opacity: .01;
-  }
-
-  100% {
-    opacity: 1;
-  }
 }

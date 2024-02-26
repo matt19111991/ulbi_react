@@ -38,7 +38,7 @@ export interface LoginFormProps {
   className?: string;
 
   /**
-   * Коллбэк при успешном логине
+   * Колбэк при успешном логине
    */
   onSuccess?: () => void;
 }

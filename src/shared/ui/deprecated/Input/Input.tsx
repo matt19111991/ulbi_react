@@ -1,25 +1,18 @@
-import {
+import { memo, useEffect, useRef, useState } from 'react';
+
+import type {
   ChangeEvent,
   HTMLInputTypeAttribute,
   InputHTMLAttributes,
-  memo,
   SyntheticEvent,
-  useEffect,
-  useRef,
-  useState,
 } from 'react';
 
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 
 import classes from './Input.module.scss';
 
-/* без 'Omit' будет конфликт типов: 'onChange' принимает 'event', а не 'string',
-   а в InputHTMLAttributes<HTMLInputElement есть свое 'readOnly' свойство
-*/
-type HTMLInputProps = Omit<
-  InputHTMLAttributes<HTMLInputElement>,
-  'onChange' | 'readOnly' | 'value'
->;
+// без 'Omit' будет конфликт типов: 'onChange' принимает 'event', а не 'string'
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'>;
 
 interface InputProps extends HTMLInputProps {
   /**
@@ -87,9 +80,11 @@ export const Input = memo(
     const isCaretVisible = isFocused && !readOnly;
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-      onChange?.(e.target.value); // 'onChange?.()' => функция не будет вызвана, если не будет передана
+      const inputValue = e.target.value;
 
-      setCaretPosition(e.target.value.length);
+      onChange?.(inputValue); // 'onChange?.()' => функция не будет вызвана, если не будет передана
+
+      setCaretPosition(inputValue.length);
     };
 
     const onBlur = (): void => {
@@ -100,7 +95,7 @@ export const Input = memo(
       setIsFocused(true);
     };
 
-    // лайфхак для onSelect события и TypeScript
+    // 'onSelect()' срабатывает при выделении текста; лайфхак для корректной типизации события
     const onSelect = (e: SyntheticEvent<HTMLInputElement, Event>): void => {
       const target = e.target as HTMLInputElement;
 

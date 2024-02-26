@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -22,6 +23,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
+    onChange: action('onChange'),
     placeholder: 'Type text',
     value: '12345',
   },
@@ -31,6 +33,7 @@ export const Primary: Story = {
 
 export const Dark: Story = {
   args: {
+    onChange: action('onChange'),
     placeholder: 'Type text',
     value: '12345',
   },
@@ -42,6 +45,7 @@ Dark.decorators = [ThemeDecorator(Theme.DARK)];
 
 export const Orange: Story = {
   args: {
+    onChange: action('onChange'),
     placeholder: 'Type text',
     value: '12345',
   },
@@ -54,6 +58,7 @@ Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
 export const AutoFocus: Story = {
   args: {
     autoFocus: true,
+    onChange: action('onChange'),
     value: '12345',
   },
 };
@@ -63,6 +68,7 @@ export const AutoFocus: Story = {
 export const FullWidth: Story = {
   args: {
     fullWidth: true,
+    onChange: action('onChange'),
     value: '12345',
   },
   decorators: [
@@ -78,6 +84,7 @@ export const FullWidth: Story = {
 
 export const ReadOnly: Story = {
   args: {
+    onChange: action('onChange'),
     readOnly: true,
     value: '12345',
   },
