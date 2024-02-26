@@ -3,7 +3,8 @@
     "@babel/plugin-transform-runtime",
     "@babel/plugin-transform-typescript",
     [
-      "i18next-extract", {
+      "i18next-extract",
+      {
         "keyAsDefaultValue": true,
         "locales": ["ru", "en"]
       }
@@ -13,7 +14,8 @@
     "@babel/preset-env",
     "@babel/preset-typescript",
     [
-      "@babel/preset-react", {
+      "@babel/preset-react",
+      {
         "runtime": "automatic"
       }
     ]

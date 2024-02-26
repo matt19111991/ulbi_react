@@ -39,7 +39,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     // можно отправить информацию об ошибках на сервис для логирования
 
     // eslint-disable-next-line no-console
-    console.log('--- The error has been sent to log service');
+    console.log('--- The error has been sent to log service ---');
     // eslint-disable-next-line no-console
     console.log('error', error);
     // eslint-disable-next-line no-console

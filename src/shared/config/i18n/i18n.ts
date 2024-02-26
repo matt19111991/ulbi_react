@@ -21,11 +21,6 @@ i18n
       },
     */
 
-    fallbackLng: 'ru',
-
-    // убираем все логи о ненайденных ключах для переводов при 'production' сборке
-    missingKeyHandler: false,
-
     /*
       Необходимо глобальное объявление переменной '__IS_DEV__' в 'global.d.ts', чтобы избежать ошибок 'TS'
 
@@ -33,10 +28,15 @@ i18n
       debug: __IS_DEV__ ? true : false
     */
 
+    fallbackLng: 'ru',
+
     interpolation: {
       // нет необходимости: 'React' экранирует cтроковые переменные в 'UI' автоматически
       escapeValue: false,
     },
+
+    // убираем все логи о ненайденных ключах для переводов при 'production' сборке
+    missingKeyHandler: false,
   });
 
 export default i18n;

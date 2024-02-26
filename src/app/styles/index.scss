@@ -3,13 +3,14 @@
       <div className="open" />   и      <div className="open" />
   </div>                             </div>
 
-  В конечном бандле будет конфликт классов '.open'
+  В конечном бандле будет конфликт классов 'open'
 
   Решения:
-      1. 'БЭМ': '.modal__element_open' и '.block__element_open'
+      1. 'БЭМ': классы вида 'modal__element_open' и 'block__element_open' задаются пользователем согласно методологии
 
-      2. 'CSS-modules': генерируют уникальные классы для '.open':
-      .WJfas66YqMo9vlVy3cDg и Xwga441YqMo9vXCy5tXb
+      2. 'CSS-modules': генерируются уникальные изолированные классы для элементов:
+           'src-shared-ui-redesigned-Modal-Modal-module__open--aQxs4' и
+           'src-shared-ui-redesigned-Block-Block-module__open--zXJUs'
 */
 
 /*

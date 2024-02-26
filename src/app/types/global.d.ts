@@ -1,8 +1,10 @@
 // Глобальная декларация типов
 
 /*
-  Типизация 'CSS-modules' для файлов вида '*.module.scss', иначе ошибка:
+  Типизация 'CSS-modules' для файлов вида '*.module.scss', иначе ошибка при импорте в компонентах:
   "Cannot find module './SidebarItem.module.scss' or its corresponding type declarations."
+
+  Указываем, что 'classes' это объект со строковыми ключами и строковыми значениями
 */
 declare module '*.module.scss' {
   interface IClassNames {
