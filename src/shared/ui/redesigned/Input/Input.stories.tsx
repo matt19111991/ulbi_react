@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions';
 import type { Meta, StoryFn, StoryObj } from '@storybook/react';
 
 import IconSvg from '@/shared/assets/tests/storybook3.svg';
@@ -32,6 +33,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
+    onChange: action('onChange'),
     placeholder: 'Type text',
     value: '12345',
   },
@@ -47,6 +49,7 @@ Primary.decorators = [
 
 export const Dark: Story = {
   args: {
+    onChange: action('onChange'),
     placeholder: 'Type text',
     value: '12345',
   },
@@ -63,6 +66,7 @@ Dark.decorators = [
 
 export const Orange: Story = {
   args: {
+    onChange: action('onChange'),
     placeholder: 'Type text',
     value: '12345',
   },
@@ -80,6 +84,7 @@ Orange.decorators = [
 export const AutoFocus: Story = {
   args: {
     autoFocus: true,
+    onChange: action('onChange'),
     value: '12345',
   },
 };
@@ -95,6 +100,7 @@ AutoFocus.decorators = [
 export const FullWidth: Story = {
   args: {
     fullWidth: true,
+    onChange: action('onChange'),
     value: '12345',
   },
 };
@@ -125,6 +131,7 @@ export const AddonLeft: Story = {
         <IconSvg />
       </div>
     ),
+    onChange: action('onChange'),
     value: '12345',
   },
 };
@@ -144,6 +151,7 @@ export const AddonRight: Story = {
         <IconSvg />
       </div>
     ),
+    onChange: action('onChange'),
     value: '12345',
   },
 };
@@ -159,6 +167,7 @@ AddonRight.decorators = [
 export const HorizontalLabel: Story = {
   args: {
     label: 'Input',
+    onChange: action('onChange'),
     value: '12345',
   },
 };
@@ -174,6 +183,7 @@ HorizontalLabel.decorators = [
 export const VerticalLabel: Story = {
   args: {
     label: 'Input',
+    onChange: action('onChange'),
     value: '12345',
     verticalLabel: true,
   },
@@ -189,6 +199,7 @@ VerticalLabel.decorators = [
 
 export const Small: Story = {
   args: {
+    onChange: action('onChange'),
     size: 's',
     value: '12345',
   },
@@ -204,6 +215,7 @@ Small.decorators = [
 
 export const Large: Story = {
   args: {
+    onChange: action('onChange'),
     size: 'l',
     value: '12345',
   },

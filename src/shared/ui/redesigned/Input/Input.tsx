@@ -1,29 +1,20 @@
-import {
-  ChangeEvent,
-  HTMLInputTypeAttribute,
-  InputHTMLAttributes,
-  memo,
-  ReactNode,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
+import type { ChangeEvent, HTMLInputTypeAttribute, InputHTMLAttributes, ReactNode } from 'react';
 
-import { classNames, Mods } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import type { Mods } from '@/shared/lib/classNames/classNames';
 
 import { HStack, VStack } from '../Stack';
 import { Text } from '../Text';
 
 import classes from './Input.module.scss';
 
-/**
- *  Без 'Omit' будет конфликт типов: 'onChange' принимает 'event', а не 'string',
- *  а в InputHTMLAttributes<HTMLInputElement есть свое 'readOnly' свойство
- */
-type HTMLInputProps = Omit<
-  InputHTMLAttributes<HTMLInputElement>,
-  'onChange' | 'readOnly' | 'size' | 'value'
->;
+/*
+  без 'Omit' будет конфликт типов для 'InputHTMLAttributes':
+    'onChange' в этом типе ожидает 'event' в аргументах, а мы передаем 'string',
+    'size' в этом типе - это 'number | undefined', а мы передаем 'string'
+*/
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'size'>;
 
 /**
  * Размеры поля ввода

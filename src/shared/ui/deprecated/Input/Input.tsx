@@ -1,7 +1,8 @@
 import { memo, useEffect, useRef, useState } from 'react';
 import type { ChangeEvent, HTMLInputTypeAttribute, InputHTMLAttributes, UIEvent } from 'react';
 
-import { classNames, Mods } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import type { Mods } from '@/shared/lib/classNames/classNames';
 
 import classes from './Input.module.scss';
 
