@@ -80,6 +80,15 @@ export const FullWidth: Story = {
   ],
 };
 
+// Input with placeholder
+
+export const Placeholder: Story = {
+  args: {
+    onChange: action('onChange'),
+    placeholder: 'Введите значение',
+  },
+};
+
 // Read only input
 
 export const ReadOnly: Story = {

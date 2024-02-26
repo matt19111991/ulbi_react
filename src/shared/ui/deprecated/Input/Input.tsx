@@ -1,17 +1,14 @@
 import { memo, useEffect, useRef, useState } from 'react';
-
-import type {
-  ChangeEvent,
-  HTMLInputTypeAttribute,
-  InputHTMLAttributes,
-  SyntheticEvent,
-} from 'react';
+import type { ChangeEvent, HTMLInputTypeAttribute, InputHTMLAttributes, UIEvent } from 'react';
 
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 
 import classes from './Input.module.scss';
 
-// без 'Omit' будет конфликт типов: 'onChange' принимает 'event', а не 'string'
+/*
+  без 'Omit' будет конфликт типов: 'onChange' в 'InputHTMLAttributes' ждет
+  'event' в аргументах, а мы передаем 'string'
+*/
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'>;
 
 interface InputProps extends HTMLInputProps {
@@ -36,7 +33,7 @@ interface InputProps extends HTMLInputProps {
   onChange?: (value: string) => void;
 
   /**
-   * Placeholder
+   * Лэйбл для поля ввода
    */
   placeholder?: string;
 
@@ -79,10 +76,11 @@ export const Input = memo(
 
     const isCaretVisible = isFocused && !readOnly;
 
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
       const inputValue = e.target.value;
 
-      onChange?.(inputValue); // 'onChange?.()' => функция не будет вызвана, если не будет передана
+      // 'onChange?.()' => функция не будет вызвана, если не будет передана
+      onChange?.(inputValue);
 
       setCaretPosition(inputValue.length);
     };
@@ -95,13 +93,11 @@ export const Input = memo(
       setIsFocused(true);
     };
 
-    // 'onSelect()' срабатывает при выделении текста; лайфхак для корректной типизации события
-    const onSelect = (e: SyntheticEvent<HTMLInputElement, Event>): void => {
-      const target = e.target as HTMLInputElement;
-
-      // перемещаем каретку вслед за курсором. исправляем кейс, когда каретка
+    // 'onSelect()' срабатывает при выделении текста или фокусировании (тип события: 'UIEvent')
+    const onSelect = (e: UIEvent<HTMLInputElement>): void => {
+      // перемещаем каретку вслед за курсором, тем самым исправляя кейс, когда каретка
       // всегда стоит в конце, а мы переместили курсор в середину введенного текста
-      setCaretPosition(target.selectionStart || 0);
+      setCaretPosition(e.currentTarget.selectionStart || 0);
     };
 
     useEffect(() => {
@@ -126,7 +122,7 @@ export const Input = memo(
 
         <div className={classes.caretWrapper}>
           <input
-            className={classNames(classes.input, inputMods, [])}
+            className={classNames(classes.input, inputMods)}
             onBlur={onBlur}
             onChange={onChangeHandler}
             onFocus={onFocus}
