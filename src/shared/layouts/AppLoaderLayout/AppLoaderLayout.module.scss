@@ -12,12 +12,15 @@
   border-top-left-radius: 0 !important;
 }
 
+// применяем стили только в приложении (не в 'storybook')
 @media screen and (max-width: 1800px) {
-  .content > div {
-    height: 48px !important;
-    left: 8px;
-    position: absolute;
-    top: 8px;
-    width: calc(100% - 16px) !important;
+  body:has(> div[id='root']) {
+    .content > div {
+      height: 48px !important;
+      left: 8px;
+      position: absolute;
+      top: 8px;
+      width: calc(100% - 16px) !important;
+    }
   }
 }

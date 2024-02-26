@@ -68,7 +68,7 @@ const justifyClasses: Record<FlexJustify, string> = {
   between: classes.justifyBetween,
 };
 
-// взято из интернета
+// взято из интернета ('DetailedHTMLProps' - добавляет 'key' и 'ref')
 type DivProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 
 // в 'HStack' и 'VStack' можно использовать нативные атрибуты от 'div' ('role' и т.д.)

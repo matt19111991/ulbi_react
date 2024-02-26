@@ -18,23 +18,7 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Column
-
-export const Column: Story = {
-  args: {
-    children: (
-      <>
-        <div>First</div>
-        <div>Second</div>
-        <div>Third</div>
-        <div>Fourth</div>
-      </>
-    ),
-    direction: 'column',
-  },
-};
-
-// Column Left
+// Column left
 
 export const ColumnLeft: Story = {
   args: {
@@ -51,7 +35,23 @@ export const ColumnLeft: Story = {
   },
 };
 
-// Column Right
+// Column center
+
+export const ColumnCenter: Story = {
+  args: {
+    children: (
+      <>
+        <div>First</div>
+        <div>Second</div>
+        <div>Third</div>
+        <div>Fourth</div>
+      </>
+    ),
+    direction: 'column',
+  },
+};
+
+// Column right
 
 export const ColumnRight: Story = {
   args: {
@@ -153,9 +153,9 @@ export const ColumnGap32: Story = {
   },
 };
 
-// Row
+// Row left
 
-export const Row: Story = {
+export const RowLeft: Story = {
   args: {
     children: (
       <>

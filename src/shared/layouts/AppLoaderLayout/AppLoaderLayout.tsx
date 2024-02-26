@@ -9,7 +9,6 @@ import classes from './AppLoaderLayout.module.scss';
 
 export const AppLoaderLayout = memo(() => (
   <MainLayout
-    className={classes.layout}
     content={
       <HStack align='start' className={classes.content} gap='16'>
         <Skeleton border='4px' height={88} width='100%' />

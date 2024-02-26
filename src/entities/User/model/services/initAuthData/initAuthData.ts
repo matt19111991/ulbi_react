@@ -37,7 +37,7 @@ export const initAuthData = createAsyncThunk<
       response?.features?.isAppRedesigned ? 'new' : 'old',
     );
 
-    return response; // обязательно возвращать 'response'
+    return response; // обязательно возвращать 'response' (в текущем случае типа 'User')
   } catch (e) {
     return thunkApi.rejectWithValue('error');
   }
