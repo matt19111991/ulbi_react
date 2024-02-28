@@ -93,7 +93,6 @@ export const Placeholder: Story = {
 
 export const ReadOnly: Story = {
   args: {
-    onChange: action('onChange'),
     readOnly: true,
     value: '12345',
   },

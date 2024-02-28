@@ -33,6 +33,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
+    name: 'storybook_input',
     onChange: action('onChange'),
     placeholder: 'Type text',
     value: '12345',
@@ -49,6 +50,7 @@ Primary.decorators = [
 
 export const Dark: Story = {
   args: {
+    name: 'storybook_input',
     onChange: action('onChange'),
     placeholder: 'Type text',
     value: '12345',
@@ -66,6 +68,7 @@ Dark.decorators = [
 
 export const Orange: Story = {
   args: {
+    name: 'storybook_input',
     onChange: action('onChange'),
     placeholder: 'Type text',
     value: '12345',
@@ -84,6 +87,7 @@ Orange.decorators = [
 export const AutoFocus: Story = {
   args: {
     autoFocus: true,
+    name: 'storybook_input',
     onChange: action('onChange'),
     value: '12345',
   },
@@ -100,12 +104,17 @@ AutoFocus.decorators = [
 export const FullWidth: Story = {
   args: {
     fullWidth: true,
+    name: 'storybook_input',
     onChange: action('onChange'),
     value: '12345',
   },
 };
 
-FullWidth.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+FullWidth.decorators = [
+  ColoredDecorator,
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+];
 
 // Read only input
 
@@ -131,6 +140,7 @@ export const AddonLeft: Story = {
         <IconSvg />
       </div>
     ),
+    name: 'storybook_input',
     onChange: action('onChange'),
     value: '12345',
   },
@@ -151,6 +161,7 @@ export const AddonRight: Story = {
         <IconSvg />
       </div>
     ),
+    name: 'storybook_input',
     onChange: action('onChange'),
     value: '12345',
   },
@@ -167,6 +178,7 @@ AddonRight.decorators = [
 export const HorizontalLabel: Story = {
   args: {
     label: 'Input',
+    name: 'storybook_input',
     onChange: action('onChange'),
     value: '12345',
   },
@@ -183,6 +195,7 @@ HorizontalLabel.decorators = [
 export const VerticalLabel: Story = {
   args: {
     label: 'Input',
+    name: 'storybook_input',
     onChange: action('onChange'),
     value: '12345',
     verticalLabel: true,
@@ -195,10 +208,27 @@ VerticalLabel.decorators = [
   IndentsDecorator,
 ];
 
+// Input with placeholder
+
+export const Placeholder: Story = {
+  args: {
+    name: 'storybook_input',
+    onChange: action('onChange'),
+    placeholder: 'Введите текст',
+  },
+};
+
+Placeholder.decorators = [
+  ColoredDecorator,
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+];
+
 // Small input
 
 export const Small: Story = {
   args: {
+    name: 'storybook_input',
     onChange: action('onChange'),
     size: 's',
     value: '12345',
@@ -211,10 +241,28 @@ Small.decorators = [
   IndentsDecorator,
 ];
 
+// Medium input
+
+export const Medium: Story = {
+  args: {
+    name: 'storybook_input',
+    onChange: action('onChange'),
+    size: 'm',
+    value: '12345',
+  },
+};
+
+Medium.decorators = [
+  ColoredDecorator,
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+];
+
 // Large input
 
 export const Large: Story = {
   args: {
+    name: 'storybook_input',
     onChange: action('onChange'),
     size: 'l',
     value: '12345',

@@ -11,7 +11,7 @@ import classes from './Input.module.scss';
 
 /*
   без 'Omit' будет конфликт типов для 'InputHTMLAttributes':
-    'onChange' в этом типе ожидает 'event' в аргументах, а мы передаем 'string',
+    'onChange' в этом типе ожидает 'event' в аргументах, а мы передаем '(value: string, name: string)'
     'size' в этом типе - это 'number | undefined', а мы передаем 'string'
 */
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'size'>;
@@ -48,7 +48,7 @@ interface InputProps extends HTMLInputProps {
   fullWidth?: boolean;
 
   /**
-   * Label
+   * Лэйбл
    */
   label?: string;
 
@@ -83,7 +83,7 @@ interface InputProps extends HTMLInputProps {
   value?: string | number;
 
   /**
-   * Выравнять label и поле ввода по вертикали
+   * Выровнять лэйбл и поле ввода по вертикали
    */
   verticalLabel?: boolean;
 }
@@ -110,7 +110,8 @@ export const Input = memo(
     const ref = useRef<HTMLInputElement>(null);
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-      onChange?.(e.target.value, e.target.name); // 'onChange?.()' => функция не будет вызвана, если не будет передана
+      // 'onChange?.()' => функция не будет вызвана, если не будет передана
+      onChange?.(e.target.value, e.target.name);
     };
 
     const onBlur = (): void => {
@@ -145,7 +146,7 @@ export const Input = memo(
         <div className={classes.addonLeft}>{addonLeft}</div>
 
         <input
-          className={classNames(classes.input, inputMods, [])}
+          className={classNames(classes.input, inputMods)}
           onBlur={onBlur}
           onChange={onChangeHandler}
           onFocus={onFocus}
