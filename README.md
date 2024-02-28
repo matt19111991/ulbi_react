@@ -603,7 +603,7 @@ storybooka, линтинг. Нет деплоя на сервер
 ----
 
 ## Провайдеры (providers)
-- [AnimationProvider](./src/shared/lib/components/AnimationProvider/README.md)
+- [AnimationProvider](src/shared/lib/providers/AnimationProvider/README.md)
 - [ErrorBoundary](./src/app/providers/ErrorBoundary/README.md)
 - [ForceUpdateProvider](src/app/providers/ForceUpdate/README.md)
 - [Router](./src/app/providers/Router/README.md)

@@ -34,4 +34,12 @@ describe('classNames', () => {
       classNames('someClass', { hovered: true, scrollable: undefined }, ['class1', 'class2']),
     ).toBe(expected);
   });
+
+  test('with additional classes undefined', () => {
+    const expected = 'someClass hovered scrollable class2';
+
+    expect(
+      classNames('someClass', { hovered: true, scrollable: true }, [undefined, 'class2']),
+    ).toBe(expected);
+  });
 });

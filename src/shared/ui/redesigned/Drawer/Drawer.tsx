@@ -2,15 +2,12 @@ import { ReactNode, useCallback, useEffect } from 'react';
 
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 
-import {
-  AnimationProvider,
-  useAnimationLibraries,
-} from '@/shared/lib/components/AnimationProvider';
-
 import { toggleFeatures } from '@/shared/lib/features';
 
 import { useModal } from '@/shared/lib/hooks/useModal/useModal';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
+
+import { AnimationProvider, useAnimationLibraries } from '@/shared/lib/providers/AnimationProvider';
 
 import { Overlay } from '../Overlay/Overlay';
 import { Portal } from '../Portal/Portal';
