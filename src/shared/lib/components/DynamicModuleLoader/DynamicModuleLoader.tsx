@@ -1,31 +1,40 @@
-import { JSX, useEffect } from 'react';
+import { useEffect } from 'react';
+import type { ReactNode } from 'react';
 import { useStore } from 'react-redux';
-import { Reducer } from '@reduxjs/toolkit';
+import type { Reducer } from '@reduxjs/toolkit';
 
-import { ReduxStoreWithManager, StateSchema, StateSchemaKey } from '@/app/providers/StoreProvider';
+import type {
+  ReduxStoreWithManager,
+  StateSchema,
+  StateSchemaKey,
+} from '@/app/providers/StoreProvider';
 
 import { useAppDispatch } from '../../hooks/useAppDispatch/useAppDispatch';
+
+// тип 'K' ограничиваем значениями только из 'StateSchemaKey'
+type ReducerItem<K extends StateSchemaKey> = Reducer<NonNullable<StateSchema[K]>>;
 
 // на случай подгрузки сразу нескольких редюсеров
 export type ReducersList = {
   /*
-     ключ: StateSchemaKey, значение: редюсер
+    ключ: 'StateSchemaKey', значение: редюсер
 
-     Reducer => редюсер типа 'unknown' (без уточнений, без переданной схемы). Принимает любой редюсер
+   'Reducer' => редюсер типа 'unknown' (без уточнений, без переданной схемы), принимает любой редюсер
 
-     Reducer<NonNullable<StateSchema[name]>> => принимает NonNullable редюсер (не null и не undefined),
-     основываясь на названии поля из 'StateSchema'. Достаем из 'StateSchema' конкретную часть 'state'.
-     Если в 'store' мы перепутаем редюсер и присвоим не под тем ключом => TS выдаст ошибку, т.к.
-     'StateSchema' не соответствует созданному 'store'
+   'Reducer<NonNullable<StateSchema[name]>>' => принимает 'NonNullable' редюсер (не 'null' и не 'undefined'),
+    основываясь на названии поля из 'StateSchema' (достаем из 'StateSchema' конкретную часть 'state')
+
+    Если в 'store' мы перепутаем редюсер и присвоим не под тем ключом =>
+   'TS' выдаст ошибку, т.к. 'StateSchema' не соответствует созданному 'store'
   */
-  [name in StateSchemaKey]?: Reducer<NonNullable<StateSchema[name]>>;
+  [name in StateSchemaKey]?: ReducerItem<name>;
 };
 
 interface DynamicModuleLoaderProps {
   /**
    * Дочерние компоненты
    */
-  children: JSX.Element;
+  children: ReactNode;
 
   /**
    * Список редюсеров
@@ -52,30 +61,32 @@ export const DynamicModuleLoader = ({
 
     // пробегаемся по всем редюсерам
 
-    Object.entries(reducers).forEach(([name, reducer]) => {
-      const mounted = mountedReducers[name as StateSchemaKey];
+    /*
+      здесь результат работы 'Object.entries' приводим к типам явно, т.к 'Object.entries' возвращает
+      свою типизацию, которая нам не подходит
+    */
+    (Object.entries(reducers) as Array<[StateSchemaKey, ReducerItem<StateSchemaKey>]>).forEach(
+      ([name, reducer]) => {
+        const mounted = mountedReducers[name];
 
-      if (!mounted) {
-        // асинхронно подгружаем редюсер при монтировании компонента
+        if (!mounted) {
+          // асинхронно подгружаем редюсер при монтировании компонента
+          store.reducerManager.add(name, reducer);
 
-        /* без 'name as StateSchemaKey' => ошибка "Argument of type 'string' is not assignable
-           to parameter of type 'keyof StateSchema'"
-        */
-        store.reducerManager.add(name as StateSchemaKey, reducer);
-
-        dispatch({ type: `@INIT ${name} reducer` }); // для индикации подгрузки редюсера
-      }
-    });
+          dispatch({ type: `@INIT ${name} reducer` }); // для индикации подгрузки редюсера
+        }
+      },
+    );
 
     return () => {
       if (removeAfterUnmount) {
-        Object.keys(reducers).forEach((name) => {
+        /*
+          здесь результат работы 'Object.keys' приводим к типам явно, т.к 'Object.keys' возвращает
+          ключи с типом 'string', а не 'StateSchemaKey'
+        */
+        (Object.keys(reducers) as Array<StateSchemaKey>).forEach((name) => {
           // удаляем редюсер при демонтировании компонента
-
-          /* без 'name as StateSchemaKey' => ошибка "Argument of type 'string' is not assignable
-             to parameter of type 'keyof StateSchema'"
-          */
-          store.reducerManager.remove(name as StateSchemaKey);
+          store.reducerManager.remove(name);
 
           dispatch({ type: `@DESTROY ${name} reducer` }); // для индикации удаления редюсера
         });
