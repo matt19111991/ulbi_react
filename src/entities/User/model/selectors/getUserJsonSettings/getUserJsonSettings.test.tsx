@@ -52,6 +52,8 @@ describe('getUserJsonSettings', () => {
       );
 
       const { result } = renderHook(() => useJsonSettings(), { wrapper });
+      // второй аргумент у 'renderHook()' - объект с опциями, в который под
+      // ключом 'wrapper' можно прокинуть обертку для тестируемого компонента
 
       expect(result.current).toEqual({ isFirstVisit: true, theme: Theme.DARK });
     });
