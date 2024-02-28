@@ -1,4 +1,4 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { getLoginUsername } from './getLoginUsername';
 
@@ -10,12 +10,12 @@ describe('getLoginUsername', () => {
       },
     };
 
-    expect(getLoginUsername(state as StateSchema)).toEqual('Jack');
+    expect(getLoginUsername(state as StateSchema)).toBe('Jack');
   });
 
-  test('should work with empty state', () => {
-    const state: DeepPartial<StateSchema> = {};
+  test('should work with empty state and return default value', () => {
+    const state = {};
 
-    expect(getLoginUsername(state as StateSchema)).toEqual('');
+    expect(getLoginUsername(state as StateSchema)).toBe('');
   });
 });

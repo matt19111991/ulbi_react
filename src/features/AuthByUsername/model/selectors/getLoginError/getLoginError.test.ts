@@ -1,4 +1,4 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { getLoginError } from './getLoginError';
 
@@ -10,12 +10,12 @@ describe('getLoginError', () => {
       },
     };
 
-    expect(getLoginError(state as StateSchema)).toEqual('Error');
+    expect(getLoginError(state as StateSchema)).toBe('Error');
   });
 
   test('should work with empty state', () => {
-    const state: DeepPartial<StateSchema> = {};
+    const state = {};
 
-    expect(getLoginError(state as StateSchema)).toBe(undefined);
+    expect(getLoginError(state as StateSchema)).toBeUndefined();
   });
 });
