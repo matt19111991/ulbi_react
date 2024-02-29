@@ -14,7 +14,6 @@ export const initAuthData = createAsyncThunk<
   ThunkConfig<string> // передаваемый тип ошибки в конфиг: 'string'
 >('user/initAuthData', async (user, thunkApi) => {
   try {
-    console.log('thunkApi', thunkApi);
     const userId = localStorage.getItem(USER_LOCALSTORAGE_KEY);
 
     if (!userId) {

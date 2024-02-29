@@ -11,8 +11,10 @@ import { /* pageScrollReducer, */ pageScrollSlice } from '@/widgets/Page';
 
 // import { createReducerManager } from './reducerManager'; // RTK v.1 code splitting
 
-import { combineSlicesAvoidErrorMessageMiddleware } from './combineSlicesMiddleware'; // RTK v.2 code splitting
-import { errorHandlerMiddleware } from './errorHandlerMiddleware';
+// RTK v.2 code splitting
+import { combineSlicesAvoidErrorMessageMiddleware } from './middleware/combineSlicesMiddleware';
+
+import { errorHandlerMiddleware } from './middleware/errorHandlerMiddleware';
 
 import type { StateSchema, StateSchemaKey, ThunkExtraArg } from './StateSchema';
 

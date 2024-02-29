@@ -1,4 +1,4 @@
-import { memo, Suspense, useEffect, useMemo } from 'react';
+import { memo, Suspense, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Toaster } from 'react-hot-toast';
 
@@ -33,18 +33,6 @@ const App = memo(() => {
 
   const mounted = useSelector(getUserMounted);
 
-  const toastOptions = useMemo(
-    () => ({
-      error: {
-        style: {
-          background: 'var(--cancel-redesigned)',
-          opacity: 1,
-        },
-      },
-    }),
-    [],
-  );
-
   useEffect(() => {
     // инициализируем данные о пользователе, только если приложение еще не было монтировано
     if (!mounted) {
@@ -74,9 +62,12 @@ const App = memo(() => {
       // приложение после редизайна
       on={
         <div className='app_redesigned' id='app'>
-          <Toaster position='top-center' toastOptions={toastOptions} />
-
           <Suspense fallback=''>
+            <Toaster
+              position='top-center'
+              toastOptions={{ className: 'toast redesigned', icon: '⛔' }}
+            />
+
             <MainLayout
               content={<AppRouter />}
               header={<Navbar />}
@@ -90,7 +81,10 @@ const App = memo(() => {
       off={
         <div className='app' id='app'>
           <Suspense fallback=''>
-            <Toaster position='top-center' toastOptions={toastOptions} />
+            <Toaster
+              position='top-center'
+              toastOptions={{ className: 'toast deprecated', icon: '⛔' }}
+            />
 
             <Navbar />
 
