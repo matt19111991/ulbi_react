@@ -1,73 +1,72 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { act, renderHook, waitFor } from '@testing-library/react';
 
 import { StoreProvider } from '@/app/providers/StoreProvider';
 
 import { Theme } from '@/shared/const/theme';
 
-import { UserRole } from '../model/consts';
+import { mockUser, useGetUserDataByIdQuery, useSetJsonSettingsMutation } from './userApi';
+import type { SetJsonSettingsArgs } from './userApi';
 
-import { JsonSettings } from '../model/types/jsonSettings';
-
-import { useGetUserDataByIdQuery, useSetJsonSettingsMutation } from './userApi';
-
-const mockUser = {
-  id: '1',
-  avatar:
-    'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
-  features: {
-    isAppRedesigned: true,
-    isArticleRatingEnabled: false,
-    isCounterEnabled: true,
-  },
-  jsonSettings: {
-    isArticlesPageHasBeenOpened: true,
-    isFirstVisit: false,
-    isSettingsPageHasBeenOpen: false,
-    theme: Theme.DARK,
-  },
-  password: '12345',
-  roles: [UserRole.ADMIN],
-  username: 'Jack',
-};
-
-const wrapper = ({ children }: { children: ReactNode }) => (
+const ComponentWrapper = ({ children }: { children: ReactNode }) => (
   <StoreProvider>{children}</StoreProvider>
 );
-
-interface JsonSettingsArgs {
-  jsonSettings: JsonSettings;
-  userId: string;
-}
 
 describe('userApi', () => {
   describe('useGetUserDataByIdQuery', () => {
     test('returns user', async () => {
       const userId = '1';
 
+      /*
+        'renderHook()' принимает аргументами:
+          1. колбэк, в котором вызываем хук
+          2. объект с опциями, в который под ключом 'wrapper' можно прокинуть компонент-обертку для
+             тестируемого компонента,
+             важен только сам 'StoreProvider', 'initialState' можно не передавать
+
+       'renderHook()' возвращает поле 'result', в котором содержится поле 'current' - это
+        значение, возвращаемое из хука, в нашем случае '{ data: User }'
+      */
       const { result } = renderHook(() => useGetUserDataByIdQuery(userId), {
-        wrapper,
+        wrapper: ComponentWrapper,
       });
 
       await waitFor(() => {
-        expect(result.current.currentData).toEqual(mockUser);
+        expect(result.current.data).toEqual(mockUser);
       });
     });
   });
 
   describe('useSetJsonSettingsMutation', () => {
     test('returns updated json settings', async () => {
-      const jsonSettingsArgs: JsonSettingsArgs = {
+      const jsonSettingsArgs: SetJsonSettingsArgs = {
         jsonSettings: {
           isArticlesPageHasBeenOpened: true,
+          isFirstVisit: true,
+          isSettingsPageHasBeenOpen: true,
+          theme: Theme.ORANGE,
         },
         userId: '1',
       };
 
+      /*
+        'renderHook()' принимает аргументами:
+          1. колбэк, в котором вызываем хук
+          2. объект с опциями, в который под ключом 'wrapper' можно прокинуть компонент-обертку для
+             тестируемого компонента,
+             важен только сам 'StoreProvider', 'initialState' можно не передавать
+
+       'renderHook()' возвращает поле 'result', в котором содержится поле 'current' - это
+        значение, возвращаемое из хука, в нашем случае кортеж: '[mutation, { data: User }]'
+      */
       const { result } = renderHook(() => useSetJsonSettingsMutation(), {
-        wrapper,
+        wrapper: ComponentWrapper,
       });
 
+      /*
+        основная цель 'act()' - гарантировать корректную последовательность обновлений в 'React'
+        при работе с сайд-эффектами и действиями пользователя
+     */
       act(() => {
         const [mutation] = result.current;
 

@@ -11,7 +11,7 @@ interface GetUserDataByIdResponse {
   data: User;
 }
 
-interface SetJsonSettingsArgs {
+export interface SetJsonSettingsArgs {
   jsonSettings: JsonSettings;
   userId: string;
 }
@@ -20,7 +20,7 @@ interface SetJsonSettingsResponse {
   data: User;
 }
 
-const mockUser = {
+export const mockUser = {
   id: '1',
   avatar:
     'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
