@@ -12,12 +12,14 @@ type ActionCreatorType<Return, Arg, RejectedValue> = (
   arg: Arg,
 ) => AsyncThunkAction<Return, Arg, { rejectValue: RejectedValue }>;
 
-jest.mock('axios'); // при помощи Jest делаем заглушку для 'axios'
+jest.mock('axios'); // при помощи 'Jest' делаем заглушку для 'axios'
 
 /* shallow: true (неглубокое копирование вложенных элементов)
    shallow: false (глубокое копирование вложенных элементов); по умолчанию
+
+   'jest.mocked', чтобы 'TS' работал корректно
 */
-const mockedAxios = jest.mocked(axios, { shallow: false }); // 'jest.mocked', чтобы TS работал корректно
+const mockedAxios = jest.mocked(axios, { shallow: false });
 
 export class TestAsyncThunk<Return, Arg, RejectedValue> {
   /**

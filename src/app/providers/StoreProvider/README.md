@@ -26,6 +26,8 @@
 
 `createReducerManager` - функция для асинхронной подгрузки редюсеров
 
+`errorHandlerMiddleware` - `middleware` для перехвата и обработки ошибок
+
 `MountedReducers` - тип для объекта с уже смонтированными редюсерами
 
 `ReducerManager` - тип для `reducerManager`

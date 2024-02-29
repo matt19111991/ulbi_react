@@ -5,8 +5,8 @@ import type { BuildOptions } from './types/config';
 export function buildDevServer(options: BuildOptions): DevServerConfiguration {
     return {
         client: {
-          // включаем отображение экрана об ошибке, поставляемого 'webpack-dev-server'
-          overlay: true,
+          // выключаем отображение экрана об ошибке, поставляемого 'webpack-dev-server'
+          overlay: false,
         },
 
 /*      Идет проксирование через '/' (главную) страницу (у нас 'SPA' с одним 'index.html')

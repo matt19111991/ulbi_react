@@ -12,6 +12,7 @@ import { /* pageScrollReducer, */ pageScrollSlice } from '@/widgets/Page';
 // import { createReducerManager } from './reducerManager'; // RTK v.1 code splitting
 
 import { combineSlicesAvoidErrorMessageMiddleware } from './combineSlicesMiddleware'; // RTK v.2 code splitting
+import { errorHandlerMiddleware } from './errorHandlerMiddleware';
 
 import type { StateSchema, StateSchemaKey, ThunkExtraArg } from './StateSchema';
 
@@ -84,7 +85,11 @@ export const createReduxStore = (
         thunk: {
           extraArgument,
         },
-      }).concat(rtkApi.middleware, combineSlicesAvoidErrorMessageMiddleware),
+      }).concat(
+        rtkApi.middleware,
+        combineSlicesAvoidErrorMessageMiddleware,
+        errorHandlerMiddleware,
+      ),
 
     /**
      * Инициализация 'store' заранее подготовленными данными для тестов, 'storybook' и т.д.

@@ -10,10 +10,11 @@ import type { User } from '../../types/user';
 
 export const initAuthData = createAsyncThunk<
   User, // возвращаемое значение
-  User | undefined, // передаваемые аргументы; 'User' может быть в 'unit' тестах
+  User | undefined, // передаваемые аргументы ('User' может передаваться в аргументах в 'unit' тестах)
   ThunkConfig<string> // передаваемый тип ошибки в конфиг: 'string'
 >('user/initAuthData', async (user, thunkApi) => {
   try {
+    console.log('thunkApi', thunkApi);
     const userId = localStorage.getItem(USER_LOCALSTORAGE_KEY);
 
     if (!userId) {
@@ -39,6 +40,6 @@ export const initAuthData = createAsyncThunk<
 
     return response; // обязательно возвращать 'response' (в текущем случае типа 'User')
   } catch (e) {
-    return thunkApi.rejectWithValue('error');
+    return thunkApi.rejectWithValue(e instanceof Error ? e.message : 'Unexpected error');
   }
 });
