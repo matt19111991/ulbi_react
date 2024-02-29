@@ -1,7 +1,8 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { renderHook } from '@testing-library/react';
 
-import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider';
+import { StoreProvider } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { Theme } from '@/shared/const/theme';
 
@@ -47,13 +48,20 @@ describe('getUserJsonSettings', () => {
         user: { authData },
       };
 
-      const wrapper = ({ children }: { children: ReactNode }) => (
+      const ComponentWrapper = ({ children }: { children: ReactNode }) => (
         <StoreProvider initialState={state}>{children}</StoreProvider>
       );
 
-      const { result } = renderHook(() => useJsonSettings(), { wrapper });
-      // второй аргумент у 'renderHook()' - объект с опциями, в который под
-      // ключом 'wrapper' можно прокинуть обертку для тестируемого компонента
+      /*
+        'renderHook()' принимает аргументами:
+          1. колбэк, в котором вызываем хук
+          2. объект с опциями, в который под ключом 'wrapper' можно прокинуть компонент-обертку для
+             тестируемого компонента
+
+       'renderHook()' возвращает поле 'result', в котором содержится поле 'current' - это
+        значение, возвращаемое из хука, в нашем случае 'JsonSettings'
+      */
+      const { result } = renderHook(() => useJsonSettings(), { wrapper: ComponentWrapper });
 
       expect(result.current).toEqual({ isFirstVisit: true, theme: Theme.DARK });
     });

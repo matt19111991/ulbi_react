@@ -2,7 +2,7 @@ import { rtkApi } from '@/shared/api/rtkApi';
 
 import { Theme } from '@/shared/const/theme';
 
-import { UserRole } from '../model/consts/userConsts';
+import { UserRole } from '../model/consts';
 
 import type { JsonSettings } from '../model/types/jsonSettings';
 import type { User } from '../model/types/user';

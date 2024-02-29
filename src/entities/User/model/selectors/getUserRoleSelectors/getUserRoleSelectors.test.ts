@@ -1,6 +1,6 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
-import { UserRole } from '../../consts/userConsts';
+import { UserRole } from '../../consts';
 
 import { getUserRoles, isUserAdmin, isUserManager } from './getUserRoleSelectors';
 
@@ -49,7 +49,7 @@ describe('getUserRoleSelectors', () => {
         user: {
           authData: {
             id: '1',
-            roles: [UserRole.ADMIN, UserRole.MANAGER],
+            roles: [UserRole.MANAGER, UserRole.USER],
             username: 'Jack',
           },
         },
@@ -63,7 +63,7 @@ describe('getUserRoleSelectors', () => {
         user: {
           authData: {
             id: '1',
-            roles: [UserRole.ADMIN],
+            roles: [UserRole.USER],
             username: 'Jack',
           },
         },
@@ -93,7 +93,9 @@ describe('getUserRoleSelectors', () => {
         },
       };
 
-      expect(getUserRoles(state as StateSchema)).toEqual([UserRole.ADMIN, UserRole.MANAGER]);
+      expect(getUserRoles(state as StateSchema)).toHaveLength(2);
+      expect(getUserRoles(state as StateSchema)).toContain(UserRole.ADMIN);
+      expect(getUserRoles(state as StateSchema)).toContain(UserRole.MANAGER);
     });
 
     test('should work with empty state data', () => {
@@ -101,7 +103,7 @@ describe('getUserRoleSelectors', () => {
         user: {},
       };
 
-      expect(getUserRoles(state as StateSchema)).toBe(undefined);
+      expect(getUserRoles(state as StateSchema)).toBeUndefined();
     });
   });
 });

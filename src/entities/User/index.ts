@@ -1,4 +1,4 @@
-export { UserRole } from './model/consts/userConsts';
+export { UserRole } from './model/consts';
 
 export { getUserAuthData } from './model/selectors/getUserAuthData/getUserAuthData';
 export { getUserMounted } from './model/selectors/getUserMounted/getUserMounted';

@@ -1,4 +1,4 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { getUserAuthData } from './getUserAuthData';
 
@@ -24,6 +24,6 @@ describe('getUserAuthData', () => {
       user: {},
     };
 
-    expect(getUserAuthData(state as StateSchema)).toBe(undefined);
+    expect(getUserAuthData(state as StateSchema)).toBeUndefined();
   });
 });

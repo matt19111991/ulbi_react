@@ -1,6 +1,6 @@
 import type { FeatureFlags } from '@/shared/types/featureFlags';
 
-import { UserRole } from '../consts/userConsts';
+import { UserRole } from '../consts';
 
 import type { JsonSettings } from './jsonSettings';
 

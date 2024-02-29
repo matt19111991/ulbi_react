@@ -1,4 +1,4 @@
-export { UserRole } from './model/consts/userConsts';
+export { UserRole } from './model/consts';
 
 export { userActions } from './model/slice/userSlice';
 

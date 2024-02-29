@@ -5,7 +5,7 @@ import { StoreProvider } from '@/app/providers/StoreProvider';
 
 import { Theme } from '@/shared/const/theme';
 
-import { UserRole } from '../model/consts/userConsts';
+import { UserRole } from '../model/consts';
 
 import { JsonSettings } from '../model/types/jsonSettings';
 
