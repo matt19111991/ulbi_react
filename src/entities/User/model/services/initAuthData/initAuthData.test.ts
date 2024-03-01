@@ -33,6 +33,10 @@ describe('initAuthData', () => {
 
     const thunk = new TestAsyncThunk(initAuthData, userState);
 
+    /*
+      в 'Jest' среде не получилось добраться до метода 'unwrap()',
+      просто проверяем возвращаемый объект из 'async thunk'
+    */
     const result = await thunk.callThunk({
       id: '1',
       jsonSettings: {
@@ -44,6 +48,7 @@ describe('initAuthData', () => {
     expect(thunk.dispatch).toHaveBeenCalledTimes(2);
 
     expect(result.meta.requestStatus).toBe('fulfilled');
+
     expect(result.payload).toEqual(userState.user?.authData);
   });
 
@@ -60,7 +65,8 @@ describe('initAuthData', () => {
     expect(thunk.dispatch).toHaveBeenCalledTimes(2);
 
     expect(result.meta.requestStatus).toBe('rejected');
-    expect(result.payload).toEqual('No user data');
+
+    expect(result.payload).toBe('No user data');
   });
 
   test('error no stored user id', async () => {
@@ -71,6 +77,7 @@ describe('initAuthData', () => {
     expect(thunk.dispatch).toHaveBeenCalledTimes(2);
 
     expect(result.meta.requestStatus).toBe('rejected');
-    expect(result.payload).toEqual('No stored user');
+
+    expect(result.payload).toBe('No stored user');
   });
 });

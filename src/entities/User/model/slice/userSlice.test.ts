@@ -21,7 +21,6 @@ const authData: User = {
 
 describe('userSlice', () => {
   beforeEach(() => {
-    // чтобы использовать 'localStorage' в './config/jest/setupTests' './jestLocalStorage' файл
     window.localStorage.clear();
   });
 
@@ -67,7 +66,7 @@ describe('userSlice', () => {
         authData: undefined,
       });
 
-      expect(window.localStorage.getItem(USER_LOCALSTORAGE_KEY)).toBe(undefined);
+      expect(window.localStorage.getItem(USER_LOCALSTORAGE_KEY)).toBeNull();
 
       expect(window.location.reload).toHaveBeenCalledTimes(1);
     });

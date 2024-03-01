@@ -9,6 +9,7 @@ import { mockUser, useGetUserDataByIdQuery, useSetJsonSettingsMutation } from '.
 import type { SetJsonSettingsArgs } from './userApi';
 
 const ComponentWrapper = ({ children }: { children: ReactNode }) => (
+  // важен только сам 'StoreProvider', 'initialState' можно не передавать
   <StoreProvider>{children}</StoreProvider>
 );
 
@@ -21,8 +22,7 @@ describe('userApi', () => {
         'renderHook()' принимает аргументами:
           1. колбэк, в котором вызываем хук
           2. объект с опциями, в который под ключом 'wrapper' можно прокинуть компонент-обертку для
-             тестируемого компонента,
-             важен только сам 'StoreProvider', 'initialState' можно не передавать
+             тестируемого компонента
 
        'renderHook()' возвращает поле 'result', в котором содержится поле 'current' - это
         значение, возвращаемое из хука, в нашем случае '{ data: User }'
@@ -53,8 +53,7 @@ describe('userApi', () => {
         'renderHook()' принимает аргументами:
           1. колбэк, в котором вызываем хук
           2. объект с опциями, в который под ключом 'wrapper' можно прокинуть компонент-обертку для
-             тестируемого компонента,
-             важен только сам 'StoreProvider', 'initialState' можно не передавать
+             тестируемого компонента
 
        'renderHook()' возвращает поле 'result', в котором содержится поле 'current' - это
         значение, возвращаемое из хука, в нашем случае кортеж: '[mutation, { data: User }]'

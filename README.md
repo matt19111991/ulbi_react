@@ -457,6 +457,9 @@ storybooka, линтинг. Нет деплоя на сервер
 
 Запросы на сервер отправляются с помощью [RTK query](./src/shared/api/rtkApi.ts)
 
+Обработка ошибок осуществляется при помощи
+[errorHandlerMiddleware](./src/app/providers/StoreProvider/config/middleware/errorHandlerMiddleware.ts)
+
 Для асинхронного подключения редюсеров (чтобы не тянуть их в общий бандл) используются:
 - RTK v.1: [DynamicModuleLoader](./src/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader.tsx)
 - RTK v.2: [DynamicModuleLoaderV2](./src/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2.tsx)

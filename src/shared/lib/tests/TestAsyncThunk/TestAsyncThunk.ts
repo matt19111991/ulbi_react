@@ -1,51 +1,53 @@
-import axios, { AxiosStatic } from 'axios';
-import { AsyncThunkAction, Dispatch } from '@reduxjs/toolkit';
+import axios from 'axios';
+import type { AxiosStatic } from 'axios';
+import type { AsyncThunkAction } from '@reduxjs/toolkit';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { AppDispatch, StateSchema } from '@/app/providers/StoreProvider';
 
-/* Return        - ЧТО_ВЕРНЕТСЯ_ИЗ_THUNKA_ТИП
-   Arg           - ЧТО_ПРИХОДИТ_В_КОНСТРУКТОР_ТИП
-   RejectedValue - ЧТО_ВЕРНЕТСЯ_ИЗ_THUNKA_В_СЛУЧАЕ_ОШИБКИ_ТИП
- */
+jest.mock('axios'); // при помощи 'Jest' делаем заглушку для 'axios'
 
+/*
+  shallow: true (неглубокое копирование вложенных элементов)
+  shallow: false (глубокое копирование вложенных элементов); по умолчанию
+
+ 'jest.mocked' используем, чтобы 'TS' работал корректно с вложенными структурами
+*/
+const mockedTypedAxios = jest.mocked(axios, { shallow: false });
+
+/*
+  Return        - ЧТО_ВЕРНЕТСЯ_ИЗ_THUNKA_ТИП
+  Arg           - ЧТО_ПРИХОДИТ_В_КОНСТРУКТОР_ТИП
+  RejectedValue - ЧТО_ВЕРНЕТСЯ_ИЗ_THUNKA_В_СЛУЧАЕ_ОШИБКИ_ТИП
+*/
 type ActionCreatorType<Return, Arg, RejectedValue> = (
   arg: Arg,
 ) => AsyncThunkAction<Return, Arg, { rejectValue: RejectedValue }>;
 
-jest.mock('axios'); // при помощи 'Jest' делаем заглушку для 'axios'
-
-/* shallow: true (неглубокое копирование вложенных элементов)
-   shallow: false (глубокое копирование вложенных элементов); по умолчанию
-
-   'jest.mocked', чтобы 'TS' работал корректно
-*/
-const mockedAxios = jest.mocked(axios, { shallow: false });
-
 export class TestAsyncThunk<Return, Arg, RejectedValue> {
   /**
-   * Создатель действия
+   * Создатель действия ('initAuthData', 'saveJsonSettings',- то, что диспатчится)
    */
-  actionCreator: ActionCreatorType<Return, Arg, RejectedValue>;
+  private readonly actionCreator: ActionCreatorType<Return, Arg, RejectedValue>;
 
   /**
-   * API инстанс
+   * 'API' инстанс
    */
-  api: jest.MockedFunctionDeep<AxiosStatic>;
+  public api: jest.MockedFunctionDeep<AxiosStatic>;
 
   /**
    * Вызов асинхронных действий
    */
-  dispatch: Dispatch;
+  public dispatch: AppDispatch;
 
   /**
    * Функция для получения объекта хранилища целиком
    */
-  getState: () => StateSchema;
+  private readonly getState: () => StateSchema;
 
   /**
    * Функция для навигации
    */
-  navigate: jest.MockedFn<typeof jest.fn>;
+  private readonly navigate: jest.MockedFn<typeof jest.fn>;
 
   constructor(
     actionCreator: ActionCreatorType<Return, Arg, RejectedValue>,
@@ -53,7 +55,7 @@ export class TestAsyncThunk<Return, Arg, RejectedValue> {
   ) {
     this.actionCreator = actionCreator;
 
-    this.api = mockedAxios;
+    this.api = mockedTypedAxios;
 
     this.dispatch = jest.fn();
     this.getState = jest.fn(() => state as StateSchema);
@@ -62,7 +64,7 @@ export class TestAsyncThunk<Return, Arg, RejectedValue> {
 
   async callThunk(arg?: Arg) {
     // 'this.actionCreator' это 'createAsyncThunk', возвращает 'action' после вызова
-    const action = this.actionCreator(arg!);
+    const action = this.actionCreator(arg as Arg);
 
     const extra = {
       api: this.api,

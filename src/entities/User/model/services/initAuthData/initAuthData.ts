@@ -13,6 +13,11 @@ export const initAuthData = createAsyncThunk<
   User | undefined, // передаваемые аргументы ('User' может передаваться в аргументах в 'unit' тестах)
   ThunkConfig<string> // передаваемый тип ошибки в конфиг: 'string'
 >('user/initAuthData', async (user, thunkApi) => {
+  /*
+    обязательно нужно возвращать что-то из функции, иначе:
+      - в состоянии 'fulfilled' не будет 'payload' поля
+      - состояние 'rejected' не вызовется (ошибочно отработает состояние 'fulfilled')
+   */
   try {
     const userId = localStorage.getItem(USER_LOCALSTORAGE_KEY);
 
@@ -29,7 +34,7 @@ export const initAuthData = createAsyncThunk<
       return thunkApi.rejectWithValue('No user data');
     }
 
-    // 'unwrap' - чтобы был доступ только к 'payload' данным, а не всему объекту 'async thunk'
+    // 'unwrap' - чтобы был доступ только к 'payload' данным, а не ко всему объекту 'async thunk'
     const response = await thunkApi.dispatch(getUserDataByIdQuery(userId))?.unwrap();
 
     localStorage.setItem(
@@ -37,7 +42,7 @@ export const initAuthData = createAsyncThunk<
       response?.features?.isAppRedesigned ? 'new' : 'old',
     );
 
-    return response; // обязательно возвращать 'response' (в текущем случае типа 'User')
+    return response;
   } catch (e) {
     return thunkApi.rejectWithValue(e instanceof Error ? e.message : 'Unexpected error');
   }

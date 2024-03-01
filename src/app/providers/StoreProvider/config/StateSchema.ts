@@ -110,6 +110,10 @@ export interface ThunkExtraArg {
   api: AxiosInstance;
 }
 
+/*
+  в дефолтном типе 'AsyncThunkConfig' для 'createAsyncThunk' все поля - это 'unknown' типы,
+  поэтому мы их дополняем сами
+*/
 export interface ThunkConfig<T> {
   /**
    * Дополнительные конфигурационные опции
