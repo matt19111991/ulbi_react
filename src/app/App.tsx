@@ -82,6 +82,7 @@ const App = memo(() => {
         <div className='app' id='app'>
           <Suspense fallback=''>
             <Toaster
+              containerClassName='toastWrapper'
               position='top-center'
               toastOptions={{ className: 'toast deprecated', icon: '⛔' }}
             />

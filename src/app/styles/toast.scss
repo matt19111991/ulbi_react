@@ -1,3 +1,7 @@
+.toastWrapper {
+  inset: 10px 16px !important;
+}
+
 /*
   @keyframes [название_анимации] {
     [from | проценты] { ...стили }
@@ -30,7 +34,9 @@
     описание механизма работы: https://webref.ru/css/animation-fill-mode
   */
   animation: toast-enter 1s forwards ease;
+  line-height: 6px;
   max-width: 400px;
+  pointer-events: none; /* иначе уведомление прыгает при фокусе */
 
   &.deprecated {
     background: var(--inverted-bg-color);
