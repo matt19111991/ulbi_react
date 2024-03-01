@@ -20,8 +20,6 @@
 */
 import '@testing-library/jest-dom';
 
-import './jestLocalStorage';
-
 /*
   Добавляем глобально объект 'fetch', чтобы избавиться от предупреждения в 'unit' тестах:
    'Warning: `fetch` is not available.
