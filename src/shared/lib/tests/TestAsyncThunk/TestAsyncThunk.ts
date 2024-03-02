@@ -52,13 +52,19 @@ export class TestAsyncThunk<Return, Arg, RejectedValue> {
   constructor(
     actionCreator: ActionCreatorType<Return, Arg, RejectedValue>,
     state?: DeepPartial<StateSchema>, // есть возможность прокинуть 'default state' в отдельных случаях
+    unwrappedResult?: Return, // возвращаемые данные из метода '.unwrap()'
   ) {
     this.actionCreator = actionCreator;
 
     this.api = mockedTypedAxios;
 
-    this.dispatch = jest.fn();
+    this.dispatch = jest.fn(() => ({
+      // в типе 'AsyncThunkAction' поле 'unwrap()' возвращает 'Promise<Return>'
+      unwrap: async (): Promise<Return | undefined> => unwrappedResult,
+    }));
+
     this.getState = jest.fn(() => state as StateSchema);
+
     this.navigate = jest.fn();
   }
 

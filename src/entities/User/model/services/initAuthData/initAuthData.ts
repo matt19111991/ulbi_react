@@ -10,9 +10,9 @@ import type { User } from '../../types/user';
 
 export const initAuthData = createAsyncThunk<
   User, // возвращаемое значение
-  User | undefined, // передаваемые аргументы ('User' может передаваться в аргументах в 'unit' тестах)
+  void, // нет передаваемых аргументов
   ThunkConfig<string> // передаваемый тип ошибки в конфиг: 'string'
->('user/initAuthData', async (user, thunkApi) => {
+>('user/initAuthData', async (_, thunkApi) => {
   /*
     обязательно нужно возвращать что-то из функции, иначе:
       - в состоянии 'fulfilled' не будет 'payload' поля
@@ -23,15 +23,6 @@ export const initAuthData = createAsyncThunk<
 
     if (!userId) {
       return thunkApi.rejectWithValue('No stored user');
-    }
-
-    // в 'Jest' среде не получилось добраться до метода 'unwrap()'
-    if (__PROJECT__ === 'jest') {
-      if (user) {
-        return user;
-      }
-
-      return thunkApi.rejectWithValue('No user data');
     }
 
     // 'unwrap' - чтобы был доступ только к 'payload' данным, а не ко всему объекту 'async thunk'
