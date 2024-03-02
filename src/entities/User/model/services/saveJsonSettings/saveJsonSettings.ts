@@ -1,36 +1,32 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { ThunkConfig } from '@/app/providers/StoreProvider';
+import type { ThunkConfig } from '@/app/providers/StoreProvider';
 
 import { setJsonSettingsMutation } from '../../../api/userApi';
 
 import { getJsonSettings } from '../../selectors/getUserJsonSettings/getUserJsonSettings';
 import { getUserAuthData } from '../../selectors/getUserAuthData/getUserAuthData';
 
-import { JsonSettings } from '../../types/jsonSettings';
+import type { JsonSettings } from '../../types/jsonSettings';
 
 export const saveJsonSettings = createAsyncThunk<
   JsonSettings, // на выходе
   JsonSettings, // на входе
-  ThunkConfig<string>
+  ThunkConfig<string> // передаваемый тип ошибки в конфиг: 'string'
 >('user/saveJsonSettings', async (newJsonSettings, thunkApi) => {
+  /*
+   обязательно нужно возвращать что-то из функции, иначе:
+     - в состоянии 'fulfilled' не будет 'payload' поля
+     - состояние 'rejected' не вызовется (ошибочно отработает состояние 'fulfilled')
+  */
   try {
     const userData = getUserAuthData(thunkApi.getState());
-
-    const currentSettings = getJsonSettings(thunkApi.getState());
 
     if (!userData) {
       return thunkApi.rejectWithValue('No user data');
     }
 
-    // в 'Jest' среде не получилось добраться до метода 'unwrap()'
-    if (__PROJECT__ === 'jest') {
-      if (newJsonSettings) {
-        return { ...currentSettings, ...newJsonSettings };
-      }
-
-      return thunkApi.rejectWithValue('No provided JSON settings');
-    }
+    const currentSettings = getJsonSettings(thunkApi.getState());
 
     const response = await thunkApi
       .dispatch(
@@ -42,7 +38,7 @@ export const saveJsonSettings = createAsyncThunk<
           userId: userData.id,
         }),
       )
-      ?.unwrap(); // чтобы был доступ к данным
+      ?.unwrap(); // чтобы был доступ только к 'payload' данным, а не ко всему объекту 'async thunk'
 
     if (!response.jsonSettings) {
       return thunkApi.rejectWithValue('No provided JSON settings');
@@ -50,6 +46,6 @@ export const saveJsonSettings = createAsyncThunk<
 
     return response.jsonSettings;
   } catch (e) {
-    return thunkApi.rejectWithValue('error');
+    return thunkApi.rejectWithValue(e instanceof Error ? e.message : 'Unexpected error');
   }
 });
