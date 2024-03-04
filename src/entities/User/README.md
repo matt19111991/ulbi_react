@@ -30,7 +30,7 @@
 
 `saveJsonSettings` - Сервис для сохранения настроек пользователя
 
-- Slices
+### Slices
 
 `articleDetailsSlice` - Слайс для хранения информации о пользователе
 

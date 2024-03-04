@@ -1,10 +1,12 @@
 import { LAST_DESIGN_LOCALSTORAGE_KEY, USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { Theme } from '@/shared/const/theme';
 
+import { getAllFeatureFlags, setFeatureFlags } from '@/shared/lib/features';
+
 import { initAuthData } from '../services/initAuthData/initAuthData';
 import { saveJsonSettings } from '../services/saveJsonSettings/saveJsonSettings';
 
-import { User, UserSchema } from '../types/user';
+import type { User, UserSchema } from '../types/user';
 
 import { userActions, userReducer } from './userSlice';
 
@@ -48,7 +50,11 @@ describe('userSlice', () => {
         authData,
       });
 
+      expect(getAllFeatureFlags()).toEqual(authData.features);
+
       expect(window.localStorage.getItem(LAST_DESIGN_LOCALSTORAGE_KEY)).toBe('old');
+
+      expect(document.body).toHaveClass(authData?.jsonSettings?.theme as Theme);
 
       expect(window.localStorage.getItem(USER_LOCALSTORAGE_KEY)).toBe(authData.id);
     });
@@ -58,13 +64,23 @@ describe('userSlice', () => {
     test('test logout', () => {
       window.localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(authData.id));
 
+      window.localStorage.setItem(LAST_DESIGN_LOCALSTORAGE_KEY, 'old');
+
       const state: DeepPartial<UserSchema> = {
         authData,
       };
 
+      setFeatureFlags(authData.features);
+
       expect(userReducer(state as UserSchema, userActions.logout())).toEqual({
         authData: undefined,
       });
+
+      expect(getAllFeatureFlags()).toEqual({});
+
+      expect(document.body).toHaveClass(Theme.LIGHT);
+
+      expect(window.localStorage.getItem(LAST_DESIGN_LOCALSTORAGE_KEY)).toBeNull();
 
       expect(window.localStorage.getItem(USER_LOCALSTORAGE_KEY)).toBeNull();
 

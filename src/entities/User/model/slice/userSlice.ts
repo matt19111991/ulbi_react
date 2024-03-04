@@ -1,14 +1,16 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { LAST_DESIGN_LOCALSTORAGE_KEY, USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { Theme } from '@/shared/const/theme';
+
 import { setFeatureFlags } from '@/shared/lib/features';
 
 import { initAuthData } from '../services/initAuthData/initAuthData';
 import { saveJsonSettings } from '../services/saveJsonSettings/saveJsonSettings';
 
-import { JsonSettings } from '../types/jsonSettings';
-import { User, UserSchema } from '../types/user';
+import type { JsonSettings } from '../types/jsonSettings';
+import type { User, UserSchema } from '../types/user';
 
 const initialState: UserSchema = {
   mounted: false,
@@ -25,7 +27,7 @@ export const userSlice = createSlice({
       // выставляем 'feature flags' для пользователя, чтобы отображать или скрывать функционал
       setFeatureFlags(action.payload.features);
 
-      // сохраняем id текущего пользователя в хранилище
+      // сохраняем 'id' текущего пользователя в хранилище
       localStorage.setItem(USER_LOCALSTORAGE_KEY, action.payload.id);
 
       if (action.payload.jsonSettings?.theme) {
@@ -43,11 +45,17 @@ export const userSlice = createSlice({
     logout: (state) => {
       state.authData = undefined;
 
-      localStorage.removeItem(USER_LOCALSTORAGE_KEY);
+      // сбрасываем 'feature flags'
+      setFeatureFlags({});
 
       // сбрасываем пользовательскую тему
       document.body.className = Theme.LIGHT;
 
+      // очищаем 'localStorage'
+      localStorage.removeItem(LAST_DESIGN_LOCALSTORAGE_KEY);
+      localStorage.removeItem(USER_LOCALSTORAGE_KEY);
+
+      // перезагружаем страницу
       window.location.reload();
     },
   },
