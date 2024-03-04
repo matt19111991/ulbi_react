@@ -42,7 +42,7 @@ export const mockUser = {
 
 const userApi = rtkApi.injectEndpoints({
   endpoints: (build) => ({
-    getUserDataById: build.query<User, string>({
+    getUserDataById: build.query<User, User['id']>({
       queryFn: (userId, api, extraOptions, baseQuery) => {
         if (__PROJECT__ !== 'front-end') {
           return { data: mockUser };

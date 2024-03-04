@@ -23,9 +23,12 @@ const authData: User = {
 
 describe('userSlice', () => {
   beforeEach(() => {
+    setFeatureFlags({});
+
     window.localStorage.clear();
   });
 
+  // взято из интернета
   beforeAll(() => {
     Object.defineProperty(window, 'location', {
       configurable: true,
@@ -35,6 +38,7 @@ describe('userSlice', () => {
     });
   });
 
+  // взято из интернета
   afterAll(() => {
     Object.defineProperty(window, 'location', {
       configurable: true,
@@ -46,17 +50,17 @@ describe('userSlice', () => {
     test('test set auth data', () => {
       const state: DeepPartial<UserSchema> = {};
 
-      expect(userReducer(state as UserSchema, userActions.setAuthData(authData))).toEqual({
-        authData,
-      });
+      const reducer = userReducer(state as UserSchema, userActions.setAuthData(authData));
+
+      expect(reducer).toEqual({ authData });
 
       expect(getAllFeatureFlags()).toEqual(authData.features);
 
-      expect(window.localStorage.getItem(LAST_DESIGN_LOCALSTORAGE_KEY)).toBe('old');
+      expect(window.localStorage.getItem(USER_LOCALSTORAGE_KEY)).toBe(authData.id);
 
       expect(document.body).toHaveClass(authData?.jsonSettings?.theme as Theme);
 
-      expect(window.localStorage.getItem(USER_LOCALSTORAGE_KEY)).toBe(authData.id);
+      expect(window.localStorage.getItem(LAST_DESIGN_LOCALSTORAGE_KEY)).toBe('old');
     });
   });
 
@@ -66,15 +70,15 @@ describe('userSlice', () => {
 
       window.localStorage.setItem(LAST_DESIGN_LOCALSTORAGE_KEY, 'old');
 
-      const state: DeepPartial<UserSchema> = {
-        authData,
-      };
+      document.body.className = authData.jsonSettings?.theme as Theme;
 
       setFeatureFlags(authData.features);
 
-      expect(userReducer(state as UserSchema, userActions.logout())).toEqual({
-        authData: undefined,
-      });
+      const state: DeepPartial<UserSchema> = { authData };
+
+      const reducer = userReducer(state as UserSchema, userActions.logout());
+
+      expect(reducer).toEqual({ authData: undefined });
 
       expect(getAllFeatureFlags()).toEqual({});
 
@@ -92,17 +96,26 @@ describe('userSlice', () => {
     test('test set fulfilled', () => {
       const state: DeepPartial<UserSchema> = { authData: {}, mounted: false };
 
-      const reducer = userReducer(state as UserSchema, initAuthData.fulfilled(authData, ''));
+      // при тестировании 'extraReducers' вторым аргументом нужно передавать любую строку (например, 'requestId')
+      const reducer = userReducer(
+        state as UserSchema,
+        initAuthData.fulfilled(authData, 'requestId'),
+      );
 
       expect(reducer).toEqual({ authData, mounted: true });
+
+      expect(getAllFeatureFlags()).toEqual(authData.features);
+
+      expect(document.body).toHaveClass(authData.jsonSettings?.theme as Theme);
     });
 
     test('test set rejected', () => {
       const state: DeepPartial<UserSchema> = { authData: {}, mounted: false };
 
+      // при тестировании 'extraReducers' вторым аргументом нужно передавать любую строку (например, 'requestId')
       const reducer = userReducer(
         state as UserSchema,
-        initAuthData.rejected(new Error(''), '', undefined),
+        initAuthData.rejected(new Error('Jest test error'), 'requestId'),
       );
 
       expect(reducer).toEqual({ authData: {}, mounted: true });
@@ -115,9 +128,10 @@ describe('userSlice', () => {
 
       const newJsonSettings = { theme: Theme.DARK };
 
+      // при тестировании 'extraReducers' вторым аргументом нужно передавать любую строку (например, 'requestId')
       const reducer = userReducer(
         state as UserSchema,
-        saveJsonSettings.fulfilled(newJsonSettings, '', newJsonSettings),
+        saveJsonSettings.fulfilled(newJsonSettings, 'requestId', newJsonSettings),
       );
 
       expect(reducer).toEqual({

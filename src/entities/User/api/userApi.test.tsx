@@ -5,6 +5,8 @@ import { StoreProvider } from '@/app/providers/StoreProvider';
 
 import { Theme } from '@/shared/const/theme';
 
+import type { User } from '../model/types/user';
+
 import { mockUser, useGetUserDataByIdQuery, useSetJsonSettingsMutation } from './userApi';
 import type { SetJsonSettingsArgs } from './userApi';
 
@@ -16,7 +18,7 @@ const ComponentWrapper = ({ children }: { children: ReactNode }) => (
 describe('userApi', () => {
   describe('useGetUserDataByIdQuery', () => {
     test('returns user', async () => {
-      const userId = '1';
+      const userId: User['id'] = '1';
 
       /*
         'renderHook()' принимает аргументами:

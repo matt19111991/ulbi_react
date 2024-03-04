@@ -49,7 +49,7 @@ describe('saveJsonSettings', () => {
       },
     };
 
-    const thunk = new TestAsyncThunk(saveJsonSettings, noUserDataState, unwrappedResult);
+    const thunk = new TestAsyncThunk(saveJsonSettings, noUserDataState);
 
     const result = await thunk.callThunk(newJsonSettingsArgs);
 
