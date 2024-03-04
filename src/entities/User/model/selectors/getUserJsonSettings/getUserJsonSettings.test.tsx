@@ -6,12 +6,14 @@ import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { Theme } from '@/shared/const/theme';
 
+import type { User } from '../../types/user';
+
 import { getJsonSettings, useJsonSettings } from './getUserJsonSettings';
 
 describe('getUserJsonSettings', () => {
   describe('getJsonSettings', () => {
     test('should return settings', () => {
-      const authData = {
+      const authData: User = {
         id: '1',
         jsonSettings: {
           theme: Theme.DARK,
@@ -35,7 +37,7 @@ describe('getUserJsonSettings', () => {
 
   describe('useJsonSettings', () => {
     test('should return hook and correct selector value', () => {
-      const authData = {
+      const authData: User = {
         id: '1',
         jsonSettings: {
           isFirstVisit: true,

@@ -1,10 +1,12 @@
 import type { StateSchema } from '@/app/providers/StoreProvider';
 
+import type { User } from '../../types/user';
+
 import { getUserAuthData } from './getUserAuthData';
 
 describe('getUserAuthData', () => {
   test('should return data', () => {
-    const authData = {
+    const authData: User = {
       id: '1',
       username: 'Jack',
     };
