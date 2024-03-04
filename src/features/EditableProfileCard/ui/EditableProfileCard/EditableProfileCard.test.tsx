@@ -8,7 +8,7 @@ import { Currency } from '@/entities/Currency/testing';
 import { Profile } from '@/entities/Profile/testing';
 
 import { $api } from '@/shared/api/api';
-import { componentTestRenderer } from '@/shared/lib/tests/componentTestRenderer/componentTestRenderer';
+import { componentTestRenderer } from '@/shared/lib/tests';
 
 import { profileReducer } from '../../model/slice/profileSlice';
 

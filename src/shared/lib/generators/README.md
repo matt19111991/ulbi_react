@@ -1,6 +1,6 @@
 ## Генераторы сущностей
 
-- Generators
+### Generators
 
 `articles` - Генератор статей
 

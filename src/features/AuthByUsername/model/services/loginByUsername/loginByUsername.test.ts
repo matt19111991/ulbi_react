@@ -1,104 +1,113 @@
-// import { Dispatch } from '@reduxjs/toolkit';
-
-// import { StateSchema } from 'app/providers/StoreProvider';
+// import type { AppDispatch, StateSchema } from '@/app/providers/StoreProvider';
 
 import { userActions } from '@/entities/User/testing';
+import type { User } from '@/entities/User/testing';
 
-import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
+import { /* mockedTypedAxios, */ TestAsyncThunk } from '@/shared/lib/tests';
 
 import { loginByUsername } from './loginByUsername';
 
-/* Использование без TestAsyncThunk
+/*
+  // Использование без 'TestAsyncThunk'
 
-describe('loginByUsername', () => {
-  let dispatch: Dispatch;
-  let getState: () => StateSchema;
+  describe('loginByUsername', () => {
+    const dispatch: AppDispatch = jest.fn();
 
-  beforeEach(() => {
-    dispatch = jest.fn();
-    getState = jest.fn();
-  });
+    const getState: () => StateSchema = jest.fn();
 
-  test('success login', async () => {
-    const userValue = {
-      id: '1',
-      username: 'Jack',
+    const extra = {
+      api: mockedTypedAxios,
+      navigate: jest.fn(),
     };
 
-    mockedAxios.post.mockReturnValue(
-      Promise.resolve({ data: userValue }),
-    );
+    test('success login', async () => {
+      const userValue: User = {
+        id: '1',
+        username: 'Jack',
+      };
 
-//  'loginByUsername' это 'createAsyncThunk' (action creator), возвращает 'action' после вызова
-    const action = loginByUsername({ password: '123', username: '123' });
+      // указываем, что должно вернуться из 'post' запроса
+      mockedTypedAxios.post.mockReturnValue(Promise.resolve({ data: userValue }));
 
-    const result = await action(dispatch, getState, undefined);
+      // 'loginByUsername()' - это 'createAsyncThunk' ('action creator'), возвращает 'action' после вызова
+      const action = loginByUsername({ password: '123', username: '123' });
 
-    expect(dispatch).toHaveBeenCalledWith(userActions.setAuthData(userValue));
-    expect(dispatch).toHaveBeenCalledTimes(3);
+      const result = await action(dispatch, getState, extra);
 
-    expect(mockedAxios.post).toHaveBeenCalled();
+      // проверяем 2-ой вызов 'dispatch-а' в 'try' ветке
+      expect(dispatch).toHaveBeenCalledWith(userActions.setAuthData(userValue));
 
-    expect(result.meta.requestStatus).toBe('fulfilled');
-    expect(result.payload).toEqual(userValue);
+      expect(dispatch).toHaveBeenCalledTimes(3);
+
+      expect(mockedTypedAxios.post).toHaveBeenCalled();
+
+      expect(result.meta.requestStatus).toBe('fulfilled');
+
+      expect(result.payload).toEqual(userValue);
+    });
+
+    test('error login', async () => {
+      // указываем, что должно вернуться из 'post' запроса (некорректная структура)
+      mockedTypedAxios.post.mockReturnValue(Promise.resolve({ invalid: 'true' }));
+
+      // 'loginByUsername()' - это 'createAsyncThunk' ('action creator'), возвращает 'action' после вызова
+      const action = loginByUsername({ password: '123', username: '123' });
+
+      const result = await action(dispatch, getState, extra);
+
+      expect(dispatch).toHaveBeenCalledTimes(2);
+
+      expect(mockedTypedAxios.post).toHaveBeenCalled();
+
+      expect(result.meta.requestStatus).toBe('rejected');
+
+      expect(result.payload).toBe('No user data');
+    });
   });
-
-  test('error login', async () => {
-    mockedAxios.post.mockReturnValue(
-      Promise.resolve({ status: 403 }),
-    );
-
-    const action = loginByUsername({ password: '123', username: '123' });
-
-    const result = await action(dispatch, getState, undefined);
-
-    expect(dispatch).toHaveBeenCalledTimes(2);
-
-    expect(mockedAxios.post).toHaveBeenCalled();
-
-    expect(result.meta.requestStatus).toBe('rejected');
-    expect(result.payload).toBe('error');
-  });
-});
 */
 
-// Использование с TestAsyncThunk
+// Использование с 'TestAsyncThunk'
 
 describe('loginByUsername', () => {
   test('success login', async () => {
-    const userValue = {
+    const userValue: User = {
       id: '1',
       username: 'Jack',
     };
 
     const thunk = new TestAsyncThunk(loginByUsername);
 
-    // после вызова 'jest.mock()', метод 'mockReturnValue' добавляется к 'axios'
+    // указываем, что должно вернуться из 'post' запроса
     thunk.api.post.mockReturnValue(Promise.resolve({ data: userValue }));
 
     const result = await thunk.callThunk({ password: '123', username: '123' });
 
+    // проверяем 2-ой вызов 'dispatch-а' в 'try' ветке
     expect(thunk.dispatch).toHaveBeenCalledWith(userActions.setAuthData(userValue));
+
     expect(thunk.dispatch).toHaveBeenCalledTimes(3);
 
     expect(thunk.api.post).toHaveBeenCalled();
 
     expect(result.meta.requestStatus).toBe('fulfilled');
+
     expect(result.payload).toEqual(userValue);
   });
 
   test('error login', async () => {
     const thunk = new TestAsyncThunk(loginByUsername);
 
-    thunk.api.post.mockReturnValue(Promise.resolve({ status: 403 }));
+    // указываем, что должно вернуться из 'post' запроса (некорректная структура)
+    thunk.api.post.mockReturnValue(Promise.resolve({ invalid: 'true' }));
 
     const result = await thunk.callThunk({ password: '123', username: '123' });
 
     expect(thunk.dispatch).toHaveBeenCalledTimes(2);
+
     expect(thunk.api.post).toHaveBeenCalled();
 
     expect(result.meta.requestStatus).toBe('rejected');
 
-    expect(result.payload).toBe('error');
+    expect(result.payload).toBe('No user data');
   });
 });

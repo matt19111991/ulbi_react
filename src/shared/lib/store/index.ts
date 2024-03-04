@@ -1,3 +1,3 @@
-export { buildSelector } from './buildSelector';
+export { buildSelector } from './buildSelector/buildSelector';
 
-export { buildSlice } from './buildSlice';
+export { buildSlice } from './buildSlice/buildSlice';

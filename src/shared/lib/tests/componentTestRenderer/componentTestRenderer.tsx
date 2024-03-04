@@ -11,7 +11,7 @@ import '@/app/styles/index.scss';
 import i18nForTests from '@/shared/config/i18n/i18nForTests';
 import { Theme } from '@/shared/const/theme';
 
-export interface ComponentTestRendererOptions {
+interface ComponentTestRendererOptions {
   /**
    * Асинхронные редюсеры
    */
@@ -33,7 +33,7 @@ export interface ComponentTestRendererOptions {
   theme?: Theme;
 }
 
-export interface TestProviderProps {
+interface TestProviderProps {
   /**
    * Дочерние компоненты
    */

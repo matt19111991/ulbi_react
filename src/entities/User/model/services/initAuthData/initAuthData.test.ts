@@ -3,7 +3,7 @@ import type { StateSchema } from '@/app/providers/StoreProvider';
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { Theme } from '@/shared/const/theme';
 
-import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
+import { TestAsyncThunk } from '@/shared/lib/tests';
 
 import type { User } from '../../types/user';
 

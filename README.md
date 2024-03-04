@@ -325,6 +325,15 @@
 
 Файлы с переводами хранятся в [директории](public/locales)
 
+**Переводы для ошибок в `async thunks`**: 
+- нужен импорт `i18n` напрямую:
+  
+  ```import i18n from '@/shared/config/i18n/i18n';```
+
+- использование переводов:
+  
+  ```thunkApi.rejectWithValue(i18n.t('Ошибка при попытке входа'));```
+
 Для комфортной работы рекомендуется установить плагин для `Webstorm`
 
 [Документация i18next](https://react.i18next.com)
@@ -497,10 +506,10 @@ storybooka, линтинг. Нет деплоя на сервер
 
 ## Работа с хранилищем
 
-[buildSlice](./src/shared/lib/store/buildSlice.ts) - аналог `createSlice` из `@reduxjs/toolkit`, 
+[buildSlice](src/shared/lib/store/buildSlice/buildSlice.ts) - аналог `createSlice` из `@reduxjs/toolkit`, 
 но без необходимости вызывать `dispatch` каждый раз в компонентах
 
-[buildSelector](./src/shared/lib/store/buildSelector.ts) - избавляемся от необходимости использовать `useSelector` 
+[buildSelector](src/shared/lib/store/buildSelector/buildSelector.ts) - избавляемся от необходимости использовать `useSelector` 
 каждый раз внутри компонентов
 
 ----
@@ -520,7 +529,7 @@ storybooka, линтинг. Нет деплоя на сервер
 - [useInfiniteScroll](./src/shared/lib/hooks/useInfiniteScroll/README.md)
 - [useInitialEffect](./src/shared/lib/hooks/useInitialEffect/README.md)
 - [useModal](./src/shared/lib/hooks/useModal/README.md)
-- [useRouteChange](./src/shared/lib/router/useRouteChange/README.md)
+- [useRouteChange](src/shared/lib/hooks/useRouteChange/README.md)
 - [useTheme](./src/shared/lib/hooks/useTheme/README.md)
 - [useThrottle](./src/shared/lib/hooks/useThrottle/README.md)
 - [useWindowWidth](./src/shared/lib/hooks/useWindowWidth/README.md)

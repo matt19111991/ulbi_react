@@ -22,7 +22,7 @@
 
 ### Hooks
 
-`useUpdateFeatureFlagsMutation` - хук для изменения и сохранения `feature flags`
+`useUpdateFeatureFlagsMutation` - хук для отрисовки соответствующего компонента на основе `feature flag`
 
 ### Services
 

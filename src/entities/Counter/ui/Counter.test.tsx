@@ -1,7 +1,7 @@
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { componentTestRenderer } from '@/shared/lib/tests/componentTestRenderer/componentTestRenderer';
+import { componentTestRenderer } from '@/shared/lib/tests';
 
 import { Counter } from './Counter';
 

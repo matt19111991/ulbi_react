@@ -3,7 +3,7 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 import { ArticleSortField, ArticleType } from '@/entities/Article/testing';
 
 import { generateArticles } from '@/shared/lib/generators/articles';
-import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
+import { TestAsyncThunk } from '@/shared/lib/tests';
 
 import { fetchArticlesList } from './fetchArticlesList';
 

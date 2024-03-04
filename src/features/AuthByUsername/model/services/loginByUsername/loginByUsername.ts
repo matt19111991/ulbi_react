@@ -1,9 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AxiosRequestConfig } from 'axios';
+import type { AxiosRequestConfig } from 'axios';
 
-import { ThunkConfig } from '@/app/providers/StoreProvider';
+import type { ThunkConfig } from '@/app/providers/StoreProvider';
 
-import { User, userActions } from '@/entities/User';
+import { userActions } from '@/entities/User';
+import type { User } from '@/entities/User';
 
 interface LoginByUsernameProps {
   password: string;
@@ -18,8 +19,8 @@ interface LoginByUsernameProps {
         - 'rejected' : 'login/loginByUsername/rejected'
 
      - асинхронную функцию 'payloadCreator', которая принимает на вход 2 параметра:
-        - payload ({ password,  username })
-        - объект 'thunkAPI'
+        - объект 'payload': '{ password, username }'
+        - объект 'thunkApi'
 */
 
 // 1-ый вызов 'dispatch-а': 'loginByUsername();'
@@ -40,8 +41,15 @@ export const loginByUsername = createAsyncThunk<
       rejectedMeta?: unknown
     }
   */
->('login/loginByUsername', async (authData, thunkAPI) => {
+>('login/loginByUsername', async (authData, thunkApi) => {
   try {
+    /*
+      обязательно нужно возвращать что-то из функции, иначе:
+      - в состоянии 'fulfilled' не будет 'payload' поля
+      - состояние 'rejected' не вызовется (ошибочно отработает состояние 'fulfilled')
+   */
+
+    // иначе 403 ошибка 'AUTH ERROR'
     const axiosConfig: AxiosRequestConfig = {
       headers: {
         Authorization: true,
@@ -49,30 +57,36 @@ export const loginByUsername = createAsyncThunk<
     };
 
     /*
-      axios.post<User> => типизация возвращаемого значения с сервера
+      'axios.post<User>' => типизация возвращаемого значения с сервера
 
-      в 'thunkAPI' в 'extraArgument' можно записать любые данные, инстансы и т.д. через middleware:
+      в 'thunkApi' в 'extraArgument' можно записать любые данные, инстансы и т.д. через 'middleware':
       'app/providers/StoreProvider/config/store.js'
 
       вызываем вместо базового 'axios' свой кастомный инстанс 'api' (axios):
-      thunkAPI.extra.api.post === axios.post
+      'thunkApi.extra.api.post === axios.post'
     */
 
-    const response = await thunkAPI.extra.api.post<User>('/login', authData, axiosConfig);
+    const response = await thunkApi.extra.api.post<User>('/login', authData, axiosConfig);
 
     if (!response.data) {
-      throw new Error();
+      return thunkApi.rejectWithValue('No user data');
     }
 
     // 2-ой вызов 'dispatch-а'
-    thunkAPI.dispatch(userActions.setAuthData(response.data));
+    thunkApi.dispatch(userActions.setAuthData(response.data));
 
-    // 3-ий вызов 'dispatch-а': 'thunkAPI.fulfillWithValue(response.data)'
-    return response.data; // аналог: thunkAPI.fulfillWithValue(response.data);
+    // 3-ий вызов 'dispatch-а': 'thunkApi.fulfillWithValue(response.data)'
+    return response.data; // аналог: 'thunkApi.fulfillWithValue(response.data);'
   } catch (e) {
-    // здесь переводы можно использовать только импортировав 'i18n' напрямую:
-    // "import i18n from 'shared/config/i18n/i18n';"
+    /*
+      здесь переводы можно использовать только импортировав 'i18n' напрямую:
+        "import i18n from '@/shared/config/i18n/i18n';"
 
-    return thunkAPI.rejectWithValue('error'); // 2-ой вызов 'dispatch-а'
+      использование:
+        "return thunkApi.rejectWithValue(i18n.t('Ошибка при попытке входа'));"
+   */
+
+    // 2-ой вызов 'dispatch-а'
+    return thunkApi.rejectWithValue(e instanceof Error ? e.message : 'Unexpected error');
   }
 });

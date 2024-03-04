@@ -3,7 +3,7 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 import { Country } from '@/entities/Country/testing';
 import { Currency } from '@/entities/Currency/testing';
 
-import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
+import { TestAsyncThunk } from '@/shared/lib/tests';
 
 import { ValidateProfileError } from '../../consts/consts';
 

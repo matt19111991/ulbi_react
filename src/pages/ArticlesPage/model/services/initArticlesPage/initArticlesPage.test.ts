@@ -2,7 +2,7 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 
 import { ArticleSortField, ArticleType } from '@/entities/Article/testing';
 
-import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
+import { TestAsyncThunk } from '@/shared/lib/tests';
 
 import { articlesPageActions } from '../../slice/articlesPageSlice';
 

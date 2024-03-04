@@ -2,7 +2,7 @@ import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { Theme } from '@/shared/const/theme';
 
-import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
+import { TestAsyncThunk } from '@/shared/lib/tests';
 
 import type { JsonSettings } from '../../types/jsonSettings';
 

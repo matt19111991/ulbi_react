@@ -4,7 +4,7 @@ import { UserRole } from '@/entities/User/testing';
 
 import { getRouteAbout, getRouteAdmin, getRouteProfile } from '@/shared/const/router';
 
-import { componentTestRenderer } from '@/shared/lib/tests/componentTestRenderer/componentTestRenderer';
+import { componentTestRenderer } from '@/shared/lib/tests';
 
 import { AppRouter } from './AppRouter';
 

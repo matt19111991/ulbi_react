@@ -12,7 +12,7 @@ jest.mock('axios'); // при помощи 'Jest' делаем заглушку 
 
  'jest.mocked' используем, чтобы 'TS' работал корректно с вложенными структурами
 */
-const mockedTypedAxios = jest.mocked(axios, { shallow: false });
+export const mockedTypedAxios = jest.mocked(axios, { shallow: false });
 
 /*
   Return        - ЧТО_ВЕРНЕТСЯ_ИЗ_THUNKA_ТИП

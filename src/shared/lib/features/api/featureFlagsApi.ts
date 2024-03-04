@@ -41,5 +41,5 @@ const featureFlagsApi = rtkApi.injectEndpoints({
 
 export const updateFeatureFlagsMutation = featureFlagsApi.endpoints.updateFeatureFlags.initiate;
 
-// для unit тестов
+// для 'unit' тестов
 export const { useUpdateFeatureFlagsMutation } = featureFlagsApi;

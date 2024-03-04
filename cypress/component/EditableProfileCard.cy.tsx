@@ -1,6 +1,6 @@
 import { EditableProfileCard } from '@/features/EditableProfileCard';
 
-import { TestProvider } from '@/shared/lib/tests/componentTestRenderer/componentTestRenderer';
+import { TestProvider } from '@/shared/lib/tests';
 
 /*
   в Cypress работаем с реальным DOM, в Jest и React Testing Library - с Jest DOM (урезанная версия DOM)

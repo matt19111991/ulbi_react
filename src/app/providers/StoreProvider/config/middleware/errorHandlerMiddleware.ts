@@ -16,9 +16,12 @@ export const errorHandlerMiddleware: Middleware = (api) => (next) => (action) =>
   const unknownAction = action as ErrorAction;
 
   if (isRejectedWithValue(action)) {
-    toast.error(unknownAction.payload, {
-      id: unknownAction.payload, // избавляемся от дубликатов
-    });
+    // избавляемся от уведомлений для неавторизованного пользователя при обновлении страницы
+    if (action.payload !== 'No stored user') {
+      toast.error(unknownAction.payload, {
+        id: unknownAction.payload, // избавляемся от дубликатов
+      });
+    }
   }
 
   return next(action);

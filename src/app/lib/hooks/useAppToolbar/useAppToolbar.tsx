@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 
 import { AppRoutes } from '@/shared/const/router';
 
-import { useRouteChange } from '@/shared/lib/router/useRouteChange/useRouteChange';
+import { useRouteChange } from '@/shared/lib/hooks/useRouteChange/useRouteChange';
 
 import { ScrollToolbar } from '@/widgets/ScrollToolbar';
 

@@ -2,7 +2,7 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 
 import { Comment } from '@/entities/Comment/testing';
 
-import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
+import { TestAsyncThunk } from '@/shared/lib/tests';
 
 import { addCommentForArticle } from './addCommentForArticle';
 
