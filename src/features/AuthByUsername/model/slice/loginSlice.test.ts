@@ -55,10 +55,10 @@ describe('loginSlice', () => {
     });
 
     test('test set is rejected', () => {
-      // значения не важны, 'loginByUsername.rejected' экшен требует передачи 3-его аргумента
+      // значения не важны, экшен 'loginByUsername.rejected()' требует передачи 3-его аргумента
       const args: LoginByUsernameProps = {
-        password: '123123',
-        username: 'user',
+        password: '123',
+        username: 'Jack',
       };
 
       const errorMessage = 'Jest test error';

@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
+import type { ErrorAction } from '@/shared/types/api';
+
 import { loginByUsername } from '../services/loginByUsername/loginByUsername';
 
 import type { LoginSchema } from '../types/loginSchema';
@@ -30,15 +32,13 @@ const loginSlice = createSlice({
     builder
       .addCase(loginByUsername.pending, (state) => {
         state.error = undefined;
-
         state.isLoading = true;
       })
       .addCase(loginByUsername.fulfilled, (state) => {
         state.isLoading = false; // тип у 'action.payload' => 'User'
       })
-      .addCase(loginByUsername.rejected, (state, action) => {
+      .addCase(loginByUsername.rejected, (state, action: ErrorAction) => {
         state.error = action.error.message;
-
         state.isLoading = false;
       });
   },
