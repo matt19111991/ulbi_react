@@ -12,16 +12,18 @@ describe('setGetFeatures', () => {
     setFeatureFlags({});
   });
 
-  test('test set and get feature flags', () => {
-    setFeatureFlags(mockFeatureFlags);
+  describe('getAllFeatureFlags and setFeatureFlags', () => {
+    test('test set and get all feature flags', () => {
+      setFeatureFlags(mockFeatureFlags);
 
-    expect(getAllFeatureFlags()).toEqual(mockFeatureFlags);
-  });
+      expect(getAllFeatureFlags()).toEqual(mockFeatureFlags);
+    });
 
-  test('test set and get empty flags', () => {
-    setFeatureFlags();
+    test('test set and get empty flags', () => {
+      setFeatureFlags();
 
-    expect(getAllFeatureFlags()).toEqual({});
+      expect(getAllFeatureFlags()).toEqual({});
+    });
   });
 
   describe('getFeatureFlag', () => {

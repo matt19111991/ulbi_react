@@ -9,7 +9,7 @@ interface UpdateFeatureFlagsOptions {
   features: Partial<FeatureFlags>;
 
   /**
-   * ID пользователя
+   * 'ID' пользователя
    */
   userId: string;
 }
@@ -39,6 +39,10 @@ const featureFlagsApi = rtkApi.injectEndpoints({
   }),
 });
 
+/*
+  для возможности вызова запросов в 'async thunks' используем метод 'initiate' (вне хуков),
+  в хуках этот метод вызывается под капотом 'React'-ом
+*/
 export const updateFeatureFlagsMutation = featureFlagsApi.endpoints.updateFeatureFlags.initiate;
 
 // для 'unit' тестов

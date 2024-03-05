@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { ThunkConfig } from '@/app/providers/StoreProvider';
+import type { ThunkConfig } from '@/app/providers/StoreProvider';
 
 import type { FeatureFlags } from '@/shared/types/featureFlags';
 
@@ -8,22 +8,22 @@ import { updateFeatureFlagsMutation } from '../api/featureFlagsApi';
 
 import { getAllFeatureFlags, setFeatureFlags } from '../lib/setGetFeatures/setGetFeatures';
 
-interface UpdateFeatureFlagsOptions {
+export interface UpdateFeatureFlagsOptions {
   /**
-   * Список новых feature flags
+   * Список новых 'feature flags'
    */
   newFeatures: Partial<FeatureFlags>;
 
   /**
-   * ID пользователя
+   * 'ID' пользователя
    */
   userId: string;
 }
 
 export const updateFeatureFlags = createAsyncThunk<
-  void,
-  UpdateFeatureFlagsOptions,
-  ThunkConfig<string>
+  void, // на выходе
+  UpdateFeatureFlagsOptions, // на входе
+  ThunkConfig<string> // передаваемый тип ошибки в конфиг: 'string'
 >('features/updateFeatureFlags', async ({ newFeatures, userId }, thunkApi) => {
   try {
     const allFeatures = {
@@ -42,8 +42,12 @@ export const updateFeatureFlags = createAsyncThunk<
 
     window.location.reload();
 
-    return undefined;
+    return undefined; // аналогично, если ничего не возвращать => в состоянии 'fulfilled' не будет 'payload' поля
   } catch (e) {
-    return thunkApi.rejectWithValue('error');
+    /*
+      обязательно нужно возвращать ошибку, иначе состояние 'rejected' не вызовется:
+      ошибочно отработает состояние 'fulfilled'
+    */
+    return thunkApi.rejectWithValue(e instanceof Error ? e.message : 'Unexpected error');
   }
 });

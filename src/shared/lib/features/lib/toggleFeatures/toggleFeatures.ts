@@ -9,12 +9,12 @@ interface ToggleFeaturesOptions<T> {
   name: keyof FeatureFlags;
 
   /**
-   * Коллбэк, который возвращает элемент, если feature flag включен
+   * Колбэк, который возвращает значение, если 'feature flag' включен
    */
   on: () => T;
 
   /**
-   * Коллбэк, который возвращает элемент, если feature flag выключен
+   * Колбэк, который возвращает значение, если 'feature flag' выключен
    */
   off: () => T;
 }

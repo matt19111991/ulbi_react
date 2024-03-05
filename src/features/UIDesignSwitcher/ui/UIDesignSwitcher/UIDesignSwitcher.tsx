@@ -49,7 +49,7 @@ export const UIDesignSwitcher = memo(({ className }: UIDesignSwitcherProps) => {
           },
           userId: authData.id,
         }),
-      ).unwrap();
+      );
 
       setIsLoading(false);
 

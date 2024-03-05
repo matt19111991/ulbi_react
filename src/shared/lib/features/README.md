@@ -8,7 +8,7 @@
 
 `setFeatureFlags` - установка `feature flags`
 
-`toggleFeatures` - функция для вызова соответствующего коллбэка на основе `feature flag`
+`toggleFeatures` - функция для вызова соответствующего колбэка на основе `feature flag`
 
 `updateFeatureFlagsMutation` - действие для изменения и сохранения `feature flags`
 
@@ -22,7 +22,7 @@
 
 ### Hooks
 
-`useUpdateFeatureFlagsMutation` - хук для отрисовки соответствующего компонента на основе `feature flag`
+`useUpdateFeatureFlagsMutation` - хук для изменения и сохранения `feature flags`
 
 ### Services
 
@@ -31,3 +31,6 @@
 ### Types
 
 `FeatureFlags` - Тип, описывающий возможные `feature flags`
+
+`UpdateFeatureFlagsOptions` - Тип, описывающий аргументы для `updateFeatureFlags` сервиса
+
