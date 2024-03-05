@@ -1,8 +1,9 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { loginByUsername } from '../services/loginByUsername/loginByUsername';
 
-import { LoginSchema } from '../types/loginSchema';
+import type { LoginSchema } from '../types/loginSchema';
 
 const initialState: LoginSchema = {
   isLoading: false,
@@ -14,7 +15,7 @@ const loginSlice = createSlice({
   name: 'login',
   initialState,
 
-  // обычные 'reducers' предназначены для обычных синхронных изменений
+  // 'reducers' предназначены для обычных синхронных изменений ('setPassword', 'setUsername' - это экшены)
   reducers: {
     setPassword: (state, action: PayloadAction<string>) => {
       state.password = action.payload;
@@ -24,19 +25,20 @@ const loginSlice = createSlice({
     },
   },
 
-  // 'extraReducers' предназначены для асинхронных изменений (asyncThunk)
+  // 'extraReducers' предназначены для асинхронных изменений ('async thunks')
   extraReducers: (builder) => {
     builder
       .addCase(loginByUsername.pending, (state) => {
         state.error = undefined;
+
         state.isLoading = true;
       })
       .addCase(loginByUsername.fulfilled, (state) => {
-        state.isLoading = false;
-        // тип у 'action.payload' => 'User'
+        state.isLoading = false; // тип у 'action.payload' => 'User'
       })
       .addCase(loginByUsername.rejected, (state, action) => {
-        state.error = action.payload; // тип у 'action.payload' => 'string' (тип 'rejectedValue')
+        state.error = action.error.message;
+
         state.isLoading = false;
       });
   },

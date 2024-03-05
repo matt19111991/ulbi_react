@@ -34,4 +34,6 @@
 
 ### Types
 
+`LoginByUsernameProps` - Тип, описывающий аргументы, передаваемые в `loginByUsername` сервис
+
 `LoginSchema` - Тип, описывающий схему формы логина в хранилище

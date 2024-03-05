@@ -6,7 +6,7 @@ import type { ThunkConfig } from '@/app/providers/StoreProvider';
 import { userActions } from '@/entities/User';
 import type { User } from '@/entities/User';
 
-interface LoginByUsernameProps {
+export interface LoginByUsernameProps {
   password: string;
   username: string;
 }

@@ -128,7 +128,11 @@ describe('userSlice', () => {
 
       const newJsonSettings = { theme: Theme.DARK };
 
-      // при тестировании 'extraReducers' вторым аргументом нужно передавать любую строку (например, 'requestId')
+      /*
+        при тестировании 'extraReducers' обязательно нужно передавать:
+          - второй аргумент: любая строка (например, 'requestId')
+          - третий аргумент: аргументы, передаваемые в 'async thunk', в нашем случае 'JsonSettings'
+       */
       const reducer = userReducer(
         state as UserSchema,
         saveJsonSettings.fulfilled(newJsonSettings, 'requestId', newJsonSettings),
