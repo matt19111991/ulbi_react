@@ -1,7 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-import { LAST_DESIGN_LOCALSTORAGE_KEY, USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
+import {
+  LAST_DESIGN_LOCALSTORAGE_KEY,
+  THEME_LOCALSTORAGE_KEY,
+  USER_LOCALSTORAGE_KEY,
+} from '@/shared/const/localstorage';
+
+import { getRouteMain } from '@/shared/const/router';
 import { Theme } from '@/shared/const/theme';
 
 import { setFeatureFlags } from '@/shared/lib/features';
@@ -45,18 +51,15 @@ export const userSlice = createSlice({
     logout: (state) => {
       state.authData = undefined;
 
-      // сбрасываем 'feature flags'
-      setFeatureFlags({});
-
       // сбрасываем пользовательскую тему
       document.body.className = Theme.LIGHT;
 
-      // очищаем 'localStorage'
-      localStorage.removeItem(LAST_DESIGN_LOCALSTORAGE_KEY);
+      // очищаем 'localStorage' от пользовательского 'id' и сохраненной темы
+      localStorage.removeItem(THEME_LOCALSTORAGE_KEY);
       localStorage.removeItem(USER_LOCALSTORAGE_KEY);
 
-      // перезагружаем страницу
-      window.location.reload();
+      // редиректим на главную страницу (под капотом произойдет ресет закэшированных стилей)
+      window.location.replace(getRouteMain());
     },
   },
   extraReducers: (builder) => {

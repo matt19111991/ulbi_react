@@ -7,14 +7,23 @@
   width: 100%;
 }
 
+.actions {
+  margin-left: auto;
+  padding-top: 8px;
+}
+
 .createLink {
   margin-right: 24px;
 }
 
-.actions,
 .links {
-  margin-left: auto;
+  display: flex;
+  justify-content: flex-end;
   padding-top: 8px;
+
+  & > button:hover {
+    color: var(--accent-redesigned) !important;
+  }
 }
 
 .logoWrapper {
@@ -64,4 +73,14 @@
 
 .createLinkRedesigned {
   margin-top: 2px;
+}
+
+@media screen and (max-width: 360px) {
+  .NavbarRedesigned {
+    .links {
+      button {
+        font: var(--font-s-redesigned);
+      }
+    }
+  }
 }

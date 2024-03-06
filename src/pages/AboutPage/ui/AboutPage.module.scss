@@ -11,9 +11,20 @@
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 640px) {
   .AboutPage {
     font: var(--font-m-redesigned);
     padding-left: 0;
+    top: 24px;
+
+    &.authorized {
+      top: 34px;
+    }
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .AboutPage {
+    font: var(--font-s-redesigned);
   }
 }

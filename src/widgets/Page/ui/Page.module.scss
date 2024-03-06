@@ -11,6 +11,12 @@
   margin: 10px;
 }
 
+@media screen and (max-width: 640px) {
+  .Page {
+    left: 24px;
+  }
+}
+
 // Redesigned
 
 .PageRedesigned {

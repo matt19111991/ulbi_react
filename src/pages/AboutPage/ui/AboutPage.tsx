@@ -1,5 +1,10 @@
 import { memo } from 'react';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+
+import { getUserAuthData } from '@/entities/User';
+
+import { classNames } from '@/shared/lib/classNames/classNames';
 
 import { Page } from '@/widgets/Page';
 
@@ -15,8 +20,13 @@ const AboutPage = () => {
 
   const { t } = useTranslation('about');
 
+  const user = useSelector(getUserAuthData);
+
   return (
-    <Page className={classes.AboutPage} data-testid='AboutPage'>
+    <Page
+      className={classNames(classes.AboutPage, { [classes.authorized]: Boolean(user) })}
+      data-testid='AboutPage'
+    >
       {t('О сайте')}
     </Page>
   );

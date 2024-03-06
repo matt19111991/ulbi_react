@@ -74,7 +74,9 @@
       "img": "https://www.freepnglogos.com/uploads/javascript-png/javascript-vector-logo-yellow-png-transparent-javascript-vector-12.png",
       "subtitle": "Что нового в JS за 2023 год?",
       "title": "Javascript updated news",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "userId": "1",
       "views": 1022
     },
@@ -152,7 +154,9 @@
       "img": "https://w7.pngwing.com/pngs/234/329/png-transparent-python-logo-thumbnail.png",
       "subtitle": "Что нового у Python за 2023 год?",
       "title": "Python updated news",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "userId": "1",
       "views": 845
     },
@@ -230,7 +234,9 @@
       "img": "https://w7.pngwing.com/pngs/314/161/png-transparent-kotlin-android-software-development-anonymous-function-programming-language-android-blue-angle-text-thumbnail.png",
       "subtitle": "Что нового у Kotlin за 2023 год?",
       "title": "Kotlin updated news",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "userId": "1",
       "views": 566
     },
@@ -308,7 +314,9 @@
       "img": "https://www.freepnglogos.com/uploads/javascript-png/javascript-vector-logo-yellow-png-transparent-javascript-vector-12.png",
       "subtitle": "Что нового в JS за 2023 год?",
       "title": "Javascript fresh news",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "userId": "1",
       "views": 284
     },
@@ -386,7 +394,9 @@
       "img": "https://w7.pngwing.com/pngs/234/329/png-transparent-python-logo-thumbnail.png",
       "subtitle": "Что нового у Python за 2023 год?",
       "title": "Python fresh news",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "userId": "1",
       "views": 659
     },
@@ -464,7 +474,9 @@
       "img": "https://w7.pngwing.com/pngs/314/161/png-transparent-kotlin-android-software-development-anonymous-function-programming-language-android-blue-angle-text-thumbnail.png",
       "subtitle": "Что нового у Kotlin за 2023 год?",
       "title": "Kotlin fresh news",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "userId": "1",
       "views": 655
     },
@@ -542,7 +554,9 @@
       "img": "https://www.freepnglogos.com/uploads/javascript-png/javascript-vector-logo-yellow-png-transparent-javascript-vector-12.png",
       "subtitle": "Что нового в JS за 2023 год?",
       "title": "Javascript old news",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "userId": "1",
       "views": 1123
     },
@@ -620,7 +634,9 @@
       "img": "https://w7.pngwing.com/pngs/234/329/png-transparent-python-logo-thumbnail.png",
       "subtitle": "Что нового у Python за 2023 год?",
       "title": "Python old news",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "userId": "1",
       "views": 1341
     },
@@ -698,7 +714,9 @@
       "img": "https://w7.pngwing.com/pngs/314/161/png-transparent-kotlin-android-software-development-anonymous-function-programming-language-android-blue-angle-text-thumbnail.png",
       "subtitle": "Что нового у Kotlin за 2023 год?",
       "title": "Kotlin old news",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "userId": "1",
       "views": 1812
     },
@@ -776,7 +794,9 @@
       "img": "https://www.freepnglogos.com/uploads/javascript-png/javascript-vector-logo-yellow-png-transparent-javascript-vector-12.png",
       "subtitle": "Что нового в JS за 2023 год?",
       "title": "Javascript not sorted news",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "userId": "1",
       "views": 122
     },
@@ -854,7 +874,9 @@
       "img": "https://w7.pngwing.com/pngs/234/329/png-transparent-python-logo-thumbnail.png",
       "subtitle": "Что нового у Python за 2023 год?",
       "title": "Python not sorted news",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "userId": "1",
       "views": 54
     },
@@ -932,7 +954,9 @@
       "img": "https://w7.pngwing.com/pngs/314/161/png-transparent-kotlin-android-software-development-anonymous-function-programming-language-android-blue-angle-text-thumbnail.png",
       "subtitle": "Что нового у Kotlin за 2023 год?",
       "title": "Kotlin not sorted news",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "userId": "1",
       "views": 69
     },
@@ -989,7 +1013,9 @@
         },
         {
           "id": "7",
-          "paragraphs": ["Рассмотрим основные функции Банка России."],
+          "paragraphs": [
+            "Рассмотрим основные функции Банка России."
+          ],
           "title": "Заголовок нового блока",
           "type": "TEXT"
         }
@@ -998,7 +1024,9 @@
       "img": "https://fincult.info/upload/als-property-editorblock/d21/d21f97d7ca6df576e94255586c3c6688.jpg",
       "subtitle": "Что такое центробанк и чем он занимается",
       "title": "Что такое центробанк",
-      "type": ["ECONOMICS"],
+      "type": [
+        "ECONOMICS"
+      ],
       "userId": "1",
       "views": 4
     },
@@ -1067,7 +1095,9 @@
       "img": "https://gpbi-1c-prod-bitrix-uploads.storage.yandexcloud.net/resize_cache/14221/dc5e10191752e69d7cdeb29f8e02c154/iblock/b07/b0758bc910491a503f5941143bc82f08/global-main.jpg",
       "subtitle": "Кредитный рейтинг: что это такое и как им пользоваться?",
       "title": "Кредитный рейтинг",
-      "type": ["ECONOMICS"],
+      "type": [
+        "ECONOMICS"
+      ],
       "userId": "1",
       "views": 6
     },
@@ -1135,7 +1165,9 @@
       "img": "https://cdn-trans.info/uploads/2019/10/f257ba2f9d86839b42966c21982.jpg",
       "subtitle": "Что такое экономический рост и при чем тут инфляция",
       "title": "Экономический рост и инфляция",
-      "type": ["ECONOMICS"],
+      "type": [
+        "ECONOMICS"
+      ],
       "userId": "1",
       "views": 22
     },
@@ -1203,7 +1235,9 @@
       "img": "https://naked-science.ru/wp-content/uploads/2023/07/image-402-819x1024.png",
       "subtitle": "«Хаббл» получил новое изображение галактики UGC 12295",
       "title": "Новые снимки «Хаббл»",
-      "type": ["SCIENCE"],
+      "type": [
+        "SCIENCE"
+      ],
       "userId": "1",
       "views": 47
     },
@@ -1249,7 +1283,9 @@
         },
         {
           "id": "6",
-          "paragraphs": ["Астрономы открыли еще одну планету-сироту размерами с Землю."],
+          "paragraphs": [
+            "Астрономы открыли еще одну планету-сироту размерами с Землю."
+          ],
           "title": "Заголовок этого блока",
           "type": "TEXT"
         },
@@ -1266,7 +1302,9 @@
       "img": "https://naked-science.ru/wp-content/uploads/2023/07/image-405.png",
       "subtitle": "Новые наблюдения показали, что планет-сирот может быть больше «обычных»",
       "title": "Новые наблюдения за планетами",
-      "type": ["SCIENCE"],
+      "type": [
+        "SCIENCE"
+      ],
       "userId": "1",
       "views": 61
     }
@@ -1423,7 +1461,9 @@
         "theme": "app_dark_theme"
       },
       "password": "12345",
-      "roles": ["ADMIN"],
+      "roles": [
+        "ADMIN"
+      ],
       "username": "Jack",
       "userId": "1"
     },
@@ -1440,7 +1480,9 @@
         "theme": "app_dark_theme"
       },
       "password": "12345",
-      "roles": ["USER"],
+      "roles": [
+        "USER"
+      ],
       "username": "Mary"
     },
     {
@@ -1456,7 +1498,9 @@
         "theme": "app_dark_theme"
       },
       "password": "12345",
-      "roles": ["MANAGER"],
+      "roles": [
+        "MANAGER"
+      ],
       "username": "Tom"
     }
   ]

@@ -1,20 +1,86 @@
-// добавляем отступ только в приложении (не в storybook)
+// добавляем отступ только в приложении (не в 'storybook')
+body:has(> div[id='root']) {
+  .SettingsPage {
+    padding: 16px 24px;
+  }
+}
+
 @media screen and (max-width: 1800px) {
   body:has(> div[id='root']) {
     .SettingsPage {
       position: relative;
-      top: 42px;
+      top: 32px;
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .SettingsPage {
+    padding: 0;
+    top: 24px !important;
+
+    &.authorized {
+      top: 34px !important;
+    }
+
+    &.deprecated {
+      left: 0;
+    }
+
+    &.redesigned {
+      left: -24px;
+    }
+
+    & > :first-child {
+      gap: 16px;
+
+      & > :last-child {
+        gap: 8px;
+      }
+    }
+
+    h2 {
+      font: var(--font-m-redesigned) !important;
+    }
+
+    button,
+    p {
+      font: var(--font-s-redesigned) !important;
     }
   }
 }
 
 @media screen and (max-width: 480px) {
   .SettingsPage {
-    top: 92px;
+    & > :first-child {
+      max-width: 132px;
+    }
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .SettingsPage {
+    h2 {
+      font: var(--font-s-redesigned) !important;
+    }
+
+    button,
+    p {
+      font-size: 10px !important;
+    }
+
+    button {
+      height: 24px;
+    }
+
+    svg {
+      height: 24px;
+      width: 24px;
+    }
   }
 }
 
 .content {
-  min-height: 100vh;
+  min-height: 82vh;
 }
 

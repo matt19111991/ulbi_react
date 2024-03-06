@@ -1,4 +1,10 @@
-import { LAST_DESIGN_LOCALSTORAGE_KEY, USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
+import {
+  LAST_DESIGN_LOCALSTORAGE_KEY,
+  THEME_LOCALSTORAGE_KEY,
+  USER_LOCALSTORAGE_KEY,
+} from '@/shared/const/localstorage';
+
+import { getRouteMain } from '@/shared/const/router';
 import { Theme } from '@/shared/const/theme';
 
 import { getAllFeatureFlags, setFeatureFlags } from '@/shared/lib/features';
@@ -33,7 +39,7 @@ describe('userSlice', () => {
     Object.defineProperty(window, 'location', {
       configurable: true,
       value: {
-        reload: jest.fn(),
+        replace: jest.fn(),
       },
     });
   });
@@ -66,13 +72,11 @@ describe('userSlice', () => {
 
   describe('logout', () => {
     test('test logout', () => {
+      window.localStorage.setItem(LAST_DESIGN_LOCALSTORAGE_KEY, 'new');
+      window.localStorage.setItem(THEME_LOCALSTORAGE_KEY, authData.jsonSettings?.theme as Theme);
       window.localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(authData.id));
 
-      window.localStorage.setItem(LAST_DESIGN_LOCALSTORAGE_KEY, 'old');
-
       document.body.className = authData.jsonSettings?.theme as Theme;
-
-      setFeatureFlags(authData.features);
 
       const state: DeepPartial<UserSchema> = { authData };
 
@@ -80,15 +84,14 @@ describe('userSlice', () => {
 
       expect(reducer).toEqual({ authData: undefined });
 
-      expect(getAllFeatureFlags()).toEqual({});
-
       expect(document.body).toHaveClass(Theme.LIGHT);
 
-      expect(window.localStorage.getItem(LAST_DESIGN_LOCALSTORAGE_KEY)).toBeNull();
-
+      expect(window.localStorage.getItem(LAST_DESIGN_LOCALSTORAGE_KEY)).toBe('new');
+      expect(window.localStorage.getItem(THEME_LOCALSTORAGE_KEY)).toBeNull();
       expect(window.localStorage.getItem(USER_LOCALSTORAGE_KEY)).toBeNull();
 
-      expect(window.location.reload).toHaveBeenCalledTimes(1);
+      expect(window.location.replace).toHaveBeenCalledWith(getRouteMain());
+      expect(window.location.replace).toHaveBeenCalledTimes(1);
     });
   });
 
