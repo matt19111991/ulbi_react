@@ -3,7 +3,7 @@
   background-color: var(--overlay-color);
   cursor: pointer;
   display: flex;
-  inset: 0;
+  inset: 0; /* выставляем '0' сразу для 'top', 'right', 'bottom' и 'left' */
   justify-content: center;
   position: fixed;
   z-index: var(--overlay-z-index);

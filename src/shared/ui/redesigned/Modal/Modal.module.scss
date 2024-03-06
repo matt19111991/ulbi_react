@@ -1,7 +1,7 @@
 .Modal {
   align-items: center;
   display: flex;
-  inset: 0;
+  inset: 0; /* выставляем '0' сразу для 'top', 'right', 'bottom' и 'left' */
   justify-content: center;
   opacity: 0;
   pointer-events: none;
