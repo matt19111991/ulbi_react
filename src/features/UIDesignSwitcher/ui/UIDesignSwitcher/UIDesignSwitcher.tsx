@@ -6,7 +6,7 @@ import { getUserAuthData } from '@/entities/User';
 
 import { LAST_DESIGN_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 
-import { getFeatureFlag, ToggleFeatures, updateFeatureFlags } from '@/shared/lib/features';
+import { ToggleFeatures, updateFeatureFlags } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useForceUpdate } from '@/shared/lib/hooks/useForceUpdate/useForceUpdate';
 
@@ -34,8 +34,6 @@ export const UIDesignSwitcher = memo(({ className }: UIDesignSwitcherProps) => {
   const { t } = useTranslation();
 
   const authData = useSelector(getUserAuthData);
-
-  const isAppRedesigned = getFeatureFlag('isAppRedesigned');
 
   const [isLoading, setIsLoading] = useState(false);
 

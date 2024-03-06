@@ -7,7 +7,7 @@ import { Theme } from '@/shared/const/theme';
 import SettingsPage from './SettingsPage';
 
 const meta = {
-  title: 'pages/Settings/SettingsPage',
+  title: 'pages/Settings/SettingsPage/old',
   component: SettingsPage,
   argTypes: {
     backgroundColor: {
