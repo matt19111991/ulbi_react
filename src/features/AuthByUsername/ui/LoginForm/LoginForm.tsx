@@ -80,14 +80,16 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
       }
     } catch (e) {
       // eslint-disable-next-line no-console
-      console.log(`Error: ${e}`);
+      console.log(`Login error: ${(e as Error).message}`);
     }
   }, [dispatch, forceUpdate, onSuccess, password, username]);
 
   return (
     <DynamicModuleLoaderV2
-      // плохой вариант (пересоздание объекта на каждый ререндер)
-      // reducers={{ loginForm: loginReducer }}
+      /*
+        плохой вариант (пересоздание объекта на каждый ререндер)
+        reducers={{ loginForm: loginReducer }}
+     */
       reducers={initialReducers} // 'initialReducers' ссылка меняться не будет
     >
       <ToggleFeatures

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
@@ -85,7 +85,7 @@ Loading.decorators = [
 
 const stateError: DeepPartial<StateSchema> = {
   loginForm: {
-    error: 'ERROR',
+    error: 'Login error',
     password: '123',
     username: 'user',
   },
