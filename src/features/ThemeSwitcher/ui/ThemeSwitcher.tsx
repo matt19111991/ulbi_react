@@ -1,6 +1,7 @@
 import { memo, useCallback } from 'react';
+import { useSelector } from 'react-redux';
 
-import { saveJsonSettings } from '@/entities/User';
+import { getUserAuthData, saveJsonSettings } from '@/entities/User';
 
 import ThemeIconDeprecated from '@/shared/assets/icons/theme-old.svg';
 import ThemeIcon from '@/shared/assets/icons/theme-redesigned.svg';
@@ -26,12 +27,17 @@ export const ThemeSwitcher = memo(({ className }: ThemeSwitcherProps) => {
   const dispatch = useAppDispatch();
   const { toggleTheme } = useTheme();
 
+  const user = useSelector(getUserAuthData);
+
   const onToggleHandler = useCallback(() => {
     toggleTheme((currentTheme) => {
-      // сохраняем тему для пользователя на сервере
-      dispatch(saveJsonSettings({ theme: currentTheme }));
+      // если пользователь авторизован
+      if (user) {
+        // сохраняем тему для пользователя на сервере
+        dispatch(saveJsonSettings({ theme: currentTheme }));
+      }
     });
-  }, [dispatch, toggleTheme]);
+  }, [dispatch, toggleTheme, user]);
 
   return (
     <ToggleFeatures
