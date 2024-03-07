@@ -1,10 +1,8 @@
-import {
-  // RefObject,     // ref, который нельзя менять
-  MutableRefObject, // ref, который можно менять
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
+import { useCallback, useEffect, useRef, useState } from 'react';
+
+import type {
+  MutableRefObject, // 'ref', который можно менять
+  // RefObject,     // 'ref', который нельзя менять
 } from 'react';
 
 interface UseModalProps {
@@ -19,7 +17,7 @@ interface UseModalProps {
   isOpen?: boolean;
 
   /**
-   * Коллбэк, отрабатывающий на закрытие окна
+   * Колбэк, отрабатывающий на закрытие окна
    */
   onClose?: () => void;
 }
@@ -30,17 +28,16 @@ interface UseModalProps {
  * @param isOpen
  * @param onClose
  */
-
 export const useModal = ({ animationDelay, isOpen, onClose }: UseModalProps) => {
   const [isClosing, setIsClosing] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
-  // <ReturnType<typeof setTimeout>: получаем тип, который возвращает функция 'setTimeout'
+  // 'ReturnType<typeof setTimeout>' => получаем тип, который возвращает функция 'setTimeout'
   const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
 
   const onCloseModal = useCallback(() => {
     if (onClose) {
-      setIsClosing(true); // при нажатии на зону backdrop-а: 'isClosing' становится 'true'
+      setIsClosing(true); // при нажатии на зону 'backdrop'-а: 'isClosing' становится 'true'
 
       timerRef.current = setTimeout(() => {
         onClose();
@@ -52,7 +49,7 @@ export const useModal = ({ animationDelay, isOpen, onClose }: UseModalProps) => 
   }, [animationDelay, onClose]);
 
   /*
-    'useEffect' зависит от 'onKeyDown',
+   'useEffect' зависит от 'onKeyDown',
     поэтому 'onKeyDown' нужно мемоизировать или описать внутри 'useEffect' как callback:
     иначе 'onKeyDown' будет пересоздаваться на каждый перерендер,
     будет создаваться новая ссылка на функцию и можно войти в бесконечный цикл перерендеринга
@@ -68,7 +65,7 @@ export const useModal = ({ animationDelay, isOpen, onClose }: UseModalProps) => 
   );
 
   /*
-    поскольку используем Portal для модалки (модалка изначально отрендерена в DOM),
+    поскольку используем 'Portal' для модалки (модалка изначально отрендерена в 'DOM'),
     то нужно по открытию модалки задавать флаг 'isMounted', чтобы была возможность лениво
     подгрузить компонент в модалку или установить фокус на элементы внутри модалки
   */

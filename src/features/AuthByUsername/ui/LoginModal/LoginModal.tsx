@@ -18,7 +18,7 @@ interface LoginModalProps {
   isOpen: boolean;
 
   /**
-   * Коллбэк при закрытии модального окна
+   * Колбэк при закрытии модального окна
    */
   onClose: () => void;
 }
