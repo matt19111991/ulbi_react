@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -37,6 +38,7 @@ export const Primary: Story = {
 
 Primary.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
   StoreDecorator(stateLoginForm),
 ];
 
@@ -48,6 +50,7 @@ export const Dark: Story = {
 
 Dark.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
   StoreDecorator(stateLoginForm),
   ThemeDecorator(Theme.DARK),
 ];
@@ -60,6 +63,7 @@ export const Orange: Story = {
 
 Orange.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
   StoreDecorator(stateLoginForm),
   ThemeDecorator(Theme.ORANGE),
 ];
@@ -78,6 +82,7 @@ export const Loading: Story = {
 
 Loading.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
   StoreDecorator(stateLoading),
 ];
 
@@ -95,6 +100,10 @@ export const Error: Story = {
   args: {},
 };
 
-Error.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), StoreDecorator(stateError)];
+Error.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  StoreDecorator(stateError),
+];
 
 export default meta;

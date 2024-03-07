@@ -105,6 +105,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
             <InputRedesigned
               autoFocus
               className={classes.input}
+              disabled={isLoading}
               fullWidth
               onChange={onChangeUsername}
               placeholder={t('Имя пользователя')}
@@ -114,6 +115,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
 
             <InputRedesigned
               className={classes.input}
+              disabled={isLoading}
               fullWidth
               onChange={onChangePassword}
               placeholder={t('Пароль')}
@@ -144,6 +146,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
             <InputDeprecated
               autoFocus
               className={classes.input}
+              disabled={isLoading}
               onChange={onChangeUsername}
               placeholder={t('Имя пользователя')}
               type='text'
@@ -152,6 +155,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
 
             <InputDeprecated
               className={classes.input}
+              disabled={isLoading}
               onChange={onChangePassword}
               placeholder={t('Пароль')}
               type='text'
