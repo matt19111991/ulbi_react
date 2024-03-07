@@ -3,7 +3,6 @@
   display: flex;
   inset: 0; /* выставляем '0' сразу для 'top', 'right', 'bottom' и 'left' */
   justify-content: center;
-  opacity: 0;
   pointer-events: none;
   position: fixed;
   z-index: var(--overlay-z-index);
@@ -13,8 +12,7 @@
   border-radius: 12px;
   max-width: 60%;
   padding: 20px;
-  transform: scale(.5);
-  transition: .3s transform;
+  transition: .3s transform; /* переход при закрытии модального окна */
   z-index: var(--modal-z-index);
 }
 
@@ -32,13 +30,40 @@
   }
 }
 
+/*
+  @keyframes [название_анимации] {
+    [from | проценты] { ...стили }
+    [to   | проценты] { ...стили }
+  }
+*/
+@keyframes appear {
+  0% {
+    transform: scale(.5);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/*
+  здесь делаем открытие модального окна через 'animation', а не через 'transition', т.к.:
+    - можем лениво подгружать 'children' и редюсеры =>
+        для 'transition' нет информации: с какого на какое состояние переходить (изначально компонент будет 'null'):
+          if (lazy && !isMounted) {
+            return null;
+          }
+
+    - используем 'Portal' => могут быть проблемы с фокусом при попытках адаптации 'transition' для
+      только что загруженного ленивого компонента и повторно открываемого загруженного ленивого компонента
+*/
 .opened {
-  opacity: 1;
   pointer-events: auto;
   z-index: var(--modal-z-index);
 
   .content {
-    transform: scale(1);
+    /* animation: [название_анимации] [продолжительность] [функция_для_анимации] */
+    animation: appear .3s ease-in;
   }
 }
 
@@ -48,7 +73,7 @@
 */
 .isClosing {
   .content {
-    transform: scale(.1);
+    transform: scale(0);
   }
 }
 
