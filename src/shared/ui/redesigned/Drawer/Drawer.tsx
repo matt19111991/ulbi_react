@@ -52,7 +52,7 @@ const height = window.innerHeight - 100;
 export const DrawerContent = ({ children, className, isOpen, lazy, onClose }: DrawerProps) => {
   const { Gesture, Spring } = useAnimationLibraries();
 
-  const { isMounted, onCloseModal } = useModal({ animationDelay: 300, isOpen, onClose });
+  const { isMounted, onCloseModal } = useModal({ animationCloseDelay: 300, isOpen, onClose });
 
   const [{ y }, api] = Spring.useSpring(() => ({ y: height }));
 

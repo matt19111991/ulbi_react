@@ -138,6 +138,12 @@ export const Input = memo(
     };
 
     const inputMods: Mods = {
+      /*
+        нужен статичный класс, т.к. по нему будем находить инпуты, в которые нужно поставить фокус
+        в модалках, которые при закрытии остаются в 'DOM'
+      */
+      autofocus: autoFocus,
+
       [classes.fullWidth]: fullWidth,
     };
 

@@ -141,7 +141,7 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
         }
       />
 
-      {isAuthModal && <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />}
+      <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
     </header>
   );
 });

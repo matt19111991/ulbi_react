@@ -41,7 +41,11 @@ interface ModalProps {
 }
 
 export const Modal = ({ children, className, isOpen, lazy, onClose }: ModalProps) => {
-  const { isMounted, isClosing, onCloseModal } = useModal({ animationDelay: 300, isOpen, onClose });
+  const { isMounted, isClosing, onCloseModal } = useModal({
+    animationCloseDelay: 300,
+    isOpen,
+    onClose,
+  });
 
   const { theme } = useTheme();
 

@@ -1,8 +1,11 @@
 .Modal {
   align-items: center;
   display: flex;
-  inset: 0; /* выставляем '0' сразу для 'top', 'right', 'bottom' и 'left' */
+
+  /* выставляем '0' сразу для 'top', 'right', 'bottom', 'left' и заполняем все доступное пространство родителя */
+  inset: 0;
   justify-content: center;
+  opacity: 0;
   pointer-events: none;
   position: fixed;
   z-index: var(--overlay-z-index);
@@ -58,6 +61,7 @@
       только что загруженного ленивого компонента и повторно открываемого загруженного ленивого компонента
 */
 .opened {
+  opacity: 1;
   pointer-events: auto;
   z-index: var(--modal-z-index);
 

@@ -1,6 +1,8 @@
 .Drawer {
   align-items: flex-end;
   display: flex;
+
+  /* выставляем '0' сразу для 'top', 'right', 'bottom', 'left' и заполняем все доступное пространство родителя */
   inset: 0;
   position: fixed;
   z-index: var(--overlay-z-index);
