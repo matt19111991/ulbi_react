@@ -127,7 +127,7 @@ export const DrawerContent = ({ children, className, isOpen, lazy, onClose }: Dr
   ];
 
   return (
-    <Portal element={document.getElementById('app') ?? document.body}>
+    <Portal containerElement={document.getElementById('app') ?? document.body}>
       <div className={classNames(classes.Drawer, mods, additionalClasses)}>
         <Overlay onClick={onCloseModal} />
 

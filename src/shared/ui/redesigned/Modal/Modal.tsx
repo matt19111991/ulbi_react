@@ -8,8 +8,8 @@ import { toggleFeatures } from '@/shared/lib/features';
 import { useModal } from '@/shared/lib/hooks/useModal/useModal';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 
-import { Overlay } from '../Overlay/Overlay';
-import { Portal } from '../Portal/Portal';
+import { Overlay } from '../Overlay';
+import { Portal } from '../Portal';
 
 import classes from './Modal.module.scss';
 
@@ -70,7 +70,7 @@ export const Modal = ({ children, className, isOpen, lazy, onClose }: ModalProps
   ];
 
   return (
-    <Portal element={document.getElementById('app') ?? document.body}>
+    <Portal containerElement={document.getElementById('app') ?? document.body}>
       <div className={classNames(classes.Modal, mods, additionalClasses)}>
         <Overlay onClick={onCloseModal} />
 
