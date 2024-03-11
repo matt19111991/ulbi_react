@@ -1,13 +1,22 @@
+import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
 
+import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+
+import { loginReducer } from '../../model/slice/loginSlice';
+
 import { LoginModal } from './LoginModal';
+
+const asyncReducers: ReducersList = {
+  loginForm: loginReducer,
+};
 
 const stateLoginModal: DeepPartial<StateSchema> = {
   loginForm: {
@@ -33,30 +42,33 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     isOpen: true,
+    onClose: action('onClose'),
   },
 };
 
-Primary.decorators = [StoreDecorator(stateLoginModal)];
+Primary.decorators = [StoreDecorator(stateLoginModal, asyncReducers)];
 
 // Dark login modal
 
 export const Dark: Story = {
   args: {
     isOpen: true,
+    onClose: action('onClose'),
   },
 };
 
-Dark.decorators = [StoreDecorator(stateLoginModal), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [StoreDecorator(stateLoginModal, asyncReducers), ThemeDecorator(Theme.DARK)];
 
 // Orange login modal
 
 export const Orange: Story = {
   args: {
     isOpen: true,
+    onClose: action('onClose'),
   },
 };
 
-Orange.decorators = [StoreDecorator(stateLoginModal), ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [StoreDecorator(stateLoginModal, asyncReducers), ThemeDecorator(Theme.ORANGE)];
 
 // Loading login modal
 
@@ -69,16 +81,17 @@ const stateLoading: DeepPartial<StateSchema> = {
 export const Loading: Story = {
   args: {
     isOpen: true,
+    onClose: action('onClose'),
   },
 };
 
-Loading.decorators = [StoreDecorator(stateLoading)];
+Loading.decorators = [StoreDecorator(stateLoading, asyncReducers)];
 
 // Error login modal
 
 const stateError: DeepPartial<StateSchema> = {
   loginForm: {
-    error: 'ERROR',
+    error: 'Login error',
     password: '123',
     username: 'user',
   },
@@ -87,9 +100,10 @@ const stateError: DeepPartial<StateSchema> = {
 export const Error: Story = {
   args: {
     isOpen: true,
+    onClose: action('onClose'),
   },
 };
 
-Error.decorators = [StoreDecorator(stateError)];
+Error.decorators = [StoreDecorator(stateError, asyncReducers)];
 
 export default meta;

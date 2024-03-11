@@ -1,4 +1,3 @@
-import type { ReactElement } from 'react';
 import type { StoryFn } from '@storybook/react';
 
 import { ThemeProvider } from '@/app/providers/ThemeProvider';
@@ -9,7 +8,7 @@ import { Theme } from '@/shared/const/theme';
 
 export const ThemeDecorator =
   (theme: Theme) =>
-  (Story: StoryFn): ReactElement => {
+  (Story: StoryFn): JSX.Element => {
     // может не меняться цвет скролла при переключении темы, поэтому добавляем класс на 'body'
     document.body.className = theme;
 

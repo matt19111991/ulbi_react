@@ -1,4 +1,3 @@
-import type { ReactElement } from 'react';
 import type { StoryFn } from '@storybook/react';
 
 import { setFeatureFlags } from '@/shared/lib/features';
@@ -9,7 +8,7 @@ import type { FeatureFlags } from '@/shared/types/featureFlags';
 
 export const FeatureFlagsDecorator =
   (features: FeatureFlags) =>
-  (Story: StoryFn): ReactElement => {
+  (Story: StoryFn): JSX.Element => {
     setFeatureFlags(features);
 
     // основной фон и цвет темы для всего приложения в 'storybook' применяются через 'appClass'

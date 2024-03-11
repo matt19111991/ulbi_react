@@ -1,7 +1,6 @@
-import type { ReactElement } from 'react';
 import type { StoryFn } from '@storybook/react';
 
-export const IndentsDecorator = (Story: StoryFn): ReactElement => (
+export const IndentsDecorator = (Story: StoryFn): JSX.Element => (
   <div style={{ padding: 16 }}>
     <Story />
   </div>
