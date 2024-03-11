@@ -32,7 +32,7 @@ export const useModal = ({ animationCloseDelay, isOpen, onClose }: UseModalProps
   const [isClosing, setIsClosing] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
-  // 'ReturnType<typeof setTimeout>' => получаем тип, который возвращает функция 'setTimeout'
+  // 'ReturnType<typeof setTimeout>' => получаем тип, который возвращает функция 'setTimeout()'
   const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
 
   const onCloseModal = useCallback(() => {
@@ -49,9 +49,9 @@ export const useModal = ({ animationCloseDelay, isOpen, onClose }: UseModalProps
   }, [animationCloseDelay, onClose]);
 
   /*
-   'useEffect' зависит от 'onKeyDown',
-    поэтому 'onKeyDown' нужно мемоизировать или описать внутри 'useEffect' как 'callback':
-      иначе 'onKeyDown' будет пересоздаваться на каждый перерендер,
+    последний 'useEffect' зависит от 'onKeyDown()',
+    поэтому 'onKeyDown()' нужно мемоизировать или описать внутри 'useEffect' как 'callback':
+      иначе 'onKeyDown()' будет пересоздаваться на каждый перерендер, следовательно,
       будет создаваться новая ссылка на функцию и можно войти в бесконечный цикл перерендеринга
   */
 
@@ -65,7 +65,7 @@ export const useModal = ({ animationCloseDelay, isOpen, onClose }: UseModalProps
   );
 
   /*
-    модалка будет отрендерена в 'DOM' после ленивой загрузки, и останется в 'DOM' после закрытия;
+    модалка будет отрендерена в 'DOM' после ленивой загрузки и останется в 'DOM' после закрытия;
     без ленивой загрузки модалка всегда будет в 'DOM'
 
     поскольку используем 'Portal', то нужно по открытию модалки задавать ей флаг
@@ -86,7 +86,7 @@ export const useModal = ({ animationCloseDelay, isOpen, onClose }: UseModalProps
       ) as HTMLCollectionOf<HTMLInputElement>;
 
       // устанавливаем фокус на первый найденный инпут с классом 'autofocus'
-      if (autoFocusingInputs?.length) {
+      if (autoFocusingInputs.length) {
         const [input] = autoFocusingInputs;
 
         input.focus();
