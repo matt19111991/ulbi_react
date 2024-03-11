@@ -4,10 +4,6 @@ import { Theme } from '../../../const/theme';
 
 import { ThemeContext } from '../../context/theme';
 
-/**
- * Хук для использования темы
- */
-
 interface UseThemeResults {
   /**
    * Значение темы
@@ -17,16 +13,19 @@ interface UseThemeResults {
   /**
    * Функция для переключения темы
    */
-  toggleTheme: (saveAction?: (theme: Theme) => void) => void;
+  toggleTheme: (saveAction?: (themeToSave: Theme) => void) => void;
 }
 
+/**
+ * Хук для использования темы
+ */
 export const useTheme = (): UseThemeResults => {
-  const { setTheme, theme } = useContext(ThemeContext);
+  const { setTheme, theme: currentTheme } = useContext(ThemeContext);
 
-  const toggleTheme = (saveAction?: (theme: Theme) => void) => {
+  const toggleTheme = (saveAction?: (themeToSave: Theme) => void) => {
     let newTheme: Theme;
 
-    switch (theme) {
+    switch (currentTheme) {
       case Theme.DARK:
         newTheme = Theme.LIGHT;
         break;
@@ -44,16 +43,13 @@ export const useTheme = (): UseThemeResults => {
         break;
     }
 
-    setTheme?.(newTheme); // иначе ошибка "Cannot invoke an object which is possibly 'undefined'"
+    setTheme?.(newTheme); // без '?.' ошибка "Cannot invoke an object which is possibly 'undefined'"
 
     saveAction?.(newTheme); // сохраняем тему на сервере для текущего пользователя
-
-    // чтобы не вешать дополнительные классы `${theme}` для 'App.tsx' и порталов
-    document.body.className = newTheme;
   };
 
   return {
-    theme: theme || Theme.LIGHT,
+    theme: currentTheme || Theme.LIGHT,
     toggleTheme,
   };
 };

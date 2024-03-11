@@ -42,7 +42,7 @@ const ThemeProvider = ({ children, initialTheme }: ThemeProviderProps) => {
   }, [initialTheme, isThemeInited]);
 
   useEffect(() => {
-    // может не меняться цвет скролла при переключении темы, поэтому добавляем класс на 'body'
+    // устанавливаем класс темы для 'body' (иначе не будет работать переключение темы)
     document.body.className = theme;
 
     localStorage.setItem(THEME_LOCALSTORAGE_KEY, theme);

@@ -76,15 +76,11 @@ describe('userSlice', () => {
       window.localStorage.setItem(THEME_LOCALSTORAGE_KEY, authData.jsonSettings?.theme as Theme);
       window.localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(authData.id));
 
-      document.body.className = authData.jsonSettings?.theme as Theme;
-
       const state: DeepPartial<UserSchema> = { authData };
 
       const reducer = userReducer(state as UserSchema, userActions.logout());
 
       expect(reducer).toEqual({ authData: undefined });
-
-      expect(document.body).toHaveClass(Theme.LIGHT);
 
       expect(window.localStorage.getItem(LAST_DESIGN_LOCALSTORAGE_KEY)).toBe('new');
       expect(window.localStorage.getItem(THEME_LOCALSTORAGE_KEY)).toBeNull();

@@ -10,7 +10,7 @@ import { Theme } from '@/shared/const/theme';
 export const ThemeDecorator =
   (theme: Theme) =>
   (Story: StoryFn): ReactElement => {
-    // чтобы не вешать дополнительные классы `${theme}` для 'App.tsx' и порталов
+    // может не меняться цвет скролла при переключении темы, поэтому добавляем класс на 'body'
     document.body.className = theme;
 
     const getThemedStory = () => (

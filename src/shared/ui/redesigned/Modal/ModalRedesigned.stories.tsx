@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
@@ -25,6 +26,7 @@ export const Primary: Story = {
   args: {
     children: <>Modal content text</>,
     isOpen: true,
+    onClose: action('onClose'),
   },
 };
 
@@ -36,6 +38,7 @@ export const Dark: Story = {
   args: {
     children: <>Modal content text</>,
     isOpen: true,
+    onClose: action('onClose'),
   },
 };
 
@@ -47,6 +50,7 @@ export const Orange: Story = {
   args: {
     children: <>Modal content text</>,
     isOpen: true,
+    onClose: action('onClose'),
   },
 };
 

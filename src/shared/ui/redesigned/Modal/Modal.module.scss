@@ -5,7 +5,9 @@
   /* выставляем '0' сразу для 'top', 'right', 'bottom', 'left' и заполняем все доступное пространство родителя */
   inset: 0;
   justify-content: center;
-  opacity: 0;
+  opacity: 0; /* без 'opacity' перехода окно после закрытия будет сразу же открываться */
+
+  /* без 'pointer-events: none' после закрытия окна будет невозможно нажать на что-либо на странице */
   pointer-events: none;
   position: fixed;
   z-index: var(--overlay-z-index);
@@ -16,6 +18,8 @@
   max-width: 60%;
   padding: 20px;
   transition: .3s transform; /* переход при закрытии модального окна */
+
+  /* у контента 'z-index' должен быть больше, чем у 'overlay', чтобы с контентом можно было взаимодействовать */
   z-index: var(--modal-z-index);
 }
 
@@ -61,7 +65,7 @@
       только что загруженного ленивого компонента и повторно открываемого загруженного ленивого компонента
 */
 .opened {
-  opacity: 1;
+  opacity: 1; /* без 'opacity' перехода окно после закрытия будет сразу же открываться */
   pointer-events: auto;
   z-index: var(--modal-z-index);
 

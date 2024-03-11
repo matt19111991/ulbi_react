@@ -8,7 +8,6 @@ import {
 } from '@/shared/const/localstorage';
 
 import { getRouteMain } from '@/shared/const/router';
-import { Theme } from '@/shared/const/theme';
 
 import { setFeatureFlags } from '@/shared/lib/features';
 
@@ -37,7 +36,7 @@ export const userSlice = createSlice({
       localStorage.setItem(USER_LOCALSTORAGE_KEY, action.payload.id);
 
       if (action.payload.jsonSettings?.theme) {
-        // инициализируем тему, сохраненную для пользователя
+        // инициализируем тему, сохраненную для пользователя (устанавливая класс темы для 'body')
         document.body.className = action.payload.jsonSettings?.theme;
       }
 
@@ -50,9 +49,6 @@ export const userSlice = createSlice({
 
     logout: (state) => {
       state.authData = undefined;
-
-      // сбрасываем пользовательскую тему
-      document.body.className = Theme.LIGHT;
 
       // очищаем 'localStorage' от пользовательского 'id' и сохраненной темы
       localStorage.removeItem(THEME_LOCALSTORAGE_KEY);
@@ -70,7 +66,7 @@ export const userSlice = createSlice({
       setFeatureFlags(action.payload?.features);
 
       if (action.payload?.jsonSettings?.theme) {
-        // инициализируем тему, сохраненную для пользователя
+        // инициализируем тему, сохраненную для пользователя (устанавливая класс темы для 'body')
         document.body.className = action.payload.jsonSettings?.theme;
       }
 
