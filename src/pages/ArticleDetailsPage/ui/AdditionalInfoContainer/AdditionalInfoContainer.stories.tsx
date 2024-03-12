@@ -5,7 +5,7 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 import { articleDetailsReducer } from '@/entities/Article/testing';
 import { userReducer } from '@/entities/User/testing';
 
-import Avatar from '@/shared/assets/tests/storybook.jpg';
+import Avatar from '@/shared/assets/tests/storybook2.jpg';
 
 import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
