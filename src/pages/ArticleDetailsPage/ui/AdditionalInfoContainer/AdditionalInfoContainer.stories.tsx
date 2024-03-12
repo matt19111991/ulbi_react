@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { StateSchema } from '@/app/providers/StoreProvider';
 
 import { articleDetailsReducer } from '@/entities/Article/testing';
+import { userReducer } from '@/entities/User/testing';
 
 import Avatar from '@/shared/assets/tests/storybook.jpg';
 
@@ -18,6 +19,7 @@ import { AdditionalInfoContainer } from './AdditionalInfoContainer';
 
 const asyncReducers: ReducersList = {
   articleDetails: articleDetailsReducer,
+  user: userReducer,
 };
 
 const stateBase: DeepPartial<StateSchema> = {

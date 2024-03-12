@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
-import { ArticleBlockType, ArticleType } from '@/entities/Article/testing';
+import { ArticleBlockType, articleDetailsReducer, ArticleType } from '@/entities/Article/testing';
 
 import Image1 from '@/shared/assets/tests/storybook.jpg';
 import Image2 from '@/shared/assets/tests/storybook2.jpg';
@@ -12,7 +12,16 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Theme } from '@/shared/const/theme';
 
+import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+
+import { articleDetailsPageReducer } from '../../model/slices';
+
 import ArticleDetailsPage from './ArticleDetailsPage';
+
+const asyncReducers: ReducersList = {
+  articleDetails: articleDetailsReducer,
+  articleDetailsPage: articleDetailsPageReducer,
+};
 
 const stateArticleDetails: DeepPartial<StateSchema> = {
   articleDetails: {
@@ -176,7 +185,7 @@ export const Primary: Story = {
   },
 };
 
-Primary.decorators = [StoreDecorator(stateArticleDetails)];
+Primary.decorators = [StoreDecorator(stateArticleDetails, asyncReducers)];
 
 // Dark article details page
 
@@ -186,7 +195,7 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [StoreDecorator(stateArticleDetails), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [StoreDecorator(stateArticleDetails, asyncReducers), ThemeDecorator(Theme.DARK)];
 
 // Orange article details page
 
@@ -196,7 +205,10 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [StoreDecorator(stateArticleDetails), ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  StoreDecorator(stateArticleDetails, asyncReducers),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Loading article details page
 
@@ -219,7 +231,7 @@ const stateArticleLoading: DeepPartial<StateSchema> = {
   },
 };
 
-Loading.decorators = [StoreDecorator(stateArticleLoading)];
+Loading.decorators = [StoreDecorator(stateArticleLoading, asyncReducers)];
 
 // Error article details page
 
@@ -243,7 +255,7 @@ const stateArticleError: DeepPartial<StateSchema> = {
   },
 };
 
-Error.decorators = [StoreDecorator(stateArticleError)];
+Error.decorators = [StoreDecorator(stateArticleError, asyncReducers)];
 
 // Not found article details page
 
@@ -255,6 +267,6 @@ const stateArticleNotFound: DeepPartial<StateSchema> = {
   articleDetails: {},
 };
 
-NotFound.decorators = [StoreDecorator(stateArticleNotFound)];
+NotFound.decorators = [StoreDecorator(stateArticleNotFound, asyncReducers)];
 
 export default meta;
