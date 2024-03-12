@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
+import { articleDetailsReducer } from '@/entities/Article/testing';
+
 import Avatar from '@/shared/assets/tests/storybook.jpg';
 
 import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
@@ -10,7 +12,13 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Theme } from '@/shared/const/theme';
 
+import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+
 import { AdditionalInfoContainer } from './AdditionalInfoContainer';
+
+const asyncReducers: ReducersList = {
+  articleDetails: articleDetailsReducer,
+};
 
 const stateBase: DeepPartial<StateSchema> = {
   articleDetails: {
@@ -61,7 +69,7 @@ export const Primary: Story = {
   args: {},
 };
 
-Primary.decorators = [IndentsDecorator, StoreDecorator(stateBase)];
+Primary.decorators = [IndentsDecorator, StoreDecorator(stateBase, asyncReducers)];
 
 // Dark additional info container
 
@@ -69,7 +77,11 @@ export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [IndentsDecorator, StoreDecorator(stateBase), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+  IndentsDecorator,
+  StoreDecorator(stateBase, asyncReducers),
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange additional info container
 
@@ -77,7 +89,11 @@ export const Orange: Story = {
   args: {},
 };
 
-Orange.decorators = [IndentsDecorator, StoreDecorator(stateBase), ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  IndentsDecorator,
+  StoreDecorator(stateBase, asyncReducers),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Loading additional info container
 
@@ -85,6 +101,6 @@ export const Loading: Story = {
   args: {},
 };
 
-Loading.decorators = [IndentsDecorator, StoreDecorator(stateLoading)];
+Loading.decorators = [IndentsDecorator, StoreDecorator(stateLoading, asyncReducers)];
 
 export default meta;

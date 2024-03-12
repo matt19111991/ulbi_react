@@ -12,7 +12,15 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Theme } from '@/shared/const/theme';
 
+import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+
+import { articleDetailsPageReducer } from '../../model/slices';
+
 import { ArticleDetailsComments } from './ArticleDetailsComments';
+
+const asyncReducers: ReducersList = {
+  articleDetailsPage: articleDetailsPageReducer,
+};
 
 const stateArticleDetailsComments: DeepPartial<StateSchema> = {
   articleDetailsPage: {
@@ -61,7 +69,10 @@ export const PrimaryOld: Story = {
   args: {},
 };
 
-PrimaryOld.decorators = [IndentsDecorator, StoreDecorator(stateArticleDetailsComments)];
+PrimaryOld.decorators = [
+  IndentsDecorator,
+  StoreDecorator(stateArticleDetailsComments, asyncReducers),
+];
 
 // Dark article details comments old
 
@@ -71,7 +82,7 @@ export const DarkOld: Story = {
 
 DarkOld.decorators = [
   IndentsDecorator,
-  StoreDecorator(stateArticleDetailsComments),
+  StoreDecorator(stateArticleDetailsComments, asyncReducers),
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -83,7 +94,7 @@ export const OrangeOld: Story = {
 
 OrangeOld.decorators = [
   IndentsDecorator,
-  StoreDecorator(stateArticleDetailsComments),
+  StoreDecorator(stateArticleDetailsComments, asyncReducers),
   ThemeDecorator(Theme.ORANGE),
 ];
 
@@ -96,7 +107,7 @@ export const PrimaryNew: Story = {
 PrimaryNew.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
-  StoreDecorator(stateArticleDetailsComments),
+  StoreDecorator(stateArticleDetailsComments, asyncReducers),
 ];
 
 // Dark article details comments new
@@ -108,7 +119,7 @@ export const DarkNew: Story = {
 DarkNew.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
-  StoreDecorator(stateArticleDetailsComments),
+  StoreDecorator(stateArticleDetailsComments, asyncReducers),
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -121,7 +132,7 @@ export const OrangeNew: Story = {
 OrangeNew.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
-  StoreDecorator(stateArticleDetailsComments),
+  StoreDecorator(stateArticleDetailsComments, asyncReducers),
   ThemeDecorator(Theme.ORANGE),
 ];
 
