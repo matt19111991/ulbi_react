@@ -2,13 +2,21 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
+import { articleDetailsReducer } from '@/entities/Article/testing';
+
 import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
 
+import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+
 import { ArticleDetailsPageHeader } from './ArticleDetailsPageHeader';
+
+const asyncReducers: ReducersList = {
+  articleDetails: articleDetailsReducer,
+};
 
 const stateNotEditable: DeepPartial<StateSchema> = {};
 
@@ -48,7 +56,7 @@ export const PrimaryNotEditable: Story = {
   args: {},
 };
 
-PrimaryNotEditable.decorators = [IndentsDecorator, StoreDecorator(stateNotEditable)];
+PrimaryNotEditable.decorators = [IndentsDecorator, StoreDecorator(stateNotEditable, asyncReducers)];
 
 // Dark not editable
 
@@ -58,7 +66,7 @@ export const DarkNotEditable: Story = {
 
 DarkNotEditable.decorators = [
   IndentsDecorator,
-  StoreDecorator(stateNotEditable),
+  StoreDecorator(stateNotEditable, asyncReducers),
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -70,7 +78,7 @@ export const OrangeNotEditable: Story = {
 
 OrangeNotEditable.decorators = [
   IndentsDecorator,
-  StoreDecorator(stateNotEditable),
+  StoreDecorator(stateNotEditable, asyncReducers),
   ThemeDecorator(Theme.ORANGE),
 ];
 
@@ -80,7 +88,7 @@ export const PrimaryEditable: Story = {
   args: {},
 };
 
-PrimaryEditable.decorators = [IndentsDecorator, StoreDecorator(stateEditable)];
+PrimaryEditable.decorators = [IndentsDecorator, StoreDecorator(stateEditable, asyncReducers)];
 
 // Dark editable
 
@@ -90,7 +98,7 @@ export const DarkEditable: Story = {
 
 DarkEditable.decorators = [
   IndentsDecorator,
-  StoreDecorator(stateEditable),
+  StoreDecorator(stateEditable, asyncReducers),
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -102,7 +110,7 @@ export const OrangeEditable: Story = {
 
 OrangeEditable.decorators = [
   IndentsDecorator,
-  StoreDecorator(stateEditable),
+  StoreDecorator(stateEditable, asyncReducers),
   ThemeDecorator(Theme.ORANGE),
 ];
 
