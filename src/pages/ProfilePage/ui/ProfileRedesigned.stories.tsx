@@ -4,6 +4,9 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 
 import { Country } from '@/entities/Country/testing';
 import { Currency } from '@/entities/Currency/testing';
+import { userReducer } from '@/entities/User/testing';
+
+import { profileReducer } from '@/features/EditableProfileCard/testing';
 
 import Avatar from '@/shared/assets/tests/storybook.jpg';
 
@@ -14,7 +17,14 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Theme } from '@/shared/const/theme';
 
+import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+
 import ProfilePage from './ProfilePage';
+
+const asyncReducers: ReducersList = {
+  profile: profileReducer,
+  user: userReducer,
+};
 
 const stateProfile: DeepPartial<StateSchema> = {
   profile: {
@@ -64,7 +74,7 @@ export const Primary: Story = {
 Primary.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
-  StoreDecorator(stateProfile),
+  StoreDecorator(stateProfile, asyncReducers),
 ];
 
 // Dark profile page
@@ -78,7 +88,7 @@ export const Dark: Story = {
 Dark.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
-  StoreDecorator(stateProfile),
+  StoreDecorator(stateProfile, asyncReducers),
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -93,7 +103,7 @@ export const Orange: Story = {
 Orange.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
-  StoreDecorator(stateProfile),
+  StoreDecorator(stateProfile, asyncReducers),
   ThemeDecorator(Theme.ORANGE),
 ];
 
@@ -108,7 +118,7 @@ export const PrimaryRating: Story = {
 PrimaryRating.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
-  StoreDecorator(stateProfile),
+  StoreDecorator(stateProfile, asyncReducers),
 ];
 
 // Dark profile page with rating
@@ -122,7 +132,7 @@ export const DarkRating: Story = {
 DarkRating.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
-  StoreDecorator(stateProfile),
+  StoreDecorator(stateProfile, asyncReducers),
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -137,7 +147,7 @@ export const OrangeRating: Story = {
 OrangeRating.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
-  StoreDecorator(stateProfile),
+  StoreDecorator(stateProfile, asyncReducers),
   ThemeDecorator(Theme.ORANGE),
 ];
 
@@ -150,7 +160,7 @@ export const Error: Story = {
 Error.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
-  StoreDecorator(stateProfile),
+  StoreDecorator(stateProfile, asyncReducers),
 ];
 
 export default meta;

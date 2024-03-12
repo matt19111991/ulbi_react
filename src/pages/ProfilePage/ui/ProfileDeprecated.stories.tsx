@@ -4,6 +4,9 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 
 import { Country } from '@/entities/Country/testing';
 import { Currency } from '@/entities/Currency/testing';
+import { userReducer } from '@/entities/User/testing';
+
+import { profileReducer } from '@/features/EditableProfileCard/testing';
 
 import Avatar from '@/shared/assets/tests/storybook.jpg';
 
@@ -13,7 +16,14 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Theme } from '@/shared/const/theme';
 
+import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+
 import ProfilePage from './ProfilePage';
+
+const asyncReducers: ReducersList = {
+  profile: profileReducer,
+  user: userReducer,
+};
 
 const stateProfile: DeepPartial<StateSchema> = {
   profile: {
@@ -60,7 +70,7 @@ export const Primary: Story = {
   },
 };
 
-Primary.decorators = [IndentsDecorator, StoreDecorator(stateProfile)];
+Primary.decorators = [IndentsDecorator, StoreDecorator(stateProfile, asyncReducers)];
 
 // Dark profile page
 
@@ -70,7 +80,11 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [IndentsDecorator, StoreDecorator(stateProfile), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+  IndentsDecorator,
+  StoreDecorator(stateProfile, asyncReducers),
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange profile page
 
@@ -80,7 +94,11 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [IndentsDecorator, StoreDecorator(stateProfile), ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  IndentsDecorator,
+  StoreDecorator(stateProfile, asyncReducers),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Primary profile page with rating
 
@@ -90,7 +108,7 @@ export const PrimaryRating: Story = {
   },
 };
 
-PrimaryRating.decorators = [IndentsDecorator, StoreDecorator(stateProfile)];
+PrimaryRating.decorators = [IndentsDecorator, StoreDecorator(stateProfile, asyncReducers)];
 
 // Dark profile page with rating
 
@@ -102,7 +120,7 @@ export const DarkRating: Story = {
 
 DarkRating.decorators = [
   IndentsDecorator,
-  StoreDecorator(stateProfile),
+  StoreDecorator(stateProfile, asyncReducers),
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -116,7 +134,7 @@ export const OrangeRating: Story = {
 
 OrangeRating.decorators = [
   IndentsDecorator,
-  StoreDecorator(stateProfile),
+  StoreDecorator(stateProfile, asyncReducers),
   ThemeDecorator(Theme.ORANGE),
 ];
 
@@ -126,6 +144,6 @@ export const Error: Story = {
   args: {},
 };
 
-Error.decorators = [IndentsDecorator, StoreDecorator(stateProfile)];
+Error.decorators = [IndentsDecorator, StoreDecorator(stateProfile, asyncReducers)];
 
 export default meta;

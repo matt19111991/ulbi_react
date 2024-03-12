@@ -1,9 +1,12 @@
-import { FC, memo, SVGProps } from 'react';
+import { memo } from 'react';
+import type { FC, SVGProps } from 'react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
+import type { Mods } from '@/shared/lib/classNames/classNames';
 
 import classes from './Icon.module.scss';
 
+// в дополнение к 'IconProps' для 'Icon' компонента будут предлагаться 'SVG-props'
 interface IconProps extends SVGProps<SVGSVGElement> {
   /**
    * Внешний класс
@@ -16,22 +19,24 @@ interface IconProps extends SVGProps<SVGSVGElement> {
   inverted?: boolean;
 
   /**
-   * SVG изображение
+   * 'SVG' изображение (компонент)
    */
   Svg: FC<SVGProps<SVGSVGElement>>;
 }
 
-// Обёртка для SVG (чтобы применялся цвет соответствующей темы к SVG)
+// Обёртка для 'SVG' (чтобы применялся цвет соответствующей темы к 'SVG')
 
 /**
  * Устарел, используем новые компоненты из папки 'redesigned'
  * @deprecated
  */
-export const Icon = memo(({ className, inverted, Svg, ...rest }: IconProps) => (
-  <Svg
-    className={classNames(inverted ? classes.inverted : classes.Icon, {}, [className])}
-    {...rest}
-  />
-));
+export const Icon = memo(({ className, inverted, Svg, ...rest }: IconProps) => {
+  const mods: Mods = {
+    [classes.inverted]: inverted,
+    [classes.primary]: !inverted,
+  };
+
+  return <Svg className={classNames('', mods, [className])} {...rest} />;
+});
 
 Icon.displayName = 'Icon';
