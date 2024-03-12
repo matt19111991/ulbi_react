@@ -13,7 +13,15 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Theme } from '@/shared/const/theme';
 
+import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+
+import { profileReducer } from '../../model/slice/profileSlice';
+
 import { EditableProfileCard } from './EditableProfileCard';
+
+const asyncReducers: ReducersList = {
+  profile: profileReducer,
+};
 
 const stateEditableProfileCard: DeepPartial<StateSchema> = {
   profile: {
@@ -48,7 +56,7 @@ export const PrimaryOld: Story = {
   args: {},
 };
 
-PrimaryOld.decorators = [StoreDecorator(stateEditableProfileCard)];
+PrimaryOld.decorators = [StoreDecorator(stateEditableProfileCard, asyncReducers)];
 
 // Dark editable profile card old
 
@@ -56,7 +64,10 @@ export const DarkOld: Story = {
   args: {},
 };
 
-DarkOld.decorators = [StoreDecorator(stateEditableProfileCard), ThemeDecorator(Theme.DARK)];
+DarkOld.decorators = [
+  StoreDecorator(stateEditableProfileCard, asyncReducers),
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange editable profile card old
 
@@ -64,7 +75,10 @@ export const OrangeOld: Story = {
   args: {},
 };
 
-OrangeOld.decorators = [StoreDecorator(stateEditableProfileCard), ThemeDecorator(Theme.ORANGE)];
+OrangeOld.decorators = [
+  StoreDecorator(stateEditableProfileCard, asyncReducers),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Primary editable profile card new
 
@@ -74,7 +88,7 @@ export const PrimaryNew: Story = {
 
 PrimaryNew.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
-  StoreDecorator(stateEditableProfileCard),
+  StoreDecorator(stateEditableProfileCard, asyncReducers),
 ];
 
 // Dark editable profile card new
@@ -85,7 +99,7 @@ export const DarkNew: Story = {
 
 DarkNew.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
-  StoreDecorator(stateEditableProfileCard),
+  StoreDecorator(stateEditableProfileCard, asyncReducers),
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -97,7 +111,7 @@ export const OrangeNew: Story = {
 
 OrangeNew.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
-  StoreDecorator(stateEditableProfileCard),
+  StoreDecorator(stateEditableProfileCard, asyncReducers),
   ThemeDecorator(Theme.ORANGE),
 ];
 
