@@ -9,7 +9,15 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Theme } from '@/shared/const/theme';
 
+import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+
+import { loginReducer } from '../../model/slice/loginSlice';
+
 import LoginForm from './LoginForm';
+
+const asyncReducers: ReducersList = {
+  loginForm: loginReducer,
+};
 
 const stateLoginForm: DeepPartial<StateSchema> = {
   loginForm: {
@@ -39,7 +47,7 @@ export const Primary: Story = {
 Primary.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
-  StoreDecorator(stateLoginForm),
+  StoreDecorator(stateLoginForm, asyncReducers),
 ];
 
 // Dark login form
@@ -51,7 +59,7 @@ export const Dark: Story = {
 Dark.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
-  StoreDecorator(stateLoginForm),
+  StoreDecorator(stateLoginForm, asyncReducers),
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -64,7 +72,7 @@ export const Orange: Story = {
 Orange.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
-  StoreDecorator(stateLoginForm),
+  StoreDecorator(stateLoginForm, asyncReducers),
   ThemeDecorator(Theme.ORANGE),
 ];
 
@@ -83,7 +91,7 @@ export const Loading: Story = {
 Loading.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
-  StoreDecorator(stateLoading),
+  StoreDecorator(stateLoading, asyncReducers),
 ];
 
 // Error login form
@@ -103,7 +111,7 @@ export const Error: Story = {
 Error.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
-  StoreDecorator(stateError),
+  StoreDecorator(stateError, asyncReducers),
 ];
 
 export default meta;

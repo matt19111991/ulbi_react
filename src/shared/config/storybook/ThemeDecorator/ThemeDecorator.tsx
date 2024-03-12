@@ -9,8 +9,16 @@ import { Theme } from '@/shared/const/theme';
 export const ThemeDecorator =
   (theme: Theme) =>
   (Story: StoryFn): JSX.Element => {
-    // может не меняться цвет скролла при переключении темы, поэтому добавляем класс на 'body'
-    document.body.className = theme;
+    /*
+      может не меняться цвет скролла при переключении темы, поэтому добавляем класс на 'body'
+      через 'requestAnimationFrame()'
+
+      можно использовать промисы или 'setTimeout()', главное - это добавить изменение класса в
+      очередь, иначе тема всегда будет выставленной по умолчанию в 'preview.tsx'
+    */
+    requestAnimationFrame(() => {
+      document.body.className = theme;
+    });
 
     const getThemedStory = () => (
       <ThemeProvider initialTheme={theme}>

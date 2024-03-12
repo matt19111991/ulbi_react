@@ -7,9 +7,16 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Theme } from '@/shared/const/theme';
 
+import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+
 import { ArticleBlockType, ArticleType } from '../../model/consts/articleConsts';
+import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
 
 import { ArticleDetails } from './ArticleDetails';
+
+const asyncReducers: ReducersList = {
+  articleDetails: articleDetailsReducer,
+};
 
 const stateArticleDetails: DeepPartial<StateSchema> = {
   articleDetails: {
@@ -115,7 +122,7 @@ export const Primary: Story = {
   args: {},
 };
 
-Primary.decorators = [StoreDecorator(stateArticleDetails)];
+Primary.decorators = [StoreDecorator(stateArticleDetails, asyncReducers)];
 
 // Dark article details
 
@@ -123,7 +130,7 @@ export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [StoreDecorator(stateArticleDetails), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [StoreDecorator(stateArticleDetails, asyncReducers), ThemeDecorator(Theme.DARK)];
 
 // Orange article details
 
@@ -131,7 +138,10 @@ export const Orange: Story = {
   args: {},
 };
 
-Orange.decorators = [StoreDecorator(stateArticleDetails), ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  StoreDecorator(stateArticleDetails, asyncReducers),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Loading article details
 
@@ -145,7 +155,10 @@ export const Loading: Story = {
   args: {},
 };
 
-Loading.decorators = [StoreDecorator(stateArticleDetailsLoading), ThemeDecorator(Theme.ORANGE)];
+Loading.decorators = [
+  StoreDecorator(stateArticleDetailsLoading, asyncReducers),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Error article details
 
@@ -159,6 +172,6 @@ export const Error: Story = {
   args: {},
 };
 
-Error.decorators = [StoreDecorator(stateArticleDetailsError)];
+Error.decorators = [StoreDecorator(stateArticleDetailsError, asyncReducers)];
 
 export default meta;

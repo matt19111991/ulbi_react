@@ -7,7 +7,15 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Theme } from '@/shared/const/theme';
 
+import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+
+import { loginReducer } from '../../model/slice/loginSlice';
+
 import LoginForm from './LoginForm';
+
+const asyncReducers: ReducersList = {
+  loginForm: loginReducer,
+};
 
 const stateLoginForm: DeepPartial<StateSchema> = {
   loginForm: {
@@ -34,7 +42,7 @@ export const Primary: Story = {
   args: {},
 };
 
-Primary.decorators = [StoreDecorator(stateLoginForm)];
+Primary.decorators = [StoreDecorator(stateLoginForm, asyncReducers)];
 
 // Dark login form
 
@@ -42,7 +50,7 @@ export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [StoreDecorator(stateLoginForm), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [StoreDecorator(stateLoginForm, asyncReducers), ThemeDecorator(Theme.DARK)];
 
 // Orange login form
 
@@ -50,7 +58,7 @@ export const Orange: Story = {
   args: {},
 };
 
-Orange.decorators = [StoreDecorator(stateLoginForm), ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [StoreDecorator(stateLoginForm, asyncReducers), ThemeDecorator(Theme.ORANGE)];
 
 // Loading login form
 
@@ -64,7 +72,7 @@ export const Loading: Story = {
   args: {},
 };
 
-Loading.decorators = [StoreDecorator(stateLoading)];
+Loading.decorators = [StoreDecorator(stateLoading, asyncReducers)];
 
 // Error login form
 
@@ -80,6 +88,6 @@ export const Error: Story = {
   args: {},
 };
 
-Error.decorators = [StoreDecorator(stateError)];
+Error.decorators = [StoreDecorator(stateError, asyncReducers)];
 
 export default meta;

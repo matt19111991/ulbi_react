@@ -4,8 +4,8 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 
 import UserIcon from '../../../assets/icons/user-filled-32-32.svg';
 
-import { Icon } from '../Icon/Icon';
-import { Skeleton } from '../Skeleton/Skeleton';
+import { Icon } from '../Icon';
+import { Skeleton } from '../Skeleton';
 
 import { AppImage } from '../../redesigned/AppImage/AppImage';
 
