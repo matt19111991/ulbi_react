@@ -8,11 +8,18 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Theme } from '@/shared/const/theme';
 
+import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
 import { generateNormalizedArticles } from '@/shared/lib/generators/articles';
+
+import { articlesPageReducer } from '../../model/slice/articlesPageSlice';
 
 import { ArticleInfiniteList } from './ArticleInfiniteList';
 
 const generatedArticles = generateNormalizedArticles(18);
+
+const asyncReducers: ReducersList = {
+  articlesPage: articlesPageReducer,
+};
 
 const stateArticleInfiniteList: DeepPartial<StateSchema> = {
   articlesPage: {
@@ -48,7 +55,7 @@ export const Primary: Story = {
 
 Primary.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
-  StoreDecorator(stateArticleInfiniteList),
+  StoreDecorator(stateArticleInfiniteList, asyncReducers),
 ];
 
 // Dark article infinite list
@@ -59,7 +66,7 @@ export const Dark: Story = {
 
 Dark.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
-  StoreDecorator(stateArticleInfiniteList),
+  StoreDecorator(stateArticleInfiniteList, asyncReducers),
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -71,7 +78,7 @@ export const Orange: Story = {
 
 Orange.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
-  StoreDecorator(stateArticleInfiniteList),
+  StoreDecorator(stateArticleInfiniteList, asyncReducers),
   ThemeDecorator(Theme.ORANGE),
 ];
 

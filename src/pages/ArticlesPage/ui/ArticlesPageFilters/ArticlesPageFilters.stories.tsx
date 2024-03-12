@@ -11,11 +11,18 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Theme } from '@/shared/const/theme';
 
+import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
 import { generateNormalizedArticles } from '@/shared/lib/generators/articles';
+
+import { articlesPageReducer } from '../../model/slice/articlesPageSlice';
 
 import { ArticlesPageFilters } from './ArticlesPageFilters';
 
 const articles = generateNormalizedArticles(3);
+
+const asyncReducers: ReducersList = {
+  articlesPage: articlesPageReducer,
+};
 
 const stateArticles: DeepPartial<StateSchema> = {
   articlesPage: {
@@ -64,7 +71,7 @@ export const PrimaryOld: Story = {
   args: {},
 };
 
-PrimaryOld.decorators = [IndentsDecorator, StoreDecorator(stateArticles)];
+PrimaryOld.decorators = [IndentsDecorator, StoreDecorator(stateArticles, asyncReducers)];
 
 // Dark articles page filters old
 
@@ -72,7 +79,11 @@ export const DarkOld: Story = {
   args: {},
 };
 
-DarkOld.decorators = [IndentsDecorator, StoreDecorator(stateArticles), ThemeDecorator(Theme.DARK)];
+DarkOld.decorators = [
+  IndentsDecorator,
+  StoreDecorator(stateArticles, asyncReducers),
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange articles page filters old
 
@@ -82,7 +93,7 @@ export const OrangeOld: Story = {
 
 OrangeOld.decorators = [
   IndentsDecorator,
-  StoreDecorator(stateArticles),
+  StoreDecorator(stateArticles, asyncReducers),
   ThemeDecorator(Theme.ORANGE),
 ];
 
@@ -92,7 +103,7 @@ export const LoadingOld: Story = {
   args: {},
 };
 
-LoadingOld.decorators = [IndentsDecorator, StoreDecorator(stateArticlesLoading)];
+LoadingOld.decorators = [IndentsDecorator, StoreDecorator(stateArticlesLoading, asyncReducers)];
 
 // Primary articles page filters new
 
@@ -103,7 +114,7 @@ export const PrimaryNew: Story = {
 PrimaryNew.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
-  StoreDecorator(stateArticles),
+  StoreDecorator(stateArticles, asyncReducers),
 ];
 
 // Dark articles page filters new
@@ -115,7 +126,7 @@ export const DarkNew: Story = {
 DarkNew.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
-  StoreDecorator(stateArticles),
+  StoreDecorator(stateArticles, asyncReducers),
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -128,7 +139,7 @@ export const OrangeNew: Story = {
 OrangeNew.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
-  StoreDecorator(stateArticles),
+  StoreDecorator(stateArticles, asyncReducers),
   ThemeDecorator(Theme.ORANGE),
 ];
 
@@ -141,7 +152,7 @@ export const LoadingNew: Story = {
 LoadingNew.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
-  StoreDecorator(stateArticlesLoading),
+  StoreDecorator(stateArticlesLoading, asyncReducers),
 ];
 
 export default meta;
