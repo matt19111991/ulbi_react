@@ -236,7 +236,7 @@ export const Error: Story = {
   },
 };
 
-// Success error
+// Button success
 
 export const Success: Story = {
   args: {

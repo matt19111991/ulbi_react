@@ -30,7 +30,7 @@ export const ThemeDecorator =
 
     /*
       Если вернуть 'JSX' то будет ошибка 'ESLint':
-      Component definition is missing display name(react/display-name)
+      'Component definition is missing display name(react/display-name)'
     */
 
     return getThemedStory();

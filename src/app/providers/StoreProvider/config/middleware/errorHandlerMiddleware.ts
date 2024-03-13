@@ -1,6 +1,5 @@
 import { isRejectedWithValue } from '@reduxjs/toolkit';
 import type { Middleware, UnknownAction } from '@reduxjs/toolkit';
-
 import { toast } from 'react-hot-toast';
 
 interface ErrorAction extends UnknownAction {
