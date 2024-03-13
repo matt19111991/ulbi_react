@@ -69,6 +69,7 @@
     "@storybook/addon-actions": "^7.6.17",
     "@storybook/addon-essentials": "^7.6.17",
     "@storybook/addon-viewport": "^7.6.17",
+    "@storybook/addon-webpack5-compiler-babel": "^3.0.3",
     "@storybook/react": "^7.6.17",
     "@storybook/react-webpack5": "^7.6.17",
     "@svgr/webpack": "^8.1.0",
@@ -142,7 +143,7 @@
     "webpack": "^5.90.3",
     "webpack-bundle-analyzer": "^4.10.1",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.0.2"
+    "webpack-dev-server": "^5.0.3"
   },
   "lint-staged": {
     "**/*.json": "prettier --list-different",

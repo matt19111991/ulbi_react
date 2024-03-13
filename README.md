@@ -287,23 +287,23 @@
 
 `npm run test:e2e` - запуск интеграционных тестов с `Cypress`
 
-`npm run test:ui` - Запуск скриншотных тестов `Loki`
+`npm run test:ui` - запуск скриншотных тестов `Loki`
 
-`npm run test:ui:ok` - Подтверждение новых скриншотов `Loki`
+`npm run test:ui:ok` - подтверждение новых скриншотов `Loki`
 
-`npm run test:ui:ci` - Запуск скриншотных тестов `Loki` для `CI` (используется билд **Storybook**)
+`npm run test:ui:ci` - запуск скриншотных тестов `Loki` для `CI` (используется билд **Storybook**)
 
-`npm run test:ui:json` - Генерация `JSON` с различиями между скриншотами `Loki`
+`npm run test:ui:json` - генерация `JSON` с различиями между скриншотами `Loki`
 
-`npm run test:ui:html` - Генерация `HTML` страницы на базе `JSON` файла с различиями между скриншотами `Loki`
+`npm run test:ui:html` - генерация `HTML` страницы на базе `JSON` файла с различиями между скриншотами `Loki`
 
-`npm run test:ui:report` - Генерация полного отчета (`JSON` и `HTML`) для скриншотных тестов `Loki`
+`npm run test:ui:report` - генерация полного отчета (`JSON` и `HTML`) для скриншотных тестов `Loki`
 
-`npm run test:ui:update` - Обновление скриншотных тестов `Loki`
+`npm run test:ui:update` - обновление скриншотных тестов `Loki`
 
-`npm run test:unit` - Запуск unit тестов с `Jest`
+`npm run test:unit` - запуск unit тестов с `Jest`
 
-`npm run types:check` - Запуск проверки типов `TypeScript`
+`npm run types:check` - запуск проверки типов `TypeScript`
 
 ----
 
@@ -425,7 +425,7 @@
 
 Для разработки проект содержит 2 конфига:
 * [Webpack](webpack.config.ts)
-* [Vite](vite.config.mts)
+* [Vite](vite.config.ts)
 
 Оба сборщика адаптированы под основные фичи приложения
 

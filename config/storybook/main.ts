@@ -17,6 +17,14 @@ const config: StorybookConfig = {
       },
     },
 
+    /*
+      из 'Storybook v.8+' удалили 'Babel', чтобы сделать 'Storybook' более гибким и позволить
+      использовать различные компиляторы ('SWC' и др.)
+
+      для использования 'Babel' нужен дополнительный аддон
+    */
+    '@storybook/addon-webpack5-compiler-babel',
+
     // '@storybook/addon-interactions', // можно использовать для написания сценариев и
     // '@storybook/testing-library', // прогона визуальных тестов
 
@@ -38,6 +46,10 @@ const config: StorybookConfig = {
   staticDirs: ['../../public'],
 
   stories: ['../../src/**/*.stories.tsx'],
+
+  typescript: {
+    reactDocgen: 'react-docgen-typescript', // для корректной работы 'Storybook v.8+'
+  },
 
   /*
     При ошибке 'Invalid configuration object. Webpack has been initialised using a configuration
