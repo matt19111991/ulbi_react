@@ -8,22 +8,22 @@ import type { StateSchema, StateSchemaKey } from '@/app/providers/StoreProvider'
 
 import { useAppDispatch } from '../../hooks/useAppDispatch/useAppDispatch';
 
-// тип 'K' ограничиваем значениями только из 'StateSchemaKey'
+/*
+  тип 'K' ограничиваем значениями только из 'StateSchemaKey'
+
+ 'Reducer' => редюсер типа 'unknown' (без уточнений, без переданной схемы), принимает любой редюсер
+
+ 'Reducer<NonNullable<StateSchema[name]>>' => принимает 'NonNullable' редюсер (не 'null' и не 'undefined'),
+  основываясь на названии поля из 'StateSchema' (достаем из 'StateSchema' конкретную часть 'state')
+
+  Если в 'store' мы перепутаем редюсер и присвоим не под тем ключом =>
+ 'TS' выдаст ошибку, т.к. 'StateSchema' не соответствует созданному 'store'
+*/
 type ReducerItem<K extends StateSchemaKey> = Reducer<NonNullable<StateSchema[K]>>;
 
 // на случай подгрузки сразу нескольких редюсеров
 export type ReducersList = {
-  /*
-    ключ: 'StateSchemaKey', значение: редюсер
-
-   'Reducer' => редюсер типа 'unknown' (без уточнений, без переданной схемы), принимает любой редюсер
-
-   'Reducer<NonNullable<StateSchema[name]>>' => принимает 'NonNullable' редюсер (не 'null' и не 'undefined'),
-    основываясь на названии поля из 'StateSchema' (достаем из 'StateSchema' конкретную часть 'state')
-
-    Если в 'store' мы перепутаем редюсер и присвоим не под тем ключом =>
-   'TS' выдаст ошибку, т.к. 'StateSchema' не соответствует созданному 'store'
-  */
+  // ключ: 'StateSchemaKey', значение: редюсер
   [name in StateSchemaKey]?: ReducerItem<name>;
 };
 

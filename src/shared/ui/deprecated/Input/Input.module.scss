@@ -38,6 +38,10 @@
 
    'animation-fill-mode: forwards' - оставляет стили на момент завершения анимации
 
+    можно потестировать поведение, задавая:
+    - animation: blink .7s forwards 2;
+    - animation: blink .7s 2;
+
     описание механизма работы: https://webref.ru/css/animation-fill-mode
   */
   animation: blink .7s forwards infinite;
@@ -45,6 +49,7 @@
   bottom: 0;
   height: 3px;
   left: 0;
+  opacity: 0;
   position: absolute;
   width: 9px;
 }

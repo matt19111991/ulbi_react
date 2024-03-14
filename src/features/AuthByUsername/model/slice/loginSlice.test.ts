@@ -35,7 +35,7 @@ describe('loginSlice', () => {
   describe('async loginByUsername action', () => {
     test('test set is loading', () => {
       const state: DeepPartial<LoginSchema> = {
-        error: 'Error',
+        error: 'Login error',
         isLoading: false,
       };
 

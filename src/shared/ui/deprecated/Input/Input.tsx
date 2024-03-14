@@ -1,5 +1,12 @@
 import { memo, useEffect, useRef, useState } from 'react';
-import type { ChangeEvent, HTMLInputTypeAttribute, InputHTMLAttributes, UIEvent } from 'react';
+
+import type {
+  ChangeEvent,
+  HTMLInputTypeAttribute,
+  InputHTMLAttributes,
+  MutableRefObject,
+  UIEvent,
+} from 'react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 import type { Mods } from '@/shared/lib/classNames/classNames';
@@ -8,7 +15,7 @@ import classes from './Input.module.scss';
 
 /*
   без 'Omit' будет конфликт типов: 'onChange' в 'InputHTMLAttributes' ждет
-  'event' в аргументах, а мы передаем 'string'
+ 'event' в аргументах, а мы передаем 'string'
 */
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'>;
 
@@ -73,7 +80,7 @@ export const Input = memo(
     const [caretPosition, setCaretPosition] = useState(0);
     const [isFocused, setIsFocused] = useState(false);
 
-    const ref = useRef<HTMLInputElement>(null);
+    const ref: MutableRefObject<HTMLInputElement | null> = useRef(null);
 
     const isCaretVisible = isFocused && !readOnly;
 
@@ -99,6 +106,9 @@ export const Input = memo(
       /*
         перемещаем каретку вслед за курсором, тем самым исправляя кейс, когда каретка
         всегда стоит в начале, а мы переместили курсор в середину введенного текста
+
+       'e.target' и 'e.currentTarget' ссылаются на один и тот же элемент, но у 'e.target' нет
+        свойства 'selectionStart'
       */
       setCaretPosition(e.currentTarget.selectionStart || 0);
     };

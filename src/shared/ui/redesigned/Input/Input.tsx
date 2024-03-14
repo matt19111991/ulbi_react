@@ -1,5 +1,12 @@
 import { memo, useEffect, useRef, useState } from 'react';
-import type { ChangeEvent, HTMLInputTypeAttribute, InputHTMLAttributes, ReactNode } from 'react';
+
+import type {
+  ChangeEvent,
+  HTMLInputTypeAttribute,
+  InputHTMLAttributes,
+  MutableRefObject,
+  ReactNode,
+} from 'react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 import type { Mods } from '@/shared/lib/classNames/classNames';
@@ -107,7 +114,7 @@ export const Input = memo(
   }: InputProps) => {
     const [isFocused, setIsFocused] = useState(false);
 
-    const ref = useRef<HTMLInputElement>(null);
+    const ref: MutableRefObject<HTMLInputElement | null> = useRef(null);
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
       // 'onChange?.()' => функция не будет вызвана, если не будет передана

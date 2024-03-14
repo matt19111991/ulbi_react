@@ -71,14 +71,15 @@ export const FullWidth: Story = {
     onChange: action('onChange'),
     value: '12345',
   },
-  decorators: [
-    (Story) => (
-      <div style={{ border: '1px solid black', padding: 16 }}>
-        <Story />
-      </div>
-    ),
-  ],
 };
+
+FullWidth.decorators = [
+  (Story) => (
+    <div style={{ border: '1px solid black', padding: 16 }}>
+      <Story />
+    </div>
+  ),
+];
 
 // Input with placeholder
 
