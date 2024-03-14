@@ -3,6 +3,7 @@
   90% для всех характеристик
 * SEO добавить (ulbi.tv)
 * Проверить запуск скриптов под Windows
+* GitHub Actions возвращает 404 для https://matt19111991.github.io/ulbi_react/
 
 ## Доп. информация
 

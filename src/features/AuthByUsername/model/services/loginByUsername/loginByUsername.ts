@@ -28,10 +28,9 @@ export const loginByUsername = createAsyncThunk<
   User, // ЧТО_ВЕРНЕТСЯ_ИЗ_РЕСПОНСА_ТИП
   LoginByUsernameProps, // ЧТО_ПРИНИМАЕТ_ФУНКЦИЯ_ТИП
   ThunkConfig<string> // THUNK_КОНФИГ_ТИП
-
   /*
     type THUNK_КОНФИГ_ТИП = {
-      state?: unknown
+      state?: unknown       // => можно указывать схему для хранилища
       dispatch?: Dispatch
       extra?: unknown       // => можно расширять 'extra' дополнительными свойствами и методами
       rejectValue?: unknown // => можно задавать свои собственные типы для ошибки
@@ -60,7 +59,7 @@ export const loginByUsername = createAsyncThunk<
       'axios.post<User>' => типизация возвращаемого значения с сервера
 
       в 'thunkApi' в 'extraArgument' можно записать любые данные, инстансы и т.д. через 'middleware':
-      'app/providers/StoreProvider/config/store.js'
+      'app/providers/StoreProvider/config/store.ts'
 
       вызываем вместо базового 'axios' свой кастомный инстанс 'api' (axios):
       'thunkApi.extra.api.post === axios.post'
