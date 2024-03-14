@@ -82,7 +82,7 @@ export const Input = memo(
 
     const ref: MutableRefObject<HTMLInputElement | null> = useRef(null);
 
-    const isCaretVisible = isFocused && !readOnly;
+    const isCaretVisible = isFocused && !readOnly && !rest.disabled;
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
       const inputValue = e.target.value;

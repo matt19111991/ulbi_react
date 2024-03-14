@@ -4,6 +4,8 @@
 * SEO добавить (ulbi.tv)
 * Проверить запуск скриптов под Windows
 * GitHub Actions возвращает 404 для https://matt19111991.github.io/ulbi_react/
+* Обновить `Storybook` до 8 версии (когда будет совместимость с `loki`) 
+  https://github.com/storybookjs/storybook/issues/26031
 
 ## Доп. информация
 
