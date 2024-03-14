@@ -1,7 +1,8 @@
 import { memo } from 'react';
 import type { DetailedHTMLProps, ForwardedRef, HTMLAttributes, ReactNode } from 'react';
 
-import { classNames, Mods } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import type { Mods } from '@/shared/lib/classNames/classNames';
 
 import classes from './Flex.module.scss';
 

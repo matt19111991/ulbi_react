@@ -64,6 +64,23 @@ export const useModal = ({ animationCloseDelay, isOpen, onClose }: UseModalProps
     [onCloseModal],
   );
 
+  const onSetAutoFocus = useCallback(() => {
+    /*
+      находим инпуты с классом 'autofocus', т.к. в случаях, когда модалка не удаляется из 'DOM',
+      фокус через 'ref' в 'Input' компонентах сам не установится
+    */
+    const autoFocusingInputs = document.getElementsByClassName(
+      'autofocus',
+    ) as HTMLCollectionOf<HTMLInputElement>;
+
+    // устанавливаем фокус на первый найденный инпут с классом 'autofocus'
+    if (autoFocusingInputs.length) {
+      const [input] = autoFocusingInputs;
+
+      input.focus();
+    }
+  }, []);
+
   /*
     модалка будет отрендерена в 'DOM' после ленивой загрузки и останется в 'DOM' после закрытия;
     без ленивой загрузки модалка всегда будет в 'DOM'
@@ -77,22 +94,9 @@ export const useModal = ({ animationCloseDelay, isOpen, onClose }: UseModalProps
     if (isOpen) {
       setIsMounted(true);
 
-      /*
-        находим инпуты с классом 'autofocus', т.к. в случаях, когда модалка не удаляется из 'DOM',
-        фокус через 'ref' в 'Input' компонентах сам не установится
-      */
-      const autoFocusingInputs = document.getElementsByClassName(
-        'autofocus',
-      ) as HTMLCollectionOf<HTMLInputElement>;
-
-      // устанавливаем фокус на первый найденный инпут с классом 'autofocus'
-      if (autoFocusingInputs.length) {
-        const [input] = autoFocusingInputs;
-
-        input.focus();
-      }
+      onSetAutoFocus();
     }
-  }, [isOpen]);
+  }, [isOpen, onSetAutoFocus]);
 
   useEffect(() => {
     if (isOpen) {

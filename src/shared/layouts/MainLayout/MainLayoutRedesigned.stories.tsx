@@ -52,9 +52,9 @@ Dark.decorators = [
 
 export const Orange: Story = {
   args: {
-    content: <div style={{ border: '1px solid #D0D0D0', height: '90vh', padding: 8 }}>Content</div>,
-    header: <div style={{ border: '1px solid #D0D0D0', height: '94vh', padding: 8 }}>Header</div>,
-    sidebar: <div style={{ border: '1px solid #D0D0D0', height: '90vh', padding: 8 }}>Sidebar</div>,
+    content: <div style={{ border: '1px solid #FFF', height: '90vh', padding: 8 }}>Content</div>,
+    header: <div style={{ border: '1px solid #FFF', height: '94vh', padding: 8 }}>Header</div>,
+    sidebar: <div style={{ border: '1px solid #FFF', height: '90vh', padding: 8 }}>Sidebar</div>,
   },
 };
 
@@ -69,7 +69,11 @@ Orange.decorators = [
 export const PrimaryWithToolbar: Story = {
   args: {
     content: <div style={{ border: '1px solid #D0D0D0', height: '90vh', padding: 8 }}>Content</div>,
-    header: <div style={{ border: '1px solid #D0D0D0', minWidth: 75, padding: 8 }}>Header</div>,
+    header: (
+      <div style={{ border: '1px solid #D0D0D0', borderBottom: 0, minWidth: 75, padding: 8 }}>
+        Header
+      </div>
+    ),
     sidebar: <div style={{ border: '1px solid #D0D0D0', height: '90vh', padding: 8 }}>Sidebar</div>,
     toolbar: (
       <div style={{ border: '1px solid #D0D0D0', height: '90vh', minWidth: 75, padding: 8 }}>
@@ -89,7 +93,11 @@ PrimaryWithToolbar.decorators = [
 export const DarkWithToolbar: Story = {
   args: {
     content: <div style={{ border: '1px solid #FFF', height: '90vh', padding: 8 }}>Content</div>,
-    header: <div style={{ border: '1px solid #FFF', minWidth: 75, padding: 8 }}>Header</div>,
+    header: (
+      <div style={{ border: '1px solid #FFF', borderBottom: 0, minWidth: 75, padding: 8 }}>
+        Header
+      </div>
+    ),
     sidebar: <div style={{ border: '1px solid #FFF', height: '90vh', padding: 8 }}>Sidebar</div>,
     toolbar: (
       <div style={{ border: '1px solid #FFF', height: '90vh', minWidth: 75, padding: 8 }}>
@@ -109,11 +117,15 @@ DarkWithToolbar.decorators = [
 
 export const OrangeWithToolbar: Story = {
   args: {
-    content: <div style={{ border: '1px solid #D0D0D0', height: '90vh', padding: 8 }}>Content</div>,
-    header: <div style={{ border: '1px solid #D0D0D0', minWidth: 75, padding: 8 }}>Header</div>,
-    sidebar: <div style={{ border: '1px solid #D0D0D0', height: '90vh', padding: 8 }}>Sidebar</div>,
+    content: <div style={{ border: '1px solid #FFF', height: '90vh', padding: 8 }}>Content</div>,
+    header: (
+      <div style={{ border: '1px solid #FFF', borderBottom: 0, minWidth: 75, padding: 8 }}>
+        Header
+      </div>
+    ),
+    sidebar: <div style={{ border: '1px solid #FFF', height: '90vh', padding: 8 }}>Sidebar</div>,
     toolbar: (
-      <div style={{ border: '1px solid #D0D0D0', height: '90vh', minWidth: 75, padding: 8 }}>
+      <div style={{ border: '1px solid #FFF', height: '90vh', minWidth: 75, padding: 8 }}>
         Toolbar
       </div>
     ),

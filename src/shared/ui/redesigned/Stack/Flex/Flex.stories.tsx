@@ -13,7 +13,6 @@ const meta = {
       control: 'color',
     },
   },
-  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator],
 } as Meta<typeof Flex>;
 
 type Story = StoryObj<typeof meta>;
@@ -35,6 +34,8 @@ export const ColumnLeft: Story = {
   },
 };
 
+ColumnLeft.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Column center
 
 export const ColumnCenter: Story = {
@@ -50,6 +51,8 @@ export const ColumnCenter: Story = {
     direction: 'column',
   },
 };
+
+ColumnCenter.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Column right
 
@@ -68,6 +71,8 @@ export const ColumnRight: Story = {
   },
 };
 
+ColumnRight.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Column gap 4px
 
 export const ColumnGap4: Story = {
@@ -84,6 +89,8 @@ export const ColumnGap4: Story = {
     gap: '4',
   },
 };
+
+ColumnGap4.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Column gap 8px
 
@@ -102,6 +109,8 @@ export const ColumnGap8: Story = {
   },
 };
 
+ColumnGap8.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Column gap 16px
 
 export const ColumnGap16: Story = {
@@ -118,6 +127,8 @@ export const ColumnGap16: Story = {
     gap: '16',
   },
 };
+
+ColumnGap16.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Column gap 24px
 
@@ -136,6 +147,8 @@ export const ColumnGap24: Story = {
   },
 };
 
+ColumnGap24.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Column gap 32px
 
 export const ColumnGap32: Story = {
@@ -153,6 +166,8 @@ export const ColumnGap32: Story = {
   },
 };
 
+ColumnGap32.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Row left
 
 export const RowLeft: Story = {
@@ -167,6 +182,8 @@ export const RowLeft: Story = {
     ),
   },
 };
+
+RowLeft.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Row center
 
@@ -184,6 +201,8 @@ export const RowCenter: Story = {
   },
 };
 
+RowCenter.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Row right
 
 export const RowRight: Story = {
@@ -199,6 +218,8 @@ export const RowRight: Story = {
     justify: 'end',
   },
 };
+
+RowRight.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Row gap 4px
 
@@ -216,6 +237,8 @@ export const RowGap4: Story = {
   },
 };
 
+RowGap4.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Row gap 8px
 
 export const RowGap8: Story = {
@@ -231,6 +254,8 @@ export const RowGap8: Story = {
     gap: '8',
   },
 };
+
+RowGap8.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Row gap 16px
 
@@ -248,6 +273,8 @@ export const RowGap16: Story = {
   },
 };
 
+RowGap16.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Row gap 32px
 
 export const RowGap32: Story = {
@@ -263,6 +290,8 @@ export const RowGap32: Story = {
     gap: '32',
   },
 };
+
+RowGap32.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Nowrap
 
@@ -284,14 +313,17 @@ export const Nowrap: Story = {
     ),
     wrap: 'nowrap',
   },
-  decorators: [
-    (Story) => (
-      <div style={{ border: '1px solid black', overflow: 'hidden', padding: 8, width: 300 }}>
-        <Story />
-      </div>
-    ),
-  ],
 };
+
+Nowrap.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  (Story) => (
+    <div style={{ border: '1px solid black', overflow: 'hidden', padding: 8, width: 300 }}>
+      <Story />
+    </div>
+  ),
+];
 
 // Wrap
 
@@ -313,13 +345,16 @@ export const Wrap: Story = {
     ),
     wrap: 'wrap',
   },
-  decorators: [
-    (Story) => (
-      <div style={{ border: '1px solid black', overflow: 'hidden', padding: 8, width: 300 }}>
-        <Story />
-      </div>
-    ),
-  ],
 };
+
+Wrap.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  (Story) => (
+    <div style={{ border: '1px solid black', overflow: 'hidden', padding: 8, width: 300 }}>
+      <Story />
+    </div>
+  ),
+];
 
 export default meta;
