@@ -8,9 +8,8 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Theme } from '@/shared/const/theme';
 
-import { Skeleton } from '../../deprecated/Skeleton';
-
-import { Icon } from '../Icon/Icon';
+import { Icon } from '../Icon';
+import { Skeleton } from '../Skeleton';
 
 import { AppImage } from './AppImage';
 

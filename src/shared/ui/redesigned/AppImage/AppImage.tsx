@@ -1,4 +1,5 @@
-import { ImgHTMLAttributes, memo, ReactElement, useLayoutEffect, useState } from 'react';
+import { memo, useLayoutEffect, useState } from 'react';
+import type { ImgHTMLAttributes, ReactElement } from 'react';
 
 interface AppImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   /**
@@ -17,14 +18,14 @@ interface AppImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   loadingFallback?: ReactElement;
 
   /**
-   * Пробрасываемое состояние загрузки из storybook
+   * Пробрасываемое состояние загрузки из 'storybook'
    */
   storybookLoading?: boolean;
 }
 
 export const AppImage = memo(
   ({
-    alt = 'image',
+    alt = '',
     className,
     errorFallback,
     loadingFallback,
@@ -35,8 +36,10 @@ export const AppImage = memo(
     const [hasError, setHasError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
-    // 'useEffect' - асинхронный, срабатывает после монтирования компонента
-    // 'useLayoutEffect' - синхронный, срабатывает до монтирования компонента
+    /*
+      'useEffect' - асинхронный, срабатывает после монтирования компонента
+      'useLayoutEffect' - синхронный, срабатывает до монтирования компонента
+    */
 
     // проверяем, доступно ли изображение
     useLayoutEffect(() => {

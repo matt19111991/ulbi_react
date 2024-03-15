@@ -7,7 +7,7 @@ import UserIcon from '../../../assets/icons/user-filled-32-32.svg';
 import { Icon } from '../Icon';
 import { Skeleton } from '../Skeleton';
 
-import { AppImage } from '../../redesigned/AppImage/AppImage';
+import { AppImage } from '../../redesigned/AppImage';
 
 import classes from './Avatar.module.scss';
 
