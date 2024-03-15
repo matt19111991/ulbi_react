@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import IconSvg from '@/shared/assets/tests/storybook3.svg';
@@ -56,11 +57,14 @@ Orange.decorators = [
 
 // Icon clickable
 
+type Clickable = true & undefined;
+
 export const Clickable: Story = {
   args: {
-    clickable: true,
+    clickable: true as Clickable,
+    onClick: action('onClick'),
     Svg: IconSvg,
-  } as Record<string, boolean | typeof IconSvg>,
+  },
 };
 
 Clickable.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];

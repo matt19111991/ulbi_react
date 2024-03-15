@@ -51,7 +51,7 @@ export const SidebarItem = memo(({ collapsed, item }: SidebarItemProps) => {
           })}
           to={path}
         >
-          <RedesignedIcon inheritParentClassName Svg={Icon} />
+          <RedesignedIcon Svg={Icon} />
 
           {/*
             Без контекста будет предупреждение: "babel-plugin-i18next-extract: Extraction error in

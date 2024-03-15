@@ -9,8 +9,10 @@
   margin: 0;
   padding: 0;
   outline: none;
-}
 
-.button:hover .Icon {
-  color: var(--accent-redesigned);
+  &:hover {
+    & > .Icon {
+      color: var(--accent-redesigned);
+    }
+  }
 }

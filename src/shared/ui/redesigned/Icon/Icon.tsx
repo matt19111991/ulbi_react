@@ -1,11 +1,12 @@
-import { FC, memo, MouseEvent, SVGProps } from 'react';
+import { memo } from 'react';
+import type { FC, MouseEvent, SVGProps } from 'react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
 import classes from './Icon.module.scss';
 
 /**
- * Убираем 'onClick' обработчик у SVG элемента
+ * Убираем 'onClick' обработчик у 'SVG'-элемента: у нас клик происходит по 'button', а не по 'SVG'
  */
 type SvgProps = Omit<SVGProps<SVGSVGElement>, 'onClick'>;
 
@@ -16,31 +17,28 @@ interface IconBaseProps extends SvgProps {
   className?: string;
 
   /**
-   * Наследуем класс от родителя (для подсветки при наведении на ссылку и названия и иконки)
-   */
-  inheritParentClassName?: boolean;
-
-  /**
-   * SVG изображение
+   * 'SVG'-изображение
    */
   Svg: FC<SVGProps<SVGSVGElement>>;
 }
 
 interface NonClickableIconProps extends IconBaseProps {
   /**
-   * Иконка некликабельна
+   * Иконка некликабельна (задаем только одно 'false' значение для типа, а не 'boolean'),
+   * тем самым сужая тип в проверке 'if (clickable) { ... }'
    */
   clickable?: false;
 }
 
 interface ClickableIconProps extends IconBaseProps {
   /**
-   * Иконка кликабельна
+   * Иконка кликабельна (задаем только одно 'true' значение для типа, а не 'boolean'),
+   * тем самым сужая тип в проверке 'if (clickable) { ... }'
    */
   clickable?: true;
 
   /**
-   * Обработчик клика на иконку
+   * Обработчик клика на кнопку иконки
    */
   onClick: (e: MouseEvent<HTMLButtonElement>) => void;
 }
@@ -48,47 +46,42 @@ interface ClickableIconProps extends IconBaseProps {
 /**
  * Иконка может быть кликабельной или некликабельной
  */
-type IconsProps = NonClickableIconProps | ClickableIconProps;
+type IconProps = NonClickableIconProps | ClickableIconProps;
 
-// Обёртка для SVG (чтобы применялся цвет соответствующей темы к SVG)
+// Обёртка для 'SVG' (чтобы применялся цвет соответствующей темы к 'SVG')
 
-export const Icon = memo(
-  ({
-    className,
-    clickable,
-    height = 32,
-    inheritParentClassName,
-    onClick,
-    Svg,
-    width = 32,
-    ...rest
-  }: IconsProps & { onClick?: ClickableIconProps['onClick'] }) => {
-    const icon = (
-      <Svg
-        {...rest}
-        className={classNames('', { [classes.Icon]: !inheritParentClassName }, [className])}
-        height={height}
-        // иначе достается' onClick' из '...rest' и отрабатывает дважды для 'Icon' и 'button'
-        onClick={undefined}
-        width={width}
-      />
+export const Icon = memo((props: IconProps) => {
+  /*
+    деструктурируем только общие 'props', 'onClick' достаем через 'props.onClick' там,
+    где типы сужаются, иначе ошибка в 'TS'
+  */
+  const { className, clickable, height = 32, Svg, width = 32, ...rest } = props;
+
+  const icon = (
+    <Svg
+      {...rest}
+      className={classNames(classes.Icon, {}, [className])}
+      height={height}
+      // иначе достается 'onClick()' из '...rest' и отрабатывает дважды для 'Icon' и 'button'
+      onClick={undefined}
+      width={width}
+    />
+  );
+
+  if (clickable) {
+    return (
+      <button
+        className={classes.button}
+        onClick={props.onClick}
+        style={{ height, width }}
+        type='button'
+      >
+        {icon}
+      </button>
     );
+  }
 
-    if (clickable) {
-      return (
-        <button
-          className={classes.button}
-          onClick={onClick}
-          style={{ height, width }}
-          type='button'
-        >
-          {icon}
-        </button>
-      );
-    }
-
-    return icon;
-  },
-);
+  return icon;
+});
 
 Icon.displayName = 'Icon';
