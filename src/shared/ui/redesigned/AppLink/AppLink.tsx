@@ -1,11 +1,14 @@
-import { forwardRef, ForwardedRef, ReactNode } from 'react';
-import { LinkProps, NavLink } from 'react-router-dom';
+import { forwardRef } from 'react';
+import type { ForwardedRef, ReactNode } from 'react';
+
+import { NavLink } from 'react-router-dom';
+import type { LinkProps } from 'react-router-dom';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
 import classes from './AppLink.module.scss';
 
-export type AppLinkVariant = 'primary' | 'red';
+type AppLinkVariant = 'primary' | 'red';
 
 interface AppLinkProps extends LinkProps {
   /**
@@ -30,12 +33,13 @@ interface AppLinkProps extends LinkProps {
 }
 
 // от 'React.memo' нет смысла, т.к. 'forwardRef()' на каждый ререндер возвращает новую ссылку
+
 export const AppLink = forwardRef(
   (
-    { activeClassName = '', className, children, variant = 'primary', to, ...rest }: AppLinkProps,
+    { activeClassName = '', className, children, to, variant = 'primary', ...rest }: AppLinkProps,
     ref: ForwardedRef<HTMLAnchorElement>,
   ) => (
-    // у 'NavLink' есть свойство 'isActive'
+    // у 'NavLink' есть свойство 'isActive', 'className' используем в этом случае как функцию
     <NavLink
       className={({ isActive }) =>
         classNames('', { [activeClassName]: isActive }, [className, classes[variant]])

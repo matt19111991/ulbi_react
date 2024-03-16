@@ -15,7 +15,7 @@ const meta = {
     },
   },
   args: {
-    to: '/test', // для всех stories
+    to: '/test', // для всех 'stories'
   },
 } as Meta<typeof AppLink>;
 
