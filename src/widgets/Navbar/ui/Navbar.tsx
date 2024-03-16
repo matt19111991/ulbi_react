@@ -96,7 +96,7 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
 
             <AppLinkDeprecated
               className={classes.createLink}
-              invertedTheme={AppLinkTheme.SECONDARY}
+              theme={AppLinkTheme.SECONDARY}
               to={getRouteArticleCreate()}
             >
               {t('Создать статью')}

@@ -15,7 +15,7 @@ const meta = {
     },
   },
   args: {
-    to: '/test', // для всех stories
+    to: '/test', // для всех 'stories'
   },
 } as Meta<typeof AppLink>;
 
@@ -26,7 +26,7 @@ type Story = StoryObj<typeof meta>;
 export const PrimaryLight: Story = {
   args: {
     children: 'Text',
-    invertedTheme: AppLinkTheme.PRIMARY,
+    theme: AppLinkTheme.PRIMARY,
   },
 };
 
@@ -35,7 +35,7 @@ export const PrimaryLight: Story = {
 export const SecondaryLight: Story = {
   args: {
     children: 'Text',
-    invertedTheme: AppLinkTheme.SECONDARY,
+    theme: AppLinkTheme.SECONDARY,
   },
 };
 
@@ -44,7 +44,7 @@ export const SecondaryLight: Story = {
 export const RedLight: Story = {
   args: {
     children: 'Text',
-    invertedTheme: AppLinkTheme.RED,
+    theme: AppLinkTheme.RED,
   },
 };
 
@@ -53,7 +53,7 @@ export const RedLight: Story = {
 export const PrimaryDark: Story = {
   args: {
     children: 'Text',
-    invertedTheme: AppLinkTheme.PRIMARY,
+    theme: AppLinkTheme.PRIMARY,
   },
 };
 
@@ -64,7 +64,7 @@ PrimaryDark.decorators = [ThemeDecorator(Theme.DARK)];
 export const SecondaryDark: Story = {
   args: {
     children: 'Text',
-    invertedTheme: AppLinkTheme.SECONDARY,
+    theme: AppLinkTheme.SECONDARY,
   },
 };
 
@@ -75,7 +75,7 @@ SecondaryDark.decorators = [ThemeDecorator(Theme.DARK)];
 export const RedDark: Story = {
   args: {
     children: 'Text',
-    invertedTheme: AppLinkTheme.RED,
+    theme: AppLinkTheme.RED,
   },
 };
 
@@ -86,7 +86,7 @@ RedDark.decorators = [ThemeDecorator(Theme.DARK)];
 export const PrimaryOrange: Story = {
   args: {
     children: 'Text',
-    invertedTheme: AppLinkTheme.PRIMARY,
+    theme: AppLinkTheme.PRIMARY,
   },
 };
 
@@ -97,7 +97,7 @@ PrimaryOrange.decorators = [ThemeDecorator(Theme.ORANGE)];
 export const SecondaryOrange: Story = {
   args: {
     children: 'Text',
-    invertedTheme: AppLinkTheme.SECONDARY,
+    theme: AppLinkTheme.SECONDARY,
   },
 };
 
@@ -108,7 +108,7 @@ SecondaryOrange.decorators = [ThemeDecorator(Theme.ORANGE)];
 export const RedOrange: Story = {
   args: {
     children: 'Text',
-    invertedTheme: AppLinkTheme.RED,
+    theme: AppLinkTheme.RED,
   },
 };
 

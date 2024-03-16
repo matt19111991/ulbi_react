@@ -1,12 +1,15 @@
-import { forwardRef, ForwardedRef, ReactNode } from 'react';
-import { Link, LinkProps } from 'react-router-dom';
+import { forwardRef } from 'react';
+import type { ForwardedRef, ReactNode } from 'react';
+
+import { Link } from 'react-router-dom';
+import type { LinkProps } from 'react-router-dom';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
 import classes from './AppLink.module.scss';
 
 /**
- * Внешний вид ссылки
+ * Тема для ссылки
  */
 export enum AppLinkTheme {
   PRIMARY = 'primary',
@@ -26,9 +29,9 @@ interface AppLinkProps extends LinkProps {
   className?: string;
 
   /**
-   * Инвертированная тема
+   * Тема для ссылки
    */
-  invertedTheme?: AppLinkTheme;
+  theme?: AppLinkTheme;
 }
 
 // от 'React.memo' нет смысла, т.к. 'forwardRef()' на каждый ререндер возвращает новую ссылку
@@ -39,11 +42,11 @@ interface AppLinkProps extends LinkProps {
  */
 export const AppLink = forwardRef(
   (
-    { className, children, invertedTheme = AppLinkTheme.PRIMARY, to, ...rest }: AppLinkProps,
+    { className, children, theme = AppLinkTheme.PRIMARY, to, ...rest }: AppLinkProps,
     ref: ForwardedRef<HTMLAnchorElement>,
   ) => (
     <Link
-      className={classNames(classes.AppLink, {}, [className, classes[invertedTheme]])}
+      className={classNames(classes.AppLink, {}, [className, classes[theme]])}
       ref={ref}
       to={to}
       {...rest}
