@@ -5,9 +5,22 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Theme } from '@/shared/const/theme';
 
-import { Button } from '../../../Button/Button';
-
 import { Popover } from './Popover';
+
+const Trigger = () => (
+  <p
+    style={{
+      border: '1px solid var(--primary-color)',
+      color: 'var(--primary-color)',
+      height: 38,
+      padding: '6px 8px',
+      textAlign: 'center',
+      width: 66,
+    }}
+  >
+    Open
+  </p>
+);
 
 const meta = {
   title: 'shared/components/old/Popover',
@@ -26,7 +39,7 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     children: <p>Test</p>,
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -37,7 +50,7 @@ Primary.decorators = [IndentsDecorator];
 export const Dark: Story = {
   args: {
     children: <p>Test</p>,
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -48,7 +61,7 @@ Dark.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 export const Orange: Story = {
   args: {
     children: <p>Test</p>,
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -60,7 +73,7 @@ export const BottomLeftDirection: Story = {
   args: {
     children: <p>Test</p>,
     direction: 'bottom-left',
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -72,16 +85,18 @@ export const BottomRightDirection: Story = {
   args: {
     children: <p>Test</p>,
     direction: 'bottom-right',
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
-  decorators: [
-    (Story) => (
-      <div style={{ display: 'flex', padding: '8px' }}>
-        <Story />
-      </div>
-    ),
-  ],
 };
+
+BottomRightDirection.decorators = [
+  (Story) => (
+    <div style={{ display: 'flex' }}>
+      <Story />
+    </div>
+  ),
+  IndentsDecorator,
+];
 
 // Top left direction popover
 
@@ -89,16 +104,17 @@ export const TopLeftDirection: Story = {
   args: {
     children: <p>Test</p>,
     direction: 'top-left',
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
-  decorators: [
-    (Story) => (
-      <div style={{ display: 'flex', padding: '40px 8px' }}>
-        <Story />
-      </div>
-    ),
-  ],
 };
+
+TopLeftDirection.decorators = [
+  (Story) => (
+    <div style={{ display: 'flex', padding: '60px 8px' }}>
+      <Story />
+    </div>
+  ),
+];
 
 // Top right direction popover
 
@@ -106,15 +122,16 @@ export const TopRightDirection: Story = {
   args: {
     children: <p>Test</p>,
     direction: 'top-right',
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
-  decorators: [
-    (Story) => (
-      <div style={{ display: 'flex', padding: '40px 8px' }}>
-        <Story />
-      </div>
-    ),
-  ],
 };
+
+TopRightDirection.decorators = [
+  (Story) => (
+    <div style={{ display: 'flex', padding: '60px 8px' }}>
+      <Story />
+    </div>
+  ),
+];
 
 export default meta;

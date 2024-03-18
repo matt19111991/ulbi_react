@@ -6,9 +6,24 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Theme } from '@/shared/const/theme';
 
-import { Button } from '../../../Button/Button';
-
 import { Popover } from './Popover';
+
+const Trigger = () => (
+  <p
+    style={{
+      alignItems: 'center',
+      border: '1px solid var(--accent-redesigned)',
+      borderRadius: 8,
+      color: 'var(--text-redesigned)',
+      display: 'flex',
+      height: 40,
+      justifyContent: 'center',
+      width: 75,
+    }}
+  >
+    Open
+  </p>
+);
 
 const meta = {
   title: 'shared/components/new/Popover',
@@ -27,7 +42,7 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     children: <p>Test</p>,
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -38,7 +53,7 @@ Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsD
 export const Dark: Story = {
   args: {
     children: <p>Test</p>,
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -53,7 +68,7 @@ Dark.decorators = [
 export const Orange: Story = {
   args: {
     children: <p>Test</p>,
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -69,7 +84,7 @@ export const BottomLeftDirection: Story = {
   args: {
     children: <p>Test</p>,
     direction: 'bottom-left',
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -84,17 +99,19 @@ export const BottomRightDirection: Story = {
   args: {
     children: <p>Test</p>,
     direction: 'bottom-right',
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
-  decorators: [
-    (Story) => (
-      <div style={{ display: 'flex', padding: '8px' }}>
-        <Story />
-      </div>
-    ),
-    FeatureFlagsDecorator({ isAppRedesigned: true }),
-  ],
 };
+
+BottomRightDirection.decorators = [
+  (Story) => (
+    <div style={{ display: 'flex' }}>
+      <Story />
+    </div>
+  ),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+];
 
 // Top left direction popover
 
@@ -102,17 +119,19 @@ export const TopLeftDirection: Story = {
   args: {
     children: <p>Test</p>,
     direction: 'top-left',
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
-  decorators: [
-    (Story) => (
-      <div style={{ display: 'flex', padding: '40px 8px' }}>
-        <Story />
-      </div>
-    ),
-    FeatureFlagsDecorator({ isAppRedesigned: true }),
-  ],
 };
+
+TopLeftDirection.decorators = [
+  (Story) => (
+    <div style={{ display: 'flex', padding: '60px 8px' }}>
+      <Story />
+    </div>
+  ),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+];
 
 // Top right direction popover
 
@@ -120,16 +139,18 @@ export const TopRightDirection: Story = {
   args: {
     children: <p>Test</p>,
     direction: 'top-right',
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
-  decorators: [
-    (Story) => (
-      <div style={{ display: 'flex', padding: '40px 8px' }}>
-        <Story />
-      </div>
-    ),
-    FeatureFlagsDecorator({ isAppRedesigned: true }),
-  ],
 };
+
+TopRightDirection.decorators = [
+  (Story) => (
+    <div style={{ display: 'flex', padding: '60px 8px' }}>
+      <Story />
+    </div>
+  ),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+];
 
 export default meta;
