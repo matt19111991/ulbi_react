@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import type { ReactNode } from 'react';
+import type { MutableRefObject, ReactNode } from 'react';
 
 // для корректной типизации библиотек
-type GestureType = typeof import('@use-gesture/react'); // библиотека для свайпов, тача, drag'n'drop
+type GestureType = typeof import('@use-gesture/react'); // библиотека для свайпов, тача, "drag'n'drop"
 type SpringType = typeof import('@react-spring/web'); // библиотека для анимаций
 // необходимо дополнительно установить библиотеку '@react-spring/rafz'
 
@@ -23,35 +23,49 @@ interface AnimationContextPayload {
   isLoaded?: boolean;
 }
 
+/**
+ * Контекст
+ */
 const AnimationContext = createContext<AnimationContextPayload>({});
 
-/*
-   Обе библиотеки зависят друг от друга и подгружаются лениво
-   Функция завершится, когда подгрузятся обе библиотеки параллельно
-*/
+/**
+ * Обе библиотеки зависят друг от друга и подгружаются лениво
+ * Функция завершится, когда подгрузятся обе библиотеки параллельно
+ */
 const getAsyncAnimationModules = async () =>
   Promise.all([import('@react-spring/web'), import('@use-gesture/react')]);
 
+/**
+ * Хук
+ */
 export const useAnimationLibraries = () => {
   // 'as', чтобы избежать ошибок "'Spring' is possibly 'undefined'" при использовании библиотек
   return useContext(AnimationContext) as Required<AnimationContextPayload>;
 };
 
+/**
+ * Провайдер
+ */
 export const AnimationProvider = ({ children }: { children: ReactNode }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   // используем 'refs', чтобы был доступ к значениям без лишних перерисовок
-  const GestureRef = useRef<GestureType>();
-  const SpringRef = useRef<SpringType>();
+  const GestureRef: MutableRefObject<GestureType | undefined> = useRef(); // различные варианты
+  const SpringRef = useRef<SpringType>(); // типизации 'ref'
 
   useEffect(() => {
-    getAsyncAnimationModules().then(([SpringResolved, GestureResolved]) => {
-      // сохраняем результаты импортов (это сами библиотеки)
-      GestureRef.current = GestureResolved;
-      SpringRef.current = SpringResolved;
+    getAsyncAnimationModules()
+      .then(([SpringResolved, GestureResolved]) => {
+        // сохраняем результаты импортов (это сами библиотеки)
+        GestureRef.current = GestureResolved;
+        SpringRef.current = SpringResolved;
 
-      setIsLoaded(true);
-    });
+        setIsLoaded(true);
+      })
+      .catch((e) => {
+        // eslint-disable-next-line no-console
+        console.log('e', e);
+      });
   }, []);
 
   const memoizedValue = useMemo(
