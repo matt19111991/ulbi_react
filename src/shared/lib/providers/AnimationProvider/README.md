@@ -2,8 +2,8 @@
 
 ### Components
 
-`AnimationProvider` - Провайдер для анимации
+`AnimationProvider` - Провайдер для анимаций
 
 ### Hooks
 
-`useAnimationLibraries` - Хук для работы анимации
+`useAnimationLibraries` - Хук для работы анимаций

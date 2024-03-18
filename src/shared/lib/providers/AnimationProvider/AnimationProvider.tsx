@@ -1,4 +1,5 @@
-import { createContext, ReactNode, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import type { ReactNode } from 'react';
 
 // для корректной типизации библиотек
 type GestureType = typeof import('@use-gesture/react'); // библиотека для свайпов, тача, drag'n'drop
