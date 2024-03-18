@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
@@ -6,9 +7,20 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Theme } from '@/shared/const/theme';
 
-import { Button } from '../../../Button/Button';
-
 import { DropDown } from './DropDown';
+
+const Trigger = () => (
+  <p
+    style={{
+      border: '2px solid var(--accent-redesigned)',
+      borderRadius: 16,
+      color: 'var(--text-redesigned)',
+      padding: '4px 8px',
+    }}
+  >
+    Open
+  </p>
+);
 
 const meta = {
   title: 'shared/components/new/DropDown',
@@ -27,7 +39,7 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -38,7 +50,7 @@ Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsD
 export const Dark: Story = {
   args: {
     items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -53,7 +65,7 @@ Dark.decorators = [
 export const Orange: Story = {
   args: {
     items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -69,7 +81,7 @@ export const TopLeft: Story = {
   args: {
     direction: 'top-left',
     items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -88,13 +100,13 @@ export const TopRight: Story = {
   args: {
     direction: 'top-right',
     items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
 TopRight.decorators = [
   (Story) => (
-    <div style={{ display: 'flex', padding: '150px 70px' }}>
+    <div style={{ display: 'flex', padding: '150px 90px' }}>
       <Story />
     </div>
   ),
@@ -107,7 +119,7 @@ export const BottomLeft: Story = {
   args: {
     direction: 'bottom-left',
     items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -119,13 +131,13 @@ export const BottomRight: Story = {
   args: {
     direction: 'bottom-right',
     items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
 BottomRight.decorators = [
   (Story) => (
-    <div style={{ display: 'flex', padding: '0 70px' }}>
+    <div style={{ display: 'flex', padding: '0 90px' }}>
       <Story />
     </div>
   ),
@@ -139,7 +151,7 @@ export const JustifyLeft: Story = {
   args: {
     items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
     justify: 'left',
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -151,7 +163,7 @@ export const JustifyCenter: Story = {
   args: {
     items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
     justify: 'center',
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -163,7 +175,7 @@ export const JustifyRight: Story = {
   args: {
     items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
     justify: 'right',
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -175,7 +187,7 @@ export const Small: Story = {
   args: {
     items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
     optionSize: 'S',
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -187,10 +199,55 @@ export const Medium: Story = {
   args: {
     items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
     optionSize: 'M',
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
 Medium.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
+// Disabled
+
+export const Disabled: Story = {
+  args: {
+    items: [
+      { content: 'First item' },
+      { content: 'Disabled item', disabled: true },
+      { content: 'Third item' },
+    ],
+    trigger: <Trigger />,
+  },
+};
+
+Disabled.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
+// Clickable
+
+export const Clickable: Story = {
+  args: {
+    items: [
+      { content: 'First item' },
+      { content: 'Clickable item', onClick: action('onClick') },
+      { content: 'Third item' },
+    ],
+    trigger: <Trigger />,
+  },
+};
+
+Clickable.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
+// Link
+
+export const Link: Story = {
+  args: {
+    items: [
+      { content: 'First item' },
+      { content: 'Link item', href: 'test' },
+      { content: 'Third item' },
+    ],
+    trigger: <Trigger />,
+  },
+};
+
+Link.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 export default meta;

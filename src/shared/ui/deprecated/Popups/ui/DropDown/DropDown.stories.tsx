@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
@@ -5,9 +6,19 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Theme } from '@/shared/const/theme';
 
-import { Button } from '../../../Button/Button';
-
 import { DropDown } from './DropDown';
+
+const Trigger = () => (
+  <p
+    style={{
+      border: '1px solid var(--primary-color)',
+      color: 'var(--primary-color)',
+      padding: '4px 8px',
+    }}
+  >
+    Open
+  </p>
+);
 
 const meta = {
   title: 'shared/components/old/DropDown',
@@ -26,7 +37,7 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -37,7 +48,7 @@ Primary.decorators = [IndentsDecorator];
 export const Dark: Story = {
   args: {
     items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -48,7 +59,7 @@ Dark.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 export const Orange: Story = {
   args: {
     items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -60,13 +71,13 @@ export const TopLeft: Story = {
   args: {
     direction: 'top-left',
     items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
 TopLeft.decorators = [
   (Story) => (
-    <div style={{ padding: '150px 20px' }}>
+    <div style={{ padding: '120px 20px' }}>
       <Story />
     </div>
   ),
@@ -78,13 +89,13 @@ export const TopRight: Story = {
   args: {
     direction: 'top-right',
     items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
 TopRight.decorators = [
   (Story) => (
-    <div style={{ display: 'flex', padding: '150px 70px' }}>
+    <div style={{ display: 'flex', padding: '120px 90px' }}>
       <Story />
     </div>
   ),
@@ -96,7 +107,7 @@ export const BottomLeft: Story = {
   args: {
     direction: 'bottom-left',
     items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -108,7 +119,7 @@ export const BottomRight: Story = {
   args: {
     direction: 'bottom-right',
     items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -127,7 +138,7 @@ export const JustifyLeft: Story = {
   args: {
     items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
     justify: 'left',
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -139,7 +150,7 @@ export const JustifyCenter: Story = {
   args: {
     items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
     justify: 'center',
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -151,7 +162,7 @@ export const JustifyRight: Story = {
   args: {
     items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
     justify: 'right',
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -161,7 +172,7 @@ export const Small: Story = {
   args: {
     items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
     optionSize: 'S',
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
@@ -173,10 +184,55 @@ export const Medium: Story = {
   args: {
     items: [{ content: 'First item' }, { content: 'Second item' }, { content: 'Third item' }],
     optionSize: 'M',
-    trigger: <Button>Open</Button>,
+    trigger: <Trigger />,
   },
 };
 
 Medium.decorators = [IndentsDecorator];
+
+// Disabled
+
+export const Disabled: Story = {
+  args: {
+    items: [
+      { content: 'First item' },
+      { content: 'Disabled item', disabled: true },
+      { content: 'Third item' },
+    ],
+    trigger: <Trigger />,
+  },
+};
+
+Disabled.decorators = [IndentsDecorator];
+
+// Clickable
+
+export const Clickable: Story = {
+  args: {
+    items: [
+      { content: 'First item' },
+      { content: 'Clickable item', onClick: action('onClick') },
+      { content: 'Third item' },
+    ],
+    trigger: <Trigger />,
+  },
+};
+
+Clickable.decorators = [IndentsDecorator];
+
+// Link
+
+export const Link: Story = {
+  args: {
+    items: [
+      { content: 'First item' },
+      { content: 'Link item', href: 'test' },
+      { content: 'Third item' },
+    ],
+    trigger: <Trigger />,
+  },
+};
+
+Link.decorators = [IndentsDecorator];
 
 export default meta;

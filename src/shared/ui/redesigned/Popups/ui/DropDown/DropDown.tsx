@@ -1,15 +1,18 @@
-import { Fragment, memo, ReactNode } from 'react';
+import { Fragment, memo } from 'react';
+import type { ReactNode } from 'react';
+
 import { Menu } from '@headlessui/react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
-import { DropdownDirection } from '@/shared/types/ui';
+import type { DropdownDirection } from '../../../../../types/ui';
 
-import { AppLink } from '../../../AppLink/AppLink';
+import { AppLink } from '../../../AppLink';
 
 import { mapDirectionClass } from '../../styles/consts';
 
 import popupClasses from '../../styles/popup.module.scss';
+
 import classes from './DropDown.module.scss';
 
 /**
@@ -110,12 +113,20 @@ export const DropDown = memo(
 
         <Menu.Items className={classNames(classes.menu, {}, menuClasses)}>
           {items.map((item) => {
+            /*
+              в библиотеке '@headlessui' как альтернативу 'JSX'-компонентам можно использовать
+              паттерн 'render props' (функция вместо 'JSX'-компонента)
+            */
             const content = ({ active }: { active: boolean }) => (
               <button
-                className={classNames(classes.item, { [popupClasses.active]: active }, [
-                  mapJustifyClass[justify],
-                  mapOptionSizeClass[optionSize],
-                ])}
+                className={classNames(
+                  classes.item,
+                  {
+                    [popupClasses.active]: active,
+                    [popupClasses.disabled]: item.disabled,
+                  },
+                  [mapJustifyClass[justify], mapOptionSizeClass[optionSize]],
+                )}
                 disabled={item.disabled}
                 onClick={item.onClick}
               >

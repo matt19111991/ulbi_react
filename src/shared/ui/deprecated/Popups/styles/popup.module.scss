@@ -12,29 +12,29 @@
 }
 
 .optionsBottomLeft {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
   left: 0;
   top: 44px;
 }
 
 .optionsBottomRight {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
   right: 0;
   top: 44px;
 }
 
 .optionsTopLeft {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
   bottom: 120%;
   left: 0;
 }
 
 .optionsTopRight {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
   bottom: 120%;
   right: 0;
 }

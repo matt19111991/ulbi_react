@@ -114,12 +114,20 @@ export const DropDown = memo(
 
       <Menu.Items className={classNames(classes.menu, {}, [mapDirectionClass[direction]])}>
         {items.map((item) => {
+          /*
+            в библиотеке '@headlessui' как альтернативу 'JSX'-компонентам можно использовать
+            паттерн 'render props' (функция вместо 'JSX'-компонента)
+          */
           const content = ({ active }: { active: boolean }) => (
             <button
-              className={classNames(classes.item, { [popupClasses.active]: active }, [
-                mapJustifyClass[justify],
-                mapOptionSizeClass[optionSize],
-              ])}
+              className={classNames(
+                classes.item,
+                {
+                  [popupClasses.active]: active,
+                  [popupClasses.disabled]: item.disabled,
+                },
+                [mapJustifyClass[justify], mapOptionSizeClass[optionSize]],
+              )}
               disabled={item.disabled}
               onClick={item.onClick}
             >
