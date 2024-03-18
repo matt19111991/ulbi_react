@@ -28,7 +28,7 @@ interface DrawerProps {
   className?: string;
 
   /**
-   * Состояние (Drawer закрыт или открыт)
+   * Состояние ('Drawer' закрыт или открыт)
    */
   isOpen?: boolean;
 
@@ -38,7 +38,7 @@ interface DrawerProps {
   lazy?: boolean;
 
   /**
-   * Коллбэк при закрытии Drawera
+   * Колбэк при закрытии 'Drawera'
    */
   onClose?: () => void;
 }
@@ -103,7 +103,7 @@ export const DrawerContent = ({ children, className, isOpen, lazy, onClose }: Dr
       }
     },
     {
-      bounds: { top: 0 }, // границы смещения жеста, может быть 'ref' или DOM узлом
+      bounds: { top: 0 }, // границы смещения жеста, может быть 'ref' или 'DOM' узлом
       from: () => [0, y.get()], // смещение положения начнется с этого значения
       filterTaps: true, // перетаскивания не будет, если пользователь только что щелкнул компонент
       rubberband: true, // коэффициент эластичности жеста при выходе за пределы (при 'true' === 0,15)

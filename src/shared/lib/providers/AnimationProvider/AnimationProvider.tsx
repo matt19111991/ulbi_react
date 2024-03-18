@@ -24,7 +24,7 @@ interface AnimationContextPayload {
 }
 
 /**
- * Контекст
+ * Контекст для анимаций
  */
 const AnimationContext = createContext<AnimationContextPayload>({});
 
@@ -36,7 +36,7 @@ const getAsyncAnimationModules = async () =>
   Promise.all([import('@react-spring/web'), import('@use-gesture/react')]);
 
 /**
- * Хук
+ * Хук для работы анимаций
  */
 export const useAnimationLibraries = () => {
   // 'as', чтобы избежать ошибок "'Spring' is possibly 'undefined'" при использовании библиотек
@@ -44,7 +44,7 @@ export const useAnimationLibraries = () => {
 };
 
 /**
- * Провайдер
+ * Провайдер для анимаций
  */
 export const AnimationProvider = ({ children }: { children: ReactNode }) => {
   const [isLoaded, setIsLoaded] = useState(false);
