@@ -180,7 +180,7 @@ export const RatingCard = memo(
     );
 
     const mobileContent = (
-      <Drawer className={classes.mobile} isOpen={isModalOpen} lazy onClose={cancelHandler}>
+      <Drawer className={classes.mobile} isOpen={isModalOpen} onClose={cancelHandler}>
         <VStack align='start' gap='32' max>
           {modalContent}
 

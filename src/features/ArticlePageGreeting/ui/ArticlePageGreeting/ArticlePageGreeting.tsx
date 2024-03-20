@@ -52,7 +52,7 @@ export const ArticlePageGreeting = memo(({ storybookMobile }: ArticlePageGreetin
 
   if (isMobile || storybookMobile) {
     return (
-      <Drawer isOpen={isOpen} lazy onClose={onClose}>
+      <Drawer isOpen={isOpen} onClose={onClose}>
         {text}
       </Drawer>
     );
