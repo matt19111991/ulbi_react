@@ -64,7 +64,7 @@ export const AnimationProvider = ({ children }: { children: ReactNode }) => {
       })
       .catch((e) => {
         // eslint-disable-next-line no-console
-        console.log('e', e);
+        console.log('Error during animation libraries loading:', e);
       });
   }, []);
 

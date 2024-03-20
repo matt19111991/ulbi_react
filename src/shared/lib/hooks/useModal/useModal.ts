@@ -5,6 +5,8 @@ import type {
   // RefObject,     // 'ref', который нельзя менять
 } from 'react';
 
+import { useEscapeKey } from '../useEscapeKey/useEscapeKey';
+
 interface UseModalProps {
   /**
    * Задержка анимации при закрытии окна; открытие окна происходит через 'CSS' (анимация 'appear')
@@ -23,7 +25,7 @@ interface UseModalProps {
 }
 
 /**
- * Переиспользуемый хук для модальных компонентов ('Drawer' / 'Modal')
+ * Переиспользуемый хук для модальных компонентов
  * @param animationCloseDelay
  * @param isOpen
  * @param onClose
@@ -48,21 +50,7 @@ export const useModal = ({ animationCloseDelay, isOpen, onClose }: UseModalProps
     }
   }, [animationCloseDelay, onClose]);
 
-  /*
-    последний 'useEffect' зависит от 'onKeyDown()',
-    поэтому 'onKeyDown()' нужно мемоизировать или описать внутри 'useEffect' как 'callback':
-      иначе 'onKeyDown()' будет пересоздаваться на каждый перерендер, следовательно,
-      будет создаваться новая ссылка на функцию и можно войти в бесконечный цикл перерендеринга
-  */
-
-  const onKeyDown = useCallback(
-    (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onCloseModal();
-      }
-    },
-    [onCloseModal],
-  );
+  useEscapeKey(onCloseModal);
 
   const onSetAutoFocus = useCallback(() => {
     /*
@@ -99,16 +87,10 @@ export const useModal = ({ animationCloseDelay, isOpen, onClose }: UseModalProps
   }, [isOpen, onSetAutoFocus]);
 
   useEffect(() => {
-    if (isOpen) {
-      window.addEventListener('keydown', onKeyDown);
-    }
-
     return () => {
       clearTimeout(timerRef.current);
-
-      window.removeEventListener('keydown', onKeyDown);
     };
-  }, [isOpen, onKeyDown]);
+  }, []);
 
   return {
     isClosing,
