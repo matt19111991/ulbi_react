@@ -20,6 +20,22 @@ export const useEscapeKey = (onKeyDownHandler: () => void): void => {
     [onKeyDownHandler],
   );
 
+  /*
+    useEffect(() => {
+      const onKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          onKeyDownHandler();
+        }
+      };
+
+      window.addEventListener('keydown', onKeyDown);
+
+      return () => {
+        window.removeEventListener('keydown', onKeyDown);
+      };
+    }, [onKeyDownHandler]);
+  */
+
   useEffect(() => {
     window.addEventListener('keydown', onKeyDown);
 

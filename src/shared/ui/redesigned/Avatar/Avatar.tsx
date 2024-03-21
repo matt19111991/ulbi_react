@@ -1,13 +1,12 @@
 import { memo, useCallback, useMemo } from 'react';
 import type { CSSProperties } from 'react';
-
 import { useNavigate } from 'react-router-dom';
+
+import UserIcon from '@/shared/assets/icons/user-filled-32-32.svg';
 
 import { getRouteProfile } from '@/shared/const/router';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
-
-import UserIcon from '../../../assets/icons/user-filled-32-32.svg';
 
 import { AppImage } from '../AppImage';
 import { Icon } from '../Icon';

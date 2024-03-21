@@ -1,14 +1,14 @@
 import { useCallback, useEffect } from 'react';
 import type { ReactNode } from 'react';
 
-import { classNames } from '../../../lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
 
-import { toggleFeatures } from '../../../lib/features';
+import { toggleFeatures } from '@/shared/lib/features';
 
-import { useEscapeKey } from '../../../lib/hooks/useEscapeKey/useEscapeKey';
-import { useTheme } from '../../../lib/hooks/useTheme/useTheme';
+import { useEscapeKey } from '@/shared/lib/hooks/useEscapeKey/useEscapeKey';
+import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 
-import { AnimationProvider, useAnimationLibraries } from '../../../lib/providers/AnimationProvider';
+import { AnimationProvider, useAnimationLibraries } from '@/shared/lib/providers/AnimationProvider';
 
 import { Overlay } from '../Overlay';
 import { Portal } from '../Portal';
@@ -82,6 +82,7 @@ export const DrawerContent = ({ children, className, isOpen, onClose }: DrawerPr
   /*
     обработка жестов перетягивания:
     на вход 'useDrag()' передаются 2 аргумента: 'handler: (dragConfig: DragConfig) => void' и 'config'
+    на выходе функция, которая при вызове возвращает объект с обработчиками событий для перетягивания
   */
   const bind = Gesture.useDrag(
     (dragConfig) => {
@@ -107,7 +108,8 @@ export const DrawerContent = ({ children, className, isOpen, onClose }: DrawerPr
         ) {
           onCloseDrawer(); // закрываем 'Drawer' с анимацией
         } else {
-          onOpenDrawer(); // иначе сбрасываем анимацию на первоначальное состояние
+          // иначе сбрасываем анимацию на первоначальное состояние открытого 'Drawer'
+          onOpenDrawer();
         }
       } else {
         // пользователь еще перетягивает 'Drawer'
@@ -124,7 +126,7 @@ export const DrawerContent = ({ children, className, isOpen, onClose }: DrawerPr
       filterTaps: true, // перетаскивания не будет, если пользователь только кликнул на компонент
 
       /*
-        коэффициент эластичности при выходе за установленные пределы анимации (при 'true' === 0.15),
+        коэффициент эластичности при выходе за установленные пределы анимации (для 'true' === 0.15),
         при выходе за эти пределы анимация не будет обрезаться
       */
       rubberband: true,
@@ -151,7 +153,12 @@ export const DrawerContent = ({ children, className, isOpen, onClose }: DrawerPr
           style={{
             y, // без этого параметра анимация не работает
           }}
-          {...bind()} // без 'bind()' не работает перетягивание
+          /*
+           'bind()' при вызове возвращает объект с обработчиками событий,
+            распыляем эти обработчики ('onPointerDown', 'onPointerMove' и т.д.)
+            в анимируемый компонент, иначе не будет работать перетягивание
+          */
+          {...bind()}
         >
           {children}
         </Spring.a.div>

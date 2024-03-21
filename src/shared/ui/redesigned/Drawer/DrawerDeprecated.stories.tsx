@@ -1,14 +1,15 @@
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { AnimationDecorator } from '@/shared/config/storybook/AnimationDecorator/AnimationDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
 
 import { Drawer } from './Drawer';
 
-const Content = () => <p style={{ fontSize: 24, textAlign: 'center' }}>Drawer content</p>;
+const Content = () => (
+  <p style={{ color: 'var(--primary_color)', fontSize: 24, textAlign: 'center' }}>Drawer content</p>
+);
 
 const meta = {
   title: 'shared/components/old/Drawer',
@@ -32,8 +33,6 @@ export const Primary: Story = {
   },
 };
 
-Primary.decorators = [AnimationDecorator];
-
 // Dark drawer
 
 export const Dark: Story = {
@@ -44,7 +43,7 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [AnimationDecorator, ThemeDecorator(Theme.DARK)];
+Dark.decorators = [ThemeDecorator(Theme.DARK)];
 
 // Orange drawer
 
@@ -56,6 +55,6 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [AnimationDecorator, ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
 
 export default meta;

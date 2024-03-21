@@ -1,11 +1,10 @@
 import { Fragment, memo } from 'react';
 import type { ReactNode } from 'react';
-
 import { Menu } from '@headlessui/react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
-import type { DropdownDirection } from '../../../../../types/ui';
+import type { DropdownDirection } from '@/shared/types/ui';
 
 import { AppLink } from '../../../AppLink';
 
