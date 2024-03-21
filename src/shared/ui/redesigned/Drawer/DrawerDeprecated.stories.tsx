@@ -6,9 +6,9 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Theme } from '@/shared/const/theme';
 
-import { Text, TextAlign } from '../../deprecated/Text/Text';
-
 import { Drawer } from './Drawer';
+
+const Content = () => <p style={{ fontSize: 24, textAlign: 'center' }}>Drawer content</p>;
 
 const meta = {
   title: 'shared/components/old/Drawer',
@@ -18,7 +18,6 @@ const meta = {
       control: 'color',
     },
   },
-  decorators: [AnimationDecorator],
 } as Meta<typeof Drawer>;
 
 type Story = StoryObj<typeof meta>;
@@ -27,34 +26,36 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    children: <Text align={TextAlign.CENTER} title='Drawer content' />,
+    children: <Content />,
     isOpen: true,
     onClose: action('onClose'),
   },
 };
+
+Primary.decorators = [AnimationDecorator];
 
 // Dark drawer
 
 export const Dark: Story = {
   args: {
-    children: <Text align={TextAlign.CENTER} title='Drawer content' />,
+    children: <Content />,
     isOpen: true,
     onClose: action('onClose'),
   },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [AnimationDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange drawer
 
 export const Orange: Story = {
   args: {
-    children: <Text align={TextAlign.CENTER} title='Drawer content' />,
+    children: <Content />,
     isOpen: true,
     onClose: action('onClose'),
   },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [AnimationDecorator, ThemeDecorator(Theme.ORANGE)];
 
 export default meta;
