@@ -8,12 +8,6 @@
   z-index: var(--overlay-z-index);
 }
 
-.opened {
-  opacity: 1;
-  pointer-events: auto;
-  z-index: var(--modal-z-index);
-}
-
 .sheet {
   border-radius: 12px 12px 0;
   left: 2vw;
@@ -21,6 +15,8 @@
   position: fixed;
   touch-action: none; /* отключаем обработку в браузере всех жестов панорамирования и масштабирования */
   width: 96vw;
+
+  /* у контента 'z-index' должен быть больше, чем у 'overlay', чтобы с контентом можно было взаимодействовать */
   z-index: var(--modal-z-index);
 }
 

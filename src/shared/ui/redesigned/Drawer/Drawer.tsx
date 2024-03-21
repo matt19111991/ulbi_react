@@ -1,15 +1,14 @@
 import { useCallback, useEffect } from 'react';
 import type { ReactNode } from 'react';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
-import type { Mods } from '@/shared/lib/classNames/classNames';
+import { classNames } from '../../../lib/classNames/classNames';
 
-import { toggleFeatures } from '@/shared/lib/features';
+import { toggleFeatures } from '../../../lib/features';
 
-import { useModal } from '@/shared/lib/hooks/useModal/useModal';
-import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
+import { useEscapeKey } from '../../../lib/hooks/useEscapeKey/useEscapeKey';
+import { useTheme } from '../../../lib/hooks/useTheme/useTheme';
 
-import { AnimationProvider, useAnimationLibraries } from '@/shared/lib/providers/AnimationProvider';
+import { AnimationProvider, useAnimationLibraries } from '../../../lib/providers/AnimationProvider';
 
 import { Overlay } from '../Overlay';
 import { Portal } from '../Portal';
@@ -33,90 +32,104 @@ interface DrawerProps {
   isOpen?: boolean;
 
   /**
-   * Должен компонент лениво загружаться?
-   */
-  lazy?: boolean;
-
-  /**
    * Колбэк при закрытии 'Drawera'
    */
   onClose?: () => void;
 }
 
 /**
- * Общая высота окна - 100px
- */
-const height = window.innerHeight - 100;
-
-/**
  * Компонент с основным контентом
  */
-export const DrawerContent = ({ children, className, isOpen, lazy, onClose }: DrawerProps) => {
+export const DrawerContent = ({ children, className, isOpen, onClose }: DrawerProps) => {
   const { Gesture, Spring } = useAnimationLibraries();
 
-  const { isMounted, onCloseModal } = useModal({ animationCloseDelay: 300, isOpen, onClose });
+  /*
+   'useSpring()' принимает на вход колбэк, который должен вернуть объект с изменяемыми параметрами,
+    в нашем случае анимация будет только по 'y' ==> поэтому передаем начальную ('from') позицию для 'y':
+   'y === 0' - верх экрана, а нам нужен низ: 'y' === window.innerHeight'
 
-  const [{ y }, api] = Spring.useSpring(() => ({ y: height }));
+    хук возвращает кортеж из ['объект_с_изменяемыми_свойствами_(переданными_в_useSpring)', 'api_объект_для_анимаций']
+  */
+  const [{ y }, api] = Spring.useSpring(() => ({ y: window.innerHeight }));
 
   const { theme } = useTheme();
 
-  const openDrawer = useCallback(() => {
-    api.start({ y: 0 }); // запускаем анимацию при открытии 'drawer'
+  const onOpenDrawer = useCallback(() => {
+    // запускаем анимацию при открытии 'Drawer'
+    api.start({ y: 0 }); // передаем конечную ('to') позицию для 'y'
   }, [api]);
 
   useEffect(() => {
     if (isOpen) {
-      openDrawer();
+      onOpenDrawer();
     }
-  }, [isOpen, openDrawer]);
+  }, [isOpen, onOpenDrawer]);
 
-  const close = () => {
-    // запускаем анимацию при закрытии 'drawer'
+  const onCloseDrawer = useCallback(() => {
+    // запускаем анимацию при закрытии 'Drawer'
     api.start({
       config: {
-        ...Spring.config.stiff, // вид анимации: { tension: 210, friction: 20 }
-        velocity: 0, // скорость ('0' по умолчанию)
+        ...Spring.config.stiff, // вид анимации ==> '{ tension: 210, friction: 20 }'
+        velocity: 0, // стартовая скорость
       },
-      onResolve: onClose, // по окончанию анимации вызываем 'onClose();'
-      y: height,
+      onResolve: onClose, // по окончанию анимации вызываем 'onClose()'
+      y: window.innerHeight, // конечная ('to') позиция для анимации - низ экрана
     });
-  };
+  }, [api, onClose, Spring.config.stiff]);
 
+  useEscapeKey(onCloseDrawer);
+
+  /*
+    обработка жестов перетягивания:
+    на вход 'useDrag()' передаются 2 аргумента: 'handler: (dragConfig: DragConfig) => void' и 'config'
+  */
   const bind = Gesture.useDrag(
-    ({ cancel, last, direction: [, dy], movement: [, my], velocity: [, vy] }) => {
-      // смещение текущего жеста < -70
+    (dragConfig) => {
+      const {
+        cancel, // отмена перетягивания
+        last, // это последнее событие перетягивания?
+        direction: [, dy], // '-1' - тянем вверх, '1' - тянем вниз
+        movement: [, my], // смещение
+        velocity: [, vy], // скорость
+      } = dragConfig;
+
+      // смещение < -70 (попытка перетягивания 'Drawer' вверх)
       if (my < -70) {
-        cancel(); // отменяем закрытие 'drawer'
+        cancel(); // отменяем перетягивание
       }
 
-      // это последнее событие активного жеста
+      // анимируем только состояние 'last' (пользователь перестал перетягивать)
       if (last) {
         // достаточное смещение для закрытия
-        if (my > height * 0.5 || (vy > 0.5 && dy > 0)) {
-          close(); // закрываем 'drawer' с анимацией
+        if (
+          my > window.innerHeight * 0.5 || // смещение больше, чем на половину экрана или
+          (vy > 0.5 && dy === 1) // скорость смещения вниз достаточно высокая
+        ) {
+          onCloseDrawer(); // закрываем 'Drawer' с анимацией
         } else {
-          openDrawer(); // без этого 'drawer' повторно откроется со второго клика на 'trigger'
+          onOpenDrawer(); // иначе сбрасываем анимацию на первоначальное состояние
         }
       } else {
-        // это не последнее событие активного жеста
+        // пользователь еще перетягивает 'Drawer'
         api.start({ y: my, immediate: true }); // без анимации выставляем 'y'
       }
     },
     {
-      bounds: { top: 0 }, // границы смещения жеста, может быть 'ref' или 'DOM' узлом
-      from: () => [0, y.get()], // смещение положения начнется с этого значения
-      filterTaps: true, // перетаскивания не будет, если пользователь только что щелкнул компонент
-      rubberband: true, // коэффициент эластичности жеста при выходе за пределы (при 'true' === 0,15)
+      // границы области перетягивания (может быть 'ref' или 'DOM' узлом)
+      bounds: {
+        bottom: window.innerHeight,
+        top: 0,
+      },
+
+      filterTaps: true, // перетаскивания не будет, если пользователь только кликнул на компонент
+
+      /*
+        коэффициент эластичности при выходе за установленные пределы анимации (при 'true' === 0.15),
+        при выходе за эти пределы анимация не будет обрезаться
+      */
+      rubberband: true,
     },
   );
-
-  if (!isOpen || (lazy && !isMounted)) {
-    return null;
-  }
-
-  const mods: Mods = {
-    [classes.opened]: isOpen,
-  };
 
   const additionalClasses = [
     className,
@@ -130,20 +143,15 @@ export const DrawerContent = ({ children, className, isOpen, lazy, onClose }: Dr
 
   return (
     <Portal containerElement={document.getElementById('app') ?? document.body}>
-      <div className={classNames(classes.Drawer, mods, additionalClasses)}>
-        <Overlay onClick={onCloseModal} />
+      <div className={classNames(classes.Drawer, {}, additionalClasses)}>
+        <Overlay onClick={onCloseDrawer} />
 
-        <Spring.a.div // анимированный 'div'
+        <Spring.a.div // анимированный 'div' ('animated as a')
           className={classes.sheet}
           style={{
-            bottom: `calc(-100vh) + ${height - 100}px)`,
-
-            // без 'display: none' 'drawer' задерживается внизу экрана при свайпе вниз
-            display: y.to((py) => (py < height ? 'block' : 'none')),
-
             y, // без этого параметра анимация не работает
           }}
-          {...bind()}
+          {...bind()} // без 'bind()' не работает перетягивание
         >
           {children}
         </Spring.a.div>
@@ -153,23 +161,29 @@ export const DrawerContent = ({ children, className, isOpen, lazy, onClose }: Dr
 };
 
 /**
- * Асинхронный компонент
+ * Компонент с асинхронно загруженными библиотеками для анимации
  */
-const DrawerAsync = ({ children, ...rest }: DrawerProps) => {
+const DrawerAsync = ({ children, ...props }: DrawerProps) => {
   const { isLoaded } = useAnimationLibraries();
 
   if (!isLoaded) {
     return null;
   }
 
-  return <DrawerContent {...rest}>{children}</DrawerContent>;
+  return <DrawerContent {...props}>{children}</DrawerContent>;
 };
 
 /**
- * Асинхронный компонент с анимацией
+ * Финальный компонент, обернутый в провайдер с подгрузкой анимации
  */
-export const Drawer = ({ children, ...rest }: DrawerProps) => (
-  <AnimationProvider>
-    <DrawerAsync {...rest}>{children}</DrawerAsync>
-  </AnimationProvider>
-);
+export const Drawer = ({ children, ...props }: DrawerProps) => {
+  if (!props.isOpen) {
+    return null;
+  }
+
+  return (
+    <AnimationProvider>
+      <DrawerAsync {...props}>{children}</DrawerAsync>
+    </AnimationProvider>
+  );
+};
