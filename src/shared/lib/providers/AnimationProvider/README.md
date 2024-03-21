@@ -14,7 +14,7 @@
 
 ### Hooks
 
-`useAnimationLibraries` - Хук для работы анимаций
+`useAnimationLibraries` - Хук для работы с анимациями
 
 ### Types
 

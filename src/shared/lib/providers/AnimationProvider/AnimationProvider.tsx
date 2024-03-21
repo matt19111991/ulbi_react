@@ -36,7 +36,7 @@ const getAsyncAnimationModules = async () =>
   Promise.all([import('@react-spring/web'), import('@use-gesture/react')]);
 
 /**
- * Хук для работы анимаций
+ * Хук для работы с анимациями
  */
 export const useAnimationLibraries = () => {
   // 'as', чтобы избежать ошибок "'Spring' is possibly 'undefined'" при использовании библиотек
