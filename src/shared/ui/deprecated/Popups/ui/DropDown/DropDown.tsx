@@ -1,6 +1,5 @@
 import { Fragment, memo } from 'react';
 import type { ReactNode } from 'react';
-
 import { Menu } from '@headlessui/react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';

@@ -5,4 +5,4 @@ import type { LoginFormProps } from './LoginForm';
 
 // без '<FC<LoginFormProps>>' 'TS' может ругаться на типы 'props' при использовании 'lazy'
 
-export const LoginFormAsync = lazy<FC<LoginFormProps>>(() => import('./LoginForm'));
+export const LoginForm = lazy<FC<LoginFormProps>>(() => import('./LoginForm'));

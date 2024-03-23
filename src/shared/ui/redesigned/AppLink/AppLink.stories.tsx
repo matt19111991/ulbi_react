@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -30,6 +31,8 @@ export const PrimaryLight: Story = {
   },
 };
 
+PrimaryLight.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Red light app link
 
 export const RedLight: Story = {
@@ -38,6 +41,8 @@ export const RedLight: Story = {
     variant: 'red',
   },
 };
+
+RedLight.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 // Primary dark app link
 
@@ -48,7 +53,10 @@ export const PrimaryDark: Story = {
   },
 };
 
-PrimaryDark.decorators = [ThemeDecorator(Theme.DARK)];
+PrimaryDark.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  ThemeDecorator(Theme.DARK),
+];
 
 // Red dark app link
 
@@ -59,7 +67,7 @@ export const RedDark: Story = {
   },
 };
 
-RedDark.decorators = [ThemeDecorator(Theme.DARK)];
+RedDark.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
 
 // Primary orange app link
 
@@ -70,7 +78,10 @@ export const PrimaryOrange: Story = {
   },
 };
 
-PrimaryOrange.decorators = [ThemeDecorator(Theme.ORANGE)];
+PrimaryOrange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Red orange app link
 
@@ -81,6 +92,9 @@ export const RedOrange: Story = {
   },
 };
 
-RedOrange.decorators = [ThemeDecorator(Theme.ORANGE)];
+RedOrange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 export default meta;

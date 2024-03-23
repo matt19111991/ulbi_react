@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import IconSvg from '@/shared/assets/tests/storybook3.svg';
 
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -33,6 +34,8 @@ export const PrimaryClear: Story = {
   },
 };
 
+PrimaryClear.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Dark clear button
 
 export const DarkClear: Story = {
@@ -42,7 +45,10 @@ export const DarkClear: Story = {
   },
 };
 
-DarkClear.decorators = [ThemeDecorator(Theme.DARK)];
+DarkClear.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange clear button
 
@@ -53,7 +59,10 @@ export const OrangeClear: Story = {
   },
 };
 
-OrangeClear.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeClear.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Primary filled button
 
@@ -64,6 +73,8 @@ export const PrimaryFilled: Story = {
   },
 };
 
+PrimaryFilled.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Dark filled button
 
 export const DarkFilled: Story = {
@@ -73,7 +84,10 @@ export const DarkFilled: Story = {
   },
 };
 
-DarkFilled.decorators = [ThemeDecorator(Theme.DARK)];
+DarkFilled.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange filled button
 
@@ -84,7 +98,10 @@ export const OrangeFilled: Story = {
   },
 };
 
-OrangeFilled.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeFilled.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Primary outline button
 
@@ -95,6 +112,8 @@ export const PrimaryOutline: Story = {
   },
 };
 
+PrimaryOutline.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Dark outline button
 
 export const DarkOutline: Story = {
@@ -104,7 +123,10 @@ export const DarkOutline: Story = {
   },
 };
 
-DarkOutline.decorators = [ThemeDecorator(Theme.DARK)];
+DarkOutline.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange outline button
 
@@ -115,7 +137,10 @@ export const OrangeOutline: Story = {
   },
 };
 
-OrangeOutline.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeOutline.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Outline small button
 
@@ -127,6 +152,8 @@ export const OutlineSmall: Story = {
   },
 };
 
+OutlineSmall.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Outline large button
 
 export const OutlineLarge: Story = {
@@ -136,6 +163,8 @@ export const OutlineLarge: Story = {
     variant: 'outline',
   },
 };
+
+OutlineLarge.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 // Outline extra large button
 
@@ -147,6 +176,8 @@ export const OutlineExtraLarge: Story = {
   },
 };
 
+OutlineExtraLarge.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Square medium button
 
 export const SquareMedium: Story = {
@@ -156,6 +187,8 @@ export const SquareMedium: Story = {
     variant: 'outline',
   },
 };
+
+SquareMedium.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 // Square large button
 
@@ -168,6 +201,8 @@ export const SquareLarge: Story = {
   },
 };
 
+SquareLarge.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Square extra large button
 
 export const SquareExtraLarge: Story = {
@@ -179,6 +214,8 @@ export const SquareExtraLarge: Story = {
   },
 };
 
+SquareExtraLarge.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Disabled button
 
 export const Disabled: Story = {
@@ -189,6 +226,8 @@ export const Disabled: Story = {
   },
 };
 
+Disabled.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Full width button
 
 export const FullWidth: Story = {
@@ -198,6 +237,8 @@ export const FullWidth: Story = {
     variant: 'outline',
   },
 };
+
+FullWidth.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 // Button with addon left
 
@@ -213,6 +254,8 @@ export const AddonLeft: Story = {
   },
 };
 
+AddonLeft.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Button with addon right
 
 export const AddonRight: Story = {
@@ -227,6 +270,8 @@ export const AddonRight: Story = {
   },
 };
 
+AddonRight.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Button error
 
 export const Error: Story = {
@@ -236,6 +281,8 @@ export const Error: Story = {
   },
 };
 
+Error.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+
 // Button success
 
 export const Success: Story = {
@@ -244,5 +291,7 @@ export const Success: Story = {
     color: 'success',
   },
 };
+
+Success.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 export default meta;

@@ -4,7 +4,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 
 import { Modal } from '@/shared/ui/redesigned/Modal';
 
-import { LoginFormAsync } from '../LoginForm/LoginForm.async';
+import { LoginForm } from '../LoginForm/LoginForm.async';
 
 interface LoginModalProps {
   /**
@@ -26,7 +26,7 @@ interface LoginModalProps {
 export const LoginModal = memo(({ className, isOpen, onClose }: LoginModalProps) => (
   <Modal className={classNames('', {}, [className])} isOpen={isOpen} lazy onClose={onClose}>
     <Suspense fallback=''>
-      <LoginFormAsync onSuccess={onClose} />
+      <LoginForm onSuccess={onClose} />
     </Suspense>
   </Modal>
 ));
