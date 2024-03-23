@@ -5,9 +5,19 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Theme } from '@/shared/const/theme';
 
-import { Text } from '../Text/Text';
-
 import { Card, CardTheme } from './Card';
+
+const Content = () => (
+  <>
+    <p style={{ color: 'var(--primary-color)', fontSize: 24, lineHeight: '40px' }}>
+      Adgium Sunt accolaes imperium superbus, fortis calceuses.
+    </p>
+
+    <p style={{ color: 'var(--primary-color)', fontSize: 16 }}>
+      Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?
+    </p>
+  </>
+);
 
 const meta = {
   title: 'shared/components/old/Card',
@@ -25,12 +35,7 @@ type Story = StoryObj<typeof meta>;
 
 export const PrimaryNormal: Story = {
   args: {
-    children: (
-      <Text
-        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-      />
-    ),
+    children: <Content />,
   },
 };
 
@@ -40,12 +45,7 @@ PrimaryNormal.decorators = [IndentsDecorator];
 
 export const DarkNormal: Story = {
   args: {
-    children: (
-      <Text
-        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-      />
-    ),
+    children: <Content />,
   },
 };
 
@@ -55,12 +55,7 @@ DarkNormal.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 export const OrangeNormal: Story = {
   args: {
-    children: (
-      <Text
-        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-      />
-    ),
+    children: <Content />,
   },
 };
 
@@ -70,12 +65,7 @@ OrangeNormal.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 export const PrimaryOutlined: Story = {
   args: {
-    children: (
-      <Text
-        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-      />
-    ),
+    children: <Content />,
     theme: CardTheme.OUTLINED,
   },
 };
@@ -86,12 +76,7 @@ PrimaryOutlined.decorators = [IndentsDecorator];
 
 export const DarkOutlined: Story = {
   args: {
-    children: (
-      <Text
-        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-      />
-    ),
+    children: <Content />,
     theme: CardTheme.OUTLINED,
   },
 };
@@ -102,12 +87,7 @@ DarkOutlined.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 export const OrangeOutlined: Story = {
   args: {
-    children: (
-      <Text
-        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-      />
-    ),
+    children: <Content />,
     theme: CardTheme.OUTLINED,
   },
 };
@@ -118,12 +98,7 @@ OrangeOutlined.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 export const FullWidth: Story = {
   args: {
-    children: (
-      <Text
-        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-      />
-    ),
+    children: <Content />,
     max: true,
   },
 };

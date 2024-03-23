@@ -1,4 +1,5 @@
-import { HTMLAttributes, memo, ReactNode } from 'react';
+import { memo } from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
@@ -12,7 +13,10 @@ export enum CardTheme {
   OUTLINED = 'outlined',
 }
 
-// расширяем интерфейс, чтобы TS понимал 'props', если мы захотим пробросить данные из 'useHover' и т.п.
+/*
+  расширяем интерфейс, чтобы 'TS' понимал 'props', если мы захотим пробросить
+  данные из 'useHover()' и т.п.
+*/
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Содержимое карточки
@@ -25,7 +29,7 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
 
   /**
-   * ID для тестов
+   * 'ID' для тестов
    */
   'data-testid'?: string;
 
