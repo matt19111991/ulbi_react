@@ -1,13 +1,24 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
 
-import { Text } from '../Text/Text';
-
 import { Card } from './Card';
+
+const Content = () => (
+  <div>
+    <p style={{ color: 'var(--text-redesigned)', fontSize: 24, lineHeight: '40px' }}>
+      Adgium Sunt accolaes imperium superbus, fortis calceuses.
+    </p>
+
+    <p style={{ color: 'var(--text-redesigned)', fontSize: 16 }}>
+      Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?
+    </p>
+  </div>
+);
 
 const meta = {
   title: 'shared/components/new/Card',
@@ -25,253 +36,208 @@ type Story = StoryObj<typeof meta>;
 
 export const PrimaryNormal: Story = {
   args: {
-    children: (
-      <Text
-        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-      />
-    ),
+    children: <Content />,
   },
 };
 
-PrimaryNormal.decorators = [IndentsDecorator];
+PrimaryNormal.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Dark normal card
 
 export const DarkNormal: Story = {
   args: {
-    children: (
-      <Text
-        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-      />
-    ),
+    children: <Content />,
   },
 };
 
-DarkNormal.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
+DarkNormal.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange normal card
 
 export const OrangeNormal: Story = {
   args: {
-    children: (
-      <Text
-        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-      />
-    ),
+    children: <Content />,
   },
 };
 
-OrangeNormal.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
+OrangeNormal.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Primary outlined card
 
 export const PrimaryOutlined: Story = {
   args: {
-    children: (
-      <Text
-        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-      />
-    ),
+    children: <Content />,
     variant: 'outlined',
   },
 };
 
-PrimaryOutlined.decorators = [IndentsDecorator];
+PrimaryOutlined.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Dark outlined card
 
 export const DarkOutlined: Story = {
   args: {
-    children: (
-      <Text
-        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-      />
-    ),
+    children: <Content />,
     variant: 'outlined',
   },
 };
 
-DarkOutlined.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
+DarkOutlined.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange outlined card
 
 export const OrangeOutlined: Story = {
   args: {
-    children: (
-      <Text
-        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-      />
-    ),
+    children: <Content />,
     variant: 'outlined',
   },
 };
 
-OrangeOutlined.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
+OrangeOutlined.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Primary light card
 
 export const PrimaryLight: Story = {
   args: {
-    children: (
-      <Text
-        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-      />
-    ),
+    children: <Content />,
     variant: 'light',
   },
 };
 
-PrimaryLight.decorators = [IndentsDecorator];
+PrimaryLight.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Dark light card
 
 export const DarkLight: Story = {
   args: {
-    children: (
-      <Text
-        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-      />
-    ),
+    children: <Content />,
     variant: 'light',
   },
 };
 
-DarkLight.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
+DarkLight.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange light card
 
 export const OrangeLight: Story = {
   args: {
-    children: (
-      <Text
-        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-      />
-    ),
+    children: <Content />,
     variant: 'light',
   },
 };
 
-OrangeLight.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
+OrangeLight.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Full width card
 
 export const FullWidth: Story = {
   args: {
-    children: (
-      <Text
-        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-      />
-    ),
+    children: <Content />,
     max: true,
   },
 };
 
-FullWidth.decorators = [IndentsDecorator];
+FullWidth.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Card without padding
 
 export const NoPadding: Story = {
   args: {
-    children: (
-      <Text
-        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-      />
-    ),
+    children: <Content />,
     padding: '0',
   },
 };
 
-NoPadding.decorators = [IndentsDecorator];
+NoPadding.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Card with 8px padding
 
 export const Padding8: Story = {
   args: {
-    children: (
-      <Text
-        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-      />
-    ),
+    children: <Content />,
     padding: '8',
   },
 };
 
-Padding8.decorators = [IndentsDecorator];
+Padding8.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Card with 16px padding
 
 export const Padding16: Story = {
   args: {
-    children: (
-      <Text
-        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-      />
-    ),
+    children: <Content />,
     padding: '16',
   },
 };
 
-Padding16.decorators = [IndentsDecorator];
+Padding16.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Card with 24px padding
 
 export const Padding24: Story = {
   args: {
-    children: (
-      <Text
-        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-      />
-    ),
+    children: <Content />,
     padding: '24',
   },
 };
 
-Padding24.decorators = [IndentsDecorator];
+Padding24.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
+// Card keen round
+
+export const KeenRound: Story = {
+  args: {
+    border: 'keen',
+    children: <Content />,
+  },
+};
+
+KeenRound.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Card partial round
 
 export const PartialRound: Story = {
   args: {
     border: 'partial',
-    children: (
-      <Text
-        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-      />
-    ),
+    children: <Content />,
   },
 };
 
-PartialRound.decorators = [IndentsDecorator];
+PartialRound.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Card round
 
 export const Round: Story = {
   args: {
     border: 'round',
-    children: (
-      <Text
-        text='Adgium Sunt accolaes imperium superbus, fortis calceuses.'
-        title='Cirpi Favere solite ducunt ad secundus clinias.Cur domus peregrinatione?'
-      />
-    ),
+    children: <Content />,
   },
 };
 
-Round.decorators = [IndentsDecorator];
+Round.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 export default meta;

@@ -1,4 +1,5 @@
-import { HTMLAttributes, memo, ReactNode } from 'react';
+import { memo } from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
@@ -10,7 +11,7 @@ import classes from './Card.module.scss';
 export type CardBorder = 'keen' | 'partial' | 'round';
 
 /**
- * Отступы от контента
+ * Отступы между контентом и границами карточки
  */
 export type CardPadding = '0' | '8' | '16' | '24';
 
@@ -19,7 +20,10 @@ export type CardPadding = '0' | '8' | '16' | '24';
  */
 export type CardVariant = 'light' | 'normal' | 'outlined';
 
-// расширяем интерфейс, чтобы TS понимал 'props', если мы захотим пробросить данные из 'useHover' и т.п.
+/*
+  расширяем интерфейс, чтобы 'TS' понимал 'props', если мы захотим пробросить
+  данные из 'useHover' и т.п.
+*/
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Закругления углов карточки
@@ -37,7 +41,7 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
 
   /**
-   * ID для тестов
+   * 'ID' для тестов
    */
   'data-testid'?: string;
 
@@ -47,7 +51,7 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
   max?: boolean;
 
   /**
-   * Отступы от контента
+   * Отступы между контентом и границами карточки
    */
   padding?: CardPadding;
 
@@ -77,14 +81,11 @@ export const Card = memo(
   }: CardProps) => {
     const paddingClass = mapPaddingToClass[padding];
 
+    const additionalClasses = [className, classes[border], classes[paddingClass], classes[variant]];
+
     return (
       <div
-        className={classNames(classes.Card, { [classes.max]: max }, [
-          className,
-          classes[border],
-          classes[paddingClass],
-          classes[variant],
-        ])}
+        className={classNames(classes.Card, { [classes.max]: max }, additionalClasses)}
         data-testid={dataTestId}
         {...rest}
       >
