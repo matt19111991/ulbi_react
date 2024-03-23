@@ -2,7 +2,7 @@ import { rtkApi } from '@/shared/api/rtkApi';
 
 import { generateNotifications } from '@/shared/lib/generators/notifications';
 
-import { Notification } from '../model/types/notification';
+import type { Notification } from '../model/types/notification';
 
 interface NotificationsResponse {
   data: Notification[];
@@ -10,7 +10,11 @@ interface NotificationsResponse {
 
 const notificationApi = rtkApi.injectEndpoints({
   endpoints: (build) => ({
-    getNotifications: build.query<Notification[], null>({
+    /*
+      нужно передать 'undefined' в аргументы, чтобы при использовании хука в компонентах
+      можно было прокинуть в хук аргумент с опциями
+    */
+    getNotifications: build.query<Notification[], undefined>({
       queryFn: (args, api, extraOptions, baseQuery) => {
         if (__PROJECT__ !== 'front-end') {
           return { data: generateNotifications(4) };
