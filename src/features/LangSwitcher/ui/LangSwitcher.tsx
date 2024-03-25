@@ -23,22 +23,26 @@ interface LangSwitcherProps {
 export const LangSwitcher = memo(({ className, short }: LangSwitcherProps) => {
   const { i18n, t } = useTranslation();
 
-  const toggle = () => {
-    i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru');
+  const onChangeLanguage = async () => {
+    await i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru');
   };
 
   return (
     <ToggleFeatures
       feature='isAppRedesigned'
       on={
-        <Button className={classNames('', {}, [className])} onClick={toggle} variant='clear'>
+        <Button
+          className={classNames('', {}, [className])}
+          onClick={onChangeLanguage}
+          variant='clear'
+        >
           {short ? t('Короткий язык') : t('Язык')}
         </Button>
       }
       off={
         <ButtonDeprecated
           className={classNames('', {}, [className])}
-          onClick={toggle}
+          onClick={onChangeLanguage}
           theme={ButtonTheme.CLEAR}
         >
           {short ? t('Короткий язык') : t('Язык')}
