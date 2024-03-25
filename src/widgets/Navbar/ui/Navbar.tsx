@@ -34,7 +34,7 @@ interface NavbarProps {
   className?: string;
 
   /**
-   * Аватар, пробрасываемый из storybook
+   * Аватар, пробрасываемый из 'storybook'
    */
   storybookAvatar?: string;
 }
@@ -45,19 +45,19 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
 
   const authData = useSelector(getUserAuthData);
 
-  const [isAuthModal, setIsAuthModal] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
   const onCloseModal = useCallback((): void => {
-    setIsAuthModal(false);
+    setShowAuthModal(false);
+  }, []);
+
+  const onShowModal = useCallback((): void => {
+    setShowAuthModal(true);
   }, []);
 
   const onGoToSettingsPage = useCallback((): void => {
     navigate(getRouteSettings());
   }, [navigate]);
-
-  const onShowModal = useCallback((): void => {
-    setIsAuthModal(true);
-  }, []);
 
   const mainClass = toggleFeatures({
     name: 'isAppRedesigned',
@@ -69,7 +69,7 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
     return (
       <ToggleFeatures
         feature='isAppRedesigned'
-        // Navbar после редизайна для авторизованного пользователя
+        // 'Navbar' после редизайна для авторизованного пользователя
         on={
           <header className={classNames(mainClass, {}, [className])}>
             <HStack className={classes.actions} gap='8'>
@@ -87,7 +87,7 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
             </HStack>
           </header>
         }
-        // Navbar до редизайна для авторизованного пользователя
+        // 'Navbar' до редизайна для авторизованного пользователя
         off={
           <header className={classNames(mainClass, {}, [className])}>
             <div className={classes.logoWrapper}>
@@ -117,6 +117,7 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
     <header className={classNames(mainClass, {}, [className])}>
       <ToggleFeatures
         feature='isAppRedesigned'
+        // 'Navbar' после редизайна для неавторизованного пользователя
         on={
           <HStack className={classes.links} gap='24' max>
             <ButtonRedesigned onClick={onShowModal} variant='clear'>
@@ -128,6 +129,7 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
             </ButtonRedesigned>
           </HStack>
         }
+        // 'Navbar' до редизайна для неавторизованного пользователя
         off={
           <HStack className={classes.links} gap='24' max>
             <ButtonDeprecated onClick={onShowModal} theme={ButtonTheme.CLEAR_INVERTED}>
@@ -141,7 +143,7 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
         }
       />
 
-      <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
+      <LoginModal isOpen={showAuthModal} onClose={onCloseModal} />
     </header>
   );
 });

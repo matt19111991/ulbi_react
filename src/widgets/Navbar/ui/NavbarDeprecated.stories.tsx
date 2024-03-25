@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
-import { UserRole } from '@/entities/User/testing';
+import { userReducer, UserRole } from '@/entities/User/testing';
 
 import Avatar from '@/shared/assets/tests/storybook.jpg';
 
@@ -10,6 +10,8 @@ import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDe
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
+
+import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
 
 import { Navbar } from './Navbar';
 
@@ -49,6 +51,10 @@ Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
 
 // Authorized navbar
 
+const asyncReducers: ReducersList = {
+  user: userReducer,
+};
+
 const stateAuthorized: DeepPartial<StateSchema> = {
   user: {
     authData: {
@@ -65,6 +71,6 @@ export const Authorized: Story = {
   },
 };
 
-Authorized.decorators = [StoreDecorator(stateAuthorized)];
+Authorized.decorators = [StoreDecorator(stateAuthorized, asyncReducers)];
 
 export default meta;
