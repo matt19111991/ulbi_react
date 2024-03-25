@@ -24,12 +24,12 @@ interface NotificationListProps {
   className?: string;
 
   /**
-   * Пробрасываемая ошибка из storybook
+   * Пробрасываемая ошибка из 'storybook'
    */
   storybookError?: string;
 
   /**
-   * Пробрасываемое состояние загрузки из storybook
+   * Пробрасываемое состояние загрузки из 'storybook'
    */
   storybookLoading?: boolean;
 }
@@ -42,7 +42,11 @@ export const NotificationList = memo(
       data: notifications = [],
       error: queryError,
       isLoading: queryLoading,
-    } = useGetNotificationsQuery(null, { pollingInterval: 5000 });
+      // нужно передать 'undefined' первым аргументом, иначе не получиться прокинуть второй аргумент с опциями
+    } = useGetNotificationsQuery(
+      undefined,
+      { pollingInterval: 5000 }, // запрос автоматически отправляется через заданный интервал в 5с
+    );
 
     const isLoading = __PROJECT__ === 'storybook' ? storybookLoading : queryLoading;
     const error = __PROJECT__ === 'storybook' ? storybookError : queryError;

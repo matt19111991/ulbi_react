@@ -1,15 +1,19 @@
 ## Сущность уведомления
 
-- API
+### API
 
 `getNotifications` - получение списка уведомлений
 
-- Components
+### Components
 
 `NotificationItem` - компонент уведомления
 
 `NotificationList` - компонент со списком уведомлений
 
-- Types
+### Hooks
 
-`Notification` - Тип, описывающий уведомление
+`useGetNotificationsQuery`- хук для получения списка уведомлений
+
+### Types
+
+`Notification` - тип, описывающий уведомление

@@ -5,3 +5,25 @@
 .link {
   width: 100%;
 }
+
+.deprecated {
+  :hover {
+    background-color: var(--inverted-bg-color);
+
+    * {
+      color: var(--inverted-primary-color);
+    }
+  }
+}
+
+.redesigned {
+  :hover {
+    background-color: var(--bg-redesigned);
+    outline: 1px solid var(--accent-redesigned);
+
+    * {
+      color: var(--accent-redesigned);
+      outline: none;
+    }
+  }
+}

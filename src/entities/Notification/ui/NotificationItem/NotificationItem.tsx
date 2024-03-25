@@ -1,7 +1,8 @@
 import { memo } from 'react';
+import { Link } from 'react-router-dom';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { ToggleFeatures } from '@/shared/lib/features';
+import { toggleFeatures, ToggleFeatures } from '@/shared/lib/features';
 
 import { Card as CardDeprecated, CardTheme } from '@/shared/ui/deprecated/Card';
 import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
@@ -46,10 +47,30 @@ export const NotificationItem = memo(({ className, notification }: NotificationI
   );
 
   if (notification.href) {
+    const additionalClasses = toggleFeatures({
+      name: 'isAppRedesigned',
+      on: () => classes.redesigned,
+      off: () => classes.deprecated,
+    });
+
+    /*
+      для повышения безопасности, предотвращения фишинговых атак, неконтролируемых редиректов и пр.,
+      при использовании "target='_blank'" рекомендуются использовать "rel='noopener noreferrer'"
+
+     'noopener' не дает новой вкладке доступ к 'window.opener' (родительскому окну),
+     'noreferrer' не отправляет информацию о реферере
+
+      Статья: https://sky.pro/media/bezopasnost-ssylok-s-target_blank-i-relnoopener-noreferrer
+    */
     return (
-      <a className={classes.link} href={notification.href} rel='noreferrer' target='_blank'>
+      <Link
+        className={classNames(classes.link, {}, [additionalClasses])}
+        rel='noopener noreferrer'
+        target='_blank'
+        to={notification.href}
+      >
         {content}
-      </a>
+      </Link>
     );
   }
 
