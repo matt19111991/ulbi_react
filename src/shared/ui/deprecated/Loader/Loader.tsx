@@ -2,7 +2,9 @@ import { memo } from 'react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
-import './Loader.scss'; // для упрощения используемых классов
+import classes from './Loader.module.scss';
+
+// Анимация для компонента взята здесь: 'https://loading.io/css'
 
 interface LoaderProps {
   /**
@@ -16,7 +18,7 @@ interface LoaderProps {
  * @deprecated
  */
 export const Loader = memo(({ className }: LoaderProps) => (
-  <div className={classNames('lds-ellipsis', {}, [className])}>
+  <div className={classNames(classes.ellipsis, {}, [className])}>
     <div />
     <div />
     <div />
