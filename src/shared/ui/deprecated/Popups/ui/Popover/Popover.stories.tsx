@@ -11,8 +11,6 @@ const Trigger = () => (
   <p
     style={{
       border: '1px solid var(--primary-color)',
-      color: 'var(--primary-color)',
-      height: 38,
       padding: '6px 8px',
       textAlign: 'center',
       width: 66,

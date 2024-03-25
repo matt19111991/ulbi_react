@@ -14,7 +14,6 @@ const Trigger = () => (
       alignItems: 'center',
       border: '1px solid var(--accent-redesigned)',
       borderRadius: 8,
-      color: 'var(--text-redesigned)',
       display: 'flex',
       height: 40,
       justifyContent: 'center',
@@ -46,7 +45,15 @@ export const Primary: Story = {
   },
 };
 
-Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+Primary.decorators = [
+  (Story) => (
+    <div style={{ display: 'flex', padding: '16px' }}>
+      <Story />
+    </div>
+  ),
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+];
 
 // Dark popover
 
@@ -58,6 +65,11 @@ export const Dark: Story = {
 };
 
 Dark.decorators = [
+  (Story) => (
+    <div style={{ display: 'flex', padding: '16px' }}>
+      <Story />
+    </div>
+  ),
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
   ThemeDecorator(Theme.DARK),
@@ -73,6 +85,11 @@ export const Orange: Story = {
 };
 
 Orange.decorators = [
+  (Story) => (
+    <div style={{ display: 'flex', padding: '16px' }}>
+      <Story />
+    </div>
+  ),
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
   ThemeDecorator(Theme.ORANGE),
@@ -89,6 +106,11 @@ export const BottomLeftDirection: Story = {
 };
 
 BottomLeftDirection.decorators = [
+  (Story) => (
+    <div style={{ display: 'flex', padding: '16px' }}>
+      <Story />
+    </div>
+  ),
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
 ];
@@ -105,7 +127,7 @@ export const BottomRightDirection: Story = {
 
 BottomRightDirection.decorators = [
   (Story) => (
-    <div style={{ display: 'flex' }}>
+    <div style={{ display: 'flex', padding: '16px' }}>
       <Story />
     </div>
   ),
@@ -125,7 +147,7 @@ export const TopLeftDirection: Story = {
 
 TopLeftDirection.decorators = [
   (Story) => (
-    <div style={{ display: 'flex', padding: '60px 8px' }}>
+    <div style={{ display: 'flex', padding: '60px 16px' }}>
       <Story />
     </div>
   ),
@@ -145,7 +167,7 @@ export const TopRightDirection: Story = {
 
 TopRightDirection.decorators = [
   (Story) => (
-    <div style={{ display: 'flex', padding: '60px 8px' }}>
+    <div style={{ display: 'flex', padding: '60px 16px' }}>
       <Story />
     </div>
   ),
