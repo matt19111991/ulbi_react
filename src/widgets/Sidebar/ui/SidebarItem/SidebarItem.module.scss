@@ -1,11 +1,12 @@
 .item {
   align-items: center;
   display: flex;
+  white-space: nowrap;
 }
 
 .link {
   margin-left: 10px;
-  opacity: 1;
+  transition: .2s opacity;
 }
 
 .collapsed {

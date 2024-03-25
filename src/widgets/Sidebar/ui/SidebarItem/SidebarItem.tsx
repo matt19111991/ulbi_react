@@ -1,8 +1,5 @@
 import { memo } from 'react';
-import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-
-import { getUserAuthData } from '@/entities/User';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { ToggleFeatures } from '@/shared/lib/features';
@@ -12,7 +9,7 @@ import { AppLink as AppLinkDeprecated, AppLinkTheme } from '@/shared/ui/deprecat
 import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import { Icon as RedesignedIcon } from '@/shared/ui/redesigned/Icon';
 
-import { SidebarItemType } from '../../model/types/sidebar';
+import type { SidebarItemType } from '../../model/types/sidebar';
 
 import classes from './SidebarItem.module.scss';
 
@@ -30,13 +27,6 @@ interface SidebarItemProps {
 
 export const SidebarItem = memo(({ collapsed, item }: SidebarItemProps) => {
   const { t } = useTranslation();
-
-  const isAuth = useSelector(getUserAuthData);
-
-  // убираем возможность переходить по ссылкам с флагом 'authOnly' для неавторизованных пользователей
-  if (!isAuth && item.authOnly) {
-    return null;
-  }
 
   const { Icon, path, text } = item;
 
@@ -57,9 +47,15 @@ export const SidebarItem = memo(({ collapsed, item }: SidebarItemProps) => {
             Без контекста будет предупреждение: "babel-plugin-i18next-extract: Extraction error in
             /home/dmitry/WebstormProjects/ulbi_react/src/widgets/Sidebar/ui/SidebarItem/SidebarItem.tsx
             at line 68. Couldn't evaluate i18next key. You should either make the key evaluable or skip
-            the line using a skip comment"
+            the line using a skip comment" при запуске 'unit' тестов
          */}
-          <span className={classes.link}>{t('Меню', { context: text.toString() })}</span>
+          <span className={classes.link}>
+            {/*
+              при использовании контекста, значения будут подставляться из переводов по ключам вида
+             `Меню_${text}` ==> 'Меню_Главная', 'Меню_Профиль' и т.д.
+            */}
+            {t('Меню', { context: text })}
+          </span>
         </AppLink>
       }
       off={
@@ -68,8 +64,15 @@ export const SidebarItem = memo(({ collapsed, item }: SidebarItemProps) => {
           theme={AppLinkTheme.SECONDARY}
           to={path}
         >
-          <Icon className={classes.icon} />
-          <span className={classes.link}>{t('Меню', { context: text.toString() })}</span>
+          <Icon />
+
+          <span className={classes.link}>
+            {/*
+              при использовании контекста, значения будут подставляться из переводов по ключам вида
+             `Меню_${text}` ==> 'Меню_Главная', 'Меню_Профиль' и т.д.
+            */}
+            {t('Меню', { context: text })}
+          </span>
         </AppLinkDeprecated>
       }
     />

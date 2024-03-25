@@ -9,10 +9,12 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 import { getRouteMain } from '@/shared/const/router';
 import { Theme } from '@/shared/const/theme';
 
+import type { SidebarItemType } from '../../model/types/sidebar';
+
 import { SidebarItem } from './SidebarItem';
 
-const sidebarItem = {
-  Icon,
+const sidebarItem: SidebarItemType = {
+  Icon: () => <Icon height={22} width={22} />,
   order: 1,
   path: getRouteMain(),
   text: 'Главная',
