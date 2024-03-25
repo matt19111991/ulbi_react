@@ -20,7 +20,7 @@ const meta = {
 type Story = StoryObj<typeof meta>;
 
 const LogoDecorator = (Story: StoryFn) => (
-  <div style={{ fill: 'var(--icon-redesigned)', height: 120, width: '100%' }}>
+  <div style={{ fill: 'var(--icon-redesigned)' }}>
     <Story />
   </div>
 );

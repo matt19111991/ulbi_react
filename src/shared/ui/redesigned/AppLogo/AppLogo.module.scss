@@ -18,6 +18,12 @@
   position: absolute;
 }
 
+/*
+  @keyframes [название_анимации] {
+    [from | проценты] { ...стили }
+    [to   | проценты] { ...стили }
+  }
+*/
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);

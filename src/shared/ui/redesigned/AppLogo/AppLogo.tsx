@@ -1,4 +1,5 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
+import type { CSSProperties } from 'react';
 
 import AppSvg from '@/shared/assets/icons/logo.svg';
 
@@ -21,34 +22,39 @@ interface AppLogoProps {
   size?: number;
 }
 
-export const AppLogo = memo(({ className, size = 80 }: AppLogoProps) => (
-  <HStack className={classes.appLogoWrapper} max>
-    <Icon
-      className={classNames(classes.logo, {}, [className])}
-      color='black'
-      height={size}
-      Svg={AppSvg}
-      width={size}
-    />
+export const AppLogo = memo(({ className, size = 80 }: AppLogoProps) => {
+  const gradientSmallStyles = useMemo<CSSProperties>(
+    () => ({
+      height: size * 2.5,
+      left: `-${size * 0.675}px`,
+      width: size * 2.5,
+    }),
+    [size],
+  );
 
-    <div
-      className={classes.gradientBig}
-      style={{
-        height: size * 3.75,
-        left: `-${size * 1.25}px`,
-        width: size * 3.75,
-      }}
-    />
+  const gradientBigStyles = useMemo<CSSProperties>(
+    () => ({
+      height: size * 3.75,
+      left: `-${size * 1.25}px`,
+      width: size * 3.75,
+    }),
+    [size],
+  );
 
-    <div
-      className={classes.gradientSmall}
-      style={{
-        height: size * 2.5,
-        left: `-${size * 0.675}px`,
-        width: size * 2.5,
-      }}
-    />
-  </HStack>
-));
+  return (
+    <HStack className={classes.appLogoWrapper} max>
+      <Icon
+        className={classNames(classes.logo, {}, [className])}
+        height={size}
+        Svg={AppSvg}
+        width={size}
+      />
+
+      <div className={classes.gradientSmall} style={gradientSmallStyles} />
+
+      <div className={classes.gradientBig} style={gradientBigStyles} />
+    </HStack>
+  );
+});
 
 AppLogo.displayName = 'AppLogo';

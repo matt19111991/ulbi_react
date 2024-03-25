@@ -11,11 +11,12 @@
 
 @media screen and (max-width: 640px) {
   .SettingsPage {
+    left: 0 !important;
     padding: 0;
-    top: 24px !important;
+    top: 40px !important;
 
     &.authorized {
-      top: 34px !important;
+      top: 50px !important;
     }
 
     &.deprecated {
