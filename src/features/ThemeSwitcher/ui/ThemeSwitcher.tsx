@@ -7,7 +7,9 @@ import ThemeIconDeprecated from '@/shared/assets/icons/theme-old.svg';
 import ThemeIcon from '@/shared/assets/icons/theme-redesigned.svg';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
+
 import { ToggleFeatures } from '@/shared/lib/features';
+
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 
