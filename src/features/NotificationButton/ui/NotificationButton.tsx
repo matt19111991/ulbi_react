@@ -26,7 +26,7 @@ interface NotificationButtonProps {
   className?: string;
 
   /**
-   * Активация мобильного режима для storybook
+   * Активация мобильного режима для 'storybook'
    */
   storybookMobile?: boolean;
 }

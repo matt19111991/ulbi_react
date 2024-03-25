@@ -2,24 +2,24 @@
 
 ### Components
 
-`AnimationProvider` - Провайдер для анимаций
+`AnimationProvider` - провайдер для анимаций
 
 ### Context
 
-`AnimationContext` - Контекст для анимаций
+`AnimationContext` - контекст для анимаций
 
 ### Functions
 
-`getAsyncAnimationModules` - Асинхронная функция для подгрузки библиотек анимаций
+`getAsyncAnimationModules` - асинхронная функция для подгрузки библиотек анимаций
 
 ### Hooks
 
-`useAnimationLibraries` - Хук для работы с анимациями
+`useAnimationLibraries` - хук для работы с анимациями
 
 ### Types
 
-`AnimationContextPayload` - Тип, описывающий контекст для анимаций
+`AnimationContextPayload` - тип, описывающий контекст для анимаций
 
-`GestureType` - Тип для `@use-gesture/react` библиотеки
+`GestureType` - тип для `@use-gesture/react` библиотеки
 
-`SpringType` - Тип для `@react-spring/web` библиотеки
+`SpringType` - тип для `@react-spring/web` библиотеки

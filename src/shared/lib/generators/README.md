@@ -2,8 +2,8 @@
 
 ### Generators
 
-`articles` - Генератор статей
+`articles` - генератор статей
 
-`notifications` - Генератор уведомлений
+`notifications` - генератор уведомлений
 
-`rating` - Генератор рейтинга
+`rating` - генератор рейтинга

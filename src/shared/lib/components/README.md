@@ -2,12 +2,12 @@
 
 ### Components
 
-`DynamicModuleLoader` - Компонент, позволяющий лениво подгружать редюсеры (`RTK v.1`)
+`DynamicModuleLoader` - компонент, позволяющий лениво подгружать редюсеры (`RTK v.1`)
 
-`DynamicModuleLoaderV2` - Компонент, позволяющий лениво подгружать редюсеры (`RTK v.2`)
+`DynamicModuleLoaderV2` - компонент, позволяющий лениво подгружать редюсеры (`RTK v.2`)
 
-`genericMemo` - Компонент, типизированный аналог `React.memo`
+`genericMemo` - компонент, типизированный аналог `React.memo`
 
 ### Types
 
-`ReducersList` - Тип для списка подгружаемых редюсеров
+`ReducersList` - тип для списка подгружаемых редюсеров

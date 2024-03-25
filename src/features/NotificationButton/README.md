@@ -2,4 +2,4 @@
 
 ### Components
 
-`NotificationButton` - Кнопка, открывающая список уведомлений
+`NotificationButton` - кнопка, открывающая список уведомлений

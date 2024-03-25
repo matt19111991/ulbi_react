@@ -30,7 +30,7 @@
 
 ### Types
 
-`FeatureFlags` - Тип, описывающий возможные `feature flags`
+`FeatureFlags` - тип, описывающий возможные `feature flags`
 
-`UpdateFeatureFlagsOptions` - Тип, описывающий аргументы для `updateFeatureFlags` сервиса
+`UpdateFeatureFlagsOptions` - тип, описывающий аргументы для `updateFeatureFlags` сервиса
 
