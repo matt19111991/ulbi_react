@@ -175,7 +175,7 @@
   },
   "overrides": {
     "@pmmmwh/react-refresh-webpack-plugin": {
-      "webpack-dev-server": "^5.0.1"
+      "webpack-dev-server": "^5.0.4"
     },
     "loki": {
       "@storybook/react": "^7.6.17"
