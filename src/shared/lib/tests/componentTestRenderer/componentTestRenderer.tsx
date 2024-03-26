@@ -1,14 +1,18 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
-import { ReducersMapObject } from '@reduxjs/toolkit';
+import type { ReducersMapObject } from '@reduxjs/toolkit';
 import { render } from '@testing-library/react';
 
-import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider';
+import { StoreProvider } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
+
 import { ThemeProvider } from '@/app/providers/ThemeProvider';
+
 import '@/app/styles/index.scss';
 
 import i18nForTests from '@/shared/config/i18n/i18nForTests';
+
 import { Theme } from '@/shared/const/theme';
 
 interface ComponentTestRendererOptions {
@@ -48,12 +52,13 @@ interface TestProviderProps {
 export const TestProvider = ({ children, options = {} }: TestProviderProps) => {
   const { asyncReducers, initialState, route = '/', theme = Theme.LIGHT } = options;
 
-  /* Ошибка 'Uncaught Error: useNavigate() may be used only in the context of a <Router> component.',
-     если 'StoreProvider' находится в дереве выше чем 'MemoryRouter' и попытаться использовать навигацию в
-     'async thunks'
+  /*
+    Ошибка 'Uncaught Error: useNavigate() may be used only in the context of a <Router> component.',
+    если 'StoreProvider' находится в дереве выше чем 'MemoryRouter' и попытаться использовать навигацию в
+   'async thunks'
   */
 
-  // MemoryRouter используется для тестов
+  // 'MemoryRouter' используется для тестов
 
   return (
     <MemoryRouter initialEntries={[route]}>

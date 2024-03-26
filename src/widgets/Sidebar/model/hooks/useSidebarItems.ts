@@ -8,8 +8,8 @@ import MainIconDeprecated from '@/shared/assets/icons/main-20-20.svg';
 import ProfileIconDeprecated from '@/shared/assets/icons/profile-20-20.svg';
 
 import AboutIcon from '@/shared/assets/icons/about-redesigned.svg';
-import ArticlesIcon from '@/shared/assets/icons/articles-redesigned.svg';
-import HomeIcon from '@/shared/assets/icons/home-redesigned.svg';
+import ArticleIcon from '@/shared/assets/icons/articles-redesigned.svg';
+import MainIcon from '@/shared/assets/icons/home-redesigned.svg';
 import ProfileIcon from '@/shared/assets/icons/profile-redesigned.svg';
 
 import {
@@ -21,7 +21,7 @@ import {
 
 import { toggleFeatures } from '@/shared/lib/features';
 
-import { SidebarItemType } from '../types/sidebar';
+import type { SidebarItemType } from '../types/sidebar';
 
 export const useSidebarItems = () => {
   const userData = useSelector(getUserAuthData);
@@ -30,7 +30,7 @@ export const useSidebarItems = () => {
     {
       Icon: toggleFeatures({
         name: 'isAppRedesigned',
-        on: () => HomeIcon,
+        on: () => MainIcon,
         off: () => MainIconDeprecated,
       }),
       order: 1,
@@ -66,7 +66,7 @@ export const useSidebarItems = () => {
         authOnly: true,
         Icon: toggleFeatures({
           name: 'isAppRedesigned',
-          on: () => ArticlesIcon,
+          on: () => ArticleIcon,
           off: () => ArticleIconDeprecated,
         }),
         order: 3,

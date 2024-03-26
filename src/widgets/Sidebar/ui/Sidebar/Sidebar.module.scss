@@ -39,7 +39,6 @@
   }
 
   .switchers {
-    align-items: center;
     flex-direction: column;
   }
 }
@@ -88,7 +87,6 @@
   @media screen and (max-width: 1800px) {
     border-radius: 4px;
     display: flex;
-    flex-direction: row;
     height: 48px;
     width: 100%;
 
@@ -131,20 +129,8 @@
   }
 
   .collapseBtn {
-    position: absolute;
     right: -17px;
-    top: 50%;
-    z-index: var(--sidebar-btn-z-index);
     transform: rotate(-90deg);
-  }
-
-  .items {
-    align-items: center;
-    display: flex;
-  }
-
-  .lang {
-    margin-left: 0;
   }
 
   .switchers {
