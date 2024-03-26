@@ -1,6 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryFn, StoryObj } from '@storybook/react';
 
 import Icon from '@/shared/assets/tests/storybook3.svg';
+
+import '@/shared/config/i18n/i18nForStorybook';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
@@ -20,8 +22,14 @@ const sidebarItem: SidebarItemType = {
   text: 'Главная',
 };
 
+const HeightCutDecorator = (Story: StoryFn) => (
+  <div style={{ height: 32, overflow: 'hidden' }}>
+    <Story />
+  </div>
+);
+
 const meta = {
-  title: 'widgets/Sidebar/SidebarItem',
+  title: 'widgets/Sidebar/SidebarItem/new',
   component: SidebarItem,
   argTypes: {
     backgroundColor: {
@@ -32,70 +40,93 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Primary sidebar item old
+// Primary sidebar item
 
-export const PrimaryOld: Story = {
+export const Primary: Story = {
   args: {
     item: sidebarItem,
   },
 };
 
-PrimaryOld.decorators = [IndentsDecorator];
-
-// Dark sidebar item old
-
-export const DarkOld: Story = {
-  args: {
-    item: sidebarItem,
-  },
-};
-
-DarkOld.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
-
-// Orange sidebar item old
-
-export const OrangeOld: Story = {
-  args: {
-    item: sidebarItem,
-  },
-};
-
-OrangeOld.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
-
-// Primary sidebar item new
-
-export const PrimaryNew: Story = {
-  args: {
-    item: sidebarItem,
-  },
-};
-
-PrimaryNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
-
-// Dark sidebar item new
-
-export const DarkNew: Story = {
-  args: {
-    item: sidebarItem,
-  },
-};
-
-DarkNew.decorators = [
+Primary.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
+  HeightCutDecorator,
+  IndentsDecorator,
+];
+
+// Dark sidebar item
+
+export const Dark: Story = {
+  args: {
+    item: sidebarItem,
+  },
+};
+
+Dark.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  HeightCutDecorator,
   IndentsDecorator,
   ThemeDecorator(Theme.DARK),
 ];
 
-// Orange sidebar item new
+// Orange sidebar item
 
-export const OrangeNew: Story = {
+export const Orange: Story = {
   args: {
     item: sidebarItem,
   },
 };
 
-OrangeNew.decorators = [
+Orange.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
+  HeightCutDecorator,
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
+
+// Primary sidebar item collapsed
+
+export const PrimaryCollapsed: Story = {
+  args: {
+    collapsed: true,
+    item: sidebarItem,
+  },
+};
+
+PrimaryCollapsed.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  HeightCutDecorator,
+  IndentsDecorator,
+];
+
+// Dark sidebar item collapsed
+
+export const DarkCollapsed: Story = {
+  args: {
+    collapsed: true,
+    item: sidebarItem,
+  },
+};
+
+DarkCollapsed.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  HeightCutDecorator,
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
+
+// Orange sidebar item collapsed
+
+export const OrangeCollapsed: Story = {
+  args: {
+    collapsed: true,
+    item: sidebarItem,
+  },
+};
+
+OrangeCollapsed.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  HeightCutDecorator,
   IndentsDecorator,
   ThemeDecorator(Theme.ORANGE),
 ];

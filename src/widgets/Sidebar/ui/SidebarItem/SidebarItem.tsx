@@ -43,14 +43,13 @@ export const SidebarItem = memo(({ collapsed, item }: SidebarItemProps) => {
         >
           <RedesignedIcon Svg={Icon} />
 
-          {/*
-            Без контекста будет предупреждение: "babel-plugin-i18next-extract: Extraction error in
-            /home/dmitry/WebstormProjects/ulbi_react/src/widgets/Sidebar/ui/SidebarItem/SidebarItem.tsx
-            at line 68. Couldn't evaluate i18next key. You should either make the key evaluable or skip
-            the line using a skip comment" при запуске 'unit' тестов
-         */}
           <span className={classes.link}>
             {/*
+              без контекста будет предупреждение: "babel-plugin-i18next-extract: Extraction error in
+              /home/dmitry/WebstormProjects/ulbi_react/src/widgets/Sidebar/ui/SidebarItem/SidebarItem.tsx
+              at line 68. Couldn't evaluate i18next key. You should either make the key evaluable or skip
+              the line using a skip comment" при запуске 'unit' тестов
+
               при использовании контекста, значения будут подставляться из переводов по ключам вида
              `Меню_${text}` ==> 'Меню_Главная', 'Меню_Профиль' и т.д.
             */}
@@ -68,6 +67,11 @@ export const SidebarItem = memo(({ collapsed, item }: SidebarItemProps) => {
 
           <span className={classes.link}>
             {/*
+              без контекста будет предупреждение: "babel-plugin-i18next-extract: Extraction error in
+              /home/dmitry/WebstormProjects/ulbi_react/src/widgets/Sidebar/ui/SidebarItem/SidebarItem.tsx
+              at line 68. Couldn't evaluate i18next key. You should either make the key evaluable or skip
+              the line using a skip comment" при запуске 'unit' тестов
+
               при использовании контекста, значения будут подставляться из переводов по ключам вида
              `Меню_${text}` ==> 'Меню_Главная', 'Меню_Профиль' и т.д.
             */}
