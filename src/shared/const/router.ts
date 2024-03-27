@@ -23,10 +23,14 @@ export const getRouteForbidden = () => '/forbidden';
 export const getRouteProfile = (id: string) => `/profile/${id}`;
 export const getRouteSettings = () => '/settings';
 
-// { '/about': 'about' }
-// { '/articles/:id/edit': 'article_edit' }
-
-export const AppRouteByPathPattern: Record<string, AppRoutes> = {
+/*
+  {
+    '/about': 'about',
+    '/articles/:id/edit': 'article_edit',
+    ...
+  }
+*/
+export const AppRouteByPathMap: Record<string, AppRoutes> = {
   [getRouteMain()]: AppRoutes.MAIN,
   [getRouteAbout()]: AppRoutes.ABOUT,
   [getRouteAdmin()]: AppRoutes.ADMIN_PANEL,

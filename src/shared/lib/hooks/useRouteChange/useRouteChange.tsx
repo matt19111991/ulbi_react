@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { matchPath, useLocation } from 'react-router-dom';
 
-import { AppRouteByPathPattern, AppRoutes } from '@/shared/const/router';
+import { AppRouteByPathMap, AppRoutes } from '@/shared/const/router';
 
 /**
  * Хук для отслеживания изменения роута
@@ -9,16 +9,22 @@ import { AppRouteByPathPattern, AppRoutes } from '@/shared/const/router';
 export const useRouteChange = () => {
   const location = useLocation();
 
-  // AppRoutes.MAIN | AppRoutes.ARTICLE_DETAILS
+  // 'AppRoutes.MAIN' | 'AppRoutes.ARTICLE_DETAILS'
   const [appRoute, setAppRoute] = useState<AppRoutes>(AppRoutes.MAIN);
 
   useEffect(() => {
-    Object.entries(AppRouteByPathPattern).forEach(([pattern, route]) => {
-      // если текущая страница совпала с паттерном ('/about' | '/articles/:id/edit')
-      if (matchPath(pattern, location.pathname)) {
-        setAppRoute(route);
-      }
-    });
+    /*
+      здесь результат работы 'Object.entries' приводим к типам явно, т.к 'Object.entries' возвращает
+      свою типизацию, которая нам не подходит
+    */
+    (Object.entries(AppRouteByPathMap) as Array<[string, AppRoutes]>).forEach(
+      ([routePath, route]) => {
+        // если текущая страница совпала с 'routePath' ('/about' | '/articles/:id/edit')
+        if (matchPath(routePath, location.pathname)) {
+          setAppRoute(route);
+        }
+      },
+    );
   }, [location.pathname]);
 
   return appRoute;

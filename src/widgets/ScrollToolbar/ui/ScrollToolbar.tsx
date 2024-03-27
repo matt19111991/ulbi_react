@@ -22,7 +22,7 @@ export const ScrollToolbar = memo(({ className }: ScrollToolbarProps) => (
     justify='end'
     max
   >
-    <ScrollToTopButton className={classes.icon} />
+    <ScrollToTopButton />
   </VStack>
 ));
 

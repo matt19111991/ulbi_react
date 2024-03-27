@@ -1,22 +1,23 @@
 .ScrollToolbar {
   height: 99%;
-}
 
-.icon {
-  bottom: 32px;
-  position: relative;
-}
-
-@media screen and (max-width: 1800px) {
-  .icon {
-    bottom: 64px;
-    right: -48px;
+  button {
+    bottom: 32px;
+    position: relative;
   }
-}
 
-@media screen and (max-width: 480px) {
-  .icon {
-    bottom: 64px;
-    right: -16px;
+  @media screen and (max-width: 1800px) {
+    button {
+      bottom: 64px;
+      right: -48px;
+    }
   }
+
+  @media screen and (max-width: 480px) {
+    button {
+      bottom: 64px;
+      right: -16px;
+    }
+  }
+
 }

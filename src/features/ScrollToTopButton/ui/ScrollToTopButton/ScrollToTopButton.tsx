@@ -15,18 +15,16 @@ interface ScrollToTopButtonProps {
 }
 
 export const ScrollToTopButton = memo(({ className }: ScrollToTopButtonProps) => {
-  const windowWidthAfterResizing = useWindowWidth();
-
-  const windowWidth = windowWidthAfterResizing || window.screen.width;
+  const windowWidth = useWindowWidth();
 
   const onClick = () => {
     if (windowWidth < 1800) {
-      // прокрутка добавляется к тегу 'main' на разрешениях меньше 1800px
+      // прокрутка добавляется к тегу 'main' на разрешениях меньше '1800px'
       const [mainElement] = document.getElementsByTagName('main');
 
       mainElement.scrollTo({ behavior: 'smooth', top: 0 });
     } else {
-      // прокрутка добавляется к окну браузера на разрешениях больше 1800px
+      // прокрутка добавляется к окну браузера на разрешениях больше '1800px'
       window.scrollTo({ behavior: 'smooth', top: 0 });
     }
   };

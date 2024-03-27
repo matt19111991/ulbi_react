@@ -70,7 +70,6 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
 
           <Icon
             aria-label='sidebar toggle'
-            className={classes.collapseBtn}
             clickable
             data-testid='sidebar-toggle'
             onClick={onToggle}
@@ -91,7 +90,6 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
           data-testid='sidebar'
         >
           <Button
-            className={classes.collapseBtn}
             data-testid='sidebar-toggle'
             onClick={onToggle}
             size={ButtonSize.L}
