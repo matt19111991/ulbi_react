@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -21,23 +22,34 @@ type Story = StoryObj<typeof meta>;
 // Primary scroll to top button
 
 export const Primary: Story = {
-  args: {},
+  args: {
+    isStorybook: true,
+  },
 };
+
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 // Dark scroll to top button
 
 export const Dark: Story = {
-  args: {},
+  args: {
+    isStorybook: true,
+  },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
 
 // Orange scroll to top button
 
 export const Orange: Story = {
-  args: {},
+  args: {
+    isStorybook: true,
+  },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  ThemeDecorator(Theme.ORANGE),
+];
 
 export default meta;

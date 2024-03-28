@@ -4,12 +4,12 @@ import { useCallback, useEffect, useState } from 'react';
  * Хук для слежения за изменением размеров окна
  */
 export const useWindowWidth = () => {
-  // 'window.devicePixelRatio' - зум
+  // 'window.screen.width' не учитывает зум, поэтому используем 'window.innerWidth'
 
-  const [width, setWidth] = useState(window.screen.width / window.devicePixelRatio);
+  const [width, setWidth] = useState(window.innerWidth);
 
   const onChangeWidth = useCallback((): void => {
-    setWidth(window.screen.width / window.devicePixelRatio);
+    setWidth(window.innerWidth);
   }, []);
 
   useEffect(() => {
