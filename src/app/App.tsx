@@ -29,7 +29,7 @@ import { withTheme } from './providers/ThemeProvider';
 
 const App = memo(() => {
   const dispatch = useAppDispatch();
-  const toolbar = useAppToolbar();
+  const Toolbar = useAppToolbar();
 
   const mounted = useSelector(getUserMounted);
 
@@ -72,7 +72,7 @@ const App = memo(() => {
               content={<AppRouter />}
               header={<Navbar />}
               sidebar={<Sidebar />}
-              toolbar={toolbar}
+              toolbar={Toolbar}
             />
           </Suspense>
         </div>

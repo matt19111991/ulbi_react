@@ -1,5 +1,3 @@
-import type { ReactElement } from 'react';
-
 import { AppRoutes } from '@/shared/const/router';
 
 import { useRouteChange } from '@/shared/lib/hooks/useRouteChange/useRouteChange';
@@ -13,7 +11,7 @@ export const useAppToolbar = () => {
   const appRoute = useRouteChange(); // 'AppRoutes.MAIN' | 'AppRoutes.ARTICLE_DETAILS'
 
   // используем 'OptionalRecord', т.к. не для всех страниц будет тулбар
-  const toolbarByAppRoute: OptionalRecord<AppRoutes, ReactElement> = {
+  const toolbarByAppRoute: OptionalRecord<AppRoutes, JSX.Element> = {
     [AppRoutes.ARTICLE_DETAILS]: <ScrollToolbar />,
     [AppRoutes.ARTICLES]: <ScrollToolbar />,
   };
