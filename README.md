@@ -526,6 +526,7 @@ storybooka, линтинг. Нет деплоя на сервер
 ## Хуки (hooks)
 
 - [useAppDispatch](./src/shared/lib/hooks/useAppDispatch/README.md)
+- [useAppToolbar](./src/app/lib/hooks/useAppToolbar/README.md)
 - [useDebounce](./src/shared/lib/hooks/useDebounce/README.md)
 - [useEscapeKey](src/shared/lib/hooks/useEscapeKey/README.md)
 - [useForceUpdate](src/shared/lib/hooks/useForceUpdate/README.md)

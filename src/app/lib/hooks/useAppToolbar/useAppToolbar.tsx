@@ -6,16 +6,16 @@ import { useRouteChange } from '@/shared/lib/hooks/useRouteChange/useRouteChange
 
 import { ScrollToolbar } from '@/widgets/ScrollToolbar';
 
+/**
+ * Хук для отрисовки компонентов в тулбаре
+ */
 export const useAppToolbar = () => {
-  const appRoute = useRouteChange(); // AppRoutes.MAIN | AppRoutes.ARTICLE_DETAILS
+  const appRoute = useRouteChange(); // 'AppRoutes.MAIN' | 'AppRoutes.ARTICLE_DETAILS'
 
-  // используем 'OptionalRecord', т.к. не для всех страниц будет тул бар
+  // используем 'OptionalRecord', т.к. не для всех страниц будет тулбар
   const toolbarByAppRoute: OptionalRecord<AppRoutes, ReactElement> = {
     [AppRoutes.ARTICLE_DETAILS]: <ScrollToolbar />,
     [AppRoutes.ARTICLES]: <ScrollToolbar />,
-
-    // [AppRoutes.ABOUT]: <div>About</div>,
-    // [AppRoutes.MAIN]: <div>Main</div>,
   };
 
   return toolbarByAppRoute[appRoute];
