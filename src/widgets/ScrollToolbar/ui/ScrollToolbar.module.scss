@@ -4,6 +4,7 @@
   button {
     bottom: 32px;
     position: relative;
+    right: -20px;
   }
 
   @media screen and (max-width: 1800px) {
@@ -13,11 +14,21 @@
     }
   }
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 1280px) {
     button {
-      bottom: 64px;
-      right: -16px;
+      right: -50px;
     }
   }
 
+  @media screen and (max-width: 540px) {
+    button {
+      right: -52px;
+    }
+  }
+}
+
+body:has(> div[id='storybook-root']) { /* стили для кнопки только в 'storybook' */
+  button {
+    left: 0;
+  }
 }

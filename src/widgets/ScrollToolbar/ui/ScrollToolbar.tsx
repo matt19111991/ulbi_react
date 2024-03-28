@@ -13,16 +13,16 @@ interface ScrollToolbarProps {
    * Внешний класс
    */
   className?: string;
+
+  /**
+   * Проверка: рендерится ли компонент для 'storybook'
+   */
+  isStorybook?: boolean;
 }
 
-export const ScrollToolbar = memo(({ className }: ScrollToolbarProps) => (
-  <VStack
-    align='center'
-    className={classNames(classes.ScrollToolbar, {}, [className])}
-    justify='end'
-    max
-  >
-    <ScrollToTopButton />
+export const ScrollToolbar = memo(({ className, isStorybook }: ScrollToolbarProps) => (
+  <VStack className={classNames(classes.ScrollToolbar, {}, [className])} justify='end'>
+    <ScrollToTopButton isStorybook={isStorybook} />
   </VStack>
 ));
 
