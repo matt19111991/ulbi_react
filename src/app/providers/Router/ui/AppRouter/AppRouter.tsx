@@ -3,8 +3,6 @@ import { Route, Routes } from 'react-router-dom';
 
 import { ToggleFeatures } from '@/shared/lib/features';
 
-import { AppRoutesProps } from '@/shared/types/router';
-
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { HStack } from '@/shared/ui/redesigned/Stack';
 
@@ -12,12 +10,14 @@ import { PageLoader } from '@/widgets/PageLoader';
 
 import { routeConfig } from '../../config/routeConfig';
 
+import type { AppRouteProps } from '../../model/types/router';
+
 import { RequireAuth } from '../RequiredAuth/RequireAuth';
 
 import classes from './AppRouter.module.scss';
 
 export const AppRouter = memo(() => {
-  const renderWithWrapper = useCallback((route: AppRoutesProps) => {
+  const renderWithWrapper = useCallback((route: AppRouteProps) => {
     // <Suspense /> для роутинга
     const element = (
       <Suspense

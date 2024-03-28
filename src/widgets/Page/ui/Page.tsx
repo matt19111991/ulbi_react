@@ -12,10 +12,10 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfiniteScroll';
 import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
 
-import { TestProps } from '@/shared/types/tests';
-
 import { getPageScrollByPath } from '../model/selectors/pageScrollSelectors';
 import { pageScrollActions } from '../model/slice/pageScrollSlice';
+
+import type { TestProps } from '../model/types/page';
 
 import classes from './Page.module.scss';
 

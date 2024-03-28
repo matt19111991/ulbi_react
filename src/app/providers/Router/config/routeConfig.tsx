@@ -2,14 +2,14 @@ import { UserRole } from '@/entities/User';
 
 import { AboutPage } from '@/pages/AboutPage';
 import { AdminPanelPage } from '@/pages/AdminPanelPage';
-import { ArticleDetailsPage } from '@/pages/ArticleDetailsPage';
 import { ArticleCreatePage } from '@/pages/ArticleCreatePage';
+import { ArticleDetailsPage } from '@/pages/ArticleDetailsPage';
 import { ArticleEditPage } from '@/pages/ArticleEditPage';
 import { ArticlesPage } from '@/pages/ArticlesPage';
 import { ForbiddenPage } from '@/pages/ForbiddenPage';
 import { MainPage } from '@/pages/MainPage';
-import { ProfilePage } from '@/pages/ProfilePage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
+import { ProfilePage } from '@/pages/ProfilePage';
 import { SettingsPage } from '@/pages/SettingsPage';
 
 import {
@@ -26,9 +26,9 @@ import {
   getRouteSettings,
 } from '@/shared/const/router';
 
-import { AppRoutesProps } from '@/shared/types/router';
+import type { AppRouteProps } from '../model/types/router';
 
-export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
+export const routeConfig: Record<AppRoutes, AppRouteProps> = {
   [AppRoutes.ABOUT]: {
     element: <AboutPage />,
     path: getRouteAbout(),

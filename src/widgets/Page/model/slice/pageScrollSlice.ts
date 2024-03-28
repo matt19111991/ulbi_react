@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { PageScrollSchema } from '../types/PageScrollSchema';
+import type { PageScrollSchema } from '../types/page';
 
 const initialState: PageScrollSchema = {
   scroll: {},

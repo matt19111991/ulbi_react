@@ -1,8 +1,8 @@
-import { RouteProps } from 'react-router-dom';
+import type { RouteProps } from 'react-router-dom';
 
 import { UserRole } from '@/entities/User';
 
-export type AppRoutesProps = RouteProps & {
+export type AppRouteProps = RouteProps & {
   /**
    * Только для авторизованных пользователей
    */

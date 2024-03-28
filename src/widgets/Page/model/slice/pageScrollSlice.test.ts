@@ -1,4 +1,4 @@
-import { PageScrollSchema } from '../types/PageScrollSchema';
+import type { PageScrollSchema } from '../types/page';
 
 import { pageScrollActions, pageScrollReducer } from './pageScrollSlice';
 
