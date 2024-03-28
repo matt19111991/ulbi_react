@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { MemoryRouter } from 'react-router-dom';
+import type { Location } from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
 import type { ReducersMapObject } from '@reduxjs/toolkit';
 import { render } from '@testing-library/react';
@@ -29,7 +30,7 @@ interface ComponentTestRendererOptions {
   /**
    * Путь по умолчанию
    */
-  route?: string;
+  route?: Partial<Location> | string;
 
   /**
    * Тема

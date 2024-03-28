@@ -4,7 +4,7 @@ import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { UserRole } from '@/entities/User/testing';
 
-import { getRouteAbout, getRouteAdmin, getRouteProfile } from '@/shared/const/router';
+import { getRouteAbout, getRouteAdmin, getRouteMain, getRouteProfile } from '@/shared/const/router';
 
 import { componentTestRenderer } from '@/shared/lib/tests';
 
@@ -120,6 +120,32 @@ describe('AppRouter', () => {
     componentTestRenderer(<AppRouter />, {
       initialState,
       route: getRouteAdmin(),
+    });
+
+    // используем асинхронный 'findByTestId', т.к. роутер использует 'Suspense'
+    const page = await screen.findByTestId('AdminPanelPage');
+
+    expect(page).toBeInTheDocument();
+  });
+
+  test('Редирект на предыдущее сохраненное значение приватного роута', async () => {
+    const initialState: DeepPartial<StateSchema> = {
+      user: {
+        authData: {
+          roles: [UserRole.ADMIN],
+        },
+        mounted: true,
+      },
+    };
+
+    componentTestRenderer(<AppRouter />, {
+      initialState,
+      route: {
+        pathname: getRouteMain(),
+        state: {
+          from: getRouteAdmin(),
+        },
+      },
     });
 
     // используем асинхронный 'findByTestId', т.к. роутер использует 'Suspense'
