@@ -12,21 +12,21 @@ import { routeConfig } from '../../config/routeConfig';
 
 import type { AppRouteProps } from '../../model/types/router';
 
-import { RequireAuth } from '../RequiredAuth/RequireAuth';
+import { RequireAuth } from '../RequireAuth/RequireAuth';
 
 import classes from './AppRouter.module.scss';
 
 export const AppRouter = memo(() => {
-  const renderWithWrapper = useCallback((route: AppRouteProps) => {
-    // <Suspense /> для роутинга
-    const element = (
+  const renderRoutes = useCallback((route: AppRouteProps) => {
+    // '<Suspense />' для роутинга (используются асинхронные страницы)
+    const suspensedElement = (
       <Suspense
         fallback={
           <ToggleFeatures
             feature='isAppRedesigned'
             on={
-              <HStack align='start' className={classes.content} gap='16'>
-                <Skeleton border='4px' height={88} width='100%' />
+              <HStack className={classes.loader}>
+                <Skeleton border='4px' height={48} width='calc(100% - 16px)' />
               </HStack>
             }
             off={<PageLoader />}
@@ -40,7 +40,9 @@ export const AppRouter = memo(() => {
     return (
       <Route
         element={
-          route.authOnly ? <RequireAuth roles={route.roles}>{element}</RequireAuth> : element
+          <RequireAuth authOnly={route.authOnly} requiredRoles={route.roles}>
+            {suspensedElement}
+          </RequireAuth>
         }
         key={route.path}
         path={route.path}
@@ -48,7 +50,7 @@ export const AppRouter = memo(() => {
     );
   }, []);
 
-  return <Routes>{Object.values(routeConfig).map(renderWithWrapper)}</Routes>;
+  return <Routes>{Object.values(routeConfig).map(renderRoutes)}</Routes>;
 });
 
 AppRouter.displayName = 'AppRouter';

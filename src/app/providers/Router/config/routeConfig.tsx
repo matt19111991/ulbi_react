@@ -28,6 +28,7 @@ import {
 
 import type { AppRouteProps } from '../model/types/router';
 
+// описываем 'Record' исключительно для удобства, в приложении потребуются только значения из 'Record'
 export const routeConfig: Record<AppRoutes, AppRouteProps> = {
   [AppRoutes.ABOUT]: {
     element: <AboutPage />,
@@ -77,7 +78,7 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     path: getRouteSettings(),
   },
 
-  // должен идти последним; охватывает все маршруты, кроме указанных выше
+  // должен идти последним (охватывает все маршруты, кроме указанных выше)
   [AppRoutes.NOT_FOUND]: {
     element: <NotFoundPage />,
     path: '*',
