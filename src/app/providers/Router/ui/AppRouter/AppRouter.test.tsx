@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 
 import type { StateSchema } from '@/app/providers/StoreProvider';
 
@@ -82,10 +82,13 @@ describe('AppRouter', () => {
       route: getRouteProfile('1'),
     });
 
-    // используем асинхронный 'findByTestId', т.к. роутер использует 'Suspense'
-    const page = await screen.findByTestId('ProfilePage');
+    // без 'waitFor(() => {})' срабатывает 'timeout' до отрисовки страницы профиля
+    await waitFor(() => {
+      // внутри 'waitFor(() => {})' используем синхронный 'getByTestId'
+      const page = screen.getByTestId('ProfilePage');
 
-    expect(page).toBeInTheDocument();
+      expect(page).toBeInTheDocument();
+    });
   });
 
   test('Доступ запрещен (отсутствует роль)', async () => {
