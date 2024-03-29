@@ -1,4 +1,9 @@
-import { screen, waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+
+/*
+  нужна актуальная версия '@testing-library', которая соответствует 'React v.18', иначе ошибка:
+ 'Unable to find an element by: [data-testid="AboutPage"]'
+*/
 
 import type { StateSchema } from '@/app/providers/StoreProvider';
 
@@ -11,6 +16,23 @@ import { componentTestRenderer } from '@/shared/lib/tests';
 import { AppRouter } from './AppRouter';
 
 describe('AppRouter', () => {
+  test('Страница не должна отрисовываться до монтирования', () => {
+    const initialState: DeepPartial<StateSchema> = {
+      user: {
+        mounted: false,
+      },
+    };
+
+    componentTestRenderer(<AppRouter />, {
+      initialState,
+      route: getRouteAbout(),
+    });
+
+    const page = screen.queryByTestId('AboutPage');
+
+    expect(page).not.toBeInTheDocument();
+  });
+
   test('Страница должна отрисовываться', async () => {
     const initialState: DeepPartial<StateSchema> = {
       user: {
@@ -26,10 +48,6 @@ describe('AppRouter', () => {
     // используем асинхронный 'findByTestId', т.к. роутер использует 'Suspense'
     const page = await screen.findByTestId('AboutPage');
 
-    /*
-      нужна актуальная версия '@testing-library', которая соответствует 'React v.18', иначе ошибка:
-     'Unable to find an element by: [data-testid="AboutPage"]'
-    */
     expect(page).toBeInTheDocument();
   });
 
@@ -82,13 +100,10 @@ describe('AppRouter', () => {
       route: getRouteProfile('1'),
     });
 
-    // без 'waitFor(() => {})' срабатывает 'timeout' до отрисовки страницы профиля
-    await waitFor(() => {
-      // внутри 'waitFor(() => {})' используем синхронный 'getByTestId'
-      const page = screen.getByTestId('ProfilePage');
+    // используем асинхронный 'findByTestId', т.к. роутер использует 'Suspense'
+    const page = await screen.findByTestId('ProfilePage');
 
-      expect(page).toBeInTheDocument();
-    });
+    expect(page).toBeInTheDocument();
   });
 
   test('Доступ запрещен (отсутствует роль)', async () => {
