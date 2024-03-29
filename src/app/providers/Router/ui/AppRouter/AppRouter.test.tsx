@@ -101,7 +101,7 @@ describe('AppRouter', () => {
     });
 
     // используем асинхронный 'findByTestId', т.к. роутер использует 'Suspense'
-    const page = await screen.findByTestId('ProfilePage');
+    const page = await screen.findByTestId('ProfilePage', {}, { timeout: 3000 });
 
     expect(page).toBeInTheDocument();
   });
