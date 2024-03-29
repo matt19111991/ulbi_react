@@ -7,13 +7,13 @@
   max-width: 400px;
 
   &.deprecated {
-    background: var(--inverted-bg-color);
+    background-color: var(--inverted-bg-color);
     border: 1px solid var(--bg-color);
     color: var(--inverted-primary-color);
   }
 
   &.redesigned {
-    background: var(--bg-redesigned);
+    background-color: var(--bg-redesigned);
     border: 1px solid var(--cancel-redesigned);
     color: var(--text-redesigned);
   }
