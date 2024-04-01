@@ -27,6 +27,12 @@ import '@testing-library/jest-dom';
 */
 global.fetch = require('jest-fetch-mock');
 
+// Добавляем глобально заглушку для 'IntersectionObserver'
+window.IntersectionObserver = jest.fn().mockImplementation(() => ({
+  observe: () => null,
+  unobserve: () => null,
+}));
+
 /*
   Добавляем глобально функцию 'scrollTo', чтобы избавиться от ошибки в 'unit' тестах:
     'Error: Not implemented: window.scrollTo'

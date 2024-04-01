@@ -1,70 +1,67 @@
-import { MutableRefObject, useEffect } from 'react';
-
-/**
- * Хук для использования бесконечной прокрутки
- */
+import { useEffect } from 'react';
+import type { MutableRefObject } from 'react';
 
 interface UseInfiniteScrollOptions {
   /**
-   * Функция, которая вызывается, когда пересекли элемент
+   * Функция, которая вызывается, когда достигнут элемент-триггер
    */
   callback?: () => void;
 
   /**
-   * Элемент, при пересечении которого вызывается callback
+   * Элемент-триггер, при пересечении которого вызывается 'callback'
    */
-  triggerRef: MutableRefObject<HTMLElement>;
+  triggerRef: MutableRefObject<HTMLDivElement | null>;
 
   /**
-   * Элемент, внутри которого находится scroll
+   * Прокручиваемый элемент, внутри которого находится элемент-триггер
    */
-  wrapperRef?: MutableRefObject<HTMLElement>;
+  wrapperRef?: MutableRefObject<HTMLElement | null>;
 }
 
+/**
+ * Хук для использования бесконечной прокрутки
+ */
 export const useInfiniteScroll = ({
   callback,
   triggerRef,
   wrapperRef,
 }: UseInfiniteScrollOptions) => {
   useEffect(() => {
-    let observer: IntersectionObserver | null = null;
-
-    /*
-      Нужно изолировать (замкнуть) 'triggerRef' и 'wrapperRef' внутри 'useEffect', иначе ошибка:
-      'Uncaught TypeError: Failed to execute 'unobserve' on 'IntersectionObserver':
-      parameter 1 is not of type 'Element' при переходе на 'ArticleDetailsPage'
-      (клик на 'Читать далее...')
-
-      Используем 'triggerElement' и 'wrapperElement' внутри 'if (callback)' условия
-    */
-
+    // нужно изолировать (замкнуть) 'triggerRef' внутри 'useEffect', иначе 'callback' не запустится
     const triggerElement = triggerRef.current;
 
     // ссылаемся на область видимости браузера, если 'wrapperRef' === null
     const wrapperElement = wrapperRef?.current || null;
 
-    if (callback) {
-      const options: IntersectionObserverInit = {
-        root: wrapperElement,
-        rootMargin: '0px',
-        threshold: 1.0,
-      };
+    const options: IntersectionObserverInit = {
+      /*
+        элемент, который используется в качестве области просмотра для проверки видимости
+        целевого элемента, должен быть предком целевого элемента,
+        по умолчанию используется область видимости браузера (если элемент 'undefined' или 'null')
+      */
+      root: wrapperElement,
 
-      observer = new IntersectionObserver((entries /* , observer */) => {
-        const [firstEntry] = entries; // наблюдаем всего за одним элементом
+      rootMargin: '0px', // отступы вокруг 'wrapperElement'
 
-        // реагируем только на появление в зоне видимости
-        if (firstEntry.isIntersecting) {
-          callback();
-        }
-      }, options);
+      threshold: 1.0, // 'callback' будет вызван при 100% пересечении 'triggerElement'
+    };
 
+    const observer = new IntersectionObserver((entries /* , observer */) => {
+      const [firstEntry] = entries; // наблюдаем всего за одним элементом
+
+      // реагируем только на появление в зоне видимости
+      if (firstEntry.isIntersecting && callback) {
+        callback();
+      }
+    }, options);
+
+    if (triggerElement) {
       observer.observe(triggerElement);
     }
 
     return () => {
-      if (observer && triggerElement && wrapperElement) {
-        observer.unobserve(wrapperElement!);
+      if (triggerElement) {
+        observer.unobserve(triggerElement);
       }
     };
   }, [callback, triggerRef, wrapperRef]);
