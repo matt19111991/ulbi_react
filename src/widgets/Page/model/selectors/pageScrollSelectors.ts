@@ -9,7 +9,8 @@ export const getPageScroll = (state: StateSchema) => state.pageScroll.scroll;
  'useSelector(state => getPageScrollByPath(state, path));'
 
   'createSelector()' принимает аргументами:
-    - 'input selectors' - все аргументы, кроме последнего
+    - 'input selectors' - это все аргументы, кроме последнего; можно передавать массивом:
+                         'createSelector([input_selector_1, input_selector_2], result_function)'
     - 'result function' - последняя функция, которая принимает вычисленные значения из
                          'input selectors' на вход аргументами,
                           количество аргументов равно количеству 'input selectors'

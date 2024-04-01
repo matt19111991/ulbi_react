@@ -1,8 +1,9 @@
-import { MutableRefObject, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import type { MutableRefObject, ReactNode, UIEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { PAGE_ID } from '@/shared/const/page';
 
@@ -13,13 +14,12 @@ import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfin
 import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
 
 import { getPageScrollByPath } from '../model/selectors/pageScrollSelectors';
-import { pageScrollActions } from '../model/slice/pageScrollSlice';
 
-import type { TestProps } from '../model/types/page';
+import { pageScrollActions } from '../model/slice/pageScrollSlice';
 
 import classes from './Page.module.scss';
 
-interface PageProps extends TestProps {
+interface PageProps {
   /**
    * Содержимое
    */
@@ -31,12 +31,17 @@ interface PageProps extends TestProps {
   className?: string;
 
   /**
+   * 'ID' для тестов
+   */
+  'data-testid'?: string;
+
+  /**
    * Состояние загрузки
    */
   loading?: boolean;
 
   /**
-   * Коллбэк, который будет запускаться при достижении самого низа страницы
+   * Колбэк, который будет запускаться при достижении самого низа страницы
    */
   onScrollEnd?: () => void;
 
@@ -49,10 +54,10 @@ interface PageProps extends TestProps {
 export const Page = ({
   children,
   className,
+  'data-testid': dataTestId = 'Page',
   loading,
   onScrollEnd,
   storableScroll = false,
-  ...rest
 }: PageProps) => {
   const isAppRedesigned = getFeatureFlag('isAppRedesigned');
 
@@ -60,20 +65,22 @@ export const Page = ({
   const location = useLocation();
 
   const scrollPosition = useSelector((state: StateSchema) =>
-    getPageScrollByPath(state, window.location.pathname),
+    getPageScrollByPath(state, location.pathname),
   );
 
   const [mounted, setMounted] = useState(false);
 
-  const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
-  const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>;
+  const triggerRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
+
+  // нет отдельного типа 'HTMLMainElement'
+  const wrapperRef: MutableRefObject<HTMLElement | null> = useRef(null);
 
   useInfiniteScroll({
     callback: onScrollEnd,
     triggerRef,
     wrapperRef: toggleFeatures({
       name: 'isAppRedesigned',
-      // после редизайна ссылаемся на область видимости браузера, если 'wrapperRef' не определён
+      // после редизайна ссылаемся на область видимости браузера ('wrapperRef' приравниваем к 'undefined')
       on: () => undefined,
       off: () => wrapperRef,
     }),
@@ -81,12 +88,11 @@ export const Page = ({
 
   const onSetScroll = useThrottle((scrollTop: number) => {
     /*
-      запускаем прокрутку, если для компонента страницы задан флаг 'storableScroll' и
-      'location.pathname' равно 'window.location.pathname':
-
-      - есть расхождения между 'location.pathname' и 'window.location.pathname';
-        для 'location.pathname' нет разницы между страницами со списком статей и c одной статьей;
-        без сравнения страница 'ArticlesDetailsPage' будет перезаписывать скролл для 'ArticlesPage'
+      запускаем сохранение прокрутки, если для компонента страницы задан флаг 'storableScroll' и
+     'location.pathname' равно 'window.location.pathname':
+        есть расхождения между 'location.pathname' и 'window.location.pathname' при самом первом
+        переходе с 'ArticlesPage' на 'ArticlesDetailsPage',
+        без этого сравнения 'ArticlesDetailsPage' будет перезаписывать скролл для 'ArticlesPage'
     */
     if (storableScroll && location.pathname === window.location.pathname) {
       dispatch(
@@ -98,7 +104,7 @@ export const Page = ({
     }
   }, 500);
 
-  const onSetScrollEventCallback = useCallback(() => {
+  const onSetWindowScroll = useCallback(() => {
     onSetScroll(window.scrollY);
   }, [onSetScroll]);
 
@@ -109,16 +115,16 @@ export const Page = ({
     }
   }, [loading, mounted]);
 
-  // вешаем обработчики прокрутки на документ для страниц в новом дизайне
+  // вешаем обработчик прокрутки на документ для страниц в новом дизайне
   useEffect(() => {
     if (isAppRedesigned && storableScroll) {
-      window.addEventListener('scroll', onSetScrollEventCallback);
+      window.addEventListener('scroll', onSetWindowScroll);
     }
 
     return () => {
-      window.removeEventListener('scroll', onSetScrollEventCallback);
+      window.removeEventListener('scroll', onSetWindowScroll);
     };
-  }, [isAppRedesigned, onSetScrollEventCallback, storableScroll]);
+  }, [isAppRedesigned, onSetWindowScroll, storableScroll]);
 
   useEffect(() => {
     // все загрузки для страницы закончены
@@ -127,10 +133,12 @@ export const Page = ({
       if (storableScroll) {
         // для нового дизайна
         if (isAppRedesigned) {
-          // прокручиваем документ на сохраненную позицию
-          window.scrollTo(0, scrollPosition);
-        } else if (wrapperRef) {
-          // прокручиваем компонент страницы на сохраненную позицию
+          /*
+           'onSetWindowScroll()' в предыдущем 'useEffect()' выставляет сохраненную позицию
+            прокрутки при монтировании - в текущем 'useEffect()' ничего делать не нужно
+          */
+        } else if (wrapperRef.current) {
+          // прокручиваем компонент страницы на сохраненную позицию для старого дизайна
           wrapperRef.current.scrollTop = scrollPosition;
         }
         // если на странице не сохраняется позиция прокрутки
@@ -139,10 +147,9 @@ export const Page = ({
         window.scrollTo({ behavior: 'auto', top: 0 });
       }
     }
-    /* eslint-disable-next-line react-hooks/exhaustive-deps */
-  }, [isAppRedesigned, mounted, storableScroll]);
+  }, [isAppRedesigned, mounted, scrollPosition, storableScroll]);
 
-  const toggleFeaturePageClass = toggleFeatures({
+  const pageMainClass = toggleFeatures({
     name: 'isAppRedesigned',
     on: () => classes.PageRedesigned,
     off: () => classes.Page,
@@ -150,15 +157,15 @@ export const Page = ({
 
   return (
     <main
-      className={classNames(toggleFeaturePageClass, {}, [className])}
-      data-testid={rest['data-testid'] ?? 'Page'}
+      className={classNames(pageMainClass, {}, [className])}
+      data-testid={dataTestId}
       id={PAGE_ID}
-      onScroll={(e) => onSetScroll(e.currentTarget.scrollTop)}
+      onScroll={(e: UIEvent<HTMLElement>) => onSetScroll((e.target as HTMLElement).scrollTop)}
       ref={wrapperRef}
     >
       {children}
 
-      {/* невидимый элемент внизу страницы, который будет запускать callback в 'useInfiniteScroll' */}
+      {/* невидимый элемент внизу страницы, который будет запускать 'callback' в 'useInfiniteScroll' */}
       {onScrollEnd ? <div className={classes.trigger} ref={triggerRef} /> : null}
     </main>
   );

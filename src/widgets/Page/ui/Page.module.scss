@@ -1,6 +1,6 @@
 .Page {
-  flex-grow: 1;
-  flex-shrink: 100; /* иначе sidebar скачет при загрузке или вытесняется страницей на малых экранах */
+  flex-grow: 1; /* иначе список статей ужимается в режиме 'ArticleView.LIST' */
+  flex-shrink: 100; /* иначе 'sidebar' скачет при загрузке или вытесняется страницей на малых экранах */
   height: calc(100vh - var(--navbar-height));
   padding: 20px 20px 20px 45px;
   overflow-y: auto;
@@ -13,7 +13,7 @@
 
 @media screen and (max-width: 640px) {
   .Page {
-    left: 24px;
+    left: 24px; /* иначе простые страницы 'AboutPage', 'MainPage' и т.д. прижимаются к сайдбару */
   }
 }
 
