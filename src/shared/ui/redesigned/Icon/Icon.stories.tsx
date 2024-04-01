@@ -26,6 +26,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
+    onClick: () => {},
     Svg: IconSvg,
   },
 };
@@ -36,6 +37,7 @@ Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 export const Dark: Story = {
   args: {
+    onClick: () => {},
     Svg: IconSvg,
   },
 };
@@ -46,6 +48,7 @@ Dark.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecora
 
 export const Orange: Story = {
   args: {
+    onClick: () => {},
     Svg: IconSvg,
   },
 };
@@ -74,6 +77,7 @@ Clickable.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 export const CustomSize: Story = {
   args: {
     height: 40,
+    onClick: () => {},
     Svg: IconSvg,
     width: 40,
   },
