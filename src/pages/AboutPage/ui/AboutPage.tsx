@@ -12,12 +12,11 @@ import classes from './AboutPage.module.scss';
 
 const AboutPage = () => {
   /*
-    передаем название namespace => /public/locales/[lng]/about.json
+    передаем название 'namespace' => '/public/locales/[lng]/about.json'
 
-    Если в useTranslation() не указывать значение namespace,
-    будет использоваться 'translation' namespace
+    если в 'useTranslation()' не указывать значение 'namespace',
+    будет использоваться 'translation' значение для 'namespace'
   */
-
   const { t } = useTranslation('about');
 
   const user = useSelector(getUserAuthData);
