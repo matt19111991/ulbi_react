@@ -1,12 +1,26 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 export const getPageScroll = (state: StateSchema) => state.pageScroll.scroll;
 
-// Использование: useSelector(state => getPageScrollByPath(state, path));
+/*
+  использование 'createSelector()' с дополнительными аргументами помимо 'state':
+ 'useSelector(state => getPageScrollByPath(state, path));'
+
+  'createSelector()' принимает аргументами:
+    - 'input selectors' - все аргументы, кроме последнего
+    - 'result function' - последняя функция, которая принимает вычисленные значения из
+                         'input selectors' на вход аргументами,
+                          количество аргументов равно количеству 'input selectors'
+*/
 export const getPageScrollByPath = createSelector(
-  getPageScroll,
-  (state: StateSchema, path: string) => path,
-  (scroll, path) => scroll[path] || 0,
+  /*
+    в каждом 'input selector' есть доступ как к 'state', так и 'path' для 'getPageScrollByPath()'
+
+    в 'result function' будем использовать 2 аргумента
+  */
+  getPageScroll, // 1 'input selector' - возвращенное значение из 'getPageScroll()'
+  (state: StateSchema, path: string) => path, // 2 'input selector' - значение 'path'
+  (scroll, path) => scroll[path] || 0, // 'result function'
 );

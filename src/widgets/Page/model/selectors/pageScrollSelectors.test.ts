@@ -1,4 +1,4 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { getPageScroll, getPageScrollByPath } from './pageScrollSelectors';
 
@@ -21,7 +21,7 @@ describe('page scroll selectors', () => {
         pageScroll: {},
       };
 
-      expect(getPageScroll(state as StateSchema)).toBe(undefined);
+      expect(getPageScroll(state as StateSchema)).toBeUndefined();
     });
   });
 
