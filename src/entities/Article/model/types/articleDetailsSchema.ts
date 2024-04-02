@@ -1,4 +1,4 @@
-import { Article } from './article';
+import type { Article } from './article';
 
 export interface ArticleDetailsSchema {
   data?: Article;

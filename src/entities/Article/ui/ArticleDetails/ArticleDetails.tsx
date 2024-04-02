@@ -138,7 +138,9 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
   const isLoading = useSelector(getArticleDetailsIsLoading);
 
   useInitialEffect(() => {
-    dispatch(fetchArticleById(id));
+    if (id) {
+      dispatch(fetchArticleById(id));
+    }
   });
 
   let content;

@@ -1,4 +1,5 @@
-import { Article, ArticleBlockType, ArticleType } from '@/entities/Article';
+import { ArticleBlockType, ArticleType } from '@/entities/Article';
+import type { Article } from '@/entities/Article';
 
 import UserAvatar from '@/shared/assets/tests/storybook.jpg';
 
@@ -48,26 +49,29 @@ export const article: Article = {
  * @param amount - количество необходимых статей
  */
 export const generateArticles = (amount: number): Article[] =>
+  // 'fill(amount)' - неважно, чем заполнять
   new Array(amount).fill(amount).map((_, idx) => ({ ...article, id: String(idx + 1) }));
 
 /**
  * Генератор нормализованных статей
  * @param amount - количество необходимых статей
  */
-export const generateNormalizedArticles = (
-  amount: number,
-): { entities: Record<string, Article>; ids: Array<string> } => {
-  const entities: Record<string, Article> = {};
-  const ids: Array<string> = [];
+type Entities = Record<Article['id'], Article>;
+
+type Ids = Array<Article['id']>;
+
+export const generateNormalizedArticles = (amount: number): { entities: Entities; ids: Ids } => {
+  const entities: Entities = {};
+  const ids: Ids = [];
 
   const articles = new Array(amount)
-    .fill(amount)
+    .fill(amount) // неважно, чем заполнять
     .map((_, idx) => ({ ...article, id: String(idx + 1) }));
 
-  articles.forEach((art) => {
-    entities[art.id] = art;
+  articles.forEach((articleItem) => {
+    entities[articleItem.id] = articleItem;
 
-    ids.push(art.id);
+    ids.push(articleItem.id);
   });
 
   return { entities, ids };

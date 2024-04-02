@@ -22,7 +22,7 @@ export const fetchCommentsByArticleId = createAsyncThunk<
         // через поле 'articleId' у комментария ссылаемся на родителя для комментария и
         // получаем список всех комментариев для статьи с 'articleId'
         articleId,
-        _expand: 'user', // получаем весь 'user' объект
+        _expand: 'user', // получаем весь 'user' объект из БД
       },
     });
 

@@ -1,4 +1,6 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
+
+import { article } from '@/shared/lib/generators/articles';
 
 import {
   getArticleDetailsData,
@@ -9,10 +11,7 @@ import {
 describe('articleDetails', () => {
   describe('getArticleDetailsData', () => {
     test('should return data', () => {
-      const data = {
-        id: '1',
-        title: 'Test title',
-      };
+      const data = article;
 
       const state: DeepPartial<StateSchema> = {
         articleDetails: { data },
@@ -24,7 +23,7 @@ describe('articleDetails', () => {
     test('should work with empty state data', () => {
       const state: DeepPartial<StateSchema> = {};
 
-      expect(getArticleDetailsData(state as StateSchema)).toBe(undefined);
+      expect(getArticleDetailsData(state as StateSchema)).toBeUndefined();
     });
   });
 
@@ -32,17 +31,17 @@ describe('articleDetails', () => {
     test('should return error', () => {
       const state: DeepPartial<StateSchema> = {
         articleDetails: {
-          error: 'Error',
+          error: 'Article details error',
         },
       };
 
-      expect(getArticleDetailsError(state as StateSchema)).toBe('Error');
+      expect(getArticleDetailsError(state as StateSchema)).toBe('Article details error');
     });
 
     test('should work with empty state error', () => {
       const state: DeepPartial<StateSchema> = {};
 
-      expect(getArticleDetailsError(state as StateSchema)).toBe(undefined);
+      expect(getArticleDetailsError(state as StateSchema)).toBeUndefined();
     });
   });
 
@@ -57,7 +56,7 @@ describe('articleDetails', () => {
       expect(getArticleDetailsIsLoading(state as StateSchema)).toBeTruthy();
     });
 
-    test('should work with empty state isLoading', () => {
+    test('should work with default state isLoading', () => {
       const state: DeepPartial<StateSchema> = {};
 
       expect(getArticleDetailsIsLoading(state as StateSchema)).toBeFalsy();

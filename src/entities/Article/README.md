@@ -1,6 +1,6 @@
 ## Сущность статьи
 
-- Constants
+### Constants
 
 `ArticleBlockType` - тип блока для статьи
 
@@ -28,34 +28,37 @@
 
 `ArticleTextBlockComponent` - компонент с блоком, содержащим текст
 
-- Selectors
+### Selectors
 
-`getArticleDetailsData` - Селектор для получения информации о текущей открытой статье
+`getArticleDetailsData` - селектор для получения информации о текущей открытой статье
 
-`getArticleDetailsError` - Селектор для получения информации об ошибке при получении статьи
+`getArticleDetailsError` - селектор для получения информации об ошибке при получении статьи
 
-`getArticleDetailsIsLoading` - Селектор для получения информации о состоянии загрузки статьи
+`getArticleDetailsIsLoading` - селектор для получения информации о состоянии загрузки статьи
 
-- Services
+### Services
 
-`fetchArticleById` - Сервис для загрузки статьи по ID
+`fetchArticleById` - сервис для загрузки статьи по `ID`
 
-- Slices
+### Slices
 
-`articleDetailsSlice` - Слайс для хранения информации о статье
+`articleDetailsReducer` - редюсер c информацией о статье
 
-- Types
+`articleDetailsSlice` - слайс для хранения информации о статье
 
-`Article` - Тип, описывающий статью
+### Types
 
-`ArticleBlockBase` - Тип, описывающий общие параметры блока
+`Article` - тип, описывающий статью
 
-`ArticleCodeBlock` - Тип, описывающий компонент с блоком, содержащим код
+`ArticleBlockBase` - тип, описывающий общие параметры блока
 
-`ArticleImageBlock` - Тип, описывающий компонент с блоком, содержащим изображение
+`ArticleCodeBlock` - тип, описывающий компонент с блоком, содержащим код
 
-`ArticleTextBlock` - Тип, описывающий компонент с блоком, содержащим текст
+`ArticleImageBlock` - тип, описывающий компонент с блоком, содержащим изображение
 
-`ArticleBlock` - Тип, описывающий один из трех блоков (код, изображение или текст)
+`ArticleTextBlock` - тип, описывающий компонент с блоком, содержащим текст
 
-`ArticleDetailsSchema` - Тип, описывающий схему статьи в хранилище
+`ArticleBlock` - тип, описывающий один из трех блоков (код, изображение или текст)
+
+`ArticleDetailsSchema` - тип, описывающий схему статьи в хранилище
+

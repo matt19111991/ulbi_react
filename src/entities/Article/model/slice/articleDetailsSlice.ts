@@ -1,9 +1,12 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
+
+import type { ErrorAction } from '@/shared/types/api';
 
 import { fetchArticleById } from '../services/fetchArticleById/fetchArticleById';
 
-import { Article } from '../types/article';
-import { ArticleDetailsSchema } from '../types/articleDetailsSchema';
+import type { Article } from '../types/article';
+import type { ArticleDetailsSchema } from '../types/articleDetailsSchema';
 
 const initialState: ArticleDetailsSchema = {
   data: undefined,
@@ -25,8 +28,8 @@ export const articleDetailsSlice = createSlice({
         state.data = action.payload;
         state.isLoading = false;
       })
-      .addCase(fetchArticleById.rejected, (state, action) => {
-        state.error = action.payload;
+      .addCase(fetchArticleById.rejected, (state, action: ErrorAction) => {
+        state.error = action.error.message;
         state.isLoading = false;
       });
   },
