@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import {
   Article,
   ArticleBlock,
-  ArticleBlockComponentMemoized,
   ArticleBlockType,
   ArticleCodeBlockComponent,
   ArticleFormBlock,
@@ -239,28 +238,29 @@ const ArticleEditForm = ({ articleId, className }: ArticleEditFormProps) => {
    */
   const renderBlocks = () =>
     blocks.map((block) => {
-      let BlockComponent = ArticleTextBlockComponent as ArticleBlockComponentMemoized;
+      let BlockComponent: JSX.Element;
 
       switch (block.type) {
         case ArticleBlockType.CODE:
-          BlockComponent = ArticleCodeBlockComponent as ArticleBlockComponentMemoized;
+          BlockComponent = <ArticleCodeBlockComponent block={block} className={classes.block} />;
           break;
 
         case ArticleBlockType.IMAGE:
-          BlockComponent = ArticleImageBlockComponent as ArticleBlockComponentMemoized;
+          BlockComponent = <ArticleImageBlockComponent block={block} className={classes.block} />;
           break;
 
         case ArticleBlockType.TEXT:
-          BlockComponent = ArticleTextBlockComponent as ArticleBlockComponentMemoized;
+          BlockComponent = <ArticleTextBlockComponent block={block} className={classes.block} />;
           break;
 
         default:
+          BlockComponent = <ArticleTextBlockComponent block={block} className={classes.block} />;
           break;
       }
 
       return (
         <HStack className={classes.blockContainer} key={block.id} max>
-          <BlockComponent block={block} className={classes.block} />
+          {BlockComponent}
 
           <AppLink className={classes.removeBlockIcon} onClick={onRemoveBlock(block.id)} to=''>
             <Text text='x' variant='error' />
