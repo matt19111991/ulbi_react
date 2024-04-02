@@ -10,23 +10,23 @@
 
 `ArticleView` - вид для списка статей
 
-- Components
+### Components
 
-`ArticleCodeBlockComponent` - компонент с блоком, содержащим код
+!`ArticleCodeBlockComponent` - компонент с блоком, содержащим код
 
-`ArticleDetails` - компонент с информацией о статье
+!`ArticleDetails` - компонент с информацией о статье
 
-`ArticleFormBlock` - компонент с формой создания блока
+!`ArticleFormBlock` - компонент с формой создания блока
 
-`ArticleImageBlockComponent` - компонент с блоком, содержащим изображение
+!`ArticleImageBlockComponent` - компонент с блоком, содержащим изображение
 
-`ArticleList` - компонент со списком статей
+!`ArticleList` - компонент со списком статей
 
-`ArticleListItem` - компонент-элемент списка статей
+!`ArticleListItem` - компонент-элемент списка статей
 
 `ArticleListItemSkeleton` - компонент-элемент списка статей (состояние загрузки)
 
-`ArticleTextBlockComponent` - компонент с блоком, содержащим текст
+!`ArticleTextBlockComponent` - компонент с блоком, содержащим текст
 
 ### Selectors
 
