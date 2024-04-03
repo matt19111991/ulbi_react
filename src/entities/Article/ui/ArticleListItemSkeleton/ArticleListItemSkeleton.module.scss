@@ -51,18 +51,10 @@
   }
 
   &.plate {
-    width: 230px;
-
     .date,
     .userInfo,
     .views {
       display: none;
-    }
-
-    .imageWrapper {
-      height: 200px;
-      position: relative;
-      width: 200px;
     }
 
     .image {
@@ -70,14 +62,14 @@
       width: 200px;
     }
 
-    .infoWrapper {
-      align-items: center;
-      display: flex;
+    .info {
       margin-top: 16px;
     }
 
     .title {
+      height: 16px;
       margin-top: 16px;
+      width: 150px;
     }
   }
 }
@@ -137,22 +129,13 @@
   }
 
   &.plate {
-    width: 233px;
-
     .card {
-      border-radius: 24px;
+      border-radius: 16px;
       display: block;
       height: 346px;
       overflow: hidden;
       padding: 0;
       width: 233px;
-
-      /* скрываем скелетоны только в приложении (не в storybook) */
-      @media screen and (max-width: 1800px) {
-        body:has(> div[id='root']) {
-          display: none;
-        }
-      }
     }
 
     .date {
@@ -161,18 +144,18 @@
     }
 
     .image {
-      height: 138px !important;
-      width: 100% !important;
+      height: 140px;
+      width: 100%;
     }
 
-    .infoWrapper {
+    .info {
       display: none;
     }
 
     .title {
-      height: 32px !important;
+      height: 32px;
       margin: 16px 8px;
-      width: 218px !important;
+      width: 218px;
     }
 
     .userInfo {

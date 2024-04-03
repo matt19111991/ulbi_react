@@ -76,15 +76,11 @@ export const ArticleListItemSkeleton = memo(({ className, view }: ArticleListIte
   return (
     <div className={classNames(mainClass, {}, [className, classes[view]])}>
       <Card className={classes.card}>
-        <div className={classes.imageWrapper}>
-          <Skeleton className={classes.image} height={200} width={200} />
-        </div>
+        <Skeleton className={classes.image} />
 
-        <div className={classes.infoWrapper}>
-          <Skeleton height={16} width={130} />
-        </div>
+        <Skeleton className={classes.info} height={16} width='100%' />
 
-        <Skeleton className={classes.title} height={16} width={150} />
+        <Skeleton className={classes.title} />
 
         <Skeleton className={classes.date} height={24} width={108} />
         <Skeleton className={classes.views} height={24} width={56} />

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryFn, StoryObj } from '@storybook/react';
 
 import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -8,6 +8,18 @@ import { Theme } from '@/shared/const/theme';
 import { ArticleView } from '../../model/consts/articleConsts';
 
 import { ArticleListItemSkeleton } from './ArticleListItemSkeleton';
+
+const ListDecorator = (Story: StoryFn) => (
+  <div style={{ height: '100vh' }}>
+    <Story />
+  </div>
+);
+
+const PlateDecorator = (Story: StoryFn) => (
+  <div style={{ width: '262px' }}>
+    <Story />
+  </div>
+);
 
 const meta = {
   title: 'entities/Article/ArticleListItemSkeleton/old',
@@ -29,7 +41,7 @@ export const PrimaryListItemSkeleton: Story = {
   },
 };
 
-PrimaryListItemSkeleton.decorators = [IndentsDecorator];
+PrimaryListItemSkeleton.decorators = [ListDecorator, IndentsDecorator];
 
 // Dark article list item skeleton
 
@@ -39,7 +51,7 @@ export const DarkListItemSkeleton: Story = {
   },
 };
 
-DarkListItemSkeleton.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
+DarkListItemSkeleton.decorators = [ListDecorator, IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange article list item skeleton
 
@@ -49,7 +61,7 @@ export const OrangeListItemSkeleton: Story = {
   },
 };
 
-OrangeListItemSkeleton.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
+OrangeListItemSkeleton.decorators = [ListDecorator, IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Primary article plate item skeleton
 
@@ -59,7 +71,7 @@ export const PrimaryPlateItemSkeleton: Story = {
   },
 };
 
-PrimaryPlateItemSkeleton.decorators = [IndentsDecorator];
+PrimaryPlateItemSkeleton.decorators = [IndentsDecorator, PlateDecorator];
 
 // Dark article plate item skeleton
 
@@ -69,7 +81,7 @@ export const DarkPlateItemSkeleton: Story = {
   },
 };
 
-DarkPlateItemSkeleton.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
+DarkPlateItemSkeleton.decorators = [IndentsDecorator, PlateDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange article plate item skeleton
 
@@ -79,6 +91,10 @@ export const OrangePlateItemSkeleton: Story = {
   },
 };
 
-OrangePlateItemSkeleton.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
+OrangePlateItemSkeleton.decorators = [
+  IndentsDecorator,
+  PlateDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 export default meta;
