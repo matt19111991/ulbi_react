@@ -4,7 +4,6 @@ import { Route, Routes } from 'react-router-dom';
 import { ToggleFeatures } from '@/shared/lib/features';
 
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
-import { HStack } from '@/shared/ui/redesigned/Stack';
 
 import { PageLoader } from '@/widgets/PageLoader';
 
@@ -14,8 +13,6 @@ import type { AppRouteProps } from '../../model/types/router';
 
 import { RequireAuth } from '../RequireAuth/RequireAuth';
 
-import classes from './AppRouter.module.scss';
-
 export const AppRouter = memo(() => {
   const renderRoutes = useCallback((route: AppRouteProps) => {
     // '<Suspense />' для роутинга (используются асинхронные страницы)
@@ -24,11 +21,7 @@ export const AppRouter = memo(() => {
         fallback={
           <ToggleFeatures
             feature='isAppRedesigned'
-            on={
-              <HStack className={classes.loader}>
-                <Skeleton border='4px' height={48} width='calc(100% - 16px)' />
-              </HStack>
-            }
+            on={<Skeleton border='4px' height={88} width='100%' />}
             off={<PageLoader />}
           />
         }
