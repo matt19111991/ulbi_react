@@ -12,7 +12,7 @@
 
 ### Components
 
-!`ArticleCodeBlockComponent` - компонент с блоком, содержащим код
+`ArticleCodeBlockComponent` - компонент с блоком, содержащим код
 
 !`ArticleDetails` - компонент с информацией о статье
 
@@ -22,7 +22,7 @@
 
 !`ArticleList` - компонент со списком статей
 
-`ArticleListItem` - компонент-элемент списка статей
+!`ArticleListItem` - компонент-элемент списка статей
 
 `ArticleListItemSkeleton` - компонент-элемент списка статей (состояние загрузки)
 
@@ -49,6 +49,8 @@
 ### Types
 
 `Article` - тип, описывающий статью
+
+`ArticleListItemProps` - тип, описывающий `props`, передаваемые в компонент-элемент списка статей
 
 `ArticleBlockBase` - тип, описывающий общие параметры блока
 

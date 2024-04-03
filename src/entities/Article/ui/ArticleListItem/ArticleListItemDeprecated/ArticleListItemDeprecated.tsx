@@ -5,9 +5,8 @@ import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
 
 import { getRouteArticleDetails } from '@/shared/const/router';
 
-// import { useHover } from 'shared/lib/hooks/useHover/useHover';
-
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { useHover } from '@/shared/lib/hooks/useHover/useHover';
 
 import { Avatar } from '@/shared/ui/deprecated/Avatar';
 import { AppLink } from '@/shared/ui/deprecated/AppLink';
@@ -21,9 +20,9 @@ import { AppImage } from '@/shared/ui/redesigned/AppImage';
 
 import { ArticleBlockType, ArticleView } from '../../../model/consts/articleConsts';
 
-import { ArticleTextBlock } from '../../../model/types/article';
+import type { ArticleTextBlock } from '../../../model/types/article';
 
-import { ArticleListItemProps } from '../ArticleListItem';
+import type { ArticleListItemProps } from '../ArticleListItem';
 import { ArticleTextBlockComponent } from '../../ArticleTextBlockComponent/ArticleTextBlockComponent';
 
 import classes from './ArticleListItemDeprecated.module.scss';
@@ -34,7 +33,8 @@ import classes from './ArticleListItemDeprecated.module.scss';
  */
 export const ArticleListItemDeprecated = memo(
   ({ article, className, target, view }: ArticleListItemProps) => {
-    // const [isHover, hoverHandlers] = useHover();
+    const [isHover, hoverHandlers] = useHover();
+    console.log('isHover', isHover);
 
     const { t } = useTranslation();
 
@@ -102,7 +102,7 @@ export const ArticleListItemDeprecated = memo(
         data-testid='ArticleListItem'
         target={target}
         to={getRouteArticleDetails(article.id)}
-        /* {...hoverHandlers} */
+        {...hoverHandlers}
       >
         <Card className={classes.card}>
           <div className={classes.imageWrapper}>

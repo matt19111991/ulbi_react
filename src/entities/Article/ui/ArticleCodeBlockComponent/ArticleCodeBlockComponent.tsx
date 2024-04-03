@@ -1,9 +1,10 @@
+import { memo } from 'react';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { genericMemo } from '@/shared/lib/components/genericMemo/genericMemo';
 
 import { Code } from '@/shared/ui/redesigned/Code';
 
-import { ArticleCodeBlock } from '../../model/types/article';
+import type { ArticleCodeBlock } from '../../model/types/article';
 
 import classes from './ArticleCodeBlockComponent.module.scss';
 
@@ -19,12 +20,12 @@ interface ArticleCodeBlockComponentProps {
   className?: string;
 }
 
-const ArticleCodeBlockComponent = ({ block, className }: ArticleCodeBlockComponentProps) => (
-  <div className={classNames(classes.ArticleCodeBlockComponent, {}, [className])}>
-    <Code text={block.code} />
-  </div>
+export const ArticleCodeBlockComponent = memo(
+  ({ block, className }: ArticleCodeBlockComponentProps) => (
+    <div className={classNames(classes.ArticleCodeBlockComponent, {}, [className])}>
+      <Code text={block.code} />
+    </div>
+  ),
 );
 
-const MemoizedArticleCodeBlockComponent = genericMemo(ArticleCodeBlockComponent);
-
-export { MemoizedArticleCodeBlockComponent as ArticleCodeBlockComponent };
+ArticleCodeBlockComponent.displayName = 'ArticleCodeBlockComponent';

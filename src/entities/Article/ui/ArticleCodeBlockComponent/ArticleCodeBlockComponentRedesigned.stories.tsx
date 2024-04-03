@@ -1,13 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
 
 import { ArticleBlockType } from '../../model/consts/articleConsts';
 
-import { ArticleCodeBlock } from '../../model/types/article';
+import type { ArticleCodeBlock } from '../../model/types/article';
 
 import { ArticleCodeBlockComponent } from './ArticleCodeBlockComponent';
 
@@ -18,7 +19,7 @@ const block: ArticleCodeBlock = {
 };
 
 const meta = {
-  title: 'entities/Article/ArticleDetails/blocks/Code/new',
+  title: 'entities/Article/ArticleBlock/Code/new',
   component: ArticleCodeBlockComponent,
   argTypes: {
     backgroundColor: {
@@ -35,7 +36,7 @@ export const Primary: Story = {
   args: { block },
 };
 
-Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Dark article code block
 
@@ -43,7 +44,11 @@ export const Dark: Story = {
   args: { block },
 };
 
-Dark.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange article code block
 
@@ -53,6 +58,7 @@ export const Orange: Story = {
 
 Orange.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
   ThemeDecorator(Theme.ORANGE),
 ];
 
