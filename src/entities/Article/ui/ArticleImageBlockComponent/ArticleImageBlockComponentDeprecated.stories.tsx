@@ -8,7 +8,7 @@ import { Theme } from '@/shared/const/theme';
 
 import { ArticleBlockType } from '../../model/consts/articleConsts';
 
-import { ArticleImageBlock } from '../../model/types/article';
+import type { ArticleImageBlock } from '../../model/types/article';
 
 import { ArticleImageBlockComponent } from './ArticleImageBlockComponent';
 
@@ -20,7 +20,7 @@ const block: ArticleImageBlock = {
 };
 
 const meta = {
-  title: 'entities/Article/ArticleDetails/blocks/Image/old',
+  title: 'entities/Article/ArticleBlock/Image/old',
   component: ArticleImageBlockComponent,
   argTypes: {
     backgroundColor: {

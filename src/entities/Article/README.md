@@ -18,7 +18,7 @@
 
 !`ArticleFormBlock` - компонент с формой создания блока
 
-!`ArticleImageBlockComponent` - компонент с блоком, содержащим изображение
+`ArticleImageBlockComponent` - компонент с блоком, содержащим изображение
 
 !`ArticleList` - компонент со списком статей
 
