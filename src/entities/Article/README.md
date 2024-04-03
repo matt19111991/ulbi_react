@@ -26,7 +26,7 @@
 
 `ArticleListItemSkeleton` - компонент-элемент списка статей (состояние загрузки)
 
-!`ArticleTextBlockComponent` - компонент с блоком, содержащим текст
+`ArticleTextBlockComponent` - компонент с блоком, содержащим текст
 
 ### Selectors
 

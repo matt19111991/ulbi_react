@@ -1,12 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
 
 import { ArticleBlockType } from '../../model/consts/articleConsts';
 
-import { ArticleTextBlock } from '../../model/types/article';
+import type { ArticleTextBlock } from '../../model/types/article';
 
 import { ArticleTextBlockComponent } from './ArticleTextBlockComponent';
 
@@ -21,7 +22,7 @@ const block: ArticleTextBlock = {
 };
 
 const meta = {
-  title: 'entities/Article/ArticleDetails/blocks/Text/old',
+  title: 'entities/Article/ArticleBlock/Text/old',
   component: ArticleTextBlockComponent,
   argTypes: {
     backgroundColor: {
@@ -38,13 +39,15 @@ export const Primary: Story = {
   args: { block },
 };
 
+Primary.decorators = [IndentsDecorator];
+
 // Dark article text block
 
 export const Dark: Story = {
   args: { block },
 };
 
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange article text block
 
@@ -52,6 +55,6 @@ export const Orange: Story = {
   args: { block },
 };
 
-Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 export default meta;
