@@ -1,9 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
 
-/**
- * Хук для управления наведением мыши через JS
- */
-
 interface UseHoverHandlers {
   /**
    * Обработчик события наведения мыши
@@ -16,9 +12,12 @@ interface UseHoverHandlers {
   onMouseLeave: () => void;
 }
 
-type UseHover = [boolean, UseHoverHandlers];
+type UseHoverResult = [boolean, UseHoverHandlers];
 
-export const useHover = (): UseHover => {
+/**
+ * Хук для управления наведением мыши через 'JS'
+ */
+export const useHover = (): UseHoverResult => {
   const [isHover, setIsHover] = useState(false);
 
   const onMouseEnter = useCallback(() => {
