@@ -2,19 +2,12 @@
   background-color: var(--code-bg);
   border: 1px solid var(--primary-color);
   padding: 20px;
-  position: relative;
   overflow: auto;
-}
 
-.copyBtn {
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
-.copyIcon {
-  path {
-    stroke: var(--primary-color);
+  .copyButton {
+    position: absolute;
+    right: 8px;
+    top: 8px;
   }
 }
 
@@ -25,13 +18,15 @@
   border: 1px solid var(--accent-redesigned);
   border-radius: 16px;
   padding: 20px;
-  position: relative;
   overflow: auto;
-  white-space: inherit;
-}
 
-@media screen and (max-width: 640px) {
-  .CodeRedesigned {
-    width: 50vw;
+  & > button {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  @media screen and (max-width: 1280px) {
+    max-width: calc(100vw - 140px);
   }
 }

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryFn, StoryObj } from '@storybook/react';
 
 import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -9,6 +9,12 @@ import { Code } from './Code';
 
 const codeText =
   '<!DOCTYPE html>\n<html>\n  <body>\n    <p id="hello"></p>\n\n    <script>\n      document.getElementById("hello").innerHTML = "Hello, world!";\n    </script>\n  </body>\n</html>;';
+
+const CodeDecorator = (Story: StoryFn) => (
+  <div style={{ position: 'relative' }}>
+    <Story />
+  </div>
+);
 
 const meta = {
   title: 'shared/components/old/Code',
@@ -30,7 +36,7 @@ export const Primary: Story = {
   },
 };
 
-Primary.decorators = [IndentsDecorator];
+Primary.decorators = [CodeDecorator, IndentsDecorator];
 
 // Dark code
 
@@ -40,7 +46,7 @@ export const Dark: Story = {
   },
 };
 
-Dark.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
+Dark.decorators = [CodeDecorator, IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange code
 
@@ -50,6 +56,6 @@ export const Orange: Story = {
   },
 };
 
-Orange.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
+Orange.decorators = [CodeDecorator, IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 export default meta;

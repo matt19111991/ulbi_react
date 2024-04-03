@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryFn, StoryObj } from '@storybook/react';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
@@ -10,6 +10,12 @@ import { Code } from './Code';
 
 const codeText =
   '<!DOCTYPE html>\n<html>\n  <body>\n    <p id="hello"></p>\n\n    <script>\n      document.getElementById("hello").innerHTML = "Hello, world!";\n    </script>\n  </body>\n</html>;';
+
+const CodeDecorator = (Story: StoryFn) => (
+  <div style={{ position: 'relative' }}>
+    <Story />
+  </div>
+);
 
 const meta = {
   title: 'shared/components/new/Code',
@@ -31,7 +37,11 @@ export const Primary: Story = {
   },
 };
 
-Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+Primary.decorators = [
+  CodeDecorator,
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+];
 
 // Dark code
 
@@ -42,6 +52,7 @@ export const Dark: Story = {
 };
 
 Dark.decorators = [
+  CodeDecorator,
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
   ThemeDecorator(Theme.DARK),
@@ -56,6 +67,7 @@ export const Orange: Story = {
 };
 
 Orange.decorators = [
+  CodeDecorator,
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
   ThemeDecorator(Theme.ORANGE),

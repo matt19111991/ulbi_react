@@ -25,31 +25,30 @@ interface CodeProps {
 }
 
 export const Code = memo(({ className, text }: CodeProps) => {
-  const onCopy = useCallback(() => {
-    navigator.clipboard.writeText(text);
+  const onCopy = useCallback(async () => {
+    await navigator.clipboard.writeText(text);
   }, [text]);
 
-  // <pre> сохраняет все пробелы, переносы внутри текста
+  // '<pre />' сохраняет все пробелы и переносы внутри текста
 
   return (
     <ToggleFeatures
       feature='isAppRedesigned'
       on={
         <pre className={classNames(classes.CodeRedesigned, {}, [className])}>
-          <IconRedesigned
-            clickable
-            className={classes.copyBtn}
-            onClick={onCopy}
-            Svg={CopyIconRedesigned}
-          />
+          <IconRedesigned clickable onClick={onCopy} Svg={CopyIconRedesigned} />
 
           <code>{text}</code>
         </pre>
       }
       off={
         <pre className={classNames(classes.Code, {}, [className])}>
-          <ButtonDeprecated className={classes.copyBtn} onClick={onCopy} theme={ButtonTheme.CLEAR}>
-            <CopyIconDeprecated className={classes.copyIcon} />
+          <ButtonDeprecated
+            className={classes.copyButton}
+            onClick={onCopy}
+            theme={ButtonTheme.CLEAR}
+          >
+            <CopyIconDeprecated />
           </ButtonDeprecated>
 
           <code>{text}</code>
