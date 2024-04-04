@@ -1,4 +1,4 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 export const getCreateArticleFormError = (state: StateSchema) => state.createArticleForm?.error;
 

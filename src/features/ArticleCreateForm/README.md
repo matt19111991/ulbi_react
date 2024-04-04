@@ -4,11 +4,11 @@
 
 `ArticleCreateForm` - форма создания статьи
 
-- Selectors
+### Selectors
 
-`getCreateArticleFormError` - Селектор для получения информации об ошибке при создании статьи
+`getCreateArticleFormError` - селектор для получения информации об ошибке при создании статьи
 
-`getCreateArticleFormIsLoading` - Селектор для получения информации о состоянии загрузки при создании статьи
+`getCreateArticleFormIsLoading` - селектор для получения информации о состоянии загрузки при создании статьи
 
 ### Services
 

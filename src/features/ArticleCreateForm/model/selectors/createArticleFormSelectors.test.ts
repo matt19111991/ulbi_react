@@ -1,4 +1,4 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import {
   getCreateArticleFormError,
@@ -28,17 +28,17 @@ describe('create article form selectors', () => {
     test('should return error', () => {
       const state: DeepPartial<StateSchema> = {
         createArticleForm: {
-          error: 'Error',
+          error: 'Create article form error',
         },
       };
 
-      expect(getCreateArticleFormError(state as StateSchema)).toBe('Error');
+      expect(getCreateArticleFormError(state as StateSchema)).toBe('Create article form error');
     });
 
     test('should work with empty state', () => {
       const state: DeepPartial<StateSchema> = {};
 
-      expect(getCreateArticleFormError(state as StateSchema)).toBe(undefined);
+      expect(getCreateArticleFormError(state as StateSchema)).toBeUndefined();
     });
   });
 });
