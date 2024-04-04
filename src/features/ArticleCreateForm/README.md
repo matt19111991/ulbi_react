@@ -10,9 +10,9 @@
 
 `getCreateArticleFormIsLoading` - Селектор для получения информации о состоянии загрузки при создании статьи
 
-- Services
+### Services
 
-`createArticle` - Сервис для создания статьи
+`createArticle` - сервис для создания статьи
 
 - Slices
 
@@ -20,8 +20,8 @@
 
 `clearError` - Действие для очистки ошибок
 
-- Types
+### Types
 
-`CreateArticleForm` - Тип, описывающий форму создания статьи
+`CreateArticleForm` - тип, описывающий форму создания статьи
 
-`CreateArticleFormSchema` - Тип, описывающий схему формы создания статьи в хранилище
+`CreateArticleFormSchema` - тип, описывающий схему формы создания статьи

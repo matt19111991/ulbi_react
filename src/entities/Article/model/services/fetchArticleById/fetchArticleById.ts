@@ -19,6 +19,16 @@ export const fetchArticleById = createAsyncThunk<
       return thunkApi.rejectWithValue('No provided article ID');
     }
 
+    /*
+     'axios.get<Article>' => типизация возвращаемого значения с сервера
+
+      в 'thunkApi' в 'extraArgument' можно записать любые данные, инстансы и т.д. через 'middleware':
+     'app/providers/StoreProvider/config/store.ts'
+
+      вызываем вместо базового 'axios' свой кастомный инстанс 'api' (axios):
+     'thunkApi.extra.api.get === axios.get'
+    */
+
     const response = await thunkApi.extra.api.get<Article>(`/articles/${articleId}`, {
       params: {
         _expand: 'user', // получаем весь 'user' объект из БД

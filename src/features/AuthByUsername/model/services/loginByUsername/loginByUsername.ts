@@ -56,13 +56,13 @@ export const loginByUsername = createAsyncThunk<
     };
 
     /*
-      'axios.post<User>' => типизация возвращаемого значения с сервера
+     'axios.post<User>' => типизация возвращаемого значения с сервера
 
       в 'thunkApi' в 'extraArgument' можно записать любые данные, инстансы и т.д. через 'middleware':
-      'app/providers/StoreProvider/config/store.ts'
+     'app/providers/StoreProvider/config/store.ts'
 
       вызываем вместо базового 'axios' свой кастомный инстанс 'api' (axios):
-      'thunkApi.extra.api.post === axios.post'
+     'thunkApi.extra.api.post === axios.post'
     */
 
     const response = await thunkApi.extra.api.post<User>('/login', authData, axiosConfig);

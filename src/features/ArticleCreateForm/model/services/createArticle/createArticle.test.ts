@@ -1,4 +1,6 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
+
+import { getRouteArticles } from '@/shared/const/router';
 
 import { TestAsyncThunk } from '@/shared/lib/tests';
 
@@ -14,7 +16,7 @@ const form: CreateArticleForm = {
   type: [],
 };
 
-const initialState: DeepPartial<StateSchema> = {
+const authorizedState: DeepPartial<StateSchema> = {
   user: {
     authData: {
       id: '1',
@@ -24,23 +26,66 @@ const initialState: DeepPartial<StateSchema> = {
 
 describe('createArticle', () => {
   test('success', async () => {
-    const thunk = new TestAsyncThunk(createArticle, initialState);
+    const thunk = new TestAsyncThunk(createArticle, authorizedState);
 
+    // указываем, что должно вернуться из 'post' запроса
     thunk.api.post.mockReturnValue(Promise.resolve({ data: form }));
 
     const result = await thunk.callThunk(form);
 
     expect(thunk.dispatch).toHaveBeenCalledTimes(2);
 
-    expect(thunk.api.post).toHaveBeenCalled();
+    expect(thunk.api.post).toHaveBeenCalledWith(getRouteArticles(), {
+      ...form,
+      userId: authorizedState.user?.authData?.id,
+    });
 
     expect(result.meta.requestStatus).toBe('fulfilled');
+
     expect(result.payload).toEqual(form);
   });
 
-  test('server error', async () => {
-    const thunk = new TestAsyncThunk(createArticle, initialState);
+  test('error no title in provided form', async () => {
+    const thunk = new TestAsyncThunk(createArticle);
 
+    const formWithEmptyTitle = {
+      ...form,
+      title: '',
+    };
+
+    const result = await thunk.callThunk(formWithEmptyTitle);
+
+    expect(thunk.dispatch).toHaveBeenCalledTimes(2);
+
+    expect(thunk.api.post).not.toHaveBeenCalled();
+
+    expect(result.meta.requestStatus).toBe('rejected');
+
+    expect(result.payload).toBe('No title in provided form');
+  });
+
+  test('error no user data', async () => {
+    const notAuthorizedState: DeepPartial<StateSchema> = {
+      user: {},
+    };
+
+    const thunk = new TestAsyncThunk(createArticle, notAuthorizedState);
+
+    const result = await thunk.callThunk(form);
+
+    expect(thunk.dispatch).toHaveBeenCalledTimes(2);
+
+    expect(thunk.api.post).not.toHaveBeenCalled();
+
+    expect(result.meta.requestStatus).toBe('rejected');
+
+    expect(result.payload).toBe('No user data');
+  });
+
+  test('error no article data', async () => {
+    const thunk = new TestAsyncThunk(createArticle, authorizedState);
+
+    // указываем, что должно вернуться из 'post' запроса
     thunk.api.post.mockReturnValue(Promise.resolve({ status: 403 }));
 
     const result = await thunk.callThunk(form);
@@ -50,17 +95,7 @@ describe('createArticle', () => {
     expect(thunk.api.post).toHaveBeenCalled();
 
     expect(result.meta.requestStatus).toBe('rejected');
-    expect(result.payload).toEqual('error');
-  });
 
-  test('no data error', async () => {
-    const thunk = new TestAsyncThunk(createArticle);
-
-    const result = await thunk.callThunk(form);
-
-    expect(thunk.api.post).not.toHaveBeenCalled();
-
-    expect(result.meta.requestStatus).toBe('rejected');
-    expect(result.payload).toEqual('error');
+    expect(result.payload).toBe('No article data');
   });
 });

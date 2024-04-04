@@ -1,4 +1,5 @@
-import { ArticleBlock, ArticleType } from '@/entities/Article';
+import { ArticleType } from '@/entities/Article';
+import type { ArticleBlock } from '@/entities/Article';
 
 export interface CreateArticleForm {
   blocks: Array<ArticleBlock>;
