@@ -1,31 +1,69 @@
-import { ChangeEvent, memo, TextareaHTMLAttributes, useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
+import type { ChangeEvent, TextareaHTMLAttributes } from 'react';
 
-import { classNames, Mods } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import type { Mods } from '@/shared/lib/classNames/classNames';
 
 import { HStack, VStack } from '../Stack';
 import { Text } from '../Text';
 
 import classes from './TextArea.module.scss';
 
-/* без 'Omit' будет конфликт типов: 'onChange' принимает 'event', а не 'string',
-   а в TextareaHTMLAttributes<HTMLTextAreaElement есть свое 'readOnly' свойство
+/*
+  без 'Omit' будет конфликт типов для 'TextareaHTMLAttributes':
+    'onChange' в этом типе ожидает 'event' в аргументах, а мы передаем '(value: string, name: string)'
 */
-type HTMLTextAreaProps = Omit<
-  TextareaHTMLAttributes<HTMLTextAreaElement>,
-  'onChange' | 'readOnly' | 'value'
->;
+type HTMLTextAreaProps = Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange'>;
 
 interface TextAreaProps extends HTMLTextAreaProps {
+  /**
+   * Фокус при монтировании
+   */
   autoFocus?: boolean;
+
+  /**
+   * Внешний класс
+   */
   className?: string;
-  cols?: number;
+
+  /**
+   * Растягивать на всю доступную ширину?
+   */
   fullWidth?: boolean;
+
+  /**
+   * Лэйбл
+   */
   label?: string;
+
+  /**
+   * Обработчик для изменения значения поля
+   */
   onChange?: (value: string, name: string) => void;
+
+  /**
+   * Placeholder
+   */
   placeholder?: string;
+
+  /**
+   * Режим только для чтения
+   */
   readOnly?: boolean;
+
+  /**
+   * Высота текстового поля, определяется количеством отображаемых строк
+   */
   rows?: number;
+
+  /**
+   * Значение поля ввода
+   */
   value?: string | number;
+
+  /**
+   * Выровнять лэйбл и поле ввода по вертикали
+   */
   verticalLabel?: boolean;
 }
 
@@ -48,7 +86,8 @@ export const TextArea = memo(
     const ref = useRef<HTMLTextAreaElement>(null);
 
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-      onChange?.(e.target.value, e.target.name); // 'onChange?.()' => функция не будет вызвана, если не будет передана
+      // 'onChange?.()' => функция не будет вызвана, если не будет передана
+      onChange?.(e.target.value, e.target.name);
     };
 
     const onBlur = (): void => {
@@ -61,7 +100,7 @@ export const TextArea = memo(
 
     useEffect(() => {
       if (autoFocus) {
-        setIsFocused(true);
+        onFocus();
 
         ref.current?.focus();
       }
@@ -79,7 +118,7 @@ export const TextArea = memo(
     const textarea = (
       <div className={classNames(classes.TextAreaWrapper, wrapperMods, [className])}>
         <textarea
-          className={classNames(classes.textarea, textAreaMods, [])}
+          className={classNames(classes.textarea, textAreaMods)}
           onBlur={onBlur}
           onChange={onChangeHandler}
           onFocus={onFocus}
@@ -98,7 +137,7 @@ export const TextArea = memo(
       const StackForLabel = verticalLabel ? VStack : HStack;
 
       return (
-        <StackForLabel align={align} gap='8' max>
+        <StackForLabel align={align} gap='8'>
           <Text text={label} />
 
           {textarea}

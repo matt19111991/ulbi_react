@@ -10,7 +10,7 @@ import { Text } from '@/shared/ui/redesigned/Text';
 
 import { ArticleBlockType } from '../../model/consts/articleConsts';
 
-import {
+import type {
   ArticleBlock,
   ArticleCodeBlock,
   ArticleImageBlock,
@@ -85,7 +85,7 @@ export const ArticleFormBlock = memo(({ onSubmit, type }: ArticleFormBlockProps)
   );
 
   /**
-   * Функция для очистки инпутов при создания блока
+   * Функция для очистки инпутов при создании блока
    */
   const onResetBlock = () => {
     setBlockData({

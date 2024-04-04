@@ -1,6 +1,8 @@
+import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -23,35 +25,40 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    placeholder: 'Type text',
+    onChange: action('onChange'),
     value: '12345',
   },
 };
 
-Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Dark textarea
 
 export const Dark: Story = {
   args: {
-    placeholder: 'Type text',
+    onChange: action('onChange'),
     value: '12345',
   },
 };
 
-Dark.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange textarea
 
 export const Orange: Story = {
   args: {
-    placeholder: 'Type text',
+    onChange: action('onChange'),
     value: '12345',
   },
 };
 
 Orange.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
   ThemeDecorator(Theme.ORANGE),
 ];
 
@@ -60,22 +67,24 @@ Orange.decorators = [
 export const AutoFocus: Story = {
   args: {
     autoFocus: true,
+    onChange: action('onChange'),
     value: '12345',
   },
 };
 
-AutoFocus.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+AutoFocus.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Full width textarea
 
 export const FullWidth: Story = {
   args: {
     fullWidth: true,
+    onChange: action('onChange'),
     value: '12345',
   },
 };
 
-FullWidth.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+FullWidth.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Read only textarea
 
@@ -86,29 +95,54 @@ export const ReadOnly: Story = {
   },
 };
 
-ReadOnly.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+ReadOnly.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Textarea with horizontal label
 
 export const HorizontalLabel: Story = {
   args: {
-    label: 'Input',
+    label: 'Label',
+    onChange: action('onChange'),
     value: '12345',
   },
 };
 
-HorizontalLabel.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+HorizontalLabel.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Textarea with vertical label
 
 export const VerticalLabel: Story = {
   args: {
-    label: 'Input',
+    label: 'Label',
+    onChange: action('onChange'),
     value: '12345',
     verticalLabel: true,
   },
 };
 
-VerticalLabel.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+VerticalLabel.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
+// Textarea with custom rows
+
+export const CustomRows: Story = {
+  args: {
+    onChange: action('onChange'),
+    rows: 8,
+    value: '8 rows',
+  },
+};
+
+CustomRows.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
+// Textarea with placeholder
+
+export const Placeholder: Story = {
+  args: {
+    onChange: action('onChange'),
+    placeholder: 'Введите текст',
+  },
+};
+
+Placeholder.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 export default meta;

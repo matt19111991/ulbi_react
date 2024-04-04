@@ -16,7 +16,7 @@
 
 !`ArticleDetails` - компонент с информацией о статье
 
-!`ArticleFormBlock` - компонент с формой создания блока
+`ArticleFormBlock` - компонент с формой блока для статьи
 
 `ArticleImageBlockComponent` - компонент с блоком, содержащим изображение
 
