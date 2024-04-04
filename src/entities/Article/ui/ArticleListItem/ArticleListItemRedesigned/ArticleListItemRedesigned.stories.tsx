@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -19,7 +20,6 @@ const meta = {
       control: 'color',
     },
   },
-  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true })],
 } as Meta<typeof ArticleListItemRedesigned>;
 
 type Story = StoryObj<typeof meta>;
@@ -33,6 +33,8 @@ export const PrimaryListItem: Story = {
   },
 };
 
+PrimaryListItem.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Dark article list item
 
 export const DarkListItem: Story = {
@@ -42,7 +44,11 @@ export const DarkListItem: Story = {
   },
 };
 
-DarkListItem.decorators = [ThemeDecorator(Theme.DARK)];
+DarkListItem.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange article list item
 
@@ -53,7 +59,11 @@ export const OrangeListItem: Story = {
   },
 };
 
-OrangeListItem.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeListItem.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Primary article plate item
 
@@ -64,6 +74,8 @@ export const PrimaryPlateItem: Story = {
   },
 };
 
+PrimaryPlateItem.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Dark article plate item
 
 export const DarkPlateItem: Story = {
@@ -73,7 +85,11 @@ export const DarkPlateItem: Story = {
   },
 };
 
-DarkPlateItem.decorators = [ThemeDecorator(Theme.DARK)];
+DarkPlateItem.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange article plate item
 
@@ -84,6 +100,10 @@ export const OrangePlateItem: Story = {
   },
 };
 
-OrangePlateItem.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangePlateItem.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 export default meta;

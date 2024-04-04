@@ -18,10 +18,9 @@ import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 
 import { ArticleBlockType, ArticleView } from '../../../model/consts/articleConsts';
+import type { ArticleTextBlock } from '../../../model/types/article';
 
-import { ArticleTextBlock } from '../../../model/types/article';
-
-import { ArticleListItemProps } from '../ArticleListItem';
+import type { ArticleListItemProps } from '../ArticleListItem';
 
 import classes from './ArticleListItemRedesigned.module.scss';
 
@@ -43,39 +42,41 @@ export const ArticleListItemRedesigned = memo(
     );
 
     const views = (
-      <HStack gap='8'>
-        <Icon Svg={EyeIcon} />
-        <Text className={classes.views} text={String(article.views || 0)} />
+      <HStack gap='4'>
+        <Icon className={classes.viewsIcon} Svg={EyeIcon} />
+
+        <Text text={String(article.views || 0)} />
       </HStack>
     );
 
     if (view === ArticleView.LIST) {
       const firstTextBlock = article.blocks.find(
-        (block) => block.type === ArticleBlockType.TEXT,
-      ) as ArticleTextBlock;
+        (block): block is ArticleTextBlock => block.type === ArticleBlockType.TEXT,
+      );
 
       return (
         <Card
           className={classNames('', {}, [className, classes[view]])}
           data-testid='ArticleListItem'
-          max
           padding='24'
         >
-          <VStack align='start' gap='16' max>
-            <HStack gap='16' max>
+          <VStack align='start' gap='16'>
+            <HStack gap='16'>
               {userInfo}
 
               <Text text={article.createdAt} />
             </HStack>
 
-            <Text bold data-testid='Article' title={article.title} />
+            <Text bold className={classes.title} data-testid='Article' title={article.title} />
 
             <Text className={classes.subtitle} size='s' title={article.subtitle} />
 
             <AppImage
               alt={article.title}
               className={classes.image}
-              loadingFallback={<Skeleton height={250} width='100%' />}
+              loadingFallback={
+                <Skeleton className={classes.imageFallback} height={320} width='100%' />
+              }
               src={article.img}
             />
 
@@ -86,6 +87,12 @@ export const ArticleListItemRedesigned = memo(
               />
             )}
 
+            {/*
+              для доступности лучше использовать 'AppLink', чем вешать 'onClick' на кнопку
+
+              если кликнуть средней кнопкой мыши на кнопку, то в случае с 'onClick' перехода
+              по ссылке не будет, c 'AppLink' переход по ссылке отработает
+            */}
             <HStack className={classes.floor} justify='between' max>
               <AppLink target={target} to={getRouteArticleDetails(article.id)}>
                 <Button variant='outline'>{t('Читать далее')}...</Button>
@@ -98,6 +105,12 @@ export const ArticleListItemRedesigned = memo(
       );
     }
 
+    /*
+     для доступности лучше использовать 'AppLink', чем вешать 'onClick' на 'Card'
+
+     если кликнуть средней кнопкой мыши на карточку, то в случае с 'onClick' перехода
+     по ссылке не будет, с 'AppLink' переход по ссылке отработает
+   */
     return (
       <AppLink
         className={classNames('', {}, [className, classes[view]])}
@@ -105,7 +118,7 @@ export const ArticleListItemRedesigned = memo(
         target={target}
         to={getRouteArticleDetails(article.id)}
       >
-        <Card border='partial' className={classes.card} padding='0'>
+        <Card className={classes.card} padding='0'>
           <AppImage
             alt={article.title}
             className={classes.image}
@@ -113,12 +126,12 @@ export const ArticleListItemRedesigned = memo(
             src={article.img}
           />
 
-          <VStack align='start' className={classes.info} gap='4' max>
+          <VStack className={classes.info}>
             <Text className={classes.title} data-testid='Article' text={article.title} />
 
-            <VStack className={classes.footer} gap='4' max>
+            <VStack className={classes.footer} justify='end' max>
               <HStack justify='between' max>
-                <Text className={classes.date} text={article.createdAt} />
+                <Text text={article.createdAt} />
 
                 {views}
               </HStack>
