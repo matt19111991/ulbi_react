@@ -1,5 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryFn, StoryObj } from '@storybook/react';
 
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -10,8 +11,14 @@ import { ArticleView } from '../../../model/consts/articleConsts';
 
 import { ArticleListItemDeprecated } from './ArticleListItemDeprecated';
 
+const PlateDecorator = (Story: StoryFn) => (
+  <div style={{ width: '262px' }}>
+    <Story />
+  </div>
+);
+
 const meta = {
-  title: 'entities/Article/ArticleList/ArticleListItem/old',
+  title: 'entities/Article/ArticleListItem/old',
   component: ArticleListItemDeprecated,
   argTypes: {
     backgroundColor: {
@@ -31,6 +38,8 @@ export const PrimaryListItem: Story = {
   },
 };
 
+PrimaryListItem.decorators = [IndentsDecorator];
+
 // Dark article list item
 
 export const DarkListItem: Story = {
@@ -40,7 +49,7 @@ export const DarkListItem: Story = {
   },
 };
 
-DarkListItem.decorators = [ThemeDecorator(Theme.DARK)];
+DarkListItem.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange article list item
 
@@ -51,7 +60,7 @@ export const OrangeListItem: Story = {
   },
 };
 
-OrangeListItem.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeListItem.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Primary article plate item
 
@@ -62,6 +71,8 @@ export const PrimaryPlateItem: Story = {
   },
 };
 
+PrimaryPlateItem.decorators = [IndentsDecorator, PlateDecorator];
+
 // Dark article plate item
 
 export const DarkPlateItem: Story = {
@@ -71,7 +82,7 @@ export const DarkPlateItem: Story = {
   },
 };
 
-DarkPlateItem.decorators = [ThemeDecorator(Theme.DARK)];
+DarkPlateItem.decorators = [IndentsDecorator, PlateDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange article plate item
 
@@ -82,6 +93,6 @@ export const OrangePlateItem: Story = {
   },
 };
 
-OrangePlateItem.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangePlateItem.decorators = [IndentsDecorator, PlateDecorator, ThemeDecorator(Theme.ORANGE)];
 
 export default meta;

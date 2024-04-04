@@ -24,9 +24,14 @@
     width: 100%;
   }
 
+  .imageFallback {
+    left: 16px;
+    margin: 16px auto 0;
+  }
+
   .textBlock {
-    max-height: 205px;
     min-height: 205px;
+    max-height: 205px;
     overflow-y: hidden;
   }
 
@@ -34,11 +39,13 @@
     margin-top: 8px;
   }
 
-  .types p {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 115px;
+  .types {
+    & > p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 115px;
+    }
   }
 
   .username {
@@ -46,29 +53,21 @@
   }
 
   .views {
-    margin-left: auto;
+    margin: 0 4px 0 auto;
   }
 }
 
 .plate {
-  cursor: pointer;
-  transition: .2s; /* плавный переход при увеличении карточки при наведении */
-  width: 230px;
-
-  .card {
-    display: inline-flex;
-    flex-direction: column;
-  }
+  transition: .2s; /* при наведении карточка увеличивается с плавным переходом */
 
   .date {
     display: none;
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 16px;
+    top: 8px;
   }
 
   &:hover {
-    opacity: .8;
     transform: scale(1.01); // увеличение карточки при наведении
 
     .date {
@@ -78,8 +77,6 @@
 
   .imageWrapper {
     height: 200px;
-    position: relative;
-    width: 200px;
   }
 
   .image {
@@ -96,24 +93,30 @@
 
   .title {
     margin-top: 8px;
+
+    & > p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 200px;
+    }
   }
 
-  .title p {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 200px;
-  }
-
-  .types p {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 115px;
+  .types {
+    & > p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 115px;
+    }
   }
 
   .views {
     margin-left: auto;
     margin-right: 8px;
+  }
+
+  .viewsIcon {
+    margin-bottom: 2px ;
   }
 }

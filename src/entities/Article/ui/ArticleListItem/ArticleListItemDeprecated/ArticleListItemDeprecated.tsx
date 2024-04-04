@@ -19,11 +19,11 @@ import { Text } from '@/shared/ui/deprecated/Text';
 import { AppImage } from '@/shared/ui/redesigned/AppImage';
 
 import { ArticleBlockType, ArticleView } from '../../../model/consts/articleConsts';
-
 import type { ArticleTextBlock } from '../../../model/types/article';
 
-import type { ArticleListItemProps } from '../ArticleListItem';
 import { ArticleTextBlockComponent } from '../../ArticleTextBlockComponent/ArticleTextBlockComponent';
+
+import type { ArticleListItemProps } from '../ArticleListItem';
 
 import classes from './ArticleListItemDeprecated.module.scss';
 
@@ -34,14 +34,15 @@ import classes from './ArticleListItemDeprecated.module.scss';
 export const ArticleListItemDeprecated = memo(
   ({ article, className, target, view }: ArticleListItemProps) => {
     const [isHover, hoverHandlers] = useHover();
-    console.log('isHover', isHover);
+    // eslint-disable-next-line no-console
+    console.log('--- hovered ---', isHover);
 
     const { t } = useTranslation();
 
     if (view === ArticleView.LIST) {
       const firstTextBlock = article.blocks.find(
-        (block) => block.type === ArticleBlockType.TEXT,
-      ) as ArticleTextBlock;
+        (block): block is ArticleTextBlock => block.type === ArticleBlockType.TEXT,
+      );
 
       return (
         <div
@@ -64,7 +65,9 @@ export const ArticleListItemDeprecated = memo(
             <AppImage
               alt={article.title}
               className={classes.image}
-              loadingFallback={<Skeleton height={250} width='100%' />}
+              loadingFallback={
+                <Skeleton className={classes.imageFallback} height={249} width={440} />
+              }
               src={article.img}
             />
 
@@ -74,9 +77,10 @@ export const ArticleListItemDeprecated = memo(
 
             <div className={classes.footer}>
               {/*
-                Для доступности лучше использовать 'AppLink' чем вешать 'onClick' на кнопку
-                Если кликнуть средней кнопкой мыши на кнопку, то в случае с 'onClick' перехода
-                по ссылке не будет. С 'AppLink' переход по ссылке отработает
+                для доступности лучше использовать 'AppLink', чем вешать 'onClick' на кнопку
+
+                если кликнуть средней кнопкой мыши на кнопку, то в случае с 'onClick' перехода
+                по ссылке не будет, c 'AppLink' переход по ссылке отработает
               */}
               <AppLink target={target} to={getRouteArticleDetails(article.id)}>
                 <Button theme={ButtonTheme.OUTLINE}>{t('Читать далее')}...</Button>
@@ -91,9 +95,10 @@ export const ArticleListItemDeprecated = memo(
     }
 
     /*
-      Для доступности лучше использовать 'AppLink' чем вешать 'onClick' на 'Card'
-      Если кликнуть средней кнопкой мыши на карточку, то в случае с 'onClick' перехода
-      по ссылке не будет. С 'AppLink' переход по ссылке отработает
+      для доступности лучше использовать 'AppLink', чем вешать 'onClick' на 'Card'
+
+      если кликнуть средней кнопкой мыши на карточку, то в случае с 'onClick' перехода
+      по ссылке не будет, с 'AppLink' переход по ссылке отработает
     */
 
     return (
@@ -104,7 +109,7 @@ export const ArticleListItemDeprecated = memo(
         to={getRouteArticleDetails(article.id)}
         {...hoverHandlers}
       >
-        <Card className={classes.card}>
+        <Card>
           <div className={classes.imageWrapper}>
             <AppImage
               alt={article.title}
@@ -120,8 +125,7 @@ export const ArticleListItemDeprecated = memo(
             <Text className={classes.types} text={article.type.join(', ')} />
 
             <Text className={classes.views} text={String(article.views || 0)} />
-
-            <Icon Svg={EyeIcon} />
+            <Icon className={classes.viewsIcon} Svg={EyeIcon} />
           </div>
 
           <Text className={classes.title} text={article.title} />
