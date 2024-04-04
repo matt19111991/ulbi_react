@@ -137,7 +137,7 @@ export const TextArea = memo(
       const StackForLabel = verticalLabel ? VStack : HStack;
 
       return (
-        <StackForLabel align={align} gap='8'>
+        <StackForLabel align={align} gap='8' max>
           <Text text={label} />
 
           {textarea}

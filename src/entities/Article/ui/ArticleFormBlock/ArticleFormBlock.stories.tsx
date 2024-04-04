@@ -1,6 +1,8 @@
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -10,7 +12,7 @@ import { ArticleBlockType } from '../../model/consts/articleConsts';
 import { ArticleFormBlock } from './ArticleFormBlock';
 
 const meta = {
-  title: 'entities/Article/ArticleDetails/form/ArticleFormBlock',
+  title: 'entities/Article/ArticleFormBlock/new',
   component: ArticleFormBlock,
   argTypes: {
     backgroundColor: {
@@ -30,6 +32,8 @@ export const PrimaryCode: Story = {
   },
 };
 
+PrimaryCode.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Dark form article code block
 
 export const DarkCode: Story = {
@@ -39,7 +43,11 @@ export const DarkCode: Story = {
   },
 };
 
-DarkCode.decorators = [ThemeDecorator(Theme.DARK)];
+DarkCode.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange form article code block
 
@@ -50,7 +58,11 @@ export const OrangeCode: Story = {
   },
 };
 
-OrangeCode.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeCode.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Primary form article image block
 
@@ -61,6 +73,8 @@ export const PrimaryImage: Story = {
   },
 };
 
+PrimaryImage.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Dark form article image block
 
 export const DarkImage: Story = {
@@ -70,7 +84,11 @@ export const DarkImage: Story = {
   },
 };
 
-DarkImage.decorators = [ThemeDecorator(Theme.DARK)];
+DarkImage.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange form article image block
 
@@ -81,7 +99,11 @@ export const OrangeImage: Story = {
   },
 };
 
-OrangeImage.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeImage.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Primary form article text block
 
@@ -92,6 +114,8 @@ export const PrimaryText: Story = {
   },
 };
 
+PrimaryText.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
 // Dark form article text block
 
 export const DarkText: Story = {
@@ -101,7 +125,11 @@ export const DarkText: Story = {
   },
 };
 
-DarkText.decorators = [ThemeDecorator(Theme.DARK)];
+DarkText.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange form article text block
 
@@ -112,6 +140,10 @@ export const OrangeText: Story = {
   },
 };
 
-OrangeText.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeText.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 export default meta;

@@ -9,17 +9,11 @@ import { TextArea } from '@/shared/ui/redesigned/TextArea';
 import { Text } from '@/shared/ui/redesigned/Text';
 
 import { ArticleBlockType } from '../../model/consts/articleConsts';
-
-import type {
-  ArticleBlock,
-  ArticleCodeBlock,
-  ArticleImageBlock,
-  ArticleTextBlock,
-} from '../../model/types/article';
+import type { ArticleBlock } from '../../model/types/article';
 
 import classes from './ArticleFormBlock.module.scss';
 
-export interface CommonForm {
+interface CommonBlockFields {
   /**
    * Заголовок
    */
@@ -46,7 +40,7 @@ export interface ArticleFormBlockProps {
 export const ArticleFormBlock = memo(({ onSubmit, type }: ArticleFormBlockProps) => {
   const { t } = useTranslation();
 
-  const [blockData, setBlockData] = useState<CommonForm>({
+  const [blockData, setBlockData] = useState<CommonBlockFields>({
     title: '',
     text: '',
   });
@@ -71,7 +65,7 @@ export const ArticleFormBlock = memo(({ onSubmit, type }: ArticleFormBlockProps)
    * Обработчик для изменения полей параграфа
    */
   const onChangeParagraph = useCallback((value: string) => {
-    setParagraphs((prev) => [...prev.slice(0, prev.length - 1), value]);
+    setParagraphs((prev) => [...prev.slice(0, -1), value]);
   }, []);
 
   /**
@@ -79,7 +73,23 @@ export const ArticleFormBlock = memo(({ onSubmit, type }: ArticleFormBlockProps)
    */
   const onRemoveParagraph = useCallback(
     (text: string) => () => {
-      setParagraphs((prev) => prev.filter((paragraph) => paragraph !== text));
+      let finishRemove = false;
+
+      setParagraphs((prev) =>
+        prev.filter((paragraph) => {
+          if (finishRemove) {
+            return true;
+          }
+
+          if (paragraph === text) {
+            finishRemove = true;
+
+            return false;
+          }
+
+          return true;
+        }),
+      );
     },
     [],
   );
@@ -98,29 +108,19 @@ export const ArticleFormBlock = memo(({ onSubmit, type }: ArticleFormBlockProps)
    * Обработчик создания блока
    */
   const onCreateBlock = useCallback(() => {
-    const codeBlock: Partial<ArticleCodeBlock> = {};
-    const imageBlock: Partial<ArticleImageBlock> = {};
-    const textBlock: Partial<ArticleTextBlock> = {};
+    const id = 'new';
 
     switch (type) {
       case ArticleBlockType.CODE:
-        codeBlock.code = blockData.text;
-        codeBlock.type = type;
-        onSubmit(codeBlock as ArticleCodeBlock);
+        onSubmit({ code: blockData.text, id, type });
         break;
 
       case ArticleBlockType.IMAGE:
-        imageBlock.src = blockData.text;
-        imageBlock.title = blockData.title;
-        imageBlock.type = type;
-        onSubmit(imageBlock as ArticleImageBlock);
+        onSubmit({ id, src: blockData.text, title: blockData.title, type });
         break;
 
       case ArticleBlockType.TEXT:
-        textBlock.paragraphs = paragraphs;
-        textBlock.title = blockData.title;
-        textBlock.type = type;
-        onSubmit(textBlock as ArticleTextBlock);
+        onSubmit({ id, paragraphs, title: blockData.title, type });
         break;
 
       default:
@@ -139,7 +139,6 @@ export const ArticleFormBlock = memo(({ onSubmit, type }: ArticleFormBlockProps)
       return (
         <VStack align='start' className={classes.ArticleFormBlock} gap='16' max>
           <TextArea
-            className={classes.input}
             data-testid='ArticleFormBlock.Text'
             fullWidth
             label={t('Разметка')}
@@ -166,7 +165,6 @@ export const ArticleFormBlock = memo(({ onSubmit, type }: ArticleFormBlockProps)
       return (
         <VStack align='start' className={classes.ArticleFormBlock} gap='16' max>
           <Input
-            className={classes.input}
             data-testid='ArticleFormBlock.Title'
             fullWidth
             label={t('Название изображения')}
@@ -178,7 +176,6 @@ export const ArticleFormBlock = memo(({ onSubmit, type }: ArticleFormBlockProps)
           />
 
           <Input
-            className={classes.input}
             data-testid='ArticleFormBlock.Text'
             fullWidth
             label={t('Ссылка на изображение')}
@@ -204,7 +201,6 @@ export const ArticleFormBlock = memo(({ onSubmit, type }: ArticleFormBlockProps)
       return (
         <VStack align='start' className={classes.ArticleFormBlock} gap='16' max>
           <Input
-            className={classes.input}
             data-testid='ArticleFormBlock.Title'
             fullWidth
             label={t('Название блока')}
@@ -217,7 +213,7 @@ export const ArticleFormBlock = memo(({ onSubmit, type }: ArticleFormBlockProps)
 
           {paragraphs.map((paragraph, idx) => (
             // eslint-disable-next-line react/no-array-index-key
-            <HStack className={classes.paragraph} key={idx} justify='between' max>
+            <HStack className={classes.paragraph} key={idx} max>
               <AppLink
                 className={classes.removeParagraphIcon}
                 onClick={onRemoveParagraph(paragraph)}
@@ -227,8 +223,8 @@ export const ArticleFormBlock = memo(({ onSubmit, type }: ArticleFormBlockProps)
               </AppLink>
 
               <TextArea
-                className={classes.input}
                 data-testid='ArticleFormBlock.Paragraph'
+                disabled={idx < paragraphs.length - 1}
                 fullWidth
                 label={`${t('Параграф')} ${idx + 1}`}
                 onChange={onChangeParagraph}
