@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import type { ErrorAction } from '@/shared/types/api';
+
 import { createArticle } from '../services/createArticle/createArticle';
 
 import type { CreateArticleFormSchema } from '../types/createArticleFormSchema';
@@ -27,8 +29,8 @@ export const createArticleFormSlice = createSlice({
         state.error = undefined;
         state.isLoading = false;
       })
-      .addCase(createArticle.rejected, (state, action) => {
-        state.error = action.payload;
+      .addCase(createArticle.rejected, (state, action: ErrorAction) => {
+        state.error = action.error.message;
         state.isLoading = false;
       });
   },

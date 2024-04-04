@@ -14,11 +14,15 @@
 
 `createArticle` - сервис для создания статьи
 
-- Slices
+### Slices
 
-`createArticleFormSlice` - Слайс для хранения информации о форме создания статьи
+`clearError` - действие для очистки ошибок в хранилище при создании статьи
 
-`clearError` - Действие для очистки ошибок
+`createArticleFormActions` - объект с действиями по созданию статьи
+
+`createArticleFormSlice` - слайс для хранения информации о форме создания статьи
+
+`createArticleFormReducer` - редюсер формы создания статьи
 
 ### Types
 
