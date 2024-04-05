@@ -12,6 +12,8 @@
 
 ### Components
 
+`ArticleBlockPicker` - компонент-переключатель отображаемого блока статьи
+
 `ArticleCodeBlockComponent` - компонент с блоком, содержащим код
 
 !`ArticleDetails` - компонент с информацией о статье

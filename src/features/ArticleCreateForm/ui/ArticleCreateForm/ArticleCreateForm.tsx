@@ -4,11 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import {
+  ArticleBlockPicker,
   ArticleBlockType,
-  ArticleCodeBlockComponent,
   ArticleFormBlock,
-  ArticleImageBlockComponent,
-  ArticleTextBlockComponent,
   ArticleType,
 } from '@/entities/Article';
 
@@ -177,34 +175,14 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
    */
   const renderBlocks = () =>
     blocks.map((block) => {
-      let BlockComponent: JSX.Element;
-
-      switch (block.type) {
-        case ArticleBlockType.CODE:
-          BlockComponent = (
-            <ArticleCodeBlockComponent
-              block={block}
-              className={`${classes.block} ${classes.codeBlock}`}
-            />
-          );
-          break;
-
-        case ArticleBlockType.IMAGE:
-          BlockComponent = <ArticleImageBlockComponent block={block} className={classes.block} />;
-          break;
-
-        case ArticleBlockType.TEXT:
-          BlockComponent = <ArticleTextBlockComponent block={block} className={classes.block} />;
-          break;
-
-        default:
-          BlockComponent = <ArticleTextBlockComponent block={block} className={classes.block} />;
-          break;
-      }
+      const articleBlockClass =
+        block.type === ArticleBlockType.CODE
+          ? `${classes.block} ${classes.codeBlock}`
+          : classes.block;
 
       return (
         <HStack className={classes.blockContainer} key={block.id} max>
-          {BlockComponent}
+          <ArticleBlockPicker block={block} className={articleBlockClass} />
 
           <AppLink className={classes.removeBlockIcon} onClick={onRemoveBlock(block.id)} to=''>
             <Text text='x' variant='error' />

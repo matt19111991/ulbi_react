@@ -1,3 +1,5 @@
+export { ArticleBlockPicker } from './lib/components/ArticleBlockPicker/ArticleBlockPicker';
+
 export {
   ArticleBlockType,
   ArticleSortField,
@@ -14,10 +16,6 @@ export { fetchArticleById } from './model/services/fetchArticleById/fetchArticle
 
 export type { Article, ArticleBlock } from './model/types/article';
 export type { ArticleDetailsSchema } from './model/types/articleDetailsSchema';
-
-export { ArticleCodeBlockComponent } from './ui/ArticleCodeBlockComponent/ArticleCodeBlockComponent';
-export { ArticleImageBlockComponent } from './ui/ArticleImageBlockComponent/ArticleImageBlockComponent';
-export { ArticleTextBlockComponent } from './ui/ArticleTextBlockComponent/ArticleTextBlockComponent';
 
 export { ArticleFormBlock } from './ui/ArticleFormBlock/ArticleFormBlock';
 export { ArticleDetails } from './ui/ArticleDetails/ArticleDetails';

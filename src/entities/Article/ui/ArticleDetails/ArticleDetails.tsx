@@ -31,6 +31,8 @@ import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton'
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 
+import { ArticleBlockPicker } from '../../lib/components/ArticleBlockPicker/ArticleBlockPicker';
+
 import {
   getArticleDetailsData,
   getArticleDetailsError,
@@ -40,8 +42,6 @@ import {
 import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
 
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
-
-import { DetailsBlockSelector } from './DetailsBlockSelector';
 
 import classes from './ArticleDetails.module.scss';
 
@@ -86,7 +86,7 @@ const Deprecated = () => {
         </HStack>
       </VStack>
 
-      {article?.blocks.map(DetailsBlockSelector)}
+      {article?.blocks.map((block) => <ArticleBlockPicker block={block} key={block.id} />)}
     </>
   );
 };
@@ -125,7 +125,7 @@ const Redesigned = () => {
         src={article?.img}
       />
 
-      {article?.blocks.map(DetailsBlockSelector)}
+      {article?.blocks.map((block) => <ArticleBlockPicker block={block} key={block.id} />)}
     </>
   );
 };

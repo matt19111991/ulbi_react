@@ -6,11 +6,9 @@ import { useTranslation } from 'react-i18next';
 import {
   Article,
   ArticleBlock,
+  ArticleBlockPicker,
   ArticleBlockType,
-  ArticleCodeBlockComponent,
   ArticleFormBlock,
-  ArticleImageBlockComponent,
-  ArticleTextBlockComponent,
   ArticleType,
   fetchArticleById,
 } from '@/entities/Article';
@@ -237,37 +235,15 @@ const ArticleEditForm = ({ articleId, className }: ArticleEditFormProps) => {
    * Функция для отрисовки блоков
    */
   const renderBlocks = () =>
-    blocks.map((block) => {
-      let BlockComponent: JSX.Element;
+    blocks.map((block) => (
+      <HStack className={classes.blockContainer} key={block.id} max>
+        <ArticleBlockPicker block={block} className={classes.block} />
 
-      switch (block.type) {
-        case ArticleBlockType.CODE:
-          BlockComponent = <ArticleCodeBlockComponent block={block} className={classes.block} />;
-          break;
-
-        case ArticleBlockType.IMAGE:
-          BlockComponent = <ArticleImageBlockComponent block={block} className={classes.block} />;
-          break;
-
-        case ArticleBlockType.TEXT:
-          BlockComponent = <ArticleTextBlockComponent block={block} className={classes.block} />;
-          break;
-
-        default:
-          BlockComponent = <ArticleTextBlockComponent block={block} className={classes.block} />;
-          break;
-      }
-
-      return (
-        <HStack className={classes.blockContainer} key={block.id} max>
-          {BlockComponent}
-
-          <AppLink className={classes.removeBlockIcon} onClick={onRemoveBlock(block.id)} to=''>
-            <Text text='x' variant='error' />
-          </AppLink>
-        </HStack>
-      );
-    });
+        <AppLink className={classes.removeBlockIcon} onClick={onRemoveBlock(block.id)} to=''>
+          <Text text='x' variant='error' />
+        </AppLink>
+      </HStack>
+    ));
 
   return (
     <DynamicModuleLoaderV2 reducers={reducers} removeAfterUnmount>
