@@ -7,9 +7,11 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Theme } from '@/shared/const/theme';
 
+import type { TabItem } from '@/shared/types/ui';
+
 import { Tabs } from './Tabs';
 
-const tabs = [
+const tabs: TabItem[] = [
   { content: 'tab 1', value: 'tab 1' },
   { content: 'tab 2', value: 'tab 2' },
   { content: 'tab 3', value: 'tab 3' },
@@ -83,5 +85,18 @@ export const Column: Story = {
 };
 
 Column.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
+
+// Tabs in row
+
+export const Row: Story = {
+  args: {
+    direction: 'row',
+    onTabClick: action('onTabClick'),
+    tabs,
+    value: 'tab 2',
+  },
+};
+
+Row.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 export default meta;

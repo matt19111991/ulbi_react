@@ -2,10 +2,11 @@ import { memo, useCallback } from 'react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
-import { TabItem } from '@/shared/types/ui';
+import type { TabItem } from '@/shared/types/ui';
 
 import { Card } from '../Card/Card';
-import { Flex, FlexDirection } from '../Stack';
+import { Flex } from '../Stack';
+import type { FlexDirection } from '../Stack';
 
 import classes from './Tabs.module.scss';
 
@@ -16,7 +17,7 @@ interface TabsProps {
   className?: string;
 
   /**
-   * ID для тестов
+   * 'ID' для тестов
    */
   'data-testid'?: string;
 

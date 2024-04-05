@@ -1,9 +1,12 @@
 .Tabs {
   cursor: pointer;
-  display: flex;
-  gap: 8px;
 }
 
 .tab {
+  outline: 1px solid var(--hint-redesigned);
   padding: 8px 16px;
+
+  &:hover {
+    outline: 1px solid var(--accent-redesigned);
+  }
 }
