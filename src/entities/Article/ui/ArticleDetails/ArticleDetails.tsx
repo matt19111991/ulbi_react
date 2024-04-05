@@ -10,10 +10,8 @@ import { getRouteArticles } from '@/shared/const/router';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
-import {
-  DynamicModuleLoaderV2,
-  ReducersList,
-} from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+import { DynamicModuleLoaderV2 } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
 
 import { ToggleFeatures } from '@/shared/lib/features';
 
@@ -52,7 +50,7 @@ interface ArticleDetailsProps {
   className?: string;
 
   /**
-   * ID статьи
+   * 'ID' статьи
    */
   id?: string;
 }
@@ -61,7 +59,7 @@ const reducers: ReducersList = {
   articleDetails: articleDetailsReducer,
 };
 
-const Deprecated = () => {
+const DeprecatedArticleDetails = () => {
   const article = useSelector(getArticleDetailsData);
 
   return (
@@ -91,9 +89,9 @@ const Deprecated = () => {
   );
 };
 
-const Redesigned = () => {
+const RedesignedArticleDetails = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t } = useTranslation('article-details');
 
   const article = useSelector(getArticleDetailsData);
 
@@ -121,7 +119,7 @@ const Redesigned = () => {
 
       <AppImage
         className={classes.img}
-        loadingFallback={<SkeletonRedesigned border='16px' height={420} width='100%' />}
+        loadingFallback={<SkeletonRedesigned height={420} width='100%' />}
         src={article?.img}
       />
 
@@ -143,7 +141,7 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
     }
   });
 
-  let content;
+  let content: JSX.Element;
 
   if (isLoading) {
     content = (
@@ -151,11 +149,11 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
         feature='isAppRedesigned'
         on={
           <>
-            <SkeletonRedesigned className={classes.skeleton} height={40} width={300} />
-            <SkeletonRedesigned className={classes.skeleton} height={32} width={600} />
-            <SkeletonRedesigned className={classes.skeleton} height={819} width='100%' />
-            <SkeletonRedesigned className={classes.skeleton} height={200} width='100%' />
-            <SkeletonRedesigned className={classes.skeleton} height={200} width='100%' />
+            <SkeletonRedesigned height={40} width={300} />
+            <SkeletonRedesigned height={32} width={600} />
+            <SkeletonRedesigned height={819} width='100%' />
+            <SkeletonRedesigned height={200} width='100%' />
+            <SkeletonRedesigned height={200} width='100%' />
           </>
         }
         off={
@@ -173,7 +171,11 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
     content = (
       <ToggleFeatures
         feature='isAppRedesigned'
-        on={<TextRedesigned title={t('Произошла ошибка при загрузке статьи')} variant='error' />}
+        on={
+          <HStack justify='center' max>
+            <TextRedesigned title={t('Произошла ошибка при загрузке статьи')} variant='error' />
+          </HStack>
+        }
         off={
           <TextDeprecated
             theme={TextTheme.ERROR}
@@ -183,17 +185,18 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
       />
     );
   } else {
-    content = <ToggleFeatures feature='isAppRedesigned' on={<Redesigned />} off={<Deprecated />} />;
+    content = (
+      <ToggleFeatures
+        feature='isAppRedesigned'
+        on={<RedesignedArticleDetails />}
+        off={<DeprecatedArticleDetails />}
+      />
+    );
   }
 
   return (
     <DynamicModuleLoaderV2 reducers={reducers}>
-      <VStack
-        align='start'
-        className={classNames(classes.ArticleDetails, {}, [className])}
-        gap='16'
-        max
-      >
+      <VStack align='start' className={classNames('', {}, [className])} gap='16' max>
         {content}
       </VStack>
     </DynamicModuleLoaderV2>

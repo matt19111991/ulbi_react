@@ -16,7 +16,7 @@
 
 `ArticleCodeBlockComponent` - компонент с блоком, содержащим код
 
-!`ArticleDetails` - компонент с информацией о статье
+`ArticleDetails` - компонент с информацией о статье
 
 `ArticleFormBlock` - компонент с формой создания блока
 

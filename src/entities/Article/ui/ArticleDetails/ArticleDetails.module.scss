@@ -1,23 +1,12 @@
-.ArticleDetails {
-  min-height: 100%;
-}
-
 .avatar {
   margin: 0 auto;
+  object-fit: cover;
 }
 
 .img {
   max-height: 420px;
+  object-fit: cover;
   width: 100%;
-}
-
-// скрываем скелетоны только в приложении (не в storybook)
-@media screen and (max-width: 1800px) {
-  body:has(> div[id='root']) {
-    .skeleton {
-      display: none;
-    }
-  }
 }
 
 @media screen and (max-width: 840px) {
@@ -27,12 +16,16 @@
     gap: 16px;
   }
 
-  .subtitle h2 {
-    font: var(--font-m-redesigned) !important;
+  .subtitle {
+    h2 {
+      font: var(--font-m-redesigned) !important;
+    }
   }
 
-  .title h1 {
-    font: var(--font-l-redesigned) !important;
+  .title {
+    h1 {
+      font: var(--font-l-redesigned) !important;
+    }
   }
 }
 

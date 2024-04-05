@@ -20,7 +20,7 @@ const form: Article = {
   ],
   createdAt: '26.02.2023',
   id: '1',
-  img: 'https://www.freepnglogos.com/uploads/javascript-png/javascript-vector-logo-yellow-png-transparent-javascript-vector-12.png',
+  img: 'https://ik.imagekit.io/ably/ghost/prod/2023/12/choosing-the-best-javascript-frameworks-for-your-next-project.png?tr=w-1728,q-50',
   subtitle: 'Что нового в JS за 2023 год?',
   title: 'New article title',
   type: [ArticleType.IT],
