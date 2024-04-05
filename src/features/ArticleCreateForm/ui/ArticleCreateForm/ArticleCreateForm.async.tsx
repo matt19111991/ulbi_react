@@ -1,7 +1,8 @@
-import { FC, lazy } from 'react';
+import { lazy } from 'react';
 
-import { ArticleCreateFormProps } from './ArticleCreateForm';
+/*
+  чтобы использовать ленивую загрузку, импортируемый компонент должен экспортироваться
+  по умолчанию: 'export default ArticleCreateForm;'
+*/
 
-export const ArticleCreateFormAsync = lazy<FC<ArticleCreateFormProps>>(
-  () => import('./ArticleCreateForm'),
-);
+export const ArticleCreateFormAsync = lazy(() => import('./ArticleCreateForm'));

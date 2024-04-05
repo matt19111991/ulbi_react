@@ -1,8 +1,10 @@
 ## Фича формы создания статьи
 
-- Components
+### Components
 
 `ArticleCreateForm` - форма создания статьи
+
+`ArticleCreateFormAsync` - асинхронная форма создания статьи
 
 ### Selectors
 

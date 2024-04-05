@@ -25,7 +25,7 @@ interface ArticleTextBlockComponentProps {
 
 export const ArticleTextBlockComponent = memo(
   ({ block, className }: ArticleTextBlockComponentProps) => (
-    <div className={classNames('', {}, [className])}>
+    <div className={classNames(classes.ArticleTextBlockComponent, {}, [className])}>
       {block.title && (
         <ToggleFeatures
           feature='isAppRedesigned'

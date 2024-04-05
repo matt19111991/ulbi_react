@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ArticleBlock,
   ArticleBlockType,
   ArticleCodeBlockComponent,
   ArticleFormBlock,
@@ -13,15 +12,13 @@ import {
   ArticleType,
 } from '@/entities/Article';
 
+import type { ArticleBlock } from '@/entities/Article';
+
 import { getRouteArticles } from '@/shared/const/router';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
-
-import {
-  DynamicModuleLoaderV2,
-  ReducersList,
-} from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
-
+import { DynamicModuleLoaderV2 } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 import { AppLink } from '@/shared/ui/redesigned/AppLink';
@@ -33,7 +30,7 @@ import { Tabs } from '@/shared/ui/redesigned/Tabs';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { TextArea } from '@/shared/ui/redesigned/TextArea';
 
-import { TabItem } from '@/shared/types/ui';
+import type { TabItem } from '@/shared/types/ui';
 
 import {
   getCreateArticleFormError,
@@ -47,9 +44,11 @@ import {
   createArticleFormReducer,
 } from '../../model/slice/createArticleFormSlice';
 
-import { CreateArticleForm } from '../../model/types/createArticleFormSchema';
+import type { CreateArticleForm } from '../../model/types/createArticleFormSchema';
 
 import classes from './ArticleCreateForm.module.scss';
+
+type Inputs = Pick<CreateArticleForm, 'img' | 'subtitle' | 'title'>;
 
 export interface ArticleCreateFormProps {
   /**
@@ -70,7 +69,7 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
   const error = useSelector(getCreateArticleFormError);
   const isLoading = useSelector(getCreateArticleFormIsLoading);
 
-  const blockButtons = useMemo<TabItem[]>(
+  const blockTabs = useMemo<TabItem[]>(
     () => [
       { content: t('Код'), value: ArticleBlockType.CODE },
       { content: t('Изображение'), value: ArticleBlockType.IMAGE },
@@ -79,7 +78,7 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
     [t],
   );
 
-  const types = useMemo<TabItem[]>(
+  const typeTabs = useMemo<TabItem[]>(
     () => [
       { content: t('Айти'), value: ArticleType.IT },
       { content: t('Наука'), value: ArticleType.SCIENCE },
@@ -88,13 +87,13 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
     [t],
   );
 
-  const [inputs, setInputs] = useState<Omit<CreateArticleForm, 'blocks' | 'type'>>({
+  const [inputs, setInputs] = useState<Inputs>({
     img: '',
     subtitle: '',
     title: '',
   });
 
-  const [selectedBlock, setSelectedBlock] = useState('');
+  const [selectedBlock, setSelectedBlock] = useState<ArticleBlockType | string>('');
 
   const [blocks, setBlocks] = useState<ArticleBlock[]>([]);
 
@@ -111,7 +110,7 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
 
       setInputs((prev) => ({ ...prev, [name]: value }));
     },
-    [dispatch, error],
+    [dispatch, error?.length],
   );
 
   /**
@@ -125,24 +124,33 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
    * Обработчик для добавления (выбора) блока
    */
   const onArticleBlockClick = useCallback(({ value }: TabItem) => {
-    setSelectedBlock((prev) => (prev === value ? '' : (value as ArticleBlockType)));
+    setSelectedBlock((prev) => (prev === value ? '' : value));
   }, []);
 
   /**
    * Обработчик для добавления блока
    */
-  const onAddBlock = useCallback((newBlockData: ArticleBlock) => {
-    setBlocks((prev) => [...prev, { ...newBlockData, id: `${prev.length + 1}` }]);
+  const onAddBlock = useCallback(
+    (newBlock: ArticleBlock) => {
+      const newBlocks = [...blocks, newBlock];
 
-    setSelectedBlock('');
-  }, []);
+      setBlocks(() => newBlocks.map((block, idx) => ({ ...block, id: `${idx + 1}` })));
+
+      setSelectedBlock('');
+    },
+    [blocks],
+  );
 
   /**
    * Обработчик для удаления блока
    */
   const onRemoveBlock = useCallback(
     (id: string) => () => {
-      setBlocks((prev) => prev.filter((block) => block.id !== id));
+      setBlocks((prev) =>
+        prev
+          .filter((block) => block.id !== id)
+          .map((block, idx) => ({ ...block, id: `${idx + 1}` })),
+      );
     },
     [],
   );
@@ -151,9 +159,9 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
    * Обработчик для создания статьи
    */
   const onCreateArticle = useCallback(async () => {
-    const form = {
-      ...inputs,
+    const form: CreateArticleForm = {
       blocks,
+      ...inputs,
       type: [type],
     };
 
@@ -173,7 +181,12 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
 
       switch (block.type) {
         case ArticleBlockType.CODE:
-          BlockComponent = <ArticleCodeBlockComponent block={block} className={classes.block} />;
+          BlockComponent = (
+            <ArticleCodeBlockComponent
+              block={block}
+              className={`${classes.block} ${classes.codeBlock}`}
+            />
+          );
           break;
 
         case ArticleBlockType.IMAGE:
@@ -226,7 +239,6 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
           ) : null}
 
           <Input
-            className={classes.input}
             data-testid='CreateArticleForm.Input.Title'
             fullWidth
             label={t('Название статьи')}
@@ -238,7 +250,6 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
           />
 
           <TextArea
-            className={classes.input}
             data-testid='CreateArticleForm.Input.Subtitle'
             fullWidth
             label={t('Подзаголовок статьи')}
@@ -250,7 +261,6 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
           />
 
           <Input
-            className={classes.input}
             data-testid='CreateArticleForm.Input.Image'
             fullWidth
             label={t('Изображение для статьи')}
@@ -267,7 +277,7 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
             className={classes.articleTypes}
             direction='row'
             onTabClick={onArticleTypeChange}
-            tabs={types}
+            tabs={typeTabs}
             value={type}
           />
 
@@ -276,10 +286,10 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
           <Text text={t('Добавить блок')} />
 
           <Tabs
-            className={classes.addBlockTypes}
+            className={classes.blockTypes}
             direction='row'
             onTabClick={onArticleBlockClick}
-            tabs={blockButtons}
+            tabs={blockTabs}
             value={selectedBlock}
           />
 
@@ -288,7 +298,7 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
           )}
         </VStack>
 
-        <HStack className={classes.sendContainer} justify='end' max>
+        <HStack className={classes.sendContainer} justify='end'>
           <Button
             data-testid='CreateArticleForm.Button'
             disabled={!inputs.title.length}
