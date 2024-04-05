@@ -9,7 +9,7 @@ import { Theme } from '@/shared/const/theme';
 import ArticleCreatePage from './ArticleCreatePage';
 
 const meta = {
-  title: 'pages/Article/ArticleCreatePage',
+  title: 'pages/Article/ArticleCreatePage/new',
   component: ArticleCreatePage,
   argTypes: {
     backgroundColor: {
@@ -20,55 +20,33 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Primary article create page old
+// Primary article create page
 
-export const PrimaryOld: Story = {
+export const Primary: Story = {
   args: {},
 };
 
-// Dark article create page old
+Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
-export const DarkOld: Story = {
+// Dark article create page
+
+export const Dark: Story = {
   args: {},
 };
 
-DarkOld.decorators = [ThemeDecorator(Theme.DARK)];
-
-// Orange article create page old
-
-export const OrangeOld: Story = {
-  args: {},
-};
-
-OrangeOld.decorators = [ThemeDecorator(Theme.ORANGE)];
-
-// Primary article create page new
-
-export const PrimaryNew: Story = {
-  args: {},
-};
-
-PrimaryNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
-
-// Dark article create page new
-
-export const DarkNew: Story = {
-  args: {},
-};
-
-DarkNew.decorators = [
+Dark.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
   ThemeDecorator(Theme.DARK),
 ];
 
-// Orange article create page new
+// Orange article create page
 
-export const OrangeNew: Story = {
+export const Orange: Story = {
   args: {},
 };
 
-OrangeNew.decorators = [
+Orange.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
   ThemeDecorator(Theme.ORANGE),
