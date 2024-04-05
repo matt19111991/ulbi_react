@@ -25,12 +25,12 @@ import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 
 import { Page } from '@/widgets/Page';
 
-import { articleDetailsPageReducer } from '../../model/slices';
+import { AdditionalInfoContainer } from '../../lib/components/AdditionalInfoContainer/AdditionalInfoContainer';
+import { ArticleDetailsComments } from '../../lib/components/ArticleDetailsComments/ArticleDetailsComments';
+import { ArticleDetailsPageHeader } from '../../lib/components/ArticleDetailsPageHeader/ArticleDetailsPageHeader';
+import { DetailsContainer } from '../../lib/components/DetailsContainer/DetailsContainer';
 
-import { AdditionalInfoContainer } from '../AdditionalInfoContainer/AdditionalInfoContainer';
-import { ArticleDetailsComments } from '../ArticleDetailsComments/ArticleDetailsComments';
-import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
-import { DetailsContainer } from '../DetailsContainer/DetailsContainer';
+import { articleDetailsPageReducer } from '../../model/slices';
 
 import classes from './ArticleDetailsPage.module.scss';
 
