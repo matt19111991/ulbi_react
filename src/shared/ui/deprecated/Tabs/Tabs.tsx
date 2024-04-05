@@ -2,7 +2,7 @@ import { memo, useCallback } from 'react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
-import { TabItem } from '@/shared/types/ui';
+import type { TabItem } from '@/shared/types/ui';
 
 import { Card, CardTheme } from '../Card/Card';
 
@@ -15,7 +15,7 @@ interface TabsProps {
   className?: string;
 
   /**
-   * ID для тестов
+   * 'ID' для тестов
    */
   'data-testid'?: string;
 
