@@ -36,6 +36,8 @@ const config: StorybookConfig = {
   core: {
     // отключаем телеметрию и сбор анонимных данных (чтобы не было предупреждения в консоли при запуске)
     disableTelemetry: true,
+
+    disableWhatsNewNotifications: true, // отключаем окно "What's New" при запуске 'Storybook'
   },
 
   framework: {
