@@ -59,19 +59,19 @@
     "react-virtualized": "^9.22.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.3",
+    "@babel/core": "^7.24.4",
     "@babel/plugin-transform-runtime": "^7.24.3",
-    "@babel/plugin-transform-typescript": "^7.24.1",
-    "@babel/preset-env": "^7.24.3",
+    "@babel/plugin-transform-typescript": "^7.24.4",
+    "@babel/preset-env": "^7.24.4",
     "@babel/preset-react": "^7.24.1",
     "@babel/preset-typescript": "^7.24.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
-    "@storybook/addon-actions": "^8.0.5",
-    "@storybook/addon-essentials": "^8.0.5",
-    "@storybook/addon-viewport": "^8.0.5",
+    "@storybook/addon-actions": "^8.0.6",
+    "@storybook/addon-essentials": "^8.0.6",
+    "@storybook/addon-viewport": "^8.0.6",
     "@storybook/addon-webpack5-compiler-babel": "^3.0.3",
-    "@storybook/react": "^8.0.5",
-    "@storybook/react-webpack5": "^8.0.5",
+    "@storybook/react": "^8.0.6",
+    "@storybook/react-webpack5": "^8.0.6",
     "@svgr/webpack": "^8.1.0",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.2",
@@ -81,7 +81,7 @@
     "@types/jest": "^29.5.12",
     "@types/node": "^20.12.3",
     "@types/react": "^18.2.74",
-    "@types/react-dom": "^18.2.23",
+    "@types/react-dom": "^18.2.24",
     "@types/react-virtualized": "^9.21.29",
     "@types/webpack": "^5.28.5",
     "@types/webpack-bundle-analyzer": "^4.7.0",
@@ -96,7 +96,7 @@
     "copy-webpack-plugin": "^12.0.2",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
-    "css-loader": "^6.10.0",
+    "css-loader": "^7.0.0",
     "cypress": "^13.7.2",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -127,9 +127,9 @@
     "react-refresh-typescript": "^2.0.9",
     "reg-cli": "^0.18.1",
     "regenerator-runtime": "^0.14.1",
-    "sass": "^1.72.0",
+    "sass": "^1.74.1",
     "sass-loader": "^14.1.1",
-    "storybook": "^8.0.5",
+    "storybook": "^8.0.6",
     "style-loader": "^3.3.4",
     "stylelint": "^16.3.1",
     "stylelint-codeguide": "^2.0.0",
@@ -137,7 +137,7 @@
     "ts-loader": "^9.5.1",
     "ts-morph": "^22.0.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.3",
+    "typescript": "^5.4.4",
     "vite": "^5.2.8",
     "vite-plugin-svgr": "^4.2.0",
     "webpack": "^5.91.0",
@@ -178,7 +178,7 @@
       "webpack-dev-server": "^5.0.4"
     },
     "loki": {
-      "@storybook/react": "^8.0.5"
+      "@storybook/react": "^8.0.6"
     }
   }
 }
