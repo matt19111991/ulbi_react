@@ -18,6 +18,7 @@ const meta = {
   },
   parameters: {
     viewport: {
+      defaultViewport: 'lg',
       viewports: INITIAL_VIEWPORTS,
     },
   },
@@ -30,7 +31,6 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     onAccept: action('onAccept'),
-    onCancel: action('onCancel'),
   },
 };
 
@@ -39,7 +39,6 @@ export const Primary: Story = {
 export const Dark: Story = {
   args: {
     onAccept: action('onAccept'),
-    onCancel: action('onCancel'),
   },
 };
 
@@ -50,7 +49,6 @@ Dark.decorators = [ThemeDecorator(Theme.DARK)];
 export const Orange: Story = {
   args: {
     onAccept: action('onAccept'),
-    onCancel: action('onCancel'),
   },
 };
 
@@ -61,7 +59,6 @@ Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
 export const Title: Story = {
   args: {
     onAccept: action('onAccept'),
-    onCancel: action('onCancel'),
     title: 'Рейтинг',
   },
 };
@@ -82,8 +79,6 @@ export const Feedback: Story = {
 
 export const WithRate: Story = {
   args: {
-    onAccept: action('onAccept'),
-    onCancel: action('onCancel'),
     rate: 4,
   },
 };
@@ -99,11 +94,10 @@ export const PrimaryMobile: Story = {
     storybookMobile: true,
     title: 'Рейтинг',
   },
-};
-
-PrimaryMobile.parameters = {
-  viewport: {
-    defaultViewport: 'iphone6',
+  parameters: {
+    viewport: {
+      defaultViewport: 'iphone6',
+    },
   },
 };
 
@@ -118,15 +112,14 @@ export const DarkMobile: Story = {
     storybookMobile: true,
     title: 'Рейтинг',
   },
+  parameters: {
+    viewport: {
+      defaultViewport: 'iphone6',
+    },
+  },
 };
 
 DarkMobile.decorators = [ThemeDecorator(Theme.DARK)];
-
-DarkMobile.parameters = {
-  viewport: {
-    defaultViewport: 'iphone6',
-  },
-};
 
 // Orange mobile rating card
 
@@ -139,14 +132,13 @@ export const OrangeMobile: Story = {
     storybookMobile: true,
     title: 'Рейтинг',
   },
+  parameters: {
+    viewport: {
+      defaultViewport: 'iphone6',
+    },
+  },
 };
 
 OrangeMobile.decorators = [ThemeDecorator(Theme.ORANGE)];
-
-OrangeMobile.parameters = {
-  viewport: {
-    defaultViewport: 'iphone6',
-  },
-};
 
 export default meta;

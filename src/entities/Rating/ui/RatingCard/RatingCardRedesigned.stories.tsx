@@ -19,6 +19,7 @@ const meta = {
   },
   parameters: {
     viewport: {
+      defaultViewport: 'lg',
       viewports: INITIAL_VIEWPORTS,
     },
   },
@@ -31,7 +32,6 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     onAccept: action('onAccept'),
-    onCancel: action('onCancel'),
   },
 };
 
@@ -42,7 +42,6 @@ Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 export const Dark: Story = {
   args: {
     onAccept: action('onAccept'),
-    onCancel: action('onCancel'),
   },
 };
 
@@ -53,7 +52,6 @@ Dark.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecora
 export const Orange: Story = {
   args: {
     onAccept: action('onAccept'),
-    onCancel: action('onCancel'),
   },
 };
 
@@ -67,7 +65,6 @@ Orange.decorators = [
 export const Title: Story = {
   args: {
     onAccept: action('onAccept'),
-    onCancel: action('onCancel'),
     title: 'Рейтинг',
   },
 };
@@ -92,8 +89,6 @@ Feedback.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 export const WithRate: Story = {
   args: {
-    onAccept: action('onAccept'),
-    onCancel: action('onCancel'),
     rate: 4,
   },
 };
@@ -111,15 +106,14 @@ export const PrimaryMobile: Story = {
     storybookMobile: true,
     title: 'Рейтинг',
   },
+  parameters: {
+    viewport: {
+      defaultViewport: 'iphone6',
+    },
+  },
 };
 
 PrimaryMobile.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
-
-PrimaryMobile.parameters = {
-  viewport: {
-    defaultViewport: 'iphone6',
-  },
-};
 
 // Dark mobile rating card
 
@@ -132,18 +126,17 @@ export const DarkMobile: Story = {
     storybookMobile: true,
     title: 'Рейтинг',
   },
+  parameters: {
+    viewport: {
+      defaultViewport: 'iphone6',
+    },
+  },
 };
 
 DarkMobile.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   ThemeDecorator(Theme.DARK),
 ];
-
-DarkMobile.parameters = {
-  viewport: {
-    defaultViewport: 'iphone6',
-  },
-};
 
 // Orange mobile rating card
 
@@ -156,17 +149,16 @@ export const OrangeMobile: Story = {
     storybookMobile: true,
     title: 'Рейтинг',
   },
+  parameters: {
+    viewport: {
+      defaultViewport: 'iphone6',
+    },
+  },
 };
 
 OrangeMobile.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   ThemeDecorator(Theme.ORANGE),
 ];
-
-OrangeMobile.parameters = {
-  viewport: {
-    defaultViewport: 'iphone6',
-  },
-};
 
 export default meta;

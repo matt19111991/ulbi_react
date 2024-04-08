@@ -38,12 +38,12 @@ interface RatingCardProps {
   hasFeedback?: boolean;
 
   /**
-   * Обработчик для выставления рейтинга
+   * Обработчик для выставления рейтинга и отправки фидбэка
    */
   onAccept?: (starsCount: number, feedback?: string) => void;
 
   /**
-   * Обработчик для отмены выставления рейтинга
+   * Обработчик только для выставления рейтинга без отправки фидбэка
    */
   onCancel?: (starsCount: number) => void;
 
@@ -53,7 +53,7 @@ interface RatingCardProps {
   rate?: number;
 
   /**
-   * Активация мобильного режима для storybook
+   * Активация мобильного режима для 'storybook'
    */
   storybookMobile?: boolean;
 
@@ -93,18 +93,22 @@ export const RatingCard = memo(
       [hasFeedback, onAccept],
     );
 
-    const acceptHandler = useCallback(() => {
+    const onAcceptHandler = useCallback(() => {
       setIsModalOpen(false);
 
       onAccept?.(starsCount, feedback);
     }, [feedback, onAccept, starsCount]);
 
-    const cancelHandler = useCallback(() => {
+    const onCancelHandler = useCallback(() => {
       setIsModalOpen(false);
 
       onCancel?.(starsCount);
     }, [onCancel, starsCount]);
 
+    /**
+     * При переходе на страницу статьи обновляем значение выставленного рейтинга,
+     * иначе рейтинг равен '0' - по умолчанию
+     */
     useEffect(() => {
       setStarsCount(rate);
     }, [rate]);
@@ -142,19 +146,19 @@ export const RatingCard = memo(
     );
 
     const browserContent = (
-      <Modal isOpen={isModalOpen} lazy onClose={cancelHandler}>
-        <VStack align='start' gap='32' max>
+      <Modal isOpen={isModalOpen} lazy onClose={onCancelHandler}>
+        <VStack gap='32'>
           {modalContent}
 
           <ToggleFeatures
             feature='isAppRedesigned'
             on={
               <HStack gap='16' justify='end' max>
-                <ButtonRedesigned data-testid='RatingCard.Close' onClick={cancelHandler}>
+                <ButtonRedesigned data-testid='RatingCard.Close' onClick={onCancelHandler}>
                   {t('Закрыть')}
                 </ButtonRedesigned>
 
-                <ButtonRedesigned data-testid='RatingCard.Send' onClick={acceptHandler}>
+                <ButtonRedesigned data-testid='RatingCard.Send' onClick={onAcceptHandler}>
                   {t('Отправить')}
                 </ButtonRedesigned>
               </HStack>
@@ -163,13 +167,13 @@ export const RatingCard = memo(
               <HStack gap='16' justify='end' max>
                 <ButtonDeprecated
                   data-testid='RatingCard.Close'
-                  onClick={cancelHandler}
+                  onClick={onCancelHandler}
                   theme={ButtonTheme.OUTLINE_RED}
                 >
                   {t('Закрыть')}
                 </ButtonDeprecated>
 
-                <ButtonDeprecated data-testid='RatingCard.Send' onClick={acceptHandler}>
+                <ButtonDeprecated data-testid='RatingCard.Send' onClick={onAcceptHandler}>
                   {t('Отправить')}
                 </ButtonDeprecated>
               </HStack>
@@ -180,15 +184,15 @@ export const RatingCard = memo(
     );
 
     const mobileContent = (
-      <Drawer className={classes.mobile} isOpen={isModalOpen} onClose={cancelHandler}>
-        <VStack align='start' gap='32' max>
+      <Drawer className={classes.mobile} isOpen={isModalOpen} onClose={onCancelHandler}>
+        <VStack gap='32'>
           {modalContent}
 
           <ToggleFeatures
             feature='isAppRedesigned'
             on={
               <HStack justify='end' max>
-                <ButtonRedesigned data-testid='RatingCard.Send' onClick={acceptHandler} size='m'>
+                <ButtonRedesigned data-testid='RatingCard.Send' onClick={onAcceptHandler} size='m'>
                   {t('Отправить')}
                 </ButtonRedesigned>
               </HStack>
@@ -197,8 +201,8 @@ export const RatingCard = memo(
               <ButtonDeprecated
                 data-testid='RatingCard.Send'
                 fullWidth
-                onClick={acceptHandler}
-                size={ButtonSize.L}
+                onClick={onAcceptHandler}
+                size={ButtonSize.M}
               >
                 {t('Отправить')}
               </ButtonDeprecated>
@@ -219,7 +223,7 @@ export const RatingCard = memo(
               max
               padding='24'
             >
-              <VStack align='center' gap='8' max>
+              <VStack gap='8' max>
                 <TextRedesigned title={starsCount ? `${t('Спасибо за оценку')}!` : title} />
 
                 <StarRating onSelect={onSelectStars} selectedStars={starsCount} size={40} />
@@ -229,8 +233,8 @@ export const RatingCard = memo(
             </CardRedesigned>
           }
           off={
-            <CardDeprecated className={classNames('', {}, [className])} max>
-              <VStack align='center' gap='8' max>
+            <CardDeprecated className={classNames('', {}, [className])}>
+              <VStack gap='8'>
                 <TextDeprecated title={starsCount ? `${t('Спасибо за оценку')}!` : title} />
 
                 <StarRating onSelect={onSelectStars} selectedStars={starsCount} size={40} />
@@ -244,7 +248,7 @@ export const RatingCard = memo(
     }
 
     const content = (
-      <VStack align='center' gap='8' max>
+      <VStack gap='8' max>
         <ToggleFeatures
           feature='isAppRedesigned'
           on={<TextRedesigned title={starsCount ? `${t('Спасибо за оценку')}!` : title} />}
