@@ -50,7 +50,7 @@ const userApi = rtkApi.injectEndpoints({
 
         return baseQuery({
           method: 'GET',
-          url: `/users/${userId}`,
+          url: `users/${userId}`,
         }) as GetUserDataByIdResponse;
       },
     }),
@@ -66,7 +66,7 @@ const userApi = rtkApi.injectEndpoints({
         return baseQuery({
           body: { jsonSettings },
           method: 'PATCH',
-          url: `/users/${userId}`,
+          url: `users/${userId}`,
         }) as SetJsonSettingsResponse;
       },
     }),

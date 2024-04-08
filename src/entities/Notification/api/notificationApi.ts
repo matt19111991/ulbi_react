@@ -21,7 +21,7 @@ const notificationApi = rtkApi.injectEndpoints({
         }
 
         return baseQuery({
-          url: '/notifications',
+          url: 'notifications',
         }) as NotificationsResponse;
       },
     }),

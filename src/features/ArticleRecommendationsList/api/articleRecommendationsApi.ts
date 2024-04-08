@@ -28,7 +28,7 @@ const recommendationsApi = rtkApi.injectEndpoints({
             _expand: 'user',
             _limit: limit,
           },
-          url: '/articles',
+          url: 'articles',
         }) as RecommendationsResponse;
       },
     }),

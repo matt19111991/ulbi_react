@@ -1,4 +1,4 @@
-import { Rating } from '@/entities/Rating';
+import type { Rating } from '@/entities/Rating';
 
 /**
  * Генератор рейтинга

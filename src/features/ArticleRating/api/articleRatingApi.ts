@@ -1,19 +1,21 @@
-import { Rating } from '@/entities/Rating';
+import type { Article } from '@/entities/Article';
+import type { Rating } from '@/entities/Rating';
+import type { User } from '@/entities/User';
 
 import { rtkApi } from '@/shared/api/rtkApi';
 
 import { generateRating } from '@/shared/lib/generators/rating';
 
-interface GetArticleRatingArgs {
-  articleId: string;
-  userId: string;
+export interface GetArticleRatingArgs {
+  articleId: Article['id'];
+  userId: User['id'];
 }
 
-interface RateArticleArgs {
-  articleId: string;
-  feedback?: string;
-  rate: number;
-  userId: string;
+export interface RateArticleArgs {
+  articleId: Article['id'];
+  feedback?: Rating['feedback'];
+  rate: Rating['rate'];
+  userId: User['id'];
 }
 
 interface ArticleRatingResponse {
@@ -29,8 +31,8 @@ const articleRatingApi = rtkApi.injectEndpoints({
         }
 
         return baseQuery({
-          url: '/article-ratings',
           params: args,
+          url: 'article-ratings',
         }) as ArticleRatingResponse;
       },
     }),
@@ -41,9 +43,9 @@ const articleRatingApi = rtkApi.injectEndpoints({
         }
 
         return baseQuery({
-          url: 'article-ratings',
-          method: 'POST',
           body: args,
+          method: 'POST',
+          url: 'article-ratings',
         }) as ArticleRatingResponse;
       },
     }),

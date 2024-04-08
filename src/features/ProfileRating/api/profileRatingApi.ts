@@ -29,7 +29,7 @@ const profileRatingApi = rtkApi.injectEndpoints({
         }
 
         return baseQuery({
-          url: '/profile-ratings',
+          url: 'profile-ratings',
           params: args,
         }) as ProfileRatingResponse;
       },

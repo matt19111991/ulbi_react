@@ -32,7 +32,7 @@ const featureFlagsApi = rtkApi.injectEndpoints({
         return baseQuery({
           body: args,
           method: 'PATCH',
-          url: `/users/${args.userId}`,
+          url: `users/${args.userId}`,
         }) as UpdateFeatureFlagsResponse;
       },
     }),
