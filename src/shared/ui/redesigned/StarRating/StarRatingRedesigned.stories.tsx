@@ -57,7 +57,6 @@ Orange.decorators = [
 
 export const Selected: Story = {
   args: {
-    onSelect: action('onSelect'),
     selectedStars: 4,
   },
 };

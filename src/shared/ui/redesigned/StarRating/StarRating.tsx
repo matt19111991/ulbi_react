@@ -6,7 +6,7 @@ import StarIconRedesigned from '@/shared/assets/icons/star-redesigned.svg';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { toggleFeatures, ToggleFeatures } from '@/shared/lib/features';
 
-import { Icon as IconDeprecated } from '../../deprecated/Icon/Icon';
+import { Icon as IconDeprecated } from '../../deprecated/Icon';
 
 import { Icon as IconRedesigned } from '../Icon';
 
@@ -43,8 +43,16 @@ export const StarRating = memo(
 
     const [isSelected, setIsSelected] = useState(Boolean(selectedStars));
 
+    /**
+     * При переходе на страницу статьи обновляем значение выставленного рейтинга,
+     * иначе рейтинг равен '0' - по умолчанию
+     */
     useEffect(() => {
-      setCurrentStarsCount(selectedStars);
+      if (selectedStars) {
+        setCurrentStarsCount(selectedStars);
+
+        setIsSelected(Boolean(selectedStars));
+      }
     }, [selectedStars]);
 
     /**
@@ -73,36 +81,25 @@ export const StarRating = memo(
         onSelect?.(starsCount);
 
         setCurrentStarsCount(starsCount);
+
         setIsSelected(true);
       }
     };
 
+    const containerClass = classNames(
+      toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => classes.StarRatingRedesigned,
+        off: () => classes.StarRatingDeprecated,
+      }),
+      {},
+      [className],
+    );
+
     return (
-      <div
-        className={classNames(
-          toggleFeatures({
-            name: 'isAppRedesigned',
-            on: () => classes.StarRatingRedesigned,
-            off: () => classes.StarRatingDeprecated,
-          }),
-          {},
-          [className],
-        )}
-      >
+      <div className={containerClass}>
         {stars.map((starNumber) => {
           const commonProps = {
-            className: classNames(
-              classes.starIcon,
-              {
-                // закрашиваем текущую и все предыдущие звезды
-                [classes.hovered]: starNumber <= currentStarsCount,
-
-                [classes.normal]: starNumber > currentStarsCount,
-
-                [classes.selected]: isSelected,
-              },
-              [],
-            ),
             'data-selected': starNumber <= currentStarsCount,
             'data-testid': `StarRating.${starNumber}`,
             height: size,
@@ -117,9 +114,26 @@ export const StarRating = memo(
               feature='isAppRedesigned'
               key={starNumber}
               on={
-                <IconRedesigned {...commonProps} clickable={!isSelected} Svg={StarIconRedesigned} />
+                <IconRedesigned
+                  // закрашиваем текущую и все предыдущие звезды
+                  className={classNames('', { [classes.hovered]: starNumber <= currentStarsCount })}
+                  clickable={!isSelected}
+                  Svg={StarIconRedesigned}
+                  {...commonProps}
+                />
               }
-              off={<IconDeprecated {...commonProps} Svg={StarIconDeprecated} />}
+              off={
+                <IconDeprecated
+                  className={classNames(classes.starIcon, {
+                    // не закрашиваем звезды после текущей
+                    [classes.normal]: starNumber > currentStarsCount,
+
+                    [classes.selected]: isSelected,
+                  })}
+                  Svg={StarIconDeprecated}
+                  {...commonProps}
+                />
+              }
             />
           );
         })}

@@ -51,7 +51,6 @@ Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
 
 export const Selected: Story = {
   args: {
-    onSelect: action('onSelect'),
     selectedStars: 4,
   },
 };

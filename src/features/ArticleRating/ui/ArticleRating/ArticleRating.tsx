@@ -43,10 +43,15 @@ const ArticleRating = ({
 
   const userData = useSelector(getUserAuthData);
 
-  const { data, isLoading: queryLoading } = useGetArticleRatingQuery({
-    articleId,
-    userId: userData?.id ?? '',
-  });
+  const { data, isLoading: queryLoading } = useGetArticleRatingQuery(
+    {
+      articleId,
+      userId: userData?.id ?? '',
+    },
+    {
+      refetchOnMountOrArgChange: true,
+    },
+  );
 
   const [rateArticleMutation] = useRateArticleMutation();
 
