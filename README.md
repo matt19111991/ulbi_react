@@ -4,7 +4,6 @@
 * SEO добавить (ulbi.tv)
 * Проверить запуск скриптов под Windows
 * GitHub Actions возвращает 404 для https://matt19111991.github.io/ulbi_react/
-* Обновиться до css-loader v.7 https://github.com/webpack-contrib/css-loader/issues/1585
 * Обновиться до ESLint v.9 https://github.com/umijs/umi/issues/12261
 
 ## Доп. информация

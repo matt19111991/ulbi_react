@@ -23,6 +23,9 @@ export const buildCssLoader = (isDev: boolean): webpack.RuleSetRule => {
 */        ? '[path][name]__[local]--[hash:base64:5]'
 
           : '[hash:base64:8]', // <h1 className='pDE3uX9A'>Title</h1>
+
+        namedExport: false, // для корректной работы 'css-loader' v.7+
+        exportLocalsConvention: 'as-is', // для корректной работы 'css-loader' v.7+
       },
     },
   };
