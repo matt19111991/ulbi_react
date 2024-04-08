@@ -18,7 +18,7 @@ const ComponentWrapper = ({ children }: { children: ReactNode }) => (
 describe('articleRatingApi', () => {
   describe('useGetArticleRatingQuery', () => {
     test('returns article rating', async () => {
-      const args: GetArticleRatingArgs = {
+      const getArticleRatingArgs: GetArticleRatingArgs = {
         articleId: '1',
         userId: '1',
       };
@@ -32,7 +32,7 @@ describe('articleRatingApi', () => {
        'renderHook()' возвращает поле 'result', в котором содержится поле 'current' - это
         значение, возвращаемое из хука, в нашем случае кортеж: '[mutation, { data: Rating[] }]'
       */
-      const { result } = renderHook(() => useGetArticleRatingQuery(args), {
+      const { result } = renderHook(() => useGetArticleRatingQuery(getArticleRatingArgs), {
         wrapper: ComponentWrapper,
       });
 
