@@ -6,9 +6,13 @@
 
 `rateArticle` - выставление рейтинга для статьи
 
-- Components
+### Components
 
 `ArticleRating` - компонент рейтинга для статьи
+
+`ArticleRatingAsync` - асинхронный компонент рейтинга для статьи
+
+`ArticleRatingLazy` - ленивый компонент рейтинга для статьи
 
 ### Hooks
 
@@ -17,6 +21,8 @@
 `useRateArticleMutation` - хук выставления рейтинга статье
 
 ### Types
+
+`ArticleRatingProps` - тип `props`, передаваемых в `ArticleRating` компонент
 
 `GetArticleRatingArgs` - тип аргументов, передаваемых в `getArticleRating`
 

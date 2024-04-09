@@ -19,6 +19,8 @@ import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { StarRating } from '@/shared/ui/redesigned/StarRating';
 import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 
+import type { Rating } from '../../model/types/rating';
+
 import classes from './RatingCard.module.scss';
 
 interface RatingCardProps {
@@ -30,7 +32,7 @@ interface RatingCardProps {
   /**
    * Заголовок для фидбэка
    */
-  feedbackTitle?: string;
+  feedbackTitle?: Rating['feedback'];
 
   /**
    * Наличие фидбэка
@@ -40,17 +42,17 @@ interface RatingCardProps {
   /**
    * Обработчик для выставления рейтинга и отправки фидбэка
    */
-  onAccept?: (starsCount: number, feedback?: string) => void;
+  onAccept?: (starsCount: Rating['rate'], feedback?: Rating['feedback']) => void;
 
   /**
    * Обработчик только для выставления рейтинга без отправки фидбэка
    */
-  onCancel?: (starsCount: number) => void;
+  onCancel?: (starsCount: Rating['rate']) => void;
 
   /**
    * Существующая оценка пользователя
    */
-  rate?: number;
+  rate?: Rating['rate'];
 
   /**
    * Активация мобильного режима для 'storybook'

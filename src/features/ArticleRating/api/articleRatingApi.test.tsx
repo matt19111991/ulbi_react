@@ -30,7 +30,7 @@ describe('articleRatingApi', () => {
            тестируемого компонента
 
        'renderHook()' возвращает поле 'result', в котором содержится поле 'current' - это
-        значение, возвращаемое из хука, в нашем случае кортеж: '[mutation, { data: Rating[] }]'
+        значение, возвращаемое из хука, в нашем случае '{ data: Rating[] }'
       */
       const { result } = renderHook(() => useGetArticleRatingQuery(getArticleRatingArgs), {
         wrapper: ComponentWrapper,
