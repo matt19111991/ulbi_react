@@ -57,10 +57,6 @@
 .plate {
   transition: .2s; /* при наведении карточка увеличивается с плавным переходом */
 
-  .avatar {
-    margin-left: 8px;
-  }
-
   .card {
     border-radius: 16px;
     flex-direction: column;
@@ -79,7 +75,7 @@
   }
 
   .image {
-    min-height: 140px;
+    height: 142px;
     object-fit: fill;
   }
 
@@ -99,6 +95,10 @@
       width: 218px;
       word-break: break-all;
     }
+  }
+
+  .userInfo {
+    margin-left: 8px;
   }
 
   .viewsIcon {

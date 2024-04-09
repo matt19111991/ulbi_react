@@ -8,7 +8,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      width: calc(100% - 5.5px);
+      width: calc(100% - 5px);
     }
 
     .date {
@@ -16,7 +16,7 @@
     }
 
     .description {
-      min-height: 205px;
+      min-height: 216px;
     }
 
     .footer {
@@ -42,7 +42,7 @@
     }
 
     .title {
-      margin-top: 8px;
+      margin-top: 16px;
     }
 
     .username {
@@ -93,7 +93,7 @@
     }
 
     .description {
-      margin: 4px 0 14px;
+      margin: 4px 0 8px;
     }
 
     .footer {
@@ -101,8 +101,6 @@
       display: flex;
       justify-content: space-between;
       margin-top: 12px;
-      position: relative;
-      top: 8px;
     }
 
     .header {
@@ -124,7 +122,7 @@
     }
 
     .username {
-      margin-left: 8px;
+      margin-left: 16px;
     }
   }
 
@@ -140,11 +138,11 @@
 
     .date {
       display: inline-block;
-      margin: 54px 44px 8px 8px;
+      margin: 20px 44px 0 8px;
     }
 
     .image {
-      height: 140px;
+      height: 142px;
       width: 100%;
     }
 
@@ -153,18 +151,25 @@
     }
 
     .title {
-      height: 32px;
+      height: 64px;
       margin: 16px 8px;
       width: 218px;
     }
 
     .userInfo {
-      margin: 0 8px 0 16px;
+      align-items: center;
+      display: flex;
+      gap: 8px;
+      margin-left: 12px;
+    }
+
+    .username {
+      margin-top: 2px;
     }
 
     .views {
       display: inline-block;
-      margin: 54px 4px 8px 8px;
+      margin: 20px 4px 0 8px;
     }
   }
 }

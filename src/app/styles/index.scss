@@ -38,6 +38,11 @@
 
 @import 'variables/global';
 
+html:has(div[class='app_redesigned']) {
+  background-color: var(--text-redesigned);
+  scrollbar-gutter: stable; /* решает проблему с прыгающей шириной контента при появлении/скрытии скролла */
+}
+
 body {
   color: var(--primary-color);
   font: var(--font-m);

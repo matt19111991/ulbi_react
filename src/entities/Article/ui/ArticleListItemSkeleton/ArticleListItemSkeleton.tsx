@@ -50,12 +50,12 @@ export const ArticleListItemSkeleton = memo(({ className, view }: ArticleListIte
         <Card className={classes.card}>
           <div>
             <div className={classes.header}>
-              <Skeleton border='50%' height={30} width={30} />
+              <Skeleton border='50%' height={32} width={32} />
               <Skeleton className={classes.username} height={16} width={150} />
               <Skeleton className={classes.date} height={16} width={150} />
             </div>
 
-            <Skeleton className={classes.title} height={32} width={250} />
+            <Skeleton className={classes.title} height={24} width={250} />
 
             <Skeleton className={classes.subtitle} height={24} width={250} />
           </div>
@@ -85,7 +85,11 @@ export const ArticleListItemSkeleton = memo(({ className, view }: ArticleListIte
         <Skeleton className={classes.date} height={24} width={108} />
         <Skeleton className={classes.views} height={24} width={56} />
 
-        <Skeleton className={classes.userInfo} height={24} width={100} />
+        <div className={classes.userInfo}>
+          <Skeleton border='50%' height={32} width={32} />
+
+          <Skeleton className={classes.username} height={24} width={168} />
+        </div>
       </Card>
     </div>
   );

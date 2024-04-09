@@ -30,12 +30,7 @@ export const ArticleListItemRedesigned = memo(
 
     const userInfo = (
       <>
-        <Avatar
-          className={classes.avatar}
-          profileId={article.user.id}
-          size={32}
-          src={article.user.avatar}
-        />
+        <Avatar profileId={article.user.id} size={32} src={article.user.avatar} />
 
         <Text bold text={article.user.username} />
       </>
@@ -122,7 +117,7 @@ export const ArticleListItemRedesigned = memo(
           <AppImage
             alt={article.title}
             className={classes.image}
-            loadingFallback={<Skeleton height={248} width='100%' />}
+            loadingFallback={<Skeleton height={142} width='100%' />}
             src={article.img}
           />
 
@@ -136,7 +131,7 @@ export const ArticleListItemRedesigned = memo(
                 {views}
               </HStack>
 
-              <HStack gap='8' max>
+              <HStack className={classes.userInfo} gap='8' max>
                 {userInfo}
               </HStack>
             </VStack>
