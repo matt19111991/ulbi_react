@@ -1,6 +1,8 @@
-import { HTMLAttributeAnchorTarget, memo, ReactNode, useEffect, useMemo, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import type { HTMLAttributeAnchorTarget, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { AutoSizer, List, ListRowProps, WindowScroller } from 'react-virtualized';
+import { AutoSizer, List } from 'react-virtualized';
+import type { ListRowProps } from 'react-virtualized';
 
 import { PAGE_ID } from '@/shared/const/page';
 
@@ -15,7 +17,7 @@ import { HStack } from '@/shared/ui/redesigned/Stack';
 
 import { ArticleView } from '../../model/consts/articleConsts';
 
-import { Article } from '../../model/types/article';
+import type { Article } from '../../model/types/article';
 
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { ArticleListItemSkeleton } from '../ArticleListItemSkeleton/ArticleListItemSkeleton';
@@ -24,7 +26,7 @@ import classes from './ArticleList.module.scss';
 
 interface ArticleSkeleton {
   /**
-   * ID скелетона
+   * 'ID' скелетона
    */
   id: string;
 }
@@ -48,7 +50,7 @@ interface ArticleListProps {
   isLoading?: boolean;
 
   /**
-   * При target === '_blank' отрисовываем список рекомендаций
+   * Открытие в новой вкладке (у списка рекомендаций 'target === _blank')
    */
   target?: HTMLAttributeAnchorTarget;
 
@@ -58,7 +60,7 @@ interface ArticleListProps {
   view?: ArticleView;
 
   /**
-   * Состояние виртуализации
+   * Состояние виртуализации (для рекомендаций состояние: 'false')
    */
   virtualized?: boolean;
 }
@@ -88,7 +90,7 @@ export const ArticleList = memo(
 
     useEffect(() => {
       if (isLoading) {
-        // recommendations block
+        // 'recommendations block'
         if (target === '_blank') {
           setSkeletonsAmount(3);
         } else if (view === ArticleView.PLATE) {
@@ -97,6 +99,7 @@ export const ArticleList = memo(
           setSkeletonsAmount(1);
         }
 
+        // неважно, чем заполнять
         const skeletons: ArticleSkeleton[] = new Array(skeletonsAmount).fill(0).map((_, idx) => ({
           id: String(`skeleton-${idx}`),
         }));
@@ -105,116 +108,125 @@ export const ArticleList = memo(
       } else {
         setSkeletonsAmount(0);
 
-        setArticleItems((prev) => prev.filter((articleBlock) => 'title' in articleBlock));
+        /*
+          можно не отфильтровывать скелетоны из 'articleItems', т.к.
+         'useEffect' выше установит нужны значения после загрузки
+        */
       }
     }, [isLoading, skeletonsAmount, target, view]);
 
-    const pageNodeWidthWithIndents = useMemo<number>(
-      () => pageNode?.getBoundingClientRect().width || 105, // страница с padding
+    const pageNodeWidthWithPossibleIndents = useMemo<number>(
+      () => pageNode?.getBoundingClientRect().width || 0, // страница с 'padding'
       // eslint-disable-next-line react-hooks/exhaustive-deps
       [pageNode, windowWidth],
     );
 
-    const pageNodeWidthWithoutIndents = pageNodeWidthWithIndents - 20 - 45; // страница без padding
+    // у '.Page' класса нужно учитывать отступы слева и справа
+    const pageNodeResultWidth = toggleFeatures({
+      name: 'isAppRedesigned',
+      on: () =>
+        /*
+          для новых компонентов у '.Page' класса нет этих отступов, дополнительный отступ добавляем
+          в зависимости от ширины экрана и только для 'ArticleView.PLATE'
+        */
+        pageNodeWidthWithPossibleIndents +
+        (ArticleView.PLATE && (windowWidth <= 360 || windowWidth > 1800) ? 16 : 0),
 
-    // размер карточки, + gap между карточками
+      // не учитываем отступы справа и слева для устаревших компонентов
+      off: () => pageNodeWidthWithPossibleIndents - 20 - 45,
+    });
+
+    // размер карточки, + 'gap' между карточками
     const cardSizeWithGap = toggleFeatures({
       name: 'isAppRedesigned',
-      on: () => 206 + 16,
+      on: () => (windowWidth > 360 ? 233 : 210) + 16,
       off: () => 230 + 30,
     });
 
     const itemsPerRow =
       view === ArticleView.LIST
         ? 1 // один элемент на строку
-        : Math.floor(pageNodeWidthWithoutIndents / cardSizeWithGap); // страница без padding / размер карточки
+        : Math.floor(pageNodeResultWidth / cardSizeWithGap); // страница без 'padding' / размер карточки
 
     let rowCount = 1; // всегда отрисовывается как минимум одна строка
 
-    // recommendations block
+    // 'recommendations block'
     if (target === '_blank') {
       rowCount = 1;
-      // list view
+      // 'list view'
     } else if (view === ArticleView.LIST) {
       rowCount = articleItems.length;
-      // plate view
+      // 'plate view'
     } else if (itemsPerRow) {
       // количество всех статей делим на количество статей в строку
       rowCount = Math.ceil(articleItems.length / itemsPerRow);
     }
 
-    const rowRenderer = ({ index, key, style }: ListRowProps): ReactNode => {
-      const items = [];
-      // от какого и до какого индекса рендерим элементы
-      const fromIndex = index * itemsPerRow;
+    const rowRenderer = useCallback(
+      ({ index, key, style }: ListRowProps): ReactNode => {
+        const items: JSX.Element[] = [];
+        // от какого и до какого индекса рендерим элементы
+        const fromIndex = index * itemsPerRow;
 
-      /*
-        articleItems.length: 100, itemsPerRow: 10, fromIndex: 0 * 10  (0)   => toIndex: 0   + 10 (10)
-        articleItems.length: 100, itemsPerRow: 10, fromIndex: 4 * 10  (40)  => toIndex: 40  + 10 (50)
-        articleItems.length: 105, itemsPerRow: 10, fromIndex: 10 * 10 (100) => toIndex: 100 + 10 (110 > articleItems.length)
-      */
-      const toIndex = Math.min(fromIndex + itemsPerRow, articleItems.length);
+        /*
+          articleItems.length: 100, itemsPerRow: 10, fromIndex: 0 * 10  (0)   => toIndex: 0   + 10 (10)
+          articleItems.length: 100, itemsPerRow: 10, fromIndex: 4 * 10  (40)  => toIndex: 40  + 10 (50)
+          articleItems.length: 105, itemsPerRow: 10, fromIndex: 10 * 10 (100) => toIndex: 100 + 10 (110 > articleItems.length)
+        */
+        const toIndex = Math.min(fromIndex + itemsPerRow, articleItems.length);
 
-      for (let i = fromIndex; i < toIndex; i++) {
-        const articleItem = articleItems[i];
+        for (let i = fromIndex; i < toIndex; i++) {
+          const articleItem = articleItems[i];
 
-        if ('title' in articleItem) {
-          items.push(
-            <ArticleListItem
-              article={articleItem}
-              className={classes.card}
-              key={`${articleItem.id}${i}`} // иначе ошибки в режиме 'плитки'
-              target={target}
-              view={view}
-            />,
-          );
-        } else {
-          items.push(
-            <ArticleListItemSkeleton
-              className={classes.card}
-              key={`${articleItem.id}${i}`} // иначе ошибки в режиме 'плитки'
-              view={view}
-            />,
-          );
+          if ('title' in articleItem) {
+            items.push(
+              <ArticleListItem
+                article={articleItem}
+                className={classes.card}
+                key={articleItem.id} // иначе ошибки в режиме 'плитки'
+                target={target}
+                view={view}
+              />,
+            );
+          } else {
+            items.push(
+              <ArticleListItemSkeleton
+                className={classes.card}
+                key={articleItem.id} // иначе ошибки в режиме 'плитки'
+                view={view}
+              />,
+            );
+          }
         }
-      }
 
-      const containerClass = toggleFeatures({
-        name: 'isAppRedesigned',
-        on: () => classes.rowRedesigned,
-        off: () => classes.rowDeprecated,
-      });
+        const containerClass = toggleFeatures({
+          name: 'isAppRedesigned',
+          on: () => classNames(classes.rowRedesigned, {}, [classes[view]]),
+          off: () => classes.rowDeprecated,
+        });
 
-      return (
-        <div className={containerClass} key={key} style={style}>
-          {items}
-        </div>
-      );
-    };
+        return (
+          <div className={containerClass} key={key} style={style}>
+            {items}
+          </div>
+        );
+      },
+      [articleItems, itemsPerRow, target, view],
+    );
 
     if (!isLoading && !articles.length) {
       return (
-        <ToggleFeatures
-          feature='isAppRedesigned'
-          on={
-            <HStack
-              className={classNames('', {}, [className, classes[`${view}Redesigned`]])}
-              justify='center'
-              max
-            >
-              <TextRedesigned variant='error' title={t('Статьи не найдены')} />
-            </HStack>
-          }
-          off={
-            <HStack className={classNames('', {}, [className, classes[view]])} justify='center' max>
-              <TextDeprecated theme={TextTheme.ERROR} title={t('Статьи не найдены')} />
-            </HStack>
-          }
-        />
+        <HStack className={classNames('', {}, [className])} justify='center' max>
+          <ToggleFeatures
+            feature='isAppRedesigned'
+            on={<TextRedesigned variant='error' title={t('Статьи не найдены')} />}
+            off={<TextDeprecated theme={TextTheme.ERROR} title={t('Статьи не найдены')} />}
+          />
+        </HStack>
       );
     }
 
-    // recommendations block
+    // 'recommendations block'
     if (!virtualized) {
       const renderArticle = (article: Article) => (
         <ArticleListItem
@@ -227,6 +239,7 @@ export const ArticleList = memo(
       );
 
       const renderSkeletons = () =>
+        // неважно, чем заполнять
         new Array(skeletonsAmount).fill(0).map((_, idx) => (
           <ArticleListItemSkeleton
             className={classes.card}
@@ -236,21 +249,25 @@ export const ArticleList = memo(
           />
         ));
 
+      const content: JSX.Element = (
+        <>
+          {articles.length ? articles.map(renderArticle) : null}
+
+          {isLoading && renderSkeletons()}
+        </>
+      );
+
       return (
         <ToggleFeatures
           feature='isAppRedesigned'
           on={
-            <HStack gap='16' className={classNames(classes.inlineRedesigned, {})} wrap='wrap'>
-              {articles.length ? articles.map(renderArticle) : null}
-
-              {isLoading && renderSkeletons()}
+            <HStack className={classNames(classes.inlineRedesigned, {}, [className])} gap='16' max>
+              {content}
             </HStack>
           }
           off={
             <div className={classNames(classes.inline, {}, [className, classes[view]])}>
-              {articles.length ? articles.map(renderArticle) : null}
-
-              {isLoading && renderSkeletons()}
+              {content}
             </div>
           }
         />
@@ -258,68 +275,61 @@ export const ArticleList = memo(
     }
 
     return (
-      <WindowScroller
-        // убираем собственный скролл у списка, скролл будет только у страницы
-        scrollElement={pageNode}
-      >
-        {({
-          // без 'scrollTop' с каждой подгрузкой все больше увеличивается пустое пространство снизу
-          scrollTop,
-        }) => (
-          <ToggleFeatures
-            feature='isAppRedesigned'
-            on={
-              <HStack className={classNames('', {})} data-testid='ArticleList' gap='16' wrap='wrap'>
-                {articleItems.length ? (
-                  /*
-                    'AutoSizer' сохраняет высоту и ширину виртуализированного списка
-                     Можно проскроллить список, уйти со страницы со списком и вернуться обратно на последнюю
-                     позицию в списке
+      <ToggleFeatures
+        feature='isAppRedesigned'
+        on={
+          <HStack className={classNames('', {}, [className])} data-testid='ArticleList'>
+            {/*
+             'AutoSizer' сохраняет высоту и ширину виртуализированного списка;
+              можно проскроллить список, уйти со страницы со списком и вернуться на последнюю
+              позицию в списке
 
-                     'disableHeight' - отключаем динамическую высоту
-                  */
-                  <AutoSizer disableHeight>
-                    {({ width }) => (
-                      <List
-                        autoHeight // без 'autoHeight' у списка будет собственный скролл
-                        height={rowCount * (ArticleView.LIST ? 664 : 362)}
-                        rowCount={rowCount}
-                        rowHeight={view === ArticleView.LIST ? 664 : 362}
-                        rowRenderer={rowRenderer}
-                        scrollTop={scrollTop}
-                        // у '.Page' класса нужно учитывать 'padding' в 45px слева и 20px справа
-                        width={width ?? 700}
-                      />
-                    )}
-                  </AutoSizer>
-                ) : null}
-              </HStack>
-            }
-            off={
-              <div
-                className={classNames('', {}, [className, classes[view]])}
-                data-testid='ArticleList'
-              >
-                {articleItems.length ? (
-                  <AutoSizer disableHeight>
-                    {({ height, width }) => (
-                      <List
-                        autoHeight
-                        height={height ?? 700}
-                        rowCount={rowCount}
-                        rowHeight={view === ArticleView.LIST ? 700 : 330}
-                        rowRenderer={rowRenderer}
-                        scrollTop={scrollTop}
-                        width={width ?? 700}
-                      />
-                    )}
-                  </AutoSizer>
-                ) : null}
-              </div>
-            }
-          />
-        )}
-      </WindowScroller>
+             'disableHeight' - отключаем динамическую высоту (иначе не подгружаются статьи)
+            */}
+            <AutoSizer disableHeight>
+              {({ width }) => {
+                const rowHeight = view === ArticleView.LIST ? 664 : 362;
+
+                return (
+                  <List
+                    height={rowCount * rowHeight}
+                    rowCount={rowCount}
+                    rowHeight={rowHeight}
+                    rowRenderer={rowRenderer}
+                    width={width}
+                  />
+                );
+              }}
+            </AutoSizer>
+          </HStack>
+        }
+        off={
+          <div className={classNames('', {}, [className])} data-testid='ArticleList'>
+            {/*
+             'AutoSizer' сохраняет высоту и ширину виртуализированного списка;
+              можно проскроллить список, уйти со страницы со списком и вернуться на последнюю
+              позицию в списке
+
+             'disableHeight' - отключаем динамическую высоту (иначе не подгружаются статьи)
+            */}
+            <AutoSizer disableHeight>
+              {({ width }) => {
+                const rowHeight = view === ArticleView.LIST ? 700 : 330;
+
+                return (
+                  <List
+                    height={rowCount * rowHeight}
+                    rowCount={rowCount}
+                    rowHeight={rowHeight}
+                    rowRenderer={rowRenderer}
+                    width={width}
+                  />
+                );
+              }}
+            </AutoSizer>
+          </div>
+        }
+      />
     );
   },
 );

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -21,9 +22,9 @@ const meta = {
       control: 'color',
     },
   },
-  decorators: [FeatureFlagsDecorator({ isAppRedesigned: true })],
   parameters: {
     viewport: {
+      defaultViewport: 'lg',
       viewports: customViewports,
     },
   },
@@ -38,8 +39,11 @@ export const PrimaryList: Story = {
     articles: generateArticles(3),
     isLoading: false,
     view: ArticleView.LIST,
+    target: '_self',
   },
 };
+
+PrimaryList.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Dark article list
 
@@ -48,10 +52,15 @@ export const DarkList: Story = {
     articles: generateArticles(3),
     isLoading: false,
     view: ArticleView.LIST,
+    target: '_self',
   },
 };
 
-DarkList.decorators = [ThemeDecorator(Theme.DARK)];
+DarkList.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange article list
 
@@ -60,30 +69,28 @@ export const OrangeList: Story = {
     articles: generateArticles(3),
     isLoading: false,
     view: ArticleView.LIST,
+    target: '_self',
   },
 };
 
-OrangeList.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeList.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
-/*
-!!! Проблема с тестами loki. Ругается на идентичные скриншоты !!!
-
-Primary article plates
+// Primary article plates
 
 export const PrimaryPlates: Story = {
   args: {
     articles: generateArticles(12),
     isLoading: false,
+    target: '_self',
     view: ArticleView.PLATE,
-    virtualized: true,
-  },
-  parameters: {
-    viewport: {
-      defaultViewport: 'lg',
-    },
   },
 };
-*/
+
+PrimaryPlates.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Dark article plates
 
@@ -91,17 +98,16 @@ export const DarkPlates: Story = {
   args: {
     articles: generateArticles(12),
     isLoading: false,
+    target: '_self',
     view: ArticleView.PLATE,
-    virtualized: true,
-  },
-  parameters: {
-    viewport: {
-      defaultViewport: 'lg',
-    },
   },
 };
 
-DarkPlates.decorators = [ThemeDecorator(Theme.DARK)];
+DarkPlates.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange article plates
 
@@ -109,17 +115,16 @@ export const OrangePlates: Story = {
   args: {
     articles: generateArticles(12),
     isLoading: false,
+    target: '_self',
     view: ArticleView.PLATE,
-    virtualized: true,
-  },
-  parameters: {
-    viewport: {
-      defaultViewport: 'lg',
-    },
   },
 };
 
-OrangePlates.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangePlates.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Horizontally scrollable articles
 
@@ -132,6 +137,11 @@ export const HorizontallyScrollable: Story = {
   },
 };
 
+HorizontallyScrollable.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+];
+
 // Loading article list
 
 export const LoadingList: Story = {
@@ -139,11 +149,14 @@ export const LoadingList: Story = {
     articles: [],
     isLoading: true,
     view: ArticleView.LIST,
-    virtualized: true,
   },
 };
 
-LoadingList.decorators = [ThemeDecorator(Theme.ORANGE)];
+LoadingList.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Loading article plates
 
@@ -152,16 +165,14 @@ export const LoadingPlates: Story = {
     articles: [],
     isLoading: true,
     view: ArticleView.PLATE,
-    virtualized: true,
-  },
-  parameters: {
-    viewport: {
-      defaultViewport: 'lg',
-    },
   },
 };
 
-LoadingPlates.decorators = [ThemeDecorator(Theme.ORANGE)];
+LoadingPlates.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.ORANGE),
+];
 
 // Empty article list
 
@@ -171,5 +182,7 @@ export const Empty: Story = {
     isLoading: false,
   },
 };
+
+Empty.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 export default meta;

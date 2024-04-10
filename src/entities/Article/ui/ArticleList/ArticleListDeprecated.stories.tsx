@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -32,6 +33,8 @@ export const PrimaryList: Story = {
   },
 };
 
+PrimaryList.decorators = [IndentsDecorator];
+
 // Dark article list
 
 export const DarkList: Story = {
@@ -42,7 +45,7 @@ export const DarkList: Story = {
   },
 };
 
-DarkList.decorators = [ThemeDecorator(Theme.DARK)];
+DarkList.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange article list
 
@@ -54,7 +57,7 @@ export const OrangeList: Story = {
   },
 };
 
-OrangeList.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeList.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Primary article plates
 
@@ -63,9 +66,10 @@ export const PrimaryPlates: Story = {
     articles: generateArticles(12),
     isLoading: false,
     view: ArticleView.PLATE,
-    virtualized: true,
   },
 };
+
+PrimaryPlates.decorators = [IndentsDecorator];
 
 // Dark article plates
 
@@ -74,11 +78,10 @@ export const DarkPlates: Story = {
     articles: generateArticles(12),
     isLoading: false,
     view: ArticleView.PLATE,
-    virtualized: true,
   },
 };
 
-DarkPlates.decorators = [ThemeDecorator(Theme.DARK)];
+DarkPlates.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange article plates
 
@@ -87,11 +90,10 @@ export const OrangePlates: Story = {
     articles: generateArticles(12),
     isLoading: false,
     view: ArticleView.PLATE,
-    virtualized: true,
   },
 };
 
-OrangePlates.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangePlates.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Horizontally scrollable articles
 
@@ -104,6 +106,8 @@ export const HorizontallyScrollable: Story = {
   },
 };
 
+HorizontallyScrollable.decorators = [IndentsDecorator];
+
 // Loading article list
 
 export const LoadingList: Story = {
@@ -111,9 +115,10 @@ export const LoadingList: Story = {
     articles: [],
     isLoading: true,
     view: ArticleView.LIST,
-    virtualized: true,
   },
 };
+
+LoadingList.decorators = [IndentsDecorator];
 
 // Loading article plates
 
@@ -122,9 +127,10 @@ export const LoadingPlates: Story = {
     articles: [],
     isLoading: true,
     view: ArticleView.PLATE,
-    virtualized: true,
   },
 };
+
+LoadingPlates.decorators = [IndentsDecorator];
 
 // Empty article list
 
@@ -134,5 +140,7 @@ export const Empty: Story = {
     isLoading: false,
   },
 };
+
+Empty.decorators = [IndentsDecorator];
 
 export default meta;

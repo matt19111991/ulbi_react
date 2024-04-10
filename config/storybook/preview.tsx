@@ -1,3 +1,4 @@
+import type { ViewportMap } from '@storybook/addon-viewport';
 import type { Preview } from '@storybook/react';
 
 import type { StateSchema } from '../../src/app/providers/StoreProvider';
@@ -54,40 +55,45 @@ export const decorators = [
   StoreDecorator(state),
 ];
 
-export const customViewports = {
+export const customViewports: ViewportMap = {
   xs: {
     name: 'XS',
     styles: {
-      height: '963px',
-      width: '350px',
+      height: '640px',
+      width: '320px',
     },
+    type: 'mobile',
   },
   sm: {
     name: 'SM',
     styles: {
-      height: '801px',
-      width: '600px',
+      height: '640px',
+      width: '640px',
     },
+    type: 'mobile',
   },
   md: {
     name: 'MD',
     styles: {
-      height: '801px',
-      width: '900px',
+      height: '640px',
+      width: '840px',
     },
+    type: 'tablet',
   },
   lg: {
     name: 'LG',
     styles: {
-      height: '801px',
-      width: '1280px',
+      height: '640px',
+      width: '1240px',
     },
+    type: 'desktop',
   },
   xl: {
     name: 'XL',
     styles: {
-      height: '801px',
-      width: '1536px',
+      height: '640px',
+      width: '1499px',
     },
+    type: 'desktop',
   },
 };

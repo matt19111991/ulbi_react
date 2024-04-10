@@ -124,6 +124,23 @@
     .username {
       margin-left: 16px;
     }
+
+    @media screen and (max-width: 400px) {
+      .footer {
+        & > :first-child {
+          max-width: 100px;
+        }
+      }
+
+      .subtitle,
+      .title {
+        max-width: 170px;
+      }
+
+      .username {
+        max-width: calc(100% - 48px);
+      }
+    }
   }
 
   &.plate {
@@ -170,6 +187,17 @@
     .views {
       display: inline-block;
       margin: 20px 4px 0 8px;
+    }
+
+    @media screen and (max-width: 360px) {
+      .card {
+        width: 210px;
+      }
+
+      .title {
+        height: 100px;
+        width: 194px;
+      }
     }
   }
 }

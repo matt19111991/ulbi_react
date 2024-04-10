@@ -1,12 +1,5 @@
-.list {
-  .card {
-    margin-bottom: 30px;
-  }
-}
-
 .plate {
   display: flex;
-  flex-wrap: nowrap;
   gap: 30px;
 
   .card {
@@ -16,8 +9,7 @@
 }
 
 .inline {
-  flex-wrap: nowrap;
-  overflow: auto hidden;
+  overflow-x: auto;
   width: 100%;
 }
 
@@ -25,33 +17,25 @@
   display: flex;
   gap: 30px;
 }
+
 // Redesigned
 
-.listRedesigned {
-  .card {
-    margin-bottom: 30px;
-  }
-}
-
-.plateRedesigned {
-  display: flex;
-  flex-wrap: nowrap;
-
-  .card {
-    display: inline-flex;
-    height: 300px;
-  }
-}
-
 .inlineRedesigned {
-  flex-wrap: nowrap;
-  overflow: auto hidden;
-  width: 101%;
+  overflow-x: auto;
 }
 
 .rowRedesigned {
-  display: flex;
   gap: 16px;
+
+  &.list {
+    .card {
+      width: 100%;
+
+      & > div {
+        width: 100%;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 1200px) {
