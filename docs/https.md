@@ -35,9 +35,9 @@
 
 9. Выставляем `API_URL`:
 
-   9.1 `API_URL=https://ulbi_react/api` в `.env` при сборке билда или
+   9.1 `API_URL=https://ulbi_react/api/` в `.env` при сборке билда или
 
-   9.2 `API_URL=https://ulbi-express-pnnv89mli-matt19111991.vercel.app` в `Environment variables`
+   9.2 `API_URL=https://ulbi-express-pnnv89mli-matt19111991.vercel.app/` в `Environment variables`
        на `Netlify`.
        
       Хэш для `API_URL` на `Vercel` будет меняться с каждым коммитом

@@ -29,7 +29,7 @@ RUN mkdir ./ulbi_react && mv node_modules ./ulbi_react
 WORKDIR /ulbi_react
 
 # Задаем глобальную переменную для API
-ENV API_URL="http://localhost:8000"
+ENV API_URL="http://localhost:8000/"
 
 # Копируем все локальные файлы в образ (из текущей локальной папки в корень 'WORKDIR')
 COPY . .

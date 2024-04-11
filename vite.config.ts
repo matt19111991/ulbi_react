@@ -58,7 +58,7 @@ const reactVirtualizedHack = (): PluginOption => {
 
 export default defineConfig({
   define: {
-    __API__: JSON.stringify('http://localhost:8000'),
+    __API__: JSON.stringify('http://localhost:8000/'),
     __IS_DEV__: JSON.stringify(true),
     __PROJECT__: JSON.stringify('front-end'),
   },
