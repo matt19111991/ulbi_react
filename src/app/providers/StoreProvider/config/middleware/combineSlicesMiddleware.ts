@@ -6,6 +6,10 @@ import type { Middleware, UnknownAction } from '@reduxjs/toolkit';
   keys instead: 'counter', 'pageScroll', 'user', 'api'. Unexpected keys will be ignored."
 */
 export const combineSlicesAvoidErrorMessageMiddleware: Middleware = (api) => (next) => (action) => {
+  if (__PROJECT__ === 'jest') {
+    return next(action);
+  }
+
   // eslint-disable-next-line no-console
   const consoleErrorFunc = console.error;
 
