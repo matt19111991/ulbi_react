@@ -82,9 +82,15 @@ export const Page = ({
     triggerRef,
     wrapperRef: toggleFeatures({
       name: 'isAppRedesigned',
-      // после редизайна ссылаемся на область видимости браузера ('wrapperRef' приравниваем к 'undefined')
-      on: () => undefined,
-      off: () => wrapperRef,
+      /*
+        после редизайна для больших экранов ссылаемся на область видимости браузера:
+       'wrapperRef' приравниваем к 'undefined'
+
+        для нового дизайна с малым экраном (< 1800px) используем 'wrapperRef'
+      */
+      on: () => (windowWidth > 1800 ? undefined : wrapperRef),
+
+      off: () => wrapperRef, // для старого дизайна используем 'wrapperRef'
     }),
   });
 
@@ -135,7 +141,7 @@ export const Page = ({
         } else if (wrapperRef.current) {
           /*
             прокручиваем компонент страницы на сохраненную позицию для старого дизайна или для
-            нового дизайна с маленьким экраном (< 1800px)
+            нового дизайна с малым экраном (< 1800px)
           */
           wrapperRef.current.scrollTop = scrollPosition;
         }
