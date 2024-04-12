@@ -12,6 +12,7 @@ import { getFeatureFlag, toggleFeatures } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfiniteScroll';
 import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
+import { useWindowWidth } from '@/shared/lib/hooks/useWindowWidth/useWindowWidth';
 
 import { getPageScrollByPath } from '../model/selectors/pageScrollSelectors';
 
@@ -63,6 +64,7 @@ export const Page = ({
 
   const dispatch = useAppDispatch();
   const location = useLocation();
+  const windowWidth = useWindowWidth();
 
   const scrollPosition = useSelector((state: StateSchema) =>
     getPageScrollByPath(state, location.pathname),
@@ -104,6 +106,7 @@ export const Page = ({
     }
   }, 500);
 
+  // обработчик для сохранения прокрутки окна в новом дизайне c большим экраном (> 1800px)
   const onSetWindowScroll = useCallback(() => {
     onSetScroll(window.scrollY);
   }, [onSetScroll]);
@@ -115,30 +118,25 @@ export const Page = ({
     }
   }, [loading, mounted]);
 
-  // вешаем обработчик прокрутки на документ для страниц в новом дизайне
-  useEffect(() => {
-    if (isAppRedesigned && storableScroll) {
-      window.addEventListener('scroll', onSetWindowScroll);
-    }
-
-    return () => {
-      window.removeEventListener('scroll', onSetWindowScroll);
-    };
-  }, [isAppRedesigned, onSetWindowScroll, storableScroll]);
-
   useEffect(() => {
     // все загрузки для страницы закончены
     if (mounted) {
       // если на странице сохраняется позиция прокрутки
       if (storableScroll) {
-        // для нового дизайна
-        if (isAppRedesigned) {
+        // для нового дизайна и больших экранов (> 1800px)
+        if (isAppRedesigned && windowWidth > 1800) {
           /*
-           'onSetWindowScroll()' в предыдущем 'useEffect()' выставляет сохраненную позицию
-            прокрутки при монтировании - в текущем 'useEffect()' ничего делать не нужно
+            прокручиваем окно на сохраненную позицию
+
+            дополнительно нужно повесить обработчик событий на событие 'scroll' в
+            отдельном 'useEffect' для сохранения позиции прокрутки
           */
+          window.scrollTo(0, scrollPosition);
         } else if (wrapperRef.current) {
-          // прокручиваем компонент страницы на сохраненную позицию для старого дизайна
+          /*
+            прокручиваем компонент страницы на сохраненную позицию для старого дизайна или для
+            нового дизайна с маленьким экраном (< 1800px)
+          */
           wrapperRef.current.scrollTop = scrollPosition;
         }
         // если на странице не сохраняется позиция прокрутки
@@ -147,7 +145,18 @@ export const Page = ({
         window.scrollTo({ behavior: 'auto', top: 0 });
       }
     }
-  }, [isAppRedesigned, mounted, scrollPosition, storableScroll]);
+  }, [isAppRedesigned, mounted, scrollPosition, storableScroll, windowWidth]);
+
+  // вешаем обработчик для сохранения прокрутки окна для нового дизайна c большим экраном (> 1800px)
+  useEffect(() => {
+    if (isAppRedesigned && storableScroll && windowWidth > 1800) {
+      window.addEventListener('scroll', onSetWindowScroll);
+    }
+
+    return () => {
+      window.removeEventListener('scroll', onSetWindowScroll);
+    };
+  }, [isAppRedesigned, onSetWindowScroll, storableScroll, windowWidth]);
 
   const pageMainClass = toggleFeatures({
     name: 'isAppRedesigned',
