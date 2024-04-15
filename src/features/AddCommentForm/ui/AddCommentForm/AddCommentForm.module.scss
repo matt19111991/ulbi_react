@@ -1,12 +1,10 @@
 .AddCommentForm {
-  border: 1px solid var(--primary-color);
-  padding: 20px;
+  outline: 1px solid var(--primary-color);
+  padding: 16px;
 }
 
 .input {
-  display: flex;
   margin-right: 20px;
-  overflow: hidden;
   width: 100%;
 }
 
@@ -17,6 +15,8 @@
 
 @media screen and (max-width: 1800px) {
   .card {
+    left: 12px;
+    position: relative;
     width: calc(100% - 24px);
   }
 }

@@ -1,4 +1,4 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { getAddCommentFormError, getAddCommentFormText } from './addCommentFormSelectors';
 
@@ -14,7 +14,7 @@ describe('add comment form selectors', () => {
       expect(getAddCommentFormText(state as StateSchema)).toBe('New comment');
     });
 
-    test('should work with empty state', () => {
+    test('should work with default state', () => {
       const state: DeepPartial<StateSchema> = {};
 
       expect(getAddCommentFormText(state as StateSchema)).toBe('');
@@ -25,17 +25,17 @@ describe('add comment form selectors', () => {
     test('should return error', () => {
       const state: DeepPartial<StateSchema> = {
         addCommentForm: {
-          error: 'Error',
+          error: 'Add comment form error',
         },
       };
 
-      expect(getAddCommentFormError(state as StateSchema)).toBe('Error');
+      expect(getAddCommentFormError(state as StateSchema)).toBe('Add comment form error');
     });
 
     test('should work with empty state', () => {
       const state: DeepPartial<StateSchema> = {};
 
-      expect(getAddCommentFormError(state as StateSchema)).toBe(undefined);
+      expect(getAddCommentFormError(state as StateSchema)).toBeUndefined();
     });
   });
 });

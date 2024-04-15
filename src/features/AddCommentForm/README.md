@@ -1,21 +1,27 @@
 ## Фича формы добавления комментария
 
-- Components
+### Components
 
 `AddCommentForm` - форма добавления комментария
 
-- Selectors
+`AddCommentFormAsync` - асинхронная форма добавления комментария
 
-`getAddCommentFormError` - Селектор для получения информации об ошибке при создании комментария
+### Selectors
 
-`getAddCommentFormText` - Селектор для получения текста комментария
+`getAddCommentFormError` - селектор для получения информации об ошибке при создании комментария
 
-- Slices
+`getAddCommentFormText` - селектор для получения текста комментария
 
-`addCommentFormSlice` - Слайс для хранения информации о форме добавления комментария
+### Slices
 
-`setText` - Действие для сохранения текста комментария
+`addCommentFormActions` - объект с действиями по добавлению комментариев
 
-- Types
+`addCommentFormReducer` - редюсер добавления комментариев
 
-`AddCommentFormSchema` - Тип, описывающий схему формы комментария в хранилище
+`addCommentFormSlice` - слайс для хранения информации о форме добавления комментария
+
+`setText` - действие для сохранения текста комментария
+
+### Types
+
+`AddCommentFormSchema` - тип, описывающий схему формы добавления комментария

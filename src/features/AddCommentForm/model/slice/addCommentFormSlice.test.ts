@@ -1,10 +1,12 @@
-import { AddCommentFormSchema } from '../types/addCommentFormSchema';
+import type { AddCommentFormSchema } from '../types/addCommentFormSchema';
 
 import { addCommentFormActions, addCommentFormReducer } from './addCommentFormSlice';
 
 describe('addCommentFormSlice', () => {
   test('test set text', () => {
-    const state: DeepPartial<AddCommentFormSchema> = {};
+    const state: DeepPartial<AddCommentFormSchema> = {
+      text: '',
+    };
 
     const reducer = addCommentFormReducer(
       state as AddCommentFormSchema,

@@ -2,6 +2,7 @@ import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -28,6 +29,8 @@ export const PrimaryOld: Story = {
   },
 };
 
+PrimaryOld.decorators = [IndentsDecorator];
+
 // Dark add comment form old
 
 export const DarkOld: Story = {
@@ -36,7 +39,7 @@ export const DarkOld: Story = {
   },
 };
 
-DarkOld.decorators = [ThemeDecorator(Theme.DARK)];
+DarkOld.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange add comment form old
 
@@ -46,7 +49,7 @@ export const OrangeOld: Story = {
   },
 };
 
-OrangeOld.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeOld.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Disabled add comment form old
 
@@ -57,6 +60,8 @@ export const DisabledOld: Story = {
   },
 };
 
+DisabledOld.decorators = [IndentsDecorator];
+
 // Primary add comment form new
 
 export const PrimaryNew: Story = {
@@ -65,7 +70,7 @@ export const PrimaryNew: Story = {
   },
 };
 
-PrimaryNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+PrimaryNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Dark add comment form new
 
@@ -75,7 +80,11 @@ export const DarkNew: Story = {
   },
 };
 
-DarkNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
+DarkNew.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange add comment form new
 
@@ -87,6 +96,7 @@ export const OrangeNew: Story = {
 
 OrangeNew.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
   ThemeDecorator(Theme.ORANGE),
 ];
 
@@ -99,6 +109,6 @@ export const DisabledNew: Story = {
   },
 };
 
-DisabledNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+DisabledNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 export default meta;
