@@ -11,10 +11,8 @@ import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
-import {
-  DynamicModuleLoaderV2,
-  ReducersList,
-} from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+import { DynamicModuleLoaderV2 } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
 
 import { ToggleFeatures } from '@/shared/lib/features';
 

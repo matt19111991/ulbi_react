@@ -1,25 +1,23 @@
-.card,
-.skeletonCard {
+.card {
   width: 220px;
 }
 
-// добавляем стили только в приложении (не в storybook)
+// добавляем стили только в приложении (не в 'storybook')
 @media screen and (max-width: 1800px) {
   body:has(> div[id='root']) {
     .card {
       position: relative;
       top: -48px;
     }
-
-    .skeletonCard {
-      display: none;
-    }
   }
 }
 
+// добавляем стили только в приложении (не в 'storybook')
 @media screen and (max-width: 480px) {
-  .card {
-    padding: 4px;
-    width: 172px;
+  body:has(> div[id='root']) {
+    .card {
+      padding: 4px;
+      width: 172px;
+    }
   }
 }

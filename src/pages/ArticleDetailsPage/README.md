@@ -1,8 +1,8 @@
 ## Страница с подробной информацией о статье
 
-- Components
+### Components
 
-`AdditionalInfoContainer` - Компонент с дополнительной информацией о статье
+`AdditionalInfoContainer` - компонент с дополнительной информацией о статье
 
 `ArticleDetailsComments` - Компонент с комментариями к статье
 

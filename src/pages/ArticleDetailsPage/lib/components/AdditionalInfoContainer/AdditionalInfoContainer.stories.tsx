@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { articleDetailsReducer } from '@/entities/Article/testing';
 import { userReducer } from '@/entities/User/testing';
 
-import Avatar from '@/shared/assets/tests/storybook2.jpg';
-
+import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -14,6 +13,8 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 import { Theme } from '@/shared/const/theme';
 
 import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+
+import { article } from '@/shared/lib/generators/articles';
 
 import { AdditionalInfoContainer } from './AdditionalInfoContainer';
 
@@ -24,23 +25,71 @@ const asyncReducers: ReducersList = {
 
 const stateBase: DeepPartial<StateSchema> = {
   articleDetails: {
-    data: {
-      id: '11',
-      user: {
-        avatar: Avatar,
-        id: '1',
-        username: 'Jack',
-      },
-    },
+    data: article,
     isLoading: false,
   },
   user: {
-    authData: {
-      id: '1',
-      username: 'Jack',
-    },
+    authData: article.user,
   },
 };
+
+const meta = {
+  title: 'pages/Article/ArticleDetailsPage/components/AdditionalInfoContainer',
+  component: AdditionalInfoContainer,
+  argTypes: {
+    backgroundColor: {
+      control: 'color',
+    },
+  },
+} as Meta<typeof AdditionalInfoContainer>;
+
+type Story = StoryObj<typeof meta>;
+
+// Primary additional info container
+
+export const Primary: Story = {
+  args: {
+    isStorybook: true,
+  },
+};
+
+Primary.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  StoreDecorator(stateBase, asyncReducers),
+];
+
+// Dark additional info container
+
+export const Dark: Story = {
+  args: {
+    isStorybook: true,
+  },
+};
+
+Dark.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  StoreDecorator(stateBase, asyncReducers),
+  ThemeDecorator(Theme.DARK),
+];
+
+// Orange additional info container
+
+export const Orange: Story = {
+  args: {
+    isStorybook: true,
+  },
+};
+
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  StoreDecorator(stateBase, asyncReducers),
+  ThemeDecorator(Theme.ORANGE),
+];
+
+// Loading additional info container
 
 const stateLoading: DeepPartial<StateSchema> = {
   ...stateBase,
@@ -50,59 +99,16 @@ const stateLoading: DeepPartial<StateSchema> = {
   },
 };
 
-const meta = {
-  title: 'pages/Article/ArticleDetailsPage/AdditionalInfoContainer',
-  component: AdditionalInfoContainer,
-  argTypes: {
-    backgroundColor: {
-      control: 'color',
-    },
-  },
+export const Loading: Story = {
   args: {
     isStorybook: true,
   },
-} as Meta<typeof AdditionalInfoContainer>;
-
-type Story = StoryObj<typeof meta>;
-
-// Primary additional info container
-
-export const Primary: Story = {
-  args: {},
 };
 
-Primary.decorators = [IndentsDecorator, StoreDecorator(stateBase, asyncReducers)];
-
-// Dark additional info container
-
-export const Dark: Story = {
-  args: {},
-};
-
-Dark.decorators = [
+Loading.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
-  StoreDecorator(stateBase, asyncReducers),
-  ThemeDecorator(Theme.DARK),
+  StoreDecorator(stateLoading, asyncReducers),
 ];
-
-// Orange additional info container
-
-export const Orange: Story = {
-  args: {},
-};
-
-Orange.decorators = [
-  IndentsDecorator,
-  StoreDecorator(stateBase, asyncReducers),
-  ThemeDecorator(Theme.ORANGE),
-];
-
-// Loading additional info container
-
-export const Loading: Story = {
-  args: {},
-};
-
-Loading.decorators = [IndentsDecorator, StoreDecorator(stateLoading, asyncReducers)];
 
 export default meta;
