@@ -1,7 +1,8 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { User } from '@/entities/User';
+import type { Article } from '@/entities/Article';
+import type { User } from '@/entities/User';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
@@ -24,10 +25,10 @@ interface ArticleAdditionalInfoProps {
   /**
    * Дата создания
    */
-  createdAt: string;
+  createdAt: Article['createdAt'];
 
   /**
-   * Компонент запущен из storybook
+   * Компонент запущен из 'storybook'
    */
   isStorybook?: boolean;
 
@@ -39,7 +40,7 @@ interface ArticleAdditionalInfoProps {
   /**
    * Количество просмотров статьи
    */
-  views: number;
+  views: Article['views'];
 }
 
 export const ArticleAdditionalInfo = memo(

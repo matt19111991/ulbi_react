@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { User } from '@/entities/User/testing';
+import type { User } from '@/entities/User/testing';
 
 import Avatar from '@/shared/assets/tests/storybook.jpg';
 
@@ -29,13 +29,6 @@ const meta = {
       control: 'color',
     },
   },
-  args: {
-    author: user,
-    createdAt: article.createdAt,
-    isStorybook: true,
-    onEdit: action('onEdit'),
-    views: article.views,
-  },
 } as Meta<typeof ArticleAdditionalInfo>;
 
 type Story = StoryObj<typeof meta>;
@@ -43,7 +36,13 @@ type Story = StoryObj<typeof meta>;
 // Primary article additional info
 
 export const Primary: Story = {
-  args: {},
+  args: {
+    author: user,
+    createdAt: article.createdAt,
+    isStorybook: true,
+    onEdit: action('onEdit'),
+    views: article.views,
+  },
 };
 
 Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
@@ -51,7 +50,13 @@ Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsD
 // Dark article additional info
 
 export const Dark: Story = {
-  args: {},
+  args: {
+    author: user,
+    createdAt: article.createdAt,
+    isStorybook: true,
+    onEdit: action('onEdit'),
+    views: article.views,
+  },
 };
 
 Dark.decorators = [
@@ -63,7 +68,13 @@ Dark.decorators = [
 // Orange article additional info
 
 export const Orange: Story = {
-  args: {},
+  args: {
+    author: user,
+    createdAt: article.createdAt,
+    isStorybook: true,
+    onEdit: action('onEdit'),
+    views: article.views,
+  },
 };
 
 Orange.decorators = [
