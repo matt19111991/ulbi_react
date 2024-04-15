@@ -1,4 +1,4 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { getArticleCommentsAreLoading, getArticleCommentsError } from './comments';
 
@@ -16,10 +16,10 @@ describe('comments selectors', () => {
       expect(getArticleCommentsAreLoading(state as StateSchema)).toBeTruthy();
     });
 
-    test('should work with empty state', () => {
+    test('should work with default state', () => {
       const state: DeepPartial<StateSchema> = {};
 
-      expect(getArticleCommentsAreLoading(state as StateSchema)).toBe(true);
+      expect(getArticleCommentsAreLoading(state as StateSchema)).toBeTruthy();
     });
   });
 
@@ -28,18 +28,18 @@ describe('comments selectors', () => {
       const state: DeepPartial<StateSchema> = {
         articleDetailsPage: {
           comments: {
-            error: 'Error',
+            error: 'Article comments error',
           },
         },
       };
 
-      expect(getArticleCommentsError(state as StateSchema)).toBe('Error');
+      expect(getArticleCommentsError(state as StateSchema)).toBe('Article comments error');
     });
 
     test('should work with empty state', () => {
       const state: DeepPartial<StateSchema> = {};
 
-      expect(getArticleCommentsError(state as StateSchema)).toBe(undefined);
+      expect(getArticleCommentsError(state as StateSchema)).toBeUndefined();
     });
   });
 });

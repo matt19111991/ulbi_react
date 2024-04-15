@@ -1,4 +1,4 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 export const getArticleCommentsAreLoading = (state: StateSchema) =>
   state.articleDetailsPage?.comments?.areLoading ?? true;
