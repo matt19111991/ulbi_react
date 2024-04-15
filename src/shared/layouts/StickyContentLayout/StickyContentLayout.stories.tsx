@@ -7,6 +7,18 @@ import { Theme } from '@/shared/const/theme';
 
 import { StickyContentLayout } from './StickyContentLayout';
 
+const getComponent = (component: 'content' | 'left' | 'right'): JSX.Element => (
+  <div
+    style={{
+      border: '1px solid var(--hint-redesigned)',
+      height: component === 'content' ? '200vh' : '90vh',
+      padding: 8,
+    }}
+  >
+    {`${component.charAt(0).toUpperCase()}${component.slice(1)}`}
+  </div>
+);
+
 const meta = {
   title: 'shared/layouts/StickyContentLayout',
   component: StickyContentLayout,
@@ -23,11 +35,9 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    content: (
-      <div style={{ border: '1px solid #D0D0D0', height: '200vh', padding: 8 }}>Content</div>
-    ),
-    left: <div style={{ border: '1px solid #D0D0D0', height: '90vh', padding: 8 }}>Left</div>,
-    right: <div style={{ border: '1px solid #D0D0D0', height: '90vh', padding: 8 }}>Right</div>,
+    content: getComponent('content'),
+    left: getComponent('left'),
+    right: getComponent('right'),
   },
 };
 
@@ -37,9 +47,9 @@ Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 export const Dark: Story = {
   args: {
-    content: <div style={{ border: '1px solid #FFF', height: '200vh', padding: 8 }}>Content</div>,
-    left: <div style={{ border: '1px solid #FFF', height: '90vh', padding: 8 }}>Left</div>,
-    right: <div style={{ border: '1px solid #FFF', height: '90vh', padding: 8 }}>Right</div>,
+    content: getComponent('content'),
+    left: getComponent('left'),
+    right: getComponent('right'),
   },
 };
 
@@ -49,11 +59,9 @@ Dark.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecora
 
 export const Orange: Story = {
   args: {
-    content: (
-      <div style={{ border: '1px solid #D0D0D0', height: '200vh', padding: 8 }}>Content</div>
-    ),
-    left: <div style={{ border: '1px solid #D0D0D0', height: '90vh', padding: 8 }}>Left</div>,
-    right: <div style={{ border: '1px solid #D0D0D0', height: '90vh', padding: 8 }}>Right</div>,
+    content: getComponent('content'),
+    left: getComponent('left'),
+    right: getComponent('right'),
   },
 };
 
@@ -66,10 +74,8 @@ Orange.decorators = [
 
 export const OnlyLeft: Story = {
   args: {
-    content: (
-      <div style={{ border: '1px solid #D0D0D0', height: '200vh', padding: 8 }}>Content</div>
-    ),
-    left: <div style={{ border: '1px solid #D0D0D0', height: '90vh', padding: 8 }}>Left</div>,
+    content: getComponent('content'),
+    left: getComponent('left'),
   },
 };
 
@@ -79,10 +85,8 @@ OnlyLeft.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
 
 export const OnlyRight: Story = {
   args: {
-    content: (
-      <div style={{ border: '1px solid #D0D0D0', height: '200vh', padding: 8 }}>Content</div>
-    ),
-    right: <div style={{ border: '1px solid #D0D0D0', height: '90vh', padding: 8 }}>Right</div>,
+    content: getComponent('content'),
+    right: getComponent('right'),
   },
 };
 

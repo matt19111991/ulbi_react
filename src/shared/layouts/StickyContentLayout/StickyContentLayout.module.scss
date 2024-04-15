@@ -27,24 +27,18 @@
   top: 32px;
 }
 
-// добавляем стили только в приложении (не в storybook)
+// добавляем стили только в приложении (не в 'storybook')
 @media screen and (max-width: 1800px) {
   body:has(> div[id='root']) {
-    .content {
-      position: relative;
-    }
-
     .left {
       left: 8px;
       position: fixed;
       top: 256px;
-      z-index: var(--z-index-two);
     }
 
     .right {
       left: 8px;
       position: fixed;
-      right: 8px;
       top: 124px;
       width: calc(100% - 16px);
     }
