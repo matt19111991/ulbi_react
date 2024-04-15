@@ -9,7 +9,7 @@ import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 
-import { Comment } from '../../model/types/comment';
+import type { Comment } from '../../model/types/comment';
 
 import { CommentCard } from '../CommentCard/CommentCard';
 
@@ -35,7 +35,7 @@ export const CommentList = memo(({ className, comments, isLoading }: CommentList
 
   if (isLoading) {
     return (
-      <VStack align='start' className={classNames('', {}, [className])} gap='16' max>
+      <VStack className={classNames('', {}, [className])} gap='16' max>
         <CommentCard isLoading />
         <CommentCard isLoading />
         <CommentCard isLoading />
@@ -44,11 +44,9 @@ export const CommentList = memo(({ className, comments, isLoading }: CommentList
   }
 
   return (
-    <VStack align='start' className={classNames('', {}, [className])} gap='16' max>
+    <VStack className={classNames('', {}, [className])} gap='16' max>
       {comments?.length ? (
-        comments.map((comment) => (
-          <CommentCard comment={comment} key={comment.id} isLoading={isLoading} />
-        ))
+        comments.map((comment) => <CommentCard comment={comment} key={comment.id} />)
       ) : (
         <ToggleFeatures
           feature='isAppRedesigned'
