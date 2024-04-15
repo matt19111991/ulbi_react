@@ -1,11 +1,11 @@
 ## Сущность комментария
 
-- Components
+### Components
 
 `CommentCard` - карточка комментария
 
 `CommentList` - список комментариев
 
-- Types
+### Types
 
-`Comment` - Тип, описывающий комментарий
+`Comment` - тип, описывающий комментарий

@@ -17,7 +17,7 @@ import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton'
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 
-import { Comment } from '../../model/types/comment';
+import type { Comment } from '../../model/types/comment';
 
 import classes from './CommentCard.module.scss';
 
@@ -54,12 +54,41 @@ export const CommentCard = memo(({ className, comment, isLoading }: CommentCardP
         gap='8'
         max
       >
-        <div className={classes.header}>
-          <Skeleton border='50%' className={classes.avatar} height={30} width={30} />
-          <Skeleton height={16} width={100} />
-        </div>
+        <ToggleFeatures
+          feature='isAppRedesigned'
+          on={
+            <>
+              <div className={classes.headerRedesigned}>
+                <Skeleton
+                  border='50%'
+                  className={classes.avatarRedesigned}
+                  height={30}
+                  width={30}
+                />
 
-        <Skeleton className={classes.text} height={50} width='100%' />
+                <Skeleton height={24} width={100} />
+              </div>
+
+              <Skeleton className={classes.textRedesigned} height={26} width='calc(100% - 24px)' />
+            </>
+          }
+          off={
+            <>
+              <div className={classes.headerDeprecated}>
+                <Skeleton
+                  border='50%'
+                  className={classes.avatarDeprecated}
+                  height={30}
+                  width={30}
+                />
+
+                <Skeleton height={24} width={100} />
+              </div>
+
+              <Skeleton height={26} width='100%' />
+            </>
+          }
+        />
       </VStack>
     );
   }
@@ -69,7 +98,7 @@ export const CommentCard = memo(({ className, comment, isLoading }: CommentCardP
       <ToggleFeatures
         feature='isAppRedesigned'
         on={
-          <Card border='partial' max padding='24'>
+          <Card className={classes.CommentCardRedesigned} border='partial' max padding='24'>
             <VStack
               align='start'
               className={classNames('', {}, [className])}
@@ -78,13 +107,9 @@ export const CommentCard = memo(({ className, comment, isLoading }: CommentCardP
               max
             >
               <AppLinkRedesigned to={getRouteProfile(comment.user.id)}>
-                <HStack gap='8'>
+                <HStack gap='16'>
                   {comment.user.avatar ? (
-                    <AvatarRedesigned
-                      className={classes.avatar}
-                      size={30}
-                      src={comment.user.avatar}
-                    />
+                    <AvatarRedesigned size={30} src={comment.user.avatar} />
                   ) : null}
 
                   <TextRedesigned bold text={comment.user.username} />
@@ -103,9 +128,16 @@ export const CommentCard = memo(({ className, comment, isLoading }: CommentCardP
             gap='8'
             max
           >
-            <AppLinkDeprecated className={classes.header} to={getRouteProfile(comment.user.id)}>
+            <AppLinkDeprecated
+              className={classes.headerDeprecated}
+              to={getRouteProfile(comment.user.id)}
+            >
               {comment.user.avatar ? (
-                <AvatarDeprecated className={classes.avatar} size={30} src={comment.user.avatar} />
+                <AvatarDeprecated
+                  className={classes.avatarDeprecated}
+                  size={30}
+                  src={comment.user.avatar}
+                />
               ) : null}
 
               <TextDeprecated title={comment.user.username} />

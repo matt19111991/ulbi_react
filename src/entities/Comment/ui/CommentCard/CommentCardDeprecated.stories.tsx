@@ -7,7 +7,7 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Theme } from '@/shared/const/theme';
 
-import { Comment } from '../../model/types/comment';
+import type { Comment } from '../../model/types/comment';
 
 import { CommentCard } from './CommentCard';
 
