@@ -1,9 +1,13 @@
-## Фича со списком рекомендаций статей
+## Фича со списком рекомендуемых статей
 
-- API
+### API
 
 `getArticleRecommendationsList` - получение списка рекомендаций
 
-- Components
+### Components
 
 `ArticleRecommendationsList` - компонент со списком рекомендаций
+
+### Hooks
+
+`useGetArticleRecommendationsListQuery` - хук для получения списка рекомендаций

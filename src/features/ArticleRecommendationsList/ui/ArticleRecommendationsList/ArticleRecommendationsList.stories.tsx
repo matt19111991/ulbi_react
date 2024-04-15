@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
@@ -25,13 +26,15 @@ export const PrimaryOld: Story = {
   args: {},
 };
 
+PrimaryOld.decorators = [IndentsDecorator];
+
 // Dark article recommendations list old
 
 export const DarkOld: Story = {
   args: {},
 };
 
-DarkOld.decorators = [ThemeDecorator(Theme.DARK)];
+DarkOld.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 // Orange article recommendations list old
 
@@ -39,7 +42,7 @@ export const OrangeOld: Story = {
   args: {},
 };
 
-OrangeOld.decorators = [ThemeDecorator(Theme.ORANGE)];
+OrangeOld.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 // Error article recommendations list old
 
@@ -49,13 +52,15 @@ export const ErrorOld: Story = {
   },
 };
 
+ErrorOld.decorators = [IndentsDecorator];
+
 // Primary article recommendations list new
 
 export const PrimaryNew: Story = {
   args: {},
 };
 
-PrimaryNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true })];
+PrimaryNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 // Dark article recommendations list new
 
@@ -63,7 +68,11 @@ export const DarkNew: Story = {
   args: {},
 };
 
-DarkNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
+DarkNew.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  ThemeDecorator(Theme.DARK),
+];
 
 // Orange article recommendations list new
 
@@ -73,6 +82,7 @@ export const OrangeNew: Story = {
 
 OrangeNew.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
   ThemeDecorator(Theme.ORANGE),
 ];
 
@@ -83,5 +93,7 @@ export const ErrorNew: Story = {
     storybookError: 'error',
   },
 };
+
+ErrorNew.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsDecorator];
 
 export default meta;

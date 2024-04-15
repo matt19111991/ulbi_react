@@ -22,7 +22,7 @@ interface ArticleRecommendationsListProps {
   className?: string;
 
   /**
-   * Пробрасываемая ошибка из storybook
+   * Пробрасываемая ошибка из 'storybook'
    */
   storybookError?: string;
 }
@@ -56,7 +56,7 @@ export const ArticleRecommendationsList = memo(
     return (
       <VStack
         align='start'
-        className={classNames('', { [classes.hidden]: isLoading }, [className])}
+        className={classNames('', {}, [className])}
         data-testid='ArticleRecommendationsList'
         gap='8'
         max
@@ -69,6 +69,7 @@ export const ArticleRecommendationsList = memo(
 
         <ArticleList
           articles={articles}
+          className={classes.recommendations}
           isLoading={isLoading}
           target='_blank'
           virtualized={false}

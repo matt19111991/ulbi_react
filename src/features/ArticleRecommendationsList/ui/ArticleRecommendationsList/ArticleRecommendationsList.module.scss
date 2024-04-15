@@ -1,5 +1,4 @@
-@media screen and (max-width: 1800px) {
-  .hidden {
-    display: none;
-  }
+/* на экранах < 1800px появляется дополнительный вертикальный скролл при наведении на карточку статьи */
+.recommendations {
+  overflow-y: hidden;
 }

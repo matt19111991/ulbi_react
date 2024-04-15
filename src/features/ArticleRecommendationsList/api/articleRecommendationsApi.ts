@@ -1,8 +1,10 @@
-import { Article } from '@/entities/Article';
+import type { Article } from '@/entities/Article';
 
 import { rtkApi } from '@/shared/api/rtkApi';
 
 import { generateArticles } from '@/shared/lib/generators/articles';
+
+type LimitArg = number;
 
 interface RecommendationsResponse {
   data: Article[];
@@ -11,13 +13,13 @@ interface RecommendationsResponse {
 const recommendationsApi = rtkApi.injectEndpoints({
   endpoints: (build) => ({
     /*
-      build.query    - для GET запросов
-      build.mutation - для POST, PUT, DELETE, ... запросов
+     'build.query'    - для 'GET' запросов
+     'build.mutation' - для 'POST', 'PUT', 'DELETE', ... запросов
 
-      название эндпоинта                     ReturnType   args
-              v                                   v         v
+      название эндпоинта                    'ReturnType'   'args'
+              v                                   v          v
     */
-    getArticleRecommendationsList: build.query<Article[], number>({
+    getArticleRecommendationsList: build.query<Article[], LimitArg>({
       queryFn: (limit, api, extraOptions, baseQuery) => {
         if (__PROJECT__ !== 'front-end') {
           return { data: generateArticles(4) };
@@ -25,7 +27,7 @@ const recommendationsApi = rtkApi.injectEndpoints({
 
         return baseQuery({
           params: {
-            _expand: 'user',
+            _expand: 'user', // получаем весь 'user' объект из БД
             _limit: limit,
           },
           url: 'articles',
