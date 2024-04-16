@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { articleDetailsReducer } from '@/entities/Article/testing';
 
@@ -39,7 +39,7 @@ const stateEditable: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'pages/Article/ArticleDetailsPage/ArticleDetailsPageHeader',
+  title: 'pages/Article/ArticleDetailsPage/components/old/ArticleDetailsPageHeader',
   component: ArticleDetailsPageHeader,
   argTypes: {
     backgroundColor: {

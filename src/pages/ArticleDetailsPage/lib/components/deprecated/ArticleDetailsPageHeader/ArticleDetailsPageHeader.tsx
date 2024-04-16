@@ -13,7 +13,7 @@ import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
 
 import { HStack } from '@/shared/ui/redesigned/Stack';
 
-import { getCanEditArticle } from '../../../model/selectors/article/article';
+import { getCanEditArticle } from '../../../../model/selectors/article/article';
 
 interface ArticleDetailsPageHeaderProps {
   /**

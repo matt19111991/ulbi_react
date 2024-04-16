@@ -34,7 +34,7 @@ const stateBase: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'pages/Article/ArticleDetailsPage/components/AdditionalInfoContainer',
+  title: 'pages/Article/ArticleDetailsPage/components/new/AdditionalInfoContainer',
   component: AdditionalInfoContainer,
   argTypes: {
     backgroundColor: {

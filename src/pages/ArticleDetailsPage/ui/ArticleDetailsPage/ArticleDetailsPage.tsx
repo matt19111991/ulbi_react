@@ -23,9 +23,9 @@ import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 
 import { Page } from '@/widgets/Page';
 
-import { AdditionalInfoContainer } from '../../lib/components/AdditionalInfoContainer/AdditionalInfoContainer';
+import { AdditionalInfoContainer } from '../../lib/components/redesigned/AdditionalInfoContainer/AdditionalInfoContainer';
 import { ArticleDetailsComments } from '../../lib/components/ArticleDetailsComments/ArticleDetailsComments';
-import { ArticleDetailsPageHeader } from '../../lib/components/ArticleDetailsPageHeader/ArticleDetailsPageHeader';
+import { ArticleDetailsPageHeader } from '../../lib/components/deprecated/ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 import { DetailsContainer } from '../../lib/components/DetailsContainer/DetailsContainer';
 
 import { articleDetailsPageReducer } from '../../model/slices';
@@ -96,7 +96,7 @@ const ArticleDetailsPage = ({
 
                   <ArticleRecommendationsList storybookError={storybookError} />
 
-                  <ArticleDetailsComments id={articleId!} />
+                  <ArticleDetailsComments id={articleId} />
                 </VStack>
               </Page>
             }
@@ -108,7 +108,7 @@ const ArticleDetailsPage = ({
             <VStack gap='16' max>
               <ArticleDetailsPageHeader />
 
-              <ArticleDetails id={articleId!} />
+              <ArticleDetails id={articleId} />
 
               <ToggleFeatures
                 feature='isArticleRatingEnabled'
@@ -118,7 +118,7 @@ const ArticleDetailsPage = ({
 
               <ArticleRecommendationsList storybookError={storybookError} />
 
-              <ArticleDetailsComments id={articleId!} />
+              <ArticleDetailsComments id={articleId} />
             </VStack>
           </Page>
         }

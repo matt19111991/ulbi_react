@@ -63,7 +63,7 @@ const stateArticleDetails: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'pages/Article/ArticleDetailsPage/components/ArticleDetailsComments',
+  title: 'pages/Article/ArticleDetailsPage/components/new/ArticleDetailsComments',
   component: ArticleDetailsComments,
   argTypes: {
     backgroundColor: {
@@ -74,70 +74,38 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-// Primary article details comments old
+// Primary article details comments
 
-export const PrimaryOld: Story = {
+export const Primary: Story = {
   args: {},
 };
 
-PrimaryOld.decorators = [IndentsDecorator, StoreDecorator(stateArticleDetails, asyncReducers)];
-
-// Dark article details comments old
-
-export const DarkOld: Story = {
-  args: {},
-};
-
-DarkOld.decorators = [
-  IndentsDecorator,
-  StoreDecorator(stateArticleDetails, asyncReducers),
-  ThemeDecorator(Theme.DARK),
-];
-
-// Orange article details comments old
-
-export const OrangeOld: Story = {
-  args: {},
-};
-
-OrangeOld.decorators = [
-  IndentsDecorator,
-  StoreDecorator(stateArticleDetails, asyncReducers),
-  ThemeDecorator(Theme.ORANGE),
-];
-
-// Primary article details comments new
-
-export const PrimaryNew: Story = {
-  args: {},
-};
-
-PrimaryNew.decorators = [
+Primary.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
   StoreDecorator(stateArticleDetails, asyncReducers),
 ];
 
-// Dark article details comments new
+// Dark article details comments
 
-export const DarkNew: Story = {
+export const Dark: Story = {
   args: {},
 };
 
-DarkNew.decorators = [
+Dark.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
   StoreDecorator(stateArticleDetails, asyncReducers),
   ThemeDecorator(Theme.DARK),
 ];
 
-// Orange article details comments new
+// Orange article details comments
 
-export const OrangeNew: Story = {
+export const Orange: Story = {
   args: {},
 };
 
-OrangeNew.decorators = [
+Orange.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
   StoreDecorator(stateArticleDetails, asyncReducers),
