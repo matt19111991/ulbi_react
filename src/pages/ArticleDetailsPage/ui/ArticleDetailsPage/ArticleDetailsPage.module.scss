@@ -1,17 +1,16 @@
-.ArticleDetailsPage {
-  min-height: 100%;
-  min-width: 980px;
-  overflow-x: hidden;
-}
-
-// добавляем смещение только в приложении (не в storybook)
+// добавляем смещение только в приложении (не в 'storybook')
 @media screen and (max-width: 1800px) {
   body:has(> div[id='root']) {
     .ArticleDetailsPage {
       height: calc(87vh - 300px);
-      min-width: auto;
       position: relative;
       top: 240px;
+    }
+
+    .ArticleDetailsPageError {
+      max-height: 200px;
+      position: relative;
+      top: 120px;
     }
   }
 }

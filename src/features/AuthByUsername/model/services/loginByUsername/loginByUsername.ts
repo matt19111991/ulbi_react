@@ -65,7 +65,7 @@ export const loginByUsername = createAsyncThunk<
      'thunkApi.extra.api.post === axios.post'
     */
 
-    const response = await thunkApi.extra.api.post<User>('login', authData, axiosConfig);
+    const response = await thunkApi.extra.api.post<User>('/login', authData, axiosConfig);
 
     if (!response.data) {
       return thunkApi.rejectWithValue('No user data');

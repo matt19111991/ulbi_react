@@ -6,8 +6,8 @@ import type { Middleware, UnknownAction } from '@reduxjs/toolkit';
   keys instead: 'counter', 'pageScroll', 'user', 'api'. Unexpected keys will be ignored."
 */
 export const combineSlicesAvoidErrorMessageMiddleware: Middleware = (api) => (next) => (action) => {
-  // иначе ошибки в 'GitHub Actions' => 'TypeError: context.console.error is not a function'
-  if (__PROJECT__ === 'jest') {
+  // иначе ошибки в 'GitHub Actions' и 'Storybook' => 'TypeError: context.console.error is not a function'
+  if (__PROJECT__ !== 'front-end') {
     return next(action);
   }
 

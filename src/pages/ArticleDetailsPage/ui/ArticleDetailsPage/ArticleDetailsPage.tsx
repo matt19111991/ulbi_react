@@ -17,9 +17,10 @@ import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2
 import { ToggleFeatures } from '@/shared/lib/features';
 
 import { Card } from '@/shared/ui/deprecated/Card';
-import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
+import { Text as TextDeprecated, TextTheme } from '@/shared/ui/deprecated/Text';
 
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
+import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 
 import { Page } from '@/widgets/Page';
 
@@ -39,17 +40,17 @@ interface ArticleDetailsPageProps {
   className?: string;
 
   /**
-   * Проверка: рендерится ли компонент для storybook
+   * Проверка: рендерится ли компонент для 'storybook'
    */
   isStorybook?: boolean;
 
   /**
-   * Пробрасываемая ошибка из storybook
+   * Пробрасываемая ошибка из 'storybook'
    */
   storybookError?: string;
 
   /**
-   * ID статьи для storybook
+   * 'ID' статьи для 'storybook'
    */
   storybookId?: string;
 }
@@ -72,11 +73,15 @@ const ArticleDetailsPage = ({
   if (!articleId) {
     return (
       <HStack
-        className={classNames(classes.ArticleDetailsPage, {}, [className])}
+        className={classNames(classes.ArticleDetailsPageError, {}, [className])}
         justify='center'
         max
       >
-        <Text theme={TextTheme.ERROR} title={t('Статья не найдена')} />
+        <ToggleFeatures
+          feature='isAppRedesigned'
+          on={<TextRedesigned title={t('Статья не найдена')} variant='error' />}
+          off={<TextDeprecated theme={TextTheme.ERROR} title={t('Статья не найдена')} />}
+        />
       </HStack>
     );
   }
