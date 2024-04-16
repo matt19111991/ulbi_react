@@ -23,10 +23,10 @@ import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 
 import { Page } from '@/widgets/Page';
 
-import { AdditionalInfoContainer } from '../../lib/components/redesigned/AdditionalInfoContainer/AdditionalInfoContainer';
-import { ArticleDetailsComments } from '../../lib/components/ArticleDetailsComments/ArticleDetailsComments';
 import { ArticleDetailsPageHeader } from '../../lib/components/deprecated/ArticleDetailsPageHeader/ArticleDetailsPageHeader';
-import { DetailsContainer } from '../../lib/components/DetailsContainer/DetailsContainer';
+import { AdditionalInfoContainer } from '../../lib/components/redesigned/AdditionalInfoContainer/AdditionalInfoContainer';
+import { ArticleDetailsComments } from '../../lib/components/redesigned/ArticleDetailsComments/ArticleDetailsComments';
+import { DetailsContainer } from '../../lib/components/redesigned/DetailsContainer/DetailsContainer';
 
 import { articleDetailsPageReducer } from '../../model/slices';
 

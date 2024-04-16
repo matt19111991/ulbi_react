@@ -7,7 +7,6 @@ import type { Comment } from '@/entities/Comment/testing';
 import Image1 from '@/shared/assets/tests/storybook.jpg';
 import Image2 from '@/shared/assets/tests/storybook2.jpg';
 
-import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -16,7 +15,7 @@ import { Theme } from '@/shared/const/theme';
 
 import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
 
-import { articleDetailsPageReducer } from '../../../model/slices';
+import { articleDetailsPageReducer } from '../../../../model/slices';
 
 import { ArticleDetailsComments } from './ArticleDetailsComments';
 
@@ -63,7 +62,7 @@ const stateArticleDetails: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'pages/Article/ArticleDetailsPage/components/new/ArticleDetailsComments',
+  title: 'pages/Article/ArticleDetailsPage/components/old/ArticleDetailsComments',
   component: ArticleDetailsComments,
   argTypes: {
     backgroundColor: {
@@ -80,11 +79,7 @@ export const Primary: Story = {
   args: {},
 };
 
-Primary.decorators = [
-  FeatureFlagsDecorator({ isAppRedesigned: true }),
-  IndentsDecorator,
-  StoreDecorator(stateArticleDetails, asyncReducers),
-];
+Primary.decorators = [IndentsDecorator, StoreDecorator(stateArticleDetails, asyncReducers)];
 
 // Dark article details comments
 
@@ -93,7 +88,6 @@ export const Dark: Story = {
 };
 
 Dark.decorators = [
-  FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
   StoreDecorator(stateArticleDetails, asyncReducers),
   ThemeDecorator(Theme.DARK),
@@ -106,7 +100,6 @@ export const Orange: Story = {
 };
 
 Orange.decorators = [
-  FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
   StoreDecorator(stateArticleDetails, asyncReducers),
   ThemeDecorator(Theme.ORANGE),

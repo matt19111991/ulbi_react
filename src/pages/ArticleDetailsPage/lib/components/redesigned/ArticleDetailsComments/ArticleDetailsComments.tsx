@@ -16,12 +16,12 @@ import { Text as TextDeprecated, TextSize } from '@/shared/ui/deprecated/Text';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 
-import { getArticleCommentsAreLoading } from '../../../model/selectors/comments/comments';
+import { getArticleCommentsAreLoading } from '../../../../model/selectors/comments/comments';
 
-import { addCommentForArticle } from '../../../model/services/addCommentForArticle/addCommentForArticle';
-import { fetchCommentsByArticleId } from '../../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
+import { addCommentForArticle } from '../../../../model/services/addCommentForArticle/addCommentForArticle';
+import { fetchCommentsByArticleId } from '../../../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 
-import { getArticleComments } from '../../../model/slices/articleDetailsCommentsSlice/articleDetailsCommentsSlice';
+import { getArticleComments } from '../../../../model/slices/articleDetailsCommentsSlice/articleDetailsCommentsSlice';
 
 interface ArticleDetailsCommentsProps {
   /**
