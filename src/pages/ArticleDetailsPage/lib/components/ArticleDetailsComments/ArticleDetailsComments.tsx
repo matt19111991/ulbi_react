@@ -23,8 +23,6 @@ import { fetchCommentsByArticleId } from '../../../model/services/fetchCommentsB
 
 import { getArticleComments } from '../../../model/slices/articleDetailsCommentsSlice/articleDetailsCommentsSlice';
 
-import classes from './ArticleDetailsComments.module.scss';
-
 interface ArticleDetailsCommentsProps {
   /**
    * Внешний класс
@@ -32,7 +30,7 @@ interface ArticleDetailsCommentsProps {
   className?: string;
 
   /**
-   * ID статьи
+   * 'ID' статьи
    */
   id?: string;
 }
@@ -43,7 +41,7 @@ export const ArticleDetailsComments = memo(({ className, id }: ArticleDetailsCom
 
   /*
     селектор 'getArticleComments' из 'createEntityAdapter' предоставляет свои методы
-    для получения стейта; можно не писать селекторы вручную для 'ids' или 'entities',
+    для получения стейта, можно не писать селекторы вручную для 'ids' или 'entities',
     но для кастомных полей 'isLoading' и 'error' нужны отдельные селекторы
   */
 
@@ -62,12 +60,7 @@ export const ArticleDetailsComments = memo(({ className, id }: ArticleDetailsCom
   );
 
   return (
-    <VStack
-      align='start'
-      className={classNames('', { [classes.hidden]: commentsAreLoading }, [className])}
-      gap='16'
-      max
-    >
+    <VStack align='start' className={classNames('', {}, [className])} gap='16' max>
       <ToggleFeatures
         feature='isAppRedesigned'
         on={<TextRedesigned size='l' title={t('Комментарии')} />}

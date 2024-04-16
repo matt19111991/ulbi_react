@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
+
+import type { Comment } from '@/entities/Comment/testing';
 
 import Image1 from '@/shared/assets/tests/storybook.jpg';
 import Image2 from '@/shared/assets/tests/storybook2.jpg';
@@ -22,37 +24,46 @@ const asyncReducers: ReducersList = {
   articleDetailsPage: articleDetailsPageReducer,
 };
 
-const stateArticleDetailsComments: DeepPartial<StateSchema> = {
+const comments: Comment[] = [
+  {
+    id: '1',
+    text: 'First comment',
+    user: {
+      avatar: Image1,
+      id: '1',
+      username: 'Jack',
+    },
+  },
+  {
+    id: '2',
+    text: 'Nice article!',
+    user: {
+      avatar: Image2,
+      id: '2',
+      username: 'Mary',
+    },
+  },
+];
+
+const normalizedEntities: Record<Comment['id'], Comment> = {
+  [comments[0].id]: comments[0],
+  [comments[1].id]: comments[1],
+};
+
+const normalizedIds: Array<Comment['id']> = [comments[0].id, comments[1].id];
+
+const stateArticleDetails: DeepPartial<StateSchema> = {
   articleDetailsPage: {
     comments: {
       areLoading: false,
-      entities: {
-        1: {
-          id: '1',
-          text: 'First comment',
-          user: {
-            avatar: Image1,
-            id: '1',
-            username: 'Jack',
-          },
-        },
-        2: {
-          id: '1',
-          text: 'Nice article!',
-          user: {
-            avatar: Image2,
-            id: '2',
-            username: 'Mary',
-          },
-        },
-      },
-      ids: ['1', '2'],
+      entities: normalizedEntities,
+      ids: normalizedIds,
     },
   },
 };
 
 const meta = {
-  title: 'pages/Article/ArticleDetailsPage/ArticleDetailsComments',
+  title: 'pages/Article/ArticleDetailsPage/components/ArticleDetailsComments',
   component: ArticleDetailsComments,
   argTypes: {
     backgroundColor: {
@@ -69,10 +80,7 @@ export const PrimaryOld: Story = {
   args: {},
 };
 
-PrimaryOld.decorators = [
-  IndentsDecorator,
-  StoreDecorator(stateArticleDetailsComments, asyncReducers),
-];
+PrimaryOld.decorators = [IndentsDecorator, StoreDecorator(stateArticleDetails, asyncReducers)];
 
 // Dark article details comments old
 
@@ -82,7 +90,7 @@ export const DarkOld: Story = {
 
 DarkOld.decorators = [
   IndentsDecorator,
-  StoreDecorator(stateArticleDetailsComments, asyncReducers),
+  StoreDecorator(stateArticleDetails, asyncReducers),
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -94,7 +102,7 @@ export const OrangeOld: Story = {
 
 OrangeOld.decorators = [
   IndentsDecorator,
-  StoreDecorator(stateArticleDetailsComments, asyncReducers),
+  StoreDecorator(stateArticleDetails, asyncReducers),
   ThemeDecorator(Theme.ORANGE),
 ];
 
@@ -107,7 +115,7 @@ export const PrimaryNew: Story = {
 PrimaryNew.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
-  StoreDecorator(stateArticleDetailsComments, asyncReducers),
+  StoreDecorator(stateArticleDetails, asyncReducers),
 ];
 
 // Dark article details comments new
@@ -119,7 +127,7 @@ export const DarkNew: Story = {
 DarkNew.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
-  StoreDecorator(stateArticleDetailsComments, asyncReducers),
+  StoreDecorator(stateArticleDetails, asyncReducers),
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -132,7 +140,7 @@ export const OrangeNew: Story = {
 OrangeNew.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
-  StoreDecorator(stateArticleDetailsComments, asyncReducers),
+  StoreDecorator(stateArticleDetails, asyncReducers),
   ThemeDecorator(Theme.ORANGE),
 ];
 
