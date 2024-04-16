@@ -22,8 +22,6 @@
 
 `getArticleRecommendationsAreLoading` - Селектор для получения информации о состоянии загрузки рекомендаций к статье
 
-`getArticleRecommendationsError` - Селектор для получения информации об ошибке при получении рекомендаций к статье
-
 ### Services
 
 `addCommentForArticle` - сервис для добавления комментария к статье
