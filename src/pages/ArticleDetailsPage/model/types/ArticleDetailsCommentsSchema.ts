@@ -1,8 +1,9 @@
-import { EntityState } from '@reduxjs/toolkit';
+import type { EntityState } from '@reduxjs/toolkit';
 
-import { Comment } from '@/entities/Comment';
+import type { Comment } from '@/entities/Comment';
 
-/* 'EntityState' добавляет поля 'ids' и 'entities' к 'ArticleDetailsCommentsSchema'
+/*
+  'EntityState' добавляет поля 'ids' и 'entities' к 'ArticleDetailsCommentsSchema'
 
    export interface EntityState<T, I> {
      ids: I[]

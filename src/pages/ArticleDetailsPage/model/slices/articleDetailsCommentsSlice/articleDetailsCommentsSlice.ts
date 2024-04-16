@@ -1,33 +1,37 @@
-import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
-import { Comment } from '@/entities/Comment';
+import type { Comment } from '@/entities/Comment';
+
+import type { ErrorAction } from '@/shared/types/api';
 
 import { fetchCommentsByArticleId } from '../../services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 
-import { ArticleDetailsCommentsSchema } from '../../types/ArticleDetailsCommentsSchema';
+import type { ArticleDetailsCommentsSchema } from '../../types/ArticleDetailsCommentsSchema';
 
-/* Для комментариев используем НОРМАЛИЗАЦИЮ ДАННЫХ:
+/*
+  для комментариев используем НОРМАЛИЗАЦИЮ ДАННЫХ:
 
-   Вместо массива комментариев будем использовать:
-    - объект (ключ - id комментария, значение - сам комментарий)
+  вместо массива комментариев будем использовать:
+    - объект (ключ - 'id' комментария, значение - сам комментарий)
     - массив айдишников комментариев (для ссылок на сами комментарии)
 
-   Эта оптимизация позволяет (например, при обновлении одного комментария):
+  эта оптимизация позволяет (например, при обновлении одного комментария):
     - не итерироваться по всему списку комментариев и по итогу менять всего один комментарий,
       а менять точечно по ключу один комментарий
 
-    - избежать дублирования данных в Redux store / локально:
-      'comment', 'editedComment', 'draftComment', 'onModerationComment'
+    - избежать дублирования данных в 'Redux store' / локально:
+     'comment', 'editedComment', 'draftComment', 'onModerationComment'
 
-    - сложность не O(n), а O(1);
+    - сложность не 'O(n)', а 'O(1)'
 */
 
 // адаптер с настройками для нормализации данных
 const commentsAdapter = createEntityAdapter<Comment>({
   /*
-    если уникальное значение комментария будет не 'id', а 'commentId':
+    если уникальное значение у комментария будет не 'id', а 'commentId':
     selectId: (comment) => comment.commentId,
 
     массив с айдишниками будет отсортирован на основе поля 'title':
@@ -35,7 +39,7 @@ const commentsAdapter = createEntityAdapter<Comment>({
   */
 });
 
-// селектор для части стейта, которую хотим нормализовать
+// объект с селекторами для части стейта, которую хотим нормализовать
 export const getArticleComments = commentsAdapter.getSelectors<StateSchema>(
   (state) => state.articleDetailsPage?.comments || commentsAdapter.getInitialState(),
 );
@@ -55,6 +59,7 @@ const articleDetailsCommentsSlice = createSlice({
     builder
       .addCase(fetchCommentsByArticleId.pending, (state) => {
         state.areLoading = true;
+
         state.error = undefined;
       })
       .addCase(fetchCommentsByArticleId.fulfilled, (state, action: PayloadAction<Comment[]>) => {
@@ -62,9 +67,10 @@ const articleDetailsCommentsSlice = createSlice({
 
         commentsAdapter.setAll(state, action.payload); // адаптер сам установит 'ids' и 'entities'
       })
-      .addCase(fetchCommentsByArticleId.rejected, (state, action) => {
+      .addCase(fetchCommentsByArticleId.rejected, (state, action: ErrorAction) => {
         state.areLoading = false;
-        state.error = action.payload;
+
+        state.error = action.error.message;
       }),
 });
 

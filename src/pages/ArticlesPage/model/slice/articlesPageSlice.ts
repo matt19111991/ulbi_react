@@ -12,10 +12,35 @@ import { fetchArticlesList } from '../services/fetchArticlesList/fetchArticlesLi
 
 import { ArticlesPageSchema } from '../types/articlesPageSchema';
 
+/*
+  для статей используем НОРМАЛИЗАЦИЮ ДАННЫХ:
+
+  вместо массива статей будем использовать:
+    - объект (ключ - 'id' статьи, значение - сама статья)
+    - массив айдишников статей (для ссылок на сами статьи)
+
+  эта оптимизация позволяет (например, при обновлении одной статьи):
+    - не итерироваться по всему списку статей и по итогу менять всего одну статью,
+      а менять точечно по ключу одну статью
+
+    - избежать дублирования данных в 'Redux store' / локально:
+     'article', 'editedArticle', 'draftArticle', 'onModerationArticle'
+
+    - сложность не 'O(n)', а 'O(1)'
+*/
+
+// адаптер с настройками для нормализации данных
 const articlesAdapter = createEntityAdapter<Article>({
-  // selectId: (article) => article.id,
+  /*
+    если уникальное значение у статьи будет не 'id', а 'articleId':
+    selectId: (article) => article.articleId,
+
+    массив с айдишниками будет отсортирован на основе поля 'title':
+    sortComparer: (a, b) => a.title.localeCompare(b.title),
+  */
 });
 
+// объект с селекторами для части стейта, которую хотим нормализовать
 export const getArticles = articlesAdapter.getSelectors<StateSchema>(
   (state) => state.articlesPage || articlesAdapter.getInitialState(),
 );

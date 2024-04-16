@@ -13,8 +13,32 @@ const initialState: ArticleDetailsRecommendationsSchema = {
   ids: [],
 };
 
+/*
+  для рекомендаций используем НОРМАЛИЗАЦИЮ ДАННЫХ:
+
+  вместо массива рекомендаций будем использовать:
+    - объект (ключ - 'id' рекомендации, значение - сама рекомендация)
+    - массив айдишников рекомендаций (для ссылок на сами рекомендации)
+
+  эта оптимизация позволяет (например, при обновлении одной рекомендации):
+    - не итерироваться по всему списку рекомендаций и по итогу менять всего одну рекомендацию,
+      а менять точечно по ключу одну рекомендацию
+
+    - избежать дублирования данных в 'Redux store' / локально:
+     'recommendation', 'editedRecommendation', 'draftRecommendation', 'onModerationRecommendation'
+
+    - сложность не 'O(n)', а 'O(1)'
+*/
+
+// адаптер с настройками для нормализации данных
 const recommendationsAdapter = createEntityAdapter<Article>({
-  // selectId: (article) => article.id,
+  /*
+    если уникальное значение у рекомендации будет не 'id', а 'recommendationId':
+    selectId: (recommendation) => recommendation.recommendationId,
+
+    массив с айдишниками будет отсортирован на основе поля 'title':
+    sortComparer: (a, b) => a.title.localeCompare(b.title),
+  */
 });
 
 export const articleDetailsPageRecommendationsSlice = createSlice({

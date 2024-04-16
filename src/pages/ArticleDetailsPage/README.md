@@ -32,17 +32,22 @@
 
 `fetchCommentsByArticleId` - сервис для получения комментариев по `ID` статьи
 
-- Slices
+### Slices
 
-`articleDetailsCommentsSlice` - Слайс для хранения информации о комментариях к статье
+`articleDetailsCommentsReducer` - редюсер для хранения информации о комментариях к статье
+
+`articleDetailsCommentsSlice` - слайс для хранения информации о комментариях к статье
 
 `articleDetailsPageRecommendationsSlice` - Слайс для хранения информации о рекомендациях к статье
 
-`getArticleComments` - Селектор для получения нормализованных комментариев к статье
+`commentsAdapter` - адаптер с настройками для нормализации комментариев к статье
 
-- Types
+`getArticleComments` - объект с селекторами для получения нормализованных комментариев к статье
 
-`ArticleDetailsCommentsSchema` - Тип, описывающий схему комментариев к статье в хранилище
+
+### Types
+
+`ArticleDetailsCommentsSchema` - тип, описывающий схему комментариев к статье
 
 `ArticleDetailsRecommendationsSchema` - Тип, описывающий схему рекомендаций к статье в хранилище
 
