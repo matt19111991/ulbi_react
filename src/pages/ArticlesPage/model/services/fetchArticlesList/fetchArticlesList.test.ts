@@ -32,7 +32,7 @@ describe('fetchArticlesList', () => {
       expect(thunk.dispatch).toHaveBeenCalledTimes(2);
       expect(thunk.api.get).toHaveBeenCalled();
 
-      expect(thunk.api.get).toHaveBeenCalledWith('/articles', {
+      expect(thunk.api.get).toHaveBeenCalledWith('articles', {
         params: {
           q: 'search_value',
           type: 'IT',
@@ -69,7 +69,7 @@ describe('fetchArticlesList', () => {
       expect(thunk.dispatch).toHaveBeenCalledTimes(2);
       expect(thunk.api.get).toHaveBeenCalled();
 
-      expect(thunk.api.get).toHaveBeenCalledWith('/articles', {
+      expect(thunk.api.get).toHaveBeenCalledWith('articles', {
         params: {
           q: 'search_value',
           type: undefined,

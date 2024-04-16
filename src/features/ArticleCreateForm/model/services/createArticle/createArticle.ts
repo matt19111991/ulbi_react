@@ -45,7 +45,7 @@ export const createArticle = createAsyncThunk<
       'thunkApi.extra.api.post === axios.post'
    */
 
-    const response = await thunkApi.extra.api.post<Article>('/articles', newArticleData);
+    const response = await thunkApi.extra.api.post<Article>('articles', newArticleData);
 
     if (!response.data) {
       return thunkApi.rejectWithValue('No article data');

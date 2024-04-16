@@ -15,7 +15,7 @@ describe('fetchArticleRecommendations', () => {
 
     expect(thunk.dispatch).toHaveBeenCalledTimes(2);
 
-    expect(thunk.api.get).toHaveBeenCalledWith('/articles', {
+    expect(thunk.api.get).toHaveBeenCalledWith('articles', {
       params: {
         _limit: 4,
       },

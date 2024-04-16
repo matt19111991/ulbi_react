@@ -17,7 +17,7 @@ export const initAuthData = createAsyncThunk<
     обязательно нужно возвращать что-то из функции, иначе:
       - в состоянии 'fulfilled' не будет 'payload' поля
       - состояние 'rejected' не вызовется (ошибочно отработает состояние 'fulfilled')
-   */
+  */
   try {
     const userId = localStorage.getItem(USER_LOCALSTORAGE_KEY);
 

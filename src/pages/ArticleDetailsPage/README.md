@@ -12,7 +12,7 @@
 
 `DetailsContainer` - Контейнер-карточка для основного компонента с детальной информацией о статье
 
-- Selectors
+### Selectors
 
 `getCanEditArticle` - Селектор для получения информации о том, можно ли редактировать статью
 
@@ -24,13 +24,13 @@
 
 `getArticleRecommendationsError` - Селектор для получения информации об ошибке при получении рекомендаций к статье
 
-- Services
+### Services
 
-`addCommentForArticle` - Сервис для добавления комментария к статье
+`addCommentForArticle` - сервис для добавления комментария к статье
 
 `fetchArticleRecommendations` - Сервис для получения рекомендаций к статье
 
-`fetchCommentsByArticleId` - Сервис для получения комментариев по ID статьи
+`fetchCommentsByArticleId` - сервис для получения комментариев по `ID` статьи
 
 - Slices
 

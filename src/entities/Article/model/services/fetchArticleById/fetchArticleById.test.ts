@@ -15,7 +15,7 @@ describe('fetchArticleById', () => {
 
     expect(thunk.dispatch).toHaveBeenCalledTimes(2);
 
-    expect(thunk.api.get).toHaveBeenCalledWith('/articles/1', {
+    expect(thunk.api.get).toHaveBeenCalledWith('articles/1', {
       params: {
         _expand: 'user',
       },

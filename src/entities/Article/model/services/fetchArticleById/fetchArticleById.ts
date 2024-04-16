@@ -29,7 +29,7 @@ export const fetchArticleById = createAsyncThunk<
      'thunkApi.extra.api.get === axios.get'
     */
 
-    const response = await thunkApi.extra.api.get<Article>(`/articles/${articleId}`, {
+    const response = await thunkApi.extra.api.get<Article>(`articles/${articleId}`, {
       params: {
         _expand: 'user', // получаем весь 'user' объект из БД
       },

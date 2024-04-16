@@ -1,7 +1,5 @@
 import type { StateSchema } from '@/app/providers/StoreProvider';
 
-import { getRouteArticles } from '@/shared/const/router';
-
 import { TestAsyncThunk } from '@/shared/lib/tests';
 
 import type { CreateArticleForm } from '../../types/createArticleFormSchema';
@@ -35,7 +33,7 @@ describe('createArticle', () => {
 
     expect(thunk.dispatch).toHaveBeenCalledTimes(2);
 
-    expect(thunk.api.post).toHaveBeenCalledWith(getRouteArticles(), {
+    expect(thunk.api.post).toHaveBeenCalledWith('articles', {
       ...form,
       userId: authorizedState.user?.authData?.id,
     });

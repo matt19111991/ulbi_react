@@ -8,7 +8,7 @@ export const fetchArticleRecommendations = createAsyncThunk<Article[], void, Thu
   'articleDetailsPage/fetchArticleRecommendations',
   async (_, thunkApi) => {
     try {
-      const response = await thunkApi.extra.api.get<Article[]>('/articles', {
+      const response = await thunkApi.extra.api.get<Article[]>('articles', {
         params: {
           _limit: 4,
         },

@@ -50,7 +50,7 @@ export const fetchArticlesList = createAsyncThunk<
       type,
     });
 
-    const response = await thunkApi.extra.api.get<Article[]>('/articles', {
+    const response = await thunkApi.extra.api.get<Article[]>('articles', {
       params: {
         q: search,
 
