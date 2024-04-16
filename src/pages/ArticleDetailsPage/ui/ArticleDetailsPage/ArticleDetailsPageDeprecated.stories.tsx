@@ -132,36 +132,6 @@ const stateArticleDetails: DeepPartial<StateSchema> = {
       },
       ids: ['1', '2'],
     },
-    recommendations: {
-      entities: {
-        1: {
-          createdAt: '11.07.2022',
-          id: '1',
-          img: Image2,
-          title: 'First recommended article',
-          type: [ArticleType.ECONOMICS],
-          user: {
-            avatar: Image1,
-            id: '1',
-            username: 'Jack',
-          },
-        },
-        2: {
-          createdAt: '22.05.2023',
-          id: '1',
-          img: Image1,
-          title: 'Next recommended article',
-          type: [ArticleType.IT],
-          views: 213,
-          user: {
-            avatar: Image2,
-            id: '2',
-            username: 'Mary',
-          },
-        },
-      },
-      ids: ['1', '2'],
-    },
   },
 };
 

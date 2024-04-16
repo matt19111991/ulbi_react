@@ -1,9 +1,12 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
 import { articleDetailsCommentsReducer } from './articleDetailsCommentsSlice/articleDetailsCommentsSlice';
-import { articleDetailsPageRecommendationsReducer } from './articleDetailsPageRecommendationsSlice/articleDetailsPageRecommendationsSlice';
 
 export const articleDetailsPageReducer = combineReducers({
   comments: articleDetailsCommentsReducer,
-  recommendations: articleDetailsPageRecommendationsReducer,
+
+  /*
+    при необходимости можно объединять данные для статьи (комментарии) с рекомендациями
+    recommendations: recommendationsReducer,
+  */
 });

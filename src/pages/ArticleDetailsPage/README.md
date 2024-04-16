@@ -14,17 +14,15 @@
 
 ### Selectors
 
-`getCanEditArticle` - селектор для получения информации о том, можно ли редактировать статью
-
 `getArticleCommentsAreLoading` - селектор для получения информации о состоянии загрузки комментариев к статье
 
 `getArticleCommentsError` - селектор для получения информации об ошибке при получении комментариев к статье
 
+`getCanEditArticle` - селектор для получения информации о том, можно ли редактировать статью
+
 ### Services
 
 `addCommentForArticle` - сервис для добавления комментария к статье
-
-`fetchArticleRecommendations` - Сервис для получения рекомендаций к статье
 
 `fetchCommentsByArticleId` - сервис для получения комментариев по `ID` статьи
 
@@ -34,7 +32,7 @@
 
 `articleDetailsCommentsSlice` - слайс для хранения информации о комментариях к статье
 
-`articleDetailsPageRecommendationsSlice` - Слайс для хранения информации о рекомендациях к статье
+`articleDetailsPageReducer` - редюсер для хранения всей информации о статье
 
 `commentsAdapter` - адаптер с настройками для нормализации комментариев к статье
 
@@ -45,6 +43,4 @@
 
 `ArticleDetailsCommentsSchema` - тип, описывающий схему комментариев к статье
 
-`ArticleDetailsRecommendationsSchema` - Тип, описывающий схему рекомендаций к статье в хранилище
-
-`ArticleDetailsPageSchema` - Тип, описывающий схему комментариев и рекомендаций к статье в хранилище
+`ArticleDetailsPageSchema` - тип, описывающий полную схему статьи (с комментариями и по желанию с рекомендациями)

@@ -1,7 +1,10 @@
 import type { ArticleDetailsCommentsSchema } from './ArticleDetailsCommentsSchema';
-import type { ArticleDetailsRecommendationsSchema } from './ArticleDetailsRecommendationsSchema';
 
 export interface ArticleDetailsPageSchema {
   comments: ArticleDetailsCommentsSchema;
-  recommendations: ArticleDetailsRecommendationsSchema;
+
+  /*
+    при необходимости можно объединять данные для статьи (комментарии) с рекомендациями
+    recommendations: RecommendationsSchema;
+  */
 }
