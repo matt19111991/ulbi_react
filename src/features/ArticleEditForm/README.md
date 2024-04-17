@@ -14,11 +14,15 @@
 
 `editArticle` - сервис для редактирования статьи
 
-- Slices
+### Slices
 
-`editArticleFormSlice` - Слайс для хранения информации о форме редактирования статьи
+`clearError` - действие для очистки ошибок
 
-`clearError` - Действие для очистки ошибок
+`editArticleFormActions` - объект с действиями по редактированию статьи
+
+`editArticleFormReducer` - редюсер редактирования статьи
+
+`editArticleFormSlice` - слайс для хранения информации о форме редактирования статьи
 
 ### Types
 

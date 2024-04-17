@@ -23,14 +23,17 @@ export const createArticleFormSlice = createSlice({
     builder
       .addCase(createArticle.pending, (state) => {
         state.error = undefined;
+
         state.isLoading = true;
       })
       .addCase(createArticle.fulfilled, (state) => {
         state.error = undefined;
+
         state.isLoading = false;
       })
       .addCase(createArticle.rejected, (state, action: ErrorAction) => {
         state.error = action.error.message;
+
         state.isLoading = false;
       });
   },

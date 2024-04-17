@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import type { ErrorAction } from '@/shared/types/api';
+
 import { editArticle } from '../services/editArticle/editArticle';
 
 import type { EditArticleFormSchema } from '../types/editArticleFormSchema';
@@ -21,14 +23,17 @@ export const editArticleFormSlice = createSlice({
     builder
       .addCase(editArticle.pending, (state) => {
         state.error = undefined;
+
         state.isLoading = true;
       })
       .addCase(editArticle.fulfilled, (state) => {
         state.error = undefined;
+
         state.isLoading = false;
       })
-      .addCase(editArticle.rejected, (state, action) => {
-        state.error = action.payload;
+      .addCase(editArticle.rejected, (state, action: ErrorAction) => {
+        state.error = action.error.message;
+
         state.isLoading = false;
       });
   },

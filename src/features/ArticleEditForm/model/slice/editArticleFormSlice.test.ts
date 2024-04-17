@@ -1,16 +1,18 @@
-import { Action } from '@reduxjs/toolkit';
+import type { Action } from '@reduxjs/toolkit';
+
+import { article } from '@/shared/lib/generators/articles';
 
 import { editArticle } from '../services/editArticle/editArticle';
 
-import { EditArticleFormSchema } from '../types/editArticleFormSchema';
+import type { EditArticleFormSchema } from '../types/editArticleFormSchema';
 
 import { editArticleFormActions, editArticleFormReducer } from './editArticleFormSlice';
 
 describe('editArticleFormSlice', () => {
-  describe('clearError', () => {
+  describe('sync actions', () => {
     test('test clear error', () => {
       const state: DeepPartial<EditArticleFormSchema> = {
-        error: 'Error',
+        error: 'Edit article form error',
       };
 
       expect(
@@ -21,10 +23,10 @@ describe('editArticleFormSlice', () => {
     });
   });
 
-  describe('editArticle service', () => {
-    test('test service pending', () => {
+  describe('async editArticle action', () => {
+    test('test set is pending', () => {
       const state: DeepPartial<EditArticleFormSchema> = {
-        error: 'error',
+        error: 'Edit article form error',
         isLoading: false,
       };
 
@@ -36,9 +38,9 @@ describe('editArticleFormSlice', () => {
       });
     });
 
-    test('test service fulfilled', () => {
+    test('test set is fulfilled', () => {
       const state: DeepPartial<EditArticleFormSchema> = {
-        error: 'error',
+        error: 'Edit article form error',
         isLoading: true,
       };
 
@@ -48,6 +50,30 @@ describe('editArticleFormSlice', () => {
         error: undefined,
         isLoading: false,
       });
+    });
+
+    test('test set is rejected', () => {
+      const errorMessage = 'Jest test error';
+
+      const error = new Error(errorMessage);
+
+      const state: DeepPartial<EditArticleFormSchema> = {
+        error: undefined,
+        isLoading: true,
+      };
+
+      const editedForm = article;
+      /*
+        при тестировании 'extraReducers':
+          - второй аргумент: любая строка (например, 'requestId')
+          - третий аргумент: аргументы, передаваемые в 'async thunk', в нашем случае 'Article'
+       */
+      const reducer = editArticleFormReducer(
+        state as EditArticleFormSchema,
+        editArticle.rejected(error, 'requestId', editedForm),
+      );
+
+      expect(reducer).toEqual({ error: errorMessage, isLoading: false });
     });
   });
 });
