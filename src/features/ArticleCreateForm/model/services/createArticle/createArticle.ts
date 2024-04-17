@@ -30,7 +30,7 @@ export const createArticle = createAsyncThunk<
       return thunkApi.rejectWithValue('No user data');
     }
 
-    const newArticleData = {
+    const newArticleData: CreateArticleForm & { userId: Article['user']['id'] } = {
       ...form,
       userId: userData.id,
     };
@@ -44,7 +44,6 @@ export const createArticle = createAsyncThunk<
        вызываем вместо базового 'axios' свой кастомный инстанс 'api' (axios):
       'thunkApi.extra.api.post === axios.post'
    */
-
     const response = await thunkApi.extra.api.post<Article>('articles', newArticleData);
 
     if (!response.data) {
