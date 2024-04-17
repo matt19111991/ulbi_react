@@ -10,10 +10,8 @@ import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsLis
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
-
 import { DynamicModuleLoaderV2 } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
 import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
-
 import { ToggleFeatures } from '@/shared/lib/features';
 
 import { Card } from '@/shared/ui/deprecated/Card';
@@ -53,6 +51,11 @@ interface ArticleDetailsPageProps {
    * 'ID' статьи для 'storybook'
    */
   storybookId?: string;
+
+  /**
+   * Пробрасываемое состояние загрузки из 'storybook'
+   */
+  storybookLoading?: boolean;
 }
 
 const reducers: ReducersList = {
@@ -64,6 +67,7 @@ const ArticleDetailsPage = ({
   isStorybook = false,
   storybookError,
   storybookId,
+  storybookLoading,
 }: ArticleDetailsPageProps) => {
   const { id } = useParams<{ id: string }>();
   const { t } = useTranslation('article-details');
@@ -94,12 +98,19 @@ const ArticleDetailsPage = ({
           <StickyContentLayout
             content={
               <Page className={classNames(classes.ArticleDetailsPage, {}, [className])}>
-                <VStack gap='16' max>
+                <VStack gap='16'>
                   <DetailsContainer />
 
-                  <ArticleRating articleId={articleId} />
+                  <ArticleRating
+                    articleId={articleId}
+                    storybookLoading={storybookLoading}
+                    storybookRatingEmpty={Boolean(storybookError)}
+                  />
 
-                  <ArticleRecommendationsList storybookError={storybookError} />
+                  <ArticleRecommendationsList
+                    storybookError={storybookError}
+                    storybookLoading={storybookLoading}
+                  />
 
                   <ArticleDetailsComments id={articleId} />
                 </VStack>
@@ -110,18 +121,17 @@ const ArticleDetailsPage = ({
         }
         off={
           <Page className={classNames(classes.ArticleDetailsPage, {}, [className])}>
-            <VStack gap='16' max>
+            <VStack gap='16'>
               <ArticleDetailsPageHeader />
 
               <ArticleDetails id={articleId} />
 
-              <ToggleFeatures
-                feature='isArticleRatingEnabled'
-                on={<ArticleRating articleId={articleId} />}
-                off={<Card>{t('Оценка статей скоро появится')}</Card>}
-              />
+              <Card>{t('Оценка статей скоро появится')}</Card>
 
-              <ArticleRecommendationsList storybookError={storybookError} />
+              <ArticleRecommendationsList
+                storybookError={storybookError}
+                storybookLoading={storybookLoading}
+              />
 
               <ArticleDetailsComments id={articleId} />
             </VStack>

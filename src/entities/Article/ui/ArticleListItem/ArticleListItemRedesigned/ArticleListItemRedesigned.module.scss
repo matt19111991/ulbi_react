@@ -67,7 +67,6 @@
 
   &:hover {
     opacity: .8;
-    transform: scale(1.01); /* увеличение карточки при наведении */
   }
 
   .footer {
@@ -91,7 +90,6 @@
       font: var(--font-l-redesigned);
       height: 100px;
       overflow: hidden;
-      transform: scale(.99); /* чтобы избежать прыжков текста при наведении */
       width: 218px;
       word-break: break-all;
     }

@@ -25,16 +25,29 @@ interface ArticleRecommendationsListProps {
    * Пробрасываемая ошибка из 'storybook'
    */
   storybookError?: string;
+
+  /**
+   * Пробрасываемое состояние загрузки из 'storybook'
+   */
+  storybookLoading?: boolean;
 }
 
 export const ArticleRecommendationsList = memo(
-  ({ className, storybookError }: ArticleRecommendationsListProps) => {
+  ({ className, storybookError, storybookLoading }: ArticleRecommendationsListProps) => {
     const { t } = useTranslation('article-details');
 
-    const { data = [], error: queryError, isLoading } = useGetArticleRecommendationsListQuery(4);
+    const {
+      data = [],
+      error: queryError,
+      isLoading: queryLoading,
+    } = useGetArticleRecommendationsListQuery(4);
 
-    const articles = __PROJECT__ === 'storybook' && storybookError ? [] : data;
+    const articles =
+      __PROJECT__ === 'storybook' && (storybookError || storybookLoading) ? [] : data;
+
     const error = __PROJECT__ === 'storybook' ? storybookError : queryError;
+
+    const loading = __PROJECT__ === 'storybook' ? storybookLoading : queryLoading;
 
     if (error) {
       return (
@@ -70,7 +83,7 @@ export const ArticleRecommendationsList = memo(
         <ArticleList
           articles={articles}
           className={classes.recommendations}
-          isLoading={isLoading}
+          isLoading={loading}
           target='_blank'
           virtualized={false}
         />

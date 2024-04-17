@@ -58,6 +58,7 @@
 }
 
 .plate {
+  position: relative;
   transition: .2s; /* при наведении карточка увеличивается с плавным переходом */
 
   .date {
@@ -68,8 +69,6 @@
   }
 
   &:hover {
-    transform: scale(1.01); /* увеличение карточки при наведении */
-
     .date {
       display: block;
     }

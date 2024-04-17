@@ -5,6 +5,7 @@ import type { StateSchema } from '@/app/providers/StoreProvider';
 import { articleDetailsReducer } from '@/entities/Article/testing';
 import type { Comment } from '@/entities/Comment/testing';
 
+import Image1 from '@/shared/assets/tests/storybook.jpg';
 import Image2 from '@/shared/assets/tests/storybook2.jpg';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
@@ -15,28 +16,39 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 import { Theme } from '@/shared/const/theme';
 
 import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
-
 import { article } from '@/shared/lib/generators/articles';
 
 import { articleDetailsPageReducer } from '../../model/slices';
 
 import ArticleDetailsPage from './ArticleDetailsPage';
 
-const comment: Comment = {
-  id: '1',
-  text: 'Nice article!',
-  user: {
-    avatar: Image2,
-    id: '2',
-    username: 'Mary',
+const comments: Comment[] = [
+  {
+    id: '1',
+    text: 'First comment',
+    user: {
+      avatar: Image1,
+      id: '1',
+      username: 'Jack',
+    },
   },
-};
+  {
+    id: '1',
+    text: 'Nice article!',
+    user: {
+      avatar: Image2,
+      id: '2',
+      username: 'Mary',
+    },
+  },
+];
 
 const normalizedEntities: Record<Comment['id'], Comment> = {
-  [comment.id]: comment,
+  [comments[0].id]: comments[0],
+  [comments[1].id]: comments[1],
 };
 
-const normalizedIds: Array<Comment['id']> = [comment.id];
+const normalizedIds: Array<Comment['id']> = [comments[0].id, comments[1].id];
 
 const stateArticleDetails: DeepPartial<StateSchema> = {
   articleDetails: {
@@ -64,9 +76,6 @@ const meta = {
       control: 'color',
     },
   },
-  args: {
-    isStorybook: true,
-  },
 } as Meta<typeof ArticleDetailsPage>;
 
 type Story = StoryObj<typeof meta>;
@@ -75,7 +84,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    storybookId: '1',
+    isStorybook: true,
+    storybookId: article.id,
   },
 };
 
@@ -89,7 +99,8 @@ Primary.decorators = [
 
 export const Dark: Story = {
   args: {
-    storybookId: '1',
+    isStorybook: true,
+    storybookId: article.id,
   },
 };
 
@@ -104,7 +115,8 @@ Dark.decorators = [
 
 export const Orange: Story = {
   args: {
-    storybookId: '1',
+    isStorybook: true,
+    storybookId: article.id,
   },
 };
 
@@ -119,7 +131,9 @@ Orange.decorators = [
 
 export const Loading: Story = {
   args: {
-    storybookId: '1',
+    isStorybook: true,
+    storybookId: article.id,
+    storybookLoading: true,
   },
 };
 
@@ -146,8 +160,9 @@ Loading.decorators = [
 
 export const Error: Story = {
   args: {
+    isStorybook: true,
     storybookError: 'Error',
-    storybookId: '1',
+    storybookId: article.id,
   },
 };
 
@@ -173,7 +188,9 @@ Error.decorators = [
 // Not found article details page
 
 export const NotFound: Story = {
-  args: {},
+  args: {
+    isStorybook: true,
+  },
 };
 
 const stateArticleNotFound: DeepPartial<StateSchema> = {
