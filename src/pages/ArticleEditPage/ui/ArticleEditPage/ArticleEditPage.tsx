@@ -20,25 +20,35 @@ interface ArticleEditPageProps {
   className?: string;
 
   /**
-   * ID статьи для storybook
+   * 'ID' статьи для 'storybook'
    */
-  idFromStorybook?: string;
+  storybookId?: string;
 }
 
-const ArticleEditPage = ({ className, idFromStorybook }: ArticleEditPageProps) => {
+const ArticleEditPage = ({ className, storybookId }: ArticleEditPageProps) => {
   const { id } = useParams<{ id: string }>();
   const { t } = useTranslation();
 
-  const articleId = idFromStorybook || id;
+  const articleId = __PROJECT__ === 'storybook' ? storybookId : id;
+
+  if (!articleId) {
+    return null;
+  }
 
   return (
-    <Page className={classNames(classes.ArticleEditPage, {}, [className])}>
-      <ToggleFeatures
-        feature='isAppRedesigned'
-        on={<ArticleEditForm articleId={articleId!} />}
-        off={<Text title={`${t('Скоро будет')} ...`} />}
-      />
-    </Page>
+    <ToggleFeatures
+      feature='isAppRedesigned'
+      on={
+        <Page className={classNames(classes.ArticleEditPage, {}, [className])}>
+          <ArticleEditForm articleId={articleId} />
+        </Page>
+      }
+      off={
+        <Page className={classNames('', {}, [className])}>
+          <Text title={`${t('Скоро будет')} ...`} />
+        </Page>
+      }
+    />
   );
 };
 
