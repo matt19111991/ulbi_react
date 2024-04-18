@@ -9,6 +9,11 @@ export const getArticlesPageError = (state: StateSchema) => state.articlesPage?.
 
 export const getArticlesPageHasMore = (state: StateSchema) => state.articlesPage?.hasMore || false;
 
+/*
+  загрузили список статей => перешли на конкретную статью => вернулись обратно к списку =>
+  снова началась подгрузка (а должен отобразиться предыдущий загруженный список)
+  для того, чтобы отследить этот момент и прекратить ненужную подгрузку, заводим флаг 'inited'
+*/
 export const getArticlesPageInited = (state: StateSchema) => state.articlesPage?.inited || false;
 
 export const getArticlesPageLimit = (state: StateSchema) => state.articlesPage?.limit;

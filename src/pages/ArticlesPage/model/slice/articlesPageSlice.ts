@@ -46,6 +46,11 @@ export const getArticles = articlesAdapter.getSelectors<StateSchema>(
 );
 
 const initialState: ArticlesPageSchema = {
+  /*
+    загрузили список статей => перешли на конкретную статью => вернулись обратно к списку =>
+    снова началась подгрузка (а должен отобразиться предыдущий загруженный список)
+    для того, чтобы отследить этот момент и прекратить ненужную подгрузку, заводим флаг 'inited'
+  */
   inited: false,
 
   areLoading: false,

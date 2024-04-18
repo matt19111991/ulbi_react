@@ -27,6 +27,11 @@ export const initArticlesPage = createAsyncThunk<void, URLSearchParams, ThunkCon
   async (searchParams, thunkApi) => {
     const state = thunkApi.getState();
 
+    /*
+      загрузили список статей => перешли на конкретную статью => вернулись обратно к списку =>
+      снова началась подгрузка (а должен отобразиться предыдущий загруженный список)
+      для того, чтобы отследить этот момент и прекратить ненужную подгрузку, заводим флаг 'inited'
+    */
     const inited = getArticlesPageInited(state);
 
     if (!inited) {
