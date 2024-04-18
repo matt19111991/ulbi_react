@@ -14,7 +14,7 @@ import { Theme } from '@/shared/const/theme';
 import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
 import { generateNormalizedArticles } from '@/shared/lib/generators/articles';
 
-import { articlesPageReducer } from '../../model/slice/articlesPageSlice';
+import { articlesPageReducer } from '../../../model/slice/articlesPageSlice';
 
 import { ArticlesPageFilters } from './ArticlesPageFilters';
 

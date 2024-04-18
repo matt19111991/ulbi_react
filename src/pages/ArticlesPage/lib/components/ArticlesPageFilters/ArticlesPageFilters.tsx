@@ -12,7 +12,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { Card } from '@/shared/ui/deprecated/Card';
 import { Input } from '@/shared/ui/deprecated/Input';
 
-import { useArticleFilters } from '../../lib/hooks/useArticleFilters';
+import { useArticleFilters } from '../../hooks/useArticleFilters';
 
 import classes from './ArticlesPageFilters.module.scss';
 

@@ -6,9 +6,9 @@ import { ArticleList } from '@/entities/Article';
 import {
   getArticlesPageAreLoading,
   getArticlesPageView,
-} from '../../model/selectors/articlesPageSelectors';
+} from '../../../model/selectors/articlesPageSelectors';
 
-import { getArticles } from '../../model/slice/articlesPageSlice';
+import { getArticles } from '../../../model/slice/articlesPageSlice';
 
 interface ArticleInfiniteListProps {
   /**

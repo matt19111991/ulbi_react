@@ -32,10 +32,10 @@ import { initArticlesPage } from '../../model/services/initArticlesPage/initArti
 
 import { articlesPageReducer } from '../../model/slice/articlesPageSlice';
 
-import { ArticleInfiniteList } from '../ArticleInfiniteList/ArticleInfiniteList';
-import { ArticlesPageFilters } from '../ArticlesPageFilters/ArticlesPageFilters';
-import { FiltersContainer } from '../FiltersContainer/FiltersContainer';
-import { ViewSelectorContainer } from '../ViewSelectorContainer/ViewSelectorContainer';
+import { ArticleInfiniteList } from '../../lib/components/ArticleInfiniteList/ArticleInfiniteList';
+import { ArticlesPageFilters } from '../../lib/components/ArticlesPageFilters/ArticlesPageFilters';
+import { FiltersContainer } from '../../lib/components/FiltersContainer/FiltersContainer';
+import { ViewSelectorContainer } from '../../lib/components/ViewSelectorContainer/ViewSelectorContainer';
 
 import classes from './ArticlesPage.module.scss';
 
