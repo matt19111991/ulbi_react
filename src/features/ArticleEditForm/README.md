@@ -1,8 +1,10 @@
 ## Фича формы редактирования статьи
 
-- Components
+### Components
 
 `ArticleEditForm` - форма редактирования статьи
+
+`ArticleCreateFormAsync` - асинхронная форма редактирования статьи
 
 ### Selectors
 

@@ -271,9 +271,9 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
             value={selectedBlock}
           />
 
-          {selectedBlock && (
+          {selectedBlock.length ? (
             <ArticleFormBlock onSubmit={onAddBlock} type={selectedBlock as ArticleBlockType} />
-          )}
+          ) : null}
         </VStack>
 
         <HStack className={classes.sendContainer} justify='end'>

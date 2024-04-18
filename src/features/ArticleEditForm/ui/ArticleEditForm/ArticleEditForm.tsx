@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import {
-  Article,
-  ArticleBlock,
   ArticleBlockPicker,
   ArticleBlockType,
   ArticleFormBlock,
@@ -13,16 +11,16 @@ import {
   fetchArticleById,
 } from '@/entities/Article';
 
-import { User } from '@/entities/User';
+import type { Article, ArticleBlock } from '@/entities/Article';
+
+import type { User } from '@/entities/User';
 
 import { getRouteArticleDetails } from '@/shared/const/router';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
-import {
-  DynamicModuleLoaderV2,
-  ReducersList,
-} from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+import { DynamicModuleLoaderV2 } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
 
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
@@ -32,17 +30,15 @@ import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { Input } from '@/shared/ui/redesigned/Input';
+import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Tabs } from '@/shared/ui/redesigned/Tabs';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { TextArea } from '@/shared/ui/redesigned/TextArea';
 
-import { TabItem } from '@/shared/types/ui';
+import type { TabItem } from '@/shared/types/ui';
 
-import {
-  getEditArticleFormError,
-  getEditArticleFormIsLoading,
-} from '../../model/selectors/editArticleFormSelectors';
+import { getEditArticleFormError } from '../../model/selectors/editArticleFormSelectors';
 
 import { editArticle } from '../../model/services/editArticle/editArticle';
 
@@ -51,13 +47,15 @@ import {
   editArticleFormReducer,
 } from '../../model/slice/editArticleFormSlice';
 
-import { EditArticleForm } from '../../model/types/editArticleFormSchema';
+import type { EditArticleForm } from '../../model/types/editArticleFormSchema';
 
 import classes from './ArticleEditForm.module.scss';
 
+type Inputs = Pick<EditArticleForm, 'img' | 'subtitle' | 'title'>;
+
 export interface ArticleEditFormProps {
   /**
-   * ID статьи
+   * 'ID' статьи
    */
   articleId: string;
 
@@ -77,9 +75,8 @@ const ArticleEditForm = ({ articleId, className }: ArticleEditFormProps) => {
   const { t } = useTranslation();
 
   const error = useSelector(getEditArticleFormError);
-  const isLoading = useSelector(getEditArticleFormIsLoading);
 
-  const blockButtons = useMemo<TabItem[]>(
+  const blockTabs = useMemo<TabItem[]>(
     () => [
       { content: t('Код'), value: ArticleBlockType.CODE },
       { content: t('Изображение'), value: ArticleBlockType.IMAGE },
@@ -88,7 +85,7 @@ const ArticleEditForm = ({ articleId, className }: ArticleEditFormProps) => {
     [t],
   );
 
-  const types = useMemo<TabItem[]>(
+  const typeTabs = useMemo<TabItem[]>(
     () => [
       { content: t('Айти'), value: ArticleType.IT },
       { content: t('Наука'), value: ArticleType.SCIENCE },
@@ -97,7 +94,7 @@ const ArticleEditForm = ({ articleId, className }: ArticleEditFormProps) => {
     [t],
   );
 
-  const [inputs, setInputs] = useState<Omit<EditArticleForm, 'blocks' | 'type'>>({
+  const [inputs, setInputs] = useState<Inputs>({
     img: '',
     subtitle: '',
     title: '',
@@ -105,11 +102,11 @@ const ArticleEditForm = ({ articleId, className }: ArticleEditFormProps) => {
 
   const [loading, setLoading] = useState(true);
 
-  const [selectedBlock, setSelectedBlock] = useState('');
+  const [selectedBlock, setSelectedBlock] = useState<ArticleBlockType | string>('');
 
   const [blocks, setBlocks] = useState<ArticleBlock[]>([]);
 
-  const [createdAt, setCreatedAt] = useState('');
+  const [createdAt, setCreatedAt] = useState<Article['createdAt']>('');
 
   const [type, setType] = useState(ArticleType.IT);
 
@@ -118,7 +115,7 @@ const ArticleEditForm = ({ articleId, className }: ArticleEditFormProps) => {
     username: '',
   });
 
-  const [views, setViews] = useState(0);
+  const [views, setViews] = useState<Article['views']>(0);
 
   /**
    * Обработчик для изменения основных полей формы статьи
@@ -131,7 +128,7 @@ const ArticleEditForm = ({ articleId, className }: ArticleEditFormProps) => {
 
       setInputs((prev) => ({ ...prev, [name]: value }));
     },
-    [dispatch, error],
+    [dispatch, error?.length],
   );
 
   /**
@@ -145,24 +142,33 @@ const ArticleEditForm = ({ articleId, className }: ArticleEditFormProps) => {
    * Обработчик для добавления (выбора) блока
    */
   const onArticleBlockClick = useCallback(({ value }: TabItem) => {
-    setSelectedBlock((prev) => (prev === value ? '' : (value as ArticleBlockType)));
+    setSelectedBlock((prev) => (prev === value ? '' : value));
   }, []);
 
   /**
    * Обработчик для добавления блока
    */
-  const onAddBlock = useCallback((newBlockData: ArticleBlock) => {
-    setBlocks((prev) => [...prev, { ...newBlockData, id: `${prev.length + 1}` }]);
+  const onAddBlock = useCallback(
+    (newBlock: ArticleBlock) => {
+      const newBlocks = [...blocks, newBlock];
 
-    setSelectedBlock('');
-  }, []);
+      setBlocks(() => newBlocks.map((block, idx) => ({ ...block, id: `${idx + 1}` })));
+
+      setSelectedBlock('');
+    },
+    [blocks],
+  );
 
   /**
    * Обработчик для удаления блока
    */
   const onRemoveBlock = useCallback(
     (id: string) => () => {
-      setBlocks((prev) => prev.filter((block) => block.id !== id));
+      setBlocks((prev) =>
+        prev
+          .filter((block) => block.id !== id)
+          .map((block, idx) => ({ ...block, id: `${idx + 1}` })),
+      );
     },
     [],
   );
@@ -171,11 +177,11 @@ const ArticleEditForm = ({ articleId, className }: ArticleEditFormProps) => {
    * Обработчик для обновления статьи
    */
   const onEditArticle = useCallback(async () => {
-    const form = {
-      ...inputs,
+    const form: Article = {
       blocks,
       createdAt,
       id: articleId,
+      ...inputs,
       type: [type],
       user: userData,
       views,
@@ -189,15 +195,13 @@ const ArticleEditForm = ({ articleId, className }: ArticleEditFormProps) => {
   }, [articleId, blocks, createdAt, dispatch, inputs, navigate, type, userData, views]);
 
   useEffect(() => {
-    const setInitialArticleData = async () => {
-      let response;
+    (async () => {
+      let response: { payload: Article };
 
       if (__PROJECT__ === 'storybook') {
-        response = {
-          payload: article,
-        };
+        response = { payload: article };
       } else {
-        response = await dispatch(fetchArticleById(articleId));
+        response = (await dispatch(fetchArticleById(articleId))) as { payload: Article };
       }
 
       if (response && response.payload) {
@@ -210,7 +214,7 @@ const ArticleEditForm = ({ articleId, className }: ArticleEditFormProps) => {
           type: articleType,
           user,
           views: articleViews,
-        } = response.payload as Article;
+        } = response.payload;
 
         setBlocks(articleBlocks);
 
@@ -226,32 +230,35 @@ const ArticleEditForm = ({ articleId, className }: ArticleEditFormProps) => {
 
         setViews(articleViews);
       }
-    };
-
-    setInitialArticleData();
+    })();
   }, [articleId, dispatch]);
 
   /**
    * Функция для отрисовки блоков
    */
   const renderBlocks = () =>
-    blocks.map((block) => (
-      <HStack className={classes.blockContainer} key={block.id} max>
-        <ArticleBlockPicker block={block} className={classes.block} />
+    blocks.map((block) => {
+      const articleBlockClass =
+        block.type === ArticleBlockType.CODE
+          ? `${classes.block} ${classes.codeBlock}`
+          : classes.block;
 
-        <AppLink className={classes.removeBlockIcon} onClick={onRemoveBlock(block.id)} to=''>
-          <Text text='x' variant='error' />
-        </AppLink>
-      </HStack>
-    ));
+      return (
+        <HStack className={classes.blockContainer} key={block.id} max>
+          <ArticleBlockPicker block={block} className={articleBlockClass} />
+
+          <AppLink className={classes.removeBlockIcon} onClick={onRemoveBlock(block.id)} to=''>
+            <Text text='x' variant='error' />
+          </AppLink>
+        </HStack>
+      );
+    });
 
   return (
     <DynamicModuleLoaderV2 reducers={reducers} removeAfterUnmount>
       <Card
         border='partial'
-        className={classNames(classes.ArticleEditForm, { [classes.loading]: isLoading }, [
-          className,
-        ])}
+        className={classNames(classes.ArticleEditForm, { [classes.loading]: loading }, [className])}
         data-testid='EditArticleForm'
         max
         padding='24'
@@ -270,79 +277,84 @@ const ArticleEditForm = ({ articleId, className }: ArticleEditFormProps) => {
             />
           ) : null}
 
-          <Input
-            className={classes.input}
-            data-testid='EditArticleForm.Input.Title'
-            fullWidth
-            label={t('Название статьи')}
-            name='title'
-            onChange={onArticleInputsChange}
-            placeholder={t('Введите название статьи')}
-            value={inputs.title}
-            verticalLabel
-          />
+          {loading ? (
+            <>
+              <Skeleton height={70} width='100%' />
+              <Skeleton height={120} width='100%' />
+              <Skeleton height={70} width='100%' />
+              <Skeleton height={90} width='100%' />
+            </>
+          ) : (
+            <>
+              <Input
+                data-testid='EditArticleForm.Input.Title'
+                fullWidth
+                label={t('Название статьи')}
+                name='title'
+                onChange={onArticleInputsChange}
+                placeholder={t('Введите название статьи')}
+                value={inputs.title}
+                verticalLabel
+              />
 
-          <TextArea
-            className={classes.input}
-            data-testid='EditArticleForm.Input.Subtitle'
-            fullWidth
-            label={t('Подзаголовок статьи')}
-            name='subtitle'
-            onChange={onArticleInputsChange}
-            placeholder={t('Введите подзаголовок статьи')}
-            value={inputs.subtitle}
-            verticalLabel
-          />
+              <TextArea
+                data-testid='EditArticleForm.Input.Subtitle'
+                fullWidth
+                label={t('Подзаголовок статьи')}
+                name='subtitle'
+                onChange={onArticleInputsChange}
+                placeholder={t('Введите подзаголовок статьи')}
+                value={inputs.subtitle}
+                verticalLabel
+              />
 
-          <Input
-            className={classes.input}
-            data-testid='EditArticleForm.Input.Image'
-            fullWidth
-            label={t('Изображение для статьи')}
-            name='img'
-            onChange={onArticleInputsChange}
-            placeholder={t('Укажите ссылку на изображение для статьи')}
-            value={inputs.img}
-            verticalLabel
-          />
+              <Input
+                data-testid='EditArticleForm.Input.Image'
+                fullWidth
+                label={t('Изображение для статьи')}
+                name='img'
+                onChange={onArticleInputsChange}
+                placeholder={t('Укажите ссылку на изображение для статьи')}
+                value={inputs.img}
+                verticalLabel
+              />
 
-          <Text text={t('Тип статьи')} />
+              <Text text={t('Тип статьи')} />
 
-          <Tabs
-            className={classes.articleTypes}
-            direction='row'
-            onTabClick={onArticleTypeChange}
-            tabs={types}
-            value={type}
-          />
+              <Tabs
+                className={classes.articleTypes}
+                direction='row'
+                onTabClick={onArticleTypeChange}
+                tabs={typeTabs}
+                value={type}
+              />
 
-          {renderBlocks()}
+              {renderBlocks()}
 
-          <Text text={t('Добавить блок')} />
+              <Text text={t('Добавить блок')} />
 
-          <Tabs
-            className={classes.addBlockTypes}
-            direction='row'
-            onTabClick={onArticleBlockClick}
-            tabs={blockButtons}
-            value={selectedBlock}
-          />
+              <Tabs
+                className={classes.blockTypes}
+                direction='row'
+                onTabClick={onArticleBlockClick}
+                tabs={blockTabs}
+                value={selectedBlock}
+              />
 
-          {selectedBlock && (
-            <ArticleFormBlock onSubmit={onAddBlock} type={selectedBlock as ArticleBlockType} />
+              {selectedBlock.length ? (
+                <ArticleFormBlock onSubmit={onAddBlock} type={selectedBlock as ArticleBlockType} />
+              ) : null}
+            </>
           )}
         </VStack>
 
-        <HStack className={classes.sendContainer} justify='end' max>
-          <Button
-            data-testid='EditArticleForm.Button'
-            disabled={!inputs.title.length || loading}
-            onClick={onEditArticle}
-            variant='outline'
-          >
-            {t('Отправить')}
-          </Button>
-        </HStack>
+        {!loading && (
+          <HStack className={classes.sendContainer} justify='end'>
+            <Button data-testid='EditArticleForm.Button' onClick={onEditArticle} variant='outline'>
+              {t('Отправить')}
+            </Button>
+          </HStack>
+        )}
       </Card>
     </DynamicModuleLoaderV2>
   );

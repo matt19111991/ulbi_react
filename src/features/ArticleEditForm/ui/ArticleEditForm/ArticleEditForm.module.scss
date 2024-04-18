@@ -17,6 +17,13 @@
   padding: 16px;
 }
 
+.codeBlock {
+  button {
+    right: 20px;
+    top: 20px;
+  }
+}
+
 .formContainer {
   margin-bottom: 16px;
   width: 500px;
@@ -26,19 +33,11 @@
   margin-bottom: 40px;
 }
 
-.input {
-  display: flex;
-  margin-right: 20px;
-  overflow: hidden;
-}
-
 .loading {
   opacity: .7;
-  pointer-events: none;
 }
 
 .removeBlockIcon {
-  cursor: pointer;
   position: absolute;
   right: 0;
   top: 0;
@@ -55,18 +54,16 @@
 @media screen and (max-width: 1800px) {
   .ArticleEditForm {
     display: table;
-    height: calc(100vh - 90px);
   }
 }
 
 @media screen and (max-width: 840px) {
-  .formContainer,
-  .sendContainer {
-    width: 100%;
+  .articleTypes {
+    width: auto;
   }
 
-  .addBlockTypes,
-  .articleTypes {
+  .articleTypes,
+  .blockTypes {
     flex-direction: column;
 
     & > div {
@@ -74,8 +71,8 @@
     }
   }
 
+  .formContainer,
   .sendContainer {
-    justify-content: flex-start;
-    padding: 0 16px;
+    width: 100%;
   }
 }
