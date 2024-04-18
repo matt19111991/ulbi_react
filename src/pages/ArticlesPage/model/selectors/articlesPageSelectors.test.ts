@@ -1,4 +1,4 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { ArticleSortField, ArticleType, ArticleView } from '@/entities/Article/testing';
 
@@ -28,7 +28,7 @@ describe('articlesPageSelectors', () => {
       expect(getArticlesPageAreLoading(state as StateSchema)).toBeTruthy();
     });
 
-    test('should work with empty state', () => {
+    test('should work with default state', () => {
       const state: DeepPartial<StateSchema> = {};
 
       expect(getArticlesPageAreLoading(state as StateSchema)).toBeFalsy();
@@ -39,17 +39,17 @@ describe('articlesPageSelectors', () => {
     test('should return error', () => {
       const state: DeepPartial<StateSchema> = {
         articlesPage: {
-          error: 'Error',
+          error: 'Articles page error',
         },
       };
 
-      expect(getArticlesPageError(state as StateSchema)).toBe('Error');
+      expect(getArticlesPageError(state as StateSchema)).toBe('Articles page error');
     });
 
     test('should work with empty state', () => {
       const state: DeepPartial<StateSchema> = {};
 
-      expect(getArticlesPageError(state as StateSchema)).toBe(undefined);
+      expect(getArticlesPageError(state as StateSchema)).toBeUndefined();
     });
   });
 
@@ -82,7 +82,7 @@ describe('articlesPageSelectors', () => {
       expect(getArticlesPageInited(state as StateSchema)).toBeTruthy();
     });
 
-    test('should work with empty state', () => {
+    test('should work with default state', () => {
       const state: DeepPartial<StateSchema> = {};
 
       expect(getArticlesPageInited(state as StateSchema)).toBeFalsy();
@@ -103,7 +103,7 @@ describe('articlesPageSelectors', () => {
     test('should work with empty state', () => {
       const state: DeepPartial<StateSchema> = {};
 
-      expect(getArticlesPageLimit(state as StateSchema)).toBe(undefined);
+      expect(getArticlesPageLimit(state as StateSchema)).toBeUndefined();
     });
   });
 
@@ -118,7 +118,7 @@ describe('articlesPageSelectors', () => {
       expect(getArticlesPageNumber(state as StateSchema)).toBe(5);
     });
 
-    test('should work with empty state', () => {
+    test('should work with default state', () => {
       const state: DeepPartial<StateSchema> = {};
 
       expect(getArticlesPageNumber(state as StateSchema)).toBe(1);
@@ -136,7 +136,7 @@ describe('articlesPageSelectors', () => {
       expect(getArticlesPageOrder(state as StateSchema)).toBe('desc');
     });
 
-    test('should work with empty state', () => {
+    test('should work with default state', () => {
       const state: DeepPartial<StateSchema> = {};
 
       expect(getArticlesPageOrder(state as StateSchema)).toBe('asc');
@@ -154,7 +154,7 @@ describe('articlesPageSelectors', () => {
       expect(getArticlesPageSearch(state as StateSchema)).toBe('search_value');
     });
 
-    test('should work with empty state', () => {
+    test('should work with default state', () => {
       const state: DeepPartial<StateSchema> = {};
 
       expect(getArticlesPageSearch(state as StateSchema)).toBe('');
@@ -162,7 +162,7 @@ describe('articlesPageSelectors', () => {
   });
 
   describe('getArticlesPageSort', () => {
-    test('should return sort', () => {
+    test('should return sort field', () => {
       const state: DeepPartial<StateSchema> = {
         articlesPage: {
           sort: ArticleSortField.TITLE,
@@ -172,7 +172,7 @@ describe('articlesPageSelectors', () => {
       expect(getArticlesPageSort(state as StateSchema)).toBe(ArticleSortField.TITLE);
     });
 
-    test('should work with empty state', () => {
+    test('should work with default state', () => {
       const state: DeepPartial<StateSchema> = {};
 
       expect(getArticlesPageSort(state as StateSchema)).toBe(ArticleSortField.CREATED);
@@ -190,7 +190,7 @@ describe('articlesPageSelectors', () => {
       expect(getArticlesPageType(state as StateSchema)).toBe(ArticleType.SCIENCE);
     });
 
-    test('should work with empty state', () => {
+    test('should work with default state', () => {
       const state: DeepPartial<StateSchema> = {};
 
       expect(getArticlesPageType(state as StateSchema)).toBe(ArticleType.ALL);
@@ -208,7 +208,7 @@ describe('articlesPageSelectors', () => {
       expect(getArticlesPageView(state as StateSchema)).toBe(ArticleView.LIST);
     });
 
-    test('should work with empty state', () => {
+    test('should work with default state', () => {
       const state: DeepPartial<StateSchema> = {};
 
       expect(getArticlesPageView(state as StateSchema)).toBe(ArticleView.PLATE);
