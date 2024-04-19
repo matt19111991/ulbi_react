@@ -43,6 +43,7 @@ export const fetchArticlesList = createAsyncThunk<
   const type = getArticlesPageType(state);
 
   try {
+    // добавляем параметры строки запроса в 'URL'
     addQueryParams({
       order,
       search,
