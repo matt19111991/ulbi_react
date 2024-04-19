@@ -67,7 +67,7 @@ describe('editArticleFormSlice', () => {
         при тестировании 'extraReducers':
           - второй аргумент: любая строка (например, 'requestId')
           - третий аргумент: аргументы, передаваемые в 'async thunk', в нашем случае 'Article'
-       */
+      */
       const reducer = editArticleFormReducer(
         state as EditArticleFormSchema,
         editArticle.rejected(error, 'requestId', editedForm),

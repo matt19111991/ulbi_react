@@ -1,4 +1,4 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { ArticleSortField, ArticleType } from '@/entities/Article/testing';
 
@@ -129,19 +129,23 @@ describe('initArticlesPage', () => {
     });
   });
 
-  test('not called', async () => {
-    const state: DeepPartial<StateSchema> = {
-      articlesPage: {
-        inited: true,
-      },
-    };
+  describe('inactive', () => {
+    test('not called', async () => {
+      const state: DeepPartial<StateSchema> = {
+        articlesPage: {
+          inited: true,
+        },
+      };
 
-    const thunk = new TestAsyncThunk(initArticlesPage, state);
+      const thunk = new TestAsyncThunk(initArticlesPage, state);
 
-    await thunk.callThunk();
+      await thunk.callThunk();
 
-    expect(thunk.dispatch).toHaveBeenCalledTimes(2);
-    expect(articlesPageActions.initState).not.toHaveBeenCalled();
-    expect(fetchArticlesList).not.toHaveBeenCalled();
+      expect(thunk.dispatch).toHaveBeenCalledTimes(2);
+
+      expect(articlesPageActions.initState).not.toHaveBeenCalled();
+
+      expect(fetchArticlesList).not.toHaveBeenCalled();
+    });
   });
 });

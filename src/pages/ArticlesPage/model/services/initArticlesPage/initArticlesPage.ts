@@ -1,6 +1,7 @@
-import { ActionCreatorWithPayload, createAsyncThunk, Dispatch } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import type { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 
-import { ThunkConfig } from '@/app/providers/StoreProvider';
+import type { AppDispatch, ThunkConfig } from '@/app/providers/StoreProvider';
 
 import { ArticleSortField, ArticleType } from '@/entities/Article';
 
@@ -15,7 +16,7 @@ import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
 const setSearchParam = <T>(
   param: T,
   action: ActionCreatorWithPayload<T>,
-  dispatch: Dispatch,
+  dispatch: AppDispatch,
 ): void => {
   if (param) {
     dispatch(action(param));

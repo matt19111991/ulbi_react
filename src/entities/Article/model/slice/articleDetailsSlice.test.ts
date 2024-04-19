@@ -34,7 +34,7 @@ describe('articleDetailsSlice', () => {
         при тестировании 'extraReducers' обязательно нужно передавать:
           - второй аргумент: любая строка (например, 'requestId')
           - третий аргумент: аргументы, передаваемые в 'async thunk', в нашем случае "Article['id']"
-       */
+      */
       const reducer = articleDetailsReducer(
         state as ArticleDetailsSchema,
         fetchArticleById.fulfilled(article, 'requestId', '1'),
@@ -57,7 +57,7 @@ describe('articleDetailsSlice', () => {
         при тестировании 'extraReducers':
           - второй аргумент: любая строка (например, 'requestId')
           - третий аргумент: аргументы, передаваемые в 'async thunk', в нашем случае "Article['id']"
-       */
+      */
       const reducer = articleDetailsReducer(
         state as ArticleDetailsSchema,
         fetchArticleById.rejected(error, 'requestId', '1'),

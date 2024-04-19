@@ -34,8 +34,8 @@ const commentsAdapter = createEntityAdapter<Comment>({
     если уникальное значение у комментария будет не 'id', а 'commentId':
     selectId: (comment) => comment.commentId,
 
-    массив с айдишниками будет отсортирован на основе поля 'title':
-    sortComparer: (a, b) => a.title.localeCompare(b.title),
+    массив с айдишниками будет отсортирован на основе поля 'text':
+    sortComparer: (a, b) => a.text.localeCompare(b.text),
   */
 });
 
@@ -53,7 +53,7 @@ const initialState: ArticleDetailsCommentsSchema = {
 
 const articleDetailsCommentsSlice = createSlice({
   name: 'articleDetailsComments',
-  initialState: commentsAdapter.getInitialState<ArticleDetailsCommentsSchema>(initialState),
+  initialState: commentsAdapter.getInitialState(initialState),
   reducers: {},
   extraReducers: (builder) =>
     builder

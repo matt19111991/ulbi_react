@@ -78,7 +78,7 @@ describe('createArticleFormSlice', () => {
         при тестировании 'extraReducers':
           - второй аргумент: любая строка (например, 'requestId')
           - третий аргумент: аргументы, передаваемые в 'async thunk', в нашем случае 'CreateArticleForm'
-       */
+      */
       const reducer = createArticleFormReducer(
         state as CreateArticleFormSchema,
         createArticle.rejected(error, 'requestId', form),

@@ -74,7 +74,7 @@ describe('loginSlice', () => {
         при тестировании 'extraReducers':
           - второй аргумент: любая строка (например, 'requestId')
           - третий аргумент: аргументы, передаваемые в 'async thunk', в нашем случае 'LoginByUsernameProps'
-       */
+      */
       const reducer = loginReducer(
         state as LoginSchema,
         loginByUsername.rejected(error, 'requestId', args) as Action,

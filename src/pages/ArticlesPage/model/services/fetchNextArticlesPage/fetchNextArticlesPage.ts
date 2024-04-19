@@ -21,6 +21,17 @@ export const fetchNextArticlesPage = createAsyncThunk<void, void, ThunkConfig<st
     const hasMore = getArticlesPageHasMore(state);
     const page = getArticlesPageNumber(state);
 
+    /*
+      при ленивой подгрузке вызывается множество запросов, если доскроллить до конца любой
+      страницы из-за 'IntersectionObserver'
+
+      в этом случае нужно:
+        - добавить в 'fetchNextArticlesPage()' условие на подгрузку только в случае,
+          если 'hasMore === true' && 'areLoading === false'
+
+        - не полностью перезатирать данные: 'articlesAdapter.setAll(state, action.payload);',
+          а добавлять данные в конец:       'articlesAdapter.addMany(state, action.payload);'
+    */
     if (hasMore && !areLoading) {
       const nextPage = page + 1;
 

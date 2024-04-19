@@ -16,7 +16,7 @@ import {
   getArticlesPageType,
 } from '../../selectors/articlesPageSelectors';
 
-interface FetchArticlesListProps {
+export interface FetchArticlesListOptions {
   /*
     'replace === false' => 'articlesAdapter.addMany':
       - новая порция данных подгружается в конец, используем для ленивой загрузки
@@ -33,7 +33,7 @@ export const fetchArticlesList = createAsyncThunk<
     на вход передаем значение для 'replace', будем использовать это значение в слайсах,
     в текущем 'async thunk' не используем
   */
-  FetchArticlesListProps | undefined,
+  FetchArticlesListOptions | undefined,
   ThunkConfig<string> // передаваемый тип ошибки в конфиг: 'string'
 >('articlesPage/fetchArticlesList', async (_, thunkApi) => {
   const state = thunkApi.getState();

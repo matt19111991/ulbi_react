@@ -1,5 +1,8 @@
 import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { ArticleSortField, ArticleType, ArticleView } from '@/entities/Article';
 
@@ -7,6 +10,8 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 
 import { SortOrder } from '@/shared/types/sort';
+
+import { getPageScrollByPath, pageScrollActions } from '@/widgets/Page';
 
 import {
   getArticlesPageAreLoading,
@@ -23,6 +28,7 @@ import { articlesPageActions } from '../../model/slice/articlesPageSlice';
 
 export const useArticleFilters = () => {
   const dispatch = useAppDispatch();
+  const location = useLocation();
 
   const areLoading = useSelector(getArticlesPageAreLoading);
   const order = useSelector(getArticlesPageOrder);
@@ -30,6 +36,10 @@ export const useArticleFilters = () => {
   const sort = useSelector(getArticlesPageSort);
   const type = useSelector(getArticlesPageType);
   const view = useSelector(getArticlesPageView);
+
+  const scrollPosition = useSelector((state: StateSchema) =>
+    getPageScrollByPath(state, location.pathname),
+  );
 
   /**
    * Получение данных
@@ -105,8 +115,17 @@ export const useArticleFilters = () => {
   const onChangeView = useCallback(
     (newView: ArticleView) => {
       dispatch(articlesPageActions.setView(newView));
+
+      if (scrollPosition) {
+        dispatch(
+          pageScrollActions.setScrollPosition({
+            path: location.pathname,
+            position: 0,
+          }),
+        );
+      }
     },
-    [dispatch],
+    [dispatch, location.pathname, scrollPosition],
   );
 
   return {
