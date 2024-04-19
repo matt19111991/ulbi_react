@@ -1,8 +1,9 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { ArticleSortField, ArticleType } from '@/entities/Article/testing';
 
 import { generateArticles } from '@/shared/lib/generators/articles';
+
 import { TestAsyncThunk } from '@/shared/lib/tests';
 
 import { fetchArticlesList } from './fetchArticlesList';
@@ -25,12 +26,12 @@ describe('fetchArticlesList', () => {
 
       const thunk = new TestAsyncThunk(fetchArticlesList, state);
 
+      // указываем, что должно вернуться из 'get' запроса
       thunk.api.get.mockReturnValue(Promise.resolve({ data: articles }));
 
       const result = await thunk.callThunk();
 
       expect(thunk.dispatch).toHaveBeenCalledTimes(2);
-      expect(thunk.api.get).toHaveBeenCalled();
 
       expect(thunk.api.get).toHaveBeenCalledWith('articles', {
         params: {
@@ -45,6 +46,7 @@ describe('fetchArticlesList', () => {
       });
 
       expect(result.meta.requestStatus).toBe('fulfilled');
+
       expect(result.payload).toEqual(articles);
     });
 
@@ -62,12 +64,12 @@ describe('fetchArticlesList', () => {
 
       const thunk = new TestAsyncThunk(fetchArticlesList, state);
 
+      // указываем, что должно вернуться из 'get' запроса
       thunk.api.get.mockReturnValue(Promise.resolve({ data: articles }));
 
       const result = await thunk.callThunk();
 
       expect(thunk.dispatch).toHaveBeenCalledTimes(2);
-      expect(thunk.api.get).toHaveBeenCalled();
 
       expect(thunk.api.get).toHaveBeenCalledWith('articles', {
         params: {
@@ -82,19 +84,52 @@ describe('fetchArticlesList', () => {
       });
 
       expect(result.meta.requestStatus).toBe('fulfilled');
+
       expect(result.payload).toEqual(articles);
     });
 
     test('no params', async () => {
       const state: DeepPartial<StateSchema> = {
-        articlesPage: {
-          limit: 4,
-        },
+        articlesPage: {},
       };
 
       const thunk = new TestAsyncThunk(fetchArticlesList, state);
 
+      // указываем, что должно вернуться из 'get' запроса
       thunk.api.get.mockReturnValue(Promise.resolve({ data: articles }));
+
+      const result = await thunk.callThunk();
+
+      expect(thunk.dispatch).toHaveBeenCalledTimes(2);
+
+      expect(thunk.api.get).toHaveBeenCalledWith('articles', {
+        params: {
+          q: '',
+          type: undefined,
+          _expand: 'user',
+          _limit: undefined,
+          _order: 'asc',
+          _page: 1,
+          _sort: 'createdAt',
+        },
+      });
+
+      expect(result.meta.requestStatus).toBe('fulfilled');
+
+      expect(result.payload).toEqual(articles);
+    });
+  });
+
+  describe('error', () => {
+    test('no articles data', async () => {
+      const state: DeepPartial<StateSchema> = {
+        articlesPage: {},
+      };
+
+      const thunk = new TestAsyncThunk(fetchArticlesList, state);
+
+      // указываем, что должно вернуться из 'get' запроса
+      thunk.api.get.mockReturnValue(Promise.resolve({ status: 403 }));
 
       const result = await thunk.callThunk();
 
@@ -102,29 +137,9 @@ describe('fetchArticlesList', () => {
 
       expect(thunk.api.get).toHaveBeenCalled();
 
-      expect(result.meta.requestStatus).toBe('fulfilled');
-      expect(result.payload).toEqual(articles);
+      expect(result.meta.requestStatus).toBe('rejected');
+
+      expect(result.payload).toBe('No articles data');
     });
-  });
-
-  test('error', async () => {
-    const state: DeepPartial<StateSchema> = {
-      articlesPage: {
-        limit: 4,
-      },
-    };
-
-    const thunk = new TestAsyncThunk(fetchArticlesList, state);
-
-    thunk.api.get.mockReturnValue(Promise.resolve({ status: 403 }));
-
-    const result = await thunk.callThunk();
-
-    expect(thunk.dispatch).toHaveBeenCalledTimes(2);
-
-    expect(thunk.api.get).toHaveBeenCalled();
-
-    expect(result.meta.requestStatus).toBe('rejected');
-    expect(result.payload).toEqual('error');
   });
 });

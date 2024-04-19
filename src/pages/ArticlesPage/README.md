@@ -40,9 +40,9 @@
 
 `getArticlesPageView` - селектор для получения информации о виде списка статей
 
-- Services
+### Services
 
-`fetchArticlesList` - Сервис для получения списка статей
+`fetchArticlesList` - сервис для получения списка статей
 
 `fetchNextArticlesPage` - Сервис для получения следующей страницы для списка статей
 
