@@ -108,10 +108,7 @@ export const ArticleList = memo(
       } else {
         setSkeletonsAmount(0);
 
-        /*
-          можно не отфильтровывать скелетоны из 'articleItems', т.к.
-         'useEffect' выше установит нужны значения после загрузки
-        */
+        setArticleItems((prev) => prev.filter((articleBlock) => 'title' in articleBlock));
       }
     }, [isLoading, skeletonsAmount, target, view]);
 
