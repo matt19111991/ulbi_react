@@ -1,11 +1,12 @@
-import { Fragment, memo, ReactNode } from 'react';
+import { Fragment, memo } from 'react';
+import type { ReactNode } from 'react';
 import { Listbox as HeadlessListBox } from '@headlessui/react';
 
 import CheckIcon from '@/shared/assets/icons/check-16-12.svg';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
-import { DropdownDirection } from '@/shared/types/ui';
+import type { DropdownDirection } from '@/shared/types/ui';
 
 import { Button } from '../../../Button/Button';
 
@@ -14,6 +15,7 @@ import { HStack, VStack } from '../../../../redesigned/Stack';
 import { mapDirectionClass } from '../../styles/consts';
 
 import popupClasses from '../../styles/popup.module.scss';
+
 import classes from './ListBox.module.scss';
 
 export interface ListBoxItem {
@@ -55,7 +57,7 @@ interface ListBoxProps {
   items?: ListBoxItem[];
 
   /**
-   * Label
+   * Лэйбл
    */
   label?: string;
 
@@ -100,8 +102,8 @@ export const ListBox = memo(
         onChange={onChange}
         value={value}
       >
-        <HeadlessListBox.Button as='div' className={classes.trigger}>
-          <Button disabled={readonly}>{value ?? defaultValue}</Button>
+        <HeadlessListBox.Button as={Fragment}>
+          <Button>{value ?? defaultValue}</Button>
         </HeadlessListBox.Button>
 
         <HeadlessListBox.Options
@@ -116,14 +118,10 @@ export const ListBox = memo(
             >
               {({ active, selected }) => (
                 <li
-                  className={classNames(
-                    classes.item,
-                    {
-                      [popupClasses.active]: active,
-                      [popupClasses.disabled]: item.disabled,
-                    },
-                    [],
-                  )}
+                  className={classNames(classes.item, {
+                    [popupClasses.active]: active,
+                    [popupClasses.disabled]: item.disabled,
+                  })}
                 >
                   <HStack gap='4'>
                     {item.content}

@@ -24,7 +24,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    label: 'Укажите значение',
+    label: 'Выберите пункт',
     onChange: action('onChange'),
     options: [
       { content: 'Первый пункт', value: '123' },
@@ -40,7 +40,7 @@ Primary.decorators = [IndentsDecorator];
 
 export const Dark: Story = {
   args: {
-    label: 'Укажите значение',
+    label: 'Выберите пункт',
     onChange: action('onChange'),
     options: [
       { content: 'Первый пункт', value: '123' },
@@ -56,7 +56,7 @@ Dark.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 
 export const Orange: Story = {
   args: {
-    label: 'Укажите значение',
+    label: 'Выберите пункт',
     onChange: action('onChange'),
     options: [
       { content: 'Первый пункт', value: '123' },
@@ -72,7 +72,7 @@ Orange.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
 
 export const ReadOnly: Story = {
   args: {
-    label: 'Укажите значение',
+    label: 'Выберите пункт',
     readOnly: true,
     options: [
       { content: 'Первый пункт', value: '123' },

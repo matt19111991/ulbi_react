@@ -1,12 +1,12 @@
 ## Страница с фильтруемым списком статей
 
-- Components
+### Components
 
 `ArticleInfiniteList` - Компонент с бесконечным списком статей 
 
 `ArticlesPage` - Компонент со списком статей
 
-`ArticlesPageFilters` - Компонент с фильтрами для статей
+`ArticlesPageFilters` - устаревший компонент с фильтрами для статей
 
 `FiltersContainer` - Компонент-контейнер для фильтров статей
 
