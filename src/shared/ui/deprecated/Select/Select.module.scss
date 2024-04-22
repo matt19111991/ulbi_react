@@ -1,13 +1,9 @@
-.Wrapper {
-  display: flex;
-}
-
 .label {
   margin-right: 5px;
 }
 
 .option {
-  background: var(--inverted-bg-color);
+  background-color: var(--inverted-bg-color);
   color: var(--inverted-primary-color);
 }
 

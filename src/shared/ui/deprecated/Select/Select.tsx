@@ -1,6 +1,8 @@
-import { ChangeEvent, JSX, useMemo } from 'react';
+import { useMemo } from 'react';
+import type { ChangeEvent } from 'react';
 
-import { classNames, Mods } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import type { Mods } from '@/shared/lib/classNames/classNames';
 
 import { genericMemo } from '@/shared/lib/components/genericMemo/genericMemo';
 
@@ -13,7 +15,7 @@ export interface SelectOption<T extends string> {
   content: string;
 
   /**
-   * Значение пункта
+   * Значение пункта меню
    */
   value: T;
 }
@@ -25,12 +27,12 @@ interface SelectProps<T extends string> {
   className?: string;
 
   /**
-   * ID для тестов
+   * 'ID' для тестов
    */
   'data-testid'?: string;
 
   /**
-   * Label
+   * Лэйбл
    */
   label?: string;
 
@@ -68,15 +70,18 @@ const Select = <T extends string>({
   readOnly,
   value,
 }: SelectProps<T>) => {
-  const optionsList = useMemo<JSX.Element[] | undefined>(() => {
-    return options?.map((option) => (
-      <option className={classes.option} key={option.value} value={option.value}>
-        {option.content}
-      </option>
-    ));
-  }, [options]);
+  const optionsList = useMemo<JSX.Element[] | undefined>(
+    () =>
+      options?.map((option) => (
+        <option className={classes.option} key={option.value} value={option.value}>
+          {option.content}
+        </option>
+      )),
+    [options],
+  );
 
   const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>): void => {
+    // 'onChange?.()' => функция не будет вызвана, если не будет передана
     onChange?.(e.target.value as T);
   };
 
@@ -85,7 +90,7 @@ const Select = <T extends string>({
   };
 
   return (
-    <div className={classNames(classes.Wrapper, mods, [className])}>
+    <div className={classNames('', mods, [className])}>
       {label && <span className={classes.label}>{`${label}>`}</span>}
 
       <select

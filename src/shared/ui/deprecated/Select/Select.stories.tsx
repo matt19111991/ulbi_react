@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
@@ -24,6 +25,7 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     label: 'Укажите значение',
+    onChange: action('onChange'),
     options: [
       { content: 'Первый пункт', value: '123' },
       { content: 'Второй пункт', value: '456' },
@@ -39,6 +41,7 @@ Primary.decorators = [IndentsDecorator];
 export const Dark: Story = {
   args: {
     label: 'Укажите значение',
+    onChange: action('onChange'),
     options: [
       { content: 'Первый пункт', value: '123' },
       { content: 'Второй пункт', value: '456' },
@@ -54,6 +57,7 @@ Dark.decorators = [IndentsDecorator, ThemeDecorator(Theme.DARK)];
 export const Orange: Story = {
   args: {
     label: 'Укажите значение',
+    onChange: action('onChange'),
     options: [
       { content: 'Первый пункт', value: '123' },
       { content: 'Второй пункт', value: '456' },
@@ -63,5 +67,22 @@ export const Orange: Story = {
 };
 
 Orange.decorators = [IndentsDecorator, ThemeDecorator(Theme.ORANGE)];
+
+// Readonly select
+
+export const ReadOnly: Story = {
+  args: {
+    label: 'Укажите значение',
+    readOnly: true,
+    options: [
+      { content: 'Первый пункт', value: '123' },
+      { content: 'Второй пункт', value: '456' },
+      { content: 'Третий пункт', value: '789' },
+    ],
+    value: '456',
+  },
+};
+
+ReadOnly.decorators = [IndentsDecorator];
 
 export default meta;

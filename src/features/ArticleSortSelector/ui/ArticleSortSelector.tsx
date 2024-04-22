@@ -6,7 +6,8 @@ import { ArticleSortField } from '@/entities/Article';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { ToggleFeatures } from '@/shared/lib/features';
 
-import { Select, SelectOption } from '@/shared/ui/deprecated/Select';
+import { Select } from '@/shared/ui/deprecated/Select';
+import type { SelectOption } from '@/shared/ui/deprecated/Select';
 
 import { ListBox } from '@/shared/ui/redesigned/Popups';
 import { VStack } from '@/shared/ui/redesigned/Stack';

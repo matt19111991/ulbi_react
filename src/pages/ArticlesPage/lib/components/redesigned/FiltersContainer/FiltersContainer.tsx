@@ -2,7 +2,7 @@ import { memo } from 'react';
 
 import { ArticlesFilters } from '@/widgets/ArticlesFilters';
 
-import { useArticleFilters } from '../../hooks/useArticleFilters';
+import { useArticleFilters } from '../../../hooks/useArticleFilters';
 
 interface FiltersContainerProps {
   /**
