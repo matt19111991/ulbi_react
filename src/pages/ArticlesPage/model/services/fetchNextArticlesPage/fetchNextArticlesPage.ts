@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { ThunkConfig } from '@/app/providers/StoreProvider';
+import type { ThunkConfig } from '@/app/providers/StoreProvider';
 
 import {
   getArticlesPageAreLoading,
@@ -12,32 +12,33 @@ import { articlesPageActions } from '../../slice/articlesPageSlice';
 
 import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
 
-export const fetchNextArticlesPage = createAsyncThunk<void, void, ThunkConfig<string>>(
-  'articlesPage/fetchNextArticlesPage',
-  async (_, thunkApi) => {
-    const state = thunkApi.getState();
+export const fetchNextArticlesPage = createAsyncThunk<
+  void, // ничего не возвращаем
+  void, // ничего не передаем на вход
+  ThunkConfig<string> // передаваемый тип ошибки в конфиг: 'string'
+>('articlesPage/fetchNextArticlesPage', async (_, thunkApi) => {
+  const state = thunkApi.getState();
 
-    const areLoading = getArticlesPageAreLoading(state);
-    const hasMore = getArticlesPageHasMore(state);
-    const page = getArticlesPageNumber(state);
+  const areLoading = getArticlesPageAreLoading(state);
+  const hasMore = getArticlesPageHasMore(state);
+  const page = getArticlesPageNumber(state);
 
-    /*
-      при ленивой подгрузке вызывается множество запросов, если доскроллить до конца любой
-      страницы из-за 'IntersectionObserver'
+  /*
+    при ленивой подгрузке вызывается множество запросов, если доскроллить до конца любой
+    страницы из-за 'IntersectionObserver'
 
-      в этом случае нужно:
-        - добавить в 'fetchNextArticlesPage()' условие на подгрузку только в случае,
-          если 'hasMore === true' && 'areLoading === false'
+    в этом случае нужно:
+      - добавить в 'fetchNextArticlesPage()' условие на подгрузку только в случае,
+        если 'hasMore === true' && 'areLoading === false'
 
-        - не полностью перезатирать данные: 'articlesAdapter.setAll(state, action.payload);',
-          а добавлять данные в конец:       'articlesAdapter.addMany(state, action.payload);'
-    */
-    if (hasMore && !areLoading) {
-      const nextPage = page + 1;
+      - не полностью перезатирать данные: 'articlesAdapter.setAll(state, action.payload);',
+        а добавлять данные в конец:       'articlesAdapter.addMany(state, action.payload);'
+  */
+  if (hasMore && !areLoading) {
+    const nextPage = page + 1;
 
-      thunkApi.dispatch(articlesPageActions.setPage(nextPage));
+    thunkApi.dispatch(articlesPageActions.setPage(nextPage));
 
-      thunkApi.dispatch(fetchArticlesList());
-    }
-  },
-);
+    await thunkApi.dispatch(fetchArticlesList());
+  }
+});
