@@ -1,22 +1,22 @@
-.ArticleSortSelector {
-  align-items: center;
+.ArticleSortSelectorDeprecated {
   display: flex;
   gap: 8px;
 }
 
-// добавляем стили только в приложении (не в storybook)
+// добавляем стили только в приложении (не в 'storybook')
 @media screen and (max-width: 1800px) {
   body:has(> div[id='root']) {
-    .stack {
-      display: flex;
+    .stackRedesigned {
       flex-direction: row;
     }
   }
 }
 
+// добавляем стили только в приложении (не в 'storybook')
 @media screen and (max-width: 480px) {
-  .stack {
-    display: flex;
-    flex-direction: column !important;
+  body:has(> div[id='root']) {
+    .stackRedesigned {
+      flex-direction: column !important;
+    }
   }
 }

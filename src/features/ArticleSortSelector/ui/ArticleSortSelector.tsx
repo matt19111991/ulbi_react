@@ -13,7 +13,7 @@ import { ListBox } from '@/shared/ui/redesigned/Popups';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 
-import { SortOrder } from '@/shared/types/sort';
+import type { SortOrder } from '@/shared/types/sort';
 
 import classes from './ArticleSortSelector.module.scss';
 
@@ -85,17 +85,17 @@ export const ArticleSortSelector = memo(
         feature='isAppRedesigned'
         on={
           <div className={className}>
-            <VStack align='start' className={classes.stack} gap='8'>
+            <VStack align='start' className={classes.stackRedesigned} gap='8'>
               <Text text={`${t('Сортировать по')}:`} />
 
-              <ListBox
+              <ListBox<ArticleSortField>
                 data-testid='Articles.SortField'
                 items={sortFieldOptions}
                 onChange={onChangeSort}
                 value={sort}
               />
 
-              <ListBox
+              <ListBox<SortOrder>
                 data-testid='Articles.Order'
                 items={orderOptions}
                 onChange={onChangeOrder}
@@ -105,7 +105,7 @@ export const ArticleSortSelector = memo(
           </div>
         }
         off={
-          <div className={classNames(classes.ArticleSortSelector, {}, [className])}>
+          <div className={classNames(classes.ArticleSortSelectorDeprecated, {}, [className])}>
             <Select<ArticleSortField>
               data-testid='Articles.SortField'
               label={t('Сортировать по')}

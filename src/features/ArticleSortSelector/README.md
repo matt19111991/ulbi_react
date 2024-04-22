@@ -1,5 +1,5 @@
 ## Фича с выбором сортировки списка статьей
 
-- Components
+### Components
 
 `ArticleSortSelector` - компонент сортировки списка статей
