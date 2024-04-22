@@ -9,7 +9,7 @@ import { ArticleSortField, ArticleType, ArticleView } from '@/entities/Article';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 
-import { SortOrder } from '@/shared/types/sort';
+import type { SortOrder } from '@/shared/types/sort';
 
 import { getPageScrollByPath, pageScrollActions } from '@/widgets/Page';
 
@@ -78,7 +78,7 @@ export const useArticleFilters = () => {
 
       debouncedFetchData();
     },
-    [dispatch, debouncedFetchData],
+    [debouncedFetchData, dispatch],
   );
 
   /**

@@ -12,9 +12,9 @@
 
 `ViewSelectorContainer` - Компонент для выбора вида статей
 
-- Hooks
+### Hooks
 
-`useArticleFilters` - Хук для переиспользуемой логики фильтрации статей
+`useArticleFilters` - хук для переиспользуемой логики фильтрации статей
 
 ### Selectors
 
