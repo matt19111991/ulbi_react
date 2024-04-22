@@ -52,7 +52,10 @@ const reducers: ReducersList = {
 
 const ArticlesPage = ({ className }: ArticlesPageProps) => {
   const dispatch = useAppDispatch();
-  const [searchParams] = useSearchParams();
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const { t } = useTranslation();
 
   const error = useSelector(getArticlesPageError);
