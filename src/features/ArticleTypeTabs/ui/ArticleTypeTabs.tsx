@@ -6,11 +6,11 @@ import { ArticleType } from '@/entities/Article';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { ToggleFeatures } from '@/shared/lib/features';
 
-import { TabItem } from '@/shared/types/ui';
+import type { TabItem } from '@/shared/types/ui';
 
 import { Tabs as TabsDeprecated } from '@/shared/ui/deprecated/Tabs';
 
-import { Tabs } from '@/shared/ui/redesigned/Tabs';
+import { Tabs as TabsRedesigned } from '@/shared/ui/redesigned/Tabs';
 
 interface ArticleTypeTabsProps {
   /**
@@ -53,7 +53,7 @@ export const ArticleTypeTabs = memo(({ className, onChangeType, value }: Article
     <ToggleFeatures
       feature='isAppRedesigned'
       on={
-        <Tabs
+        <TabsRedesigned
           className={classNames('', {}, [className])}
           data-testid='Articles.Type'
           direction='column'
