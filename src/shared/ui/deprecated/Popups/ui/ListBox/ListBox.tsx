@@ -102,7 +102,7 @@ export const ListBox = memo(
         onChange={onChange}
         value={value}
       >
-        <HeadlessListBox.Button as={Fragment}>
+        <HeadlessListBox.Button as='div'>
           <Button>{value ?? defaultValue}</Button>
         </HeadlessListBox.Button>
 
@@ -116,6 +116,10 @@ export const ListBox = memo(
               key={item.value}
               value={item.value}
             >
+              {/*
+                в библиотеке '@headlessui' как альтернативу 'JSX'-компонентам можно использовать
+                паттерн 'render props' (функция вместо 'JSX'-компонента)
+              */}
               {({ active, selected }) => (
                 <li
                   className={classNames(classes.item, {

@@ -1,4 +1,5 @@
-import { Fragment, ReactNode, useMemo } from 'react';
+import { Fragment, useMemo } from 'react';
+import type { ReactNode } from 'react';
 import { Listbox as HeadlessListBox } from '@headlessui/react';
 
 import ArrowIcon from '@/shared/assets/icons/arrow-redesigned.svg';
@@ -7,7 +8,7 @@ import CheckIcon from '@/shared/assets/icons/check-16-12.svg';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { genericMemo } from '@/shared/lib/components/genericMemo/genericMemo';
 
-import { DropdownDirection } from '@/shared/types/ui';
+import type { DropdownDirection } from '@/shared/types/ui';
 
 import { Button } from '../../../Button/Button';
 import { Icon } from '../../../Icon/Icon';
@@ -16,6 +17,7 @@ import { HStack, VStack } from '../../../Stack';
 import { mapDirectionClass } from '../../styles/consts';
 
 import popupClasses from '../../styles/popup.module.scss';
+
 import classes from './ListBox.module.scss';
 
 export interface ListBoxItem {
@@ -42,7 +44,7 @@ interface ListBoxProps<T> {
   className?: string;
 
   /**
-   * ID для тестов
+   * 'ID' для тестов
    */
   'data-testid'?: string;
 
@@ -62,7 +64,7 @@ interface ListBoxProps<T> {
   items?: ListBoxItem[];
 
   /**
-   * Label
+   * Лэйбл
    */
   label?: string;
 
@@ -89,8 +91,8 @@ interface ListBoxProps<T> {
 
 const ListBox = <T extends string>({
   className,
-  defaultValue,
   'data-testid': dataTestId = 'ListBox',
+  defaultValue,
   direction = 'bottom-left',
   items,
   label,
@@ -122,7 +124,7 @@ const ListBox = <T extends string>({
         onChange={onChange}
         value={value}
       >
-        <HeadlessListBox.Button as='div' className={classes.trigger}>
+        <HeadlessListBox.Button as='div'>
           <Button
             addonRight={<Icon Svg={ArrowIcon} />}
             data-testid={`${dataTestId}.Button`}
@@ -141,17 +143,16 @@ const ListBox = <T extends string>({
               key={item.value}
               value={item.value}
             >
+              {/*
+                в библиотеке '@headlessui' как альтернативу 'JSX'-компонентам можно использовать
+                паттерн 'render props' (функция вместо 'JSX'-компонента)
+              */}
               {({ active, selected }) => (
                 <li
-                  className={classNames(
-                    classes.item,
-                    {
-                      [popupClasses.active]: active,
-                      [popupClasses.disabled]: item.disabled,
-                      [popupClasses.selected]: selected,
-                    },
-                    [],
-                  )}
+                  className={classNames(classes.item, {
+                    [popupClasses.active]: active,
+                    [popupClasses.disabled]: item.disabled,
+                  })}
                   data-testid={`${dataTestId}.Option.${item.value}`}
                 >
                   <HStack gap='4'>

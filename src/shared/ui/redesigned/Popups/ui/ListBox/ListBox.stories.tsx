@@ -25,7 +25,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    label: 'Укажите значение',
+    label: 'Выберите пункт',
     items: [
       { content: 'Первый пункт', value: '123' },
       { content: 'Второй пункт', value: '456' },
@@ -42,7 +42,7 @@ Primary.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), IndentsD
 
 export const Dark: Story = {
   args: {
-    label: 'Укажите значение',
+    label: 'Выберите пункт',
     items: [
       { content: 'Первый пункт', value: '123' },
       { content: 'Второй пункт', value: '456' },
@@ -63,7 +63,7 @@ Dark.decorators = [
 
 export const Orange: Story = {
   args: {
-    label: 'Укажите значение',
+    label: 'Выберите пункт',
     items: [
       { content: 'Первый пункт', value: '123' },
       { content: 'Второй пункт', value: '456' },
@@ -84,7 +84,7 @@ Orange.decorators = [
 
 export const ReadOnly: Story = {
   args: {
-    label: 'Укажите значение',
+    label: 'Выберите пункт',
     items: [
       { content: 'Первый пункт', value: '123' },
       { content: 'Второй пункт', value: '456' },
@@ -101,7 +101,7 @@ ReadOnly.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), Indents
 
 export const DisabledOption: Story = {
   args: {
-    label: 'Укажите значение',
+    label: 'Выберите пункт',
     items: [
       { content: 'Первый пункт', value: '123' },
       { content: 'Второй пункт', disabled: true, value: '456' },
@@ -118,13 +118,13 @@ DisabledOption.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), I
 
 export const DefaultValue: Story = {
   args: {
-    label: 'Укажите значение',
+    defaultValue: 'Второй пункт',
+    label: 'Выберите пункт',
     items: [
       { content: 'Первый пункт', value: '123' },
       { content: 'Второй пункт', value: '456' },
       { content: 'Третий пункт', value: '789' },
     ],
-    defaultValue: 'Второй пункт',
     onChange: action('onChange'),
   },
 };
@@ -135,8 +135,7 @@ DefaultValue.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), Ind
 
 export const Horizontal: Story = {
   args: {
-    defaultValue: 'Второй пункт',
-    label: 'Укажите значение',
+    label: 'Выберите пункт',
     items: [
       { content: 'Первый пункт', value: '123' },
       { content: 'Второй пункт', value: '456' },
@@ -144,6 +143,7 @@ export const Horizontal: Story = {
     ],
     onChange: action('onChange'),
     stack: 'horizontal',
+    value: '123',
   },
 };
 
@@ -154,12 +154,13 @@ Horizontal.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), Inden
 export const BottomLeftDirection: Story = {
   args: {
     direction: 'bottom-left',
-    label: 'Укажите значение',
+    label: 'Выберите пункт',
     items: [
       { content: 'Первый пункт', value: '123' },
       { content: 'Второй пункт', value: '456' },
       { content: 'Третий пункт', value: '789' },
     ],
+    onChange: action('onChange'),
     value: '123',
   },
 };
@@ -174,68 +175,74 @@ BottomLeftDirection.decorators = [
 export const BottomRightDirection: Story = {
   args: {
     direction: 'bottom-right',
-    label: 'Укажите значение',
+    label: 'Выберите пункт',
     items: [
       { content: 'Первый пункт', value: '123' },
       { content: 'Второй пункт', value: '456' },
       { content: 'Третий пункт', value: '789' },
     ],
+    onChange: action('onChange'),
     value: '123',
   },
-  decorators: [
-    (Story) => (
-      <div style={{ padding: '20px 70px' }}>
-        <Story />
-      </div>
-    ),
-    FeatureFlagsDecorator({ isAppRedesigned: true }),
-  ],
 };
+
+BottomRightDirection.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  (Story) => (
+    <div style={{ padding: '20px 70px' }}>
+      <Story />
+    </div>
+  ),
+];
 
 // Top left direction list box
 
 export const TopLeftDirection: Story = {
   args: {
     direction: 'top-left',
-    label: 'Укажите значение',
+    label: 'Выберите пункт',
     items: [
       { content: 'Первый пункт', value: '123' },
       { content: 'Второй пункт', value: '456' },
       { content: 'Третий пункт', value: '789' },
     ],
+    onChange: action('onChange'),
     value: '123',
   },
-  decorators: [
-    (Story) => (
-      <div style={{ padding: '200px 100px' }}>
-        <Story />
-      </div>
-    ),
-    FeatureFlagsDecorator({ isAppRedesigned: true }),
-  ],
 };
+
+TopLeftDirection.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  (Story) => (
+    <div style={{ padding: '200px 20px' }}>
+      <Story />
+    </div>
+  ),
+];
 
 // Top right direction list box
 
 export const TopRightDirection: Story = {
   args: {
     direction: 'top-right',
-    label: 'Укажите значение',
+    label: 'Выберите пункт',
     items: [
       { content: 'Первый пункт', value: '123' },
       { content: 'Второй пункт', value: '456' },
       { content: 'Третий пункт', value: '789' },
     ],
+    onChange: action('onChange'),
     value: '123',
   },
-  decorators: [
-    (Story) => (
-      <div style={{ padding: '200px 100px' }}>
-        <Story />
-      </div>
-    ),
-    FeatureFlagsDecorator({ isAppRedesigned: true }),
-  ],
 };
+
+TopRightDirection.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  (Story) => (
+    <div style={{ padding: '200px 100px' }}>
+      <Story />
+    </div>
+  ),
+];
 
 export default meta;
