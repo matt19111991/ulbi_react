@@ -1,4 +1,4 @@
-.ArticleViewSelector {
+.ArticleViewSelectorDeprecated {
   .icon {
     fill-opacity: .3;
   }
@@ -22,7 +22,7 @@
   }
 }
 
-// задаем смещение только в приложении (не в storybook)
+// задаем смещение только в приложении (не в 'storybook')
 @media screen and (max-width: 1800px) {
   body:has(> div[id='root']) {
     .ArticleViewSelectorRedesigned {
