@@ -43,11 +43,9 @@ export const ArticlesPageFilters = memo(({ className }: ArticlesPageFiltersProps
   return (
     <div className={classNames('', {}, [className])}>
       <div
-        className={classNames(
-          classes.sortWrapper,
-          { [classes.cutWidth]: view === ArticleView.PLATE },
-          [],
-        )}
+        className={classNames(classes.sortWrapper, {
+          [classes.cutWidth]: view === ArticleView.PLATE,
+        })}
       >
         <ArticleSortSelector
           className={classNames('', { [classes.loading]: areLoading })}
@@ -61,15 +59,10 @@ export const ArticlesPageFilters = memo(({ className }: ArticlesPageFiltersProps
       </div>
 
       <Card
-        className={classNames(
-          classes.search,
-          { [classes.cutWidth]: view === ArticleView.PLATE },
-          [],
-        )}
+        className={classNames(classes.search, { [classes.cutWidth]: view === ArticleView.PLATE })}
       >
         <Input
           className={classNames('', { [classes.loading]: areLoading })}
-          fullWidth
           onChange={onChangeSearch}
           placeholder={t('Поиск')}
           value={search}
