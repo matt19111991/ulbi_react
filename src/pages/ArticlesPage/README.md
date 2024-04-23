@@ -2,7 +2,7 @@
 
 ### Components
 
-`ArticleInfiniteList` - Компонент с бесконечным списком статей 
+`ArticleInfiniteList` - компонент с бесконечным списком статей 
 
 `ArticlesPage` - Компонент со списком статей
 

@@ -1,19 +1,29 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryFn, StoryObj } from '@storybook/react';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
+
+import { ArticleView } from '@/entities/Article/testing';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { Theme } from '@/shared/const/theme';
 
 import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+
 import { generateNormalizedArticles } from '@/shared/lib/generators/articles';
 
 import { articlesPageReducer } from '../../../../model/slice/articlesPageSlice';
 
 import { ArticleInfiniteList } from './ArticleInfiniteList';
+
+const MaxWidthDecorator = (Story: StoryFn) => (
+  <div style={{ width: 1274 }}>
+    <Story />
+  </div>
+);
 
 const generatedArticles = generateNormalizedArticles(18);
 
@@ -21,64 +31,114 @@ const asyncReducers: ReducersList = {
   articlesPage: articlesPageReducer,
 };
 
-const stateArticleInfiniteList: DeepPartial<StateSchema> = {
+const statePlates: DeepPartial<StateSchema> = {
   articlesPage: {
     entities: generatedArticles.entities,
     ids: generatedArticles.ids,
+    view: ArticleView.PLATE,
   },
 };
 
 const meta = {
-  title: 'pages/Article/Articles/ArticleInfiniteList/new',
+  title: 'pages/Article/Articles/components/new/ArticleInfiniteList',
   component: ArticleInfiniteList,
   argTypes: {
     backgroundColor: {
       control: 'color',
     },
   },
-  decorators: [
-    (Story) => (
-      <div style={{ width: 1240 }}>
-        <Story />
-      </div>
-    ),
-  ],
 } as Meta<typeof ArticleInfiniteList>;
 
 type Story = StoryObj<typeof meta>;
 
-// Primary article infinite list
+// PLATES
 
-export const Primary: Story = {
+// Primary article infinite list (plate view)
+
+export const PrimaryPlates: Story = {
   args: {},
 };
 
-Primary.decorators = [
+PrimaryPlates.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
-  StoreDecorator(stateArticleInfiniteList, asyncReducers),
+  IndentsDecorator,
+  MaxWidthDecorator,
+  StoreDecorator(statePlates, asyncReducers),
 ];
 
-// Dark article infinite list
+// Dark article infinite list (plate view)
 
-export const Dark: Story = {
+export const DarkPlates: Story = {
   args: {},
 };
 
-Dark.decorators = [
+DarkPlates.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
-  StoreDecorator(stateArticleInfiniteList, asyncReducers),
+  IndentsDecorator,
+  MaxWidthDecorator,
+  StoreDecorator(statePlates, asyncReducers),
   ThemeDecorator(Theme.DARK),
 ];
 
-// Orange article infinite list
+// Orange article infinite list (plate view)
 
-export const Orange: Story = {
+export const OrangePlates: Story = {
   args: {},
 };
 
-Orange.decorators = [
+OrangePlates.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
-  StoreDecorator(stateArticleInfiniteList, asyncReducers),
+  IndentsDecorator,
+  MaxWidthDecorator,
+  StoreDecorator(statePlates, asyncReducers),
+  ThemeDecorator(Theme.ORANGE),
+];
+
+// LIST
+
+const stateList: DeepPartial<StateSchema> = {
+  articlesPage: {
+    entities: generatedArticles.entities,
+    ids: generatedArticles.ids,
+    view: ArticleView.LIST,
+  },
+};
+
+// Primary article infinite list (list view)
+
+export const PrimaryList: Story = {
+  args: {},
+};
+
+PrimaryList.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  StoreDecorator(stateList, asyncReducers),
+];
+
+// Dark article infinite list (list view)
+
+export const DarkList: Story = {
+  args: {},
+};
+
+DarkList.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  StoreDecorator(stateList, asyncReducers),
+  ThemeDecorator(Theme.DARK),
+];
+
+// Orange article infinite list (list view)
+
+export const OrangeList: Story = {
+  args: {},
+};
+
+OrangeList.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  StoreDecorator(stateList, asyncReducers),
   ThemeDecorator(Theme.ORANGE),
 ];
 
