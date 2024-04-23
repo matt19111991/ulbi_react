@@ -11,7 +11,7 @@
   pointer-events: none;
 }
 
-// добавляем стили только в приложении (не в storybook)
+// добавляем стили только в приложении (не в 'storybook')
 @media screen and (max-width: 1800px) {
   body:has(> div[id='root']) {
     .ArticlesFilters {
@@ -25,68 +25,66 @@
     }
 
     .stack {
-      display: flex;
       flex-flow: row wrap;
       gap: 16px;
     }
 
     .tabs {
-      display: flex;
       flex-direction: row;
     }
   }
 }
 
+// добавляем стили только в приложении (не в 'storybook')
 @media screen and (max-width: 840px) {
-  .ArticlesFilters {
-    min-height: inherit;
+  body:has(> div[id='root']) {
+    .ArticlesFilters {
+      min-height: inherit;
+    }
   }
 }
 
+// добавляем стили только в приложении (не в 'storybook')
 @media screen and (max-width: 480px) {
-  .tabs {
-    display: flex;
-    flex-direction: column !important;
-  }
+  body:has(> div[id='root']) {
+    .tabs {
+      flex-direction: column;
+    }
 
-  .ArticlesFilters {
-    height: 380px;
-    overflow: hidden;
-    position: relative;
-    transition: all .1s ease-in-out;
-    width: 264px !important;
+    .ArticlesFilters {
+      height: 380px;
+      overflow: hidden;
+      transition: all .1s ease-in-out;
+      width: 264px !important;
 
-    &.collapsed {
-      min-height: 60px;
-      height: 60px;
-      overflow: visible;
+      &.collapsed {
+        min-height: 60px;
+        height: 60px;
+        overflow: visible;
 
-      .sort,
-      .tabs {
-        display: none;
+        .sort,
+        .tabs {
+          display: none;
+        }
       }
     }
-  }
 
-  .collapseBtn {
-    bottom: -25px;
-    color: var(--hint-redesigned);
-    display: block;
-    position: absolute;
-    text-align: center;
-    transform: rotate(180deg);
-    width: 90vw;
+    .collapseBtn {
+      bottom: -25px;
+      display: block;
+      position: absolute;
+      text-align: center;
+      transform: rotate(180deg);
+      width: 90vw;
 
-    &.collapsed {
-      bottom: -39px;
-      transform: rotate(0deg);
+      &.collapsed {
+        bottom: -39px;
+        transform: rotate(0deg);
+      }
     }
-  }
 
-  .stack {
-    display: flex;
-    flex-flow: column wrap;
-    gap: 16px;
-    position: relative;
+    .stack {
+      position: relative;
+    }
   }
 }

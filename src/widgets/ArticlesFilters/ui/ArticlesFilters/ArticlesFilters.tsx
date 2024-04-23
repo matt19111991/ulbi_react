@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ArticleSortField, ArticleType } from '@/entities/Article';
@@ -16,7 +16,7 @@ import { Icon } from '@/shared/ui/redesigned/Icon';
 import { Input } from '@/shared/ui/redesigned/Input';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 
-import { SortOrder } from '@/shared/types/sort';
+import type { SortOrder } from '@/shared/types/sort';
 
 import classes from './ArticlesFilters.module.scss';
 
@@ -89,9 +89,9 @@ export const ArticlesFilters = memo(
 
     const [collapsedFilters, setCollapsedFilters] = useState(true);
 
-    const onCollapse = () => {
+    const onCollapse = useCallback(() => {
       setCollapsedFilters((prev) => !prev);
-    };
+    }, []);
 
     return (
       <Card

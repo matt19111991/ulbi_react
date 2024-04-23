@@ -1,5 +1,5 @@
 ## Виджет с фильтрами для статей
 
-- Components
+### Components
 
 `ArticlesFilters` - компонент с фильтрами для статей
