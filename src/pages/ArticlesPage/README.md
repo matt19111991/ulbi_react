@@ -10,7 +10,7 @@
 
 `FiltersContainer` - компонент-контейнер для фильтров статей
 
-`ViewSelectorContainer` - Компонент для выбора вида статей
+`ViewSelectorContainer` - компонент для выбора вида статей
 
 ### Hooks
 

@@ -9,7 +9,7 @@ import { Theme } from '@/shared/const/theme';
 import { ViewSelectorContainer } from './ViewSelectorContainer';
 
 const meta = {
-  title: 'pages/Article/Articles/ViewSelectorContainer',
+  title: 'pages/Article/Articles/components/new/ViewSelectorContainer',
   component: ViewSelectorContainer,
   argTypes: {
     backgroundColor: {
