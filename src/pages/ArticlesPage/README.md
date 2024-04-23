@@ -8,7 +8,7 @@
 
 `ArticlesPageFilters` - устаревший компонент с фильтрами для статей
 
-`FiltersContainer` - Компонент-контейнер для фильтров статей
+`FiltersContainer` - компонент-контейнер для фильтров статей
 
 `ViewSelectorContainer` - Компонент для выбора вида статей
 

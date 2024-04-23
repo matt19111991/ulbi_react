@@ -9,7 +9,7 @@ import { Theme } from '@/shared/const/theme';
 import { FiltersContainer } from './FiltersContainer';
 
 const meta = {
-  title: 'pages/Article/Articles/FiltersContainer',
+  title: 'pages/Article/Articles/components/new/FiltersContainer',
   component: FiltersContainer,
   argTypes: {
     backgroundColor: {
