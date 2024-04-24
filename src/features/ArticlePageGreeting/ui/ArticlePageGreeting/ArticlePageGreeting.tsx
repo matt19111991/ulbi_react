@@ -1,22 +1,23 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { isMobile } from 'react-device-detect';
 
 import { saveJsonSettings, useJsonSettings } from '@/entities/User';
 
+import { ToggleFeatures } from '@/shared/lib/features';
+
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
-import { Text, TextAlign } from '@/shared/ui/deprecated/Text';
+import { Text as TextDeprecated, TextAlign } from '@/shared/ui/deprecated/Text';
 
 import { Drawer } from '@/shared/ui/redesigned/Drawer';
 import { Modal } from '@/shared/ui/redesigned/Modal';
 import { VStack } from '@/shared/ui/redesigned/Stack';
-
-import classes from './ArticlePageGreeting.module.scss';
+import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 
 interface ArticlePageGreetingProps {
   /**
-   * Активация мобильного режима для storybook
+   * Активация мобильного режима для 'storybook'
    */
   storybookMobile?: boolean;
 }
@@ -37,15 +38,35 @@ export const ArticlePageGreeting = memo(({ storybookMobile }: ArticlePageGreetin
     }
   }, [dispatch, isArticlesPageHasBeenOpened]);
 
-  const onClose = () => setIsOpen(false);
+  const onClose = useCallback(() => setIsOpen(false), []);
 
-  const text = (
+  const text: JSX.Element = (
     <VStack gap='8'>
-      <Text align={TextAlign.CENTER} title={t('Добро пожаловать на страницу статей')} />
+      <ToggleFeatures
+        feature='isAppRedesigned'
+        on={
+          <>
+            <TextRedesigned align='center' title={t('Добро пожаловать на страницу статей')} />
 
-      <Text
-        align={TextAlign.CENTER}
-        text={t('Здесь вы можете искать и просматривать статьи на различные темы')}
+            <TextRedesigned
+              align='center'
+              text={t('Здесь вы можете искать и просматривать статьи на различные темы')}
+            />
+          </>
+        }
+        off={
+          <>
+            <TextDeprecated
+              align={TextAlign.CENTER}
+              title={t('Добро пожаловать на страницу статей')}
+            />
+
+            <TextDeprecated
+              align={TextAlign.CENTER}
+              text={t('Здесь вы можете искать и просматривать статьи на различные темы')}
+            />
+          </>
+        }
       />
     </VStack>
   );
@@ -59,12 +80,7 @@ export const ArticlePageGreeting = memo(({ storybookMobile }: ArticlePageGreetin
   }
 
   return (
-    <Modal
-      className={classes.ArticlePageGreetingModalContent}
-      isOpen={isOpen}
-      lazy
-      onClose={onClose}
-    >
+    <Modal isOpen={isOpen} lazy onClose={onClose}>
       {text}
     </Modal>
   );

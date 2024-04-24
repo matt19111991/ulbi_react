@@ -8,7 +8,7 @@ import { Theme } from '@/shared/const/theme';
 import { ArticlePageGreeting } from './ArticlePageGreeting';
 
 const meta = {
-  title: 'features/Article/ArticlePageGreeting',
+  title: 'features/Article/ArticlePageGreeting/old',
   component: ArticlePageGreeting,
   argTypes: {
     backgroundColor: {
@@ -17,6 +17,7 @@ const meta = {
   },
   parameters: {
     viewport: {
+      defaultViewport: 'lg',
       viewports: INITIAL_VIEWPORTS,
     },
   },
@@ -46,47 +47,44 @@ export const LargeOrange: Story = {
 
 LargeOrange.decorators = [ThemeDecorator(Theme.ORANGE)];
 
-// Primary small article page greeting
+// Small primary article page greeting
 
 export const SmallPrimary: Story = {
   args: {
     storybookMobile: true,
   },
-};
-
-SmallPrimary.parameters = {
-  viewport: {
-    defaultViewport: 'iphone6',
+  parameters: {
+    viewport: {
+      defaultViewport: 'iphone6',
+    },
   },
 };
 
-// Dark small article page greeting
+// Small dark article page greeting
 
 export const SmallDark: Story = {
   args: {
     storybookMobile: true,
   },
-};
-
-SmallDark.parameters = {
-  viewport: {
-    defaultViewport: 'iphone6',
+  parameters: {
+    viewport: {
+      defaultViewport: 'iphone6',
+    },
   },
 };
 
 SmallDark.decorators = [ThemeDecorator(Theme.DARK)];
 
-// Orange small article page greeting
+// Small orange article page greeting
 
 export const SmallOrange: Story = {
   args: {
     storybookMobile: true,
   },
-};
-
-SmallOrange.parameters = {
-  viewport: {
-    defaultViewport: 'iphone6',
+  parameters: {
+    viewport: {
+      defaultViewport: 'iphone6',
+    },
   },
 };
 

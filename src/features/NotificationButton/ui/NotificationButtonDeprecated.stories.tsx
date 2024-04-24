@@ -24,6 +24,7 @@ const meta = {
   },
   parameters: {
     viewport: {
+      defaultViewport: 'lg',
       viewports: INITIAL_VIEWPORTS,
     },
   },
