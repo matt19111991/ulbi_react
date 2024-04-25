@@ -1,12 +1,11 @@
 import { Fragment, memo } from 'react';
-import type { ReactNode } from 'react';
 import { Listbox as HeadlessListBox } from '@headlessui/react';
 
 import CheckIcon from '@/shared/assets/icons/check-16-12.svg';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
-import type { DropdownDirection } from '@/shared/types/ui';
+import type { DropdownDirection, ListBoxItem } from '@/shared/types/ui';
 
 import { Button } from '../../../Button/Button';
 
@@ -17,23 +16,6 @@ import { mapDirectionClass } from '../../styles/consts';
 import popupClasses from '../../styles/popup.module.scss';
 
 import classes from './ListBox.module.scss';
-
-export interface ListBoxItem {
-  /**
-   * Содержимое
-   */
-  content: ReactNode;
-
-  /**
-   * Элемент меню активен или нет?
-   */
-  disabled?: boolean;
-
-  /**
-   * Значение пункта меню
-   */
-  value: string;
-}
 
 interface ListBoxProps {
   /**

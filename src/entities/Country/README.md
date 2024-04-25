@@ -1,9 +1,9 @@
 ## Сущность страны
 
-- Components
+### Components
 
 `CountrySelect` - компонент для выбора страны
 
-- Types
+### Types
 
-`Country` - Тип, описывающий страну
+`Country` - тип, описывающий страну
