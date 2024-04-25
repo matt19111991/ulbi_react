@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { ArticleSortField, ArticleView } from '@/entities/Article/testing';
 import { userReducer } from '@/entities/User/testing';
@@ -13,6 +13,7 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 import { Theme } from '@/shared/const/theme';
 
 import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+
 import { generateNormalizedArticles } from '@/shared/lib/generators/articles';
 
 import { articlesPageReducer } from '../../model/slice/articlesPageSlice';
@@ -29,9 +30,9 @@ const asyncReducers: ReducersList = {
 const stateArticles: DeepPartial<StateSchema> = {
   articlesPage: {
     areLoading: false,
-    ids: articles.ids,
     entities: articles.entities,
     hasMore: true,
+    ids: articles.ids,
     limit: 4,
     order: 'asc',
     page: 1,
@@ -42,18 +43,70 @@ const stateArticles: DeepPartial<StateSchema> = {
   user: {
     authData: {
       jsonSettings: {
-        isArticlesPageHasBeenOpened: true,
+        isArticlesPageHasBeenOpened: false,
       },
     },
   },
 };
 
+const meta = {
+  title: 'pages/Article/Articles/ArticlesPage/new',
+  component: ArticlesPage,
+  argTypes: {
+    backgroundColor: {
+      control: 'color',
+    },
+  },
+} as Meta<typeof ArticlesPage>;
+
+type Story = StoryObj<typeof meta>;
+
+// Primary articles page
+
+export const Primary: Story = {
+  args: {},
+};
+
+Primary.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  StoreDecorator(stateArticles, asyncReducers),
+];
+
+// Dark articles page
+
+export const Dark: Story = {
+  args: {},
+};
+
+Dark.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  StoreDecorator(stateArticles, asyncReducers),
+  ThemeDecorator(Theme.DARK),
+];
+
+// Orange articles page
+
+export const Orange: Story = {
+  args: {},
+};
+
+Orange.decorators = [
+  FeatureFlagsDecorator({ isAppRedesigned: true }),
+  IndentsDecorator,
+  StoreDecorator(stateArticles, asyncReducers),
+  ThemeDecorator(Theme.ORANGE),
+];
+
+// Loading articles page
+
 const stateArticlesLoading = {
   articlesPage: {
     areLoading: true,
-    ids: [],
     entities: {},
     hasMore: true,
+    ids: [],
     limit: 4,
     page: 1,
     search: '',
@@ -69,116 +122,23 @@ const stateArticlesLoading = {
   },
 };
 
-const stateArticlesError = {
-  ...stateArticles,
-  articlesPage: {
-    ...stateArticles.articlesPage,
-    error: 'Error',
-  },
-  user: {
-    authData: {
-      jsonSettings: {
-        isArticlesPageHasBeenOpened: true,
-      },
-    },
-  },
-};
-
-const meta = {
-  title: 'pages/Article/Articles/ArticlesPage',
-  component: ArticlesPage,
-  argTypes: {
-    backgroundColor: {
-      control: 'color',
-    },
-  },
-} as Meta<typeof ArticlesPage>;
-
-type Story = StoryObj<typeof meta>;
-
-// Primary articles page old
-
-export const PrimaryOld: Story = {
+export const Loading: Story = {
   args: {},
 };
 
-PrimaryOld.decorators = [StoreDecorator(stateArticles, asyncReducers)];
-
-// Dark articles page old
-
-export const DarkOld: Story = {
-  args: {},
-};
-
-DarkOld.decorators = [StoreDecorator(stateArticles, asyncReducers), ThemeDecorator(Theme.DARK)];
-
-// Orange articles page old
-
-export const OrangeOld: Story = {
-  args: {},
-};
-
-OrangeOld.decorators = [StoreDecorator(stateArticles, asyncReducers), ThemeDecorator(Theme.ORANGE)];
-
-// Loading articles page old
-
-export const LoadingOld: Story = {
-  args: {},
-};
-
-LoadingOld.decorators = [StoreDecorator(stateArticlesLoading, asyncReducers)];
-
-// Primary articles page new
-
-export const PrimaryNew: Story = {
-  args: {},
-};
-
-PrimaryNew.decorators = [
-  FeatureFlagsDecorator({ isAppRedesigned: true }),
-  IndentsDecorator,
-  StoreDecorator(stateArticles, asyncReducers),
-];
-
-// Dark articles page new
-
-export const DarkNew: Story = {
-  args: {},
-};
-
-DarkNew.decorators = [
-  FeatureFlagsDecorator({ isAppRedesigned: true }),
-  IndentsDecorator,
-  StoreDecorator(stateArticles, asyncReducers),
-  ThemeDecorator(Theme.DARK),
-];
-
-// Orange articles page new
-
-export const OrangeNew: Story = {
-  args: {},
-};
-
-OrangeNew.decorators = [
-  FeatureFlagsDecorator({ isAppRedesigned: true }),
-  IndentsDecorator,
-  StoreDecorator(stateArticles, asyncReducers),
-  ThemeDecorator(Theme.ORANGE),
-];
-
-// Loading articles page new
-
-export const LoadingNew: Story = {
-  args: {},
-};
-
-LoadingNew.decorators = [
+Loading.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
   StoreDecorator(stateArticlesLoading, asyncReducers),
 ];
 
 // Error articles page
+
+const stateArticlesError = {
+  articlesPage: {
+    error: 'Error',
+  },
+};
 
 export const Error: Story = {
   args: {},

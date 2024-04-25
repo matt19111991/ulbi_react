@@ -6,21 +6,27 @@ import { useTranslation } from 'react-i18next';
 import { ArticlePageGreeting } from '@/features/ArticlePageGreeting';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
+
+import { DynamicModuleLoaderV2 } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+
 import { ToggleFeatures } from '@/shared/lib/features';
+
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-
-import {
-  DynamicModuleLoaderV2,
-  ReducersList,
-} from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
-
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 
-import { Text, TextAlign, TextTheme } from '@/shared/ui/deprecated/Text';
+import { Text as TextDeprecated, TextAlign, TextTheme } from '@/shared/ui/deprecated/Text';
+
+import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 
 import { Page } from '@/widgets/Page';
+
+import { ArticlesPageFilters } from '../../lib/components/deprecated/ArticlesPageFilters/ArticlesPageFilters';
+import { ArticleInfiniteList } from '../../lib/components/redesigned/ArticleInfiniteList/ArticleInfiniteList';
+import { FiltersContainer } from '../../lib/components/redesigned/FiltersContainer/FiltersContainer';
+import { ViewSelectorContainer } from '../../lib/components/redesigned/ViewSelectorContainer/ViewSelectorContainer';
 
 import {
   getArticlesPageAreLoading,
@@ -31,11 +37,6 @@ import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPag
 import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
 
 import { articlesPageReducer } from '../../model/slice/articlesPageSlice';
-
-import { ArticlesPageFilters } from '../../lib/components/deprecated/ArticlesPageFilters/ArticlesPageFilters';
-import { ArticleInfiniteList } from '../../lib/components/redesigned/ArticleInfiniteList/ArticleInfiniteList';
-import { FiltersContainer } from '../../lib/components/redesigned/FiltersContainer/FiltersContainer';
-import { ViewSelectorContainer } from '../../lib/components/redesigned/ViewSelectorContainer/ViewSelectorContainer';
 
 import classes from './ArticlesPage.module.scss';
 
@@ -62,23 +63,39 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
   const loading = useSelector(getArticlesPageAreLoading);
 
   const onLoadNextPart = useCallback(() => {
-    // иначе в 'storybook' одновременно улетает множество запросов
+    // в 'storybook' не используем ленивую подгрузку данных
     if (__PROJECT__ !== 'storybook') {
       dispatch(fetchNextArticlesPage());
     }
   }, [dispatch]);
 
   useInitialEffect(() => {
+    /*
+      отправляем начальный запрос с корректно выставленными параметрами ('limit', 'page', ...) и
+      устанавливаем первоначальный вид для статей, взятый из 'localStorage'
+    */
     dispatch(initArticlesPage(searchParams));
   });
 
   if (error) {
     return (
       <Page className={classNames(classes.ArticlesPage, {}, [className])}>
-        <Text
-          align={TextAlign.CENTER}
-          theme={TextTheme.ERROR}
-          title={t('Ошибка при загрузке статей')}
+        <ToggleFeatures
+          feature='isAppRedesigned'
+          on={
+            <TextRedesigned
+              align='center'
+              title={t('Ошибка при загрузке статей')}
+              variant='error'
+            />
+          }
+          off={
+            <TextDeprecated
+              align={TextAlign.CENTER}
+              theme={TextTheme.ERROR}
+              title={t('Ошибка при загрузке статей')}
+            />
+          }
         />
       </Page>
     );
