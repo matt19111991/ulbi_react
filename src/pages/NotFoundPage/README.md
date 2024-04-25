@@ -1,5 +1,5 @@
 ## Страница не найдена
 
-- Components
+### Components
 
-`NotNoundPage` - Компонент ненайденной страницы
+`NotNoundPage` - компонент ненайденной страницы
