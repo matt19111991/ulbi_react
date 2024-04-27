@@ -8,12 +8,6 @@ import { Theme } from '@/shared/const/theme';
 
 import { CountrySelect } from './CountrySelect';
 
-const PaddingTopDecorator = (Story: StoryFn) => (
-  <div style={{ paddingTop: 196 }}>
-    <Story />
-  </div>
-);
-
 const meta = {
   title: 'entities/Country/CountrySelect/old',
   component: CountrySelect,
@@ -65,7 +59,14 @@ export const TopLeft: Story = {
   },
 };
 
-TopLeft.decorators = [IndentsDecorator, PaddingTopDecorator];
+TopLeft.decorators = [
+  IndentsDecorator,
+  (Story: StoryFn) => (
+    <div style={{ paddingTop: 196 }}>
+      <Story />
+    </div>
+  ),
+];
 
 // Country select with top right direction
 
@@ -76,7 +77,14 @@ export const TopRight: Story = {
   },
 };
 
-TopRight.decorators = [IndentsDecorator, PaddingTopDecorator];
+TopRight.decorators = [
+  IndentsDecorator,
+  (Story: StoryFn) => (
+    <div style={{ padding: '196px 0 0 24px' }}>
+      <Story />
+    </div>
+  ),
+];
 
 // Country select with bottom left direction
 
@@ -98,7 +106,14 @@ export const BottomRight: Story = {
   },
 };
 
-BottomRight.decorators = [IndentsDecorator];
+BottomRight.decorators = [
+  IndentsDecorator,
+  (Story: StoryFn) => (
+    <div style={{ paddingLeft: 24 }}>
+      <Story />
+    </div>
+  ),
+];
 
 // Read only country select
 

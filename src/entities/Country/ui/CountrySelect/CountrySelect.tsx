@@ -65,7 +65,7 @@ export const CountrySelect = memo(
         on={
           <ListBoxRedesigned
             className={classNames('', {}, [className])}
-            defaultValue={t('Укажите страну')}
+            defaultValue={options[0].value}
             direction={direction}
             items={options}
             label={t('Укажите страну')}
@@ -78,7 +78,7 @@ export const CountrySelect = memo(
         off={
           <ListBoxDeprecated
             className={classNames('', {}, [className])}
-            defaultValue={t('Укажите страну')}
+            defaultValue={options[0].value}
             direction={direction}
             items={options}
             label={t('Укажите страну')}
