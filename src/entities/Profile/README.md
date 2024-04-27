@@ -6,7 +6,15 @@
 
 `ProfileCardDeprecated` - карточка профиля (устаревшая)
 
+`ProfileCardDeprecatedError` - карточка с ошибкой при загрузке профиля (устаревшая)
+
+`ProfileCardDeprecatedSkeleton` - карточка профиля в состоянии загрузки (устаревшая)
+
 `ProfileCardRedesigned` - карточка профиля (новая)
+
+`ProfileCardRedesignedError` - карточка с ошибкой при загрузке профиля (новая)
+
+`ProfileCardRedesignedSkeleton` - карточка профиля в состоянии загрузки (новая)
 
 ### Types
 
