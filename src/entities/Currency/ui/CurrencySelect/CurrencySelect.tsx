@@ -4,11 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { ToggleFeatures } from '@/shared/lib/features';
 
-import { DropdownDirection } from '@/shared/types/ui';
+import type { DropdownDirection, ListBoxItem } from '@/shared/types/ui';
 
 import { ListBox as ListBoxDeprecated } from '@/shared/ui/deprecated/Popups';
 
-import { ListBox } from '@/shared/ui/redesigned/Popups';
+import { ListBox as ListBoxRedesigned } from '@/shared/ui/redesigned/Popups';
 
 import { Currency } from '../../model/types/currency';
 
@@ -40,16 +40,15 @@ interface CurrencySelectProps {
 }
 
 /*
-  Если 'options' определить в 'JSX' разметке, то при изменении 'CurrencySelect', дочерний 'ListBox'
+  если 'options' определить в 'JSX' разметке, то при изменении 'CurrencySelect', дочерний 'ListBox'
   будет перендериваться каждый раз, т.к. ссылка на массив каждый раз будет создаваться новая:
-  '<ListBox items={[{ content: '', value: '' }, ...]} />'
+ '<ListBox items={[{ content: '', value: '' }, ...]} />'
 
-  Чтобы избежать лишних перерендеров, можно:
-    - обернуть 'options' в 'useMemo'
+  чтобы избежать лишних перерендеров, можно:
+    - обернуть 'options' в 'useMemo()'
     - вынести 'options' вне компонента (т.к. 'options' статичны и не будут изменяться)
 */
-
-const options = [
+const options: ListBoxItem[] = [
   { content: Currency.USD, value: Currency.USD },
   { content: Currency.EUR, value: Currency.EUR },
   { content: Currency.RUB, value: Currency.RUB },
@@ -61,28 +60,40 @@ export const CurrencySelect = memo(
 
     const onChangeHandler = useCallback(
       (currencyValue: string) => {
+        // 'onChange?.()' => функция не будет вызвана, если не будет передана
         onChange?.(currencyValue as Currency);
       },
       [onChange],
     );
 
-    const props = {
-      className: classNames('', {}, [className]),
-      defaultValue: t('Укажите валюту'),
-      direction,
-      items: options,
-      label: t('Укажите валюту'),
-      onChange: onChangeHandler,
-      readonly: readOnly,
-      stack: 'horizontal' as const,
-      value,
-    };
-
     return (
       <ToggleFeatures
         feature='isAppRedesigned'
-        on={<ListBox {...props} />}
-        off={<ListBoxDeprecated {...props} />}
+        on={
+          <ListBoxRedesigned
+            className={classNames('', {}, [className])}
+            defaultValue={options[0].value}
+            direction={direction}
+            items={options}
+            label={t('Укажите валюту')}
+            onChange={onChangeHandler}
+            readonly={readOnly}
+            stack='horizontal'
+            value={value}
+          />
+        }
+        off={
+          <ListBoxDeprecated
+            className={classNames('', {}, [className])}
+            defaultValue={options[0].value}
+            direction={direction}
+            items={options}
+            label={t('Укажите валюту')}
+            onChange={onChangeHandler}
+            readonly={readOnly}
+            value={value}
+          />
+        }
       />
     );
   },

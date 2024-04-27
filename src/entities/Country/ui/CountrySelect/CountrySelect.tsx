@@ -39,6 +39,15 @@ interface CountrySelectProps {
   value?: Country;
 }
 
+/*
+  если 'options' определить в 'JSX' разметке, то при изменении 'CountrySelect', дочерний 'ListBox'
+  будет перендериваться каждый раз, т.к. ссылка на массив каждый раз будет создаваться новая:
+ '<ListBox items={[{ content: '', value: '' }, ...]} />'
+
+  чтобы избежать лишних перерендеров, можно:
+    - обернуть 'options' в 'useMemo()'
+    - вынести 'options' вне компонента (т.к. 'options' статичны и не будут изменяться)
+*/
 const options: ListBoxItem[] = [
   { content: Country.USA, value: Country.USA },
   { content: Country.Russia, value: Country.Russia },

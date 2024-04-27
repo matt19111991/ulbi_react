@@ -1,9 +1,9 @@
 ## Сущность валюты
 
-- Components
+### Components
 
 `CurrencySelect` - компонент для выбора валюты
 
-- Types
+### Types
 
-`Currency` - Тип, описывающий валюту
+`Currency` - тип, описывающий валюту
