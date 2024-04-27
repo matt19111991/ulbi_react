@@ -86,12 +86,12 @@ export interface ProfileCardProps {
   readOnly?: boolean;
 
   /**
-   * Состояние загрузки, пробрасываемое из storybook
+   * Состояние загрузки, пробрасываемое из 'storybook'
    */
   storybookLoading?: boolean;
 
   /**
-   * Ошибка, пробрасываемая из storybook
+   * Ошибка, пробрасываемая из 'storybook'
    */
   storybookError?: boolean;
 }

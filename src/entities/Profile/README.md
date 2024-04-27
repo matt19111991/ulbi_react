@@ -1,6 +1,6 @@
 ## Сущность профиля
 
-- Components
+### Components
 
 `ProfileCard` - контейнер карточки профиля
 
@@ -8,6 +8,8 @@
 
 `ProfileCardRedesigned` - карточка профиля (новая)
 
-- Types
+### Types
 
-`Profile` - Тип, описывающий профиль
+`Profile` - тип, описывающий профиль
+
+`ProfileCardProps` - тип, описывающий `props` для карточки профиля
