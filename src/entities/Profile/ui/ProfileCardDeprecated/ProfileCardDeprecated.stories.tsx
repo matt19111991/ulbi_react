@@ -14,7 +14,7 @@ import { Theme } from '@/shared/const/theme';
 import { ProfileCardDeprecated } from './ProfileCardDeprecated';
 
 const meta = {
-  title: 'entities/Profile/ProfileCard/ProfileCardDeprecated',
+  title: 'entities/Profile/ProfileCard/components/ProfileCardDeprecated',
   component: ProfileCardDeprecated,
   argTypes: {
     backgroundColor: {

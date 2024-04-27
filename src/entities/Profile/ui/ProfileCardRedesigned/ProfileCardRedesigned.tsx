@@ -13,7 +13,7 @@ import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 
-import { ProfileCardProps } from '../ProfileCard/ProfileCard';
+import type { ProfileCardProps } from '../ProfileCard/ProfileCard';
 
 import classes from './ProfileCardRedesigned.module.scss';
 
@@ -21,7 +21,7 @@ export const ProfileCardRedesignedError = () => {
   const { t } = useTranslation('profile');
 
   return (
-    <HStack justify='center' max>
+    <HStack justify='center'>
       <Text
         align='center'
         text={t('Попробуйте обновить страницу')}
@@ -33,25 +33,25 @@ export const ProfileCardRedesignedError = () => {
 };
 
 export const ProfileCardRedesignedSkeleton = () => (
-  <Card border='partial' className={classes.skeleton} max padding='16'>
+  <Card border='partial' max padding='16'>
     <VStack gap='32' max>
-      <HStack justify='center' max>
+      <HStack justify='center'>
         <Skeleton border='100%' height={128} width={128} />
       </HStack>
 
-      <HStack gap='32' max>
+      <HStack className={classes.inputs} gap='32' max>
         <VStack gap='16' max>
-          <Skeleton height={38} width='100%' />
-          <Skeleton height={38} width='100%' />
-          <Skeleton height={38} width='100%' />
-          <Skeleton height={38} width='100%' />
+          <Skeleton height={38} />
+          <Skeleton height={38} />
+          <Skeleton height={38} />
+          <Skeleton height={38} />
         </VStack>
 
         <VStack gap='16' max>
-          <Skeleton height={38} width='100%' />
-          <Skeleton height={38} width='100%' />
-          <Skeleton height={38} width='100%' />
-          <Skeleton height={38} width='100%' />
+          <Skeleton height={38} />
+          <Skeleton height={38} />
+          <Skeleton height={38} />
+          <Skeleton height={38} />
         </VStack>
       </HStack>
     </VStack>
@@ -88,12 +88,12 @@ export const ProfileCardRedesigned = memo(
       <Card border='partial' className={classNames('', {}, [className])} max padding='16'>
         <VStack gap='32' max>
           {data?.avatar && (
-            <HStack justify='center' max>
+            <HStack justify='center'>
               <Avatar alt='avatar' size={128} src={data?.avatar} />
             </HStack>
           )}
 
-          <HStack align='start' className={classes.inputs} gap='24' max>
+          <HStack className={classes.inputs} gap='24' max>
             <VStack gap='16' max>
               <Input
                 data-testid='ProfileCard.firstName'

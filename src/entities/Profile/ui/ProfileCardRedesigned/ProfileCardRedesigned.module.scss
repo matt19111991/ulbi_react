@@ -1,15 +1,5 @@
-// скрываем скелетоны только в приложении (не в storybook)
-@media screen and (max-width: 1800px) {
-  body:has(> div[id='root']) {
-    .skeleton {
-      display: none;
-    }
-  }
-}
-
 @media screen and (max-width: 840px) {
   .inputs {
-    display: flex;
     flex-flow: column wrap;
   }
 }
