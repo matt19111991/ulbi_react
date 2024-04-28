@@ -1,9 +1,9 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { getIsUserCanEditProfile } from './getIsUserCanEditProfile';
 
 describe('getIsUserCanEditProfile', () => {
-  test("should return true if this is the current user's profile", () => {
+  test('should return true if current profile belongs to the current user', () => {
     const state: DeepPartial<StateSchema> = {
       profile: {
         data: {
@@ -22,7 +22,7 @@ describe('getIsUserCanEditProfile', () => {
     expect(getIsUserCanEditProfile(state as StateSchema)).toBeTruthy();
   });
 
-  test("should return false if this is not the current user's profile", () => {
+  test("should return false if current profile doesn't belong to the current user", () => {
     const state: DeepPartial<StateSchema> = {
       profile: {
         data: {
