@@ -26,9 +26,9 @@
 
 `getProfileValidateErrors` - селектор для получения информации об ошибках валидации профиля
 
-- Services
+### Services
 
-`fetchProfileData` - Сервис для загрузки формы профиля
+`fetchProfileData` - сервис для загрузки формы профиля
 
 `updateProfileData` - Сервис для обновления профиля
 

@@ -41,7 +41,7 @@ export const editArticle = createAsyncThunk<
 
       вызываем вместо базового 'axios' свой кастомный инстанс 'api' (axios):
      'thunkApi.extra.api.put === axios.put'
-  */
+    */
     const response = await thunkApi.extra.api.put<Article>(
       `/articles/${form.id}`,
       updatedArticleData,
