@@ -1,10 +1,10 @@
-import { Profile } from '@/entities/Profile';
+import type { Profile } from '@/entities/Profile';
 
 import { ValidateProfileError } from '../../consts/consts';
 
 // можно еще провалидировать через 'async thunk', который через 'getState()' достает данные профиля из 'state'
 
-export const validateProfileData = (profile?: Profile) => {
+export const validateProfileData = (profile?: Profile): ValidateProfileError[] => {
   if (!profile) {
     return [ValidateProfileError.NO_DATA];
   }

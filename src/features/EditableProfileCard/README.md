@@ -32,7 +32,7 @@
 
 `updateProfileData` - Сервис для обновления профиля
 
-`validateProfileData` - Сервис для валидации полей формы профиля
+`validateProfileData` - сервис для валидации полей формы профиля
 
 - Slices
 

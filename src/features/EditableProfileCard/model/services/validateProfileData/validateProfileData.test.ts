@@ -3,11 +3,13 @@ import { Currency } from '@/entities/Currency/testing';
 
 import { ValidateProfileError } from '../../consts/consts';
 
+import type { ProfileSchema } from '../../types/editableProfileCardSchema';
+
 import { validateProfileData } from './validateProfileData';
 
 describe('validateProfileData', () => {
   test('all fields are correct', () => {
-    const profileData = {
+    const profileData: ProfileSchema['data'] = {
       age: 22,
       avatar:
         'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
@@ -15,6 +17,7 @@ describe('validateProfileData', () => {
       country: Country.USA,
       currency: Currency.USD,
       first: 'Jack',
+      id: '1',
       lastname: 'Smith',
       username: 'admin',
     };
@@ -23,11 +26,11 @@ describe('validateProfileData', () => {
   });
 
   test('no profile data', () => {
-    expect(validateProfileData(undefined)).toEqual([ValidateProfileError.NO_DATA]);
+    expect(validateProfileData()).toEqual([ValidateProfileError.NO_DATA]);
   });
 
-  test('no first and last name', () => {
-    const profileData = {
+  test('no first name', () => {
+    const profileData: ProfileSchema['data'] = {
       age: 22,
       avatar:
         'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
@@ -35,6 +38,24 @@ describe('validateProfileData', () => {
       country: Country.USA,
       currency: Currency.USD,
       first: '',
+      id: '1',
+      lastname: 'Smith',
+      username: 'admin',
+    };
+
+    expect(validateProfileData(profileData)).toEqual([ValidateProfileError.INCORRECT_USER_DATA]);
+  });
+
+  test('no last name', () => {
+    const profileData: ProfileSchema['data'] = {
+      age: 22,
+      avatar:
+        'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
+      city: 'New-York',
+      country: Country.USA,
+      currency: Currency.USD,
+      first: 'Jack',
+      id: '1',
       lastname: '',
       username: 'admin',
     };
@@ -42,8 +63,8 @@ describe('validateProfileData', () => {
     expect(validateProfileData(profileData)).toEqual([ValidateProfileError.INCORRECT_USER_DATA]);
   });
 
-  test('incorrect age', () => {
-    const profileData = {
+  test('age equals 0', () => {
+    const profileData: ProfileSchema['data'] = {
       age: 0,
       avatar:
         'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
@@ -51,6 +72,24 @@ describe('validateProfileData', () => {
       country: Country.USA,
       currency: Currency.USD,
       first: 'Jack',
+      id: '1',
+      lastname: 'Smith',
+      username: 'admin',
+    };
+
+    expect(validateProfileData(profileData)).toEqual([ValidateProfileError.INCORRECT_AGE]);
+  });
+
+  test('age is not integer', () => {
+    const profileData: ProfileSchema['data'] = {
+      age: '22' as unknown as number,
+      avatar:
+        'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
+      city: 'New-York',
+      country: Country.USA,
+      currency: Currency.USD,
+      first: 'Jack',
+      id: '1',
       lastname: 'Smith',
       username: 'admin',
     };
@@ -59,13 +98,14 @@ describe('validateProfileData', () => {
   });
 
   test('incorrect avatar', () => {
-    const profileData = {
+    const profileData: ProfileSchema['data'] = {
       age: 22,
       avatar: '',
       city: 'New-York',
       country: Country.USA,
       currency: Currency.USD,
       first: 'Jack',
+      id: '1',
       lastname: 'Smith',
       username: 'admin',
     };
@@ -74,7 +114,7 @@ describe('validateProfileData', () => {
   });
 
   test('incorrect city', () => {
-    const profileData = {
+    const profileData: ProfileSchema['data'] = {
       age: 22,
       avatar:
         'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
@@ -82,6 +122,7 @@ describe('validateProfileData', () => {
       country: Country.USA,
       currency: Currency.USD,
       first: 'Jack',
+      id: '1',
       lastname: 'Smith',
       username: 'admin',
     };
@@ -90,7 +131,7 @@ describe('validateProfileData', () => {
   });
 
   test('incorrect country', () => {
-    const profileData = {
+    const profileData: ProfileSchema['data'] = {
       age: 22,
       avatar:
         'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
@@ -98,6 +139,7 @@ describe('validateProfileData', () => {
       country: undefined,
       currency: Currency.USD,
       first: 'Jack',
+      id: '1',
       lastname: 'Smith',
       username: 'admin',
     };
@@ -106,7 +148,7 @@ describe('validateProfileData', () => {
   });
 
   test('incorrect currency', () => {
-    const profileData = {
+    const profileData: ProfileSchema['data'] = {
       age: 22,
       avatar:
         'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
@@ -114,6 +156,7 @@ describe('validateProfileData', () => {
       country: Country.USA,
       currency: undefined,
       first: 'Jack',
+      id: '1',
       lastname: 'Smith',
       username: 'admin',
     };
@@ -122,7 +165,7 @@ describe('validateProfileData', () => {
   });
 
   test('incorrect username', () => {
-    const profileData = {
+    const profileData: ProfileSchema['data'] = {
       age: 22,
       avatar:
         'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
@@ -130,6 +173,7 @@ describe('validateProfileData', () => {
       country: Country.USA,
       currency: Currency.USD,
       first: 'Jack',
+      id: '1',
       lastname: 'Smith',
       username: '',
     };
@@ -138,7 +182,7 @@ describe('validateProfileData', () => {
   });
 
   test('incorrect all', () => {
-    const profileData = {};
+    const profileData: ProfileSchema['data'] = {};
 
     expect(validateProfileData(profileData)).toEqual([
       ValidateProfileError.INCORRECT_AGE,
