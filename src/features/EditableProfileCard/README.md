@@ -30,7 +30,7 @@
 
 `fetchProfileData` - сервис для загрузки формы профиля
 
-`updateProfileData` - Сервис для обновления профиля
+`updateProfileData` - сервис для обновления профиля
 
 `validateProfileData` - сервис для валидации полей формы профиля
 

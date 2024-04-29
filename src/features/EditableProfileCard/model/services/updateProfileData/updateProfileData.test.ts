@@ -1,4 +1,4 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { Country } from '@/entities/Country/testing';
 import { Currency } from '@/entities/Currency/testing';
@@ -7,10 +7,11 @@ import { TestAsyncThunk } from '@/shared/lib/tests';
 
 import { ValidateProfileError } from '../../consts/consts';
 
+import type { ProfileSchema } from '../../types/editableProfileCardSchema';
+
 import { updateProfileData } from './updateProfileData';
 
-const updateFormData = {
-  id: '1',
+const updateFormData: ProfileSchema['form'] = {
   age: 22,
   avatar:
     'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
@@ -18,57 +19,74 @@ const updateFormData = {
   country: Country.USA,
   currency: Currency.USD,
   first: 'Jack',
+  id: '1',
   lastname: 'Smith',
   username: 'admin',
 };
 
-const initialState: DeepPartial<StateSchema> = {
+const state: DeepPartial<StateSchema> = {
   profile: {
     form: updateFormData,
   },
 };
 
 describe('updateProfileData', () => {
-  test('success update profile data', async () => {
-    const thunk = new TestAsyncThunk(updateProfileData, initialState);
+  test('success', async () => {
+    const thunk = new TestAsyncThunk(updateProfileData, state);
 
+    // указываем, что должно вернуться из 'put' запроса
     thunk.api.put.mockReturnValue(Promise.resolve({ data: updateFormData }));
 
     const result = await thunk.callThunk();
 
-    expect(thunk.dispatch).toHaveBeenCalled();
+    expect(thunk.dispatch).toHaveBeenCalledTimes(2);
+
+    expect(thunk.api.put).toHaveBeenCalledWith(`profile/${updateFormData.id}`, updateFormData);
+
     expect(result.meta.requestStatus).toBe('fulfilled');
+
     expect(result.payload).toBe(updateFormData);
   });
 
-  test('error update profile data', async () => {
-    const thunk = new TestAsyncThunk(updateProfileData, initialState);
+  test('error no profile data', async () => {
+    const thunk = new TestAsyncThunk(updateProfileData, state);
 
+    // указываем, что должно вернуться из 'put' запроса
     thunk.api.put.mockReturnValue(Promise.resolve({ status: 403 }));
 
     const result = await thunk.callThunk();
 
+    expect(thunk.dispatch).toHaveBeenCalledTimes(2);
+
+    expect(thunk.api.put).toHaveBeenCalledWith(`profile/${updateFormData.id}`, updateFormData);
+
     expect(result.meta.requestStatus).toBe('rejected');
-    expect(result.payload).toEqual([ValidateProfileError.SERVER_ERROR]);
+
+    expect(result.payload).toEqual([ValidateProfileError.NO_DATA]);
   });
 
-  test('validate error profile data', async () => {
-    const inValidatedState = {
-      ...initialState,
+  test('error profile data validation', async () => {
+    const invalidatedState: DeepPartial<StateSchema> = {
+      ...state,
       profile: {
-        ...initialState.profile,
+        ...state.profile,
         form: {
-          ...initialState.profile?.form,
+          ...state.profile?.form,
           lastname: '',
         },
       },
     };
 
-    const thunk = new TestAsyncThunk(updateProfileData, inValidatedState);
+    const thunk = new TestAsyncThunk(updateProfileData, invalidatedState);
 
     const result = await thunk.callThunk();
 
+    expect(thunk.dispatch).toHaveBeenCalledTimes(2);
+
+    expect(thunk.api.put).not.toHaveBeenCalled();
+
     expect(result.meta.requestStatus).toBe('rejected');
+
     expect(result.payload).toEqual([ValidateProfileError.INCORRECT_USER_DATA]);
   });
 });
