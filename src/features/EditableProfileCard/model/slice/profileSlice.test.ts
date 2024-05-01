@@ -1,4 +1,4 @@
-import { Action } from '@reduxjs/toolkit';
+import type { Action } from '@reduxjs/toolkit';
 
 import { Country } from '@/entities/Country/testing';
 import { Currency } from '@/entities/Currency/testing';
@@ -8,11 +8,11 @@ import { ValidateProfileError } from '../consts/consts';
 import { fetchProfileData } from '../services/fetchProfileData/fetchProfileData';
 import { updateProfileData } from '../services/updateProfileData/updateProfileData';
 
-import { ProfileSchema } from '../types/editableProfileCardSchema';
+import type { ProfileSchema } from '../types/editableProfileCardSchema';
 
 import { profileActions, profileReducer } from './profileSlice';
 
-const profileData = {
+const profileData: ProfileSchema['data'] = {
   age: 22,
   avatar:
     'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
@@ -20,12 +20,13 @@ const profileData = {
   country: Country.USA,
   currency: Currency.USD,
   first: 'Jack',
+  id: '1',
   lastname: 'Smith',
   username: 'admin',
 };
 
 describe('profileSlice', () => {
-  describe('reducers', () => {
+  describe('sync actions', () => {
     test('test cancel edit', () => {
       const state: DeepPartial<ProfileSchema> = {
         data: profileData,
@@ -38,7 +39,9 @@ describe('profileSlice', () => {
         validateErrors: [ValidateProfileError.INCORRECT_USER_DATA],
       };
 
-      expect(profileReducer(state as ProfileSchema, profileActions.cancelEdit())).toEqual({
+      const reducer = profileReducer(state as ProfileSchema, profileActions.cancelEdit());
+
+      expect(reducer).toEqual({
         data: profileData,
         form: profileData,
         readonly: true,
@@ -51,9 +54,9 @@ describe('profileSlice', () => {
         readonly: false,
       };
 
-      expect(profileReducer(state as ProfileSchema, profileActions.setReadOnly(true))).toEqual({
-        readonly: true,
-      });
+      const reducer = profileReducer(state as ProfileSchema, profileActions.setReadOnly(true));
+
+      expect(reducer).toEqual({ readonly: true });
     });
 
     test('test update profile', () => {
@@ -61,14 +64,17 @@ describe('profileSlice', () => {
         form: profileData,
       };
 
-      const updatedFields = {
+      const updatedFields: DeepPartial<ProfileSchema['form']> = {
         first: 'John',
         lastname: 'Johnson',
       };
 
-      expect(
-        profileReducer(state as ProfileSchema, profileActions.updateProfile(updatedFields)),
-      ).toEqual({
+      const reducer = profileReducer(
+        state as ProfileSchema,
+        profileActions.updateProfile(updatedFields),
+      );
+
+      expect(reducer).toEqual({
         form: {
           ...profileData,
           ...updatedFields,
@@ -77,61 +83,130 @@ describe('profileSlice', () => {
     });
   });
 
-  describe('fetchProfileData', () => {
-    test('test service pending', () => {
+  describe('async fetchProfileData action', () => {
+    test('test set is pending', () => {
       const state: DeepPartial<ProfileSchema> = {
-        error: 'Error',
+        error: 'Profile error',
         isLoading: false,
       };
 
-      expect(profileReducer(state as ProfileSchema, fetchProfileData.pending as Action)).toEqual({
+      const reducer = profileReducer(state as ProfileSchema, fetchProfileData.pending as Action);
+
+      expect(reducer).toEqual({
         error: undefined,
         isLoading: true,
       });
     });
 
-    test('test fulfilled', () => {
+    test('test set is fulfilled', () => {
       const state: DeepPartial<ProfileSchema> = {
         isLoading: true,
       };
 
-      expect(
-        profileReducer(state as ProfileSchema, fetchProfileData.fulfilled(profileData, '', '')),
-      ).toEqual({
+      /*
+        при тестировании 'extraReducers':
+          - второй аргумент: любая строка (например, 'requestId')
+          - третий аргумент: аргументы, передаваемые в 'async thunk', в нашем случае 'id' профиля
+      */
+      const reducer = profileReducer(
+        state as ProfileSchema,
+        fetchProfileData.fulfilled(profileData, 'requestId', profileData.id),
+      );
+
+      expect(reducer).toEqual({
         data: profileData,
         form: profileData,
         isLoading: false,
       });
     });
+
+    test('test set is rejected', () => {
+      const errorMessage = 'Jest test error';
+
+      const error = new Error(errorMessage);
+
+      const state: DeepPartial<ProfileSchema> = {
+        error: undefined,
+        isLoading: true,
+      };
+
+      /*
+        при тестировании 'extraReducers':
+          - второй аргумент: любая строка (например, 'requestId')
+          - третий аргумент: аргументы, передаваемые в 'async thunk', в нашем случае 'id' профиля
+      */
+      const reducer = profileReducer(
+        state as ProfileSchema,
+        fetchProfileData.rejected(error, 'requestId', profileData.id),
+      );
+
+      expect(reducer).toEqual({ error: errorMessage, isLoading: false });
+    });
   });
 
-  describe('updateProfileData', () => {
-    test('test service pending', () => {
+  describe('async updateProfileData action', () => {
+    test('test set is pending', () => {
       const state: DeepPartial<ProfileSchema> = {
         isLoading: false,
         validateErrors: [ValidateProfileError.SERVER_ERROR],
       };
 
-      expect(profileReducer(state as ProfileSchema, updateProfileData.pending as Action)).toEqual({
+      const reducer = profileReducer(state as ProfileSchema, updateProfileData.pending as Action);
+
+      expect(reducer).toEqual({
         isLoading: true,
         validateErrors: undefined,
       });
     });
 
-    test('test service fulfilled', () => {
+    test('test set is fulfilled', () => {
       const state: DeepPartial<ProfileSchema> = {
         isLoading: true,
       };
 
-      expect(
-        // второй аргумент в 'updateProfileData.fulfilled' - заглушка
-        profileReducer(state as ProfileSchema, updateProfileData.fulfilled(profileData, '')),
-      ).toEqual({
+      /*
+        при тестировании 'extraReducers':
+          - второй аргумент: любая строка (например, 'requestId')
+          - третий аргумент: аргументы, передаваемые в 'async thunk', в нашем случае 'undefined' (ничего не передаем)
+      */
+      const reducer = profileReducer(
+        state as ProfileSchema,
+        updateProfileData.fulfilled(profileData, 'requestId', undefined),
+      );
+
+      expect(reducer).toEqual({
         data: profileData,
         form: profileData,
         isLoading: false,
         readonly: true,
         validateErrors: undefined,
+      });
+    });
+
+    test('test set is rejected', () => {
+      const errorMessage = ValidateProfileError.NO_DATA;
+
+      const error = new Error(errorMessage);
+
+      const state: DeepPartial<ProfileSchema> = {
+        isLoading: true,
+        validateErrors: undefined,
+      };
+
+      /*
+        при тестировании 'extraReducers':
+          - второй аргумент: любая строка (например, 'requestId')
+          - третий аргумент: аргументы, передаваемые в 'async thunk', в нашем случае 'undefined' (ничего не передаем)
+          - четвертый аргумент: передаваемый тип ошибки в конфиг: 'ValidateProfileError[]'
+      */
+      const reducer = profileReducer(
+        state as ProfileSchema,
+        updateProfileData.rejected(error, 'requestId', undefined, [errorMessage]),
+      );
+
+      expect(reducer).toEqual({
+        isLoading: false,
+        validateErrors: [errorMessage],
       });
     });
   });
