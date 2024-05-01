@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { userReducer } from '@/entities/User/testing';
 
+import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -20,7 +21,7 @@ const asyncReducers: ReducersList = {
   user: userReducer,
 };
 
-const stateEditableProfileHeader: DeepPartial<StateSchema> = {
+const stateEditable: DeepPartial<StateSchema> = {
   profile: {
     data: {
       id: '1',
@@ -36,7 +37,7 @@ const stateEditableProfileHeader: DeepPartial<StateSchema> = {
 };
 
 const meta = {
-  title: 'features/Profile/EditableProfilePageHeader/old',
+  title: 'features/Profile/EditableProfileCard/components/EditableProfilePageHeader/old',
   component: EditableProfilePageHeader,
   argTypes: {
     backgroundColor: {
@@ -53,7 +54,7 @@ export const PrimaryEditing: Story = {
   args: {},
 };
 
-PrimaryEditing.decorators = [StoreDecorator(stateEditableProfileHeader, asyncReducers)];
+PrimaryEditing.decorators = [IndentsDecorator, StoreDecorator(stateEditable, asyncReducers)];
 
 // Dark editing editable profile page header
 
@@ -62,7 +63,8 @@ export const DarkEditing: Story = {
 };
 
 DarkEditing.decorators = [
-  StoreDecorator(stateEditableProfileHeader, asyncReducers),
+  IndentsDecorator,
+  StoreDecorator(stateEditable, asyncReducers),
   ThemeDecorator(Theme.DARK),
 ];
 
@@ -73,17 +75,14 @@ export const OrangeEditing: Story = {
 };
 
 OrangeEditing.decorators = [
-  StoreDecorator(stateEditableProfileHeader, asyncReducers),
+  IndentsDecorator,
+  StoreDecorator(stateEditable, asyncReducers),
   ThemeDecorator(Theme.ORANGE),
 ];
 
 // Not editing editable profile page header
 
-export const NotEditing: Story = {
-  args: {},
-};
-
-const stateEditableProfileHeaderNotEditing: DeepPartial<StateSchema> = {
+const stateNotEditing: DeepPartial<StateSchema> = {
   profile: {
     data: {
       id: '1',
@@ -99,15 +98,15 @@ const stateEditableProfileHeaderNotEditing: DeepPartial<StateSchema> = {
   },
 };
 
-NotEditing.decorators = [StoreDecorator(stateEditableProfileHeaderNotEditing, asyncReducers)];
-
-// Not editable profile page header
-
-export const NotEditable: Story = {
+export const NotEditing: Story = {
   args: {},
 };
 
-const stateEditableProfileHeaderNotEditable: DeepPartial<StateSchema> = {
+NotEditing.decorators = [IndentsDecorator, StoreDecorator(stateNotEditing, asyncReducers)];
+
+// Not editable profile page header
+
+const stateNotEditable: DeepPartial<StateSchema> = {
   profile: {
     data: {
       id: '1',
@@ -122,6 +121,10 @@ const stateEditableProfileHeaderNotEditable: DeepPartial<StateSchema> = {
   },
 };
 
-NotEditable.decorators = [StoreDecorator(stateEditableProfileHeaderNotEditable, asyncReducers)];
+export const NotEditable: Story = {
+  args: {},
+};
+
+NotEditable.decorators = [IndentsDecorator, StoreDecorator(stateNotEditable, asyncReducers)];
 
 export default meta;

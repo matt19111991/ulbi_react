@@ -3,7 +3,9 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
+
 import { ToggleFeatures } from '@/shared/lib/features';
+
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 import { Button as ButtonDeprecated, ButtonTheme } from '@/shared/ui/deprecated/Button';
@@ -34,9 +36,8 @@ export const EditableProfilePageHeader = memo(({ className }: EditableProfilePag
   const dispatch = useAppDispatch();
   const { t } = useTranslation('profile');
 
-  const readOnly = useSelector(getProfileReadOnly);
-
   const canEdit = useSelector(getIsUserCanEditProfile);
+  const readOnly = useSelector(getProfileReadOnly);
 
   const onEdit = useCallback(() => {
     dispatch(profileActions.setReadOnly(false));

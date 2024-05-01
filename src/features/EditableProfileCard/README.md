@@ -8,7 +8,7 @@
 
 `EditableProfileCard` - Карточка с редактируемой формой профиля
 
-`EditableProfilePageHeader` - Заголовок с действиями по профилю пользователя
+`EditableProfilePageHeader` - заголовок с действиями по профилю пользователя
 
 ### Selectors
 
