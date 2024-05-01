@@ -12,7 +12,7 @@ import { validateProfileData } from '../validateProfileData/validateProfileData'
 
 export const updateProfileData = createAsyncThunk<
   Profile, // возвращаемое значение
-  void, // на вход ничего не передаем
+  undefined, // на вход ничего не передаем
   ThunkConfig<ValidateProfileError[]> // передаваемый тип ошибки в конфиг: 'ValidateProfileError[]'
 >('profile/updateProfileData', async (_, thunkApi) => {
   /*
