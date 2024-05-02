@@ -1,11 +1,26 @@
-.skeleton {
+.skeletonDeprecated {
+  background-color: var(--secondary-color);
+  opacity: .3;
+
+  &.shadow {
+    box-shadow: 0 2px 10px var(--primary-color);
+  }
+}
+
+select {
+  border: 1px solid var(--secondary-color) !important;
+  color: var(--secondary-color) !important;
+}
+
+// Redesigned
+
+.skeletonRedesigned {
   background-color: var(--icon-redesigned);
   box-shadow: 0 2px 10px var(--icon-redesigned);
   opacity: .5;
 }
 
 .text {
-  display: inline-block;
   white-space: nowrap;
 }
 

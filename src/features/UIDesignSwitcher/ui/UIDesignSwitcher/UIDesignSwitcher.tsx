@@ -5,12 +5,19 @@ import { useTranslation } from 'react-i18next';
 import { getUserAuthData } from '@/entities/User';
 
 import { LAST_DESIGN_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
+import { Theme } from '@/shared/const/theme';
+
+import { classNames } from '@/shared/lib/classNames/classNames';
 
 import { ToggleFeatures, updateFeatureFlags } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useForceUpdate } from '@/shared/lib/hooks/useForceUpdate/useForceUpdate';
+import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
+
+import type { ListBoxItem } from '@/shared/types/ui';
 
 import { Select } from '@/shared/ui/deprecated/Select';
+import type { SelectOption } from '@/shared/ui/deprecated/Select';
 import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
 import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
 
@@ -21,35 +28,49 @@ import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 
 import classes from './UIDesignSwitcher.module.scss';
 
+enum DesignType {
+  NEW = 'new',
+  OLD = 'old',
+}
+
 interface UIDesignSwitcherProps {
   /**
    * Внешний класс
    */
   className?: string;
+
+  /**
+   * Состояние загрузки, пробрасываемое из 'storybook'
+   */
+  storybookLoading?: boolean;
 }
 
-export const UIDesignSwitcher = memo(({ className }: UIDesignSwitcherProps) => {
+export const UIDesignSwitcher = memo(({ className, storybookLoading }: UIDesignSwitcherProps) => {
   const dispatch = useAppDispatch();
+
   const forceUpdate = useForceUpdate();
+
+  const { theme } = useTheme();
+
   const { t } = useTranslation();
 
   const authData = useSelector(getUserAuthData);
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(storybookLoading ?? false);
 
-  const items = [
-    { content: t('Новый'), value: 'new' },
-    { content: t('Старый'), value: 'old' },
+  const items: ListBoxItem[] | SelectOption<DesignType>[] = [
+    { content: t('Новый'), value: DesignType.NEW },
+    { content: t('Старый'), value: DesignType.OLD },
   ];
 
-  const onChange = async (value: string) => {
+  const onChange = async (value: DesignType) => {
     setIsLoading(true);
 
     if (authData) {
       await dispatch(
         updateFeatureFlags({
           newFeatures: {
-            isAppRedesigned: value === 'new',
+            isAppRedesigned: value === DesignType.NEW,
           },
           userId: authData.id,
         }),
@@ -73,7 +94,7 @@ export const UIDesignSwitcher = memo(({ className }: UIDesignSwitcherProps) => {
   };
 
   return (
-    <HStack className={classes.stack} gap='16' max>
+    <HStack className={classes.stack} gap='16'>
       <ToggleFeatures
         feature='isAppRedesigned'
         on={
@@ -83,17 +104,17 @@ export const UIDesignSwitcher = memo(({ className }: UIDesignSwitcherProps) => {
             {isLoading ? (
               <SkeletonRedesigned
                 border='34px'
-                className={classes.skeleton}
+                className={classes.skeletonRedesigned}
                 height={32}
                 width={100}
               />
             ) : (
               <ListBox
                 className={className}
-                items={items}
+                items={items as ListBoxItem[]}
                 onChange={onChange}
                 stack='horizontal'
-                value='new'
+                value={DesignType.NEW}
               />
             )}
           </>
@@ -105,12 +126,19 @@ export const UIDesignSwitcher = memo(({ className }: UIDesignSwitcherProps) => {
             {isLoading ? (
               <SkeletonDeprecated
                 border='0px'
-                className={classes.skeleton}
+                className={classNames(classes.skeletonDeprecated, {
+                  [classes.shadow]: theme !== Theme.DARK,
+                })}
                 height={26}
                 width={89}
               />
             ) : (
-              <Select className={className} onChange={onChange} options={items} value='old' />
+              <Select
+                className={className}
+                onChange={onChange}
+                options={items as SelectOption<DesignType>[]}
+                value={DesignType.OLD}
+              />
             )}
           </>
         }

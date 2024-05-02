@@ -1,5 +1,5 @@
 ## Фича для переключения дизайна
 
-- Components
+### Components
 
-`UIDesignSwitcher` - Кнопка переключения дизайна
+`UIDesignSwitcher` - кнопка переключения дизайна

@@ -8,7 +8,7 @@ import { genericMemo } from '@/shared/lib/components/genericMemo/genericMemo';
 
 import classes from './Select.module.scss';
 
-export interface SelectOption<T extends string> {
+export interface SelectOption<T extends string = string> {
   /**
    * Содержимое
    */
