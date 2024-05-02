@@ -4,7 +4,9 @@ import type { User } from '@/entities/User';
 
 import { rtkApi } from '@/shared/api/rtkApi';
 
-import { generateRating } from '@/shared/lib/generators/rating';
+import { generateArticleRating } from '@/shared/lib/generators/rating';
+
+import type { ArticleRatingEntity } from '../model/types/articleRatingEntity';
 
 export interface GetArticleRatingArgs {
   articleId: Article['id'];
@@ -18,35 +20,39 @@ export interface RateArticleArgs {
   userId: User['id'];
 }
 
-interface ArticleRatingResponse {
-  data: Rating[];
+interface GetArticleRatingResponse {
+  data: ArticleRatingEntity[];
+}
+
+interface RateArticleResponse {
+  data: ArticleRatingEntity;
 }
 
 const articleRatingApi = rtkApi.injectEndpoints({
   endpoints: (build) => ({
-    getArticleRating: build.query<Rating[], GetArticleRatingArgs>({
+    getArticleRating: build.query<ArticleRatingEntity[], GetArticleRatingArgs>({
       queryFn: (args, api, extraOptions, baseQuery) => {
         if (__PROJECT__ !== 'front-end') {
-          return { data: [generateRating(4)] };
+          return { data: [generateArticleRating(4)] };
         }
 
         return baseQuery({
           params: args,
           url: 'article-ratings',
-        }) as ArticleRatingResponse;
+        }) as GetArticleRatingResponse;
       },
     }),
-    rateArticle: build.mutation<Rating[], RateArticleArgs>({
+    rateArticle: build.mutation<ArticleRatingEntity, RateArticleArgs>({
       queryFn: (args, api, extraOptions, baseQuery) => {
         if (__PROJECT__ !== 'front-end') {
-          return { data: [generateRating(args.rate)] };
+          return { data: generateArticleRating(args.rate) };
         }
 
         return baseQuery({
           body: args,
           method: 'POST',
           url: 'article-ratings',
-        }) as ArticleRatingResponse;
+        }) as RateArticleResponse;
       },
     }),
   }),

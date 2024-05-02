@@ -3,12 +3,12 @@ import { act, renderHook, waitFor } from '@testing-library/react';
 
 import { StoreProvider } from '@/app/providers/StoreProvider';
 
-import { generateRating } from '@/shared/lib/generators/rating';
+import { generateArticleRating } from '@/shared/lib/generators/rating';
 
 import { useGetArticleRatingQuery, useRateArticleMutation } from './articleRatingApi';
 import type { GetArticleRatingArgs, RateArticleArgs } from './articleRatingApi';
 
-const articleRatingMock = [generateRating(4)];
+const articleRatingMock = generateArticleRating(4);
 
 const ComponentWrapper = ({ children }: { children: ReactNode }) => (
   // важен только сам 'StoreProvider', 'initialState' можно не передавать
@@ -37,14 +37,14 @@ describe('articleRatingApi', () => {
       });
 
       await waitFor(() => {
-        expect(result.current.data).toEqual(articleRatingMock);
+        expect(result.current.data).toEqual([articleRatingMock]);
       });
     });
   });
 
   describe('useRateArticleMutation', () => {
     test('returns updated article rate', async () => {
-      const rateArticleArgs: RateArticleArgs = {
+      const args: RateArticleArgs = {
         articleId: '1',
         rate: 3,
         userId: '1',
@@ -70,13 +70,13 @@ describe('articleRatingApi', () => {
       act(() => {
         const [mutation] = result.current;
 
-        mutation(rateArticleArgs);
+        mutation(args);
       });
 
       await waitFor(() => {
         const [, response] = result.current;
 
-        expect(response.data).toEqual([{ rate: rateArticleArgs.rate }]);
+        expect(response.data).toEqual({ ...articleRatingMock, rate: args.rate });
       });
     });
   });

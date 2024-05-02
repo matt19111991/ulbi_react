@@ -22,6 +22,8 @@
 
 ### Types
 
+`ArticleRatingEntity` - тип для созданной сущности оценки статьи
+
 `ArticleRatingProps` - тип `props`, передаваемых в `ArticleRating` компонент
 
 `GetArticleRatingArgs` - тип аргументов, передаваемых в `getArticleRating`

@@ -21,7 +21,7 @@ export interface ArticleRatingProps {
   /**
    * 'ID' статьи
    */
-  articleId: Article['id'];
+  articleId?: Article['id'];
 
   /**
    * Внешний класс
@@ -50,7 +50,7 @@ const ArticleRating = ({
   const userData = useSelector(getUserAuthData);
 
   const getArticleRatingArgs: GetArticleRatingArgs = {
-    articleId,
+    articleId: articleId ?? '',
     userId: userData?.id ?? '',
   };
 
@@ -74,14 +74,16 @@ const ArticleRating = ({
   const handleRateArticle = useCallback(
     (starsCount: Rating['rate'], feedback?: Rating['feedback']) => {
       try {
-        const rateArticleArgs: RateArticleArgs = {
-          articleId,
-          feedback,
-          rate: starsCount,
-          userId: userData?.id ?? '',
-        };
+        if (articleId) {
+          const rateArticleArgs: RateArticleArgs = {
+            articleId,
+            feedback,
+            rate: starsCount,
+            userId: userData?.id ?? '',
+          };
 
-        rateArticleMutation(rateArticleArgs);
+          rateArticleMutation(rateArticleArgs);
+        }
       } catch (e) {
         // eslint-disable-next-line no-console
         console.log(`Article rating error: ${(e as Error).message}`);
@@ -112,6 +114,10 @@ const ArticleRating = ({
         off={<SkeletonDeprecated height={120} width='100%' />}
       />
     );
+  }
+
+  if (!articleId) {
+    return null;
   }
 
   const rating = storybookRatingEmpty ? { rate: 0 } : data?.at(0);
