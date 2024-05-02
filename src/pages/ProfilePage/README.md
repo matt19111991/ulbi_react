@@ -1,5 +1,5 @@
 ## Страница профиля
 
-- Components
+### Components
 
-`ProfilePage` - Компонент страницы профиля
+`ProfilePage` - компонент страницы профиля

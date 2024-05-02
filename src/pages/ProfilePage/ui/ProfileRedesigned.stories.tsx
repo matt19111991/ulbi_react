@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { Country } from '@/entities/Country/testing';
 import { Currency } from '@/entities/Currency/testing';
@@ -39,6 +39,7 @@ const stateProfile: DeepPartial<StateSchema> = {
       country: Country.USA,
       currency: Currency.USD,
       first: 'Jack',
+      id: '1',
       lastname: 'Smith',
       username: 'Jack',
     },
@@ -67,7 +68,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    storybookUserId: '1',
+    storybookProfileId: '1',
   },
 };
 
@@ -81,7 +82,7 @@ Primary.decorators = [
 
 export const Dark: Story = {
   args: {
-    storybookUserId: '1',
+    storybookProfileId: '1',
   },
 };
 
@@ -96,7 +97,7 @@ Dark.decorators = [
 
 export const Orange: Story = {
   args: {
-    storybookUserId: '1',
+    storybookProfileId: '1',
   },
 };
 
@@ -111,7 +112,7 @@ Orange.decorators = [
 
 export const PrimaryRating: Story = {
   args: {
-    storybookUserId: '2',
+    storybookProfileId: '2',
   },
 };
 
@@ -125,7 +126,7 @@ PrimaryRating.decorators = [
 
 export const DarkRating: Story = {
   args: {
-    storybookUserId: '2',
+    storybookProfileId: '2',
   },
 };
 
@@ -140,7 +141,7 @@ DarkRating.decorators = [
 
 export const OrangeRating: Story = {
   args: {
-    storybookUserId: '2',
+    storybookProfileId: '2',
   },
 };
 

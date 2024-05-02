@@ -10,9 +10,12 @@ import { ProfileRating } from '@/features/ProfileRating';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
-import { Text, TextAlign, TextTheme } from '@/shared/ui/deprecated/Text';
+import { ToggleFeatures } from '@/shared/lib/features';
+
+import { Text as TextDeprecated, TextTheme } from '@/shared/ui/deprecated/Text';
 
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
+import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 
 import { Page } from '@/widgets/Page';
 
@@ -25,25 +28,29 @@ interface ProfilePageProps {
   className?: string;
 
   /**
-   * Пробрасываемый ID пользователя для storybook
+   * Пробрасываемый 'ID' пользователя для 'storybook'
    */
-  storybookUserId?: string;
+  storybookProfileId?: string;
 }
 
-const ProfilePage = ({ className, storybookUserId }: ProfilePageProps) => {
+const ProfilePage = ({ className, storybookProfileId }: ProfilePageProps) => {
   const { id } = useParams<{ id: string }>();
   const { t } = useTranslation('profile');
 
   const currentUser = useSelector(getUserAuthData);
   const profileData = useSelector(getProfileData);
 
-  const userId = __PROJECT__ === 'storybook' ? storybookUserId : id;
+  const profileId = __PROJECT__ === 'storybook' ? storybookProfileId : id;
 
-  if (!userId) {
+  if (!profileId) {
     return (
-      <Page className={classNames('', {}, [className])}>
-        <HStack justify='center' max>
-          <Text align={TextAlign.CENTER} theme={TextTheme.ERROR} title={t('Профиль не найден')} />
+      <Page className={classNames(classes.ProfilePage, {}, [className])} data-testid='ProfilePage'>
+        <HStack justify='center'>
+          <ToggleFeatures
+            feature='isAppRedesigned'
+            on={<TextRedesigned title={t('Профиль не найден')} variant='error' />}
+            off={<TextDeprecated theme={TextTheme.ERROR} title={t('Профиль не найден')} />}
+          />
         </HStack>
       </Page>
     );
@@ -51,10 +58,10 @@ const ProfilePage = ({ className, storybookUserId }: ProfilePageProps) => {
 
   return (
     <Page className={classNames(classes.ProfilePage, {}, [className])} data-testid='ProfilePage'>
-      <VStack gap='16' max>
+      <VStack gap='16'>
         <EditableProfileCard id={id} />
 
-        {currentUser?.id !== userId && <ProfileRating profileId={profileData?.id} />}
+        {currentUser?.id !== profileId && <ProfileRating profileId={profileData?.id} />}
       </VStack>
     </Page>
   );

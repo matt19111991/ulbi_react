@@ -1,4 +1,4 @@
-// добавляем отступ только в приложении (не в storybook)
+// добавляем отступ только в приложении (не в 'storybook')
 @media screen and (max-width: 1800px) {
   body:has(> div[id='root']) {
     .ProfilePage {
