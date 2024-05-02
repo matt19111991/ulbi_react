@@ -3,12 +3,12 @@ import { act, renderHook, waitFor } from '@testing-library/react';
 
 import { StoreProvider } from '@/app/providers/StoreProvider';
 
-import { generateRating } from '@/shared/lib/generators/rating';
+import { generateProfileRating } from '@/shared/lib/generators/rating';
 
 import { useGetProfileRatingQuery, useRateProfileMutation } from './profileRatingApi';
 import type { GetProfileRatingArgs, RateProfileArgs } from './profileRatingApi';
 
-const profileRatingMock = [generateRating(4)];
+const profileRatingMock = generateProfileRating(4);
 
 const ComponentWrapper = ({ children }: { children: ReactNode }) => (
   // важен только сам 'StoreProvider', 'initialState' можно не передавать
@@ -37,7 +37,7 @@ describe('profileRatingApi', () => {
       });
 
       await waitFor(() => {
-        expect(result.current.data).toEqual(profileRatingMock);
+        expect(result.current.data).toEqual([profileRatingMock]);
       });
     });
   });
@@ -76,7 +76,7 @@ describe('profileRatingApi', () => {
       await waitFor(() => {
         const [, response] = result.current;
 
-        expect(response.data).toEqual([{ rate: args.rate }]);
+        expect(response.data).toEqual({ ...profileRatingMock, rate: args.rate });
       });
     });
   });
