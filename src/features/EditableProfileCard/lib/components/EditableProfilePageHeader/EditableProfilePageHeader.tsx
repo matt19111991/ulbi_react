@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
@@ -17,6 +17,8 @@ import { HStack } from '@/shared/ui/redesigned/Stack';
 import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 
 import { getIsUserCanEditProfile } from '../../../model/selectors/getIsUserCanEditProfile/getIsUserCanEditProfile';
+import { getProfileData } from '../../../model/selectors/getProfileData/getProfileData';
+import { getProfileIsLoading } from '../../../model/selectors/getProfileIsLoading/getProfileIsLoading';
 import { getProfileReadOnly } from '../../../model/selectors/getProfileReadOnly/getProfileReadOnly';
 
 import { updateProfileData } from '../../../model/services/updateProfileData/updateProfileData';
@@ -37,6 +39,8 @@ export const EditableProfilePageHeader = memo(({ className }: EditableProfilePag
   const { t } = useTranslation('profile');
 
   const canEdit = useSelector(getIsUserCanEditProfile);
+  const isLoading = useSelector(getProfileIsLoading);
+  const profileData = useSelector(getProfileData);
   const readOnly = useSelector(getProfileReadOnly);
 
   const onEdit = useCallback(() => {
@@ -51,13 +55,20 @@ export const EditableProfilePageHeader = memo(({ className }: EditableProfilePag
     dispatch(updateProfileData());
   }, [dispatch]);
 
+  const showTitle = useMemo(() => isLoading || profileData?.id, [isLoading, profileData?.id]);
+
   return (
     <ToggleFeatures
       feature='isAppRedesigned'
       on={
-        <Card border='partial' max padding='24'>
+        <Card
+          className={classNames('', { [classes.transparent]: !showTitle })}
+          border='partial'
+          max
+          padding='24'
+        >
           <HStack className={classNames(classes.stack, {}, [className])} justify='between' max>
-            <TextRedesigned title={t('Профиль')} />
+            {showTitle ? <TextRedesigned title={t('Профиль')} /> : null}
 
             {canEdit && (
               <div>
