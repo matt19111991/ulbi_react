@@ -2,8 +2,12 @@ import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
+import type { Rating } from '@/entities/Rating';
 import { RatingCard } from '@/entities/Rating';
+
 import { getUserAuthData } from '@/entities/User';
+
+import { ToggleFeatures } from '@/shared/lib/features';
 
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 
@@ -16,17 +20,17 @@ export interface ProfileRatingProps {
   className?: string;
 
   /**
-   * ID профиля
+   * 'ID' профиля
    */
-  profileId: string;
+  profileId?: string;
 
   /**
-   * Пробрасываемое состояние загрузки из storybook
+   * Пробрасываемое состояние загрузки из 'storybook'
    */
   storybookLoading?: boolean;
 
   /**
-   * Пробрасываемое пустое значение рейтинга из storybook
+   * Пробрасываемое пустое значение рейтинга из 'storybook'
    */
   storybookRatingEmpty?: boolean;
 }
@@ -51,7 +55,7 @@ const ProfileRating = ({
   const isLoading = __PROJECT__ === 'storybook' ? storybookLoading : queryLoading;
 
   const handleRateProfile = useCallback(
-    (starsCount: number, feedback?: string) => {
+    (starsCount: Rating['rate'], feedback?: Rating['feedback']) => {
       try {
         rateProfileMutation({
           feedback,
@@ -61,28 +65,38 @@ const ProfileRating = ({
         });
       } catch (e) {
         // eslint-disable-next-line no-console
-        console.log('e', e);
+        console.log(`Profile rating error: ${(e as Error).message}`);
       }
     },
     [profileId, rateProfileMutation, userData?.id],
   );
 
   const onAccept = useCallback(
-    (starsCount: number, feedback?: string) => {
+    (starsCount: Rating['rate'], feedback?: Rating['feedback']) => {
       handleRateProfile(starsCount, feedback);
     },
     [handleRateProfile],
   );
 
   const onCancel = useCallback(
-    (starsCount: number) => {
+    (starsCount: Rating['rate']) => {
       handleRateProfile(starsCount);
     },
     [handleRateProfile],
   );
 
   if (isLoading) {
-    return <Skeleton height={120} width='100%' />;
+    return (
+      <ToggleFeatures
+        feature='isAppRedesigned'
+        on={<Skeleton border='4px' height={143} />}
+        off={null}
+      />
+    );
+  }
+
+  if (!profileId) {
+    return null;
   }
 
   const rating = storybookRatingEmpty ? { rate: 0 } : data?.at(0);

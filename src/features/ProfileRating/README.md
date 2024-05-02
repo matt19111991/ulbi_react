@@ -6,9 +6,13 @@
 
 `rateProfile` - выставление рейтинга профилю
 
-- Components
+### Components
 
-`ProfileRating` - Компонент выставления оценки для профиля
+`ProfileRating` - компонент выставления оценки для профиля
+
+`ProfileRatingAsync` - асинхронный компонент рейтинга для профиля
+
+`ProfileRatingLazy` - ленивый компонент рейтинга для профиля
 
 ### Hooks
 
@@ -19,5 +23,9 @@
 ### Types
 
 `GetProfileRatingArgs` - тип аргументов, передаваемых в `getProfileRating`
+
+`ProfileRatingEntity` - тип для созданной сущности оценки профиля
+
+`ProfileRatingProps` - тип `props`, передаваемых в `ProfileRating` компонент
 
 `RateProfileArgs` - тип аргументов, передаваемых в `rateProfile`
