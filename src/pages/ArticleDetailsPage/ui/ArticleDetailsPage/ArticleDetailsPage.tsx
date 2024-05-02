@@ -1,8 +1,9 @@
 import { memo } from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { ArticleDetails } from '@/entities/Article';
+import { ArticleDetails, getArticleDetailsData } from '@/entities/Article';
 
 import { ArticleRating } from '@/features/ArticleRating';
 import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
@@ -72,6 +73,8 @@ const ArticleDetailsPage = ({
   const { id } = useParams<{ id: string }>();
   const { t } = useTranslation('article-details');
 
+  const articleData = useSelector(getArticleDetailsData);
+
   const articleId = __PROJECT__ === 'storybook' ? storybookId : id;
 
   if (!articleId) {
@@ -102,7 +105,7 @@ const ArticleDetailsPage = ({
                   <DetailsContainer />
 
                   <ArticleRating
-                    articleId={articleId}
+                    articleId={articleData?.id}
                     storybookLoading={storybookLoading}
                     storybookRatingEmpty={Boolean(storybookError)}
                   />

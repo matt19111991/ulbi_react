@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import { getUserAuthData } from '@/entities/User';
 
-import { EditableProfileCard } from '@/features/EditableProfileCard';
+import { EditableProfileCard, getProfileData } from '@/features/EditableProfileCard';
 import { ProfileRating } from '@/features/ProfileRating';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -35,6 +35,7 @@ const ProfilePage = ({ className, storybookUserId }: ProfilePageProps) => {
   const { t } = useTranslation('profile');
 
   const currentUser = useSelector(getUserAuthData);
+  const profileData = useSelector(getProfileData);
 
   const userId = __PROJECT__ === 'storybook' ? storybookUserId : id;
 
@@ -53,7 +54,7 @@ const ProfilePage = ({ className, storybookUserId }: ProfilePageProps) => {
       <VStack gap='16' max>
         <EditableProfileCard id={id} />
 
-        {currentUser?.id !== userId && <ProfileRating profileId={userId} />}
+        {currentUser?.id !== userId && <ProfileRating profileId={profileData?.id} />}
       </VStack>
     </Page>
   );
