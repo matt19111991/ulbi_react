@@ -13,7 +13,7 @@ import { Theme } from '@/shared/const/theme';
 
 import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
 
-import { profileReducer } from '../../model/slice/profileSlice';
+import { profileReducer } from '../../../model/slice/profileSlice';
 
 import { EditableProfilePageHeader } from './EditableProfilePageHeader';
 

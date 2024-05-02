@@ -16,12 +16,12 @@ import { Card } from '@/shared/ui/redesigned/Card';
 import { HStack } from '@/shared/ui/redesigned/Stack';
 import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 
-import { getIsUserCanEditProfile } from '../../model/selectors/getIsUserCanEditProfile/getIsUserCanEditProfile';
-import { getProfileReadOnly } from '../../model/selectors/getProfileReadOnly/getProfileReadOnly';
+import { getIsUserCanEditProfile } from '../../../model/selectors/getIsUserCanEditProfile/getIsUserCanEditProfile';
+import { getProfileReadOnly } from '../../../model/selectors/getProfileReadOnly/getProfileReadOnly';
 
-import { updateProfileData } from '../../model/services/updateProfileData/updateProfileData';
+import { updateProfileData } from '../../../model/services/updateProfileData/updateProfileData';
 
-import { profileActions } from '../../model/slice/profileSlice';
+import { profileActions } from '../../../model/slice/profileSlice';
 
 import classes from './EditableProfilePageHeader.module.scss';
 

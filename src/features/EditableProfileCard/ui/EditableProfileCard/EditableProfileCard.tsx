@@ -6,19 +6,22 @@ import { Country } from '@/entities/Country';
 import { Currency } from '@/entities/Currency';
 import { ProfileCard } from '@/entities/Profile';
 
-import {
-  DynamicModuleLoaderV2,
-  ReducersList,
-} from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+import { DynamicModuleLoaderV2 } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
+
+import { ToggleFeatures } from '@/shared/lib/features';
+
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
-import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
+
+import { Text as TextDeprecated, TextTheme } from '@/shared/ui/deprecated/Text';
 
 import { VStack } from '@/shared/ui/redesigned/Stack';
+import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 
-import { EditableProfilePageHeader } from '../EditableProfilePageHeader/EditableProfilePageHeader';
+import { EditableProfilePageHeader } from '../../lib/components/EditableProfilePageHeader/EditableProfilePageHeader';
 
 import { ValidateProfileError } from '../../model/consts/consts';
 
@@ -41,7 +44,7 @@ interface EditableProfileCardProps {
   className?: string;
 
   /**
-   * ID профиля
+   * 'ID' профиля
    */
   id?: string;
 }
@@ -73,9 +76,7 @@ export const EditableProfileCard = memo(({ className, id }: EditableProfileCardP
   };
 
   useInitialEffect(() => {
-    if (id) {
-      dispatch(fetchProfileData(id));
-    }
+    dispatch(fetchProfileData(id));
   });
 
   /**
@@ -83,7 +84,7 @@ export const EditableProfileCard = memo(({ className, id }: EditableProfileCardP
    */
   const onChangeAge = useCallback(
     (value?: string) => {
-      // валидация только на числа и пустую строку
+      // валидация только на пустую строку и на числа
       if (!value?.length || /^\d+$/.test(value)) {
         dispatch(profileActions.updateProfile({ age: Number(value || 0) }));
       }
@@ -168,11 +169,23 @@ export const EditableProfileCard = memo(({ className, id }: EditableProfileCardP
 
         {validateErrors?.length &&
           validateErrors.map((validateError) => (
-            <Text
-              data-testid='EditableProfileCard.Error'
+            <ToggleFeatures
+              feature='isAppRedesigned'
               key={validateError}
-              text={validateErrorsTranslates[validateError]}
-              theme={TextTheme.ERROR}
+              on={
+                <TextRedesigned
+                  data-testid='EditableProfileCard.Error'
+                  text={validateErrorsTranslates[validateError]}
+                  variant='error'
+                />
+              }
+              off={
+                <TextDeprecated
+                  data-testid='EditableProfileCard.Error'
+                  text={validateErrorsTranslates[validateError]}
+                  theme={TextTheme.ERROR}
+                />
+              }
             />
           ))}
 

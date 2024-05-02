@@ -1,27 +1,34 @@
 import { screen } from '@testing-library/react';
 
-// userEvent должен быть асинхронным: 'await userEvent.click(...);'
+// 'userEvent' должен быть асинхронным: 'await userEvent.click(...);'
 import userEvent from '@testing-library/user-event';
 
 import { Country } from '@/entities/Country/testing';
 import { Currency } from '@/entities/Currency/testing';
-import { Profile } from '@/entities/Profile/testing';
+import type { Profile } from '@/entities/Profile/testing';
+import type { UserSchema } from '@/entities/User/testing';
 
 import { $api } from '@/shared/api/api';
+
+import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
+
 import { componentTestRenderer } from '@/shared/lib/tests';
 
 import { profileReducer } from '../../model/slice/profileSlice';
 
+import type { ProfileSchema } from '../../model/types/editableProfileCardSchema';
+
 import { EditableProfileCard } from './EditableProfileCard';
 
-// иначе ошибка: 'Error: Error: connect ECONNREFUSED 127.0.0.1:80'
+// нужен 'mock' для 'axios', иначе ошибки в 'PUT' запросах при запуске теста
 jest.mock('axios', () => ({
   create: jest.fn(() => ({
-    put: jest.fn(),
     interceptors: {
-      request: { use: jest.fn(), eject: jest.fn() },
-      response: { use: jest.fn(), eject: jest.fn() },
+      request: {
+        use: jest.fn(),
+      },
     },
+    put: jest.fn(),
   })),
 }));
 
@@ -34,11 +41,19 @@ const profile: Profile = {
   currency: Currency.USD,
   first: 'Jack',
   id: '1',
-  lastname: 'White',
-  username: 'jack_white',
+  lastname: 'Smith',
+  username: 'Jack',
 };
 
-const options = {
+interface Options {
+  asyncReducers: ReducersList;
+  initialState: {
+    profile: ProfileSchema;
+    user: UserSchema;
+  };
+}
+
+const options: Options = {
   asyncReducers: {
     profile: profileReducer,
   },
@@ -46,28 +61,29 @@ const options = {
     profile: {
       data: profile,
       form: profile,
+      isLoading: false,
       readonly: true,
     },
     user: {
       authData: {
-        avatar:
-          'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
-        id: '1',
-        username: 'jack_white',
+        avatar: profile.avatar,
+        id: profile.id!,
+        username: profile.username!,
       },
+      mounted: true,
     },
   },
 };
 
 describe('EditableProfileCard', () => {
   test('should render component', () => {
-    componentTestRenderer(<EditableProfileCard id='1' />);
+    componentTestRenderer(<EditableProfileCard id={profile.id} />, options);
 
     expect(screen.getByText('Профиль')).toBeInTheDocument();
   });
 
   test('should toggle editing mode to true', async () => {
-    componentTestRenderer(<EditableProfileCard id='1' />, options);
+    componentTestRenderer(<EditableProfileCard id={profile.id} />, options);
 
     await userEvent.click(screen.getByTestId('EditableProfileCardHeader.EditButton'));
 
@@ -75,7 +91,7 @@ describe('EditableProfileCard', () => {
   });
 
   test('should reset data after cancel', async () => {
-    componentTestRenderer(<EditableProfileCard id='1' />, options);
+    componentTestRenderer(<EditableProfileCard id={profile.id} />, options);
 
     await userEvent.click(screen.getByTestId('EditableProfileCardHeader.EditButton'));
 
@@ -91,11 +107,11 @@ describe('EditableProfileCard', () => {
     await userEvent.click(screen.getByTestId('EditableProfileCardHeader.CancelButton'));
 
     expect(screen.getByTestId('ProfileCard.firstName')).toHaveValue('Jack');
-    expect(screen.getByTestId('ProfileCard.lastName')).toHaveValue('White');
+    expect(screen.getByTestId('ProfileCard.lastName')).toHaveValue('Smith');
   });
 
   test('should display error', async () => {
-    componentTestRenderer(<EditableProfileCard id='1' />, options);
+    componentTestRenderer(<EditableProfileCard id={profile.id} />, options);
 
     await userEvent.click(screen.getByTestId('EditableProfileCardHeader.EditButton'));
 
@@ -107,10 +123,10 @@ describe('EditableProfileCard', () => {
   });
 
   test('should send PUT request without validation errors', async () => {
-    // делаем 'mock' для объекта (инстанс 'axios') и метода 'PUT'
+    // делаем 'mock' для объекта (инстанса 'axios') и метода 'PUT'
     const mockPutRequest = jest.spyOn($api, 'put');
 
-    componentTestRenderer(<EditableProfileCard id='1' />, options);
+    componentTestRenderer(<EditableProfileCard id={profile.id} />, options);
 
     await userEvent.click(screen.getByTestId('EditableProfileCardHeader.EditButton'));
 

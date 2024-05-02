@@ -7,7 +7,7 @@ import type { Middleware, UnknownAction } from '@reduxjs/toolkit';
 */
 export const combineSlicesAvoidErrorMessageMiddleware: Middleware = (api) => (next) => (action) => {
   // иначе ошибки в 'GitHub Actions' и 'Storybook' => 'TypeError: context.console.error is not a function'
-  if (__PROJECT__ !== 'front-end') {
+  if (__PROJECT__ === 'storybook') {
     return next(action);
   }
 
@@ -28,6 +28,16 @@ export const combineSlicesAvoidErrorMessageMiddleware: Middleware = (api) => (ne
     \s - пробел, \S* - любое количество непробельных символов
   */
   if (/^@DESTROY\s\S*\sreducer$/g.test(unknownAction.type)) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    // eslint-disable-next-line no-console
+    console.error = undefined;
+
+    return next(unknownAction);
+  }
+
+  // отключаем консоль с выводом ошибки для 'api/config/middlewareRegistered' типов экшенов в 'Jest' среде
+  if (__PROJECT__ === 'jest' && unknownAction.type === 'api/config/middlewareRegistered') {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     // eslint-disable-next-line no-console

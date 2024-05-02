@@ -4,9 +4,9 @@
 
 `ValidateProfileError` - ошибки валидации профиля
 
-- Components
+### Components
 
-`EditableProfileCard` - Карточка с редактируемой формой профиля
+`EditableProfileCard` - карточка с редактируемой формой профиля
 
 `EditableProfilePageHeader` - заголовок с действиями по профилю пользователя
 
