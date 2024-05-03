@@ -13,18 +13,14 @@
   .SettingsPage {
     left: 0 !important;
     padding: 0;
-    top: 40px !important;
+    top: 40px;
 
     &.authorized {
-      top: 50px !important;
+      top: 50px;
     }
 
     &.deprecated {
       left: 24px !important;
-    }
-
-    &.redesigned {
-      left: -24px;
     }
 
     & > :first-child {
@@ -63,10 +59,6 @@
     button,
     p {
       font-size: 10px !important;
-    }
-
-    button {
-      height: 24px;
     }
 
     svg {

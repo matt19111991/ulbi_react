@@ -88,6 +88,8 @@ export const UIDesignSwitcher = memo(({ className, storybookLoading }: UIDesignS
       addDelay.then(() => {
         localStorage.setItem(LAST_DESIGN_LOCALSTORAGE_KEY, value);
 
+        setIsLoading(false);
+
         window.location.reload();
       });
     }

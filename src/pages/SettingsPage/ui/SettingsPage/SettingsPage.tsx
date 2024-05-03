@@ -7,17 +7,26 @@ import { getUserAuthData } from '@/entities/User';
 import { UIDesignSwitcher } from '@/features/UIDesignSwitcher';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
+
 import { ToggleFeatures } from '@/shared/lib/features';
 
-import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
+
+import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 
 import { Page } from '@/widgets/Page';
 
 import classes from './SettingsPage.module.scss';
 
-const SettingsPage = () => {
+interface SettingsPageProps {
+  /**
+   * Внешний класс
+   */
+  className?: string;
+}
+
+const SettingsPage = ({ className }: SettingsPageProps) => {
   const { t } = useTranslation();
 
   const user = useSelector(getUserAuthData);
@@ -28,7 +37,7 @@ const SettingsPage = () => {
       on={
         <Page
           className={classNames(classes.SettingsPage, { [classes.authorized]: Boolean(user) }, [
-            classes.redesigned,
+            className,
           ])}
         >
           <VStack align='start' className={classes.content} gap='24'>
@@ -41,10 +50,11 @@ const SettingsPage = () => {
       off={
         <Page
           className={classNames(classes.SettingsPage, { [classes.authorized]: Boolean(user) }, [
+            className,
             classes.deprecated,
           ])}
         >
-          <VStack align='start' className={classes.content} gap='24'>
+          <VStack align='start' gap='24'>
             <TextDeprecated title={t('Настройки пользователя')} />
 
             <UIDesignSwitcher />
