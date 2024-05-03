@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { ToggleFeatures } from '@/shared/lib/features';
 
 import { Button as ButtonDeprecated, ButtonTheme } from '@/shared/ui/deprecated/Button';
+
 import { Button as ButtonRedesigned } from '@/shared/ui/redesigned/Button';
 
 // 'BugButton' - компонент для тестирования 'ErrorBoundary'
