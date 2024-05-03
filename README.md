@@ -527,6 +527,7 @@ storybooka, линтинг. Нет деплоя на сервер
 - [useAppDispatch](./src/shared/lib/hooks/useAppDispatch/README.md)
 - [useAppToolbar](./src/app/lib/hooks/useAppToolbar/README.md)
 - [useArticleFilters](./src/pages/ArticlesPage/README.md)
+- [useCounterActions](./src/entities/Counter/README.md)
 - [useDebounce](./src/shared/lib/hooks/useDebounce/README.md)
 - [useEscapeKey](src/shared/lib/hooks/useEscapeKey/README.md)
 - [useForceUpdate](src/shared/lib/hooks/useForceUpdate/README.md)
