@@ -1,6 +1,6 @@
 ## Сущность счетчика
 
-- Components
+### Components
 
 `Counter` - компонент счетчика
 

@@ -1,12 +1,14 @@
-import { screen, waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+
+// 'userEvent' должен быть асинхронным: 'await userEvent.click(...);'
 import userEvent from '@testing-library/user-event';
 
 import { componentTestRenderer } from '@/shared/lib/tests';
 
 import { Counter } from './Counter';
 
-describe.skip('Counter', () => {
-  test('test render', () => {
+describe('Counter', () => {
+  test('test component render', () => {
     componentTestRenderer(<Counter />, {
       initialState: {
         counter: {
@@ -15,10 +17,10 @@ describe.skip('Counter', () => {
       },
     });
 
-    expect(screen.getByTestId('counter-value')).toHaveTextContent('10');
+    expect(screen.getByTestId('counter-value.Header')).toHaveTextContent('10');
   });
 
-  test('decrement', () => {
+  test('decrement button click', async () => {
     componentTestRenderer(<Counter />, {
       initialState: {
         counter: {
@@ -27,14 +29,12 @@ describe.skip('Counter', () => {
       },
     });
 
-    waitFor(() => {
-      userEvent.click(screen.getByTestId('decrement-btn'));
+    await userEvent.click(screen.getByTestId('decrement-btn'));
 
-      expect(screen.getByTestId('counter-value')).toHaveTextContent('9');
-    });
+    expect(screen.getByTestId('counter-value.Header')).toHaveTextContent('9');
   });
 
-  test('increment', () => {
+  test('increment button click', async () => {
     componentTestRenderer(<Counter />, {
       initialState: {
         counter: {
@@ -43,10 +43,8 @@ describe.skip('Counter', () => {
       },
     });
 
-    waitFor(() => {
-      userEvent.click(screen.getByTestId('increment-btn'));
+    await userEvent.click(screen.getByTestId('increment-btn'));
 
-      expect(screen.getByTestId('counter-value')).toHaveTextContent('11');
-    });
+    expect(screen.getByTestId('counter-value.Header')).toHaveTextContent('11');
   });
 });
