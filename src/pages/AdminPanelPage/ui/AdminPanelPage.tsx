@@ -1,8 +1,12 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { Counter } from '@/entities/Counter';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { toggleFeatures } from '@/shared/lib/features';
+
+import { VStack } from '@/shared/ui/redesigned/Stack';
 
 import { Page } from '@/widgets/Page';
 
@@ -29,7 +33,11 @@ const AdminPanelPage = ({ className }: AdminPanelPageProps) => {
       className={classNames(classes.AdminPanelPage, {}, [className, pageClass])}
       data-testid='AdminPanelPage'
     >
-      {t('Страница администрирования')}
+      <VStack align='start' gap='24'>
+        {t('Страница администрирования')}
+
+        <Counter />
+      </VStack>
     </Page>
   );
 };
