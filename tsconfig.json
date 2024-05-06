@@ -11,7 +11,7 @@
 //  для корректной совместной работы 'document.getElementsByTagName' и 'target': 'ES5' в 'tsconfig.json'
     "downlevelIteration": true,
 
-/*  'esModuleInterop' позволяет работать с пакетами, которые используют 'CommonJS', как с 'ES6' модулями:
+/* 'esModuleInterop' позволяет работать с пакетами, которые используют 'CommonJS', как с 'ES6' модулями:
     const path = require('path') | module.exports => import path from 'path';
 */  "esModuleInterop": true,
 

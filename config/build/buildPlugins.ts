@@ -15,7 +15,7 @@ import CopyPlugin from 'copy-webpack-plugin';
 
 /*
   плагин для проверки типов в отдельном процессе в 'runtime' при использовании 'babel-loader' или
-  'ts-loader' c опцией 'transpileOnly: true'
+ 'ts-loader' c опцией 'transpileOnly: true'
 */
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 
@@ -69,7 +69,7 @@ export function buildPlugins({
 
   if (isDev) {
 /*
-    '@pmmmwh/react-refresh-webpack-plugin' позволяет применить правки в коде без перезагрузки страницы
+   '@pmmmwh/react-refresh-webpack-plugin' позволяет применить правки в коде без перезагрузки страницы
     Обеспечивает более стабильную работу, чем функционал 'webpack-dev-server' из коробки
 
     необходимо свойство 'overrides' в 'package.json' с указанием последней версии 'webpack-dev-server',
@@ -97,7 +97,7 @@ export function buildPlugins({
 
   if (!isDev) {
 /*
-    'MiniCssExtractPlugin' создает 'CSS' файл для каждого 'JS' файла (который использует 'CSS')
+   'MiniCssExtractPlugin' создает 'CSS' файл для каждого 'JS' файла (который использует 'CSS')
     В то время, как 'style-loader' пишет стили в 'DOM' как инлайн стили
 */
     plugins.push(
@@ -107,7 +107,7 @@ export function buildPlugins({
       }),
     );
 /*
-    'BundleAnalyzerPlugin' позволяет анализировать размер 'bundle' и размеры зависимостей
+   'BundleAnalyzerPlugin' позволяет анализировать размер 'bundle' и размеры зависимостей
     нет смысла использовать в 'development' режиме, т.к. 'bundle' не минимизирован и имеет множество зависимостей
 */  plugins.push(new BundleAnalyzerPlugin({
       analyzerMode: 'static', // сгенерируется отдельный 'HTML' файл с отчетом ('report.html')
