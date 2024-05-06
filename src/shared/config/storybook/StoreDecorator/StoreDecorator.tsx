@@ -12,7 +12,7 @@ export const StoreDecorator =
   (Story: StoryFn): JSX.Element => {
     /*
       Если вернуть 'JSX' то будет ошибка 'ESLint':
-      'Component definition is missing display name(react/display-name)'
+     'Component definition is missing display name(react/display-name)'
     */
     const getStory = () => (
       <StoreProvider initialState={state} asyncReducers={asyncReducers}>
