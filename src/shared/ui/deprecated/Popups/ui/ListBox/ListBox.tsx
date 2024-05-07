@@ -1,5 +1,11 @@
 import { Fragment, memo } from 'react';
-import { Listbox as HeadlessListBox } from '@headlessui/react';
+
+import {
+  Listbox as HeadlessListBox,
+  ListboxButton,
+  ListboxOption,
+  ListboxOptions,
+} from '@headlessui/react';
 
 import CheckIcon from '@/shared/assets/icons/check-16-12.svg';
 
@@ -84,15 +90,13 @@ export const ListBox = memo(
         onChange={onChange}
         value={value}
       >
-        <HeadlessListBox.Button as='div'>
+        <ListboxButton as='div'>
           <Button>{value ?? defaultValue}</Button>
-        </HeadlessListBox.Button>
+        </ListboxButton>
 
-        <HeadlessListBox.Options
-          className={classNames(classes.options, {}, [mapDirectionClass[direction]])}
-        >
+        <ListboxOptions className={classNames(classes.options, {}, [mapDirectionClass[direction]])}>
           {items?.map((item) => (
-            <HeadlessListBox.Option
+            <ListboxOption
               as={Fragment}
               disabled={item.disabled}
               key={item.value}
@@ -102,10 +106,10 @@ export const ListBox = memo(
                 в библиотеке '@headlessui' как альтернативу 'JSX'-компонентам можно использовать
                 паттерн 'render props' (функция вместо 'JSX'-компонента)
               */}
-              {({ active, selected }) => (
+              {({ focus, selected }) => (
                 <li
                   className={classNames(classes.item, {
-                    [popupClasses.active]: active,
+                    [popupClasses.active]: focus,
                     [popupClasses.disabled]: item.disabled,
                   })}
                 >
@@ -116,9 +120,9 @@ export const ListBox = memo(
                   </HStack>
                 </li>
               )}
-            </HeadlessListBox.Option>
+            </ListboxOption>
           ))}
-        </HeadlessListBox.Options>
+        </ListboxOptions>
       </HeadlessListBox>
     </VStack>
   ),

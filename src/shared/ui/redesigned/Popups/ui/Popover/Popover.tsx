@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Popover as HeadlessPopover } from '@headlessui/react';
+import { Popover as HeadlessPopover, PopoverButton, PopoverPanel } from '@headlessui/react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
@@ -43,13 +43,13 @@ export const Popover = ({
 
   return (
     <HeadlessPopover className={classNames('', {}, [className, popupClasses.popup])}>
-      <HeadlessPopover.Button as='div' className={popupClasses.trigger} role='button'>
+      <PopoverButton as='div' className={popupClasses.trigger} role='button'>
         {trigger}
-      </HeadlessPopover.Button>
+      </PopoverButton>
 
-      <HeadlessPopover.Panel className={classNames(classes.panel, {}, menuClasses)} role='menu'>
+      <PopoverPanel className={classNames(classes.panel, {}, menuClasses)} role='menu'>
         {children}
-      </HeadlessPopover.Panel>
+      </PopoverPanel>
     </HeadlessPopover>
   );
 };

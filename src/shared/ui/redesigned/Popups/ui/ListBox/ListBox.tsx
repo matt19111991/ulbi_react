@@ -1,5 +1,11 @@
 import { Fragment, useMemo } from 'react';
-import { Listbox as HeadlessListBox } from '@headlessui/react';
+
+import {
+  Listbox as HeadlessListBox,
+  ListboxButton,
+  ListboxOption,
+  ListboxOptions,
+} from '@headlessui/react';
 
 import ArrowIcon from '@/shared/assets/icons/arrow-redesigned.svg';
 import CheckIcon from '@/shared/assets/icons/check-16-12.svg';
@@ -106,7 +112,7 @@ const ListBox = <T extends string>({
         onChange={onChange}
         value={value}
       >
-        <HeadlessListBox.Button as='div'>
+        <ListboxButton as='div'>
           <Button
             addonRight={<Icon Svg={ArrowIcon} />}
             data-testid={`${dataTestId}.Button`}
@@ -115,11 +121,11 @@ const ListBox = <T extends string>({
           >
             {selectedItem?.content ?? defaultValue}
           </Button>
-        </HeadlessListBox.Button>
+        </ListboxButton>
 
-        <HeadlessListBox.Options className={classNames(classes.options, {}, optionsClasses)}>
+        <ListboxOptions className={classNames(classes.options, {}, optionsClasses)}>
           {items?.map((item) => (
-            <HeadlessListBox.Option
+            <ListboxOption
               as={Fragment}
               disabled={item.disabled}
               key={item.value}
@@ -129,10 +135,10 @@ const ListBox = <T extends string>({
                 в библиотеке '@headlessui' как альтернативу 'JSX'-компонентам можно использовать
                 паттерн 'render props' (функция вместо 'JSX'-компонента)
               */}
-              {({ active, selected }) => (
+              {({ focus, selected }) => (
                 <li
                   className={classNames(classes.item, {
-                    [popupClasses.active]: active,
+                    [popupClasses.active]: focus,
                     [popupClasses.disabled]: item.disabled,
                   })}
                   data-testid={`${dataTestId}.Option.${item.value}`}
@@ -144,9 +150,9 @@ const ListBox = <T extends string>({
                   </HStack>
                 </li>
               )}
-            </HeadlessListBox.Option>
+            </ListboxOption>
           ))}
-        </HeadlessListBox.Options>
+        </ListboxOptions>
       </HeadlessListBox>
     </Stack>
   );

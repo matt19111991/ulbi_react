@@ -1,6 +1,6 @@
 import { Fragment, memo } from 'react';
 import type { ReactNode } from 'react';
-import { Menu } from '@headlessui/react';
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
@@ -108,9 +108,9 @@ export const DropDown = memo(
 
     return (
       <Menu as='div' className={classNames(popupClasses.popup, {}, [className])}>
-        <Menu.Button className={popupClasses.trigger}>{trigger}</Menu.Button>
+        <MenuButton className={popupClasses.trigger}>{trigger}</MenuButton>
 
-        <Menu.Items className={classNames(classes.menu, {}, menuClasses)}>
+        <MenuItems className={classNames(classes.menu, {}, menuClasses)}>
           {items.map((item) => {
             /*
               в библиотеке '@headlessui' как альтернативу 'JSX'-компонентам можно использовать
@@ -135,24 +135,24 @@ export const DropDown = memo(
 
             if (item.href) {
               return (
-                <Menu.Item
+                <MenuItem
                   as={AppLink}
                   disabled={item.disabled}
                   key={String(item.content)}
                   to={item.href}
                 >
                   {content}
-                </Menu.Item>
+                </MenuItem>
               );
             }
 
             return (
-              <Menu.Item as={Fragment} disabled={item.disabled} key={String(item.content)}>
+              <MenuItem as={Fragment} disabled={item.disabled} key={String(item.content)}>
                 {content}
-              </Menu.Item>
+              </MenuItem>
             );
           })}
-        </Menu.Items>
+        </MenuItems>
       </Menu>
     );
   },
