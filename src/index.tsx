@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter /* , createBrowserRouter , RouterProvider */ } from 'react-router-dom';
 
 import { ErrorBoundary } from '@/app/providers/ErrorBoundary';
 import { ForceUpdateProvider } from '@/app/providers/ForceUpdate';
@@ -31,6 +31,30 @@ if (!container) {
 */
 
 const root = createRoot(container);
+
+/*
+  вместо '<BrowserRouter />' можно использовать 'createBrowserRouter()' и '<RouterProvider />',
+  это позволяет описывать роуты в виде объектов, а не 'JSX'-компонентов
+
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <App />,
+      children: [
+        {
+          element: <AboutPage />,
+          path: '/about',
+        },
+        {
+          element: <SettingsPage />,
+          path: '/settings',
+        },
+      ],
+    },
+  ]);
+
+  root.render(<RouterProvider router={router} />);
+*/
 
 root.render(
   <BrowserRouter>

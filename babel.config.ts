@@ -84,7 +84,7 @@ export default function config(isTsx?: boolean, isDev?: boolean): webpack.RuleSe
             '@babel/preset-react', // для поддержки 'JSX'
             {
               // без этой опции получаем ошибку: 'ReferenceError: React is not defined'
-              runtime: 'automatic',
+              runtime: isDev ? 'automatic' : 'classic',
             },
           ],
         ],
