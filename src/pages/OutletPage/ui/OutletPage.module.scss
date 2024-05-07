@@ -1,0 +1,56 @@
+.OutletPage {
+  font: var(--font-l);
+  padding: 16px 24px;
+}
+
+.active {
+  color: var(--accent-redesigned);
+}
+
+.link {
+  font: var(--font-m-redesigned);
+
+  &:first-child {
+    &::after {
+      color: var(--hint-redesigned);
+      content: '/';
+      padding-left: 16px;
+    }
+  }
+}
+
+@media screen and (max-width: 1800px) {
+  .OutletPage {
+    position: relative;
+    top: 32px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .OutletPage {
+    font: var(--font-m-redesigned);
+    padding-left: 0;
+    top: 34px;
+  }
+
+  .links {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 16px;
+  }
+
+  .link {
+    font: var(--font-s-redesigned);
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .OutletPage {
+    font: var(--font-s-redesigned);
+  }
+
+  .link {
+    font-size: .75em;
+  }
+}

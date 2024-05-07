@@ -1,0 +1,19 @@
+.OutletLast {
+  padding-top: 16px;
+}
+
+@media screen and (max-width: 640px) {
+  .OutletLast {
+    h2 {
+      font: var(--font-m-redesigned) !important;
+    }
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .OutletLast {
+    h2 {
+      font: var(--font-s-redesigned) !important;
+    }
+  }
+}
