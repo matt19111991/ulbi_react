@@ -24,6 +24,14 @@ export const getRouteProfile = (id: string) => `/profile/${id}`;
 export const getRouteSettings = () => '/settings';
 
 /*
+ '<Outlet />' роуты обрабатываем по-особому (не указываем в 'AppRoutes' и 'AppRouteByPathMap'),
+  т.к. используем тестово
+*/
+export const getRouteOutlet = () => '/outlet';
+export const getRouteOutletFirst = () => '/outlet/first';
+export const getRouteOutletLast = () => '/outlet/last';
+
+/*
   {
     '/about': 'about',
     '/articles/:id/edit': 'article_edit',
