@@ -6,7 +6,7 @@ const defaultArticle = {
   blocks: [],
   createdAt: '26.02.2023',
   id: 'cy_test',
-  img: 'https://www.freepnglogos.com/uploads/javascript-png/javascript-vector-logo-yellow-png-transparent-javascript-vector-12.png',
+  img: 'https://ik.imagekit.io/ably/ghost/prod/2023/12/choosing-the-best-javascript-frameworks-for-your-next-project.png?tr=w-1728,q-50',
   subtitle: 'Testing article description',
   title: 'Testing article',
   type: ['IT'],
