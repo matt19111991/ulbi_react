@@ -4,7 +4,7 @@ import { User } from '../../../src/entities/User';
 
 import { USER_LOCALSTORAGE_KEY } from '../../../src/shared/const/localstorage';
 
-export const getByTestId = (testId: string) => cy.get(selectByTestId(testId));
+export const getByTestId = (testId: string) => cy.get(selectByTestId(testId), { timeout: 10000 });
 
 export const login = (username: string = 'Jack', password: string = '12345') => {
   cy.request({

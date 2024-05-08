@@ -1,18 +1,18 @@
 {
   "blocks": [],
   "createdAt": "26.02.2023",
-  "img": "https://www.freepnglogos.com/uploads/javascript-png/javascript-vector-logo-yellow-png-transparent-javascript-vector-12.png",
+  "id": "3",
+  "img": "https://ik.imagekit.io/ably/ghost/prod/2023/12/choosing-the-best-javascript-frameworks-for-your-next-project.png?tr=w-1728,q-50",
   "subtitle": "Testing article description",
   "title": "Testing article",
   "type": ["IT"],
-  "userId": "1",
-  "views": 1022,
-  "id": "1",
   "user": {
-    "id": "1",
     "avatar": "https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg",
+    "id": "1",
     "password": "12345",
     "roles": ["ADMIN"],
     "username": "Jack"
-  }
+  },
+  "userId": "1",
+  "views": 1022
 }

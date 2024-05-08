@@ -15,7 +15,9 @@
 
    4. `E2E` тестирование с `Cypress`:
 
-      `npm run test:e2e`
+      `npm run test:e2e:vite`
+      
+      `npm run test:e2e:webpack`
 
 Функция-обертка для тестирования со всеми необходимыми провайдерами: [componentTestRenderer](../src/shared/lib/tests/componentTestRenderer/componentTestRenderer.tsx)
 

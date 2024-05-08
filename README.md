@@ -1,4 +1,7 @@
 ## TODO
+* Проверить работу `vite` и `e2e`-тестов
+* Рефакторинг `e2e`-тестов
+* Рефакторинг папки `scripts`
 * Lighthouse и PageSpeed Insights testing для всех страниц на всех языках и всех темах
   90% для всех характеристик
 * SEO добавить (ulbi.tv)
@@ -6,6 +9,8 @@
 * GitHub Actions возвращает 404 для https://matt19111991.github.io/ulbi_react/
 * Обновиться до ESLint v.9 https://github.com/umijs/umi/issues/12261
 * Проверить работу `@pmmmwh/react-refresh-webpack-plugin` c `webpack-dev-server v.5+`
+* Раскомментировать `pre-commit` проверки
+* Обновить БД для `jsov-server`
 
 ## Доп. информация
 
@@ -288,7 +293,9 @@
 
 `npm run storybook:build` - сборка **Storybook** билда
 
-`npm run test:e2e` - запуск интеграционных тестов с `Cypress`
+`npm run test:e2e:vite` - запуск интеграционных тестов с `Cypress` и сборщиком `Vite`
+
+`npm run test:e2e:webpack` - запуск интеграционных тестов с `Cypress` и сборщиком `Webpack`
 
 `npm run test:ui` - запуск скриншотных тестов `Loki`
 
