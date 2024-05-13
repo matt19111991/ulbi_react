@@ -16,7 +16,7 @@ import i18nForTests from '@/shared/config/i18n/i18nForTests';
 
 import { Theme } from '@/shared/const/theme';
 
-interface ComponentTestRendererOptions {
+export interface ComponentTestRendererOptions {
   /**
    * Асинхронные редюсеры
    */

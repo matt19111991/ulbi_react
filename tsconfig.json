@@ -66,6 +66,7 @@
 */"include": [
     "./config/**/*.ts",
     "./config/**/*.tsx",
+    "./scripts/**/*.ts",
     "./src/**/*.ts",
     "./src/**/*.tsx",
     "babel.config.ts",
