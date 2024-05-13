@@ -13,3 +13,7 @@
 `componentTestRenderer` - функция-обертка для отрисовки компонентов, обернутых в роутер
 
 `mockedTypedAxios` - типизированная `axios`-заглушка
+
+### Types
+
+`ComponentTestRendererOptions` - тип для опций, передаваемых в `componentTestRenderer`

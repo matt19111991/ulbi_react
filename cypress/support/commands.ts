@@ -1,4 +1,4 @@
-// Здесь можем создавать различные пользовательские команды и перезаписывать существующие
+// здесь можем создавать различные пользовательские команды и перезаписывать существующие
 
 import * as articleCommands from './commands/article';
 import * as commentsCommands from './commands/comments';
@@ -13,48 +13,54 @@ Cypress.Commands.addAll(profileCommands);
 Cypress.Commands.addAll(ratingCommands);
 
 /*
-// Перезаписываем команду
-Cypress.Commands.overwrite('intercept', (data) => {
-  const { FIXTURE_MODE } = process.env; // получаем 'FIXTURE_MODE' извне
+  перезаписываем команду
 
-  // заглушки
-  const createFixture = (name: string, str: string) => str;
-  const readFixture = (name: string) => name;
-  const readFromServer = () => {};
-  const hash = (str: string) => str;
+  Cypress.Commands.overwrite('intercept', (data) => {
+    const { FIXTURE_MODE } = process.env; // получаем 'FIXTURE_MODE' извне
 
-  const { body = '', method = 'GET', url } = data as Partial<Request>;
+    // заглушки
+    const createFixture = (name: string, str: string) => str;
+    const readFixture = (name: string) => name;
+    const readFromServer = () => {};
+    const hash = (str: string) => str;
 
-  const fixtureName = method + url + hash(body as string);
+    const { body = '', method = 'GET', url } = data as Partial<Request>;
 
-  switch (FIXTURE_MODE) {
-    case 'READ': { // считываем данные фикстур из существующих файлов
-      readFixture(fixtureName);
-      break;
+    const fixtureName = method + url + hash(body as string);
+
+    switch (FIXTURE_MODE) {
+      case 'READ': {
+        // считываем данные фикстур из существующих файлов
+        readFixture(fixtureName);
+        break;
+      }
+
+      case 'WRITE': {
+        // данные из 'data' записываем в файлы с фикстурами
+        createFixture(fixtureName, body as string);
+        break;
+      }
+
+      case 'API': {
+        // работаем без фикстур (через сервер); например для релизной ветки
+        readFromServer();
+        break;
+      }
+
+      default:
+        break;
     }
-
-    case 'WRITE': { // данные из 'data' записываем в файлы с фикстурами
-      createFixture(fixtureName, body as string);
-      break;
-    }
-
-    case 'API': { // работаем без фикстур (через сервер); например для релизной ветки
-      readFromServer();
-      break;
-    }
-
-    default:
-      break;
-  }
-});
+  });
 */
 
-/* Child command
-   Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... });
+/*
+  Child command
+
+  Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... });
 */
 
-/* Dual command
-   Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... });
-*/
+/*
+  Dual command
 
-export {}; // нужно хоть что-то экспортировать, чтобы не ругался TS
+  Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... });
+*/
