@@ -1,5 +1,7 @@
 import { defineConfig } from 'cypress';
 
+// конфиги для 'Cypress' и 'tsconfig.json' лучше держать на верхнем уровне во избежание ошибок
+
 /*
   при запуске 'Cypress' в 'Ubuntu' возможны ошибки в консоли вида:
     - 'libva error: vaGetDriverNameByIndex() failed with unknown libva error, driver_name = (null)'
@@ -14,7 +16,7 @@ import { defineConfig } from 'cypress';
 export default defineConfig({
   component: {
     devServer: {
-      bundler: 'vite',
+      bundler: 'webpack',
       framework: 'react',
     },
   },

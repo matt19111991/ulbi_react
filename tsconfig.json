@@ -28,7 +28,7 @@
 
 /*  подключение типизации 'DOM', иначе ошибка: 'Type HTMLCollectionOf<HTMLElement> is not an array type or does not
     have a [Symbol.iterator]() method that returns an iterator.'
-*/  "lib": ["DOM","DOM.Iterable"],
+*/  "lib": ["DOM", "DOM.Iterable"],
 
     "module": "ESNext", // система модулей. Чаще всего 'ESNext' или 'ES6'
 

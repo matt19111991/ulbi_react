@@ -1,11 +1,15 @@
 {
   "compilerOptions": {
-    "allowJs": true,
-    "isolatedModules": false,
-    "lib": ["dom", "es5"],
-    "target": "es5",
-    "types": ["cypress", "node"]
+    "lib": ["DOM", "DOM.Iterable", "ES5"], // из документации + подключение типизации 'DOM' из основного 'tsconfig.json'
+    "types": ["cypress", "node"] // из документации
   },
-  "extends": "../tsconfig.json",
-  "include": ["**/*.ts", "**/*.tsx"]
+
+  "extends": "../tsconfig.json", // расширяем конфигурацией из файла
+
+  "include": [
+    "../config/jest/setupTests.ts",
+    "../src/app/types/global.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
 }
