@@ -9,6 +9,7 @@
   "include": [
     "../config/jest/setupTests.ts",
     "../src/app/types/global.d.ts",
+    "cypress.d.ts",
     "**/*.ts",
     "**/*.tsx"
   ]
