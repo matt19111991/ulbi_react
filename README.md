@@ -368,7 +368,9 @@
 
 4) `E2E тестирование` с `Cypress`:
 
-   `npm run test:e2e`
+    `npm run test:e2e:vite`
+
+    `npm run test:e2e:webpack`
 
 [Подробнее о тестах](./docs/tests.md)
 
