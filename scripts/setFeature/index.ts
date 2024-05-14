@@ -7,15 +7,15 @@
   запуск скрипта: npm run set:feature isAppRedesigned on
 */
 
-import { Project, SyntaxKind } from 'ts-morph';
+import { Project, SyntaxKind } from 'ts-morph'; // либа для работы с 'AST'-деревом
 
-import { isToggleComponent, replaceToggleComponent } from './removeComponent';
-import { isToggleFunction, replaceToggleFunction } from './removeFunction';
+import { isToggleComponent, replaceToggleComponent } from './utils/component';
+import { isToggleFunction, replaceToggleFunction } from './utils/function';
 
-const removedFeatureName = process.argv[2]; // isArticleEnabled
-const featureState = process.argv[3]; // on/off
+const featureName = process.argv[2]; // 'isArticleEnabled'
+const featureState = process.argv[3]; // 'on' / 'off'
 
-if (!removedFeatureName) {
+if (!featureName) {
   throw new Error('Укажите название feature flag');
 }
 
@@ -38,14 +38,14 @@ files.forEach((sourceFile) => {
   // проходимся по всем потомкам
   // eslint-disable-next-line consistent-return
   sourceFile.forEachDescendant((node) => {
-    // находим компонент <ToggleFeatures />
+    // находим компонент '<ToggleFeatures />'
     if (node.isKind(SyntaxKind.JsxSelfClosingElement) && isToggleComponent(node)) {
-      return replaceToggleComponent(node, removedFeatureName, featureState);
+      return replaceToggleComponent(node, featureName, featureState);
     }
 
     // находим функцию 'toggleFeatures'
     if (node.isKind(SyntaxKind.CallExpression) && isToggleFunction(node)) {
-      return replaceToggleFunction(node, removedFeatureName, featureState);
+      return replaceToggleFunction(node, featureName, featureState);
     }
   });
 });

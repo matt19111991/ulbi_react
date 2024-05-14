@@ -32,15 +32,15 @@ export const replaceToggleFunction = (
   // 'isArticleEnabled'
   const featureNameProperty = objectOptions.getProperty('name');
 
-  // on: () => (<><h2>Redesigned counter</h2><Counter /></>)
+  // 'on': '() => (<><h2>Redesigned counter</h2><Counter /></>)'
   const onFunctionProperty = objectOptions.getProperty('on');
 
-  // off: () => <Counter />
+  // 'off': '() => <Counter />'
   const offFunctionProperty = objectOptions.getProperty('off');
 
   // достаем сами значения
 
-  // isArticleEnabled
+  // 'isArticleEnabled'
   const featureName = featureNameProperty
     ?.getFirstDescendantByKind(SyntaxKind.StringLiteral)
     ?.getText()

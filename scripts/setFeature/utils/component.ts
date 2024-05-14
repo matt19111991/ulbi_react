@@ -40,14 +40,14 @@ export const replaceToggleComponent = (
   removedFeatureName: string,
   featureState: string,
 ) => {
-  // берем все JSX атрибуты <ToggleFeatures /> компонента
+  // берем все 'JSX'-атрибуты '<ToggleFeatures />' компонента
   const attributes = node.getDescendantsOfKind(SyntaxKind.JsxAttribute);
 
   const featureNameAttribute = getAttributeNodeByName(attributes, 'feature');
   const onAttribute = getAttributeNodeByName(attributes, 'on');
   const offAttribute = getAttributeNodeByName(attributes, 'off');
 
-  // isArticleRatingEnabled
+  // 'isArticleRatingEnabled'
   const featureName = featureNameAttribute
     ?.getFirstDescendantByKind(SyntaxKind.StringLiteral)
     ?.getText()
@@ -57,10 +57,10 @@ export const replaceToggleComponent = (
     return;
   }
 
-  // JsxSelfClosingElement => <ArticleRating articleId={articleId} />
+  // 'JsxSelfClosingElement' => '<ArticleRating articleId={articleId} />'
   const onValue = getReplacedComponent(onAttribute);
 
-  // JsxSelfClosingElement => <Card>{t('Оценка статей скоро появится')}</Card>
+  // 'JsxSelfClosingElement' => '<Card>{t('Оценка статей скоро появится')}</Card>'
   const offValue = getReplacedComponent(offAttribute);
 
   if (featureState === 'on') {

@@ -504,7 +504,7 @@ storybooka, линтинг. Нет деплоя на сервер
 ```
 
 Для автоматического перевода `feature` только в одно определенное состояние (`on` или `off`)
-для всего проекта можно использовать [скрипт](scripts/removeFeature/index.ts):
+для всего проекта можно использовать [скрипт](scripts/setFeature/index.ts):
 
 `npm run set:feature isAppRedesigned on`
 

@@ -21,7 +21,7 @@
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
     "postinstall": "ts-node ./scripts/clearCache.ts",
     "prettify": "npx prettier --write **/*.{json,ts,tsx}",
-    "set:feature": "ts-node scripts/removeFeature/index.ts",
+    "set:feature": "ts-node scripts/setFeature/index.ts",
     "storybook": "cross-env NODE_OPTIONS=--no-warnings='DEP0040' storybook dev -p 6006 -c ./config/storybook --no-open",
     "storybook:build": "cross-env NODE_OPTIONS=--no-warnings='DEP0040' storybook build -c ./config/storybook",
     "test:e2e:vite": "cypress open --config-file cypress/cypress.config.vite.ts",
