@@ -7,9 +7,6 @@ import defaultArticle from '../../fixtures/article-details.json';
 
 export const articlesAreReady = () => {
   cy.getByTestId('ArticleList').should('exist');
-
-  // режим плитки не работает по умолчанию, поэтому сразу переключаемся на режим 'списка'
-  cy.setListArticlesView();
 };
 
 export const createArticle = (article?: Article) => {
@@ -25,10 +22,6 @@ export const createArticle = (article?: Article) => {
 
 export const searchArticles = (searchValue: string) => {
   cy.getByTestId('Articles.Search').type(searchValue);
-};
-
-export const setListArticlesView = () => {
-  cy.getByTestId('ArticleView.list').click();
 };
 
 export const sortArticlesByField = (sortField: ArticleSortField) => {
@@ -64,7 +57,7 @@ export const waitForArticlesUpdates = () => {
 };
 
 export const waitForTheFirstArticle = () => {
-  cy.getByTestId('Article.Header').first().contains('Kotlin not sorted news');
+  cy.getByTestId('Article.Paragraph').first().contains('Kotlin not sorted news');
 };
 
 declare global {
@@ -73,7 +66,6 @@ declare global {
       articlesAreReady(): Chainable<void>;
       createArticle(article?: Article): Chainable<Article>;
       searchArticles(searchValue: string): Chainable<void>;
-      setListArticlesView(): Chainable<void>;
       sortArticlesByField(sortField: ArticleSortField): Chainable<void>;
       sortArticlesByOrder(order: SortOrder): Chainable<void>;
       sortArticlesByType(type: ArticleType): Chainable<void>;

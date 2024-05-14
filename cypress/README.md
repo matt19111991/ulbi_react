@@ -12,6 +12,8 @@
 
 `cy.addComment` - метод для создания комментария
 
+`cy.articlesAreReady` - метод для проверки наличия списка статей в `DOM`
+
 `cy.createArticle` - метод для создания статьи
 
 `cy.getByTestId` - метод для получения `DOM-элемента` по `testId`

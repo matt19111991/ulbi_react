@@ -1,26 +1,22 @@
 describe('Пользователь заходит на страницу со списком статей', () => {
   beforeEach(() => {
-    cy.viewport(1920, 1080);
+    cy.login();
 
-    cy.login().then(() => {
-      cy.visit('articles');
-    });
+    cy.visit(`${Cypress.env('FRONT_APP_URL')}/articles`);
   });
 
   it('Статьи успешно загружаются с сервера', () => {
     cy.articlesAreReady();
 
-    cy.getByTestId('ArticleListItem').should('have.length.greaterThan', 3);
+    cy.getByTestId('ArticleListItem').should('have.length.greaterThan', 6);
   });
 
   it('Статьи успешно загружаются на стабах (фикстурах)', () => {
-    // перехватываем запрос совпадающий с '**/articles?*' и подставляем моковые данные из 'fixtures'
-    cy.intercept('GET', '**/articles?*', { fixture: 'articles.json' });
-
-    // при запуске dev сборки через 'vite' будет ошибка, т.к. 'vite' не работает корректно с 'react-virtualized'
+    // перехватываем запрос совпадающий с '/articles*' и подставляем моковые данные из 'fixtures'
+    cy.intercept('GET', '/articles*', { fixture: 'articles.json' });
 
     cy.articlesAreReady();
 
-    cy.getByTestId('ArticleListItem').should('have.length.greaterThan', 3);
+    cy.getByTestId('ArticleListItem').should('have.length', 5);
   });
 });

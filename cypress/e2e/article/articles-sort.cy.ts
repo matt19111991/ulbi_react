@@ -3,7 +3,7 @@ import { ArticleSortField, ArticleType } from '../../../src/entities/Article/tes
 describe('Пользователь сортирует статьи', () => {
   beforeEach(() => {
     cy.login().then(() => {
-      cy.visit('articles');
+      cy.visit(`${Cypress.env('FRONT_APP_URL')}/articles`);
     });
   });
 
@@ -16,7 +16,7 @@ describe('Пользователь сортирует статьи', () => {
 
     cy.waitForArticlesUpdates();
 
-    cy.getByTestId('Article.Header').first().contains('Python old news');
+    cy.getByTestId('Article.Paragraph').first().contains('Python old news');
   });
 
   it('Пользователь сортирует по названию статьи', () => {
@@ -28,7 +28,7 @@ describe('Пользователь сортирует статьи', () => {
 
     cy.waitForArticlesUpdates();
 
-    cy.getByTestId('Article.Header').first().contains('Javascript fresh news');
+    cy.getByTestId('Article.Paragraph').first().contains('Javascript fresh news');
   });
 
   it('Пользователь сортирует по типу статьи', () => {
@@ -40,6 +40,6 @@ describe('Пользователь сортирует статьи', () => {
 
     cy.waitForArticlesUpdates();
 
-    cy.getByTestId('Article.Header').first().contains('Кредитный рейтинг');
+    cy.getByTestId('Article.Paragraph').first().contains('Кредитный рейтинг');
   });
 });

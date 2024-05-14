@@ -1,7 +1,7 @@
 describe('Пользователь ищет статьи', () => {
   beforeEach(() => {
     cy.login().then(() => {
-      cy.visit('articles');
+      cy.visit(`${Cypress.env('FRONT_APP_URL')}/articles`);
     });
   });
 
