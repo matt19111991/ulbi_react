@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES5"], // из документации + подключение типизации 'DOM' из основного 'tsconfig.json'
+    "resolveJsonModule": true, // разрешить импорт 'JSON-файлов'
     "types": ["cypress", "node"] // из документации
   },
 

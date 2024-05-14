@@ -2,8 +2,6 @@ import { ArticleSortField, ArticleType } from '../../../src/entities/Article/tes
 
 describe('Пользователь сортирует статьи', () => {
   beforeEach(() => {
-    cy.viewport(1920, 1080);
-
     cy.login().then(() => {
       cy.visit('articles');
     });

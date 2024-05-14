@@ -2,8 +2,6 @@ let profileId = '';
 
 describe('Пользователь заходит на страницу профиля', () => {
   beforeEach(() => {
-    cy.viewport(1920, 1080);
-
     cy.visit('');
 
     // 'data' возвращается из 'body' ('commands/common.ts')
