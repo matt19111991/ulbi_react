@@ -13,12 +13,12 @@ Cypress.Commands.addAll(profileCommands);
 Cypress.Commands.addAll(ratingCommands);
 
 /*
-  перезаписываем команду
+  // перезапись существующих команд
 
   Cypress.Commands.overwrite('intercept', (data) => {
     const { FIXTURE_MODE } = process.env; // получаем 'FIXTURE_MODE' извне
 
-    // заглушки
+    // функции-заглушки
     const createFixture = (name: string, str: string) => str;
     const readFixture = (name: string) => name;
     const readFromServer = () => {};
@@ -30,20 +30,17 @@ Cypress.Commands.addAll(ratingCommands);
 
     switch (FIXTURE_MODE) {
       case 'READ': {
-        // считываем данные фикстур из существующих файлов
-        readFixture(fixtureName);
+        readFixture(fixtureName); // считываем данные фикстур из существующих файлов
         break;
       }
 
       case 'WRITE': {
-        // данные из 'data' записываем в файлы с фикстурами
-        createFixture(fixtureName, body as string);
+        createFixture(fixtureName, body as string); // данные из 'data' записываем в файлы с фикстурами
         break;
       }
 
       case 'API': {
-        // работаем без фикстур (через сервер); например для релизной ветки
-        readFromServer();
+        readFromServer(); // работаем без фикстур (через сервер), например для релизной ветки
         break;
       }
 
