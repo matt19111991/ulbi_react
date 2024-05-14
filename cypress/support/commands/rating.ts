@@ -1,4 +1,11 @@
-export const setRate = (starsCount = 5, feedback = 'feedback') => {
+import type { Rating } from '@/entities/Rating';
+
+import type { ArticleRatingEntity } from '@/features/ArticleRating';
+
+export const setRate = (
+  starsCount: Rating['rate'] = 5,
+  feedback: Rating['feedback'] = 'feedback',
+) => {
   cy.getByTestId(`StarRating.${starsCount}`).click();
 
   cy.getByTestId('RatingCard.Input').type(feedback);
@@ -6,21 +13,21 @@ export const setRate = (starsCount = 5, feedback = 'feedback') => {
   cy.getByTestId('RatingCard.Send').click();
 };
 
-export const removeRate = (rateId: string) => {
+export const removeRate = (rateId: ArticleRatingEntity['id']) => {
   cy.request({
     headers: {
       Authorization: true,
     },
     method: 'DELETE',
-    url: `http://localhost:8000/article-ratings/${rateId}`,
+    url: `/article-ratings/${rateId}`,
   });
 };
 
 declare global {
   namespace Cypress {
     interface Chainable {
-      setRate(starsCount: number, feedback: string): Chainable<void>;
-      removeRate(rateId: string): Chainable<void>;
+      setRate(starsCount: Rating['rate'], feedback: Rating['feedback']): Chainable<void>;
+      removeRate(rateId: ArticleRatingEntity['id']): Chainable<void>;
     }
   }
 }

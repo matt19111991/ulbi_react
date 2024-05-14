@@ -1,17 +1,17 @@
-let currentArticleId = '';
+import type { Article } from '@/entities/Article';
+
+let currentArticleId: Article['id'] = '';
 
 describe('Пользователь заходит на страницу статьи', () => {
   beforeEach(() => {
-    cy.viewport(1920, 1080);
-
     cy.login();
 
     cy.createArticle().then((article) => {
       currentArticleId = article.id;
 
-      // cy.log(JSON.stringify(article)); - логирование в Cypress
+      // 'cy.log(JSON.stringify(article));' - логирование в 'Cypress'
 
-      cy.visit(`articles/${currentArticleId}`);
+      cy.visit(`${Cypress.env('FRONT_APP_URL')}/articles/${currentArticleId}`);
     });
   });
 
@@ -49,16 +49,13 @@ describe('Пользователь заходит на страницу стат
 
     cy.setRate(4, 'feedback');
 
-    cy.intercept('POST', '**/article-ratings', (req) => {
-      req.continue((res) => {
-        res.send(res.body.id);
-      });
-    }).as('setRating');
+    // перехватываем запрос и присваиваем ему 'alias'
+    cy.intercept('POST', '**/article-ratings').as('setRating');
 
     cy.get('[data-selected=true]').should('have.length', 4);
 
     cy.wait('@setRating').then(({ response }) => {
-      cy.removeRate(response?.body);
+      cy.removeRate(response?.body.id);
     });
   });
 });

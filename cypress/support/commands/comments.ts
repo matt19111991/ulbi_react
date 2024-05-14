@@ -1,4 +1,6 @@
-export const addComment = (text: string) => {
+import type { Comment } from '@/entities/Comment';
+
+export const addComment = (text: Comment['text']) => {
   cy.getByTestId('AddCommentForm.Input').type(text);
 
   cy.getByTestId('AddCommentForm.Button').click();
@@ -7,7 +9,7 @@ export const addComment = (text: string) => {
 declare global {
   namespace Cypress {
     interface Chainable {
-      addComment(text: string): Chainable<void>;
+      addComment(text: Comment['text']): Chainable<void>;
     }
   }
 }

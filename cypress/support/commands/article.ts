@@ -1,18 +1,9 @@
-import { Article, ArticleSortField, ArticleType } from '../../../src/entities/Article';
+import { ArticleSortField, ArticleType } from '@/entities/Article';
+import type { Article } from '@/entities/Article';
 
-import { SortOrder } from '../../../src/shared/types/sort';
+import type { SortOrder } from '@/shared/types/sort';
 
-const defaultArticle = {
-  blocks: [],
-  createdAt: '26.02.2023',
-  id: 'cy_test',
-  img: 'https://ik.imagekit.io/ably/ghost/prod/2023/12/choosing-the-best-javascript-frameworks-for-your-next-project.png?tr=w-1728,q-50',
-  subtitle: 'Testing article description',
-  title: 'Testing article',
-  type: ['IT'],
-  userId: '1',
-  views: 1022,
-};
+import defaultArticle from '../../fixtures/article-details.json';
 
 export const articlesAreReady = () => {
   cy.getByTestId('ArticleList').should('exist');
@@ -23,12 +14,12 @@ export const articlesAreReady = () => {
 
 export const createArticle = (article?: Article) => {
   cy.request({
-    body: article ?? defaultArticle,
+    body: article ?? (defaultArticle as Article),
     headers: {
       Authorization: true,
     },
     method: 'POST',
-    url: 'http://localhost:8000/articles',
+    url: '/articles',
   }).then(({ body }) => body);
 };
 
@@ -56,13 +47,13 @@ export const sortArticlesByType = (type: ArticleType) => {
   cy.getByTestId(`Articles.Type.${type}`).click();
 };
 
-export const removeArticle = (articleId: string) => {
+export const removeArticle = (articleId: Article['id']) => {
   cy.request({
     headers: {
       Authorization: true,
     },
     method: 'DELETE',
-    url: `http://localhost:8000/articles/${articleId}`,
+    url: `/articles/${articleId}`,
   });
 };
 
@@ -86,7 +77,7 @@ declare global {
       sortArticlesByField(sortField: ArticleSortField): Chainable<void>;
       sortArticlesByOrder(order: SortOrder): Chainable<void>;
       sortArticlesByType(type: ArticleType): Chainable<void>;
-      removeArticle(articleId: string): Chainable<void>;
+      removeArticle(articleId: Article['id']): Chainable<void>;
       waitForArticlesUpdates(): Chainable<void>;
       waitForTheFirstArticle(): Chainable<void>;
     }
