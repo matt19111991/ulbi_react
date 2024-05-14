@@ -1,6 +1,6 @@
-import type { Rating } from '@/entities/Rating';
+import type { Rating } from '@/entities/Rating/testing';
 
-import type { ArticleRatingEntity } from '@/features/ArticleRating';
+import type { ArticleRatingEntity } from '@/features/ArticleRating/testing';
 
 export const setRate = (
   starsCount: Rating['rate'] = 5,

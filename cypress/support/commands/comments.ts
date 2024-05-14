@@ -1,4 +1,4 @@
-import type { Comment } from '@/entities/Comment';
+import type { Comment } from '@/entities/Comment/testing';
 
 export const addComment = (text: Comment['text']) => {
   cy.getByTestId('AddCommentForm.Input').type(text);

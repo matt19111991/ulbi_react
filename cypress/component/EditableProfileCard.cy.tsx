@@ -1,4 +1,4 @@
-import { EditableProfileCard } from '@/features/EditableProfileCard';
+import { EditableProfileCard } from '@/features/EditableProfileCard/testing';
 
 import { LAST_DESIGN_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 

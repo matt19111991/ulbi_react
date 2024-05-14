@@ -1,5 +1,9 @@
 ## E2E-тестирование при помощи Cypress
 
+### Components
+
+`EditableProfileCard` - редактируемый компонент карточки профиля
+
 ### Fixtures
 
 `article-details.json` - шаблон одной статьи 
