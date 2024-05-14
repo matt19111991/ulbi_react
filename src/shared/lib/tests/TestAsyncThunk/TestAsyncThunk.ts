@@ -2,7 +2,19 @@ import axios from 'axios';
 import type { AxiosStatic } from 'axios';
 import type { AsyncThunkAction } from '@reduxjs/toolkit';
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import type { ImportMeta } from 'jest';
+
 import type { AppDispatch, StateSchema } from '@/app/providers/StoreProvider';
+
+// заглушка для 'Cypress', иначе ошибка 'jest is not defined' при запуске тестов для компонентов
+if (__PROJECT__ !== 'jest') {
+  global.jest = {
+    mock: () => {},
+    mocked: () => {},
+  } as ImportMeta;
+}
 
 jest.mock('axios'); // при помощи 'Jest' делаем заглушку для 'axios'
 

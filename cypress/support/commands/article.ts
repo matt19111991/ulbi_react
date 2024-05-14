@@ -51,7 +51,7 @@ export const removeArticle = (articleId: Article['id']) => {
 };
 
 export const waitForArticlesUpdates = () => {
-  cy.intercept('GET', '**/articles?*').as('sortArticles');
+  cy.intercept('GET', '/articles*').as('sortArticles');
 
   cy.wait('@sortArticles');
 };
