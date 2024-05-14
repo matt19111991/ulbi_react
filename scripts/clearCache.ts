@@ -6,7 +6,7 @@
 import { rmSync } from 'fs'; // синхронное удаление файлов и каталогов
 import { resolve } from 'path'; // объединяет все переданные сегменты пути вместе в абсолютный путь
 
-const cacheDir = resolve(__dirname, '..', 'node_modules', 'cache');
+const cacheDir = resolve(__dirname, '..', 'node_modules', '.cache');
 
 rmSync(cacheDir, {
   force: true, // ошибки будут игнорироваться, если путь не существует

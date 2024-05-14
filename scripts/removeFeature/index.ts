@@ -1,6 +1,10 @@
-/*                                  process.argv[2]        process.argv[3]
-                                                 v         v
-  Запуск скрипта: npm run set:feature isAppRedesigned on
+/*
+  скрипт для автоматического перевода 'feature' только в одно определенное
+  состояние ('on' или 'off') для всего проекта
+
+                                    process.argv[2]   process.argv[3]
+                                            v         v
+  запуск скрипта: npm run set:feature isAppRedesigned on
 */
 
 import { Project, SyntaxKind } from 'ts-morph';
