@@ -37,10 +37,10 @@ module.exports = {
       },
     },
     {
-      files: ['**/json-server/*.js', '**/scripts/**/*.js'],
+      files: ['**/json-server/*.js'],
       rules: {
         // запретить импорты вида "require('path')" (откл.), т.к.
-        // такие импорты используются для содержимого папок 'json-server' и 'scripts'
+        // такие импорты используются для содержимого папки 'json-server'
         '@typescript-eslint/no-var-requires': 0,
       },
     },

@@ -57,8 +57,13 @@
 //  конечная версия стандарта 'EcmaScript', в которую будет компилироваться код (для улучшения поддержки браузеров)
     "target": "es5",
 
-    // иначе ошибки в тестах вида: 'Property [toBeInTheDocument | toHaveClass] does not exist on type JestMatchers<HTMLElement>'
-    "types": ["@testing-library/jest-dom"],
+    "types": [
+/*    иначе ошибки в тестах вида: 'Property [toBeInTheDocument | toHaveClass] does not exist on type
+      JestMatchers<HTMLElement>'
+*/    "@testing-library/jest-dom",
+
+      "node", // для корректной типизации папки 'scripts'
+    ],
   },
 
 /* если поле 'include' не указано: 'tsconfig' работает для всех '.ts(x)' файлов
