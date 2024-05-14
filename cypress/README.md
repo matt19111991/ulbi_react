@@ -8,6 +8,10 @@
 
 `profile.json` - шаблон профиля
 
+### Helpers
+
+`getDataTestIdSelector` - преобразование строкового значения `testId` в селектор `[data-testid='${testId}']`
+
 ### Methods
 
 `cy.addComment` - метод для создания комментария
@@ -30,11 +34,15 @@
 
 `cy.setRate` - метод для выставления рейтинга статье
 
-`cy.waitForArticlesUpdates` - метод для ожидания обновлений списка статей
+`cy.sortArticlesByField` - метод для сортировки статей по полю (дата создания, название, просмотры)
 
-### Helpers
+`cy.sortArticlesByOrder` - метод для сортировки статей по названию (по возрастанию / убыванию)
 
-`getDataTestIdSelector` - преобразование строкового значения `testId` в селектор `[data-testid='${testId}']`
+`cy.sortArticlesByType` - метод для сортировки статей по типу статьи (экономика, IT, наука)
+
+`cy.waitForArticlesUpdates` - метод для ожидания завершения обновлений списка статей
+
+`cy.waitForTheFirstKotlinArticle` - метод для ожидания появления первой статьи о `Kotlin` в `DOM`
 
 ### Support files
 

@@ -1,16 +1,16 @@
-import { ArticleSortField, ArticleType } from '../../../src/entities/Article/testing';
+import { ArticleSortField, ArticleType } from '@/entities/Article/testing';
 
 describe('Пользователь сортирует статьи', () => {
   beforeEach(() => {
-    cy.login().then(() => {
-      cy.visit(`${Cypress.env('FRONT_APP_URL')}/articles`);
-    });
+    cy.login();
+
+    cy.visit(`${Cypress.env('FRONT_APP_URL')}/articles`);
   });
 
   it('Пользователь сортирует по убыванию', () => {
     cy.articlesAreReady();
 
-    cy.waitForTheFirstArticle();
+    cy.waitForTheFirstKotlinArticle();
 
     cy.sortArticlesByOrder('desc');
 
@@ -22,7 +22,7 @@ describe('Пользователь сортирует статьи', () => {
   it('Пользователь сортирует по названию статьи', () => {
     cy.articlesAreReady();
 
-    cy.waitForTheFirstArticle();
+    cy.waitForTheFirstKotlinArticle();
 
     cy.sortArticlesByField(ArticleSortField.TITLE);
 
@@ -34,7 +34,7 @@ describe('Пользователь сортирует статьи', () => {
   it('Пользователь сортирует по типу статьи', () => {
     cy.articlesAreReady();
 
-    cy.waitForTheFirstArticle();
+    cy.waitForTheFirstKotlinArticle();
 
     cy.sortArticlesByType(ArticleType.ECONOMICS);
 

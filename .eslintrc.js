@@ -191,7 +191,12 @@ module.exports = {
         alias: '@',
 
         // игнорируем правило для тестовых файлов, файлов 'storybook' и 'StoreDecorator'
-        testFilesPatterns: ['**/*.test.*', '**/*.stories.*', '**/StoreDecorator.tsx'],
+        testFilesPatterns: [
+          '**/cypress/**',
+          '**/*.stories.*',
+          '**/*.test.*',
+          '**/StoreDecorator.tsx',
+        ],
       },
     ],
 

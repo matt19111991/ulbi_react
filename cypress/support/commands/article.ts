@@ -1,5 +1,5 @@
-import { ArticleSortField, ArticleType } from '@/entities/Article';
-import type { Article } from '@/entities/Article';
+import { ArticleSortField, ArticleType } from '@/entities/Article/testing';
+import type { Article } from '@/entities/Article/testing';
 
 import type { SortOrder } from '@/shared/types/sort';
 
@@ -56,7 +56,7 @@ export const waitForArticlesUpdates = () => {
   cy.wait('@sortArticles');
 };
 
-export const waitForTheFirstArticle = () => {
+export const waitForTheFirstKotlinArticle = () => {
   cy.getByTestId('Article.Paragraph').first().contains('Kotlin not sorted news');
 };
 
@@ -71,7 +71,7 @@ declare global {
       sortArticlesByType(type: ArticleType): Chainable<void>;
       removeArticle(articleId: Article['id']): Chainable<void>;
       waitForArticlesUpdates(): Chainable<void>;
-      waitForTheFirstArticle(): Chainable<void>;
+      waitForTheFirstKotlinArticle(): Chainable<void>;
     }
   }
 }
