@@ -1,14 +1,13 @@
-let profileId = '';
+import type { Profile } from '@/entities/Profile/testing';
+
+let profileId: Profile['id'] = '';
 
 describe('Пользователь заходит на страницу профиля', () => {
   beforeEach(() => {
-    cy.visit('');
+    cy.login().then((body) => {
+      profileId = body.id;
 
-    // 'data' возвращается из 'body' ('commands/common.ts')
-    cy.login().then((data) => {
-      profileId = data.id;
-
-      cy.visit(`profile/${profileId}`);
+      cy.visit(`${Cypress.env('FRONT_APP_URL')}/profile/${profileId}`);
     });
   });
 

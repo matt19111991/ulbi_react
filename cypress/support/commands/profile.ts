@@ -1,26 +1,22 @@
-export const resetProfile = (profileId: string) => {
+import type { Profile } from '@/entities/Profile/testing';
+
+import profile from '../../fixtures/profile.json';
+
+export const resetProfile = (profileId: Profile['id']) => {
   cy.request({
-    body: {
-      id: '1',
-      age: 22,
-      avatar:
-        'https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg',
-      city: 'New-York',
-      country: 'USA',
-      currency: 'USD',
-      first: 'Jack',
-      lastname: 'Smith',
-      username: 'Jack',
-    },
+    body: profile as Profile,
     headers: {
       Authorization: true,
     },
     method: 'PUT',
-    url: `http://localhost:8000/profile/${profileId}`,
+    url: `/profile/${profileId}`,
   });
 };
 
-export const updateProfile = (firstName: string, lastName: string) => {
+export const updateProfile = (
+  firstName: Profile['first'] = 'New first name',
+  lastName: Profile['lastname'] = 'New last name',
+) => {
   cy.getByTestId('EditableProfileCardHeader.EditButton').click();
 
   cy.getByTestId('ProfileCard.firstName').clear().type(firstName);
@@ -32,8 +28,8 @@ export const updateProfile = (firstName: string, lastName: string) => {
 declare global {
   namespace Cypress {
     interface Chainable {
-      resetProfile(profileId: string): Chainable<void>;
-      updateProfile(firstName: string, lastName: string): Chainable<void>;
+      resetProfile(profileId: Profile['id']): Chainable<void>;
+      updateProfile(firstName: Profile['first'], lastName: Profile['lastname']): Chainable<void>;
     }
   }
 }
