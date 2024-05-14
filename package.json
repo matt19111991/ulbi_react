@@ -19,7 +19,7 @@
     "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix",
     "lint:scss": "npx stylelint \"**/*.scss\"",
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
-    "postinstall": "node ./scripts/clearCache.js",
+    "postinstall": "ts-node ./scripts/clearCache.ts",
     "prettify": "npx prettier --write **/*.{json,ts,tsx}",
     "set:feature": "ts-node scripts/removeFeature/index.ts",
     "storybook": "cross-env NODE_OPTIONS=--no-warnings='DEP0040' storybook dev -p 6006 -c ./config/storybook --no-open",
