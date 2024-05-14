@@ -1,8 +1,10 @@
+import { FRONT_APP_URL } from '../../const/env';
+
 describe('Пользователь ищет статьи', () => {
   beforeEach(() => {
     cy.login();
 
-    cy.visit(`${Cypress.env('FRONT_APP_URL')}/articles`);
+    cy.visit(`${FRONT_APP_URL}/articles`);
   });
 
   it('Поиск статей успешно работает', () => {

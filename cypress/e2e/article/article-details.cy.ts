@@ -1,5 +1,7 @@
 import type { Article } from '@/entities/Article/testing';
 
+import { FRONT_APP_URL } from '../../const/env';
+
 let currentArticleId: Article['id'] = '';
 
 describe('Пользователь заходит на страницу статьи', () => {
@@ -11,7 +13,7 @@ describe('Пользователь заходит на страницу стат
 
       // 'cy.log(JSON.stringify(article));' - логирование в 'Cypress'
 
-      cy.visit(`${Cypress.env('FRONT_APP_URL')}/articles/${currentArticleId}`);
+      cy.visit(`${FRONT_APP_URL}/articles/${currentArticleId}`);
     });
   });
 

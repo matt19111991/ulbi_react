@@ -1,10 +1,12 @@
 import { ArticleSortField, ArticleType } from '@/entities/Article/testing';
 
+import { FRONT_APP_URL } from '../../const/env';
+
 describe('Пользователь сортирует статьи', () => {
   beforeEach(() => {
     cy.login();
 
-    cy.visit(`${Cypress.env('FRONT_APP_URL')}/articles`);
+    cy.visit(`${FRONT_APP_URL}/articles`);
   });
 
   it('Пользователь сортирует по убыванию', () => {

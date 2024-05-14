@@ -4,6 +4,10 @@
 
 `EditableProfileCard` - редактируемый компонент карточки профиля
 
+### Constants
+
+`FRONT_APP_URL` - `URL` фронтенд приложения
+
 ### Fixtures
 
 `article-details.json` - шаблон одной статьи 

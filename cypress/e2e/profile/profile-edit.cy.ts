@@ -1,5 +1,7 @@
 import type { Profile } from '@/entities/Profile/testing';
 
+import { FRONT_APP_URL } from '../../const/env';
+
 let profileId: Profile['id'] = '';
 
 describe('Пользователь заходит на страницу профиля', () => {
@@ -7,7 +9,7 @@ describe('Пользователь заходит на страницу проф
     cy.login().then((body) => {
       profileId = body.id;
 
-      cy.visit(`${Cypress.env('FRONT_APP_URL')}/profile/${profileId}`);
+      cy.visit(`${FRONT_APP_URL}/profile/${profileId}`);
     });
   });
 
