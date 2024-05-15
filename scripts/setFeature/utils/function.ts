@@ -1,4 +1,4 @@
-import { Node, SyntaxKind } from 'ts-morph';
+import { Node, SyntaxKind } from 'ts-morph'; // либа для работы с 'AST'-деревом
 
 const toggleFunctionName = 'toggleFeatures';
 
@@ -6,7 +6,7 @@ const toggleFunctionName = 'toggleFeatures';
 export const isToggleFunction = (node: Node) => {
   let isToggleFeatures = false;
 
-  // проходимся по всем детям
+  // проходимся по всем детям ноды
   node.forEachChild((child) => {
     // находим функцию 'toggleFeatures'
     if (child.isKind(SyntaxKind.Identifier) && child.getText() === toggleFunctionName) {
@@ -19,8 +19,8 @@ export const isToggleFunction = (node: Node) => {
 
 export const replaceToggleFunction = (
   node: Node,
-  removedFeatureName: string,
-  featureState: string,
+  featureName: string,
+  featureState: 'on' | 'off',
 ) => {
   // берем первого потомка (опции 'toggleFeatures')
   const objectOptions = node.getFirstDescendantByKind(SyntaxKind.ObjectLiteralExpression);
@@ -29,19 +29,19 @@ export const replaceToggleFunction = (
     return;
   }
 
-  // 'isArticleEnabled'
+  // 'isAppRedesigned'
   const featureNameProperty = objectOptions.getProperty('name');
 
-  // 'on': '() => (<><h2>Redesigned counter</h2><Counter /></>)'
+  // 'on: () => (<><h2>Redesigned counter</h2><Counter /></>)'
   const onFunctionProperty = objectOptions.getProperty('on');
 
-  // 'off': '() => <Counter />'
+  // 'off: () => <Counter />'
   const offFunctionProperty = objectOptions.getProperty('off');
 
   // достаем сами значения
 
-  // 'isArticleEnabled'
-  const featureName = featureNameProperty
+  // 'isAppRedesigned'
+  const firstAttr = featureNameProperty
     ?.getFirstDescendantByKind(SyntaxKind.StringLiteral)
     ?.getText()
     .slice(1, -1); // убираем кавычки
@@ -49,17 +49,17 @@ export const replaceToggleFunction = (
   const onFunction = onFunctionProperty?.getFirstDescendantByKind(SyntaxKind.ArrowFunction);
   const offFunction = offFunctionProperty?.getFirstDescendantByKind(SyntaxKind.ArrowFunction);
 
-  if (featureName !== removedFeatureName) {
+  if (firstAttr !== featureName) {
     return;
   }
 
   if (featureState === 'on') {
-    // подставляем то, что возвращается из 'on: () => (...)'
+    // подставляем то, что возвращается из 'on: () => (...)' вместо 'toggleFeatures()' функции
     node.replaceWithText(onFunction?.getBody().getText() ?? '');
   }
 
   if (featureState === 'off') {
-    // подставляем то, что возвращается из 'off: () => (...)'
+    // подставляем то, что возвращается из 'off: () => (...)' вместо 'toggleFeatures()' функции
     node.replaceWithText(offFunction?.getBody().getText() ?? '');
   }
 };

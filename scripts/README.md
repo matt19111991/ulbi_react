@@ -1,8 +1,14 @@
+## Запуск скриптов
+
+Запуск скриптов с расширением `.ts` должен производиться при помощи `ts-node`, иначе ошибка
+`SyntaxError: Cannot use import statement outside a module`, если запускать через обычную `Node`:
+`node scripts/clearCache.ts`
+
 ## Скрипты
 
 `clearCache` - скрипт для очистки кэша после установки новых модулей
 
-`generateVisualJsonReport` - скрипт генерации отчетов `loki` для визуализации данных
+`generateLokiJsonReport` - скрипт генерации отчетов `loki` для визуализации данных
 
 `setFeature` - автоматический перевод `feature` только в одно определенное 
 состояние (`on` или `off`) для всего проекта
