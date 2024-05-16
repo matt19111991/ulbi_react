@@ -16,7 +16,7 @@
     "build:prod": "webpack --env mode=production",
     "add:import:prefix": "ts-node scripts/add@PrefixToImports.ts",
     "create:shared:ui:public:api": "ts-node scripts/createPublicApiForSharedUI.ts",
-    "generate:template": "node ./scripts/createSlice/index.js",
+    "generate:slice:template": "ts-node scripts/generateFsdSliceTemplate/index.ts",
     "lint:ts": "eslint \"**/*.{ts,tsx}\" && npm run types:check",
     "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix",
     "lint:scss": "npx stylelint \"**/*.scss\"",

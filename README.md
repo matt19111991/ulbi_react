@@ -277,7 +277,7 @@
 
 `npm run create:shared:ui:public:api` - скрипт для автоматического создания `Public API` для `UI` в `shared` слое
 
-`npm run generate:template` - скрипт для генерации `FSD` слайсов
+`npm run generate:slice:template` - скрипт для генерации `FSD` слайсов
 
 `npm run lint:ts` - проверка `.ts` файлов линтером и `tsc`
 
@@ -327,7 +327,7 @@
 
 Скрипт для генерации шаблонной структуры компонентов:
  
-`npm run generate:template [slice_name] [component_name]`
+`npm run generate:slice:template [slice_name] [component_name]`
 
 [Ссылка на документацию](https://feature-sliced.design/ru/docs/get-started/tutorial)
 
