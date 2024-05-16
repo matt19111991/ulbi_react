@@ -12,9 +12,9 @@
 
 `createPublicApiForSharedUI` - скрипт для автоматического создания `Public API` для `UI` в `shared` слое
 
-`generateLokiJsonReport` - скрипт генерации отчетов `loki` для визуализации данных
+`generateFsdSliceTemplate` - скрипт для генерации `FSD` слайсов
 
-`generateSliceTemplate` - скрипт для генерации `FSD` слайсов
+`generateLokiJsonReport` - скрипт генерации отчетов `loki` для визуализации данных
 
 `setFeature` - автоматический перевод `feature` только в одно определенное 
 состояние (`on` или `off`) для всего проекта

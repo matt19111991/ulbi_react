@@ -45,6 +45,12 @@ module.exports = {
       },
     },
     {
+      files: ['**/scripts/**/*.ts'],
+      rules: {
+        'import/extensions': 0, // отключить правило для папки 'scripts'
+      },
+    },
+    {
       files: ['**/src/**/*.{test,stories}.{ts,tsx}'],
       rules: {
         'i18next/no-literal-string': 0, // отключить правило для тестов и stories

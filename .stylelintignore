@@ -5,5 +5,4 @@ dist
 extractedTranslations
 node_modules
 reports/unit
-src/webpack
 storybook-static
