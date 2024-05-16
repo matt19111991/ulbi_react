@@ -1,4 +1,4 @@
-import { firstCharUpperCase } from '../utils';
+import { firstCharUpperCase } from '../../utils';
 
 export const reduxSliceTemplate = (sliceName: string) =>
   // начало шаблона
