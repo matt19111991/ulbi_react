@@ -1,4 +1,5 @@
 export const serviceTemplate = (sliceName: string) =>
+  // начало шаблона
   `import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import type { ThunkConfig } from '@/app/providers/StoreProvider';
@@ -25,4 +26,4 @@ export const ${sliceName}Service = createAsyncThunk<ResponseEntity, RequestArgum
     }
   },
 );
-`;
+`; // конец шаблона
