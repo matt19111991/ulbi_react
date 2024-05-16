@@ -6,6 +6,8 @@
 
 ## Скрипты
 
+`add@PrefixToImports` - скрипт для автоматического перехода от импортов `entities/Article` к `@/entities/Article`
+
 `clearCache` - скрипт для очистки кэша после установки новых модулей
 
 `generateLokiJsonReport` - скрипт генерации отчетов `loki` для визуализации данных
