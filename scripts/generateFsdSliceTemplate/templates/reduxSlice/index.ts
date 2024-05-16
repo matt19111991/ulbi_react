@@ -9,7 +9,7 @@ import type { ErrorAction } from '@/shared/types/api';
 
 import { service } from '../services/service/service';
 
-import type { ${firstCharUpperCase(sliceName)}Schema } from '../types/${sliceName}Schema';
+import type { ${firstCharUpperCase(sliceName)}Schema } from '../schemaType/${sliceName}Schema';
 
 const initialState: ${firstCharUpperCase(sliceName)}Schema = {
   

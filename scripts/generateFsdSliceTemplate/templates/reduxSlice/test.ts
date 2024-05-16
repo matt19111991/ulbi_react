@@ -6,7 +6,7 @@ export const reduxSliceTestTemplate = (sliceName: string) =>
 
 import { service } from '../services/service/service';
 
-import type { ${firstCharUpperCase(sliceName)}Schema } from '../types/${sliceName}Schema';
+import type { ${firstCharUpperCase(sliceName)}Schema } from '../schemaType/${sliceName}Schema';
 
 import { ${sliceName}Actions, ${sliceName}Reducer } from './${sliceName}Slice';
 
