@@ -1,7 +1,7 @@
 const fs = require('fs/promises');
 
 const firstCharUpperCase = require('../firstCharUpperCase.js');
-const resolveRoot = require('../resolveRoot.js');
+const resolveRoot = require('../utils');
 
 const componentTemplate = require('../templates/componentTemplate.js');
 const storyTemplate = require('../templates/storyTemplate.js');

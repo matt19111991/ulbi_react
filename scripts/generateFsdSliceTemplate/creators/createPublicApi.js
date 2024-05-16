@@ -1,7 +1,7 @@
 const fs = require('fs/promises');
 
 const firstCharUpperCase = require('../firstCharUpperCase.js');
-const resolveRoot = require('../resolveRoot.js');
+const resolveRoot = require('../utils');
 
 module.exports = async (layer, sliceName) => {
   const componentName = firstCharUpperCase(sliceName);
