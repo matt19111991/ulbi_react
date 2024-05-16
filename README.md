@@ -273,6 +273,10 @@
 
 `npm run build:prod` - сборка клиента в `production` режиме (минимизирован)
 
+`npm run add:import:prefix` - скрипт для автоматического перехода от импортов `entities/Article` к `@/entities/Article`
+
+`npm run create:shared:ui:public:api` - скрипт для автоматического создания `Public API` для `UI` в `shared` слое
+
 `npm run generate:template` - скрипт для генерации `FSD` слайсов
 
 `npm run lint:ts` - проверка `.ts` файлов линтером и `tsc`
