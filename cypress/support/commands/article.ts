@@ -20,6 +20,19 @@ export const createArticle = (article?: Article) => {
   }).then(({ body }) => body);
 };
 
+export const getArticle = (articleId: Article['id']) => {
+  cy.request({
+    // в случае '4xx' | '5xx' ошибок запрос отрабатывает как 'success', 'exception' не будет выброшен
+    failOnStatusCode: false,
+
+    headers: {
+      Authorization: true,
+    },
+    method: 'GET',
+    url: `/articles/${articleId}`,
+  }).then(({ body }) => body);
+};
+
 export const searchArticles = (searchValue: string) => {
   cy.getByTestId('Articles.Search').type(searchValue);
 };
@@ -65,6 +78,7 @@ declare global {
     interface Chainable {
       articlesAreReady(): Chainable<void>;
       createArticle(article?: Article): Chainable<Article>;
+      getArticle(articleId: Article['id']): Chainable<Article>;
       searchArticles(searchValue: string): Chainable<void>;
       sortArticlesByField(sortField: ArticleSortField): Chainable<void>;
       sortArticlesByOrder(order: SortOrder): Chainable<void>;

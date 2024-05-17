@@ -2,18 +2,35 @@ import type { Article } from '@/entities/Article/testing';
 
 import { FRONT_APP_URL } from '../../const/env';
 
+import defaultArticle from '../../fixtures/article-details.json';
+
 let currentArticleId: Article['id'] = '';
 
 describe('Пользователь заходит на страницу статьи', () => {
   beforeEach(() => {
+    // 'cy.log(JSON.stringify(article));' - логирование в 'Cypress'
+
     cy.login();
 
-    cy.createArticle().then((article) => {
-      currentArticleId = article.id;
+    cy.getArticle(defaultArticle.id).then((article) => {
+      /*
+        если статья еще не создана ('article === {}'), то создаем её
 
-      // 'cy.log(JSON.stringify(article));' - логирование в 'Cypress'
+        нужно выставить флаг 'failOnStatusCode: false' для 'cy.getArticle', чтобы отработали
+        вложенные условия
+      */
+      if (Object.keys(article).length === 0) {
+        cy.createArticle().then((createdArticle) => {
+          currentArticleId = createdArticle.id;
 
-      cy.visit(`${FRONT_APP_URL}/articles/${currentArticleId}`);
+          cy.visit(`${FRONT_APP_URL}/articles/${currentArticleId}`);
+        });
+        // статья создана
+      } else {
+        currentArticleId = article.id;
+
+        cy.visit(`${FRONT_APP_URL}/articles/${currentArticleId}`);
+      }
     });
   });
 
