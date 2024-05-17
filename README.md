@@ -7,7 +7,7 @@
 * Обновиться до ESLint v.9 https://github.com/umijs/umi/issues/12261
 * Проверить работу `@pmmmwh/react-refresh-webpack-plugin` c `webpack-dev-server v.5+`
 * Раскомментировать `pre-commit` проверки
-* Обновить БД для `jsov-server`
+* Обновить БД для `json-server`
 
 ## Доп. информация
 
