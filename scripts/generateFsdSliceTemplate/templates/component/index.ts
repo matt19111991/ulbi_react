@@ -1,12 +1,15 @@
-const interfaceConst = 'interface';
-
-module.exports = (componentName) => `import { memo } from 'react';
+export const componentTemplate = (componentName: string) =>
+  // начало шаблона
+  `import { memo } from 'react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
 import classes from './${componentName}.module.scss';
 
-${interfaceConst} ${componentName}Props {
+interface ${componentName}Props {
+  /**
+   * Внешний класс
+   */
   className?: string;
 }
 
@@ -17,4 +20,4 @@ export const ${componentName} = memo(({ className }: ${componentName}Props) => (
 ));
 
 ${componentName}.displayName = '${componentName}';
-`;
+`; // конец шаблона

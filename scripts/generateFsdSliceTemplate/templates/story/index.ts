@@ -1,6 +1,10 @@
-module.exports = (layer, componentName) => `import type { Meta, StoryObj } from '@storybook/react';
+import type { Layer } from '../../types';
 
-import { StateSchema } from '@/app/providers/StoreProvider';
+export const storyTemplate = (layer: Layer, componentName: string) =>
+  // начало шаблона
+  `import type { Meta, StoryObj } from '@storybook/react';
+
+import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -48,4 +52,4 @@ export const Orange: Story = {
 Orange.decorators = [StoreDecorator(state${componentName}), ThemeDecorator(Theme.ORANGE)];
 
 export default meta;
-`;
+`; // конец шаблона
