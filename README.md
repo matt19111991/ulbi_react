@@ -1,5 +1,4 @@
 ## TODO
-* Проверить работу `vite`, `webpack` и `e2e`-тестов
 * Рефакторинг папки `scripts`
 * Lighthouse и PageSpeed Insights testing для всех страниц на всех языках и всех темах
   90% для всех характеристик

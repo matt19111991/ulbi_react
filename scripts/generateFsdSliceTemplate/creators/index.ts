@@ -6,7 +6,7 @@ import type { Layer } from '../types';
 import { resolveRoot } from '../utils';
 
 import { createModel } from './model';
-// import createPublicApi from './createPublicApi.js';
+import { createPublicApi } from './publicApi';
 import { createUi } from './ui';
 
 export const createTemplate = async (layer: Layer, sliceName: string) => {
@@ -20,5 +20,5 @@ export const createTemplate = async (layer: Layer, sliceName: string) => {
 
   await createModel(layer, sliceName);
   await createUi(layer, sliceName);
-  // await createPublicApi(layer, sliceName);
+  await createPublicApi(layer, sliceName);
 };
