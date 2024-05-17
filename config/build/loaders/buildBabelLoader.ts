@@ -72,7 +72,10 @@ export const buildBabelLoader = (isTsx?: boolean, isDev?: boolean): webpack.Rule
         '@babel/preset-typescript', // для поддержки 'TS'
         [
           '@babel/preset-react', // для поддержки 'JSX'
-          { // без этой опции получаем ошибку: 'ReferenceError: React is not defined'
+          { /*
+              без этой опции получаем ошибку: 'ReferenceError: React is not defined',
+              для 'production' сборки также оставляем 'automatic' режим, иначе получим ошибку выше
+            */
             runtime: 'automatic',
           },
         ],
