@@ -102,7 +102,11 @@ export const Page = ({
         переходе с 'ArticlesPage' на 'ArticlesDetailsPage',
         без этого сравнения 'ArticlesDetailsPage' будет перезаписывать скролл для 'ArticlesPage'
     */
-    if (storableScroll && location.pathname === window.location.pathname) {
+    if (
+      storableScroll &&
+      location.pathname === window.location.pathname &&
+      scrollPosition !== scrollTop
+    ) {
       dispatch(
         pageScrollActions.setScrollPosition({
           path: location.pathname,
