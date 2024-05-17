@@ -8,6 +8,7 @@
 * Проверить работу `@pmmmwh/react-refresh-webpack-plugin` c `webpack-dev-server v.5+`
 * Раскомментировать `pre-commit` проверки
 * Обновить БД для `json-server`
+* `ScrollToTop` криво прокручивает
 
 ## Доп. информация
 
