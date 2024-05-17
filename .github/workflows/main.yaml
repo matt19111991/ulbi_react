@@ -97,12 +97,12 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
       # извлекаем метаданные
       - name: Setup Pages
         if: always()
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
 
       # упаковываем и загружаем артефакты, которые можно развернуть на страницах 'GitHub'
       - name: Upload artifact
         if: always()
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: 'reports' # все отчеты сохраняются в папку 'reports'
 
@@ -110,7 +110,7 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
       - name: Deploy to GitHub Pages
         id: deployment
         if: always()
-        uses: actions/deploy-pages@v3
+        uses: actions/deploy-pages@v4
 
   linting: # не требует сборку
     runs-on: ubuntu-latest
