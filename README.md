@@ -1,5 +1,4 @@
 ## TODO
-* Рефакторинг папки `scripts`
 * Lighthouse и PageSpeed Insights testing для всех страниц на всех языках и всех темах
   90% для всех характеристик
 * SEO добавить (ulbi.tv)
