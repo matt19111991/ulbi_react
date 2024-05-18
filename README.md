@@ -2,12 +2,12 @@
 * Lighthouse и PageSpeed Insights testing для всех страниц на всех языках и всех темах
   90% для всех характеристик
 * SEO добавить (ulbi.tv)
-* Проверить запуск скриптов под Windows
 * GitHub Actions возвращает 404 для https://matt19111991.github.io/ulbi_react/
 * Обновиться до ESLint v.9 https://github.com/umijs/umi/issues/12261
 * Проверить работу `@pmmmwh/react-refresh-webpack-plugin` c `webpack-dev-server v.5+`
 * Раскомментировать `pre-commit` проверки
 * Добавить `smooth` прокрутку для `ScrollToTop`
+* Исправить заблокированные картинки для `Vite` и `Cypress`
 
 ## Доп. информация
 

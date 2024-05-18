@@ -1,5 +1,12 @@
 ## E2E-тестирование при помощи Cypress
 
+Для корректной работы `Vite` и `Cypress` в конфиге для `Vite` нужно выставить:
+```
+server: {
+   host: true,
+},
+```
+
 ### Components
 
 `EditableProfileCard` - редактируемый компонент карточки профиля

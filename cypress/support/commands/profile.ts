@@ -19,8 +19,9 @@ export const updateProfile = (
 ) => {
   cy.getByTestId('EditableProfileCardHeader.EditButton').click();
 
-  cy.getByTestId('ProfileCard.firstName').clear().type(firstName);
-  cy.getByTestId('ProfileCard.lastName').clear().type(lastName);
+  // 'force: true' - для корректной работы в 'Windows'
+  cy.getByTestId('ProfileCard.firstName').clear({ force: true }).type(firstName);
+  cy.getByTestId('ProfileCard.lastName').clear({ force: true }).type(lastName);
 
   cy.getByTestId('EditableProfileCardHeader.SaveButton').click();
 };

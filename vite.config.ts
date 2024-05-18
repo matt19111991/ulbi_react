@@ -76,6 +76,7 @@ export default defineConfig({
     alias: [{ find: '@', replacement: '/src' }],
   },
   server: {
+    host: true, // для корректной работы 'E2E'-тестов в 'Windows'
     port: 3000,
   },
 });
