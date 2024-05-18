@@ -7,7 +7,7 @@
 * Проверить работу `@pmmmwh/react-refresh-webpack-plugin` c `webpack-dev-server v.5+`
 * Раскомментировать `pre-commit` проверки
 * Добавить `smooth` прокрутку для `ScrollToTop`
-* Исправить заблокированные картинки для `Vite` и `Cypress`
+* Исправить в `Cypress` заблокированные картинки для `Vite` и `Webpack`
 
 ## Доп. информация
 
