@@ -1,5 +1,5 @@
-# Cобираем образ на основе 'Node' v.21.4.0 ('alpine' - легковесная версия 'Ubuntu')
-FROM node:21.4-alpine
+# Cобираем образ на основе 'Node' v.22 ('alpine' - легковесная версия 'Ubuntu')
+FROM node:22-alpine
 
 # Копируем урезанный 'package.json' файл внутрь образа для ускорения повторной установки модулей
 COPY /docker/server/package*.json ./

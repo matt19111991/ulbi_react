@@ -1,7 +1,7 @@
 # Этап 1 (builder)
 
-# Cобираем образ на основе 'Node' v.21.4.0 ('alpine' - легковесная версия 'Ubuntu')
-FROM node:21.4-alpine as builder
+# Cобираем образ на основе 'Node' v.22 ('alpine' - легковесная версия 'Ubuntu')
+FROM node:22-alpine as builder
 
 # Копируем 'package.json' файлы внутрь образа для ускорения повторной установки модулей
 COPY package*.json ./
