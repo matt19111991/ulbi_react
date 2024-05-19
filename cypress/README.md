@@ -1,5 +1,10 @@
 ## E2E-тестирование при помощи Cypress
 
+### Ошибки в `Windows`
+
+`Kaspersky` блокирует загрузку изображений и выдает ошибку:
+`499 (Request has been forbidden by antivirus)`
+
 Для корректной работы `Vite` и `Cypress` в конфиге для `Vite` нужно выставить:
 ```
 server: {
