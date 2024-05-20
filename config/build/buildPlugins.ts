@@ -28,6 +28,12 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 /*
   плагин позволяет применить правки в коде без перезагрузки страницы (стабильнее 'webpack-dev-server')
 
+  дополнительно нужно:
+    - в случае использования 'babel-loader' => добавить 'react-refresh/babel' в список плагинов
+      для 'babel-loader'
+    - в случае использования 'ts-loader' => добавить 'react-refresh-typescript' в
+     'getCustomTransformers' для 'ts-loader'
+
   import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 */
 
@@ -68,6 +74,12 @@ export function buildPlugins({
 /*
    '@pmmmwh/react-refresh-webpack-plugin' позволяет применить правки в коде без перезагрузки страницы,
     обеспечивает более стабильную работу, чем функционал 'webpack-dev-server' из коробки
+
+    дополнительно нужно:
+    - в случае использования 'babel-loader' => добавить 'react-refresh/babel' в список плагинов
+      для 'babel-loader'
+    - в случае использования 'ts-loader' => добавить 'react-refresh-typescript' в
+     'getCustomTransformers' для 'ts-loader'
 
     plugins.push(new ReactRefreshWebpackPlugin());
 */
