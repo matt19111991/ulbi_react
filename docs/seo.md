@@ -59,3 +59,7 @@ https://cars.ru/auto/bmw/model/m5
 но мы задаем только одну страницу как первоисточник, а остальные считаем дубликатами
 
 [Статья](https://blog.arealidea.ru/seo-blitz/canonical)
+
+### Robots.txt
+
+[Правила использования robots.txt](https://yandex.ru/support/webmaster/controlling-robot/robots-txt.html#recommend)

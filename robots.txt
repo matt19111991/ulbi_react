@@ -1,2 +1,9 @@
+User-agent: Googlebot
+Disallow: /about
+Disallow: /settings
+
+User-agent: Yandex
+Disallow: /admin
+
 User-agent: *
-Disallow: /admin/
+Disallow: /outlet/*
