@@ -4,9 +4,9 @@
 * SEO добавить (ulbi.tv)
 * GitHub Actions возвращает 404 для https://matt19111991.github.io/ulbi_react/
 * Обновиться до ESLint v.9 https://github.com/umijs/umi/issues/12261
-* Проверить работу `@pmmmwh/react-refresh-webpack-plugin` c `webpack-dev-server v.5+`
 * Раскомментировать `pre-commit` проверки
 * Добавить `smooth` прокрутку для `ScrollToTop`
+* Проверить сборку через `Docker` c новой версией `Node.js`
 
 ## Доп. информация
 
