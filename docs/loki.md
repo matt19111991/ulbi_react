@@ -5,11 +5,12 @@
 
 ### Версии
 
-`Loki` не работает напрямую со `Storybook v.7+` и вообще не работает с `Storybook v.8+`
+`Loki` не работает напрямую со `Storybook v.8+`, нужен апрув этого
+[pull request](https://github.com/oblador/loki/pull/509)
 
-Последняя рабочая версия `Storybook v.7.6.17` должна быть задана для всех **storybook-модулей** в `package.json`
+Последняя рабочая версия `Storybook v.8.1.1` должна быть задана для всех **storybook-модулей** в `package.json`
 
-[Здесь можно проверить поддержку Storybook v.8+ для Loki](https://github.com/storybookjs/storybook/issues/26031)
+[Здесь можно проверить поддержку Storybook v.8+ для Loki](https://github.com/oblador/loki/issues/503)
 
 ### Инициализация
 
