@@ -8,7 +8,7 @@ import babelRemovePropsPlugin from '../babel/babelRemovePropsPlugin';
  'babel.config.json' или 'babel.config.ts' файлы vs 'buildBabelLoader' для 'Webpack':
   - используем что-то одно, нет смысла дублировать настройки
   - если в проекте не используется 'Webpack', то все настройки для 'babel-loader' задаются в
-    'babel.config.json' или в 'babel.config.ts'
+   'babel.config.json' или в 'babel.config.ts'
   - для 'Jest' среды настройки 'babel-loader' выносятся в 'babel.config.json' или 'babel.config.ts'
 */
 
@@ -23,7 +23,7 @@ export const buildBabelLoader = (isTsx?: boolean, isDev?: boolean): webpack.Rule
 
       plugins: [
         [
-/*        'babel-plugin-i18next-extract':
+/*       'babel-plugin-i18next-extract':
           - извлекает все ключи переводов при сборке и сохраняет их в виде 'JSON' по пути:
             '<root>/extractedTranslations/'
           - обновляет переводы новыми значениями в 'runtime' (во время запущенной сборки)
@@ -32,7 +32,7 @@ export const buildBabelLoader = (isTsx?: boolean, isDev?: boolean): webpack.Rule
           { // i18next-extract options
             locales: ['ru', 'en'],
 
-/*          'value' в переводах ("key": "value") по умолчанию будет равно 'key':
+/*         'value' в переводах ("key": "value") по умолчанию будет равно 'key':
             value = key
 */          keyAsDefaultValue: true,
           },
@@ -57,11 +57,14 @@ export const buildBabelLoader = (isTsx?: boolean, isDev?: boolean): webpack.Rule
           },
         ],
 
-/*      '@pmmmwh/react-refresh-webpack-plugin' позволяет применить правки в коде без перезагрузки страницы;
+/*     '@pmmmwh/react-refresh-webpack-plugin' позволяет применить правки в коде без перезагрузки страницы,
         обеспечивает более стабильную работу, чем функционал 'webpack-dev-server' из коробки
 
-        необходимо свойство 'overrides' в 'package.json' с указанием последней версии 'webpack-dev-server',
-        т.к. '@pmmmwh/react-refresh-webpack-plugin' работает только с 'webpack-dev-server' v.4.x
+        задаем 'react-refresh/babel' плагин для корректной работы '@pmmmwh/react-refresh-webpack-plugin',
+        иначе после внесенных изменений в код при 'hot-reload' будет выброшена ошибка
+
+        нужно не забыть добавить '@pmmmwh/react-refresh-webpack-plugin' в массив плагинов:
+       'config' => 'build' => 'buildPlugins'
 
         isDev && require.resolve('react-refresh/babel'),
 */     ].filter(Boolean), // отфильтровываем неактивные плагины
