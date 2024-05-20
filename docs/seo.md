@@ -19,7 +19,9 @@ Search engine optimization
   - `title`
   - `description`
   - `keywords`
+  - `robots`
 - микроразметка (`Open Graph`)
+- `robots.txt`
 - служебные данные
 - изображения
 - видео

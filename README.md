@@ -10,9 +10,10 @@
 ## Доп. информация
 
 - [Docker](docs/docker.md)
-- [Feature Flags](./docs/feature_flags.md)
+- [Feature Flags](docs/feature_flags.md)
 - [Git (модели ветвления)](docs/git_branches.md)
-- [Storybook](./docs/storybook.md)
+- [Storybook](docs/storybook.md)
+- [SEO](docs/seo.md)
 - [Webpack](docs/webpack.md)
 
 
@@ -22,7 +23,7 @@
 
 
 - [Loki Ui Screenshot testing](docs/loki.md)
-- [Тесты](./docs/tests.md)
+- [Тесты](docs/tests.md)
 
 ---- 
 
