@@ -6,7 +6,7 @@ import webpack from 'webpack';
   чтобы от этого избавиться, нужно создать модуль 'С' и вынести туда то,
   что используется в двух других модулях
 
-  Статья: https://habr.com/ru/articles/569378
+  статья: 'https://habr.com/ru/articles/569378'
 */
 import CircularDependencyPlugin from 'circular-dependency-plugin'; // аналог 'dependency-cruiser'
 
@@ -27,9 +27,6 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 /*
   плагин позволяет применить правки в коде без перезагрузки страницы (стабильнее 'webpack-dev-server')
-
-  необходимо свойство 'overrides' в 'package.json' с указанием последней версии 'webpack-dev-server',
-  т.к. '@pmmmwh/react-refresh-webpack-plugin' работает только с 'webpack-dev-server' v.4.x
 
   import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 */
@@ -69,11 +66,8 @@ export function buildPlugins({
 
   if (isDev) {
 /*
-   '@pmmmwh/react-refresh-webpack-plugin' позволяет применить правки в коде без перезагрузки страницы
-    Обеспечивает более стабильную работу, чем функционал 'webpack-dev-server' из коробки
-
-    необходимо свойство 'overrides' в 'package.json' с указанием последней версии 'webpack-dev-server',
-    т.к. '@pmmmwh/react-refresh-webpack-plugin' работает только с 'webpack-dev-server' v.4.x
+   '@pmmmwh/react-refresh-webpack-plugin' позволяет применить правки в коде без перезагрузки страницы,
+    обеспечивает более стабильную работу, чем функционал 'webpack-dev-server' из коробки
 
     plugins.push(new ReactRefreshWebpackPlugin());
 */
@@ -97,8 +91,8 @@ export function buildPlugins({
 
   if (!isDev) {
 /*
-   'MiniCssExtractPlugin' создает 'CSS' файл для каждого 'JS' файла (который использует 'CSS')
-    В то время, как 'style-loader' пишет стили в 'DOM' как инлайн стили
+   'MiniCssExtractPlugin' создает 'CSS' файл для каждого 'JS' файла (который использует 'CSS'),
+    в то время, как 'style-loader' пишет стили в 'DOM' как инлайн стили
 */
     plugins.push(
       new MiniCssExtractPlugin({

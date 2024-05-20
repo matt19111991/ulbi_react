@@ -20,6 +20,11 @@
 */
 import '@testing-library/jest-dom';
 
+// иначе ошибка 'ReferenceError: TextEncoder is not defined' при запуске тестов
+import { TextEncoder } from 'util';
+
+global.TextEncoder = TextEncoder;
+
 /*
   добавляем глобально объект 'fetch', чтобы избавиться от предупреждения в 'unit' тестах:
    'Warning: `fetch` is not available.
