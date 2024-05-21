@@ -108,6 +108,11 @@ Accelerated mobile pages
 
 ### Микроразметка
 
+Нужно зайти на [сайт](https://search.google.com/search-console/welcome) и закачать
+в корень проекта файл подтверждения вида `google0ba6d230b9204219.html`
+
+[Preview](https://search.google.com/test/rich-results)
+
 [Валидация](https://validator.schema.org)
 
 [Статья](https://www.unisender.com/ru/glossary/chto-takoe-mikrorazmetka-sajta)
