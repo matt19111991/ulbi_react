@@ -53,9 +53,13 @@ export default (env: BuildEnv) => {
     buildLocales: path.resolve(__dirname, 'build', 'locales'),
     entry: path.resolve(__dirname, 'src', 'index.tsx'),
     favicon: path.resolve(__dirname, 'src', 'shared', 'assets', 'favicon.ico'),
+    googleVerification: path.resolve(__dirname, 'google0ba6d230b9204219.html'),
     html: path.resolve(__dirname, 'public', 'index.html'),
     locales: path.resolve(__dirname, 'public', 'locales'),
     robots: path.resolve(__dirname, 'robots.txt'),
+    sitemapIndex: path.resolve(__dirname, 'sitemap.xml'),
+    sitemap1: path.resolve(__dirname, 'sitemap-1.xml'),
+    sitemap2: path.resolve(__dirname, 'sitemap-2.xml'),
     src: path.resolve(__dirname, 'src'),
   };
 

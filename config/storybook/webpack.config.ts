@@ -56,9 +56,13 @@ export default ({ config }: { config: StorybookWebpackConfiguration }) => {
     buildLocales: '',
     entry: '',
     favicon: '',
+    googleVerification: '',
     html: '',
     locales: '',
     robots: '',
+    sitemapIndex: '',
+    sitemap1: '',
+    sitemap2: '',
     src: path.resolve(__dirname, '..', '..', 'src'), // единственный важный путь
   };
 

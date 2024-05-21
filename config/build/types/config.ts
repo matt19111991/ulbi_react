@@ -11,10 +11,14 @@ export interface BuildPaths {
   buildLocales: string; // куда складывать файлы переводов для билда
   entry: string;
   favicon: string;
+  googleVerification: string;
   html: string;
   locales: string; // где лежат файлы переводов
   src: string;
   robots: string;
+  sitemapIndex: string;
+  sitemap1: string;
+  sitemap2: string;
 }
 
 export interface BuildOptions {

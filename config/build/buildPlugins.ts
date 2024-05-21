@@ -125,8 +125,12 @@ export function buildPlugins({
       new CopyPlugin({
         patterns: [
           { from: paths.favicon, to: paths.build },
+          { from: paths.googleVerification, to: paths.build },
           { from: paths.locales, to: paths.buildLocales },
           { from: paths.robots, to: paths.build },
+          { from: paths.sitemapIndex, to: paths.build },
+          { from: paths.sitemap1, to: paths.build },
+          { from: paths.sitemap2, to: paths.build },
         ],
       }),
     );
