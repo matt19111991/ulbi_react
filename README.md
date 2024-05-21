@@ -5,7 +5,6 @@
 * Обновиться до `ESLint v.9` https://github.com/umijs/umi/issues/12261
 * Раскомментировать `pre-commit` проверки
 * Добавить `smooth` прокрутку для `ScrollToTop`
-* Проверить `sitemap` на сервере
 
 ## Доп. информация
 
