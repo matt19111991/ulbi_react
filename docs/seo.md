@@ -22,6 +22,7 @@ Search engine optimization
   - `robots`
 - микроразметка (`Open Graph`)
 - `robots.txt`
+- `sitemap.xml`
 - служебные данные
 - изображения
 - видео
@@ -63,3 +64,12 @@ https://cars.ru/auto/bmw/model/m5
 ### Robots.txt
 
 [Правила использования robots.txt](https://yandex.ru/support/webmaster/controlling-robot/robots-txt.html#recommend)
+
+### Sitemap.xml
+
+Есть необходимость в этом файле, если:
+- большое количество страниц
+- отдельные страницы без навигационных ссылок
+- глубокая вложенность
+
+[Использование Sitemap.xml](https://yandex.ru/support/webmaster/controlling-robot/sitemap.html)
