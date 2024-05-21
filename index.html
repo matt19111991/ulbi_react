@@ -37,6 +37,28 @@
         <meta property="og:type" content="website">
         <meta property="og:url" content="https://ulbireact.netlify.app">
 
+        <!-- Микроразметка ('Schema.org') -->
+
+        <!--  в микроразметке отображается контактная информация об организации -->
+        <!-- '@type' можно выбрать здесь 'https://schema.org/Thing') -->
+        <!--  у каждого '@type' есть свои поля: 'name' 'address', ... -->
+        <!--  поля для организации можно выбрать здесь 'https://schema.org/Organization') -->
+
+        <script type="application/ld+json">
+          {
+            "@context": "https://schema.org/",
+            "@type": "Organization",
+            "address": {
+              "addressLocality": "Minsk,",
+              "name": "Address:",
+              "streetAddress": "Prospect Mira 16"
+            },
+            "email": "raven610@yandex.ru",
+            "name": "Company LTD. Contacts:",
+            "telephone": "+375 29 825-26–63"
+          }
+        </script>
+
         <!-- 'Canonical' ссылки - позволяют избавиться от дубликатов при индексации страниц,
               один и тот же контент может отображаться по разным урлам:
                 - 'https://ulbireact.netlify.app/articles/last_article'
