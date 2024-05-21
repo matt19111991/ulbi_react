@@ -109,4 +109,5 @@ Accelerated mobile pages
 ### Микроразметка
 
 [Валидация](https://validator.schema.org)
+
 [Статья](https://www.unisender.com/ru/glossary/chto-takoe-mikrorazmetka-sajta)

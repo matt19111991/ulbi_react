@@ -37,28 +37,25 @@
 
         <!-- Микроразметка ('Schema.org') -->
 
-        <!--  отображается контактная информация об организации -->
-        <!-- 'itemtype' можно выбрать здесь 'https://schema.org/Thing') -->
-        <div itemscope itemtype="https://schema.org/Organization">
-          <!--  у каждого 'itemtype' есть свои 'props' ('name', 'address', ...) -->
-          <!-- 'itemprop' можно выбрать здесь 'https://schema.org/Organization') -->
-          <div itemprop="name">Company LTD.</div>
+        <!--  в микроразметке отображается контактная информация об организации -->
+        <!-- '@type' можно выбрать здесь 'https://schema.org/Thing') -->
+        <!--  у каждого '@type' есть свои поля: 'name' 'address', ... -->
+        <!--  поля для организации можно выбрать здесь 'https://schema.org/Organization') -->
 
-          Contacts:
-          <!--  отображается контактная информация об адресе для организации -->
-          <!-- 'address' => дочерний элемент 'Organization' -->
-          <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-            Address:
-            <!--  у каждого 'itemtype' свои 'props' ('streetAddress', 'addressLocality', ...) -->
-            <!-- 'itemprop' можно выбрать здесь 'https://schema.org/PostalAddress') -->
-            <span itemprop="streetAddress">Prospect Mira 16</span>
-            <span itemprop="addressLocality">Minsk</span>,
-          </div>
-
-          Phone: <span itemprop="telephone">+375 29 825-26–63</span>,
-
-          email: <span itemprop="email">raven610@yandex.ru</span>
-        </div>
+        <script type="application/ld+json">
+          {
+            "@context": "https://schema.org/",
+            "@type": "Organization",
+            "name": "Company LTD. Contacts:",
+            "address": {
+              "addressLocality": "Minsk,",
+              "name": "Address:",
+              "streetAddress": "Prospect Mira 16"
+            },
+            "email": "raven610@yandex.ru",
+            "phone": "+375 29 825-26–63"
+          }
+        </script>
 
         <!-- 'Canonical' ссылки - позволяют избавиться от дубликатов при индексации страниц,
               один и тот же контент может отображаться по разным урлам:
