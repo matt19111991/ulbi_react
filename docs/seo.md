@@ -75,3 +75,12 @@ https://cars.ru/auto/bmw/model/m5
 - глубокая вложенность
 
 [Использование Sitemap.xml](https://yandex.ru/support/webmaster/controlling-robot/sitemap.html)
+
+### Core Web Vitals
+
+- `LCP` - Largest Contentful Paint - загружена самая большая часть контента 
+          Best: 2.5 - 4.0 s
+- `FID` - First Input Delay - время до первой интерактивности
+          Best: 100 - 300 ms
+- `CLS` - Cumulative Layout Shift - визуальная стабильность
+          Best: 0.1 - 0.25 s 
