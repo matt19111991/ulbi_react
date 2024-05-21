@@ -64,6 +64,31 @@
     </head>
 
     <body>
+        <!-- Микроразметка ('Schema.org') -->
+
+        <!--  отображается контактная информация об организации -->
+        <!-- 'itemtype' можно выбрать здесь 'https://schema.org/Thing') -->
+        <div itemscope itemtype="https://schema.org/Organization">
+            <!--  у каждого 'itemtype' есть свои 'props' ('name', 'address', ...) -->
+            <!-- 'itemprop' можно выбрать здесь 'https://schema.org/Organization') -->
+            <span itemprop="name">Company</span>
+
+            Contacts:
+            <!--  отображается контактная информация об адресе для организации -->
+            <!-- 'address' => дочерний элемент 'Organization' -->
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                Адрес:
+                <!--  у каждого 'itemtype' есть свои 'props' ('streetAddress', 'addressLocality', ...) -->
+                <!-- 'itemprop' можно выбрать здесь 'https://schema.org/PostalAddress') -->
+                <span itemprop="streetAddress">Prospect Mira 16</span>
+                <span itemprop="addressLocality">Minsk</span>,
+            </div>
+
+            Телефон: <span itemprop="telephone">+375 29 825-26–63</span>,
+
+            Электронная почта: <span itemprop="email">raven610@yandex.ru</span>
+          </div>
+
         <div id="root"></div>
     </body>
 </html>

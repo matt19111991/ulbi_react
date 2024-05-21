@@ -5,9 +5,3 @@
   from = "/*"        # c любого маршрута
   to = "/index.html" # переводим на 'index.html', где подгрузится 'SPA', у которого свой механизм роутинга
   status = 200
-
-[[plugins]] # настройка 'sitemap' через плагин
-package = "@netlify/plugin-sitemap"
-  [plugins.inputs]
-  buildDir = "public"
-  filePath = "sitemap.xml"

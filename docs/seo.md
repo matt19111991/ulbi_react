@@ -14,15 +14,19 @@ Search engine optimization
 - текст
 - `<html lang='en' />`
 - мета-теги
-  - кодировка
+  - `charset`
   - `viewport`
   - `title`
   - `description`
   - `keywords`
   - `robots`
-- микроразметка (`Open Graph`)
+- микроразметка
+  - `Open Graph`
+  - `Schema.org`
+- `AMP` - accelerated mobile pages (быстрые мобильные приложения)
 - `robots.txt`
 - `sitemap.xml`
+- редиректы
 - служебные данные
 - изображения
 - видео
@@ -84,3 +88,25 @@ https://cars.ru/auto/bmw/model/m5
           Best: 100 - 300 ms
 - `CLS` - Cumulative Layout Shift - визуальная стабильность
           Best: 0.1 - 0.25 s 
+
+### AMP
+
+Accelerated mobile pages
+
+`Google` лучше продвигает `AMP` страницы
+
+[Статья](https://www.calltouch.ru/blog/chto-takoe-amp-straniczy-i-kak-ih-ispolzovat)
+
+### Редиректы
+
+Нужно обрабатывать редиректы:
+- с `www` на без `www` 
+- с `http` на `https` 
+- со страниц без `/` в конце на страницы с `/` в конце 
+- со страниц с верхним регистром на страницы с нижним регистром
+- с `index.html` или `index.php` на главную 
+
+### Микроразметка
+
+[Валидация](https://validator.schema.org)
+[Статья](https://www.unisender.com/ru/glossary/chto-takoe-mikrorazmetka-sajta)
