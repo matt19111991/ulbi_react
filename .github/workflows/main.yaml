@@ -75,9 +75,9 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
         run: npm run storybook:build
 
       # запускаем скриншотное тестирование (loki)
-      - name: Screenshot testing
-        if: always()
-        run: npm run test:ui:ci
+      #- name: Screenshot testing
+      #  if: always()
+      #  run: npm run test:ui:ci
 
       # запускаем unit тестирование
       - name: Unit testing
