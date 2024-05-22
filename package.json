@@ -2,6 +2,7 @@
   "name": "ulbi_react",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://matt19111991.github.io/ulbi_react",
   "main": "./src/index.tsx",
   "scripts": {
     "start:client:webpack": "webpack serve --env port=3000 --env mode=development",
