@@ -102,9 +102,9 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
       # упаковываем и загружаем артефакты, которые можно развернуть на страницах 'GitHub'
       - name: Upload artifact
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: reports # все отчеты сохраняются в папку 'reports'
+          path: 'reports' # все отчеты сохраняются в папку 'reports'
 
       # публикуем артефакты на страницах 'GitHub' для деплоя
       - name: Deploy to GitHub Pages
