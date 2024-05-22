@@ -2,4 +2,5 @@ type ScrollSchema = Record<string, number>; // 'Record<адрес страниц
 
 export interface PageScrollSchema {
   scroll: ScrollSchema;
+  smooth: boolean;
 }

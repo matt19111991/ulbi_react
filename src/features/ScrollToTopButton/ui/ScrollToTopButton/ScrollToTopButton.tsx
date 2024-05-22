@@ -1,8 +1,4 @@
 import { memo } from 'react';
-import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
-
-import type { StateSchema } from '@/app/providers/StoreProvider';
 
 import CircleUpIcon from '@/shared/assets/icons/circle-up-redesigned.svg';
 
@@ -14,7 +10,7 @@ import { useWindowWidth } from '@/shared/lib/hooks/useWindowWidth/useWindowWidth
 import { Icon } from '@/shared/ui/redesigned/Icon';
 
 // eslint-disable-next-line path-checker-1911/layer-imports
-import { getPageScrollByPath, pageScrollActions } from '@/widgets/Page'; // импорт из виджетов как исключение
+import { pageScrollActions } from '@/widgets/Page'; // импорт из виджетов как исключение
 
 interface ScrollToTopButtonProps {
   /**
@@ -30,22 +26,11 @@ interface ScrollToTopButtonProps {
 
 export const ScrollToTopButton = memo(({ className, isStorybook }: ScrollToTopButtonProps) => {
   const dispatch = useAppDispatch();
-  const location = useLocation();
   const windowWidth = useWindowWidth();
 
-  const scrollPosition = useSelector((state: StateSchema) =>
-    getPageScrollByPath(state, location.pathname),
-  );
-
   const onClick = () => {
-    if (scrollPosition) {
-      dispatch(
-        pageScrollActions.setScrollPosition({
-          path: location.pathname,
-          position: 0,
-        }),
-      );
-    }
+    // включаем плавную прокрутку
+    dispatch(pageScrollActions.toggleScrollSmooth());
 
     if (windowWidth <= 1800 && !isStorybook) {
       // прокрутка добавляется к тегу 'main' на разрешениях меньше '1800px' и не для 'storybook'
@@ -56,6 +41,11 @@ export const ScrollToTopButton = memo(({ className, isStorybook }: ScrollToTopBu
       // прокрутка добавляется к окну браузера на разрешениях больше '1800px' или для 'storybook'
       window.scrollTo({ behavior: 'smooth', top: 0 });
     }
+
+    // выключаем плавную прокрутку
+    setTimeout(() => {
+      dispatch(pageScrollActions.toggleScrollSmooth());
+    }, 1000);
   };
 
   return (

@@ -1,4 +1,4 @@
-export { getPageScrollByPath } from './model/selectors/pageScrollSelectors';
+export { getPageScrollByPath, getPageScrollSmooth } from './model/selectors/pageScrollSelectors';
 
 export {
   pageScrollActions,

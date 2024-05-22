@@ -1,6 +1,6 @@
 import type { StateSchema } from '@/app/providers/StoreProvider';
 
-import { getPageScroll, getPageScrollByPath } from './pageScrollSelectors';
+import { getPageScroll, getPageScrollByPath, getPageScrollSmooth } from './pageScrollSelectors';
 
 describe('page scroll selectors', () => {
   describe('getPageScroll', () => {
@@ -46,6 +46,26 @@ describe('page scroll selectors', () => {
       };
 
       expect(getPageScrollByPath(state as StateSchema, '')).toBe(0);
+    });
+  });
+
+  describe('getPageScrollSmooth', () => {
+    test('should return true', () => {
+      const state: DeepPartial<StateSchema> = {
+        pageScroll: {
+          smooth: true,
+        },
+      };
+
+      expect(getPageScrollSmooth(state as StateSchema)).toBeTruthy();
+    });
+
+    test('should work with empty state', () => {
+      const state: DeepPartial<StateSchema> = {
+        pageScroll: {},
+      };
+
+      expect(getPageScrollSmooth(state as StateSchema)).toBeUndefined();
     });
   });
 });

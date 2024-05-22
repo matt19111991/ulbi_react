@@ -25,3 +25,5 @@ export const getPageScrollByPath = createSelector(
   (state: StateSchema, path: string) => path, // 2 'input selector' - значение 'path'
   (scroll, path) => scroll[path] || 0, // 'result function'
 );
+
+export const getPageScrollSmooth = (state: StateSchema) => state.pageScroll.smooth;

@@ -10,6 +10,7 @@ interface ScrollPositionPayload {
 
 const initialState: PageScrollSchema = {
   scroll: {},
+  smooth: false,
 };
 
 export const pageScrollSlice = createSlice({
@@ -20,6 +21,9 @@ export const pageScrollSlice = createSlice({
       const { path, position } = action.payload;
 
       state.scroll[path] = position;
+    },
+    toggleScrollSmooth: (state) => {
+      state.smooth = !state.smooth;
     },
   },
 });

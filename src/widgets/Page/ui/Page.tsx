@@ -14,7 +14,7 @@ import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfin
 import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
 import { useWindowWidth } from '@/shared/lib/hooks/useWindowWidth/useWindowWidth';
 
-import { getPageScrollByPath } from '../model/selectors/pageScrollSelectors';
+import { getPageScrollByPath, getPageScrollSmooth } from '../model/selectors/pageScrollSelectors';
 
 import { pageScrollActions } from '../model/slice/pageScrollSlice';
 
@@ -66,6 +66,8 @@ export const Page = ({
   const location = useLocation();
   const windowWidth = useWindowWidth();
 
+  const isScrollSmooth = useSelector(getPageScrollSmooth);
+
   const scrollPosition = useSelector((state: StateSchema) =>
     getPageScrollByPath(state, location.pathname),
   );
@@ -103,6 +105,7 @@ export const Page = ({
         без этого сравнения 'ArticlesDetailsPage' будет перезаписывать скролл для 'ArticlesPage'
     */
     if (
+      !isScrollSmooth &&
       storableScroll &&
       location.pathname === window.location.pathname &&
       scrollPosition !== scrollTop
@@ -157,16 +160,16 @@ export const Page = ({
     }
   }, [isAppRedesigned, mounted, scrollPosition, storableScroll, windowWidth]);
 
-  // вешаем обработчик для сохранения прокрутки окна для нового дизайна c большим экраном (> 1800px)
+  // вешаем обработчик для сохранения прокрутки окна для нового дизайна с большим экраном (> 1800px)
   useEffect(() => {
-    if (isAppRedesigned && storableScroll && windowWidth > 1800) {
+    if (isAppRedesigned && storableScroll && !isScrollSmooth && windowWidth > 1800) {
       window.addEventListener('scroll', onSetWindowScroll);
     }
 
     return () => {
       window.removeEventListener('scroll', onSetWindowScroll);
     };
-  }, [isAppRedesigned, onSetWindowScroll, storableScroll, windowWidth]);
+  }, [isAppRedesigned, isScrollSmooth, onSetWindowScroll, storableScroll, windowWidth]);
 
   const pageMainClass = toggleFeatures({
     name: 'isAppRedesigned',

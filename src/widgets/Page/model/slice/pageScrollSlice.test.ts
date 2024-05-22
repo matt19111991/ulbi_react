@@ -19,4 +19,17 @@ describe('pageScrollSlice', () => {
       },
     });
   });
+
+  test('test toggle scroll smooth', () => {
+    const state: DeepPartial<PageScrollSchema> = {
+      smooth: false,
+    };
+
+    const reducer = pageScrollReducer(
+      state as PageScrollSchema,
+      pageScrollActions.toggleScrollSmooth(),
+    );
+
+    expect(reducer).toEqual({ smooth: true });
+  });
 });
