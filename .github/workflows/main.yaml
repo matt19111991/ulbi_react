@@ -34,13 +34,13 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
       name: github-pages
 
       # url c отчетами отображается в названии 'job' на 'GitHub Actions':
-        # build-and-ui-testing (21.x)
+        # build-and-ui-testing (22.x)
         # https://matt19111991.github.io/ulbi_react/
       url: ${{ steps.deployment.outputs.page_url }}
 
     strategy:
       matrix:
-        node-version: [ 21.x ] # задаем версию для 'Node.js'
+        node-version: [ 22.x ] # задаем версию для 'Node.js'
 
     steps:
       - uses: actions/checkout@v4 # синхронизация с репозиторием
@@ -117,7 +117,7 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
 
     strategy:
       matrix:
-        node-version: [ 21.x ] # задаем версию для 'Node.js'
+        node-version: [ 22.x ] # задаем версию для 'Node.js'
 
     steps:
       - uses: actions/checkout@v4 # синхронизация с репозиторием
@@ -167,7 +167,7 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
 
     strategy:
       matrix:
-        node-version: [ 21.x ] # задаем версию для 'Node.js'
+        node-version: [ 22.x ] # задаем версию для 'Node.js'
 
     steps:
       - name: Executing remote SSH commands using password
