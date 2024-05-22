@@ -43,11 +43,11 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
         node-version: [ 22.x ] # задаем версию для 'Node.js'
 
     steps:
-      - uses: actions/checkout@v2 # синхронизация с репозиторием
+      - uses: actions/checkout@v4 # синхронизация с репозиторием
 
       # устанавливаем в среду, где будут запускаться 'GitHub Actions', заданную выше версию 'Node.js'
       - name: Starting Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -97,12 +97,12 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
       # извлекаем метаданные
       - name: Setup Pages
         if: always()
-        uses: actions/configure-pages@v2
+        uses: actions/configure-pages@v5
 
       # упаковываем и загружаем артефакты, которые можно развернуть на страницах 'GitHub'
       - name: Upload artifact
         if: always()
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
           path: 'reports' # все отчеты сохраняются в папку 'reports'
 
@@ -110,7 +110,7 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
       - name: Deploy to GitHub Pages
         id: deployment
         if: always()
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
 
   linting: # не требует сборку
     runs-on: ubuntu-latest
@@ -120,11 +120,11 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
         node-version: [ 22.x ] # задаем версию для 'Node.js'
 
     steps:
-      - uses: actions/checkout@v2 # синхронизация с репозиторием
+      - uses: actions/checkout@v4 # синхронизация с репозиторием
 
       # устанавливаем в среду, где будут запускаться 'GitHub Actions', заданную выше версию 'Node.js'
       - name: Starting Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
