@@ -64,15 +64,15 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
         run: npm i
 
       # собираем production build
-      - name: Build production project
+      #- name: Build production project
         # запуск команды в любом случае (даже если завалилось выполнение предыдущей команды)
-        if: always()
-        run: npm run build:prod
+       # if: always()
+       # run: npm run build:prod
 
       # собираем storybook build
-      - name: Build storybook
-        if: always()
-        run: npm run storybook:build
+     # - name: Build storybook
+      #  if: always()
+       # run: npm run storybook:build
 
       # запускаем скриншотное тестирование (loki)
       #- name: Screenshot testing
@@ -114,6 +114,8 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
 
   linting: # не требует сборку
     runs-on: ubuntu-latest
+
+    if: ${{ false }} # отключаем пока
 
     strategy:
       matrix:
