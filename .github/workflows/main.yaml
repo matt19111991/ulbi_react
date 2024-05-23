@@ -9,10 +9,10 @@ on:
 
 # предоставляем разрешения для 'GITHUB_TOKEN', которые необходимы для деплоя
 permissions:
+  contents: write
+  pages: write # разрешает деплой для 'GitHub Actions'
   id-token: write # для получения 'OpenID Connect (OIDC) token'
   # Подробнее об OIDC token: https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect#overview-of-openid-connect
-
-  pages: write # разрешает деплой для 'GitHub Actions'
 
 concurrency:
   cancel-in-progress: true # для возможности отмены любой 'job' в 'concurrency' группе
