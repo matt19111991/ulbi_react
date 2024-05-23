@@ -20,7 +20,7 @@ const MainPage = () => {
       className={classNames(classes.MainPage, { [classes.authorized]: Boolean(user) })}
       data-testid='MainPage'
     >
-      {t('Главная страница')}
+      {t('Пароль')}
     </Page>
   );
 };
