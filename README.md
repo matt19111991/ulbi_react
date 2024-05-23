@@ -1,7 +1,6 @@
 ## TODO
 * `Lighthouse` и `PageSpeed Insights testing` для всех страниц на всех языках и всех темах
   90% для всех характеристик
-* `GitHub Actions` возвращает 404 для https://matt19111991.github.io/ulbi_react/
 * Обновиться до `ESLint v.9` https://github.com/umijs/umi/issues/12261
 * Раскомментировать `pre-commit` проверки
 

@@ -64,20 +64,20 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
         run: npm i
 
       # собираем production build
-      #- name: Build production project
+      - name: Build production project
         # запуск команды в любом случае (даже если завалилось выполнение предыдущей команды)
-       # if: always()
-       # run: npm run build:prod
+        if: always()
+        run: npm run build:prod
 
       # собираем storybook build
-     # - name: Build storybook
-      #  if: always()
-       # run: npm run storybook:build
+      - name: Build storybook
+        if: always()
+        run: npm run storybook:build
 
       # запускаем скриншотное тестирование (loki)
-      #- name: Screenshot testing
-      #  if: always()
-      #  run: npm run test:ui:ci
+      - name: Screenshot testing
+        if: always()
+        run: npm run test:ui:ci
 
       # запускаем unit тестирование
       - name: Unit testing
@@ -107,15 +107,15 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
           path: 'reports' # все отчеты сохраняются в папку 'reports'
 
       # публикуем артефакты на страницах 'GitHub' для деплоя
+      #  обязательно должен быть файл 'reports/index.html', иначе 404 ошибка при переходе на
+      # 'https://matt19111991.github.io/ulbi_react'
       - name: Deploy to GitHub Pages
         id: deployment
         if: always()
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
 
   linting: # не требует сборку
     runs-on: ubuntu-latest
-
-    if: ${{ false }} # отключаем пока
 
     strategy:
       matrix:
@@ -143,13 +143,13 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
         run: npm i
 
       # проверяем корректность TypeScript
-      #- name: Linting Typescript
-       # if: always()
-        #run: npm run lint:ts
+      - name: Linting Typescript
+        if: always()
+        run: npm run lint:ts
 
       # проверяем корректность CSS
-      #- name: Linting CSS
-       # run: npm run lint:scss
+      - name: Linting CSS
+        run: npm run lint:scss
 
   # Секреты задаются на 'GitHub': 'Settings' => 'Security' => 'Secrets and variables' => 'Actions'
 
