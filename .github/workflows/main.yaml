@@ -110,7 +110,7 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
       - name: Deploy to GitHub Pages
         id: deployment
         if: always()
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v1
 
   linting: # не требует сборку
     runs-on: ubuntu-latest
