@@ -85,7 +85,6 @@ const ArticleRating = ({
           rateArticleMutation(rateArticleArgs);
         }
       } catch (e) {
-        // eslint-disable-next-line no-console
         console.log(`Article rating error: ${(e as Error).message}`);
       }
     },

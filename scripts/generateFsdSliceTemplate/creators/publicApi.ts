@@ -22,7 +22,6 @@ export { ${componentName} } from './ui/${componentName}/${componentName}';\n`;
       template, // c этим шаблоном
     );
   } catch (e) {
-    // eslint-disable-next-line no-console
     console.log(`Не удалось создать 'PUBLIC API'\n${e}`);
   }
 };

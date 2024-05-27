@@ -32,7 +32,6 @@ export const createModel = async (layer: Layer, sliceName: string) => {
       await mkdir(resolveModelPath('slice'));
       await mkdir(resolveModelPath('types'));
     } catch (e) {
-      // eslint-disable-next-line no-console
       console.log(`Не удалось создать необходимые папки для шаблона '${sliceName}'\n${e}`);
     }
   };
@@ -51,7 +50,6 @@ export const createModel = async (layer: Layer, sliceName: string) => {
         reduxSliceTestTemplate(sliceName), // c этим шаблоном
       );
     } catch (e) {
-      // eslint-disable-next-line no-console
       console.log(`Не удалось создать 'Redux'-слайс'\n${e}`);
     }
   };
@@ -64,7 +62,6 @@ export const createModel = async (layer: Layer, sliceName: string) => {
         schemaTypeTemplate(sliceName), // c этим шаблоном
       );
     } catch (e) {
-      // eslint-disable-next-line no-console
       console.log(`Не удалось создать тип схемы стейта\n${e}`);
     }
   };
@@ -83,7 +80,6 @@ export const createModel = async (layer: Layer, sliceName: string) => {
         selectorTestTemplate(sliceName), // c этим шаблоном
       );
     } catch (e) {
-      // eslint-disable-next-line no-console
       console.log(`Не удалось создать файлы для селекторов\n${e}`);
     }
   };
@@ -102,7 +98,6 @@ export const createModel = async (layer: Layer, sliceName: string) => {
         serviceTestTemplate(sliceName), // c этим шаблоном
       );
     } catch (e) {
-      // eslint-disable-next-line no-console
       console.log(`Не удалось создать файлы для сервисов\n${e}`);
     }
   };

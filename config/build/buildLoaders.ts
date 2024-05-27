@@ -4,7 +4,7 @@
 
   import ReactRefreshTypeScript from 'react-refresh-typescript';
 */
-import webpack from 'webpack';
+import type { RuleSetRule } from 'webpack';
 
 import { buildBabelLoader } from './loaders/buildBabelLoader';
 import { buildCssLoader } from './loaders/buildCssLoader';
@@ -18,7 +18,7 @@ import type { BuildOptions } from './types/config';
   - 'esbuild-loader'
 */
 
-export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
+export function buildLoaders(options: BuildOptions): RuleSetRule[] {
 /*
   для оптимизации сборки в 'development' режиме, мы используем что-то одно из:
     1. только 'babel-loader' без 'ts-loader'. НО!!! 'babel-loader' не умеет в 'runtime' проверять типы

@@ -1,8 +1,8 @@
-import webpack from 'webpack';
+import type { ResolveOptions } from 'webpack';
 
 import type { BuildOptions } from './types/config';
 
-export function buildResolvers(options: BuildOptions): webpack.ResolveOptions {
+export function buildResolvers(options: BuildOptions): ResolveOptions {
   return {
 /*  alias: {}, // для импортов вида 'shared/Article'
     нужно дополнительно добавить: "modules: [options.paths.src, 'node_modules']"

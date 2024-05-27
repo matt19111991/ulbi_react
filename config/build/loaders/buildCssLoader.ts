@@ -1,12 +1,12 @@
 // плагин выносит 'CSS' в отдельные файлы, это позволяет кэшировать 'CSS' и избавиться от 'Flash of Unstyled Content'
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { loader as MiniCssExtractPluginLoader } from 'mini-css-extract-plugin';
 
-import webpack from 'webpack';
+import type { RuleSetRule } from 'webpack';
 
-export const buildCssLoader = (isDev: boolean): webpack.RuleSetRule => {
+export const buildCssLoader = (isDev: boolean): RuleSetRule => {
   const styleLoader = isDev
-    ? 'style-loader'               // 3. внедряет стили (по умолчанию через теги '<style />') в 'DOM'
-    : MiniCssExtractPlugin.loader; // 3. стили выносятся в отдельные файлы
+    ? 'style-loader'              // 3. внедряет стили (по умолчанию через теги '<style />') в 'DOM'
+    : MiniCssExtractPluginLoader; // 3. стили выносятся в отдельные файлы
 
   const cssLoader = { // 2. преобразовывает 'CSS' в 'JS' ('CommonJS'):
     loader: 'css-loader',                         //    - @import 'style.css' => require('./style.css')

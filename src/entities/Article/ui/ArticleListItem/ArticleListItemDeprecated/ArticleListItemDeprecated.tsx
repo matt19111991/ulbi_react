@@ -34,7 +34,6 @@ import classes from './ArticleListItemDeprecated.module.scss';
 export const ArticleListItemDeprecated = memo(
   ({ article, className, target, view }: ArticleListItemProps) => {
     const [isHover, hoverHandlers] = useHover();
-    // eslint-disable-next-line no-console
     console.log('--- hovered ---', isHover);
 
     const { t } = useTranslation();

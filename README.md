@@ -1,8 +1,6 @@
 ## TODO
 * `Lighthouse` и `PageSpeed Insights testing` для всех страниц на всех языках и всех темах
   90% для всех характеристик
-* Обновиться до `ESLint v.9` https://github.com/umijs/umi/issues/12261
-* Раскомментировать `pre-commit` проверки
 
 ## Доп. информация
 

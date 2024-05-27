@@ -1,4 +1,4 @@
-import webpack from 'webpack';
+import type { RuleSetRule } from 'webpack';
 
 import babelRemovePropsPlugin from '../babel/babelRemovePropsPlugin';
 
@@ -12,7 +12,7 @@ import babelRemovePropsPlugin from '../babel/babelRemovePropsPlugin';
   - для 'Jest' среды настройки 'babel-loader' выносятся в 'babel.config.json' или 'babel.config.ts'
 */
 
-export const buildBabelLoader = (isTsx?: boolean, isDev?: boolean): webpack.RuleSetRule => ({
+export const buildBabelLoader = (isTsx?: boolean, isDev?: boolean): RuleSetRule => ({
   test: isTsx ? /\.(jsx|tsx)$/ : /\.(js|ts)$/,
   exclude: /node_modules/,
   use: {

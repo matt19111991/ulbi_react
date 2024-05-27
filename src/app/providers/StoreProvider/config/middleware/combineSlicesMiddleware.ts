@@ -11,7 +11,6 @@ export const combineSlicesAvoidErrorMessageMiddleware: Middleware = (api) => (ne
     return next(action);
   }
 
-  // eslint-disable-next-line no-console
   const consoleErrorFunc = console.error;
 
   /*
@@ -30,7 +29,6 @@ export const combineSlicesAvoidErrorMessageMiddleware: Middleware = (api) => (ne
   if (/^@DESTROY\s\S*\sreducer$/g.test(unknownAction.type)) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    // eslint-disable-next-line no-console
     console.error = undefined;
 
     return next(unknownAction);
@@ -40,13 +38,11 @@ export const combineSlicesAvoidErrorMessageMiddleware: Middleware = (api) => (ne
   if (__PROJECT__ === 'jest' && unknownAction.type === 'api/config/middlewareRegistered') {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    // eslint-disable-next-line no-console
     console.error = undefined;
 
     return next(unknownAction);
   }
 
-  // eslint-disable-next-line no-console
   console.error = consoleErrorFunc;
 
   return next(unknownAction);

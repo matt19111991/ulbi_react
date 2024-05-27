@@ -1,4 +1,5 @@
-import webpack from 'webpack';
+import { ProgressPlugin } from 'webpack';
+import type { WebpackPluginInstance } from 'webpack';
 
 /*
   плагин позволяет избавиться от кольцевых зависимостей:
@@ -49,7 +50,7 @@ export function buildPlugins({
   isDev,
   paths,
   project,
-}: BuildOptions): webpack.WebpackPluginInstance[] {
+}: BuildOptions): WebpackPluginInstance[] {
   const plugins = [ // порядок плагинов не имеет значения
     new HTMLWebpackPlugin({
 //    favicon: paths.favicon,
@@ -85,7 +86,7 @@ export function buildPlugins({
 */
 
 //  плагин отображает прогресс компиляции (в 'production' лучше отключать, т.к. может замедлять сборку)
-    plugins.push(new webpack.ProgressPlugin());
+    plugins.push(new ProgressPlugin());
 
     plugins.push(
       new ForkTsCheckerWebpackPlugin({

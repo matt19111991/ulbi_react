@@ -1,0 +1,4 @@
+# для использования в 'ESLint v.8+' файл нужно переименовать в '.eslintignore'
+# для 'ESLint v.9+' используем поле 'ignores' в 'eslint.config.js'
+
+node_modules

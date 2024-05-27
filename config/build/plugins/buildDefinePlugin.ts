@@ -1,4 +1,5 @@
-import webpack from 'webpack';
+import { DefinePlugin } from 'webpack';
+import type { WebpackPluginInstance } from 'webpack';
 /*
  'DefinePlugin' позволяет прокидывать глобальные переменные во всё приложение,
   значения переменных задаются на этапе сборки (компиляции)
@@ -10,8 +11,8 @@ export const buildDefinePlugin = (
   apiUrl: string,
   isDev: boolean,
   project: 'front-end' | 'jest' | 'storybook',
-): webpack.WebpackPluginInstance => {
-  return new webpack.DefinePlugin({ // должна быть консистентность с 'src/app/types/global.d.ts'
+): WebpackPluginInstance => {
+  return new DefinePlugin({ // должна быть консистентность с 'src/app/types/global.d.ts'
 //    без 'JSON.stringify()' будет ошибка в приложении: 'front-end is not defined'
     __API__: JSON.stringify(apiUrl),
     __IS_DEV__: JSON.stringify(isDev),

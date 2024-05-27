@@ -64,7 +64,6 @@ const ProfileRating = ({
           userId: userData?.id ?? '',
         });
       } catch (e) {
-        // eslint-disable-next-line no-console
         console.log(`Profile rating error: ${(e as Error).message}`);
       }
     },

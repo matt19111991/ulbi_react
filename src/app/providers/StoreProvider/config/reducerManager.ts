@@ -30,6 +30,7 @@ export const createReducerManager = (
     reduce: (state: StateSchema, action: UnknownAction) => {
       // Если какие-то редюсеры были удалены, очищаем 'state' от них
       if (keysToRemove.length > 0) {
+        // eslint-disable-next-line no-param-reassign
         state = { ...state };
 
         keysToRemove.forEach((key) => {

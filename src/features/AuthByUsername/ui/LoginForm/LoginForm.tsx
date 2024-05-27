@@ -79,7 +79,6 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
         forceUpdate(); // вызываем принудительную перерисовку всего интерфейса
       }
     } catch (e) {
-      // eslint-disable-next-line no-console
       console.log(`Login error: ${(e as Error).message}`);
     }
   }, [dispatch, forceUpdate, onSuccess, password, username]);

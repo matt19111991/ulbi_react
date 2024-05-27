@@ -7,7 +7,7 @@
 */
 import dotenv from 'dotenv';
 import path from 'path';
-import webpack from 'webpack';
+import type { Configuration } from 'webpack';
 
 import { buildWebpackConfig } from './config/build/buildWebpackConfig';
 import type { BuildEnv, BuildMode, BuildPaths } from './config/build/types/config';
@@ -65,7 +65,7 @@ export default (env: BuildEnv) => {
 
   const port = env?.port || 3000;
 
-  const config: webpack.Configuration = buildWebpackConfig({
+  const config: Configuration = buildWebpackConfig({
     apiUrl,
     isDev,
     mode,

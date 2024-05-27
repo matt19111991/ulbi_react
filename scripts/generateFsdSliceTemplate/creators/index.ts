@@ -14,7 +14,6 @@ export const createTemplate = async (layer: Layer, sliceName: string) => {
     // 'home/dmitry/WebstormProjects/ulbi_react/src/entities/test'
     await mkdir(resolveRoot(layer, sliceName)); // асинхронное создание папки для слайса
   } catch (e) {
-    // eslint-disable-next-line no-console
     console.log(`Не удалось создать директорию '${sliceName}' для 'FSD'-слайса\n${e}`);
   }
 
