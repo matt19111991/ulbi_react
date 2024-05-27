@@ -13,7 +13,6 @@
 const { fixupPluginRules } = require('@eslint/compat');
 
 const eslintJs = require('@eslint/js');
-const airbnbConfig = require('eslint-config-airbnb');
 const i18nextPlugin = require('eslint-plugin-i18next');
 const importPlugin = require('eslint-plugin-import');
 const jsxA11yPlugin = require('eslint-plugin-jsx-a11y');
@@ -45,7 +44,6 @@ const unusedImportsPlugin = require('eslint-plugin-unused-imports');
   несовместимые плагины с 'ESLint v.9+' =>
     '@typescript-eslint/eslint-plugin'  => обе библиотеки ведут на 'typescript-eslint' библиотеку,
     '@typescript-eslint/parser'         => можно использовать только её
-    'eslint-config-airbnb'
     'eslint-plugin-import'
     'eslint-plugin-jsx-a11y'
     'eslint-import-resolver-alias'
@@ -70,8 +68,6 @@ const unusedImportsPlugin = require('eslint-plugin-unused-imports');
 
   текущая используемая версия 'ESLint' в 'typescript-eslint':
  'https://github.com/typescript-eslint/typescript-eslint/blob/main/package.json'
-
- 'eslint-config-airbnb' не обновляется более 2-ух лет, лучше найти аналог
 
   текущая используемая версия 'ESLint' в 'eslint-plugin-import':
  'https://github.com/import-js/eslint-plugin-import/blob/main/package.json'
@@ -102,7 +98,6 @@ module.exports = typescriptEslint.config(
         2 === 'error'
     */
     rules: {
-      ...airbnbConfig.rules,
       ...i18nextPlugin.configs.recommended.rules,
       ...importPlugin.configs.recommended.rules,
       ...jsxA11yPlugin.configs.recommended.rules,
