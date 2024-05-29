@@ -64,12 +64,10 @@ export const ArticleListItemDeprecated = memo(
             <AppImage
               alt={article.title}
               className={classes.image}
-              height={249}
               loadingFallback={
                 <Skeleton className={classes.imageFallback} height={249} width={440} />
               }
               src={article.img}
-              width={440}
             />
 
             {firstTextBlock && (
@@ -116,10 +114,8 @@ export const ArticleListItemDeprecated = memo(
             <AppImage
               alt={article.title}
               className={classes.image}
-              height={200}
               loadingFallback={<Skeleton height={200} width={200} />}
               src={article.img}
-              width={200}
             />
 
             <Text className={classes.date} text={article.createdAt} />
