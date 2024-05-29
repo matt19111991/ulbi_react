@@ -85,6 +85,11 @@ interface DropDownProps {
   justify?: DropdownJustify;
 
   /**
+   * Лэйбл
+   */
+  label?: string;
+
+  /**
    * Размеры пунктов меню
    */
   optionSize?: DropdownOptionSize;
@@ -101,6 +106,7 @@ export const DropDown = memo(
     direction = 'bottom-left',
     items,
     justify = 'left',
+    label = 'dropdown-button',
     optionSize = 'S',
     trigger,
   }: DropDownProps) => {
@@ -108,7 +114,9 @@ export const DropDown = memo(
 
     return (
       <Menu as='div' className={classNames(popupClasses.popup, {}, [className])}>
-        <MenuButton className={popupClasses.trigger}>{trigger}</MenuButton>
+        <MenuButton aria-label={label} className={popupClasses.trigger}>
+          {trigger}
+        </MenuButton>
 
         <MenuItems className={classNames(classes.menu, {}, menuClasses)}>
           {items.map((item) => {

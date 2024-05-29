@@ -86,6 +86,7 @@ export const AvatarDropdown = memo(({ className, storybookAvatar }: AvatarDropdo
           direction='bottom-right'
           items={menuItems}
           justify='right'
+          label='avatar'
           optionSize='S'
           trigger={<Avatar size={40} src={avatarSrc} />}
         />
@@ -96,6 +97,7 @@ export const AvatarDropdown = memo(({ className, storybookAvatar }: AvatarDropdo
           direction='bottom-right'
           items={menuItems}
           justify='right'
+          label='avatar'
           optionSize='S'
           trigger={<AvatarDeprecated fallbackInverted size={30} src={avatarSrc} />}
         />

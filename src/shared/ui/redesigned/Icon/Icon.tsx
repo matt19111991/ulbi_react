@@ -17,6 +17,11 @@ interface IconBaseProps extends SvgProps {
   className?: string;
 
   /**
+   * Лэйбл
+   */
+  label?: string;
+
+  /**
    * 'SVG'-изображение
    */
   Svg: FC<SVGProps<SVGSVGElement>>;
@@ -71,6 +76,7 @@ export const Icon = memo((props: IconProps) => {
   if (clickable) {
     return (
       <button
+        aria-label={props.label ?? 'icon-button'}
         className={classes.button}
         onClick={props.onClick}
         style={{ height, width }}

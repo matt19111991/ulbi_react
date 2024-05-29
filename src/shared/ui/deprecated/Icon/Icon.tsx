@@ -19,6 +19,11 @@ interface IconProps extends SVGProps<SVGSVGElement> {
   inverted?: boolean;
 
   /**
+   * Лэйбл
+   */
+  label?: string;
+
+  /**
    * 'SVG' изображение (компонент)
    */
   Svg: FC<SVGProps<SVGSVGElement>>;
@@ -30,13 +35,15 @@ interface IconProps extends SVGProps<SVGSVGElement> {
  * Устарел, используем новые компоненты из папки 'redesigned'
  * @deprecated
  */
-export const Icon = memo(({ className, inverted, Svg, ...rest }: IconProps) => {
-  const mods: Mods = {
-    [classes.inverted]: inverted,
-    [classes.primary]: !inverted,
-  };
+export const Icon = memo(
+  ({ className, inverted, label = 'icon-button', Svg, ...rest }: IconProps) => {
+    const mods: Mods = {
+      [classes.inverted]: inverted,
+      [classes.primary]: !inverted,
+    };
 
-  return <Svg className={classNames('', mods, [className])} {...rest} />;
-});
+    return <Svg aria-label={label} className={classNames('', mods, [className])} {...rest} />;
+  },
+);
 
 Icon.displayName = 'Icon';

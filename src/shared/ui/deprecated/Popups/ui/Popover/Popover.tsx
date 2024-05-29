@@ -44,7 +44,12 @@ export const Popover = ({
   trigger,
 }: PopoverProps) => (
   <HeadlessPopover className={classNames('', {}, [className, popupClasses.popup])}>
-    <PopoverButton as='div' className={popupClasses.trigger}>
+    <PopoverButton
+      aria-label='notification popover button'
+      as='div'
+      className={popupClasses.trigger}
+      role='button'
+    >
       {trigger}
     </PopoverButton>
 

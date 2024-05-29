@@ -103,6 +103,7 @@ export const ArticleViewSelector = memo(
                   clickable
                   data-testid={`ArticleView.${viewType.view}`}
                   key={viewType.view}
+                  label={viewType.view}
                   onClick={onClick(viewType.view)} // эквивалент 'onClick={(e) => onClick(viewType.view)}'
                   Svg={viewType.icon}
                 />
@@ -124,6 +125,7 @@ export const ArticleViewSelector = memo(
                   })}
                   data-testid={`ArticleView.${viewType.view}`}
                   height={24}
+                  label={viewType.view}
                   Svg={viewType.icon}
                   width={24}
                 />

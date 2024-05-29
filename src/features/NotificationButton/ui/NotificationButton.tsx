@@ -44,14 +44,18 @@ export const NotificationButton = memo(
         feature='isAppRedesigned'
         on={
           <Icon
-            aria-label='notification list'
+            aria-label='notification list button'
             clickable
             onClick={onOpenDrawer}
             Svg={NotificationIcon}
           />
         }
         off={
-          <ButtonDeprecated onClick={onOpenDrawer} theme={ButtonTheme.CLEAR}>
+          <ButtonDeprecated
+            aria-label='notification list button'
+            onClick={onOpenDrawer}
+            theme={ButtonTheme.CLEAR}
+          >
             <IconDeprecated inverted Svg={NotificationIconDeprecated} />
           </ButtonDeprecated>
         }

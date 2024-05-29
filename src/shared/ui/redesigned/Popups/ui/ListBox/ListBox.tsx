@@ -112,7 +112,7 @@ const ListBox = <T extends string>({
         onChange={onChange}
         value={value}
       >
-        <ListboxButton as='div'>
+        <ListboxButton as='div' role='button'>
           <Button
             addonRight={<Icon Svg={ArrowIcon} />}
             data-testid={`${dataTestId}.Button`}
