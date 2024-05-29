@@ -62,6 +62,7 @@ export const ArticlesPageFilters = memo(({ className }: ArticlesPageFiltersProps
         className={classNames(classes.search, { [classes.cutWidth]: view === ArticleView.PLATE })}
       >
         <Input
+          aria-label='search'
           className={classNames('', { [classes.loading]: areLoading })}
           onChange={onChangeSearch}
           placeholder={t('Поиск')}

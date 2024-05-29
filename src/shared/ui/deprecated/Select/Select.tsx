@@ -94,6 +94,7 @@ const Select = <T extends string>({
       {label && <span className={classes.label}>{`${label}>`}</span>}
 
       <select
+        aria-label={label ?? 'select'}
         className={classes.select}
         data-testid={dataTestId}
         disabled={readOnly}

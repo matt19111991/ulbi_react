@@ -69,10 +69,12 @@ export const ArticleListItemRedesigned = memo(
             <AppImage
               alt={article.title}
               className={classes.image}
+              height={320}
               loadingFallback={
                 <Skeleton className={classes.imageFallback} height={320} width='100%' />
               }
               src={article.img}
+              width='100%'
             />
 
             {firstTextBlock?.paragraphs && (
@@ -117,8 +119,10 @@ export const ArticleListItemRedesigned = memo(
           <AppImage
             alt={article.title}
             className={classes.image}
+            height={142}
             loadingFallback={<Skeleton height={142} width='100%' />}
             src={article.img}
+            width='100%'
           />
 
           <VStack className={classes.info}>
