@@ -31,10 +31,10 @@ const typescriptEslint = require('typescript-eslint');
   '{
     overrides: {
       "@typescript-eslint/eslint-plugin": {
-        "eslint": "^9.3.0"
+        "eslint": "^9.4.0"
       },
       "eslint-plugin-unused-imports": {
-        "eslint": "^9.3.0"
+        "eslint": "^9.4.0"
       },
   }' в 'package.json'
 */
@@ -57,11 +57,11 @@ const unusedImportsPlugin = require('eslint-plugin-unused-imports');
  '{
     overrides: {
       "eslint-plugin-import": {
-        "eslint": "^9.3.0"
+        "eslint": "^9.4.0"
       },
       ...
       "typescript-eslint": {
-        "eslint": "^9.3.0"
+        "eslint": "^9.4.0"
       }
     }
   }' в 'package.json'

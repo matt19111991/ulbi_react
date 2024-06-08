@@ -62,29 +62,30 @@
     "react-virtualized": "^9.22.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.6",
-    "@babel/plugin-transform-runtime": "^7.24.6",
-    "@babel/plugin-transform-typescript": "^7.24.6",
-    "@babel/preset-env": "^7.24.6",
-    "@babel/preset-react": "^7.24.6",
-    "@babel/preset-typescript": "^7.24.6",
-    "@eslint/compat": "^1.0.1",
-    "@eslint/js": "^9.3.0",
-    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.13",
-    "@storybook/addon-actions": "^8.1.5",
-    "@storybook/addon-essentials": "^8.1.5",
-    "@storybook/addon-viewport": "^8.1.5",
+    "@babel/core": "^7.24.7",
+    "@babel/plugin-transform-runtime": "^7.24.7",
+    "@babel/plugin-transform-typescript": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
+    "@babel/preset-react": "^7.24.7",
+    "@babel/preset-typescript": "^7.24.7",
+    "@eslint/compat": "^1.0.3",
+    "@eslint/js": "^9.4.0",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.15",
+    "@storybook/addon-actions": "^8.1.6",
+    "@storybook/addon-essentials": "^8.1.6",
+    "@storybook/addon-viewport": "^8.1.6",
     "@storybook/addon-webpack5-compiler-babel": "^3.0.3",
-    "@storybook/react": "^8.1.5",
-    "@storybook/react-webpack5": "^8.1.5",
+    "@storybook/react": "^8.1.6",
+    "@storybook/react-webpack5": "^8.1.6",
     "@svgr/webpack": "^8.1.0",
+    "@testing-library/dom": "^10.1.0",
     "@testing-library/jest-dom": "^6.4.5",
-    "@testing-library/react": "^15.0.7",
+    "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",
     "@types/babel__core": "^7.20.5",
     "@types/circular-dependency-plugin": "^5.0.8",
     "@types/jest": "^29.5.12",
-    "@types/node": "^20.12.13",
+    "@types/node": "^20.14.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@types/react-virtualized": "^9.21.30",
@@ -100,8 +101,8 @@
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "css-loader": "^7.1.2",
-    "cypress": "^13.10.0",
-    "eslint": "^9.3.0",
+    "cypress": "^13.11.0",
+    "eslint": "^9.4.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-i18next": "^6.0.3",
@@ -114,7 +115,7 @@
     "eslint-plugin-storybook": "^0.8.0",
     "eslint-plugin-unused-imports": "^3.2.0",
     "fork-ts-checker-webpack-plugin": "^9.0.2",
-    "globals": "^15.3.0",
+    "globals": "^15.4.0",
     "html-webpack-plugin": "^5.6.0",
     "husky": "^9.0.11",
     "identity-obj-proxy": "^3.0.0",
@@ -126,13 +127,13 @@
     "lint-staged": "^15.2.5",
     "loki": "^0.35.0",
     "mini-css-extract-plugin": "^2.9.0",
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.1",
     "react-refresh-typescript": "^2.0.9",
     "reg-cli": "^0.18.5",
     "regenerator-runtime": "^0.14.1",
-    "sass": "^1.77.3",
+    "sass": "^1.77.4",
     "sass-loader": "^14.2.1",
-    "storybook": "^8.1.5",
+    "storybook": "^8.1.6",
     "style-loader": "^4.0.0",
     "stylelint": "^16.6.1",
     "stylelint-codeguide": "^2.0.0",
@@ -141,8 +142,8 @@
     "ts-morph": "^22.0.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5",
-    "typescript-eslint": "^7.11.0",
-    "vite": "^5.2.12",
+    "typescript-eslint": "^7.12.0",
+    "vite": "^5.2.13",
     "vite-plugin-svgr": "^4.2.0",
     "webpack": "^5.91.0",
     "webpack-bundle-analyzer": "^4.10.2",
@@ -179,28 +180,28 @@
   },
   "overrides": {
     "@typescript-eslint/eslint-plugin": {
-      "eslint": "^9.3.0"
+      "eslint": "^9.4.0"
     },
     "eslint-plugin-import": {
-      "eslint": "^9.3.0"
+      "eslint": "^9.4.0"
     },
     "eslint-plugin-jsx-a11y": {
-      "eslint": "^9.3.0"
+      "eslint": "^9.4.0"
     },
     "eslint-plugin-react": {
-      "eslint": "^9.3.0"
+      "eslint": "^9.4.0"
     },
     "eslint-plugin-react-hooks": {
-      "eslint": "^9.3.0"
+      "eslint": "^9.4.0"
     },
     "eslint-plugin-unused-imports": {
-      "eslint": "^9.3.0"
+      "eslint": "^9.4.0"
     },
     "loki": {
-      "@storybook/react": "^8.1.5"
+      "@storybook/react": "^8.1.6"
     },
     "typescript-eslint": {
-      "eslint": "^9.3.0"
+      "eslint": "^9.4.0"
     }
   }
 }
