@@ -67,6 +67,8 @@ describe('userSlice', () => {
       expect(document.body).toHaveClass(authData?.jsonSettings?.theme as Theme);
 
       expect(window.localStorage.getItem(LAST_DESIGN_LOCALSTORAGE_KEY)).toBe('old');
+
+      expect(window.location.reload).toHaveBeenCalledTimes(1);
     });
   });
 

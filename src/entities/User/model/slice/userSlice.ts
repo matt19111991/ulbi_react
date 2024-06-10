@@ -45,6 +45,12 @@ export const userSlice = createSlice({
         LAST_DESIGN_LOCALSTORAGE_KEY,
         action.payload.features?.isAppRedesigned ? 'new' : 'old',
       );
+
+      /*
+        перезагружаем текущую страницу после успешного логина
+        (под капотом произойдет ресет закэшированных стилей)
+      */
+      window.location.reload();
     },
 
     logout: (state) => {
