@@ -39,6 +39,7 @@ describe('userSlice', () => {
     Object.defineProperty(window, 'location', {
       configurable: true,
       value: {
+        reload: jest.fn(),
         replace: jest.fn(),
       },
     });
