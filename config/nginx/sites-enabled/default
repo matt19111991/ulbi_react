@@ -9,8 +9,8 @@ server {
   # Possible entry points
   index index.html index.htm index.nginx-debian.html;
 
-  # Our requests domain name (https://ulbireact.ru/api) without 'http(s)' and 'api'
-  server_name ulbireact.ru;
+  # Our requests domain name (https://matt610.ru/api) without 'http(s)' and 'api'
+  server_name matt610.ru;
 
   # Catch all routes after slash
   location / {

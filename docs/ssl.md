@@ -35,12 +35,12 @@
    
    `sudo certbot --nginx`
 
-7. Если возникла ошибка **"Could not automatically find a matching server block for ulbireact.ru. 
+7. Если возникла ошибка **"Could not automatically find a matching server block for matt610.ru. 
    Set the 'server_name' directive to use the Nginx installer"**
   
    Нужно указать `server_name` в `/etc/nginx/sites-enabled/default` и перезапустить `nginx`
 
-8. Если возникла ошибка **"Mixed Content: The page at 'https://ulbireact.ru/' was loaded over HTTPS,
+8. Если возникла ошибка **"Mixed Content: The page at 'https://matt610.ru/' was loaded over HTTPS,
    but requested an insecure XMLHttpRequest endpoint 'http://91.223.169.133:8000/login'. 
    This request has been blocked; the content must be served over HTTPS."**
 

@@ -9,8 +9,8 @@ server {
   # Possible entry points
   index index.html index.htm index.nginx-debian.html;
 
-  # Our requests domain name (https://ulbireact.ru/api) without 'http(s)' and 'api'
-  server_name ulbireact.ru;
+  # Our requests domain name (https://matt610.ru/api) without 'http(s)' and 'api'
+  server_name matt610.ru;
 
   # Proxying for backend (HTTPS)
   location ~ ^/api/(.*)$ { # catch all '/api/' requests and redirect them to the backend
@@ -35,21 +35,21 @@ server {
 
   listen [::]:443 ssl ipv6only=on; # managed by Certbot
   listen 443 ssl; # managed by Certbot
-  ssl_certificate /etc/letsencrypt/live/ulbireact.ru/fullchain.pem; # managed by Certbot
-  ssl_certificate_key /etc/letsencrypt/live/ulbireact.ru/privkey.pem; # managed by Certbot
+  ssl_certificate /etc/letsencrypt/live/matt610.ru/fullchain.pem; # managed by Certbot
+  ssl_certificate_key /etc/letsencrypt/live/matt610.ru/privkey.pem; # managed by Certbot
   include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
   ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 }
 
 server {
-  if ($host = ulbireact.ru) {
+  if ($host = matt610.ru) {
     return 301 https://$host$request_uri;
   } # managed by Certbot
 
   listen 80;
   listen [::]:80;
 
-  server_name ulbireact.ru;
+  server_name matt610.ru;
 
   return 404; # managed by Certbot
 }
