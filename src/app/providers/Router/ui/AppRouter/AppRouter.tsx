@@ -19,6 +19,8 @@ import type { AppRouteProps } from '../../model/types/router';
 
 import { RequireAuth } from '../RequireAuth/RequireAuth';
 
+import classes from './AppRouter.module.scss';
+
 export const AppRouter = memo(() => {
   const renderRoutes = useCallback((route: AppRouteProps) => {
     // '<Suspense />' для роутинга (используются асинхронные страницы)
@@ -27,7 +29,7 @@ export const AppRouter = memo(() => {
         fallback={
           <ToggleFeatures
             feature='isAppRedesigned'
-            on={<Skeleton border='4px' height={88} width='100%' />}
+            on={<Skeleton className={classes.loader} />}
             off={<PageLoader />}
           />
         }

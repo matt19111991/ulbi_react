@@ -1,4 +1,6 @@
 .ArticlesPage {
+  overflow-x: hidden;
+
   .list {
     margin-top: 30px;
   }
@@ -20,17 +22,17 @@
   body:has(> div[id='root']) {
     .ArticlesPage {
       height: calc(87vh - 320px);
-      top: 264px;
+      top: 286px;
     }
   }
 }
 
 // добавляем отступ только в приложении (не в 'storybook')
-@media screen and (max-width: 510px) {
+@media screen and (max-width: 480px) {
   body:has(> div[id='root']) {
     .ArticlesPage {
       height: calc(87vh - 220px);
-      top: 286px;
+      top: 190px;
     }
   }
 }

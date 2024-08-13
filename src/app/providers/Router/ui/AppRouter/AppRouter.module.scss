@@ -1,0 +1,15 @@
+.loader {
+  border-radius: 4px;
+  height: 88px;
+  position: relative;
+  width: 100%;
+}
+
+@media screen and (max-width: 1800px) {
+  .loader {
+    height: 32px;
+    left: -24px;
+    top: 44px;
+    width: 172px;
+  }
+}
