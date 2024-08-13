@@ -57,9 +57,9 @@ https://cars.ru/auto/bmw/model/m5
 Позволяют избавиться от дубликатов при индексации страниц
 
 Один и тот же контент может отображаться по разным урлам:
-- https://ulbireact.netlify.app/articles/last_article
-- https://ulbireact.netlify.app/articles/last_category/last_article
-- https://ulbireact.netlify.app/user/jack/articles/last_article
+- https://matt610.netlify.app/articles/last_article
+- https://matt610.netlify.app/articles/last_category/last_article
+- https://matt610.netlify.app/user/jack/articles/last_article
 
 но мы задаем только одну страницу как первоисточник, а остальные считаем дубликатами
 

@@ -1,11 +1,11 @@
 User-agent: Googlebot
 Disallow: /about
 Disallow: /settings
-Sitemap: https://ulbireact.netlify.app/sitemap-1.xml
+Sitemap: https://matt610.netlify.app/sitemap-1.xml
 
 User-agent: Yandex
 Disallow: /admin
 
 User-agent: *
 Disallow: /outlet/*
-Sitemap: https://ulbireact.netlify.app/sitemap.xml
+Sitemap: https://matt610.netlify.app/sitemap.xml
