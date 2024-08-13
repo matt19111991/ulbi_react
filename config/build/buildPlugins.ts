@@ -53,7 +53,7 @@ export function buildPlugins({
 }: BuildOptions): WebpackPluginInstance[] {
   const plugins = [ // порядок плагинов не имеет значения
     new HTMLWebpackPlugin({
-//    favicon: paths.favicon,
+      favicon: paths.favicon,
 
 /*    без опции 'template' в файле './build/index.html' не будет "<div id='root'></div>",
       а создастся шаблонный 'HTML' файл
