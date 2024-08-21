@@ -81,7 +81,7 @@ if ('serviceWorker' in navigator) {
   // событие 'load' происходит, когда ресурсы приложения закончили загружаться
   window.addEventListener('load', async () => {
     // после загрузки всех ресурсов регистрируем сервис-воркер
-    await navigator.serviceWorker.register('/service-worker.js');
+    await navigator.serviceWorker.register('/service-worker.js', { scope: '/' });
   });
 } else {
   console.log('Текущий браузер не поддерживает сервис-воркеры');
