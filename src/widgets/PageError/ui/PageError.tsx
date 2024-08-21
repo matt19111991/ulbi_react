@@ -31,7 +31,12 @@ export const PageError = memo(({ className }: PageErrorProps) => {
       feature='isAppRedesigned'
       on={
         <div className={classNames(classes.PageError, {}, [className, classes.redesigned])}>
-          <TextRedesigned text={t('Произошла непредвиденная ошибка')} size='l' variant='error' />
+          <TextRedesigned
+            align='center'
+            text={t('Произошла непредвиденная ошибка')}
+            size='l'
+            variant='error'
+          />
 
           <ButtonRedesigned color='error' onClick={reloadPage} variant='outline'>
             {t('Обновить страницу')}
