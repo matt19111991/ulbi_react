@@ -1,3 +1,4 @@
+import path from "path";
 import { ProgressPlugin } from 'webpack';
 import type { WebpackPluginInstance } from 'webpack';
 
@@ -132,6 +133,7 @@ export function buildPlugins({
           { from: paths.sitemapIndex, to: paths.build },
           { from: paths.sitemap1, to: paths.build },
           { from: paths.sitemap2, to: paths.build },
+          { from: path.resolve(__dirname, 'public', 'service-worker.js'), to: paths.build },
         ],
       }),
     );
