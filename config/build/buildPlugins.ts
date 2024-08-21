@@ -1,4 +1,3 @@
-import path from "path";
 import { ProgressPlugin } from 'webpack';
 import type { WebpackPluginInstance } from 'webpack';
 
@@ -130,6 +129,7 @@ export function buildPlugins({
           { from: paths.googleVerification, to: paths.build },
           { from: paths.locales, to: paths.buildLocales },
           { from: paths.manifest, to: paths.build },
+          { from: paths.manifestAssets, to: paths.buildAssets },
           { from: paths.robots, to: paths.build },
           { from: paths.serviceWorker, to: paths.build },
           { from: paths.sitemapIndex, to: paths.build },

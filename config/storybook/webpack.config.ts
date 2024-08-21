@@ -53,6 +53,7 @@ export default ({ config }: { config: StorybookWebpackConfiguration }) => {
 
   const paths: BuildPaths = {
     build: '',
+    buildAssets: '',
     buildLocales: '',
     entry: '',
     favicon: '',
@@ -60,6 +61,7 @@ export default ({ config }: { config: StorybookWebpackConfiguration }) => {
     html: '',
     locales: '',
     manifest: '',
+    manifestAssets: '',
     robots: '',
     serviceWorker: '',
     sitemapIndex: '',

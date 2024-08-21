@@ -8,6 +8,7 @@ export interface BuildEnv {
 
 export interface BuildPaths {
   build: string;
+  buildAssets: string; // куда складывать файлы изображений для манифеста
   buildLocales: string; // куда складывать файлы переводов для билда
   entry: string;
   favicon: string;
@@ -15,6 +16,7 @@ export interface BuildPaths {
   html: string;
   locales: string; // где лежат файлы переводов
   manifest: string;
+  manifestAssets: string;
   serviceWorker: string;
   src: string;
   robots: string;

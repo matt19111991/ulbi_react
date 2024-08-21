@@ -50,6 +50,7 @@ export default (env: BuildEnv) => {
     // __dirname - папка, где находимся в данный момент. В текущем случае: корень
 
     build: path.resolve(__dirname, 'build'),
+    buildAssets: path.resolve(__dirname, 'build', 'assets'),
     buildLocales: path.resolve(__dirname, 'build', 'locales'),
     entry: path.resolve(__dirname, 'src', 'index.tsx'),
     favicon: path.resolve(__dirname, 'src', 'shared', 'assets', 'favicon.ico'),
@@ -57,6 +58,7 @@ export default (env: BuildEnv) => {
     html: path.resolve(__dirname, 'public', 'index.html'),
     locales: path.resolve(__dirname, 'public', 'locales'),
     manifest: path.resolve(__dirname, 'public', 'manifest.json'),
+    manifestAssets: path.resolve(__dirname, 'public', 'assets'),
     robots: path.resolve(__dirname, 'robots.txt'),
     serviceWorker: path.resolve(__dirname, 'public', 'service-worker.js'),
     sitemapIndex: path.resolve(__dirname, 'sitemap.xml'),
