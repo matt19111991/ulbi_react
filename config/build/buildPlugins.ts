@@ -134,6 +134,7 @@ export function buildPlugins({
           { from: paths.sitemap1, to: paths.build },
           { from: paths.sitemap2, to: paths.build },
           { from: path.resolve(__dirname, '../../public', 'service-worker.js'), to: paths.build },
+          { from: path.resolve(__dirname, '../../public', 'manifest.json'), to: paths.build },
         ],
       }),
     );
