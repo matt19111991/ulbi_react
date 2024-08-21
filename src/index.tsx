@@ -82,17 +82,18 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', async () => {
     // после загрузки всех ресурсов
 
-    navigator.serviceWorker.getRegistrations().then((registrations) => {
-      for (const registration of registrations) {
-        const registeredUrl = registration.active?.scriptURL;
-        const urlToRegister = `${window.location.href}service-worker.js`;
+    // получаем список всех регистраций сервис-воркеров
+    const registrations = await navigator.serviceWorker.getRegistrations();
 
-        // если сервис-воркер уже был зарегистрирован
-        if (registeredUrl === urlToRegister) {
-          registration.unregister(); // отписываемся от него
-        }
+    for (const registration of registrations) {
+      const registeredUrl = registration.active?.scriptURL;
+      const urlToRegister = `${window.location.href}service-worker.js`;
+
+      // если сервис-воркер уже был зарегистрирован
+      if (registeredUrl === urlToRegister) {
+        await registration.unregister(); // отписываемся от него
       }
-    });
+    }
 
     // регистрируем сервис-воркер
     await navigator.serviceWorker.register('/service-worker.js');
