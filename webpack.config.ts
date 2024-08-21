@@ -57,6 +57,7 @@ export default (env: BuildEnv) => {
     html: path.resolve(__dirname, 'public', 'index.html'),
     locales: path.resolve(__dirname, 'public', 'locales'),
     robots: path.resolve(__dirname, 'robots.txt'),
+    serviceWorker: path.resolve(__dirname, 'public', 'service-worker.js'),
     sitemapIndex: path.resolve(__dirname, 'sitemap.xml'),
     sitemap1: path.resolve(__dirname, 'sitemap-1.xml'),
     sitemap2: path.resolve(__dirname, 'sitemap-2.xml'),

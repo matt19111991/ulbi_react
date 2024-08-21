@@ -60,6 +60,7 @@ export default ({ config }: { config: StorybookWebpackConfiguration }) => {
     html: '',
     locales: '',
     robots: '',
+    serviceWorker: '',
     sitemapIndex: '',
     sitemap1: '',
     sitemap2: '',
