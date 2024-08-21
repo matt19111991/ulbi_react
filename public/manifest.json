@@ -1,16 +1,37 @@
 {
-  "name": "Ulbi React",
-  "short_name": "Ulbi",
-  "description": "PWA for Ulbi React",
-  "start_url": "/",
-  "display": "standalone",
   "background_color": "#EFF5F6",
-  "theme_color": "#141C1F",
+  "description": "PWA for Ulbi React",
+  "display": "standalone",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "32x32",
-      "type": "image/x-icon"
+      "sizes": "470x626",
+      "src": "logo_470x626.webp",
+      "type": "image/webp"
+    },
+    {
+      "sizes": "144x144",
+      "src": "logo_144x144.webp",
+      "type": "image/webp"
     }
-  ]
+  ],
+  "name": "Ulbi React",
+  "screenshots": [
+    {
+      "form_factor": "narrow",
+      "label": "Mobile",
+      "sizes": "320x320",
+      "src": "logo_320x320.webp",
+      "type": "image/webp"
+    },
+    {
+      "form_factor": "wide",
+      "label": "Desktop",
+      "sizes": "470x626",
+      "src": "logo_470x626.webp",
+      "type": "image/webp"
+    }
+  ],
+  "short_name": "Ulbi",
+  "start_url": "/",
+  "theme_color": "#141C1F"
 }

@@ -3,6 +3,7 @@ build
 dist
 extractedTranslations
 node_modules
+public/*.ica
 reports/unit
 package-lock.json
 storybook-static
