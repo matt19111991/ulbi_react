@@ -56,6 +56,7 @@ export default (env: BuildEnv) => {
     googleVerification: path.resolve(__dirname, 'google0ba6d230b9204219.html'),
     html: path.resolve(__dirname, 'public', 'index.html'),
     locales: path.resolve(__dirname, 'public', 'locales'),
+    manifest: path.resolve(__dirname, 'public', 'manifest.json'),
     robots: path.resolve(__dirname, 'robots.txt'),
     serviceWorker: path.resolve(__dirname, 'public', 'service-worker.js'),
     sitemapIndex: path.resolve(__dirname, 'sitemap.xml'),

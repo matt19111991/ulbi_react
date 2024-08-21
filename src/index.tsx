@@ -80,19 +80,21 @@ root.render(
 if ('serviceWorker' in navigator) {
   // событие 'load' происходит, когда ресурсы приложения закончили загружаться
   window.addEventListener('load', async () => {
+    // после загрузки всех ресурсов
+
     navigator.serviceWorker.getRegistrations().then((registrations) => {
       for (const registration of registrations) {
+        const registeredUrl = registration.active?.scriptURL;
+        const urlToRegister = `${window.location.href}service-worker.js`;
+
         // если сервис-воркер уже был зарегистрирован
-        console.log('registration.active?.scriptURL', registration.active?.scriptURL);
-        console.log('window.location.href', window.location.href);
-        if (registration.active?.scriptURL === `${window.location.href}service-worker.js`) {
-          // отписываемся от него
-          registration.unregister();
+        if (registeredUrl === urlToRegister) {
+          registration.unregister(); // отписываемся от него
         }
       }
     });
 
-    // после загрузки всех ресурсов регистрируем сервис-воркер
+    // регистрируем сервис-воркер
     await navigator.serviceWorker.register('/service-worker.js');
   });
 } else {

@@ -59,6 +59,7 @@ export default ({ config }: { config: StorybookWebpackConfiguration }) => {
     googleVerification: '',
     html: '',
     locales: '',
+    manifest: '',
     robots: '',
     serviceWorker: '',
     sitemapIndex: '',

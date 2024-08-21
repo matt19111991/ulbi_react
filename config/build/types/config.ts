@@ -14,6 +14,7 @@ export interface BuildPaths {
   googleVerification: string;
   html: string;
   locales: string; // где лежат файлы переводов
+  manifest: string;
   serviceWorker: string;
   src: string;
   robots: string;

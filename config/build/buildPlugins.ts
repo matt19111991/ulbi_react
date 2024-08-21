@@ -129,12 +129,12 @@ export function buildPlugins({
           { from: paths.favicon, to: paths.build },
           { from: paths.googleVerification, to: paths.build },
           { from: paths.locales, to: paths.buildLocales },
+          { from: paths.manifest, to: paths.build },
           { from: paths.robots, to: paths.build },
           { from: paths.serviceWorker, to: paths.build },
           { from: paths.sitemapIndex, to: paths.build },
           { from: paths.sitemap1, to: paths.build },
           { from: paths.sitemap2, to: paths.build },
-          // { from: path.resolve(__dirname, '../../public', 'manifest.json'), to: paths.build },
         ],
       }),
     );
