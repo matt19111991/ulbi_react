@@ -1,0 +1,16 @@
+{
+  "name": "Ulbi React",
+  "short_name": "Ulbi",
+  "description": "PWA for Ulbi React",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#EFF5F6",
+  "theme_color": "#141C1F",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    }
+  ]
+}
