@@ -17,12 +17,17 @@ interface AppLogoProps {
   className?: string;
 
   /**
+   * Обработчик клика по логотипу
+   */
+  onClick?: () => void;
+
+  /**
    * Размер изображения
    */
   size?: number;
 }
 
-export const AppLogo = memo(({ className, size = 80 }: AppLogoProps) => {
+export const AppLogo = memo(({ className, onClick, size = 80 }: AppLogoProps) => {
   const gradientSmallStyles = useMemo<CSSProperties>(
     () => ({
       height: size * 2.5,
@@ -42,7 +47,7 @@ export const AppLogo = memo(({ className, size = 80 }: AppLogoProps) => {
   );
 
   return (
-    <HStack className={classes.appLogoWrapper} max>
+    <HStack className={classes.appLogoWrapper} max onClick={onClick}>
       <Icon
         className={classNames(classes.logo, {}, [className])}
         height={size}

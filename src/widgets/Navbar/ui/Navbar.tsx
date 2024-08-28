@@ -59,6 +59,10 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
     navigate(getRouteSettings());
   }, [navigate]);
 
+  const onReloadPage = useCallback((): void => {
+    window.location.reload();
+  }, []);
+
   const mainClass = toggleFeatures({
     name: 'isAppRedesigned',
     on: () => classes.NavbarRedesigned,
@@ -90,7 +94,7 @@ export const Navbar = memo(({ className, storybookAvatar }: NavbarProps) => {
         // 'Navbar' до редизайна для авторизованного пользователя
         off={
           <header className={classNames(mainClass, {}, [className])}>
-            <div className={classes.logoWrapper}>
+            <div className={classes.logoWrapper} onClick={onReloadPage}>
               <Icon className={classes.logo} height={60} Svg={Logo} width={60} />
             </div>
 

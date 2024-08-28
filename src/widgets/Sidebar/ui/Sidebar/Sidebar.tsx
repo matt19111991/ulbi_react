@@ -1,4 +1,4 @@
-import { memo, useMemo, useState } from 'react';
+import { memo, useCallback, useMemo, useState } from 'react';
 
 import { LangSwitcher } from '@/features/LangSwitcher';
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
@@ -40,6 +40,10 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
     [collapsed, sidebarItemsList],
   );
 
+  const onReloadPage = useCallback(() => {
+    window.location.reload();
+  }, []);
+
   const onToggle = () => {
     setCollapsed((prev) => !prev);
   };
@@ -57,7 +61,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
           )}
           data-testid='sidebar'
         >
-          <AppLogo className={classes.appLogo} size={collapsed ? 30 : 80} />
+          <AppLogo className={classes.appLogo} onClick={onReloadPage} size={collapsed ? 30 : 80} />
 
           <VStack
             align='start'
