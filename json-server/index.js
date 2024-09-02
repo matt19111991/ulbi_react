@@ -5,7 +5,6 @@ const https = require('https');
 const jsonServer = require('json-server');
 const path = require('path');
 const os = require('os');
-const webPush = require('web-push'); // для простой реализации 'push' уведомлений
 
 const server = jsonServer.create();
 
@@ -36,24 +35,6 @@ const dbPath = isDevelopment
   : path.resolve(`${os.tmpdir()}/db.json`);
 
 const router = jsonServer.router(dbPath);
-
-/*
-  подробнее о 'GCM_API_KEY': 'https://developers.google.com/cloud-messaging
- 'API_KEY' можно посмотреть в 'Google' аккаунте: 'https://console.cloud.google.com/apis/credentials'
-*/
-webPush.setGCMAPIKey(process.env.GCM_API_KEY || null);
-
-// отправляем 'push' уведомление
-const sendPushNotification = async (endpoint) => {
-  console.log('endpoint sendPushNotification ', endpoint);
-
-  try {
-    await webPush.sendNotification({ endpoint });
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.log('--- Push notification send error ---', e.message);
-  }
-}
 
 // middleware для небольшой задержки, чтобы запрос проходил не мгновенно; имитация реального API
 server.use(async (req, res, next) => {
@@ -99,24 +80,6 @@ server.post('/login', (req, res) => {
     }
 
     return res.status(403).json({ message: 'USER NOT FOUND' });
-  } catch (e) {
-    return res.status(500).json({ message: e.message });
-  }
-});
-
-// '/articles' endpoint (POST)
-server.post('/articles', async (req, res) => {
-  try {
-    if (!isDevelopment) {
-      const endpoint = req.route.path;
-      console.log('endpoint', endpoint);
-
-      await sendPushNotification(endpoint); // отправка 'push' уведомления
-
-      console.log('---23344---');
-    }
-
-    return res.status(201).json({ message : 'ARTICLE CREATED' });
   } catch (e) {
     return res.status(500).json({ message: e.message });
   }

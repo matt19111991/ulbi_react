@@ -35,10 +35,3 @@ self.addEventListener('fetch', (event) => {
     })
   );
 });
-
-// слушаем событие 'push'
-self.addEventListener('push', (event) => {
-  event.waitUntil(self.registration.showNotification('Push notification test', {
-    body: 'Body for push notification'
-  }));
-});
