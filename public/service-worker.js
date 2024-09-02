@@ -30,6 +30,15 @@ self.addEventListener('fetch', (event) => {
     caches.match(event.request).then(cache => {
       // возвращаем значение из кэша (если есть), иначе отправляем запрос
       return cache || fetch(event.request);
+    }).catch(err => {
+      console.log(`Fetch error ${err} for ${event.request} request`)
     })
   );
+});
+
+// слушаем событие 'push'
+self.addEventListener('push', (event) => {
+  event.waitUntil(self.registration.showNotification('Push notification test', {
+    body: 'Body for push notification'
+  }));
 });

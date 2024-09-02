@@ -97,6 +97,17 @@ if ('serviceWorker' in navigator) {
 
     // регистрируем сервис-воркер
     await navigator.serviceWorker.register('/service-worker.js');
+
+    // если 'push' уведомления не разрешены
+    if (Notification.permission !== 'granted') {
+      // запрашиваем разрешение на уведомления
+      const permission = await Notification.requestPermission();
+
+      if (permission === 'granted') {
+        // отображается только для 'HTTPS'
+        new Notification('Notifications are allowed!!!');
+      }
+    }
   });
 } else {
   console.log('Текущий браузер не поддерживает сервис-воркеры');
