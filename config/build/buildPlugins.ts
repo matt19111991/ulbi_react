@@ -50,6 +50,7 @@ export function buildPlugins({
   isDev,
   paths,
   project,
+  vapidKey,
 }: BuildOptions): WebpackPluginInstance[] {
   const plugins = [ // порядок плагинов не имеет значения
     new HTMLWebpackPlugin({
@@ -63,7 +64,7 @@ export function buildPlugins({
       template: paths.html,
     }),
 
-    buildDefinePlugin(apiUrl, isDev, project),
+    buildDefinePlugin(apiUrl, isDev, project, vapidKey),
 
     new CircularDependencyPlugin({
       exclude: /node_modules/,

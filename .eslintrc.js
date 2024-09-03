@@ -29,6 +29,7 @@ module.exports = {
     __API__: 'readonly',
     __IS_DEV__: 'readonly',
     __PROJECT__: 'readonly',
+    __VAPID_KEY__: 'readonly',
   },
   overrides: [
     {
@@ -162,7 +163,7 @@ module.exports = {
     'no-undef': 0,
 
     // запрет на нижнее подчеркивание в переменных (вкл.)
-    'no-underscore-dangle': [2, { allow: ['__API__', '__IS_DEV__', '__PROJECT__'] }],
+    'no-underscore-dangle': [2, { allow: ['__API__', '__IS_DEV__', '__PROJECT__', '__VAPID_KEY__'] }],
 
     // запрещаем конструкции 'obj?.foo' (откл.)
     // отключаем для корректной работы с ESLint v.7, т.к. сыпет ошибками по всем файлам

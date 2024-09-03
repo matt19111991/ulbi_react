@@ -37,6 +37,7 @@ declare module '*.png';
 declare const __API__: string;
 declare const __IS_DEV__: boolean;
 declare const __PROJECT__: 'front-end' | 'jest' | 'storybook';
+declare const __VAPID_KEY__: string;
 
 /*
   'DeepPartial' из '@reduxjs/toolkit v.1' требует указания всех обязательных полей в редюсерах и

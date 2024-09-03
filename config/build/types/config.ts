@@ -32,4 +32,5 @@ export interface BuildOptions {
   paths: BuildPaths;
   port: number;
   project: 'front-end' | 'jest' | 'storybook';  // запущенная среда
+  vapidKey: string; // публичный ключ для 'push' уведомлений
 }

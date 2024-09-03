@@ -188,7 +188,7 @@ module.exports = typescriptEslint.config(
       'no-undef': 0,
 
       // запрет на нижнее подчеркивание в переменных (вкл.)
-      'no-underscore-dangle': [2, { allow: ['__API__', '__IS_DEV__', '__PROJECT__'] }],
+      'no-underscore-dangle': [2, { allow: ['__API__', '__IS_DEV__', '__PROJECT__', '__VAPID_KEY__'] }],
 
       // запрещаем обращения вида '1 in obj?.foo;', если 'const obj = undefined;' (вкл.)
       'no-unsafe-optional-chaining': 2,
@@ -336,6 +336,7 @@ module.exports = typescriptEslint.config(
         __API__: 'readonly',
         __IS_DEV__: 'readonly',
         __PROJECT__: 'readonly',
+        __VAPID_KEY__: 'readonly',
       },
       parser: typescriptEslint.parser,
       parserOptions: {

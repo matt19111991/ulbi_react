@@ -73,7 +73,7 @@ export default ({ config }: { config: StorybookWebpackConfiguration }) => {
   // --- Плагины ---
 
   // 'storybook' используем только в режиме разработки, 'API' не используем
-  const additionalDefinePlugin = buildDefinePlugin('https://testapi.com', true, 'storybook');
+  const additionalDefinePlugin = buildDefinePlugin('https://testapi.com', true, 'storybook', '');
 
   /*
     к существующему 'DefinePlugin':

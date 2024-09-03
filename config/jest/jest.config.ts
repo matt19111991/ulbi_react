@@ -27,6 +27,7 @@ export default {
     __API__: '',
     __IS_DEV__: true,
     __PROJECT__: 'jest',
+    __VAPID_KEY__: '',
   },
 
   // An array of directory names to be searched recursively up from the requiring module's location

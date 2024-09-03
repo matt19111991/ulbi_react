@@ -61,6 +61,9 @@ export default defineConfig({
     __API__: JSON.stringify('http://localhost:8000/'),
     __IS_DEV__: JSON.stringify(true),
     __PROJECT__: JSON.stringify('front-end'),
+    __VAPID_KEY__: JSON.stringify(
+      'BEkq_mrT97fQO_G2oSsB1lAokrDMxgec94rOP3L7ZcTKXpLC-62M9hWj_2hNWm2CrNYQjJN0Q5c0BJxTx4XCQtY',
+    ),
   },
   plugins: [
     react(),

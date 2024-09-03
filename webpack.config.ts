@@ -69,6 +69,8 @@ export default (env: BuildEnv) => {
 
   const port = env?.port || 3000;
 
+  const vapidKey = process.env?.VAPID_PUBLIC_KEY || '';
+
   const config: Configuration = buildWebpackConfig({
     apiUrl,
     isDev,
@@ -76,6 +78,7 @@ export default (env: BuildEnv) => {
     paths,
     port,
     project: 'front-end',
+    vapidKey,
   });
 
   return config;
