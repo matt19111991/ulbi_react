@@ -44,7 +44,7 @@ const router = jsonServer.router(dbPath);
   список подписок на 'push' уведомления: кому будут приходить 'push' уведомления
   после отправки 'POST' запроса на '/subscribe'
 */
-const subscriptions = [];
+let subscriptions = [];
 
 /*
  'VAPID' ключи позволяют серверу отправлять 'push' уведомления в браузеры без
@@ -61,7 +61,7 @@ setVapidDetails(
   "https://matt610.ru", // должен быть корректный 'URL'
   vapidKeys.publicKey,
   vapidKeys.privateKey
-)
+);
 
 // middleware для небольшой задержки, чтобы запрос проходил не мгновенно; имитация реального API
 server.use(async (req, res, next) => {
@@ -113,8 +113,13 @@ server.post("/articles", (req, res) => {
       return res.status(200).json({ message: "Notification sent successfully." });
     })
     .catch((e) => {
+      // очищаем все подписки в случае ошибки хотя бы в одной подписке (для простоты)
+      subscriptions = [];
+
       return res.status(500).json({ message: `Error sending notification ${e.message}` });
     });
+
+  return res.json({ message: "New article created" });
 });
 
 // '/login' endpoint (POST)
