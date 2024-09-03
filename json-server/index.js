@@ -1,10 +1,16 @@
 const cors = require('cors');
+const dotenv = require('dotenv');
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
 const jsonServer = require('json-server');
 const path = require('path');
 const os = require('os');
+
+// библиотека для 'push' уведомлений
+const { sendNotification, setVapidDetails } = require('web-push');
+
+dotenv.config({ path: './.env' }); // для чтения 'VAPID' ключей
 
 const server = jsonServer.create();
 
@@ -21,10 +27,8 @@ const isDevelopment = server.settings.env === 'development';
 if (!isDevelopment) {
   fs.copyFile('db.json', `${os.tmpdir()}/db.json`, (err) => {
     if (err) {
-      // eslint-disable-next-line no-console
       console.log(err);
     } else {
-      // eslint-disable-next-line no-console
       console.log(`Copy file succeed to ${os.tmpdir()}`);
     }
   });
@@ -35,6 +39,29 @@ const dbPath = isDevelopment
   : path.resolve(`${os.tmpdir()}/db.json`);
 
 const router = jsonServer.router(dbPath);
+
+/*
+  список подписок на 'push' уведомления: кому будут приходить 'push' уведомления
+  после отправки 'POST' запроса на '/subscribe'
+*/
+const subscriptions = [];
+
+/*
+ 'VAPID' ключи позволяют серверу отправлять 'push' уведомления в браузеры без
+  использования таких служб, как 'Firebase Cloud Messaging' или 'AWS';
+  их легко сгенерировать и избежать подключения и настройки сервисов выше
+*/
+const vapidKeys = {
+  privateKey: process.env.VAPID_PRIVATE_KEY,
+  publicKey: process.env.VAPID_PUBLIC_KEY,
+};
+
+// настройка 'web-push' библиотеки
+setVapidDetails(
+  "https://matt610.ru", // должен быть корректный 'URL'
+  vapidKeys.publicKey,
+  vapidKeys.privateKey
+)
 
 // middleware для небольшой задержки, чтобы запрос проходил не мгновенно; имитация реального API
 server.use(async (req, res, next) => {
@@ -62,6 +89,34 @@ server.use(jsonServer.defaults());
 // иначе в роутах 'req.body === undefined'
 server.use(jsonServer.bodyParser);
 
+// при создании статьи отправляем 'push' уведомления всем подписчикам
+server.post("/articles", (req, res) => {
+  const payload = {
+    body: "New article has been created",
+    data: {
+      url: "https://matt610.ru",
+    },
+    icon: "https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg",
+    title: "New article",
+  };
+
+  Promise.all(
+    /*
+      отправляем 'push' уведомление всем подписчикам; можно отправлять
+      определенному пользователю, отфильтровав массив подписок
+    */
+    subscriptions.map((subscription) =>
+      sendNotification(subscription, JSON.stringify(payload))
+    )
+  )
+    .then(() => {
+      return res.status(200).json({ message: "Notification sent successfully." });
+    })
+    .catch((e) => {
+      return res.status(500).json({ message: `Error sending notification ${e.message}` });
+    });
+});
+
 // '/login' endpoint (POST)
 server.post('/login', (req, res) => {
   try {
@@ -85,6 +140,18 @@ server.post('/login', (req, res) => {
   }
 });
 
+/*
+  сохраняем объект подписки в массиве подписок, этот массив будет использоваться
+  для отправки 'push' уведомлений всем подписчикам (можно хранить в базе данных)
+*/
+server.post("/subscribe", (req, res) => {
+  const { body } = req;
+
+  subscriptions.push(body);
+
+  return res.status(201).json({ message: 'Subscribed successfully on push notifications' });
+});
+
 // должно быть после описания всех роутов
 server.use(router);
 
@@ -96,7 +163,6 @@ if (isDevelopment) {
   const HTTP_PORT = 8000;
 
   httpServer.listen(HTTP_PORT, () => {
-    // eslint-disable-next-line no-console
     console.log(`--- Server is running on ${HTTP_PORT} port ---`);
   });
 } else {
@@ -113,7 +179,6 @@ if (isDevelopment) {
   const HTTPS_PORT = 8443;
 
   httpsServer.listen(HTTPS_PORT, () => {
-    // eslint-disable-next-line no-console
     console.log(`--- Server is running on ${HTTPS_PORT} port ---`);
   });
 }

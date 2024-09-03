@@ -7,6 +7,7 @@
 - [Feature Flags](docs/feature_flags.md)
 - [Git (модели ветвления)](docs/git_branches.md)
 - [PWA](docs/pwa.md)
+- [Push уведомления](docs/push.md)
 - [Storybook](docs/storybook.md)
 - [SEO](docs/seo.md)
 - [Webpack](docs/webpack.md)

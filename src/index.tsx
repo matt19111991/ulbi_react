@@ -10,6 +10,7 @@ import App from '@/app/App';
 
 // import i18n from '@/shared/config/i18n/i18n' - возможна ошибка 'i18n.changeLanguage is not a function'
 import '@/shared/config/i18n/i18n';
+import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 
 import './app/styles/index.scss';
 
@@ -85,6 +86,7 @@ if ('serviceWorker' in navigator) {
     // получаем список всех регистраций сервис-воркеров
     const registrations = await navigator.serviceWorker.getRegistrations();
 
+    // проверка для того, чтобы не дублировать сервис-воркеры
     for (const registration of registrations) {
       const registeredUrl = registration.active?.scriptURL;
       const urlToRegister = `${window.location.href}service-worker.js`;
@@ -95,9 +97,6 @@ if ('serviceWorker' in navigator) {
       }
     }
 
-    // регистрируем сервис-воркер
-    await navigator.serviceWorker.register('/service-worker.js');
-
     // если 'push' уведомления не разрешены
     if (Notification.permission !== 'granted') {
       // запрашиваем разрешение на уведомления
@@ -107,6 +106,34 @@ if ('serviceWorker' in navigator) {
         // отображается только для 'HTTPS'
         new Notification('Notifications are allowed!!!');
       }
+    }
+
+    // регистрируем сервис-воркер
+    const registration = await navigator.serviceWorker.register('/service-worker.js');
+
+    // подписка на 'push' уведомления
+    const subscription = await registration.pushManager.subscribe({
+      applicationServerKey: __VAPID_KEY__, // 'VAPID' публичный ключ
+
+      // без этого флага возможна некорректная работа в 'Chrome' и 'Edge'
+      userVisibleOnly: true,
+    });
+
+    const token = localStorage.getItem(USER_LOCALSTORAGE_KEY) || '';
+
+    /*
+      после того как пользователь подписывается и авторизован,
+      отправляем объект подписки на сервер
+    */
+    if (token) {
+      await fetch(`${__API__}/subscribe`, {
+        body: JSON.stringify(subscription),
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+      });
     }
   });
 } else {

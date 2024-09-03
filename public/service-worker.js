@@ -35,3 +35,26 @@ self.addEventListener('fetch', (event) => {
     })
   );
 });
+
+// событие 'push' срабатывает, когда сервер отправляет 'push' уведомление клиенту
+self.addEventListener("push", (event) => {
+  // данные для 'event.data' собираются в эндпоинте 'POST /article' (как пример) на сервере
+  const { body = '', data, icon = '', title = '' } = event.data.json();
+
+  const { url = '' } = data.url;
+
+  const notificationOptions = {
+    body,
+    data: {
+      url, // 'URL' для редиректа пользователя на нужную страницу
+    },
+    icon,
+    tag: "unique-tag", // чтобы избежать дублирования уведомлений
+  };
+
+  self.registration.showNotification(title, notificationOptions).then(() => {
+    console.log(`Push notification '${title}' has been send`)
+  }).catch((err) => {
+    console.log(`Push send error ${err} for '${title}' notification`)
+  });
+});
