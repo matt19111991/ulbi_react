@@ -542,6 +542,7 @@ storybooka, линтинг. Нет деплоя на сервер
 - [useInitialEffect](./src/shared/lib/hooks/useInitialEffect/README.md)
 - [useModal](./src/shared/lib/hooks/useModal/README.md)
 - [useRouteChange](src/shared/lib/hooks/useRouteChange/README.md)
+- [useServiceWorker](src/app/lib/hooks/useServiceWorker/README.md)
 - [useSidebarItems](src/widgets/Sidebar/README.md)
 - [useTheme](./src/shared/lib/hooks/useTheme/README.md)
 - [useThrottle](./src/shared/lib/hooks/useThrottle/README.md)

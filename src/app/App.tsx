@@ -15,6 +15,7 @@ import { PageLoader } from '@/widgets/PageLoader';
 import { Sidebar } from '@/widgets/Sidebar';
 
 import { useAppToolbar } from './lib/hooks/useAppToolbar/useAppToolbar';
+import { useServiceWorker } from './lib/hooks/useServiceWorker/useServiceWorker';
 
 import { AppRouter } from './providers/Router';
 import { withTheme } from './providers/ThemeProvider';
@@ -30,6 +31,8 @@ import { withTheme } from './providers/ThemeProvider';
 const App = memo(() => {
   const dispatch = useAppDispatch();
   const Toolbar = useAppToolbar();
+
+  useServiceWorker();
 
   const mounted = useSelector(getUserMounted);
 

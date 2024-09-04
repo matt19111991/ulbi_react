@@ -38,10 +38,28 @@ self.addEventListener('fetch', (event) => {
 
 // событие 'push' срабатывает, когда сервер отправляет 'push' уведомление клиенту
 self.addEventListener("push", (event) => {
-  // данные для 'event.data' собираются в эндпоинте 'POST /article' (как пример) на сервере
+  const isValidJSON = (str) => {
+    try {
+      JSON.parse(str);
+
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  // данные для 'event.data' собираются в 'middleware' для 'push' уведомлений на сервере
+  const isValidEventMessage = isValidJSON(event.data.text());
+
+  if (!isValidEventMessage) {
+    console.error('Push event data incorrect structure. Should be object');
+
+    return;
+  }
+
   const { body = '', data, icon = '', title = '' } = event.data.json();
 
-  const { url = '' } = data.url;
+  const { url = '' } = data;
 
   const notificationOptions = {
     body,
