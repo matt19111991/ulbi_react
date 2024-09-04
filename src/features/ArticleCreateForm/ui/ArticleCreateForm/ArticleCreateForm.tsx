@@ -164,6 +164,7 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
     };
 
     const response = await dispatch(createArticle(form));
+    console.log('response', response)
 
     if (response.meta.requestStatus === 'fulfilled') {
       const { id } = response.payload as Article;
