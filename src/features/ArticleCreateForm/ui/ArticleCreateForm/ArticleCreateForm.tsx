@@ -10,9 +10,9 @@ import {
   ArticleType,
 } from '@/entities/Article';
 
-import type { Article, ArticleBlock } from '@/entities/Article';
+import type { ArticleBlock } from '@/entities/Article';
 
-import { getRouteArticleDetails } from '@/shared/const/router';
+import { getRouteArticles } from '@/shared/const/router';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { DynamicModuleLoaderV2 } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
@@ -167,9 +167,7 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
     console.log('response', response);
 
     if (response.meta.requestStatus === 'fulfilled') {
-      const { id } = response.payload as Article;
-
-      navigate(getRouteArticleDetails(id));
+      navigate(getRouteArticles());
     }
   }, [blocks, dispatch, inputs, navigate, type]);
 
