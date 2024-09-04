@@ -18,11 +18,13 @@ export const useServiceWorker = () => {
 
         // проверка для того, чтобы не дублировать сервис-воркеры
         for (const registration of registrations) {
+          console.log('registrations', registrations);
           const registeredUrl = registration.active?.scriptURL;
           const urlToRegister = `${window.location.href}service-worker.js`;
 
           // если сервис-воркер уже был зарегистрирован
           if (registeredUrl === urlToRegister) {
+            console.log('---unregister---');
             await registration.unregister(); // отписываемся от него
           }
         }
@@ -31,15 +33,22 @@ export const useServiceWorker = () => {
         if (Notification.permission !== 'granted') {
           // запрашиваем разрешение на уведомления
           const permission = await Notification.requestPermission();
+          console.log('permission', permission);
 
           if (permission === 'granted') {
             // отображается только для 'HTTPS'
-            new Notification('Notifications are allowed!!!');
+            const notification = new Notification('Notifications are allowed!!!', {
+              body: 'Test notify',
+              silent: false,
+            });
+
+            console.log('notification', notification);
           }
         }
 
         // регистрируем сервис-воркер
         const registration = await navigator.serviceWorker.register('/service-worker.js');
+        console.log('registration', registration);
 
         // подписка на 'push' уведомления
         try {
@@ -49,9 +58,10 @@ export const useServiceWorker = () => {
             // без этого флага возможна некорректная работа в 'Chrome' и 'Edge'
             userVisibleOnly: true,
           });
+          console.log('subscription', subscription);
 
           const token = localStorage.getItem(USER_LOCALSTORAGE_KEY) || '';
-
+          console.log('token', token);
           /*
             после того как пользователь подписывается и авторизован,
             отправляем объект подписки на сервер

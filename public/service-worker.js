@@ -46,10 +46,11 @@ self.addEventListener("push", (event) => {
     } catch (e) {
       return false;
     }
-  }
+  };
 
   // данные для 'event.data' собираются в 'middleware' для 'push' уведомлений на сервере
   const isValidEventMessage = isValidJSON(event.data.text());
+  console.log("---isValidEventMessage---", isValidEventMessage);
 
   if (!isValidEventMessage) {
     console.error('Push event data incorrect structure. Should be object');
@@ -69,6 +70,8 @@ self.addEventListener("push", (event) => {
     icon,
     tag: "unique-tag", // чтобы избежать дублирования уведомлений
   };
+
+  console.log("notificationOptions", notificationOptions);
 
   self.registration.showNotification(title, notificationOptions).then(() => {
     console.log(`Push notification '${title}' has been send`)
