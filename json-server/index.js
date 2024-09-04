@@ -56,13 +56,6 @@ const vapidKeys = {
   publicKey: process.env.VAPID_PUBLIC_KEY,
 };
 
-// настройка 'web-push' библиотеки
-setVapidDetails(
-  "https://matt610.ru", // должен быть корректный 'URL'
-  vapidKeys.publicKey,
-  vapidKeys.privateKey
-);
-
 // middleware для небольшой задержки, чтобы запрос проходил не мгновенно; имитация реального API
 server.use(async (req, res, next) => {
   await new Promise((resolve) => {
@@ -84,43 +77,41 @@ server.use((req, res, next) => {
   return next();
 });
 
+// middleware для 'push' уведомлений
+server.use((req, res, next) => {
+  // отправляем 'push' уведомление только на создание новой статьи
+  if (req.method === 'POST' && req.url === '/articles') {
+    console.log('subscriptions', subscriptions)
+
+    const payload = {
+      body: "New article has been created",
+      data: {
+        url: "https://matt610.ru",
+      },
+      icon: "https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg",
+      title: "New article",
+    };
+
+    Promise.all(
+      /*
+        отправляем 'push' уведомление всем подписчикам; можно отправлять
+        определенному пользователю, отфильтровав массив подписок
+      */
+      subscriptions.map((subscription) =>
+        sendNotification(subscription, JSON.stringify(payload))
+      )
+    ).catch(() => {
+      subscriptions = []; // очищаем все подписки (для простоты)
+    });
+  }
+
+  return next();
+});
+
 server.use(jsonServer.defaults());
 
 // иначе в роутах 'req.body === undefined'
 server.use(jsonServer.bodyParser);
-
-// при создании статьи отправляем 'push' уведомления всем подписчикам
-server.post("/articles", (req, res) => {
-  const payload = {
-    body: "New article has been created",
-    data: {
-      url: "https://matt610.ru",
-    },
-    icon: "https://img.freepik.com/premium-vector/a-black-cat-with-a-red-eye-and-a-butterfly-on-the-front_890790-136.jpg",
-    title: "New article",
-  };
-
-  Promise.all(
-    /*
-      отправляем 'push' уведомление всем подписчикам; можно отправлять
-      определенному пользователю, отфильтровав массив подписок
-    */
-    subscriptions.map((subscription) =>
-      sendNotification(subscription, JSON.stringify(payload))
-    )
-  )
-    .then(() => {
-      return res.status(200).json({ message: "Notification sent successfully." });
-    })
-    .catch((e) => {
-      // очищаем все подписки в случае ошибки хотя бы в одной подписке (для простоты)
-      subscriptions = [];
-
-      return res.status(500).json({ message: `Error sending notification ${e.message}` });
-    });
-
-  return res.json({ message: "New article created" });
-});
 
 // '/login' endpoint (POST)
 server.post('/login', (req, res) => {
@@ -151,6 +142,15 @@ server.post('/login', (req, res) => {
 */
 server.post("/subscribe", (req, res) => {
   const { body } = req;
+
+  console.log('body', body);
+
+  // настройка 'web-push' библиотеки
+  setVapidDetails(
+    body.endpoint, // должен быть 'URL' соответствующей подписки
+    vapidKeys.publicKey,
+    vapidKeys.privateKey
+  );
 
   subscriptions.push(body);
 
