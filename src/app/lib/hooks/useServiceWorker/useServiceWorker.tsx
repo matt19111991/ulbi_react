@@ -69,7 +69,7 @@ export const useServiceWorker = () => {
           if (token) {
             await fetch(`${__API__}/subscribe`, {
               body: JSON.stringify({
-                ...subscription,
+                subscription,
                 userAgent: navigator.userAgent,
               }),
               headers: {

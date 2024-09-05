@@ -146,7 +146,8 @@ server.post("/subscribe", (req, res) => {
   console.log('body in /subscribe', body)
 
   const isSubscribed = subscriptions.find(subscription =>
-    subscription.endpoint === body.endpoint || subscription.userAgent === body.userAgent
+    subscription.endpoint === body.subscription.endpoint ||
+    subscription.userAgent === body.userAgent
   );
 
   console.log('isSubscribed', isSubscribed)
@@ -155,7 +156,7 @@ server.post("/subscribe", (req, res) => {
   if (!isSubscribed) {
     // настройка 'web-push' библиотеки
     setVapidDetails(
-      body.endpoint, // должен быть 'URL' соответствующей подписки
+      body.subscription.endpoint, // должен быть 'URL' соответствующей подписки
       vapidKeys.publicKey,
       vapidKeys.privateKey
     );
