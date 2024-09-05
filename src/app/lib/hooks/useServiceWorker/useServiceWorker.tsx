@@ -68,7 +68,10 @@ export const useServiceWorker = () => {
           */
           if (token) {
             await fetch(`${__API__}/subscribe`, {
-              body: JSON.stringify(subscription),
+              body: JSON.stringify({
+                ...subscription,
+                userAgent: navigator.userAgent,
+              }),
               headers: {
                 Authorization: token,
                 'Content-Type': 'application/json',
