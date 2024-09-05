@@ -88,7 +88,7 @@ export const useServiceWorker = () => {
       после того как пользователь подписывается и авторизован,
       отправляем объект подписки на сервер
     */
-    if (token) {
+    if (subscriptionState && token) {
       (async () =>
         await fetch(`${__API__}/subscribe`, {
           body: JSON.stringify(subscriptionState),
