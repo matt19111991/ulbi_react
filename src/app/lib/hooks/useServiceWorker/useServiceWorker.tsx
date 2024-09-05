@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
@@ -7,11 +7,6 @@ import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
  * Хук для подключения сервис воркера
  */
 export const useServiceWorker = () => {
-  const [subscriptionState, setSubscriptionState] = useState<PushSubscription>();
-  console.log('subscriptionState', subscriptionState);
-
-  const token = localStorage.getItem(USER_LOCALSTORAGE_KEY) || '';
-
   useEffect(() => {
     if ('serviceWorker' in navigator) {
       // событие 'load' происходит, когда ресурсы приложения закончили загружаться
@@ -65,7 +60,22 @@ export const useServiceWorker = () => {
           });
           console.log('subscription', subscription);
 
-          setSubscriptionState(subscription);
+          const token = localStorage.getItem(USER_LOCALSTORAGE_KEY) || '';
+          console.log('token', token);
+          /*
+            после того как пользователь подписывается и авторизован,
+            отправляем объект подписки на сервер
+          */
+          if (token) {
+            await fetch(`${__API__}/subscribe`, {
+              body: JSON.stringify(subscription),
+              headers: {
+                Authorization: token,
+                'Content-Type': 'application/json',
+              },
+              method: 'POST',
+            });
+          }
         } catch (e) {
           const message = e instanceof Error ? e.message : 'Unexpected error';
 
@@ -81,23 +91,4 @@ export const useServiceWorker = () => {
       console.log("Current browser doesn't support service workers");
     }
   }, []);
-
-  useEffect(() => {
-    console.log('token', token);
-    /*
-      после того как пользователь подписывается и авторизован,
-      отправляем объект подписки на сервер
-    */
-    if (subscriptionState && token) {
-      (async () =>
-        await fetch(`${__API__}/subscribe`, {
-          body: JSON.stringify(subscriptionState),
-          headers: {
-            Authorization: token,
-            'Content-Type': 'application/json',
-          },
-          method: 'POST',
-        }))();
-    }
-  }, [subscriptionState, token]);
 };
