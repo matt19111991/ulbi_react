@@ -1,5 +1,7 @@
 // 'self' - и есть сервис-воркер
 
+const cacheName = 'v1';
+
 self.addEventListener('install', (event) => {
   /*
     пока код, переданный внутрь 'waitUntil()', не завершится с успехом, —
@@ -7,7 +9,7 @@ self.addEventListener('install', (event) => {
   */
   event.waitUntil(
     // создаем новый кеш с названием 'v1', это будет первая версия кеша
-    caches.open('v1').then(cache => { // возвращается промис
+    caches.open(cacheName).then(cache => { // возвращается промис
       /*
         у объекта созданного кеша вызываем метод 'addAll()' и передаем массив
         относительных 'URL' всех ресурсов, которые хотим хранить в кеше
@@ -15,6 +17,14 @@ self.addEventListener('install', (event) => {
       return cache.addAll(['/', '/index.html', '/manifest.json', '/favicon.ico']);
     })
   );
+});
+
+self.addEventListener('activate', async () => {
+  const existingCaches = await caches.keys();
+
+  const invalidCaches = existingCaches.filter(cache => cache !== cacheName);
+
+  await Promise.all(invalidCaches.map(cache => caches.delete(cache)));
 });
 
 /*
