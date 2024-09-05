@@ -7,15 +7,13 @@ import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
  * Хук для подключения сервис воркера
  */
 export const useServiceWorker = () => {
-  toast('useServiceWorker!');
-
   useEffect(() => {
-    toast('useEffect!');
     if ('serviceWorker' in navigator) {
       toast('serviceWorker in navigator!');
       // событие 'load' происходит, когда ресурсы приложения закончили загружаться
       window.addEventListener('load', async () => {
         // после загрузки всех ресурсов
+        toast('load event!');
 
         // получаем список всех регистраций сервис-воркеров
         const registrations = await navigator.serviceWorker.getRegistrations();
@@ -28,10 +26,13 @@ export const useServiceWorker = () => {
 
           // если сервис-воркер уже был зарегистрирован
           if (registeredUrl === urlToRegister) {
+            toast('unregister!');
             console.log('---unregister---');
             await registration.unregister(); // отписываемся от него
           }
         }
+
+        toast(`Notification.permission: ${Notification.permission}`);
 
         // если 'push' уведомления не разрешены
         if (Notification.permission !== 'granted') {
@@ -40,6 +41,8 @@ export const useServiceWorker = () => {
           console.log('permission', permission);
 
           if (permission === 'granted') {
+            toast('granted!!!!');
+
             // отображается только для 'HTTPS'
             const notification = new Notification('Notifications are allowed!!!', {
               body: 'Test notify',
