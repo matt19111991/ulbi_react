@@ -161,7 +161,7 @@ server.post("/subscribe", (req, res) => {
       vapidKeys.privateKey
     );
 
-    subscriptions.push(body);
+    subscriptions.push({ ...body.subscription, userAgent: body.userAgent });
   }
 
   return res.status(201).json({ message: 'Subscribed successfully on push notifications' });
