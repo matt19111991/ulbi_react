@@ -70,6 +70,7 @@ root.render(
             или же 'HOC' 'withTheme' в 'App.tsx'
           */}
 
+          <h6>{navigator.userAgent}</h6>
           <App />
         </ForceUpdateProvider>
       </ErrorBoundary>
