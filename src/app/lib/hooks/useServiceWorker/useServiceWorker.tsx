@@ -7,8 +7,12 @@ import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
  * Хук для подключения сервис воркера
  */
 export const useServiceWorker = () => {
+  toast('useServiceWorker!');
+
   useEffect(() => {
+    toast('useEffect!');
     if ('serviceWorker' in navigator) {
+      toast('serviceWorker in navigator!');
       // событие 'load' происходит, когда ресурсы приложения закончили загружаться
       window.addEventListener('load', async () => {
         // после загрузки всех ресурсов
@@ -67,6 +71,8 @@ export const useServiceWorker = () => {
             отправляем объект подписки на сервер
           */
           if (token) {
+            toast('TOKEN!');
+
             await fetch(`${__API__}/subscribe`, {
               body: JSON.stringify({
                 subscription,
