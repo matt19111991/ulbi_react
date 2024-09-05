@@ -8,10 +8,10 @@ import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
  */
 export const useServiceWorker = () => {
   useEffect(() => {
-    if ('serviceWorker' in navigator) {
-      toast('serviceWorker in navigator!');
-      // событие 'load' происходит, когда ресурсы приложения закончили загружаться
-      window.addEventListener('load', async () => {
+    (async () => {
+      if ('serviceWorker' in navigator) {
+        // событие 'load' происходит, когда ресурсы приложения закончили загружаться
+        // window.addEventListener('load', async () => {
         // после загрузки всех ресурсов
         toast('load event!');
 
@@ -98,9 +98,10 @@ export const useServiceWorker = () => {
 
           toast(message, options);
         }
-      });
-    } else {
-      console.log("Current browser doesn't support service workers");
-    }
+        // });
+      } else {
+        console.log("Current browser doesn't support service workers");
+      }
+    })();
   }, []);
 };
