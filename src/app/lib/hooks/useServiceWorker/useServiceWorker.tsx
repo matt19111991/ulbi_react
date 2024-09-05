@@ -34,6 +34,7 @@ export const useServiceWorker = () => {
           // запрашиваем разрешение на уведомления
           const permission = await Notification.requestPermission();
           console.log('permission', permission);
+          toast('inside requesting persmission!!!!');
 
           if (permission === 'granted') {
             toast('granted!!!!');
