@@ -10,11 +10,6 @@ export const useServiceWorker = () => {
   useEffect(() => {
     (async () => {
       if ('serviceWorker' in navigator) {
-        // событие 'load' происходит, когда ресурсы приложения закончили загружаться
-        // window.addEventListener('load', async () => {
-        // после загрузки всех ресурсов
-        toast('load event!');
-
         // получаем список всех регистраций сервис-воркеров
         const registrations = await navigator.serviceWorker.getRegistrations();
 
@@ -98,7 +93,6 @@ export const useServiceWorker = () => {
 
           toast(message, options);
         }
-        // });
       } else {
         console.log("Current browser doesn't support service workers");
       }
