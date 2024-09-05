@@ -79,10 +79,10 @@ server.use((req, res, next) => {
 
 // middleware для 'push' уведомлений
 server.use((req, res, next) => {
+  console.log('subscriptions', subscriptions)
+
   // отправляем 'push' уведомление только на создание новой статьи
   if (req.method === 'POST' && req.url === '/articles') {
-    console.log('subscriptions', subscriptions)
-
     const payload = {
       body: "New article has been created",
       data: {
@@ -100,7 +100,8 @@ server.use((req, res, next) => {
       subscriptions.map((subscription) =>
         sendNotification(subscription, JSON.stringify(payload))
       )
-    ).catch(() => {
+    ).catch((err) => {
+      console.log('---catch---', err);
       subscriptions = []; // очищаем все подписки (для простоты)
     });
   }
@@ -142,17 +143,25 @@ server.post('/login', (req, res) => {
 */
 server.post("/subscribe", (req, res) => {
   const { body } = req;
+  console.log('body in /subscribe', body)
 
-  console.log('body', body);
-
-  // настройка 'web-push' библиотеки
-  setVapidDetails(
-    body.endpoint, // должен быть 'URL' соответствующей подписки
-    vapidKeys.publicKey,
-    vapidKeys.privateKey
+  const isSubscribed = subscriptions.find(subscription =>
+    subscription.endpoint === body.endpoint || subscription.userAgent === body.userAgent
   );
 
-  subscriptions.push(body);
+  console.log('isSubscribed', isSubscribed)
+
+  // избегаем дубликатов подписок
+  if (!isSubscribed) {
+    // настройка 'web-push' библиотеки
+    setVapidDetails(
+      body.endpoint, // должен быть 'URL' соответствующей подписки
+      vapidKeys.publicKey,
+      vapidKeys.privateKey
+    );
+
+    subscriptions.push(body);
+  }
 
   return res.status(201).json({ message: 'Subscribed successfully on push notifications' });
 });

@@ -1,30 +1,66 @@
 // 'self' - и есть сервис-воркер
 
-const cacheName = 'v1';
-
 self.addEventListener('install', (event) => {
-  /*
-    пока код, переданный внутрь 'waitUntil()', не завершится с успехом, —
-    сервис-воркер не будет установлен
-  */
-  event.waitUntil(
-    // создаем новый кеш с названием 'v1', это будет первая версия кеша
-    caches.open(cacheName).then(cache => { // возвращается промис
-      /*
-        у объекта созданного кеша вызываем метод 'addAll()' и передаем массив
-        относительных 'URL' всех ресурсов, которые хотим хранить в кеше
-      */
-      return cache.addAll(['/', '/index.html', '/manifest.json', '/favicon.ico']);
-    })
-  );
+  // prevents the waiting, meaning the service worker activates
+  // as soon as it's finished installing
+  // NOTE: don't use this if you don't want your sw to control pages
+  // that were loaded with an older version
+  self.skipWaiting();
+
+  event.waitUntil((async () => {
+    try {
+      // self.cacheName and self.contentToCache are imported via a script
+      const cache = await caches.open(self.cacheName);
+      const total = self.contentToCache.length;
+      let installed = 0;
+
+      await Promise.all(self.contentToCache.map(async (url) => {
+        let controller;
+
+        try {
+          controller = new AbortController();
+          const { signal } = controller;
+          // the cache option set to reload will force the browser to
+          // request any of these resources via the network,
+          // which avoids caching older files again
+          const req = new Request(url, { cache: 'reload' });
+          const res = await fetch(req, { signal });
+
+          if (res && res.status === 200) {
+            await cache.put(req, res.clone());
+            installed += 1;
+          } else {
+            console.info(`unable to fetch ${url} (${res.status})`);
+          }
+        } catch (e) {
+          console.info(`unable to fetch ${url}, ${e.message}`);
+          // abort request in any case
+          controller.abort();
+        }
+      }));
+
+      if (installed === total) {
+        console.info(`application successfully installed (${installed}/${total} files added in cache)`);
+      } else {
+        console.info(`application partially installed (${installed}/${total} files added in cache)`);
+      }
+    } catch (e) {
+      console.error(`unable to install application, ${e.message}`);
+    }
+  })());
 });
 
-self.addEventListener('activate', async () => {
-  const existingCaches = await caches.keys();
+// remove old cache if any
+self.addEventListener('activate', (event) => {
+  event.waitUntil((async () => {
+    const cacheNames = await caches.keys();
 
-  const invalidCaches = existingCaches.filter(cache => cache !== cacheName);
-
-  await Promise.all(invalidCaches.map(cache => caches.delete(cache)));
+    await Promise.all(cacheNames.map(async (cacheName) => {
+      if (self.cacheName !== cacheName) {
+        await caches.delete(cacheName);
+      }
+    }));
+  })());
 });
 
 /*
