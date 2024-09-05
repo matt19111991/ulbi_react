@@ -69,9 +69,6 @@ root.render(
 
             или же 'HOC' 'withTheme' в 'App.tsx'
           */}
-
-          <h5 style={{ position: 'fixed', zIndex: 3 }}>{navigator.userAgent}</h5>
-
           <App />
         </ForceUpdateProvider>
       </ErrorBoundary>
