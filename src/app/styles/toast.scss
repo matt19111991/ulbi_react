@@ -5,6 +5,7 @@
 .toast {
   line-height: 6px;
   max-width: 400px;
+  opacity: 1 !important;
 
   &.deprecated {
     background-color: var(--inverted-bg-color);
