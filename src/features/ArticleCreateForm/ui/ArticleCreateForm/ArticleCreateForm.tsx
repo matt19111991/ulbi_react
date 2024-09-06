@@ -10,9 +10,9 @@ import {
   ArticleType,
 } from '@/entities/Article';
 
-import type { ArticleBlock } from '@/entities/Article';
+import type { Article, ArticleBlock } from '@/entities/Article';
 
-import { getRouteArticles } from '@/shared/const/router';
+import { getRouteArticleDetails } from '@/shared/const/router';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { DynamicModuleLoaderV2 } from '@/shared/lib/components/DynamicModuleLoaderV2/DynamicModuleLoaderV2';
@@ -164,10 +164,11 @@ const ArticleCreateForm = ({ className }: ArticleCreateFormProps) => {
     };
 
     const response = await dispatch(createArticle(form));
-    console.log('response', response);
 
     if (response.meta.requestStatus === 'fulfilled') {
-      navigate(getRouteArticles());
+      const { id } = response.payload as Article;
+
+      navigate(getRouteArticleDetails(id));
     }
   }, [blocks, dispatch, inputs, navigate, type]);
 
