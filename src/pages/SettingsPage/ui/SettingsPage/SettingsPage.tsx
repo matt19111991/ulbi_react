@@ -74,8 +74,10 @@ const SettingsPage = ({ className }: SettingsPageProps) => {
   }, [getSubscriptionListQuery, isSubscribed, removeSubscriptionMutation, token, userAgent]);
 
   useEffect(() => {
-    getSubscriptionListQuery(undefined);
-  }, [getSubscriptionListQuery]);
+    if (token) {
+      getSubscriptionListQuery(undefined);
+    }
+  }, [getSubscriptionListQuery, token]);
 
   return (
     <ToggleFeatures
