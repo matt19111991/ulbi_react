@@ -106,13 +106,13 @@ server.use((req, res, next) => {
         // без заголовков получим 401 ошибку (взято из документации)
         const headers = getVapidHeaders(
           audience, // 'origin' 'push' сервиса
-          'mailto: example@web-push-node.org', // 'mailto' или 'URL' приложения
+          subscription.endpoint, // 'mailto' или 'URL' подписки
           vapidKeys.publicKey,
           vapidKeys.privateKey,
           'aes128gcm' // тип используемого кодирования ('aesgcm', 'aes128gcm')
         );
 
-        return sendNotification(subscription, JSON.stringify(payload), headers);
+        return sendNotification(subscription, JSON.stringify(payload), { headers });
       })
     ).catch((err) => { // удаляем подписку в случае ошибки
       console.log('---catch in middleware---', err);
