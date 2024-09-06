@@ -1,24 +1,27 @@
 // 'self' - и есть сервис-воркер
 
-// this imported script has the newly generated cache name (self.cacheName)
-// and a list of all the files on my bucket I want to be cached (self.contentToCache),
-// and is automatically generated in Gitlab based on the tag version
-// self.importScripts('cache.js');
+// код для события 'install' взят из интернета
 
-// the install event will be triggered if there's any update,
-// a new cache will be created (see 1.) and the old one deleted (see 2.)
+/*
+  в событии 'install' можно инициализировать кэш и добавлять в него файлы для
+  использования в автономном режиме
+*/
 self.addEventListener('install', (event) => {
-  // prevents the waiting, meaning the service worker activates
-  // as soon as it's finished installing
-  // NOTE: don't use this if you don't want your sw to control pages
-  // that were loaded with an older version
-  self.skipWaiting();
+  self.skipWaiting(); // сервис-воркер активируется сразу после завершения установки
 
+  /*
+    пока код, переданный внутрь 'waitUntil()', не завершится с успехом, —
+    сервис-воркер не будет установлен
+  */
   event.waitUntil((async () => {
+    // 'self.cacheName' и 'self.contentToCache' доступны при импорте скрипта
     try {
-      // self.cacheName and self.contentToCache are imported via a script
+      // создаем новый кэш с названием 'self.cacheName'
       const cache = await caches.open(self.cacheName);
-      const total = self.contentToCache.length;
+
+      const total = self.contentToCache.length; // файлы для кэширования
+
+      // счетчик установленных (добавленных на страницу) файлов
       let installed = 0;
 
       await Promise.all(self.contentToCache.map(async (url) => {
@@ -26,39 +29,50 @@ self.addEventListener('install', (event) => {
 
         try {
           controller = new AbortController();
+
           const { signal } = controller;
-          // the cache option set to reload will force the browser to
-          // request any of these resources via the network,
-          // which avoids caching older files again
-          const req = new Request(url, { cache: 'reload' });
+
+          const req = new Request(url, {
+            /*
+              заставит браузер запросить любой из ресурсов через сеть,
+              что позволяет избежать повторного кэширования старых файлов
+            */
+            cache: 'reload',
+          });
+
           const res = await fetch(req, { signal });
 
           if (res && res.status === 200) {
-            await cache.put(req, res.clone());
+            await cache.put(req, res.clone()); // запрос успешен - сохраняем в кэш
+
             installed += 1;
           } else {
-            console.info(`unable to fetch ${url} (${res.status})`);
+            console.info(`Service worker: Unable to fetch ${url} (${res.status})`);
           }
         } catch (e) {
-          console.info(`unable to fetch ${url}, ${e.message}`);
-          // abort request in any case
-          controller.abort();
+          console.log(`Service worker: Unable to fetch ${url}, ${e.message}`);
+
+          controller.abort(); // отменить запрос в любом случае
         }
       }));
 
       if (installed === total) {
-        console.info(`application successfully installed (${installed}/${total} files added in cache)`);
+        console.info(`Service worker: App successfully installed (${installed}/${total} files added in cache)`);
       } else {
-        console.info(`application partially installed (${installed}/${total} files added in cache)`);
+        console.info(`Service worker: App partially installed (${installed}/${total} files added in cache)`);
       }
     } catch (e) {
-      console.error(`unable to install application, ${e.message}`);
+      console.error(`Service worker: Unable to install app, ${e.message}`);
     }
   })());
 });
 
-// remove old cache if any
+// удаление старого кэша (код для события 'activate' взят из интернета)
 self.addEventListener('activate', (event) => {
+  /*
+    пока код, переданный внутрь 'waitUntil()', не завершится с успехом, —
+    сервис-воркер не будет активирован
+  */
   event.waitUntil((async () => {
     const cacheNames = await caches.keys();
 
@@ -75,6 +89,13 @@ self.addEventListener('activate', (event) => {
   подконтрольные сервис-воркеру ресурсы
  */
 self.addEventListener('fetch', (event) => {
+  const { method, url } = event.request;
+
+  // получение подписок не кэшируем
+  if (method === 'GET' && url.endsWith('subscriptions')) {
+    return false;
+  }
+
   event.respondWith( // обработка ответов
     /*
       проверка сетевого запроса ресурса на соответствие какому-либо доступному
@@ -84,7 +105,7 @@ self.addEventListener('fetch', (event) => {
       // возвращаем значение из кэша (если есть), иначе отправляем запрос
       return cache || fetch(event.request);
     }).catch(err => {
-      console.log(`Fetch error ${err} for ${event.request} request`)
+      console.log(`Service worker: Fetch error ${err.message} for ${event.request} request`)
     })
   );
 });
@@ -103,10 +124,9 @@ self.addEventListener("push", (event) => {
 
   // данные для 'event.data' собираются в 'middleware' для 'push' уведомлений на сервере
   const isValidEventMessage = isValidJSON(event.data.text());
-  console.log("---isValidEventMessage---", isValidEventMessage);
 
   if (!isValidEventMessage) {
-    console.error('Push event data incorrect structure. Should be object');
+    console.error('Service worker: Push event data incorrect structure. Should be object');
 
     return;
   }
@@ -124,11 +144,9 @@ self.addEventListener("push", (event) => {
     tag: "unique-tag", // чтобы избежать дублирования уведомлений
   };
 
-  console.log("notificationOptions", notificationOptions);
-
   self.registration.showNotification(title, notificationOptions).then(() => {
-    console.log(`Push notification '${title}' has been send`)
+    console.log(`Service worker: Push notification '${title}' has been send`)
   }).catch((err) => {
-    console.log(`Push send error ${err} for '${title}' notification`)
+    console.error(`Service worker: Error ${err.message} for '${title}' notification`)
   });
 });
