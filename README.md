@@ -237,7 +237,7 @@
 
    30. Запускаем сервер в фоне:
 
-    pm2 start json-server/index.js
+    pm2 start json-server/start.js
 
    31. [Скрипт для деплоя](.deploy/deploy.sh) позволяет автоматизировать деплой на сервере
 
@@ -575,6 +575,7 @@ storybooka, линтинг. Нет деплоя на сервер
 - [Notification](./src/entities/Notification/README.md)
 - [Profile](./src/entities/Profile/README.md)
 - [Rating](./src/entities/Rating/README.md)
+- [Subscription](./src/entities/Subscription/README.md)
 - [User](./src/entities/User/README.md)
 
 ----
@@ -597,6 +598,7 @@ storybooka, линтинг. Нет деплоя на сервер
 - [NotificationButton](./src/features/NotificationButton/README.md)
 - [ProfileRating](./src/features/ProfileRating/README.md)
 - [ScrollToTopButton](./src/features/ScrollToTopButton/README.md)
+- [SubscriptionList](./src/features/SubscriptionList/README.md)
 - [ThemeSwitcher](./src/features/ThemeSwitcher/README.md)
 - [UIDesignSwitcher](./src/features/UIDesignSwitcher/README.md)
 
