@@ -8,7 +8,11 @@ const path = require('path');
 const os = require('os');
 
 // библиотека для 'push' уведомлений
-const { sendNotification, setVapidDetails } = require('web-push');
+const {
+  getVapidHeaders,
+  sendNotification,
+  setVapidDetails,
+} = require('web-push');
 
 dotenv.config({ path: './.env' }); // для чтения 'VAPID' ключей
 
@@ -39,12 +43,6 @@ const dbPath = isDevelopment
   : path.resolve(`${os.tmpdir()}/db.json`);
 
 const router = jsonServer.router(dbPath);
-
-/*
-  список подписок на 'push' уведомления: кому будут приходить 'push' уведомления
-  после отправки 'POST' запроса на '/subscribe'
-*/
-let subscriptions = [];
 
 /*
  'VAPID' ключи позволяют серверу отправлять 'push' уведомления в браузеры без
@@ -79,7 +77,10 @@ server.use((req, res, next) => {
 
 // middleware для 'push' уведомлений
 server.use((req, res, next) => {
-  console.log('subscriptions', subscriptions)
+  const db = JSON.parse(fs.readFileSync(dbPath, 'UTF-8'));
+
+  const { subscriptions = [], ...dbFile } = db;
+  console.log('middleware subscriptions', subscriptions);
 
   // отправляем 'push' уведомление только на создание новой статьи
   if (req.method === 'POST' && req.url === '/articles') {
@@ -97,12 +98,35 @@ server.use((req, res, next) => {
         отправляем 'push' уведомление всем подписчикам; можно отправлять
         определенному пользователю, отфильтровав массив подписок
       */
-      subscriptions.map((subscription) =>
-        sendNotification(subscription, JSON.stringify(payload))
+      subscriptions.map((subscription) => {
+        const parsedUrl = new URL(subscription.endpoint);
+
+        const audience = `${parsedUrl.protocol}//${parsedUrl.hostname}`;
+
+        // без заголовков получим 401 ошибку (взято из документации)
+        const headers = getVapidHeaders(
+          audience, // 'origin' 'push' сервиса
+          'mailto: example@web-push-node.org', // 'mailto' или 'URL' приложения
+          vapidKeys.publicKey,
+          vapidKeys.privateKey,
+          'aes128gcm' // тип используемого кодирования ('aesgcm', 'aes128gcm')
+        );
+
+        return sendNotification(subscription, JSON.stringify(payload), headers);
+      })
+    ).catch((err) => { // удаляем подписку в случае ошибки
+      console.log('---catch in middleware---', err);
+
+      const correctSubscriptions = subscriptions.filter((subscription) =>
+        subscription.userAgent !== req.headers['user-agent'],
       )
-    ).catch((err) => {
-      console.log('---catch---', err);
-      subscriptions = []; // очищаем все подписки (для простоты)
+
+      const updatedDb = {
+        ...dbFile,
+        subscriptions: correctSubscriptions,
+      };
+
+      fs.writeFileSync(dbPath, JSON.stringify(updatedDb, null, 2));
     });
   }
 
@@ -140,17 +164,21 @@ server.post('/login', (req, res) => {
 /*
   сохраняем объект подписки в массиве подписок, этот массив будет использоваться
   для отправки 'push' уведомлений всем подписчикам (можно хранить в базе данных)
+ '/subscribe' endpoint (POST)
 */
 server.post("/subscribe", (req, res) => {
   const { body } = req;
   console.log('body in /subscribe', body)
 
+  const db = JSON.parse(fs.readFileSync(dbPath, 'UTF-8'));
+
+  const { subscriptions = [], ...dbFile } = db;
+  console.log('/subscribe subscriptions', subscriptions);
+
   const isSubscribed = subscriptions.find(subscription =>
     subscription.endpoint === body.subscription.endpoint ||
     subscription.userAgent === body.userAgent
   );
-
-  console.log('isSubscribed', isSubscribed)
 
   // избегаем дубликатов подписок
   if (!isSubscribed) {
@@ -161,10 +189,49 @@ server.post("/subscribe", (req, res) => {
       vapidKeys.privateKey
     );
 
-    subscriptions.push({ ...body.subscription, userAgent: body.userAgent });
+    const newSubscription = {
+      ...body.subscription,
+      token: body.token,
+      userAgent: body.userAgent,
+    };
+
+    const updatedDb = {
+      ...dbFile,
+      subscriptions: [...subscriptions, newSubscription]
+    };
+
+    fs.writeFileSync(dbPath, JSON.stringify(updatedDb, null, 2));
   }
 
   return res.status(201).json({ message: 'Subscribed successfully on push notifications' });
+});
+
+
+/*
+  отписка от 'push' уведомлений по переданному 'userAgent' и 'id' пользователя
+ '/unsubscribe' endpoint (POST)
+*/
+server.post("/unsubscribe", (req, res) => {
+  const { body } = req;
+  console.log('body in /unsubscribe', body);
+
+  const db = JSON.parse(fs.readFileSync(dbPath, 'UTF-8'));
+
+  const { subscriptions = [], ...dbFile } = db;
+  console.log('/unsubscribe subscriptions', subscriptions);
+
+  const updatedSubscriptions = subscriptions.filter((subscription) =>
+    subscription.token !== body.token && subscription.userAgent !== body.userAgent,
+  )
+
+  const updatedDb = {
+    ...dbFile,
+    subscriptions: updatedSubscriptions,
+  };
+
+  fs.writeFileSync(dbPath, JSON.stringify(updatedDb, null, 2));
+
+  return res.status(200).json({ message: 'Unsubscribed successfully' });
 });
 
 // должно быть после описания всех роутов

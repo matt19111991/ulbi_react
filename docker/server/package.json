@@ -2,10 +2,10 @@
   "name": "ulbi_react_docker",
   "version": "1.0.0",
   "description": "",
-  "main": "../../json-server/index.js",
+  "main": "../../json-server/start.js",
   "scripts": {
-    "start:server:dev": "cross-env NODE_ENV=development node ./json-server/index.js",
-    "start:server:prod": "cross-env NODE_ENV=production node ./json-server/index.js"
+    "start:server:dev": "cross-env NODE_ENV=development node ./json-server/start.js",
+    "start:server:prod": "cross-env NODE_ENV=production node ./json-server/start.js"
   },
   "keywords": [],
   "author": "",

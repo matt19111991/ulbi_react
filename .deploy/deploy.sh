@@ -22,4 +22,4 @@ mkdir ~/../var/www/ulbi_react/html
 mv ~/ulbi_react/build/* ~/../var/www/ulbi_react/html/
 
 # запускаем сервер в фоне
-pm2 start json-server/index.js
+pm2 start json-server/start.js
