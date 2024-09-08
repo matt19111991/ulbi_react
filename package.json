@@ -7,7 +7,7 @@
     "start:client:webpack": "webpack serve --env port=3000 --env mode=development",
     "start:client:vite": "cross-env VITE_CJS_IGNORE_WARNING=true vite",
     "start:server:dev": "cross-env NODE_ENV=development node ./json-server/index.js --watch db.json",
-    "start:server:prod": "cross-env NODE_ENV=production node ./json-server/index.js --watch /tmp/db.json",
+    "start:server:prod": "cross-env NODE_ENV=production node ./json-server/index.js --watch ./tmp/db.json",
     "start:vite:dev": "concurrently \"npm run start:client:vite\" \"npm run start:server:dev\"",
     "start:webpack:dev": "concurrently \"npm run start:client:webpack\" \"npm run start:server:dev\"",
     "start:vite:prod": "concurrently \"npm run start:client:vite\" \"npm run start:server:prod\"",
