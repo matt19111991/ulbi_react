@@ -237,7 +237,7 @@
 
    30. Запускаем сервер в фоне:
 
-    pm2 start json-server/start.js
+    pm2 start json-server/index.js
 
    31. [Скрипт для деплоя](.deploy/deploy.sh) позволяет автоматизировать деплой на сервере
 
