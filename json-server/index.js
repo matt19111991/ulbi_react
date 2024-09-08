@@ -65,6 +65,13 @@ server.use(async (req, res, next) => {
   next();
 });
 
+// middleware для чтения БД в режиме реального времени (для актуализации данных)
+server.use((req, res, next) => {
+  router.db.read();
+
+  next();
+});
+
 // middleware для работы CORS
 server.use(cors());
 
