@@ -42,6 +42,8 @@ const dbPath = isDevelopment
   ? path.resolve(__dirname, 'db.json')
   : path.resolve(`${os.tmpdir()}/db.json`);
 
+console.log('dbPath', dbPath);
+
 const router = jsonServer.router(dbPath);
 
 /*

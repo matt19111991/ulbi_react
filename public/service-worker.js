@@ -96,6 +96,11 @@ self.addEventListener('fetch', (event) => {
     return false;
   }
 
+  // получение статей не кэшируем
+  if (method === 'GET' && url.includes('articles')) {
+    return false;
+  }
+
   event.respondWith( // обработка ответов
     /*
       проверка сетевого запроса ресурса на соответствие какому-либо доступному
