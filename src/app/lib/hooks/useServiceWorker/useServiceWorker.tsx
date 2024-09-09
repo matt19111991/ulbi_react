@@ -31,9 +31,8 @@ export const useServiceWorker = () => {
 
         // проверка для того, чтобы не дублировать сервис-воркеры
         for (const registration of registrations) {
-          console.log('useServiceWorker hook: registrations', registrations);
-
           const registeredUrl = registration.active?.scriptURL;
+
           const urlToRegister = `${window.location.href}service-worker.js`;
 
           // если сервис-воркер уже был зарегистрирован
@@ -71,7 +70,6 @@ export const useServiceWorker = () => {
             после того как пользователь авторизован и создана подписка,
             отправляем объект подписки на сервер
           */
-          console.log('token', token);
           if (token) {
             await fetch(`${__API__}/subscribe`, {
               body: JSON.stringify({

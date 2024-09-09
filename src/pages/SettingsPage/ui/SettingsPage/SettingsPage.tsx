@@ -37,7 +37,6 @@ interface SettingsPageProps {
 const SettingsPage = ({ className }: SettingsPageProps) => {
   const [getSubscriptionListQuery, { data: subscriptions = [] }] =
     useLazyGetSubscriptionListQuery(undefined);
-  console.log('subscriptions', subscriptions);
 
   const [removeSubscriptionMutation] = useRemoveSubscriptionMutation();
 

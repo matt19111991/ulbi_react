@@ -19,11 +19,6 @@ self.addEventListener('install', (event) => {
       // создаем новый кэш с названием 'self.cacheName'
       const cache = await caches.open(self.cacheName);
 
-      const total = self.contentToCache.length; // файлы для кэширования
-
-      // счетчик установленных (добавленных на страницу) файлов
-      let installed = 0;
-
       await Promise.all(self.contentToCache.map(async (url) => {
         let controller;
 
@@ -44,10 +39,6 @@ self.addEventListener('install', (event) => {
 
           if (res && res.status === 200) {
             await cache.put(req, res.clone()); // запрос успешен - сохраняем в кэш
-
-            installed += 1;
-          } else {
-            console.info(`Service worker: Unable to fetch ${url} (${res.status})`);
           }
         } catch (e) {
           console.log(`Service worker: Unable to fetch ${url}, ${e.message}`);
@@ -55,12 +46,6 @@ self.addEventListener('install', (event) => {
           controller.abort(); // отменить запрос в любом случае
         }
       }));
-
-      if (installed === total) {
-        console.info(`Service worker: App successfully installed (${installed}/${total} files added in cache)`);
-      } else {
-        console.info(`Service worker: App partially installed (${installed}/${total} files added in cache)`);
-      }
     } catch (e) {
       console.error(`Service worker: Unable to install app, ${e.message}`);
     }
@@ -149,9 +134,7 @@ self.addEventListener("push", (event) => {
     tag: "unique-tag", // чтобы избежать дублирования уведомлений
   };
 
-  self.registration.showNotification(title, notificationOptions).then(() => {
-    console.log(`Service worker: Push notification '${title}' has been send`)
-  }).catch((err) => {
+  self.registration.showNotification(title, notificationOptions).catch((err) => {
     console.error(`Service worker: Error ${err.message} for '${title}' notification`)
   });
 });

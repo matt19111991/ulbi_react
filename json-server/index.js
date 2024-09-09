@@ -42,8 +42,6 @@ const dbPath = isDevelopment
   ? path.resolve(__dirname, 'db.json')
   : path.resolve(`${os.tmpdir()}/db.json`);
 
-console.log('dbPath', dbPath);
-
 const router = jsonServer.router(dbPath);
 
 /*
@@ -89,7 +87,6 @@ server.use((req, res, next) => {
   const db = JSON.parse(fs.readFileSync(dbPath, 'UTF-8'));
 
   const { subscriptions = [], ...dbFile } = db;
-  console.log('middleware subscriptions', subscriptions);
 
   // отправляем 'push' уведомление только на создание новой статьи
   if (req.method === 'POST' && req.url === '/articles') {
@@ -124,7 +121,7 @@ server.use((req, res, next) => {
         return sendNotification(subscription, JSON.stringify(payload), { headers });
       })
     ).catch((err) => { // удаляем подписку в случае ошибки
-      console.log('---catch in middleware---', err);
+      console.log('--- Push middleware error ---', err);
 
       const correctSubscriptions = subscriptions.filter((subscription) =>
         subscription.userAgent !== req.headers['user-agent'],
@@ -177,12 +174,10 @@ server.post('/login', (req, res) => {
 */
 server.post("/subscribe", (req, res) => {
   const { body } = req;
-  console.log('body in /subscribe', body)
 
   const db = JSON.parse(fs.readFileSync(dbPath, 'UTF-8'));
 
   const { subscriptions = [], ...dbFile } = db;
-  console.log('/subscribe subscriptions', subscriptions);
 
   const isSubscribed = subscriptions.find(subscription =>
     subscription.endpoint === body.subscription.endpoint ||
@@ -222,12 +217,10 @@ server.post("/subscribe", (req, res) => {
 */
 server.post("/unsubscribe", (req, res) => {
   const { body } = req;
-  console.log('body in /unsubscribe', body);
 
   const db = JSON.parse(fs.readFileSync(dbPath, 'UTF-8'));
 
   const { subscriptions = [], ...dbFile } = db;
-  console.log('/unsubscribe subscriptions', subscriptions);
 
   const updatedSubscriptions = subscriptions.filter((subscription) =>
     subscription.token !== body.token && subscription.userAgent !== body.userAgent,
