@@ -1,4 +1,4 @@
-import { memo, Suspense, useEffect, useLayoutEffect } from 'react';
+import { memo, Suspense, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Toaster } from 'react-hot-toast';
 
@@ -36,12 +36,12 @@ const App = memo(() => {
 
   const mounted = useSelector(getUserMounted);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     // если у пользователя не включена передача данных, то переводим его на кастомную офлайн страницу
-    if (!window.navigator.onLine) {
+    if (!mounted && !window.navigator.onLine) {
       window.location.replace(`${window.location.origin}/offline.html`);
     }
-  }, []);
+  }, [mounted]);
 
   useEffect(() => {
     // инициализируем получение данных о пользователе, если приложение еще не было вмонтировано
