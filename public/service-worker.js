@@ -108,6 +108,20 @@ self.addEventListener('fetch', (event) => {
           4xx или 5xx, то 'catch' не будет вызван
         */
         console.log(`Service worker: Fetch error ${err.message} for ${event.request} request`)
+
+        // сначала пробуем вернуть кэш
+        const cacheResponse = await caches.match(event.request);
+
+        if (cacheResponse) {
+          return cacheResponse;
+        }
+
+        // иначе возвращаем офлайн версию страницы
+        const cache = await caches.open(self.cacheName);
+
+        const offlineResponse = await cache.match('offline.html');
+
+        return offlineResponse;
       }
     })()
   );
