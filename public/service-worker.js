@@ -87,16 +87,43 @@ self.addEventListener('fetch', (event) => {
   }
 
   event.respondWith( // обработка ответов
-    /*
-      проверка сетевого запроса ресурса на соответствие какому-либо доступному
-      в кэше ресурсу
-    */
-    caches.match(event.request).then(cache => {
-      // возвращаем значение из кэша (если есть), иначе отправляем запрос
-      return cache || fetch(event.request);
-    }).catch(err => {
-      console.log(`Service worker: Fetch error ${err.message} for ${event.request} request`)
-    })
+    (async () => {
+      try {
+        const cachedResponse = await caches.match(event.request);
+
+        if (cachedResponse) {
+          return cachedResponse; // возвращаем значение из кэша (если есть)
+        }
+
+        // иначе отправляем запрос
+        const networkResponse = await fetch(event.request);
+
+        if (networkResponse) {
+          return networkResponse;
+        }
+      } catch (err) {
+        /*
+         'catch' срабатывает, скорее всего, из-за сетевой ошибки,
+          если 'fetch' возвращает допустимый 'HTTP'-ответ с кодом ответа
+          4xx или 5xx, то 'catch' не будет вызван
+        */
+        console.log(`Service worker: Fetch error ${err.message} for ${event.request} request`)
+
+        // сначала пробуем вернуть кэш
+        const cacheResponse = await caches.match(event.request);
+
+        if (cacheResponse) {
+          return cacheResponse;
+        }
+
+        // иначе возвращаем офлайн версию страницы
+        const cache = await caches.open(self.cacheName);
+
+        const offlineResponse = await cache.match('offline.html');
+
+        return offlineResponse;
+      }
+    })()
   );
 });
 

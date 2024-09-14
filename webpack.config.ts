@@ -59,6 +59,7 @@ export default (env: BuildEnv) => {
     locales: path.resolve(__dirname, 'public', 'locales'),
     manifest: path.resolve(__dirname, 'public', 'manifest.json'),
     manifestAssets: path.resolve(__dirname, 'public', 'assets'),
+    offline: path.resolve(__dirname, 'public', 'offline.html'),
     robots: path.resolve(__dirname, 'robots.txt'),
     serviceWorker: path.resolve(__dirname, 'public', 'service-worker.js'),
     sitemapIndex: path.resolve(__dirname, 'sitemap.xml'),

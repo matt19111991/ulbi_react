@@ -17,6 +17,7 @@ export interface BuildPaths {
   locales: string; // где лежат файлы переводов
   manifest: string;
   manifestAssets: string;
+  offline: string;
   serviceWorker: string;
   src: string;
   robots: string;
