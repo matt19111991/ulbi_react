@@ -35,10 +35,7 @@ export const Dark: Story = {
   args: {},
 };
 
-Dark.decorators = [
-  FeatureFlagsDecorator({ isAppRedesigned: true }),
-  ThemeDecorator(Theme.DARK),
-];
+Dark.decorators = [FeatureFlagsDecorator({ isAppRedesigned: true }), ThemeDecorator(Theme.DARK)];
 
 // Orange offline
 
