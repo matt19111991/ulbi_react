@@ -20,13 +20,11 @@ interface OfflineProps {
 }
 
 export const Offline = ({ children }: OfflineProps) => {
+  const isAppRedesigned = getFeatureFlag('isAppRedesigned');
+
   const { t } = useTranslation();
 
   const [online, setOnline] = useState(navigator.onLine);
-
-  const previousOnline = useRef(navigator.onLine);
-
-  const isAppRedesigned = getFeatureFlag('isAppRedesigned');
 
   const onSetOnlineHandler = useCallback(() => {
     setOnline(true);
@@ -35,10 +33,6 @@ export const Offline = ({ children }: OfflineProps) => {
   const onSetOfflineHandler = useCallback(() => {
     setOnline(false);
   }, [setOnline]);
-
-  useEffect(() => {
-    previousOnline.current = online;
-  }, [online]);
 
   useEffect(() => {
     window.addEventListener('online', onSetOnlineHandler);
@@ -52,10 +46,7 @@ export const Offline = ({ children }: OfflineProps) => {
 
   return (
     <>
-      <div
-        className={classes.Offline}
-        style={previousOnline.current === online && online ? { display: 'none' } : void 0}
-      >
+      <div className={classNames(classes.Offline, { [classes.hide]: online })}>
         <HStack
           className={classNames(classes.content, {
             [classes.contentDeprecated]: !isAppRedesigned,
