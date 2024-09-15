@@ -131,7 +131,6 @@ export function buildPlugins({
           { from: paths.locales, to: paths.buildLocales },
           { from: paths.manifest, to: paths.build },
           { from: paths.manifestAssets, to: paths.buildAssets },
-          { from: paths.offline, to: paths.build },
           { from: paths.robots, to: paths.build },
           { from: paths.serviceWorker, to: paths.build },
           { from: paths.sitemapIndex, to: paths.build },

@@ -62,7 +62,6 @@ export default ({ config }: { config: StorybookWebpackConfiguration }) => {
     locales: '',
     manifest: '',
     manifestAssets: '',
-    offline: '',
     robots: '',
     serviceWorker: '',
     sitemapIndex: '',

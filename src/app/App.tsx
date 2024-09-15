@@ -4,6 +4,8 @@ import { Toaster } from 'react-hot-toast';
 
 import { getUserMounted, initAuthData } from '@/entities/User';
 
+import { Offline } from '@/features/Offline';
+
 import { ToggleFeatures } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
@@ -37,13 +39,6 @@ const App = memo(() => {
   const mounted = useSelector(getUserMounted);
 
   useEffect(() => {
-    // если у пользователя не включена передача данных, то переводим его на кастомную офлайн страницу
-    if (!mounted && !window.navigator.onLine) {
-      window.location.replace(`${window.location.origin}/offline.html`);
-    }
-  }, [mounted]);
-
-  useEffect(() => {
     // инициализируем получение данных о пользователе, если приложение еще не было вмонтировано
     if (!mounted) {
       dispatch(initAuthData());
@@ -67,46 +62,48 @@ const App = memo(() => {
   // '<Suspense />' для переводов (ошибка, если пользователь не авторизован)
 
   return (
-    <ToggleFeatures
-      feature='isAppRedesigned'
-      // приложение после редизайна
-      on={
-        <div className='app_redesigned' id='app'>
-          <Suspense fallback=''>
-            <Toaster
-              position='top-center'
-              toastOptions={{ className: 'toast redesigned', icon: '⛔' }}
-            />
+    <Offline>
+      <ToggleFeatures
+        feature='isAppRedesigned'
+        // приложение после редизайна
+        on={
+          <div className='app_redesigned' id='app'>
+            <Suspense fallback=''>
+              <Toaster
+                position='top-center'
+                toastOptions={{ className: 'toast redesigned', icon: '⛔' }}
+              />
 
-            <MainLayout
-              content={<AppRouter />}
-              header={<Navbar />}
-              sidebar={<Sidebar />}
-              toolbar={Toolbar}
-            />
-          </Suspense>
-        </div>
-      }
-      // приложение до редизайна
-      off={
-        <div className='app' id='app'>
-          <Suspense fallback=''>
-            <Toaster
-              containerClassName='toastWrapper'
-              position='top-center'
-              toastOptions={{ className: 'toast deprecated', icon: '⛔' }}
-            />
+              <MainLayout
+                content={<AppRouter />}
+                header={<Navbar />}
+                sidebar={<Sidebar />}
+                toolbar={Toolbar}
+              />
+            </Suspense>
+          </div>
+        }
+        // приложение до редизайна
+        off={
+          <div className='app' id='app'>
+            <Suspense fallback=''>
+              <Toaster
+                containerClassName='toastWrapper'
+                position='top-center'
+                toastOptions={{ className: 'toast deprecated', icon: '⛔' }}
+              />
 
-            <Navbar />
+              <Navbar />
 
-            <div className='content-page'>
-              <Sidebar />
-              <AppRouter />
-            </div>
-          </Suspense>
-        </div>
-      }
-    />
+              <div className='content-page'>
+                <Sidebar />
+                <AppRouter />
+              </div>
+            </Suspense>
+          </div>
+        }
+      />
+    </Offline>
   );
 });
 

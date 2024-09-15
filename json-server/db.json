@@ -74,7 +74,9 @@
       "img": "https://ik.imagekit.io/ably/ghost/prod/2023/12/choosing-the-best-javascript-frameworks-for-your-next-project.png?tr=w-1728,q-50",
       "subtitle": "Что нового в JS за 2023 год?",
       "title": "Javascript updated news",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "userId": "1",
       "views": 1022
     },
@@ -152,7 +154,9 @@
       "img": "https://cdn.gabrieleromanato.com/5c37214980b3/uploads/python-alt.png",
       "subtitle": "Что нового у Python за 2023 год?",
       "title": "Python updated news",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "userId": "1",
       "views": 845
     },
@@ -230,7 +234,9 @@
       "img": "https://gbcdn.mrgcdn.ru/uploads/post/1116/og_cover_image/7be512347c8377d063f988039edc669f",
       "subtitle": "Что нового у Kotlin за 2023 год?",
       "title": "Kotlin updated news",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "userId": "1",
       "views": 566
     },
@@ -308,7 +314,9 @@
       "img": "https://ik.imagekit.io/ably/ghost/prod/2023/12/choosing-the-best-javascript-frameworks-for-your-next-project.png?tr=w-1728,q-50",
       "subtitle": "Что нового в JS за 2023 год?",
       "title": "Javascript fresh news",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "userId": "1",
       "views": 284
     },
@@ -386,7 +394,9 @@
       "img": "https://cdn.gabrieleromanato.com/5c37214980b3/uploads/python-alt.png",
       "subtitle": "Что нового у Python за 2023 год?",
       "title": "Python fresh news",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "userId": "1",
       "views": 659
     },
@@ -464,7 +474,9 @@
       "img": "https://gbcdn.mrgcdn.ru/uploads/post/1116/og_cover_image/7be512347c8377d063f988039edc669f",
       "subtitle": "Что нового у Kotlin за 2023 год?",
       "title": "Kotlin fresh news",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "userId": "1",
       "views": 655
     },
@@ -542,7 +554,9 @@
       "img": "https://ik.imagekit.io/ably/ghost/prod/2023/12/choosing-the-best-javascript-frameworks-for-your-next-project.png?tr=w-1728,q-50",
       "subtitle": "Что нового в JS за 2023 год?",
       "title": "Javascript old news",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "userId": "1",
       "views": 1123
     },
@@ -620,7 +634,9 @@
       "img": "https://cdn.gabrieleromanato.com/5c37214980b3/uploads/python-alt.png",
       "subtitle": "Что нового у Python за 2023 год?",
       "title": "Python old news",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "userId": "1",
       "views": 1341
     },
@@ -698,7 +714,9 @@
       "img": "https://gbcdn.mrgcdn.ru/uploads/post/1116/og_cover_image/7be512347c8377d063f988039edc669f",
       "subtitle": "Что нового у Kotlin за 2023 год?",
       "title": "Kotlin old news",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "userId": "1",
       "views": 1812
     },
@@ -776,7 +794,9 @@
       "img": "https://ik.imagekit.io/ably/ghost/prod/2023/12/choosing-the-best-javascript-frameworks-for-your-next-project.png?tr=w-1728,q-50",
       "subtitle": "Что нового в JS за 2023 год?",
       "title": "Javascript not sorted news",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "userId": "1",
       "views": 122
     },
@@ -854,7 +874,9 @@
       "img": "https://cdn.gabrieleromanato.com/5c37214980b3/uploads/python-alt.png",
       "subtitle": "Что нового у Python за 2023 год?",
       "title": "Python not sorted news",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "userId": "1",
       "views": 54
     },
@@ -932,7 +954,9 @@
       "img": "https://gbcdn.mrgcdn.ru/uploads/post/1116/og_cover_image/7be512347c8377d063f988039edc669f",
       "subtitle": "Что нового у Kotlin за 2023 год?",
       "title": "Kotlin not sorted news",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "userId": "1",
       "views": 69
     },
@@ -989,7 +1013,9 @@
         },
         {
           "id": "7",
-          "paragraphs": ["Рассмотрим основные функции Банка России."],
+          "paragraphs": [
+            "Рассмотрим основные функции Банка России."
+          ],
           "title": "Заголовок нового блока",
           "type": "TEXT"
         }
@@ -998,7 +1024,9 @@
       "img": "https://fincult.info/upload/als-property-editorblock/d21/d21f97d7ca6df576e94255586c3c6688.jpg",
       "subtitle": "Что такое центробанк и чем он занимается",
       "title": "Что такое центробанк",
-      "type": ["ECONOMICS"],
+      "type": [
+        "ECONOMICS"
+      ],
       "userId": "1",
       "views": 4
     },
@@ -1067,7 +1095,9 @@
       "img": "https://gpbi-1c-prod-bitrix-uploads.storage.yandexcloud.net/resize_cache/14221/dc5e10191752e69d7cdeb29f8e02c154/iblock/b07/b0758bc910491a503f5941143bc82f08/global-main.jpg",
       "subtitle": "Кредитный рейтинг: что это такое и как им пользоваться?",
       "title": "Кредитный рейтинг",
-      "type": ["ECONOMICS"],
+      "type": [
+        "ECONOMICS"
+      ],
       "userId": "1",
       "views": 6
     },
@@ -1135,7 +1165,9 @@
       "img": "https://cdn-trans.info/uploads/2019/10/f257ba2f9d86839b42966c21982.jpg",
       "subtitle": "Что такое экономический рост и при чем тут инфляция",
       "title": "Экономический рост и инфляция",
-      "type": ["ECONOMICS"],
+      "type": [
+        "ECONOMICS"
+      ],
       "userId": "1",
       "views": 22
     },
@@ -1203,7 +1235,9 @@
       "img": "https://naked-science.ru/wp-content/uploads/2023/07/image-402-819x1024.png",
       "subtitle": "«Хаббл» получил новое изображение галактики UGC 12295",
       "title": "Новые снимки «Хаббл»",
-      "type": ["SCIENCE"],
+      "type": [
+        "SCIENCE"
+      ],
       "userId": "1",
       "views": 47
     },
@@ -1249,7 +1283,9 @@
         },
         {
           "id": "6",
-          "paragraphs": ["Астрономы открыли еще одну планету-сироту размерами с Землю."],
+          "paragraphs": [
+            "Астрономы открыли еще одну планету-сироту размерами с Землю."
+          ],
           "title": "Заголовок этого блока",
           "type": "TEXT"
         },
@@ -1266,7 +1302,9 @@
       "img": "https://images.theconversation.com/files/410219/original/file-20210707-25-2zom23.jpg?ixlib=rb-4.1.0&rect=0%2C194%2C5192%2C2592&q=45&auto=format&w=1200&h=720&fit=crop",
       "subtitle": "Новые наблюдения показали, что планет-сирот может быть больше «обычных»",
       "title": "Новые наблюдения за планетами",
-      "type": ["SCIENCE"],
+      "type": [
+        "SCIENCE"
+      ],
       "userId": "1",
       "views": 61
     }
@@ -1420,10 +1458,12 @@
         "isArticlesPageHasBeenOpened": true,
         "isFirstVisit": false,
         "isSettingsPageHasBeenOpen": false,
-        "theme": "app_dark_theme"
+        "theme": "app_orange_theme"
       },
       "password": "12345",
-      "roles": ["ADMIN"],
+      "roles": [
+        "ADMIN"
+      ],
       "username": "Jack",
       "userId": "1"
     },
@@ -1440,7 +1480,9 @@
         "theme": "app_dark_theme"
       },
       "password": "12345",
-      "roles": ["USER"],
+      "roles": [
+        "USER"
+      ],
       "username": "Mary"
     },
     {
@@ -1456,9 +1498,32 @@
         "theme": "app_dark_theme"
       },
       "password": "12345",
-      "roles": ["MANAGER"],
+      "roles": [
+        "MANAGER"
+      ],
       "username": "Tom"
     }
   ],
-  "subscriptions": []
+  "subscriptions": [
+    {
+      "endpoint": "https://fcm.googleapis.com/fcm/send/ca71PUte-eU:APA91bHCOnTrYGwclZipiuYz3w5Y1HFRLDdRbzpu1CVq7yXf0OtRXVipIPb4ICRQr6Yu86VtTlm3d5Smut6_Z0pP1--M7DYkyUplzbNMa-gRUu1G4xXSCVLnAPvcsitdYyWSNuWmUV6P",
+      "expirationTime": null,
+      "keys": {
+        "p256dh": "BI4QQ1nXoYi6YPXl2SUBTfsUs2tpybhNgD9bZAj-Berq0zOOBgUj_-GoyM5Syg9F4oLck6QYjxzy_cIZZUs0Gjw",
+        "auth": "SMwdZE-klTlHEHX0nkkhjQ"
+      },
+      "token": "1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+    },
+    {
+      "endpoint": "https://fcm.googleapis.com/fcm/send/fy0XMGyrvjQ:APA91bFyGwhcKTfscgRd9Qmf-jL510YhWkCLlxKjcauK2J-uXRYfHABCNhvsU9jAKOgfgjYO1hYDMNf9_SiZ3eNYezk6wG3oy-CNLphPA_WpZ14zaiAFm4h9TpoFTXyhoVXIzs47LQrJ",
+      "expirationTime": null,
+      "keys": {
+        "p256dh": "BCyBad6UU93v5IDOOzdcnUjv7jruFISWjye66DBCSIUgAjpKR023-NjN79XMIVRuCplSj525krv46pDBVYQrVEs",
+        "auth": "Qiv5Ao_x6Q1z2PN-2NYg3g"
+      },
+      "token": "1",
+      "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Mobile Safari/537.36"
+    }
+  ]
 }

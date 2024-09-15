@@ -596,6 +596,7 @@ storybooka, линтинг. Нет деплоя на сервер
 - [EditableProfileCard](./src/features/EditableProfileCard/README.md)
 - [LangSwitcher](./src/features/LangSwitcher/README.md)
 - [NotificationButton](./src/features/NotificationButton/README.md)
+- [Offline](./src/features/Offline/README.md)
 - [ProfileRating](./src/features/ProfileRating/README.md)
 - [ScrollToTopButton](./src/features/ScrollToTopButton/README.md)
 - [SubscriptionList](./src/features/SubscriptionList/README.md)
