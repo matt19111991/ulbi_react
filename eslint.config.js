@@ -24,32 +24,14 @@ const storybookPlugin = require('eslint-plugin-storybook');
 const globals = require('globals');
 const typescriptEslint = require('typescript-eslint');
 
-/*
-  'eslint-plugin-unused-imports v.4+' требует установки несуществующей версии библиотеки
-  '@typescript-eslint/eslint-plugin@8.0.0', поэтому ставим предыдущую '3.2.0' версию в режиме
-   совместимости с 'ESLint v.9+'
-  '{
-    overrides: {
-      "@typescript-eslint/eslint-plugin": {
-        "eslint": "^9.7.0"
-      },
-      "eslint-plugin-unused-imports": {
-        "eslint": "^9.7.0"
-      },
-  }' в 'package.json'
-*/
+// для работы плагина нужно установить '@typescript-eslint/eslint-plugin'
 const unusedImportsPlugin = require('eslint-plugin-unused-imports');
 
 /*
   несовместимые плагины с 'ESLint v.9+' =>
-    '@typescript-eslint/eslint-plugin'  => обе библиотеки ведут на 'typescript-eslint' библиотеку,
-    '@typescript-eslint/parser'         => можно использовать только её
     'eslint-plugin-import'
-    'eslint-plugin-jsx-a11y'
-    'eslint-import-resolver-alias'
-    'eslint-plugin-react'
     'eslint-plugin-react-hooks'
-    'eslint-plugin-unused-imports'
+    'eslint-plugin-storybook'
 
   новый плагин '@eslint/js' нужен для работы 'typescript-eslint'
 
@@ -57,26 +39,13 @@ const unusedImportsPlugin = require('eslint-plugin-unused-imports');
  '{
     overrides: {
       "eslint-plugin-import": {
-        "eslint": "^9.7.0"
+        "eslint": "^9.10.0"
       },
-      ...
-      "typescript-eslint": {
-        "eslint": "^9.7.0"
-      }
     }
   }' в 'package.json'
 
-  текущая используемая версия 'ESLint' в 'typescript-eslint':
- 'https://github.com/typescript-eslint/typescript-eslint/blob/main/package.json'
-
   текущая используемая версия 'ESLint' в 'eslint-plugin-import':
  'https://github.com/import-js/eslint-plugin-import/blob/main/package.json'
-
-  текущая используемая версия 'ESLint' в 'eslint-plugin-jsx-a11y':
- 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/package.json'
-
-  текущая используемая версия 'ESLint' в 'eslint-plugin-react':
- 'https://github.com/jsx-eslint/eslint-plugin-react/blob/master/package.json'
 
   обсуждение проблем 'ESLint v.9+' в 'eslint-plugin-react-hooks':
  'https://github.com/facebook/react/pulls?q=28773'
@@ -115,8 +84,11 @@ module.exports = typescriptEslint.config(
       */
       '@typescript-eslint/no-shadow': 2,
 
-      // переменная объявлена, но не используется (откл. для параметров в функциях)
-      '@typescript-eslint/no-unused-vars': [2, { args: 'none' }],
+      // запрет на использование 'require' импортов (откл.)
+      // '@typescript-eslint/no-require-imports': 0,
+
+      // переменная объявлена, но не используется (откл. для параметров в функциях и 'catch' блоков)
+      '@typescript-eslint/no-unused-vars': [2, { args: 'none', caughtErrors: 'none' }],
 
       // при возврате значения из функции избегаем использования 'return'; значение возвращаем сразу без '{}' (откл.)
       'arrow-body-style': 0,
@@ -138,6 +110,7 @@ module.exports = typescriptEslint.config(
 
       // импорты вида 'export const Sidebar' запрещены, нужен 'export default' (откл.)
       'import/prefer-default-export': 0,
+
 
       // проверка отступов (откл.)
       indent: 0,
@@ -294,13 +267,21 @@ module.exports = typescriptEslint.config(
     },
   },
   {
-    files: ['**/json-server/*.js', 'eslint.config.js'],
+    files: ['**/config/jest/setupTests.ts', '**/json-server/*.js', 'eslint.config.js'],
     rules: {
       /*
         запретить импорты вида "require('path')" (откл.), т.к. такие импорты используются для
-        содержимого папки 'json-server' и текущего файла конфигурации
+        содержимого папки 'json-server', текущего файла конфигурации и файла
+        конфигурации 'unit' тестов
       */
-      '@typescript-eslint/no-var-requires': 0,
+      '@typescript-eslint/no-require-imports': 0,
+    },
+  },
+  {
+    files: ['**/public/service-worker.js'],
+    rules: {
+      // переменная объявлена, но не используется (откл. для 'catch' блоков)
+      '@typescript-eslint/no-unused-vars': [2, { caughtErrors: 'none' }],
     },
   },
   {

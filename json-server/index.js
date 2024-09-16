@@ -210,7 +210,6 @@ server.post("/subscribe", (req, res) => {
   return res.status(201).json({ message: 'Subscribed successfully on push notifications' });
 });
 
-
 /*
   отписка от 'push' уведомлений по переданному 'userAgent' и 'id' пользователя
  '/unsubscribe' endpoint (POST)

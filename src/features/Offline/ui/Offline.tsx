@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import OfflineLogo from '@/shared/assets/icons/offline.svg';
 
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
-import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
+import { Text as TextDeprecated, TextTheme } from '@/shared/ui/deprecated/Text';
 import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -35,6 +35,12 @@ export const Offline = ({ children }: OfflineProps) => {
   }, [setOnline]);
 
   useEffect(() => {
+    if (__PROJECT__ === 'storybook') {
+      onSetOfflineHandler();
+    }
+  }, [onSetOfflineHandler]);
+
+  useEffect(() => {
     window.addEventListener('online', onSetOnlineHandler);
     window.addEventListener('offline', onSetOfflineHandler);
 
@@ -59,13 +65,18 @@ export const Offline = ({ children }: OfflineProps) => {
             <ToggleFeatures
               feature='isAppRedesigned'
               on={<TextRedesigned text={t('Вы не в онлайн')} />}
-              off={<TextDeprecated text={t('Вы не в онлайн')} />}
+              off={<TextDeprecated text={t('Вы не в онлайн')} theme={TextTheme.INVERTED} />}
             />
 
             <ToggleFeatures
               feature='isAppRedesigned'
               on={<TextRedesigned text={t('Проверьте соединение с интернетом')} />}
-              off={<TextDeprecated text={t('Проверьте соединение с интернетом')} />}
+              off={
+                <TextDeprecated
+                  text={t('Проверьте соединение с интернетом')}
+                  theme={TextTheme.INVERTED}
+                />
+              }
             />
           </VStack>
         </HStack>

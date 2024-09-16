@@ -10,7 +10,7 @@ import { Theme } from '@/shared/const/theme';
 import { Offline } from './Offline';
 
 const meta = {
-  title: 'features/Offline/Offline/new',
+  title: 'features/Offline/Popover/new',
   component: Offline,
   argTypes: {
     backgroundColor: {
