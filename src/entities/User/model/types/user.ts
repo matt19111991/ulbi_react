@@ -23,7 +23,13 @@ export interface UserSchema {
       dispatch(initAuthData());
     }, [dispatch]);
 
-    <BrowserRouter>
+    <BrowserRouter
+      // подготовка к переходу на 'react-router-dom v.7'
+      future={{
+        v7_relativeSplatPath: true,
+        v7_startTransition: true,
+      }}
+    >
       <StoreProvider />
     </BrowserRouter>
 

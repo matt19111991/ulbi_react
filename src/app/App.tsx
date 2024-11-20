@@ -62,13 +62,13 @@ const App = memo(() => {
   // '<Suspense />' для переводов (ошибка, если пользователь не авторизован)
 
   return (
-    <Offline>
-      <ToggleFeatures
-        feature='isAppRedesigned'
-        // приложение после редизайна
-        on={
-          <div className='app_redesigned' id='app'>
-            <Suspense fallback=''>
+    <ToggleFeatures
+      feature='isAppRedesigned'
+      // приложение после редизайна
+      on={
+        <div className='app_redesigned' id='app'>
+          <Suspense fallback=''>
+            <Offline>
               <Toaster
                 position='top-center'
                 toastOptions={{ className: 'toast redesigned', icon: '⛔' }}
@@ -80,13 +80,15 @@ const App = memo(() => {
                 sidebar={<Sidebar />}
                 toolbar={Toolbar}
               />
-            </Suspense>
-          </div>
-        }
-        // приложение до редизайна
-        off={
-          <div className='app' id='app'>
-            <Suspense fallback=''>
+            </Offline>
+          </Suspense>
+        </div>
+      }
+      // приложение до редизайна
+      off={
+        <div className='app' id='app'>
+          <Suspense fallback=''>
+            <Offline>
               <Toaster
                 containerClassName='toastWrapper'
                 position='top-center'
@@ -99,11 +101,11 @@ const App = memo(() => {
                 <Sidebar />
                 <AppRouter />
               </div>
-            </Suspense>
-          </div>
-        }
-      />
-    </Offline>
+            </Offline>
+          </Suspense>
+        </div>
+      }
+    />
   );
 });
 
