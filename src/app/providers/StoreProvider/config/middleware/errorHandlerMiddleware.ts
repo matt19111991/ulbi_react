@@ -25,9 +25,13 @@ export const errorHandlerMiddleware: Middleware = (api) => (next) => (action) =>
       return next(action);
     }
 
-    toast.error(unknownAction.payload, {
-      id: unknownAction.payload, // избавляемся от дубликатов
-    });
+    // 'Object(value) === value' ==> проверка, является ли 'value' объектом
+    if (Object(unknownAction.payload) !== unknownAction.payload) {
+      // если 'unknownAction.payload' не объект (иначе выбрасывается исключение)
+      toast.error(unknownAction.payload, {
+        id: unknownAction.payload, // избавляемся от дубликатов
+      });
+    }
   }
 
   return next(action);
