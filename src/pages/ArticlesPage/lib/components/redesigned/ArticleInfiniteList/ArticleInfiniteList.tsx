@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
+import { setGlobalDevModeChecks } from 'reselect';
 
 import { ArticleList } from '@/entities/Article';
 
@@ -24,6 +25,18 @@ export const ArticleInfiniteList = memo(({ className }: ArticleInfiniteListProps
     но для кастомных полей 'isLoading' и 'view' нужны отдельные селекторы
   */
   const articles = useSelector(getArticles.selectAll);
+
+  /*
+    включаем отключенные ранее предупреждения вида: "An input selector returned
+    a different result when passed same arguments. This means your output
+    selector will likely run more frequently than intended. Avoid returning a
+    new reference inside your input selector, e.g.
+      'createSelector(
+        [state => state.articles.map(article => article.id)],
+        articleIds => articleIds.length
+      )' при использовании 'createEntityAdapter'
+  */
+  setGlobalDevModeChecks({ inputStabilityCheck: 'always' });
 
   const isLoading = useSelector(getArticlesPageAreLoading);
   const view = useSelector(getArticlesPageView);

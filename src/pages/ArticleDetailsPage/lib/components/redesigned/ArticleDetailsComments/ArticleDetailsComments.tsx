@@ -1,6 +1,7 @@
 import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { setGlobalDevModeChecks } from 'reselect';
 
 import { CommentList } from '@/entities/Comment';
 
@@ -46,6 +47,19 @@ export const ArticleDetailsComments = memo(({ className, id }: ArticleDetailsCom
   */
 
   const comments = useSelector(getArticleComments.selectAll);
+
+  /*
+    включаем отключенные ранее предупреждения вида: "An input selector returned
+    a different result when passed same arguments. This means your output
+    selector will likely run more frequently than intended. Avoid returning a
+    new reference inside your input selector, e.g.
+      'createSelector(
+        [state => state.comments.map(comment => comment.id)],
+        commentIds => commentIds.length
+      )' при использовании 'createEntityAdapter'
+  */
+  setGlobalDevModeChecks({ inputStabilityCheck: 'always' });
+
   const commentsAreLoading = useSelector(getArticleCommentsAreLoading);
 
   useInitialEffect(() => {

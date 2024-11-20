@@ -1,5 +1,6 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { setGlobalDevModeChecks } from 'reselect';
 
 import type { StateSchema } from '@/app/providers/StoreProvider';
 
@@ -40,9 +41,25 @@ const commentsAdapter = createEntityAdapter<Comment>({
 });
 
 // объект с селекторами для части стейта, которую хотим нормализовать
-export const getArticleComments = commentsAdapter.getSelectors<StateSchema>(
-  (state) => state.articleDetailsPage?.comments || commentsAdapter.getInitialState(),
-);
+export const getArticleComments = commentsAdapter.getSelectors<StateSchema>((state) => {
+  /*
+    отключаем предупреждения вида: "An input selector returned a different
+    result when passed same arguments. This means your output selector will
+    likely run more frequently than intended. Avoid returning a new reference
+    inside your input selector, e.g.
+      'createSelector(
+        [state => state.comments.map(comment => comment.id)],
+        commentIds => commentIds.length
+      )' при использовании 'createEntityAdapter'
+
+    затем обратно включаем предупреждение после вызова
+   'useSelector(getArticleComments.selectAll)' в компоненте:
+   'setGlobalDevModeChecks({ inputStabilityCheck: 'always' });'
+  */
+  setGlobalDevModeChecks({ inputStabilityCheck: 'never' });
+
+  return state.articleDetailsPage?.comments || commentsAdapter.getInitialState();
+});
 
 const initialState: ArticleDetailsCommentsSchema = {
   areLoading: true,

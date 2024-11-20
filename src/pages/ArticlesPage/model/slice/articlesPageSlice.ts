@@ -1,5 +1,6 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { setGlobalDevModeChecks } from 'reselect';
 
 import type { StateSchema } from '@/app/providers/StoreProvider';
 
@@ -45,9 +46,25 @@ const articlesAdapter = createEntityAdapter<Article>({
 });
 
 // объект с селекторами для части стейта, которую хотим нормализовать
-export const getArticles = articlesAdapter.getSelectors<StateSchema>(
-  (state) => state.articlesPage || articlesAdapter.getInitialState(),
-);
+export const getArticles = articlesAdapter.getSelectors<StateSchema>((state) => {
+  /*
+    отключаем предупреждения вида: "An input selector returned a different
+    result when passed same arguments. This means your output selector will
+    likely run more frequently than intended. Avoid returning a new reference
+    inside your input selector, e.g.
+      'createSelector(
+        [state => state.articles.map(article => article.id)],
+        articleIds => articleIds.length
+      )' при использовании 'createEntityAdapter'
+
+    затем обратно включаем предупреждение после вызова
+   'useSelector(getArticles.selectAll)' в компоненте:
+   'setGlobalDevModeChecks({ inputStabilityCheck: 'always' });'
+ */
+  setGlobalDevModeChecks({ inputStabilityCheck: 'never' });
+
+  return state.articlesPage || articlesAdapter.getInitialState();
+});
 
 const initialState: ArticlesPageSchema = {
   /*
