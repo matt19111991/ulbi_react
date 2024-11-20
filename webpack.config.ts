@@ -31,7 +31,7 @@ const getApiUrl = (mode: BuildMode, apiUrl?: string) => {
     return '/api';
   }
 
-  return 'http://localhost:8000';
+  return 'http://localhost:8000/';
 };
 
 // export default config; // если не нужны переменные окружения 'env', можно вернуть просто 'config'
