@@ -3,6 +3,8 @@ import { toast } from 'react-hot-toast';
 
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 
+const SUBSCRIBE_ENDPOINT = 'subscribe';
+
 const getNotificationPermissionsIcon = (permission: NotificationPermission): string => {
   switch (permission) {
     case 'denied':
@@ -71,7 +73,7 @@ export const useServiceWorker = () => {
             отправляем объект подписки на сервер
           */
           if (token) {
-            await fetch(`${__API__}/subscribe`, {
+            await fetch(`${__API__}${SUBSCRIBE_ENDPOINT}`, {
               body: JSON.stringify({
                 subscription,
                 token,

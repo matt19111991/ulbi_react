@@ -1374,7 +1374,7 @@
       "id": "1",
       "description": "Администратор опубликовал новую статью о современных технологиях",
       "title": "Уведомление 1",
-      "href": "/articles",
+      "href": "../articles",
       "userId": "1"
     },
     {
@@ -1386,21 +1386,21 @@
     {
       "id": "3",
       "description": "Администратор добавил функционал удаления статей",
-      "href": "/articles",
+      "href": "../articles",
       "title": "Уведомление 3",
       "userId": "1"
     },
     {
       "id": "4",
       "description": "Администратор добавил возможность оценки статей",
-      "href": "/articles",
+      "href": "../articles",
       "title": "Уведомление 4",
       "userId": "1"
     },
     {
       "id": "5",
       "description": "Пользователь с ID='2' опубликовал новую статью",
-      "href": "/articles",
+      "href": "../articles",
       "title": "Уведомление 5",
       "userId": "2"
     }
@@ -1458,7 +1458,7 @@
         "isArticlesPageHasBeenOpened": true,
         "isFirstVisit": false,
         "isSettingsPageHasBeenOpen": false,
-        "theme": "app_orange_theme"
+        "theme": "app_dark_theme"
       },
       "password": "12345",
       "roles": [
@@ -1506,24 +1506,14 @@
   ],
   "subscriptions": [
     {
-      "endpoint": "https://fcm.googleapis.com/fcm/send/ca71PUte-eU:APA91bHCOnTrYGwclZipiuYz3w5Y1HFRLDdRbzpu1CVq7yXf0OtRXVipIPb4ICRQr6Yu86VtTlm3d5Smut6_Z0pP1--M7DYkyUplzbNMa-gRUu1G4xXSCVLnAPvcsitdYyWSNuWmUV6P",
+      "endpoint": "https://fcm.googleapis.com/fcm/send/eVdwr9VecgI:APA91bHOMQ3uyC1PXZmLm-HJTEgejy9GhfgDat378VfnNjOdgmBCGgNbiv1Ufq3YTefcz2vCp78Nozlk6uF0e3t3V5O6vMY2XhB5RvYZaZaFDwx1v74LnszmeBnroGJbN3o0k2p2x3-4",
       "expirationTime": null,
       "keys": {
-        "p256dh": "BI4QQ1nXoYi6YPXl2SUBTfsUs2tpybhNgD9bZAj-Berq0zOOBgUj_-GoyM5Syg9F4oLck6QYjxzy_cIZZUs0Gjw",
-        "auth": "SMwdZE-klTlHEHX0nkkhjQ"
+        "p256dh": "BBV1_AbDDtNhQpu2IiHhAAa1oOJiMokXoWqpwcfy71P2Bp1hy9phWbWVt99903tt5uaGi_enY1zTKbjTBbc3EQc",
+        "auth": "1LOIVRk9i2svVtf8Nq2F9A"
       },
       "token": "1",
-      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
-    },
-    {
-      "endpoint": "https://fcm.googleapis.com/fcm/send/fy0XMGyrvjQ:APA91bFyGwhcKTfscgRd9Qmf-jL510YhWkCLlxKjcauK2J-uXRYfHABCNhvsU9jAKOgfgjYO1hYDMNf9_SiZ3eNYezk6wG3oy-CNLphPA_WpZ14zaiAFm4h9TpoFTXyhoVXIzs47LQrJ",
-      "expirationTime": null,
-      "keys": {
-        "p256dh": "BCyBad6UU93v5IDOOzdcnUjv7jruFISWjye66DBCSIUgAjpKR023-NjN79XMIVRuCplSj525krv46pDBVYQrVEs",
-        "auth": "Qiv5Ao_x6Q1z2PN-2NYg3g"
-      },
-      "token": "1",
-      "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Mobile Safari/537.36"
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
     }
   ]
 }

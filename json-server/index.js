@@ -83,7 +83,7 @@ server.use((req, res, next) => {
 });
 
 // middleware для 'push' уведомлений
-server.use((req, res, next) => {
+server.use(async (req, res, next) => {
   const db = JSON.parse(fs.readFileSync(dbPath, 'UTF-8'));
 
   const { subscriptions = [], ...dbFile } = db;
@@ -99,7 +99,11 @@ server.use((req, res, next) => {
       title: "New article",
     };
 
-    Promise.all(
+    /*
+     при первой же ошибке 'Promise.all()' выбрасывает исключение и прекращает дальнейшую работу:
+     (не отрабатывает 'next()', поэтому используем 'Promise.allSettled()')
+    */
+    await Promise.allSettled(
       /*
         отправляем 'push' уведомление всем подписчикам; можно отправлять
         определенному пользователю, отфильтровав массив подписок
@@ -120,20 +124,29 @@ server.use((req, res, next) => {
 
         return sendNotification(subscription, JSON.stringify(payload), { headers });
       })
-    ).catch((err) => { // удаляем подписку в случае ошибки
-      console.log('--- Push middleware error ---', err);
+    ).then((results) => {
+      let correctSubscriptions = [...subscriptions];
 
-      const correctSubscriptions = subscriptions.filter((subscription) =>
-        subscription.userAgent !== req.headers['user-agent'],
-      )
+      results
+        .filter(({ status }) => status === 'rejected') // отфильтровываем ошибки
+        .forEach(({ reason }) => {
+          console.log('--- Push middleware error ---', reason);
 
-      const updatedDb = {
-        ...dbFile,
-        subscriptions: correctSubscriptions,
-      };
+          // удаляем подписку в случае ошибки
+          correctSubscriptions = correctSubscriptions.filter(subscription =>
+            subscription.endpoint !== reason.endpoint
+          );
+        });
 
-      fs.writeFileSync(dbPath, JSON.stringify(updatedDb, null, 2));
+        const updatedDb = {
+          ...dbFile,
+          subscriptions: correctSubscriptions,
+        };
+
+        fs.writeFileSync(dbPath, JSON.stringify(updatedDb, null, 2));
     });
+
+    return next();
   }
 
   return next();
