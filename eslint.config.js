@@ -6,12 +6,6 @@
   или поменять расширение на 'eslint.config.cjs' или eslint.config.mjs'
 */
 
-/*
-  библиотека для совместимости плагинов у которых еще нет поддержки 'ESLint v.9+', решение для возможных ошибок:
- 'https://eslint.org/blog/2024/05/eslint-compatibility-utilities/#how-to-know-if-the-compatibility-utilities-will-help'
-*/
-const { fixupPluginRules } = require('@eslint/compat');
-
 const eslintJs = require('@eslint/js');
 const i18nextPlugin = require('eslint-plugin-i18next');
 const importPlugin = require('eslint-plugin-import');
@@ -28,30 +22,29 @@ const typescriptEslint = require('typescript-eslint');
 const unusedImportsPlugin = require('eslint-plugin-unused-imports');
 
 /*
-  несовместимые плагины с 'ESLint v.9+' =>
-    'eslint-plugin-import'
-    'eslint-plugin-react-hooks'
-    'eslint-plugin-storybook'
+  библиотека для совместимости плагинов у которых еще нет поддержки 'ESLint v.9+', решение для возможных ошибок:
+ 'https://eslint.org/blog/2024/05/eslint-compatibility-utilities/#how-to-know-if-the-compatibility-utilities-will-help'
 
+  использование:
+    plugins: {
+      ...
+     'storybook': fixupPluginRules(storybookPlugin),
+      ...
+    },
+*/
+const { fixupPluginRules } = require('@eslint/compat');
+
+/*
   новый плагин '@eslint/js' нужен для работы 'typescript-eslint'
 
   для установки несовместимых плагинов с 'ESLint v.9+' нужно добавить:
  '{
     overrides: {
       "eslint-plugin-import": {
-        "eslint": "^9.10.0"
+        "eslint": "^9.15.0"
       },
     }
   }' в 'package.json'
-
-  текущая используемая версия 'ESLint' в 'eslint-plugin-import':
- 'https://github.com/import-js/eslint-plugin-import/blob/main/package.json'
-
-  обсуждение проблем 'ESLint v.9+' в 'eslint-plugin-react-hooks':
- 'https://github.com/facebook/react/pulls?q=28773'
-
-  текущая используемая версия 'ESLint' в 'eslint-plugin-storybook':
- 'https://github.com/storybookjs/eslint-plugin-storybook/blob/main/package.json'
 */
 
 module.exports = typescriptEslint.config(
@@ -67,7 +60,7 @@ module.exports = typescriptEslint.config(
         2 === 'error'
     */
     rules: {
-      ...i18nextPlugin.configs.recommended.rules,
+      ...i18nextPlugin.configs['flat/recommended'].rules,
       ...importPlugin.configs.recommended.rules,
       ...jsxA11yPlugin.configs.recommended.rules,
       ...prettierPlugin.configs.recommended.rules, // ошибки 'Prettier' передаются 'ESLinty' и подчеркиваются
@@ -86,6 +79,13 @@ module.exports = typescriptEslint.config(
 
       // запрет на использование 'require' импортов (откл.)
       // '@typescript-eslint/no-require-imports': 0,
+
+      /*
+        иначе ошибка с 'ESLint v.9.15.0': "Error while loading rule
+       '@typescript-eslint/no-unused-expressions': Cannot read properties of
+        undefined (reading 'allowShortCircuit')"
+      */
+      '@typescript-eslint/no-unused-expressions': 0,
 
       // переменная объявлена, но не используется (откл. для параметров в функциях и 'catch' блоков)
       '@typescript-eslint/no-unused-vars': [2, { args: 'none', caughtErrors: 'none' }],
@@ -110,7 +110,6 @@ module.exports = typescriptEslint.config(
 
       // импорты вида 'export const Sidebar' запрещены, нужен 'export default' (откл.)
       'import/prefer-default-export': 0,
-
 
       // проверка отступов (откл.)
       indent: 0,
@@ -333,14 +332,14 @@ module.exports = typescriptEslint.config(
       '@typescript-eslint': typescriptEslint.plugin,
 
       // проверяет на указание 'i18next' переводов для 'textNodes': не '<p>test</p>', а '<p>{t('test')}</p>')
-      'i18next': fixupPluginRules(i18nextPlugin),
+      'i18next': i18nextPlugin,
 
-      'import': fixupPluginRules(importPlugin),
+      'import': importPlugin,
       'jsx-a11y': jsxA11yPlugin,
       'path-checker-1911': pathChecker1911Plugin, // кастомный плагин для проверки относительных путей
       'prettier': prettierPlugin,
-      'react': fixupPluginRules(reactPlugin),
-      'react-hooks': fixupPluginRules(reactHooksPlugin),
+      'react': reactPlugin,
+      'react-hooks': reactHooksPlugin,
       'storybook': fixupPluginRules(storybookPlugin),
       'unused-imports': unusedImportsPlugin, // проверяет неиспользуемые импорты
     },

@@ -57,6 +57,17 @@ const reactVirtualizedHack = (): PluginOption => {
 };
 
 export default defineConfig({
+  css: {
+    preprocessorOptions: {
+      scss: {
+        /*
+          Иначе предупреждение: 'Deprecation Warning: The legacy JS API is
+          deprecated and will be removed in Dart Sass 2.0.0.'
+        */
+        api: 'modern-compiler',
+      },
+    },
+  },
   define: {
     __API__: JSON.stringify('http://localhost:8000/'),
     __IS_DEV__: JSON.stringify(true),

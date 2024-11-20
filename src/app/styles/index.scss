@@ -26,17 +26,17 @@
   '.ttf' полноценные системные шрифты, их не следует использовать в веб-приложениях, могут быть проблемы с лицензиями
   '.woff' лучше не использовать, а брать следующую версию '.woff2' (лучше сжатие)
 */
-@import 'fonts';
+@use 'fonts';
 
-@import 'reset';
+@use 'reset';
 
-@import 'themes/normal';
-@import 'themes/dark';
-@import 'themes/orange';
+@use 'themes/normal';
+@use 'themes/dark';
+@use 'themes/orange';
 
-@import 'toast';
+@use 'toast';
 
-@import 'variables/global';
+@use 'variables/global';
 
 html:has(div[class='app_redesigned']) {
   background-color: var(--text-redesigned);

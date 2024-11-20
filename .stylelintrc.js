@@ -1,6 +1,6 @@
 module.exports = {
-  // рекомендуется документацией (покрывает правила 'stylelint-config-recommended')
-  extends: ['stylelint-config-standard'],
+  // рекомендуется документацией (покрывает правила 'stylelint-config-recommended-scss')
+  extends: ['stylelint-config-standard-scss'],
 
   plugins: ['stylelint-codeguide'], // для тонкой настройки отдельно от 'Prettier'
 
