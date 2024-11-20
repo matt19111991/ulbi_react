@@ -1,5 +1,7 @@
 import type { Profile } from '@/entities/Profile/testing';
 
+import { getRouteProfile } from '@/shared/const/router';
+
 import { FRONT_APP_URL } from '../../const/env';
 
 let profileId: Profile['id'] = '';
@@ -9,7 +11,7 @@ describe('Пользователь заходит на страницу проф
     cy.login().then((body) => {
       profileId = body.id;
 
-      cy.visit(`${FRONT_APP_URL}/profile/${profileId}`);
+      cy.visit(`${FRONT_APP_URL}${getRouteProfile(profileId)}`);
     });
   });
 

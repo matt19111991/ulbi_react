@@ -1,5 +1,7 @@
 import type { Article } from '@/entities/Article/testing';
 
+import { getRouteArticleDetails } from '@/shared/const/router';
+
 import { FRONT_APP_URL } from '../../const/env';
 
 import defaultArticle from '../../fixtures/article-details.json';
@@ -23,13 +25,13 @@ describe('Пользователь заходит на страницу стат
         cy.createArticle().then((createdArticle) => {
           currentArticleId = createdArticle.id;
 
-          cy.visit(`${FRONT_APP_URL}/articles/${currentArticleId}`);
+          cy.visit(`${FRONT_APP_URL}${getRouteArticleDetails(currentArticleId)}`);
         });
         // статья создана
       } else {
         currentArticleId = article.id;
 
-        cy.visit(`${FRONT_APP_URL}/articles/${currentArticleId}`);
+        cy.visit(`${FRONT_APP_URL}${getRouteArticleDetails(currentArticleId)}`);
       }
     });
   });

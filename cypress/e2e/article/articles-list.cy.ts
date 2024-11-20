@@ -1,10 +1,12 @@
+import { getRouteArticles } from '@/shared/const/router';
+
 import { FRONT_APP_URL } from '../../const/env';
 
 describe('Пользователь заходит на страницу со списком статей', () => {
   beforeEach(() => {
     cy.login();
 
-    cy.visit(`${FRONT_APP_URL}/articles`);
+    cy.visit(`${FRONT_APP_URL}${getRouteArticles()}`);
   });
 
   it('Статьи успешно загружаются с сервера', () => {

@@ -1,4 +1,5 @@
 import { LAST_DESIGN_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
+import { getRouteArticles, getRouteProfile } from '@/shared/const/router';
 
 import { FRONT_APP_URL } from '../../const/env';
 
@@ -23,7 +24,7 @@ describe('Роутинг', () => {
     });
 
     it('Редирект со страницы профиля на главную', () => {
-      cy.visit(`${FRONT_APP_URL}/profile/${profile.id}`);
+      cy.visit(`${FRONT_APP_URL}${getRouteProfile(profile.id)}`);
 
       cy.getByTestId('MainPage').should('exist');
     });
@@ -46,13 +47,13 @@ describe('Роутинг', () => {
     });
 
     it('Переход на страницу профиля', () => {
-      cy.visit(`${FRONT_APP_URL}/profile/${profile.id}`);
+      cy.visit(`${FRONT_APP_URL}${getRouteProfile(profile.id)}`);
 
       cy.getByTestId('ProfilePage').should('exist');
     });
 
     it('Переход на страницу со списком статей', () => {
-      cy.visit(`${FRONT_APP_URL}/articles`);
+      cy.visit(`${FRONT_APP_URL}${getRouteArticles()}`);
 
       cy.articlesAreReady();
     });

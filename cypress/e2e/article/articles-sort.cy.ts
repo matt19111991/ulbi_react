@@ -1,12 +1,14 @@
 import { ArticleSortField, ArticleType } from '@/entities/Article/testing';
 
+import { getRouteArticles } from '@/shared/const/router';
+
 import { FRONT_APP_URL } from '../../const/env';
 
 describe('Пользователь сортирует статьи', () => {
   beforeEach(() => {
     cy.login();
 
-    cy.visit(`${FRONT_APP_URL}/articles`);
+    cy.visit(`${FRONT_APP_URL}${getRouteArticles()}`);
   });
 
   it('Пользователь сортирует по убыванию', () => {
