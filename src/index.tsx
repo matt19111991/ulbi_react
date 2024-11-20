@@ -57,7 +57,13 @@ const root = createRoot(container);
 */
 
 root.render(
-  <BrowserRouter>
+  <BrowserRouter
+    // подготовка к переходу на 'react-router-dom v.7'
+    future={{
+      v7_relativeSplatPath: true,
+      v7_startTransition: true,
+    }}
+  >
     <StoreProvider>
       <ErrorBoundary>
         <ForceUpdateProvider>

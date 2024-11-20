@@ -62,7 +62,14 @@ export const TestProvider = ({ children, options = {} }: TestProviderProps) => {
   // 'MemoryRouter' используется для тестов
 
   return (
-    <MemoryRouter initialEntries={[route]}>
+    <MemoryRouter
+      // подготовка к переходу на 'react-router-dom v.7'
+      future={{
+        v7_relativeSplatPath: true,
+        v7_startTransition: true,
+      }}
+      initialEntries={[route]}
+    >
       <StoreProvider asyncReducers={asyncReducers} initialState={initialState}>
         <I18nextProvider i18n={i18nForTests}>
           <ThemeProvider initialTheme={theme}>

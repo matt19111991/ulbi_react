@@ -44,16 +44,24 @@ export const AppLink = forwardRef(
   (
     { className, children, theme = AppLinkTheme.PRIMARY, to, ...rest }: AppLinkProps,
     ref: ForwardedRef<HTMLAnchorElement>,
-  ) => (
-    <Link
-      className={classNames(classes.AppLink, {}, [className, classes[theme]])}
-      ref={ref}
-      to={to}
-      {...rest}
-    >
-      {children}
-    </Link>
-  ),
+  ) => {
+    /*
+      подготовка к переходу на 'react-router-dom v.7', в 'v.7' версии
+      используются пути для ссылок в виде '../articles' вместе '/articles'
+    */
+    const reactRouterDomV7To = `${(to as string).length === 0 ? '' : '..'}${to}`;
+
+    return (
+      <Link
+        className={classNames(classes.AppLink, {}, [className, classes[theme]])}
+        ref={ref}
+        to={reactRouterDomV7To}
+        {...rest}
+      >
+        {children}
+      </Link>
+    );
+  },
 );
 
 AppLink.displayName = 'AppLink';
