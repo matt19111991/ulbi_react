@@ -24,7 +24,7 @@ RUN npm install --loglevel error --ignore-scripts
 RUN mkdir ./json-server && mv ./node_modules ./json-server
 
 # Копируем файлы для сервера в образ (из локальной папки 'ulbi_react/json-server' в 'корень образа/json-server')
-COPY json-server /json-server
+COPY json-server ./json-server
 
 # Выставляем наружу 8000 порт
 EXPOSE 8000
