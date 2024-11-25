@@ -57,6 +57,13 @@ export const useServiceWorker = () => {
         // регистрируем сервис-воркер
         const registration = await navigator.serviceWorker.register('/service-worker.js');
 
+        /*
+          откладываем выполнение кода, пока не активируется сервис-воркер,
+          чтобы избежать ошибок "Failed to execute 'subscribe' on 'PushManager':
+          Subscription failed - no active Service Worker"
+        */
+        await navigator.serviceWorker.ready;
+
         // подписка на 'push' уведомления
         try {
           const subscription = await registration.pushManager.subscribe({

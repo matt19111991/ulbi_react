@@ -19,33 +19,35 @@ self.addEventListener('install', (event) => {
       // создаем новый кэш с названием 'self.cacheName'
       const cache = await caches.open(self.cacheName);
 
-      await Promise.all(self.contentToCache.map(async (url) => {
-        let controller;
+      if (self.contentToCache) {
+        await Promise.all(self.contentToCache.map(async (url) => {
+          let controller;
 
-        try {
-          controller = new AbortController();
+          try {
+            controller = new AbortController();
 
-          const { signal } = controller;
+            const { signal } = controller;
 
-          const req = new Request(url, {
-            /*
-              заставит браузер запросить любой из ресурсов через сеть,
-              что позволяет избежать повторного кэширования старых файлов
-            */
-            cache: 'reload',
-          });
+            const req = new Request(url, {
+              /*
+                заставит браузер запросить любой из ресурсов через сеть,
+                что позволяет избежать повторного кэширования старых файлов
+              */
+              cache: 'reload',
+            });
 
-          const res = await fetch(req, { signal });
+            const res = await fetch(req, { signal });
 
-          if (res && res.status === 200) {
-            await cache.put(req, res.clone()); // запрос успешен - сохраняем в кэш
+            if (res && res.status === 200) {
+              await cache.put(req, res.clone()); // запрос успешен - сохраняем в кэш
+            }
+          } catch (e) {
+            console.log(`Service worker: Unable to fetch ${url}, ${e.message}`);
+
+            controller.abort(); // отменить запрос в любом случае
           }
-        } catch (e) {
-          console.log(`Service worker: Unable to fetch ${url}, ${e.message}`);
-
-          controller.abort(); // отменить запрос в любом случае
-        }
-      }));
+        }));
+      }
     } catch (e) {
       console.error(`Service worker: Unable to install app, ${e.message}`);
     }
@@ -151,7 +153,7 @@ self.addEventListener("push", (event) => {
       url, // 'URL' для редиректа пользователя на нужную страницу
     },
     icon,
-    tag: "unique-tag", // чтобы избежать дублирования уведомлений
+    tag: Math.random(), // чтобы избежать дублирования уведомлений
   };
 
   self.registration.showNotification(title, notificationOptions).catch((err) => {
