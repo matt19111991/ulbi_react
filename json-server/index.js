@@ -54,6 +54,9 @@ const vapidKeys = {
   publicKey: process.env.VAPID_PUBLIC_KEY,
 };
 
+// дефолтные middleware от 'json-server'
+server.use(jsonServer.defaults());
+
 // middleware для небольшой задержки, чтобы запрос проходил не мгновенно; имитация реального API
 server.use(async (req, res, next) => {
   await new Promise((resolve) => {
@@ -82,6 +85,9 @@ server.use((req, res, next) => {
   return next();
 });
 
+// иначе в роутах 'req.body === undefined'
+server.use(jsonServer.bodyParser);
+
 // middleware для 'push' уведомлений
 server.use(async (req, res, next) => {
   const db = JSON.parse(fs.readFileSync(dbPath, 'UTF-8'));
@@ -90,8 +96,10 @@ server.use(async (req, res, next) => {
 
   // отправляем 'push' уведомление только на создание новой статьи
   if (req.method === 'POST' && req.url === '/articles') {
+    const { title } = req.body;
+
     const payload = {
-      body: "New article has been created",
+      body: `New article '${title}' has been created`,
       data: {
         url: "https://matt610.ru",
       },
@@ -138,12 +146,12 @@ server.use(async (req, res, next) => {
           );
         });
 
-        const updatedDb = {
-          ...dbFile,
-          subscriptions: correctSubscriptions,
-        };
+      const updatedDb = {
+        ...dbFile,
+        subscriptions: correctSubscriptions,
+      };
 
-        fs.writeFileSync(dbPath, JSON.stringify(updatedDb, null, 2));
+      fs.writeFileSync(dbPath, JSON.stringify(updatedDb, null, 2));
     });
 
     return next();
@@ -151,11 +159,6 @@ server.use(async (req, res, next) => {
 
   return next();
 });
-
-server.use(jsonServer.defaults());
-
-// иначе в роутах 'req.body === undefined'
-server.use(jsonServer.bodyParser);
 
 // '/login' endpoint (POST)
 server.post('/login', (req, res) => {
