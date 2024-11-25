@@ -1,8 +1,7 @@
 import { forwardRef } from 'react';
 import type { ForwardedRef, ReactNode } from 'react';
-
-import { Link } from 'react-router-dom';
-import type { LinkProps } from 'react-router-dom';
+import { Link } from 'react-router';
+import type { LinkProps } from 'react-router';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
@@ -44,24 +43,16 @@ export const AppLink = forwardRef(
   (
     { className, children, theme = AppLinkTheme.PRIMARY, to, ...rest }: AppLinkProps,
     ref: ForwardedRef<HTMLAnchorElement>,
-  ) => {
-    /*
-      подготовка к переходу на 'react-router-dom v.7', в 'v.7' версии
-      используются пути для ссылок в виде '../articles' вместе '/articles'
-    */
-    const reactRouterDomV7To = `${(to as string).length === 0 ? '' : '..'}${to}`;
-
-    return (
-      <Link
-        className={classNames(classes.AppLink, {}, [className, classes[theme]])}
-        ref={ref}
-        to={reactRouterDomV7To}
-        {...rest}
-      >
-        {children}
-      </Link>
-    );
-  },
+  ) => (
+    <Link
+      className={classNames(classes.AppLink, {}, [className, classes[theme]])}
+      ref={ref}
+      to={to}
+      {...rest}
+    >
+      {children}
+    </Link>
+  ),
 );
 
 AppLink.displayName = 'AppLink';

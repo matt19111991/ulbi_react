@@ -1,4 +1,4 @@
-import type { RouteProps } from 'react-router-dom';
+import type { RouteProps } from 'react-router';
 
 import { UserRole } from '@/entities/User';
 

@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
 import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg';

@@ -1,6 +1,6 @@
 import { memo, useCallback, useMemo } from 'react';
 import type { CSSProperties } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 import UserIcon from '@/shared/assets/icons/user-filled-32-32.svg';
 

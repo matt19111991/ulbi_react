@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
 import { ArticlePageGreeting } from '@/features/ArticlePageGreeting';

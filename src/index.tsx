@@ -1,5 +1,6 @@
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter /* , createBrowserRouter , RouterProvider */ } from 'react-router-dom';
+import { BrowserRouter /* , createBrowserRouter */ } from 'react-router';
+// import { RouterProvider } from 'react-router/dom';
 
 import { ErrorBoundary } from '@/app/providers/ErrorBoundary';
 import { ForceUpdateProvider } from '@/app/providers/ForceUpdate';
@@ -57,13 +58,7 @@ const root = createRoot(container);
 */
 
 root.render(
-  <BrowserRouter
-    // подготовка к переходу на 'react-router-dom v.7'
-    future={{
-      v7_relativeSplatPath: true,
-      v7_startTransition: true,
-    }}
-  >
+  <BrowserRouter>
     <StoreProvider>
       <ErrorBoundary>
         <ForceUpdateProvider>

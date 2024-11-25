@@ -1,5 +1,5 @@
 import { memo, Suspense, useCallback } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router';
 
 import { ToggleFeatures } from '@/shared/lib/features';
 
@@ -7,7 +7,7 @@ import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 
 /*
   импортируем '<OutletPage />' и дочерние компоненты напрямую для демонстрация работы
-  компонента '<Outlet />' из 'react-router-dom'
+  компонента '<Outlet />' из 'react-router'
 */
 import { OutletFirst, OutletLast, OutletPage } from '@/pages/OutletPage';
 
@@ -80,7 +80,7 @@ export const AppRouter = memo(() => {
       {Object.values(routeConfig).map(renderRoutes)}
 
       {/*
-        демонстрация работы компонента '<Outlet />' из 'react-router-dom' отдельно от 'routeConfig':
+        демонстрация работы компонента '<Outlet />' из 'react-router' отдельно от 'routeConfig':
          '<OutletPage />'  => родительский компонент ('/outlet' роут), здесь определяется положение
                               дочерних компонентов, отрисовываемых по вложенным роутам
          '<OutletFirst />' => дочерний роут, отрисовываем по урлу '/outlet/first'

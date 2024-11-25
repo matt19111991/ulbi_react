@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import type { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router';
 
 import { getUserAuthData, getUserMounted, getUserRoles, UserRole } from '@/entities/User';
 

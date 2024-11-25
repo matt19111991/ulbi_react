@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { matchPath, useLocation } from 'react-router-dom';
+import { matchPath, useLocation } from 'react-router';
 
 import { AppRouteByPathMap, AppRoutes } from '@/shared/const/router';
 

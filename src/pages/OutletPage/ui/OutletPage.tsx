@@ -1,6 +1,6 @@
 import { memo, useCallback, useMemo } from 'react';
-import { Outlet } from 'react-router-dom';
-import type { To } from 'react-router-dom';
+import { Outlet } from 'react-router';
+import type { To } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
 import { getRouteOutlet, getRouteOutletFirst, getRouteOutletLast } from '@/shared/const/router';

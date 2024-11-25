@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import type { Location } from 'react-router-dom';
+import { MemoryRouter } from 'react-router';
+import type { Location } from 'react-router';
 import { I18nextProvider } from 'react-i18next';
 import type { ReducersMapObject } from '@reduxjs/toolkit';
 import { render } from '@testing-library/react';
@@ -62,14 +62,7 @@ export const TestProvider = ({ children, options = {} }: TestProviderProps) => {
   // 'MemoryRouter' используется для тестов
 
   return (
-    <MemoryRouter
-      // подготовка к переходу на 'react-router-dom v.7'
-      future={{
-        v7_relativeSplatPath: true,
-        v7_startTransition: true,
-      }}
-      initialEntries={[route]}
-    >
+    <MemoryRouter initialEntries={[route]}>
       <StoreProvider asyncReducers={asyncReducers} initialState={initialState}>
         <I18nextProvider i18n={i18nForTests}>
           <ThemeProvider initialTheme={theme}>

@@ -2,7 +2,7 @@
 
 ### Components
 
-`OutletPage` - компонент страницы для тестирования `Outlet` компонента из `react-router-dom`
+`OutletPage` - компонент страницы для тестирования `Outlet` компонента из `react-router`
 
 `OutletFirst` - первый вложенный компонент
 
