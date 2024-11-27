@@ -35,7 +35,7 @@ interface SettingsPageProps {
 }
 
 const SettingsPage = ({ className }: SettingsPageProps) => {
-  const [getSubscriptionListQuery, { data: subscriptions = [] }] =
+  const [getSubscriptionListQuery, { data: subscriptions = [], isLoading, isUninitialized }] =
     useLazyGetSubscriptionListQuery(undefined);
 
   const [removeSubscriptionMutation] = useRemoveSubscriptionMutation();
@@ -56,6 +56,28 @@ const SettingsPage = ({ className }: SettingsPageProps) => {
         ),
       ),
     [subscriptions, token, userAgent],
+  );
+
+  const isSubscriptionLoading = useMemo<boolean>(
+    () => isLoading || isUninitialized,
+    [isLoading, isUninitialized],
+  );
+
+  const subscriptionLabelText = useMemo<string>(() => {
+    if (isSubscriptionLoading) {
+      return `${t('Подписки загружаются, подождите')}...`;
+    }
+
+    if (isSubscribed) {
+      return t('Подписка на уведомления активна');
+    }
+
+    return t('Подписка на уведомления неактивна');
+  }, [isSubscribed, isSubscriptionLoading, t]);
+
+  const subscriptionButtonText = useMemo<string>(
+    () => (isSubscribed ? t('Отписаться') : t('Подписаться')),
+    [isSubscribed, t],
   );
 
   const onUpdateSubscription = useCallback(async () => {
@@ -96,11 +118,16 @@ const SettingsPage = ({ className }: SettingsPageProps) => {
               <TextRedesigned
                 className={classes.subscriptionTitle}
                 size='s'
-                title={t(`Подписка на уведомления ${isSubscribed ? 'активна' : 'неактивна'}`)}
+                title={subscriptionLabelText}
               />
 
-              <ButtonRedesigned color='normal' onClick={onUpdateSubscription} variant='filled'>
-                {isSubscribed ? t('Отписаться') : t('Подписаться')}
+              <ButtonRedesigned
+                color='normal'
+                disabled={isSubscriptionLoading}
+                onClick={onUpdateSubscription}
+                variant='filled'
+              >
+                {subscriptionButtonText}
               </ButtonRedesigned>
             </HStack>
           </VStack>
@@ -119,17 +146,15 @@ const SettingsPage = ({ className }: SettingsPageProps) => {
             <UIDesignSwitcher />
 
             <HStack className={classes.subscription} gap='16'>
-              <TextDeprecated
-                className={classes.subscriptionTitle}
-                title={t(`Подписка на уведомления ${isSubscribed ? 'активна' : 'неактивна'}`)}
-              />
+              <TextDeprecated className={classes.subscriptionTitle} title={subscriptionLabelText} />
 
               <ButtonDeprecated
                 className={classes.deprecatedBtn}
+                disabled={isSubscriptionLoading}
                 onClick={onUpdateSubscription}
                 theme={ButtonTheme.OUTLINE}
               >
-                {isSubscribed ? t('Отписаться') : t('Подписаться')}
+                {subscriptionButtonText}
               </ButtonDeprecated>
             </HStack>
           </VStack>
