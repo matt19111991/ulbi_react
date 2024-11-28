@@ -2,7 +2,7 @@ import fs from 'fs/promises';
 import { createRequire } from 'module';
 import path from 'path';
 import url from 'url';
-import { defineConfig, PluginOption } from 'vite';
+import { defineConfig, type PluginOption } from 'vite';
 import svgr from 'vite-plugin-svgr';
 import react from '@vitejs/plugin-react';
 
