@@ -55,7 +55,7 @@ const vapidKeys = {
 };
 
 // дефолтные middleware от 'json-server'
-server.use(jsonServer.defaults());
+// server.use(jsonServer.defaults());
 
 // middleware для небольшой задержки, чтобы запрос проходил не мгновенно; имитация реального API
 server.use(async (req, res, next) => {
@@ -178,6 +178,28 @@ server.post('/login', (req, res) => {
     }
 
     return res.status(403).json({ message: 'USER NOT FOUND' });
+  } catch (e) {
+    return res.status(500).json({ message: e.message });
+  }
+});
+
+// '/articles' endpoint (POST)
+server.post('/articles', (req, res) => {
+  try {
+    const { body } = req;
+
+    const db = JSON.parse(fs.readFileSync(dbPath, 'UTF-8'));
+
+    const { articles = [] } = db;
+
+    const newArticleId = `${articles.length ? articles[0].id++ : 0}`;
+
+    const newArticle = {
+      id: newArticleId,
+      ...body
+    }
+
+    return res.status(201).json(newArticle);
   } catch (e) {
     return res.status(500).json({ message: e.message });
   }
