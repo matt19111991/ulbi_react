@@ -186,11 +186,11 @@ server.post('/login', (req, res) => {
 // '/articles' endpoint (POST)
 server.post('/articles', (req, res) => {
   try {
-    const { body } = req;
+    const { userId, ...body } = req.body;
 
     const db = JSON.parse(fs.readFileSync(dbPath, 'UTF-8'));
 
-    const { articles = [], ...dbFile } = db;
+    const { articles = [], users = [], ...dbFile } = db;
 
     let newArticleId = '0';
 
@@ -200,19 +200,35 @@ server.post('/articles', (req, res) => {
       newArticleId = lastArticleId.toString();
     }
 
+    const date = new Date();
+
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+
     const newArticle = {
+      ...body,
+      createdAt: `${day}.${month}.${year}`,
       id: newArticleId,
-      ...body
+      views: 0,
     }
 
     const updatedDb = {
-      articles: [...articles, newArticle],
+      articles: [...articles, { ...newArticle, userId }],
       ...dbFile,
+      users,
     };
 
     fs.writeFileSync(dbPath, JSON.stringify(updatedDb, null, 2));
 
-    return res.status(201).json({ article: newArticle });
+    const userToExpand = users.find(user => user.id === userId);
+
+    const response = {
+      ...newArticle,
+      user: userToExpand
+    };
+
+    return res.status(201).json({ article: response });
   } catch (e) {
     return res.status(500).json({ message: e.message });
   }
