@@ -1,3 +1,5 @@
+export { articlesPageActions } from './model/slice/articlesPageSlice';
+
 export type { ArticlesPageSchema } from './model/types/articlesPageSchema';
 
 // 'as' для удобства

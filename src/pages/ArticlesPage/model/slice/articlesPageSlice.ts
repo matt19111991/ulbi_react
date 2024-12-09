@@ -92,6 +92,13 @@ export const articlesPageSlice = createSlice({
   name: 'articlesPage',
   initialState: articlesAdapter.getInitialState(initialState),
   reducers: {
+    addArticleToTheList: (state, action: PayloadAction<Article>) => {
+      const article = action.payload;
+
+      state.entities[article.id] = article;
+
+      state.ids = [...state.ids, article.id];
+    },
     initState: (state) => {
       // 'localStorage' все типы приводит к 'string', поэтому используем 'as ArticleView'
       const storedView = localStorage.getItem(ARTICLE_VIEW_LOCALSTORAGE_KEY) as ArticleView;

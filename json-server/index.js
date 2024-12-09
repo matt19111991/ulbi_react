@@ -190,16 +190,29 @@ server.post('/articles', (req, res) => {
 
     const db = JSON.parse(fs.readFileSync(dbPath, 'UTF-8'));
 
-    const { articles = [] } = db;
+    const { articles = [], ...dbFile } = db;
 
-    const newArticleId = `${articles.length ? articles[0].id++ : 0}`;
+    let newArticleId = '0';
+
+    if (articles.length) {
+      const lastArticleId = +articles.at(-1).id + 1;
+
+      newArticleId = lastArticleId.toString();
+    }
 
     const newArticle = {
       id: newArticleId,
       ...body
     }
 
-    return res.status(201).json(newArticle);
+    const updatedDb = {
+      articles: [...articles, newArticle],
+      ...dbFile,
+    };
+
+    fs.writeFileSync(dbPath, JSON.stringify(updatedDb, null, 2));
+
+    return res.status(201).json({ article: newArticle });
   } catch (e) {
     return res.status(500).json({ message: e.message });
   }

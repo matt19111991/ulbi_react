@@ -1,4 +1,5 @@
 import { ArticleSortField, ArticleType, ArticleView } from '@/entities/Article/testing';
+import type { Article } from '@/entities/Article/testing';
 
 import { ARTICLE_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 
@@ -18,6 +19,43 @@ describe('articlesPageSlice', () => {
   });
 
   describe('sync actions', () => {
+    test('test add a new article to the list', () => {
+      window.localStorage.setItem(ARTICLE_VIEW_LOCALSTORAGE_KEY, ArticleView.LIST);
+
+      const state: DeepPartial<ArticlesPageSchema> = {
+        entities: articles.entities,
+        ids: articles.ids,
+      };
+
+      const newArticle: Article = {
+        blocks: [],
+        createdAt: '09.12.2024',
+        id: '3',
+        img: 'https://ik.imagekit.io/ably/ghost/prod/2023/12/choosing-the-best-javascript-frameworks-for-your-next-project.png?tr=w-1728,q-50',
+        subtitle: 'Что нового в JS за 2023 год?',
+        title: 'Javascript news',
+        type: [ArticleType.IT],
+        user: {
+          id: '1',
+          username: 'Jack',
+        },
+        views: 0,
+      };
+
+      const reducer = articlesPageReducer(
+        state as ArticlesPageSchema,
+        articlesPageActions.addArticleToTheList(newArticle),
+      );
+
+      expect(reducer).toEqual({
+        entities: {
+          ...articles.entities,
+          [newArticle.id]: newArticle,
+        },
+        ids: [...articles.ids, newArticle.id],
+      });
+    });
+
     test('test set init state for article view list', () => {
       window.localStorage.setItem(ARTICLE_VIEW_LOCALSTORAGE_KEY, ArticleView.LIST);
 

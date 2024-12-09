@@ -5,6 +5,9 @@ import type { ThunkConfig } from '@/app/providers/StoreProvider';
 import type { Article } from '@/entities/Article';
 import { getUserAuthData } from '@/entities/User';
 
+// eslint-disable-next-line path-checker-1911/layer-imports
+import { articlesPageActions } from '@/pages/ArticlesPage'; // импорт со страницы как исключение
+
 import type { CreateArticleForm } from '../../types/createArticleFormSchema';
 
 export const createArticle = createAsyncThunk<
@@ -44,13 +47,24 @@ export const createArticle = createAsyncThunk<
        вызываем вместо базового 'axios' свой кастомный инстанс 'api' (axios):
       'thunkApi.extra.api.post === axios.post'
    */
-    const response = await thunkApi.extra.api.post<Article>('articles', newArticleData);
+    const response = await thunkApi.extra.api.post<{ article: Article }>(
+      'articles',
+      newArticleData,
+    );
 
     if (!response.data) {
       return thunkApi.rejectWithValue('No article data');
     }
 
-    return response.data;
+    const createdArticle = response.data.article;
+
+    const { createdAt, id, user, views } = createdArticle;
+
+    const articleToStore = { ...form, createdAt, id, user, views };
+
+    thunkApi.dispatch(articlesPageActions.addArticleToTheList(articleToStore));
+
+    return createdArticle;
   } catch (e) {
     return thunkApi.rejectWithValue(e instanceof Error ? e.message : 'Unexpected error');
   }

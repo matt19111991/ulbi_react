@@ -27,11 +27,17 @@ describe('createArticle', () => {
     const thunk = new TestAsyncThunk(createArticle, authorizedState);
 
     // указываем, что должно вернуться из 'post' запроса
-    thunk.api.post.mockReturnValue(Promise.resolve({ data: form }));
+    thunk.api.post.mockReturnValue(
+      Promise.resolve({
+        data: {
+          article: form,
+        },
+      }),
+    );
 
     const result = await thunk.callThunk(form);
 
-    expect(thunk.dispatch).toHaveBeenCalledTimes(2);
+    expect(thunk.dispatch).toHaveBeenCalledTimes(3);
 
     expect(thunk.api.post).toHaveBeenCalledWith('articles', {
       ...form,
