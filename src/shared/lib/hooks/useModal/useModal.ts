@@ -1,10 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import type {
-  MutableRefObject, // 'ref', который можно менять
-  // RefObject,     // 'ref', который нельзя менять
-} from 'react';
-
 import { useEscapeKey } from '../useEscapeKey/useEscapeKey';
 
 interface UseModalProps {
@@ -35,7 +30,7 @@ export const useModal = ({ animationCloseDelay, isOpen, onClose }: UseModalProps
   const [isMounted, setIsMounted] = useState(false);
 
   // 'ReturnType<typeof setTimeout>' => получаем тип, который возвращает функция 'setTimeout()'
-  const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const onCloseModal = useCallback(() => {
     if (onClose) {

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import type { MutableRefObject } from 'react';
+import type { RefObject } from 'react';
 
 interface UseInfiniteScrollOptions {
   /**
@@ -10,12 +10,12 @@ interface UseInfiniteScrollOptions {
   /**
    * Элемент-триггер, при пересечении которого вызывается 'callback'
    */
-  triggerRef: MutableRefObject<HTMLDivElement | null>;
+  triggerRef: RefObject<HTMLDivElement | null>;
 
   /**
    * Прокручиваемый элемент, внутри которого находится элемент-триггер
    */
-  wrapperRef?: MutableRefObject<HTMLElement | null>;
+  wrapperRef?: RefObject<HTMLElement | null>;
 }
 
 /**

@@ -1,12 +1,5 @@
 import { memo, useEffect, useRef, useState } from 'react';
-
-import type {
-  ChangeEvent,
-  HTMLInputTypeAttribute,
-  InputHTMLAttributes,
-  MutableRefObject,
-  UIEvent,
-} from 'react';
+import type { ChangeEvent, HTMLInputTypeAttribute, InputHTMLAttributes, UIEvent } from 'react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 import type { Mods } from '@/shared/lib/classNames/classNames';
@@ -80,7 +73,7 @@ export const Input = memo(
     const [caretPosition, setCaretPosition] = useState(0);
     const [isFocused, setIsFocused] = useState(false);
 
-    const ref: MutableRefObject<HTMLInputElement | null> = useRef(null);
+    const ref = useRef<HTMLInputElement>(null);
 
     const isCaretVisible = isFocused && !readOnly && !rest.disabled;
 

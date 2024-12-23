@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import type { MutableRefObject, ReactNode, UIEvent } from 'react';
+import type { ReactNode, UIEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 
@@ -74,10 +74,10 @@ export const Page = ({
 
   const [mounted, setMounted] = useState(false);
 
-  const triggerRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
 
   // нет отдельного типа 'HTMLMainElement'
-  const wrapperRef: MutableRefObject<HTMLElement | null> = useRef(null);
+  const wrapperRef = useRef<HTMLElement>(null);
 
   useInfiniteScroll({
     callback: onScrollEnd,
