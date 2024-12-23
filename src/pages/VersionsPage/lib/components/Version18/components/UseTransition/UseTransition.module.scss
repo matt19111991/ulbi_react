@@ -1,0 +1,49 @@
+.loader {
+  background-color: var(--accent-redesigned);
+  bottom: 4px;
+  display: none;
+  height: 3px;
+  left: 17px;
+  overflow: hidden;
+  position: absolute;
+  width: 62px;
+
+  &::after {
+    animation: loading 2s linear infinite;
+    background-color: var(--bg-redesigned);
+    box-sizing: border-box;
+    content: '';
+    height: 3px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 192px;
+  }
+}
+
+.pending {
+  [data-testid='Tab.posts'] {
+    opacity: .7;
+    position: relative;
+
+    .loader {
+      display: inline-block;
+    }
+  }
+}
+
+.tabs {
+  padding-top: 24px;
+};
+
+@keyframes loading {
+  0% {
+    left: 0;
+    transform: translateX(-100%);
+  }
+
+  100% {
+    left: 100%;
+    transform: translateX(0%);
+  }
+}
