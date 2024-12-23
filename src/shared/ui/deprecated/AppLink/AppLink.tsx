@@ -33,6 +33,8 @@ interface AppLinkProps extends LinkProps {
   theme?: AppLinkTheme;
 }
 
+// 'forwardRef()' устарел, здесь для примера, в 'React v.19' 'ref' можно доставать из 'props'
+
 // от 'React.memo' нет смысла, т.к. 'forwardRef()' на каждый ререндер возвращает новую ссылку
 
 /**

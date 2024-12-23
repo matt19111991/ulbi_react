@@ -31,8 +31,9 @@ interface AppLinkProps extends LinkProps {
   variant?: AppLinkVariant;
 }
 
-// от 'React.memo' нет смысла, т.к. 'forwardRef()' на каждый ререндер возвращает новую ссылку
+// 'forwardRef()' устарел, здесь для примера, в 'React v.19' 'ref' можно доставать из 'props'
 
+// от 'React.memo' нет смысла, т.к. 'forwardRef()' на каждый ререндер возвращает новую ссылку
 export const AppLink = forwardRef(
   (
     { activeClassName = '', className, children, to, variant = 'primary', ...rest }: AppLinkProps,
