@@ -11,6 +11,18 @@ export function buildWebpackConfig(options: BuildOptions): Configuration {
   const { isDev, mode, paths } = options;
 
   return {
+    /*
+      из 'React v.19' был удален метод 'findDOMNode', а библиотека
+     'react-virtualized' устарела и обновляться до этой версии 'Reacta'
+      не будет, поэтому игнорируем предупреждения об этом
+     */
+    ignoreWarnings: [
+      {
+        message: /export 'findDOMNode' \(imported as (.*)\) was not found in 'react-dom'/,
+        module: /react-virtualized/,
+      },
+    ],
+
     mode,
 
 /*  entry: {
