@@ -11,6 +11,7 @@ import { MainPage } from '@/pages/MainPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { SettingsPage } from '@/pages/SettingsPage';
+import { VersionsPage } from '@/pages/VersionsPage';
 
 import {
   AppRoutes,
@@ -24,6 +25,7 @@ import {
   getRouteMain,
   getRouteProfile,
   getRouteSettings,
+  getRouteVersions,
 } from '@/shared/const/router';
 
 import type { AppRouteProps } from '../model/types/router';
@@ -76,6 +78,10 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
   [AppRoutes.SETTINGS]: {
     element: <SettingsPage />,
     path: getRouteSettings(),
+  },
+  [AppRoutes.VERSIONS]: {
+    element: <VersionsPage />,
+    path: getRouteVersions(),
   },
 
   // должен идти последним (охватывает все маршруты, кроме указанных выше)

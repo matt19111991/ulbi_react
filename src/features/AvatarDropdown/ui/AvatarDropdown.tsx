@@ -9,10 +9,11 @@ import {
   getRouteOutlet,
   getRouteProfile,
   getRouteSettings,
+  getRouteVersions,
 } from '@/shared/const/router';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { ToggleFeatures } from '@/shared/lib/features';
+import { getFeatureFlag, ToggleFeatures } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 import { Avatar as AvatarDeprecated } from '@/shared/ui/deprecated/Avatar';
@@ -36,6 +37,8 @@ interface AvatarDropdownProps {
 export const AvatarDropdown = memo(({ className, storybookAvatar }: AvatarDropdownProps) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
+
+  const isAppRedesigned = getFeatureFlag('isAppRedesigned');
 
   const authData = useSelector(getUserAuthData);
   const isAdmin = useSelector(isUserAdmin);
@@ -72,8 +75,17 @@ export const AvatarDropdown = memo(({ className, storybookAvatar }: AvatarDropdo
       });
     }
 
+    if (isAppRedesigned) {
+      const versionsPage = {
+        content: t('Версии'),
+        href: getRouteVersions(),
+      };
+
+      items.splice(3, 0, versionsPage);
+    }
+
     return items;
-  }, [authData?.id, isAdmin, isManager, onLogout, t]);
+  }, [authData?.id, isAdmin, isAppRedesigned, isManager, onLogout, t]);
 
   const avatarSrc = __PROJECT__ === 'storybook' ? storybookAvatar : authData?.avatar;
 

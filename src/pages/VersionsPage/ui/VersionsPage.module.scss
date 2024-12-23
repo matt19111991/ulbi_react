@@ -1,0 +1,45 @@
+.VersionsPage {
+  font: var(--font-l);
+  padding: 16px 24px;
+}
+
+.tabs {
+  gap: 16px;
+  padding: 8px 0 0 2px;
+
+  & > div {
+    justify-content: center;
+    width: 100px;
+  }
+}
+
+@media screen and (max-width: 1800px) {
+  .VersionsPage {
+    position: relative;
+    top: 100px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .VersionsPage {
+    font: var(--font-m-redesigned);
+    padding-left: 0;
+    top: 34px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .VersionsPage {
+    font: var(--font-s-redesigned);
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .VersionsPage {
+    & > div {
+      &:first-child {
+        width: 50%;
+      };
+    };
+  }
+}

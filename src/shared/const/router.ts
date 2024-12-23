@@ -10,6 +10,7 @@ export enum AppRoutes {
   PROFILE = 'profile',
   NOT_FOUND = 'notFound',
   SETTINGS = 'settings',
+  VERSIONS = 'versions',
 }
 
 export const getRouteMain = () => '/';
@@ -22,6 +23,7 @@ export const getRouteArticles = () => '/articles';
 export const getRouteForbidden = () => '/forbidden';
 export const getRouteProfile = (id: string) => `/profile/${id}`;
 export const getRouteSettings = () => '/settings';
+export const getRouteVersions = () => '/versions';
 
 /*
  '<Outlet />' роуты обрабатываем по-особому (не указываем в 'AppRoutes' и 'AppRouteByPathMap'),
@@ -49,4 +51,5 @@ export const AppRouteByPathMap: Record<string, AppRoutes> = {
   [getRouteForbidden()]: AppRoutes.FORBIDDEN,
   [getRouteProfile(':id')]: AppRoutes.PROFILE,
   [getRouteSettings()]: AppRoutes.SETTINGS,
+  [getRouteVersions()]: AppRoutes.VERSIONS,
 };

@@ -24,6 +24,7 @@
 - Forbidden: `/forbidden`
 - Profile: `/profile/:id`
 - Settings: `/settings`
+- Versions: `/versions`
 
 ### Types
 
