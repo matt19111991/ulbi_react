@@ -1,4 +1,5 @@
 import { memo, useCallback, useMemo } from 'react';
+import type { JSX } from 'react';
 import { Outlet } from 'react-router';
 import type { To } from 'react-router';
 import { useTranslation } from 'react-i18next';

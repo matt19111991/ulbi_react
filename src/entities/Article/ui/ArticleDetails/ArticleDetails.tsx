@@ -1,4 +1,5 @@
 import { memo, useCallback } from 'react';
+import type { JSX } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';

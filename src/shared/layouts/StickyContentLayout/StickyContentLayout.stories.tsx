@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';

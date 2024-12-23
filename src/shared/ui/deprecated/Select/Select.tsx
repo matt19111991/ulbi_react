@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import type { ChangeEvent } from 'react';
+import type { ChangeEvent, JSX } from 'react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 import type { Mods } from '@/shared/lib/classNames/classNames';

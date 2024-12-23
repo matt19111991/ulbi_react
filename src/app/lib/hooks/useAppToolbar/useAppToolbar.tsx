@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { AppRoutes } from '@/shared/const/router';
 
 import { useRouteChange } from '@/shared/lib/hooks/useRouteChange/useRouteChange';

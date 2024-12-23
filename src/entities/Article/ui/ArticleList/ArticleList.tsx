@@ -1,5 +1,5 @@
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
-import type { HTMLAttributeAnchorTarget, ReactNode } from 'react';
+import type { HTMLAttributeAnchorTarget, JSX, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AutoSizer, List } from 'react-virtualized';
 import type { ListRowProps } from 'react-virtualized';
