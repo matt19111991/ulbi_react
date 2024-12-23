@@ -61,7 +61,7 @@ export const TopLeft: Story = {
 
 TopLeft.decorators = [
   IndentsDecorator,
-  (Story: StoryFn) => (
+  (Story: ReturnType<StoryFn>) => (
     <div style={{ paddingTop: 108 }}>
       <Story />
     </div>
@@ -79,7 +79,7 @@ export const TopRight: Story = {
 
 TopRight.decorators = [
   IndentsDecorator,
-  (Story: StoryFn) => (
+  (Story: ReturnType<StoryFn>) => (
     <div style={{ padding: '108px 0 0 24px' }}>
       <Story />
     </div>
@@ -108,7 +108,7 @@ export const BottomRight: Story = {
 
 BottomRight.decorators = [
   IndentsDecorator,
-  (Story: StoryFn) => (
+  (Story: ReturnType<StoryFn>) => (
     <div style={{ paddingLeft: 24 }}>
       <Story />
     </div>

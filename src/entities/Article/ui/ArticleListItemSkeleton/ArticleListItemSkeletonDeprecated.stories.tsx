@@ -9,13 +9,13 @@ import { ArticleView } from '../../model/consts/articleConsts';
 
 import { ArticleListItemSkeleton } from './ArticleListItemSkeleton';
 
-const ListDecorator = (Story: StoryFn) => (
+const ListDecorator = (Story: ReturnType<StoryFn>) => (
   <div style={{ height: '100vh' }}>
     <Story />
   </div>
 );
 
-const PlateDecorator = (Story: StoryFn) => (
+const PlateDecorator = (Story: ReturnType<StoryFn>) => (
   <div style={{ width: '262px' }}>
     <Story />
   </div>

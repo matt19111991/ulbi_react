@@ -59,7 +59,7 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-const FullHeightDecorator = (Story: StoryFn) => (
+const FullHeightDecorator = (Story: ReturnType<StoryFn>) => (
   <div style={{ display: 'grid' }}>
     <Story />
   </div>

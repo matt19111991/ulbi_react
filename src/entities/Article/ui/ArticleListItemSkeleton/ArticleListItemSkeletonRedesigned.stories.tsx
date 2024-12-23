@@ -10,7 +10,7 @@ import { ArticleView } from '../../model/consts/articleConsts';
 
 import { ArticleListItemSkeleton } from './ArticleListItemSkeleton';
 
-const PlateDecorator = (Story: StoryFn) => (
+const PlateDecorator = (Story: ReturnType<StoryFn>) => (
   <div style={{ backgroundColor: 'var(--bg-redesigned)', padding: 8 }}>
     <Story />
   </div>

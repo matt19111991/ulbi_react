@@ -16,7 +16,7 @@ import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2
 
 import { Navbar } from './Navbar';
 
-const FullWidthDecorator = (Story: StoryFn) => (
+const FullWidthDecorator = (Story: ReturnType<StoryFn>) => (
   <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
     <Story />
   </div>

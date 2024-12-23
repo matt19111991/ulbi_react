@@ -9,7 +9,7 @@ import { Theme } from '@/shared/const/theme';
 
 import { CountrySelect } from './CountrySelect';
 
-const PaddingTopDecorator = (Story: StoryFn) => (
+const PaddingTopDecorator = (Story: ReturnType<StoryFn>) => (
   <div style={{ paddingTop: 232 }}>
     <Story />
   </div>

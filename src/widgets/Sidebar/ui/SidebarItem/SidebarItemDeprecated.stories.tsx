@@ -21,7 +21,7 @@ const sidebarItem: SidebarItemType = {
   text: 'Главная',
 };
 
-const InvertedBgDecorator = (Story: StoryFn) => (
+const InvertedBgDecorator = (Story: ReturnType<StoryFn>) => (
   <div style={{ backgroundColor: 'var(--inverted-bg-color)' }}>
     <Story />
   </div>

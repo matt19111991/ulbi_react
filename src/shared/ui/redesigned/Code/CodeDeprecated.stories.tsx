@@ -10,7 +10,7 @@ import { Code } from './Code';
 const codeText =
   '<!DOCTYPE html>\n<html>\n  <body>\n    <p id="hello"></p>\n\n    <script>\n      document.getElementById("hello").innerHTML = "Hello, world!";\n    </script>\n  </body>\n</html>;';
 
-const CodeDecorator = (Story: StoryFn) => (
+const CodeDecorator = (Story: ReturnType<StoryFn>) => (
   <div style={{ position: 'relative' }}>
     <Story />
   </div>

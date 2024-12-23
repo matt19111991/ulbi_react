@@ -11,7 +11,7 @@ import { Theme } from '@/shared/const/theme';
 
 import { Input } from './Input';
 
-const ColoredDecorator = (Story: StoryFn) => (
+const ColoredDecorator = (Story: ReturnType<StoryFn>) => (
   <div style={{ color: 'var(--icon-redesigned)' }}>
     <Story />
   </div>

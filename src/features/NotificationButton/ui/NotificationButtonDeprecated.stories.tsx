@@ -8,7 +8,7 @@ import { Theme } from '@/shared/const/theme';
 
 import { NotificationButton } from './NotificationButton';
 
-const RightAlignDecorator = (Story: StoryFn) => (
+const RightAlignDecorator = (Story: ReturnType<StoryFn>) => (
   <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
     <Story />
   </div>

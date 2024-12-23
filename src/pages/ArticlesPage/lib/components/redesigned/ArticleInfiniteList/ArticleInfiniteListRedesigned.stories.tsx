@@ -19,7 +19,7 @@ import { articlesPageReducer } from '../../../../model/slice/articlesPageSlice';
 
 import { ArticleInfiniteList } from './ArticleInfiniteList';
 
-const MaxWidthDecorator = (Story: StoryFn) => (
+const MaxWidthDecorator = (Story: ReturnType<StoryFn>) => (
   <div style={{ width: 1274 }}>
     <Story />
   </div>

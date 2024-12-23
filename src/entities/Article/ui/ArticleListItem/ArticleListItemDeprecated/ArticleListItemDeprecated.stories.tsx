@@ -11,7 +11,7 @@ import { ArticleView } from '../../../model/consts/articleConsts';
 
 import { ArticleListItemDeprecated } from './ArticleListItemDeprecated';
 
-const PlateDecorator = (Story: StoryFn) => (
+const PlateDecorator = (Story: ReturnType<StoryFn>) => (
   <div style={{ width: '262px' }}>
     <Story />
   </div>

@@ -19,7 +19,7 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-const LogoDecorator = (Story: StoryFn) => (
+const LogoDecorator = (Story: ReturnType<StoryFn>) => (
   <div style={{ fill: 'var(--icon-redesigned)' }}>
     <Story />
   </div>

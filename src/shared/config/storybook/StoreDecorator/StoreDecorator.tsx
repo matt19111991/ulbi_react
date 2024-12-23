@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { StoryFn } from '@storybook/react';
 
 import { StoreProvider } from '@/app/providers/StoreProvider';
@@ -9,7 +10,7 @@ import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2
 
 export const StoreDecorator =
   (state: DeepPartial<StateSchema>, asyncReducers?: ReducersList) =>
-  (Story: StoryFn): JSX.Element => {
+  (Story: ReturnType<StoryFn>): JSX.Element => {
     /*
       Если вернуть 'JSX' то будет ошибка 'ESLint':
      'Component definition is missing display name(react/display-name)'

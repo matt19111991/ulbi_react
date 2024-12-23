@@ -22,7 +22,7 @@ const sidebarItem: SidebarItemType = {
   text: 'Главная',
 };
 
-const HeightCutDecorator = (Story: StoryFn) => (
+const HeightCutDecorator = (Story: ReturnType<StoryFn>) => (
   <div style={{ height: 32, overflow: 'hidden' }}>
     <Story />
   </div>

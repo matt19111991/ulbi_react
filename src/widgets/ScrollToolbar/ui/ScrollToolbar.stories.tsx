@@ -20,7 +20,7 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-const FullHeightDecorator = (Story: StoryFn) => (
+const FullHeightDecorator = (Story: ReturnType<StoryFn>) => (
   <div style={{ display: 'flex', height: '100vh', width: 32 }}>
     <Story />
   </div>
