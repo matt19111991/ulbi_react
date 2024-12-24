@@ -6,7 +6,10 @@ import { Tabs } from '@/shared/ui/redesigned/Tabs';
 
 import { Action } from './components/Action/Action';
 import { Context } from './components/Context/Context';
+import { MetaData } from './components/MetaData/MetaData';
 import { NoForwardRef } from './components/NoForwardRef/NoForwardRef';
+import { Preloading } from './components/Preloading/Preloading';
+import { RefCleanUp } from './components/RefCleanUp/RefCleanUp';
 import { Use } from './components/Use/Use';
 import { UseActionState } from './components/UseActionState/UseActionState';
 import { UseOptimistic } from './components/UseOptimistic/UseOptimistic';
@@ -21,6 +24,9 @@ const tabs: TabItem[] = [
   { content: 'use', value: 'use' },
   { content: 'noForwardRef', value: 'noForwardRef' },
   { content: 'context', value: 'context' },
+  { content: 'ref cleanup', value: 'ref cleanup' },
+  { content: 'metadata', value: 'metadata' },
+  { content: 'preloading', value: 'preloading' },
 ];
 
 export const Version19 = memo(() => {
@@ -46,6 +52,12 @@ export const Version19 = memo(() => {
         return <NoForwardRef />;
       case 'context':
         return <Context />;
+      case 'ref cleanup':
+        return <RefCleanUp />;
+      case 'metadata':
+        return <MetaData />;
+      case 'preloading':
+        return <Preloading />;
       default:
         return null;
     }
