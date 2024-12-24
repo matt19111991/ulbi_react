@@ -21,5 +21,6 @@
 - хук `useFormStatus`
 - хук `useOptimistic`
 - функция `forwardRef` больше не нужна, `ref` достается из `props`
+- предпочтение в использовании `<Context />` вместо `<Context.Provider />`
 
 Также используется фейковый запрос `fakeLogin`

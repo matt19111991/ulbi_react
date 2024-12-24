@@ -5,6 +5,7 @@ import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Tabs } from '@/shared/ui/redesigned/Tabs';
 
 import { Action } from './components/Action/Action';
+import { Context } from './components/Context/Context';
 import { NoForwardRef } from './components/NoForwardRef/NoForwardRef';
 import { Use } from './components/Use/Use';
 import { UseActionState } from './components/UseActionState/UseActionState';
@@ -19,6 +20,7 @@ const tabs: TabItem[] = [
   { content: 'useOptimistic', value: 'useOptimistic' },
   { content: 'use', value: 'use' },
   { content: 'noForwardRef', value: 'noForwardRef' },
+  { content: 'context', value: 'context' },
 ];
 
 export const Version19 = memo(() => {
@@ -42,6 +44,8 @@ export const Version19 = memo(() => {
         return <Use />;
       case 'noForwardRef':
         return <NoForwardRef />;
+      case 'context':
+        return <Context />;
       default:
         return null;
     }
