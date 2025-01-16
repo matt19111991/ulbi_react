@@ -82,6 +82,7 @@ export const Action = () => {
 
         {result && (
           <Text
+            /* i18next-extract-disable-next-line */
             text={t(
               result
                 .split(' ')
@@ -98,6 +99,7 @@ export const Action = () => {
           />
         )}
 
+        {/* i18next-extract-disable-next-line */}
         {error && <Text text={t(error)} variant='error' />}
       </VStack>
     </form>

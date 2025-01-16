@@ -1,11 +1,11 @@
-# Cобираем образ на основе 'Node' v.23 ('alpine' - легковесная версия 'Ubuntu')
-FROM node:23.1-alpine
+# Cобираем образ на основе 'Node' v.22 ('alpine' - легковесная версия 'Ubuntu')
+FROM node:22-alpine
 
 # Копируем урезанный 'package.json' файл внутрь образа для ускорения повторной установки модулей
 COPY docker/server/package*.json ./
 
-# Обновляем 'npm' и отключаем 'ExperimentalWarnings' в консоли (предупреждения возникают в 'Node' v.23)
-RUN export NODE_OPTIONS="--disable-warning=ExperimentalWarning" && npm install -g npm@9.7.1
+# Обновляем 'npm' и отключаем 'ExperimentalWarnings' в консоли (предупреждения возникают в 'Node' v.22)
+RUN export NODE_OPTIONS="--disable-warning=ExperimentalWarning" && npm install -g npm
 
 # Устанавливаем зависимости
     # 'npm ci' использует 'package-lock.json' файл для установки точных версий зависимостей,

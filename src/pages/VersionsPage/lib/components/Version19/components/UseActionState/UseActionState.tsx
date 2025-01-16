@@ -95,6 +95,7 @@ export const UseActionState = () => {
           <Text text={t('Пользователь залогинился', { user: form.data.login })} variant='accent' />
         )}
 
+        {/* i18next-extract-disable-next-line */}
         {form?.error && <Text text={t(form?.error)} variant='error' />}
       </VStack>
     </form>
