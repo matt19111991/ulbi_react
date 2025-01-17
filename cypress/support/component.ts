@@ -4,6 +4,6 @@
   расположение этого файла
 */
 
-import { mount } from 'cypress/react18';
+import { mount } from 'cypress/react';
 
 Cypress.Commands.add('mount', mount); // команду 'mount' обязательно нужно описать

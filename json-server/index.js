@@ -186,7 +186,7 @@ server.post('/login', (req, res) => {
 // '/articles' endpoint (POST)
 server.post('/articles', (req, res) => {
   try {
-    const { userId, ...body } = req.body;
+    const { id: articleId, userId, ...body } = req.body;
 
     const db = JSON.parse(fs.readFileSync(dbPath, 'UTF-8'));
 
@@ -194,7 +194,9 @@ server.post('/articles', (req, res) => {
 
     let newArticleId = '0';
 
-    if (articles.length) {
+    if (articleId === 'cy_test') {
+      newArticleId = articleId;
+    } else if (articles.length) {
       const lastArticleId = +articles.at(-1).id + 1;
 
       newArticleId = lastArticleId.toString();
