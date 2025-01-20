@@ -3,8 +3,10 @@ import type { RefObject } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Button } from '@/shared/ui/redesigned/Button';
-import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
+import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
+
+import classes from './NoForwardRef.module.scss';
 
 const InputWithForwardRef = forwardRef((props, ref) => {
   console.log('--- forwardRef props ---', props);
@@ -44,13 +46,17 @@ export const NoForwardRef = () => {
   const withForwardRef = useRef<HTMLButtonElement>(null);
 
   return (
-    <HStack gap='24'>
+    <VStack align='start' gap='24'>
       <VStack align='start' gap='24'>
         <Text size='l' text='forwardRef' />
 
         <InputWithForwardRef ref={withForwardRef} />
 
         <Button onClick={() => withForwardRef.current?.focus()}>{t('Фокус')}</Button>
+      </VStack>
+
+      <VStack className={classes.separator} max>
+        <hr />
       </VStack>
 
       <VStack align='start' gap='24'>
@@ -60,6 +66,6 @@ export const NoForwardRef = () => {
 
         <Button onClick={() => noForwardRef.current?.focus()}>{t('Фокус')}</Button>
       </VStack>
-    </HStack>
+    </VStack>
   );
 };

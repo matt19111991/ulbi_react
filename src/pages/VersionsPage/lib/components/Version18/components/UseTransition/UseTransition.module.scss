@@ -32,6 +32,12 @@
   }
 }
 
+.separator {
+  & > * {
+    width: 100%;
+  }
+}
+
 .tabs {
   padding-top: 24px;
 };

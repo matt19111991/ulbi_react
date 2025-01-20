@@ -3,6 +3,8 @@ import type { JSX } from 'react';
 
 import { SlowPost } from '../SlowPost/SlowPost';
 
+import classes from './SlowList.module.scss';
+
 interface SlowListProps {
   /**
    * Использовать индексы при отображении элементов или передаваемый текст?
@@ -23,7 +25,7 @@ export const SlowList = memo(({ countable = true, text = '' }: SlowListProps) =>
     items.push(<SlowPost key={i} text={countable ? `#${i + 1}` : `Текст: ${text}`} />);
   }
 
-  return <ul>{items}</ul>;
+  return <ul className={classes.list}>{items}</ul>;
 });
 
 SlowList.displayName = 'SlowList';

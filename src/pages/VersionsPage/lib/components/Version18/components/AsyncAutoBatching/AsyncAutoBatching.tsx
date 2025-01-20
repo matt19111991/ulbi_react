@@ -102,13 +102,13 @@ export const AsyncAutoBatching = () => {
         <Button onClick={onFetch}>{t('Промис')}</Button>
       </HStack>
 
-      <HStack gap='24'>
+      <VStack align='start' gap='24'>
         <Button onClick={onIdenticalStates}>{t('Одинаковые состояния')}</Button>
 
         <Button color='error' onClick={onFlushSync}>
           {t('Без автобатчинга')}
         </Button>
-      </HStack>
+      </VStack>
     </VStack>
   );
 };

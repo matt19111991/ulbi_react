@@ -27,7 +27,7 @@ export const Context = () => {
   const { t } = useTranslation();
 
   return (
-    <HStack gap='32'>
+    <VStack align='start' gap='24'>
       <ChildComponent title={t('Без контекста')} />
 
       {/* устарело */}
@@ -39,6 +39,6 @@ export const Context = () => {
       <MessageContext value={{ message: 'без провайдера' }}>
         <ChildComponent title={'<Context />'} />
       </MessageContext>
-    </HStack>
+    </VStack>
   );
 };

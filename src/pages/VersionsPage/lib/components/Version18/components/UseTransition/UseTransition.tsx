@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 import type { TabItem } from '@/shared/types/ui';
-import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
+import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Tabs } from '@/shared/ui/redesigned/Tabs';
 import { Text } from '@/shared/ui/redesigned/Text';
 
@@ -63,39 +63,41 @@ export const UseTransition = () => {
 
   return (
     <VStack align='start' gap='24'>
-      <HStack align='start' gap='32'>
-        <VStack align='start'>
-          <Text size='l' text={t('С переходами')} />
-          <Text size='m' text={t('Переключение таб без задержек')} />
+      <VStack align='start'>
+        <Text size='l' text={t('С переходами')} />
+        <Text size='m' text={t('Переключение таб без задержек')} />
 
-          <VStack align='start' gap='24'>
-            <Tabs
-              className={classNames(classes.tabs, { [classes.pending]: pending })}
-              onTabClick={onTabClickWithTransition}
-              tabs={tabs}
-              value={hasTransitionTab.value}
-            />
+        <VStack align='start' gap='24'>
+          <Tabs
+            className={classNames(classes.tabs, { [classes.pending]: pending })}
+            onTabClick={onTabClickWithTransition}
+            tabs={tabs}
+            value={hasTransitionTab.value}
+          />
 
-            {getTabContent(hasTransitionTab.value)}
-          </VStack>
+          {getTabContent(hasTransitionTab.value)}
         </VStack>
+      </VStack>
 
-        <VStack align='start'>
-          <Text size='l' text={t('Без переходов')} />
-          <Text size='m' text={t('Переключение таб с задержкой')} />
+      <VStack className={classes.separator} max>
+        <hr />
+      </VStack>
 
-          <VStack align='start' gap='24'>
-            <Tabs
-              className={classes.tabs}
-              onTabClick={onTabClickNoTransition}
-              tabs={tabs}
-              value={noTransitionTab.value}
-            />
+      <VStack align='start'>
+        <Text size='l' text={t('Без переходов')} />
+        <Text size='m' text={t('Переключение таб с задержкой')} />
 
-            {getTabContent(noTransitionTab.value)}
-          </VStack>
+        <VStack align='start' gap='24'>
+          <Tabs
+            className={classes.tabs}
+            onTabClick={onTabClickNoTransition}
+            tabs={tabs}
+            value={noTransitionTab.value}
+          />
+
+          {getTabContent(noTransitionTab.value)}
         </VStack>
-      </HStack>
+      </VStack>
     </VStack>
   );
 };

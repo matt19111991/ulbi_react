@@ -1,11 +1,18 @@
 .list {
   opacity: 1;
   transition: opacity 0s 0s linear;
+  width: 100%;
 };
 
 .posts {
   padding-top: 24px;
 };
+
+.separator {
+  & > * {
+    width: 100%;
+  }
+}
 
 .stale {
   opacity: .5;
