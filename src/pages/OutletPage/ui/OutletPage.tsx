@@ -24,7 +24,7 @@ import classes from './OutletPage.module.scss';
     - '<OutletLast />'  => по урлу '/outlet/last'
     - 'null'            => ничего не будет отрисовано по всем неуказанным вложенным урлам
 */
-export const OutletPage = memo(() => {
+export const OutletPage = () => {
   const { t } = useTranslation();
 
   const isAppRedesigned = getFeatureFlag('isAppRedesigned');
@@ -67,6 +67,6 @@ export const OutletPage = memo(() => {
       </VStack>
     </Page>
   );
-});
+};
 
-OutletPage.displayName = 'OutletPage';
+export default memo(OutletPage);
