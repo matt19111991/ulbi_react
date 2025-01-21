@@ -5,7 +5,7 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Theme } from '@/shared/const/theme';
 
-import { VersionsPage } from './VersionsPage';
+import VersionsPage from './VersionsPage';
 
 const meta = {
   title: 'pages/Versions/VersionsPage/new',

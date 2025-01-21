@@ -68,6 +68,8 @@
 
 ### Проблемы
 
+Проблемы с `React v.19`: https://github.com/oblador/loki/issues/531
+
 Имеются проблемы с работой под `Windows`.
 
 `cross-env NODE_OPTIONS=--no-warnings` добавляем при запуске, чтобы избежать всех типов предупреждений
