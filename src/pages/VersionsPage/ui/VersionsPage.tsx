@@ -17,7 +17,7 @@ const tabs: TabItem[] = [
   { content: '19', value: '19' },
 ];
 
-export const VersionsPage = memo(() => {
+const VersionsPage = () => {
   const { t } = useTranslation();
 
   const [activeTab, setActiveTab] = useState<TabItem>(tabs[0]);
@@ -43,6 +43,6 @@ export const VersionsPage = memo(() => {
       </VStack>
     </Page>
   );
-});
+};
 
-VersionsPage.displayName = 'VersionsPage';
+export default memo(VersionsPage);

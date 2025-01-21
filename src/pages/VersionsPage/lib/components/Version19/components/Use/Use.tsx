@@ -24,7 +24,11 @@ interface User {
   website: string;
 }
 
-const fetchUsers = fetch('https://jsonplaceholder.typicode.com/users').then((res) => res.json());
+const fetchUsers = fetch('https://jsonplaceholder.typicode.com/users', { mode: 'no-cors' })
+  .then((res) => res.json())
+  .catch((err) => {
+    console.log(`Error: ${err}`);
+  });
 
 export const Use = () => {
   const users = use<User[]>(fetchUsers);

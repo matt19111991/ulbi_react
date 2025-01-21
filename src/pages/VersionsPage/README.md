@@ -16,7 +16,7 @@
 
 `Version19` - компонент c нововведениями `v.19`:
 - атрибут форм `action`
-- хук `use` для контекста и промисов
+- функция `use` для контекста и промисов
 - хук `useActionState`
 - хук `useFormStatus`
 - хук `useOptimistic`
