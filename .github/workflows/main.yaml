@@ -61,7 +61,7 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
           # не создается новый 'package-lock.json' файл, а используется существующий
           # нужно добавить 'package-lock.json' в репозиторий
           # но, используем 'npm i', т.к. иначе возникают конфликты для 'deprecated' библиотек
-        run: npm i
+        run: npm i --force
 
       # собираем production build
       - name: Build production project
@@ -140,7 +140,7 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
           # не создается новый 'package-lock.json' файл, а используется существующий
           # нужно добавить 'package-lock.json' в репозиторий
           # но, используем 'npm i', т.к. иначе возникают конфликты для 'deprecated' библиотек
-        run: npm i
+        run: npm i --force
 
       # проверяем корректность TypeScript
       - name: Linting Typescript
