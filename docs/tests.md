@@ -1,5 +1,11 @@
 ## Тесты
 
+### Запуск
+
+`cross-env NODE_OPTIONS=--no-warnings='DEP0040'` добавляется в команду перед запуском `unit`-тестов,
+чтобы избежать предупреждения в `Node v22.x`: '(node:87409) [DEP0040] DeprecationWarning:
+The `punycode` module is deprecated. Please use a userland alternative instead.'
+
 В проекте используются 4 вида тестов:
    1. Обычные `unit тесты` на `Jest`:
 

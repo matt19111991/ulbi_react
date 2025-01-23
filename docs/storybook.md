@@ -12,10 +12,6 @@
 
 Флаг `--no-open` отключает автоматическое открытие **storybook** в новой вкладке при старте
 
-`cross-env NODE_OPTIONS=--no-warnings='DEP0040'` добавляется в команду перед запуском,
-чтобы избежать предупреждения в `Node v22.x`: '(node:87409) [DEP0040] DeprecationWarning:
-The `punycode` module is deprecated. Please use a userland alternative instead.'
-
 ### Скрипты
 
 Запуск **storybook** в `development` режиме:
