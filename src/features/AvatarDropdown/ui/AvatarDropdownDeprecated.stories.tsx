@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 
 import type { StateSchema } from '@/app/providers/StoreProvider';
 
@@ -58,10 +58,8 @@ const meta = {
     },
   },
   decorators: [
-    (Story) => (
-      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <Story />
-      </div>
+    (Story: StoryFn, context: StoryContext) => (
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>{Story({}, context)}</div>
     ),
   ],
 } as Meta<typeof AvatarDropdown>;

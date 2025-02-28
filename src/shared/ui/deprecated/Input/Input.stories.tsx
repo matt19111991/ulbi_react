@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
@@ -74,10 +74,8 @@ export const FullWidth: Story = {
 };
 
 FullWidth.decorators = [
-  (Story) => (
-    <div style={{ border: '1px solid black', padding: 16 }}>
-      <Story />
-    </div>
+  (Story: StoryFn, context: StoryContext) => (
+    <div style={{ border: '1px solid black', padding: 16 }}>{Story({}, context)}</div>
   ),
 ];
 

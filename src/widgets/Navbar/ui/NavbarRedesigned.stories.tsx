@@ -1,4 +1,4 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import type { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 
 import type { StateSchema } from '@/app/providers/StoreProvider';
 
@@ -16,9 +16,9 @@ import type { ReducersList } from '@/shared/lib/components/DynamicModuleLoaderV2
 
 import { Navbar } from './Navbar';
 
-const FullWidthDecorator = (Story: ReturnType<StoryFn>) => (
+const FullWidthDecorator = (Story: StoryFn, context: StoryContext) => (
   <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
-    <Story />
+    {Story({}, context)}
   </div>
 );
 

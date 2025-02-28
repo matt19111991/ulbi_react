@@ -1,8 +1,6 @@
 import type { JSX } from 'react';
-import type { StoryFn } from '@storybook/react';
+import type { StoryContext, StoryFn } from '@storybook/react';
 
-export const StorybookContainerDecorator = (Story: ReturnType<StoryFn>): JSX.Element => (
-  <div className='sb-container'>
-    <Story />
-  </div>
+export const StorybookContainerDecorator = (Story: StoryFn, context: StoryContext): JSX.Element => (
+  <div className='sb-container'>{Story({}, context)}</div>
 );

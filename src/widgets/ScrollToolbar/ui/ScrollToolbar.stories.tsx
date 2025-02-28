@@ -1,4 +1,4 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import type { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
@@ -20,10 +20,8 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-const FullHeightDecorator = (Story: ReturnType<StoryFn>) => (
-  <div style={{ display: 'flex', height: '100vh', width: 32 }}>
-    <Story />
-  </div>
+const FullHeightDecorator = (Story: StoryFn, context: StoryContext) => (
+  <div style={{ display: 'flex', height: '100vh', width: 32 }}>{Story({}, context)}</div>
 );
 
 // Primary scroll toolbar

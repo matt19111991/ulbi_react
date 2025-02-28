@@ -1,4 +1,4 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import type { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 
 import Icon from '@/shared/assets/tests/storybook3.svg';
 
@@ -21,10 +21,8 @@ const sidebarItem: SidebarItemType = {
   text: 'Главная',
 };
 
-const InvertedBgDecorator = (Story: ReturnType<StoryFn>) => (
-  <div style={{ backgroundColor: 'var(--inverted-bg-color)' }}>
-    <Story />
-  </div>
+const InvertedBgDecorator = (Story: StoryFn, context: StoryContext) => (
+  <div style={{ backgroundColor: 'var(--inverted-bg-color)' }}>{Story({}, context)}</div>
 );
 
 const meta = {

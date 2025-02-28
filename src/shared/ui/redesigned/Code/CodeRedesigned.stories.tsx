@@ -1,4 +1,4 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import type { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
@@ -11,10 +11,8 @@ import { Code } from './Code';
 const codeText =
   '<!DOCTYPE html>\n<html>\n  <body>\n    <p id="hello"></p>\n\n    <script>\n      document.getElementById("hello").innerHTML = "Hello, world!";\n    </script>\n  </body>\n</html>;';
 
-const CodeDecorator = (Story: ReturnType<StoryFn>) => (
-  <div style={{ position: 'relative' }}>
-    <Story />
-  </div>
+const CodeDecorator = (Story: StoryFn, context: StoryContext) => (
+  <div style={{ position: 'relative' }}>{Story({}, context)}</div>
 );
 
 const meta = {

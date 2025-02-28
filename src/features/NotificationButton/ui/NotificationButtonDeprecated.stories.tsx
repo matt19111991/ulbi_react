@@ -1,5 +1,5 @@
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import type { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 
 import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -8,10 +8,8 @@ import { Theme } from '@/shared/const/theme';
 
 import { NotificationButton } from './NotificationButton';
 
-const RightAlignDecorator = (Story: ReturnType<StoryFn>) => (
-  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-    <Story />
-  </div>
+const RightAlignDecorator = (Story: StoryFn, context: StoryContext) => (
+  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>{Story({}, context)}</div>
 );
 
 const meta = {

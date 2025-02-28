@@ -1,4 +1,4 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import type { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 
 import type { StateSchema } from '@/app/providers/StoreProvider';
 
@@ -19,10 +19,8 @@ import { articlesPageReducer } from '../../../../model/slice/articlesPageSlice';
 
 import { ArticleInfiniteList } from './ArticleInfiniteList';
 
-const MaxWidthDecorator = (Story: ReturnType<StoryFn>) => (
-  <div style={{ width: 1274 }}>
-    <Story />
-  </div>
+const MaxWidthDecorator = (Story: StoryFn, context: StoryContext) => (
+  <div style={{ width: 1274 }}>{Story({}, context)}</div>
 );
 
 const generatedArticles = generateNormalizedArticles(18);

@@ -1,4 +1,4 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import type { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 
 import Icon from '@/shared/assets/tests/storybook3.svg';
 
@@ -22,10 +22,8 @@ const sidebarItem: SidebarItemType = {
   text: 'Главная',
 };
 
-const HeightCutDecorator = (Story: ReturnType<StoryFn>) => (
-  <div style={{ height: 32, overflow: 'hidden' }}>
-    <Story />
-  </div>
+const HeightCutDecorator = (Story: StoryFn, context: StoryContext) => (
+  <div style={{ height: 32, overflow: 'hidden' }}>{Story({}, context)}</div>
 );
 
 const meta = {

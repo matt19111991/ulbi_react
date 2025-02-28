@@ -1,5 +1,5 @@
 import type { JSX } from 'react';
-import type { StoryFn } from '@storybook/react';
+import type { StoryContext, StoryFn } from '@storybook/react';
 
 import { setFeatureFlags } from '@/shared/lib/features';
 
@@ -9,7 +9,7 @@ import type { FeatureFlags } from '@/shared/types/featureFlags';
 
 export const FeatureFlagsDecorator =
   (features: FeatureFlags) =>
-  (Story: ReturnType<StoryFn>): JSX.Element => {
+  (Story: StoryFn, context: StoryContext): JSX.Element => {
     setFeatureFlags(features);
 
     // основной фон и цвет темы для всего приложения в 'storybook' применяются через 'appClass'
@@ -19,11 +19,7 @@ export const FeatureFlagsDecorator =
       Если вернуть 'JSX' то будет ошибка 'ESLint':
       'Component definition is missing display name(react/display-name)'
     */
-    const getStory = () => (
-      <div className={appClass}>
-        <Story />
-      </div>
-    );
+    const getStory = () => <div className={appClass}>{Story({}, context)}</div>;
 
     return getStory();
   };

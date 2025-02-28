@@ -1,4 +1,4 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import type { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -19,10 +19,8 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-const LogoDecorator = (Story: ReturnType<StoryFn>) => (
-  <div style={{ fill: 'var(--icon-redesigned)' }}>
-    <Story />
-  </div>
+const LogoDecorator = (Story: StoryFn, context: StoryContext) => (
+  <div style={{ fill: 'var(--icon-redesigned)' }}>{Story({}, context)}</div>
 );
 
 // Primary app logo

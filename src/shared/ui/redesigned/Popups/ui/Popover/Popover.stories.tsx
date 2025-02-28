@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
@@ -46,10 +46,8 @@ export const Primary: Story = {
 };
 
 Primary.decorators = [
-  (Story) => (
-    <div style={{ display: 'flex', padding: '16px' }}>
-      <Story />
-    </div>
+  (Story: StoryFn, context: StoryContext) => (
+    <div style={{ display: 'flex', padding: '16px' }}>{Story({}, context)}</div>
   ),
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
@@ -65,10 +63,8 @@ export const Dark: Story = {
 };
 
 Dark.decorators = [
-  (Story) => (
-    <div style={{ display: 'flex', padding: '16px' }}>
-      <Story />
-    </div>
+  (Story: StoryFn, context: StoryContext) => (
+    <div style={{ display: 'flex', padding: '16px' }}>{Story({}, context)}</div>
   ),
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
@@ -85,10 +81,8 @@ export const Orange: Story = {
 };
 
 Orange.decorators = [
-  (Story) => (
-    <div style={{ display: 'flex', padding: '16px' }}>
-      <Story />
-    </div>
+  (Story: StoryFn, context: StoryContext) => (
+    <div style={{ display: 'flex', padding: '16px' }}>{Story({}, context)}</div>
   ),
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
@@ -106,10 +100,8 @@ export const BottomLeftDirection: Story = {
 };
 
 BottomLeftDirection.decorators = [
-  (Story) => (
-    <div style={{ display: 'flex', padding: '16px' }}>
-      <Story />
-    </div>
+  (Story: StoryFn, context: StoryContext) => (
+    <div style={{ display: 'flex', padding: '16px' }}>{Story({}, context)}</div>
   ),
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
@@ -126,10 +118,8 @@ export const BottomRightDirection: Story = {
 };
 
 BottomRightDirection.decorators = [
-  (Story) => (
-    <div style={{ display: 'flex', padding: '16px' }}>
-      <Story />
-    </div>
+  (Story: StoryFn, context: StoryContext) => (
+    <div style={{ display: 'flex', padding: '16px' }}>{Story({}, context)}</div>
   ),
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
@@ -146,10 +136,8 @@ export const TopLeftDirection: Story = {
 };
 
 TopLeftDirection.decorators = [
-  (Story) => (
-    <div style={{ display: 'flex', padding: '60px 16px' }}>
-      <Story />
-    </div>
+  (Story: StoryFn, context: StoryContext) => (
+    <div style={{ display: 'flex', padding: '60px 16px' }}>{Story({}, context)}</div>
   ),
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
@@ -166,10 +154,8 @@ export const TopRightDirection: Story = {
 };
 
 TopRightDirection.decorators = [
-  (Story) => (
-    <div style={{ display: 'flex', padding: '60px 16px' }}>
-      <Story />
-    </div>
+  (Story: StoryFn, context: StoryContext) => (
+    <div style={{ display: 'flex', padding: '60px 16px' }}>{Story({}, context)}</div>
   ),
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
@@ -318,9 +318,9 @@ export const Nowrap: Story = {
 Nowrap.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
-  (Story) => (
+  (Story: StoryFn, context: StoryContext) => (
     <div style={{ border: '1px solid black', overflow: 'hidden', padding: 8, width: 300 }}>
-      <Story />
+      {Story({}, context)}
     </div>
   ),
 ];
@@ -350,9 +350,9 @@ export const Wrap: Story = {
 Wrap.decorators = [
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,
-  (Story) => (
+  (Story: StoryFn, context: StoryContext) => (
     <div style={{ border: '1px solid black', overflow: 'hidden', padding: 8, width: 300 }}>
-      <Story />
+      {Story({}, context)}
     </div>
   ),
 ];

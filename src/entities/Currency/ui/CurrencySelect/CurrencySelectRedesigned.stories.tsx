@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions';
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import type { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
@@ -9,10 +9,8 @@ import { Theme } from '@/shared/const/theme';
 
 import { CurrencySelect } from './CurrencySelect';
 
-const PaddingTopDecorator = (Story: ReturnType<StoryFn>) => (
-  <div style={{ paddingTop: 140 }}>
-    <Story />
-  </div>
+const PaddingTopDecorator = (Story: StoryFn, context: StoryContext) => (
+  <div style={{ paddingTop: 140 }}>{Story({}, context)}</div>
 );
 
 const meta = {

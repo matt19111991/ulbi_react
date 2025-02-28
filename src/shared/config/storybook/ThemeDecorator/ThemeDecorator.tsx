@@ -1,5 +1,5 @@
 import type { JSX } from 'react';
-import type { StoryFn } from '@storybook/react';
+import type { StoryContext, StoryFn } from '@storybook/react';
 
 import { ThemeProvider } from '@/app/providers/ThemeProvider';
 
@@ -9,7 +9,7 @@ import { Theme } from '@/shared/const/theme';
 
 export const ThemeDecorator =
   (theme: Theme) =>
-  (Story: ReturnType<StoryFn>): JSX.Element => {
+  (Story: StoryFn, context: StoryContext): JSX.Element => {
     /*
       может не меняться цвет скролла при переключении темы, поэтому добавляем класс на 'body'
       через 'requestAnimationFrame()'
@@ -23,9 +23,7 @@ export const ThemeDecorator =
 
     const getThemedStory = () => (
       <ThemeProvider initialTheme={theme}>
-        <div className={theme}>
-          <Story />
-        </div>
+        <div className={theme}>{Story({}, context)}</div>
       </ThemeProvider>
     );
 

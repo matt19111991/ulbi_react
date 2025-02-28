@@ -1,6 +1,6 @@
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import type { ViewportMap } from '@storybook/addon-viewport';
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import type { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 
 import type { StateSchema } from '@/app/providers/StoreProvider';
 
@@ -59,10 +59,8 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-const FullHeightDecorator = (Story: ReturnType<StoryFn>) => (
-  <div style={{ display: 'grid' }}>
-    <Story />
-  </div>
+const FullHeightDecorator = (Story: StoryFn, context: StoryContext) => (
+  <div style={{ display: 'grid' }}>{Story({}, context)}</div>
 );
 
 // Primary sidebar large

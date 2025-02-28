@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 
 import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -88,10 +88,8 @@ export const BottomRightDirection: Story = {
 };
 
 BottomRightDirection.decorators = [
-  (Story) => (
-    <div style={{ display: 'flex' }}>
-      <Story />
-    </div>
+  (Story: StoryFn, context: StoryContext) => (
+    <div style={{ display: 'flex' }}>{Story({}, context)}</div>
   ),
   IndentsDecorator,
 ];
@@ -107,10 +105,8 @@ export const TopLeftDirection: Story = {
 };
 
 TopLeftDirection.decorators = [
-  (Story) => (
-    <div style={{ display: 'flex', padding: '60px 8px' }}>
-      <Story />
-    </div>
+  (Story: StoryFn, context: StoryContext) => (
+    <div style={{ display: 'flex', padding: '60px 8px' }}>{Story({}, context)}</div>
   ),
 ];
 
@@ -125,10 +121,8 @@ export const TopRightDirection: Story = {
 };
 
 TopRightDirection.decorators = [
-  (Story) => (
-    <div style={{ display: 'flex', padding: '60px 8px' }}>
-      <Story />
-    </div>
+  (Story: StoryFn, context: StoryContext) => (
+    <div style={{ display: 'flex', padding: '60px 8px' }}>{Story({}, context)}</div>
   ),
 ];
 

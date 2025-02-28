@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
@@ -86,10 +86,8 @@ export const TopLeft: Story = {
 };
 
 TopLeft.decorators = [
-  (Story) => (
-    <div style={{ padding: '150px 20px' }}>
-      <Story />
-    </div>
+  (Story: StoryFn, context: StoryContext) => (
+    <div style={{ padding: '150px 20px' }}>{Story({}, context)}</div>
   ),
   FeatureFlagsDecorator({ isAppRedesigned: true }),
 ];
@@ -105,10 +103,8 @@ export const TopRight: Story = {
 };
 
 TopRight.decorators = [
-  (Story) => (
-    <div style={{ display: 'flex', padding: '150px 90px' }}>
-      <Story />
-    </div>
+  (Story: StoryFn, context: StoryContext) => (
+    <div style={{ display: 'flex', padding: '150px 90px' }}>{Story({}, context)}</div>
   ),
   FeatureFlagsDecorator({ isAppRedesigned: true }),
 ];
@@ -136,10 +132,8 @@ export const BottomRight: Story = {
 };
 
 BottomRight.decorators = [
-  (Story) => (
-    <div style={{ display: 'flex', padding: '0 90px' }}>
-      <Story />
-    </div>
+  (Story: StoryFn, context: StoryContext) => (
+    <div style={{ display: 'flex', padding: '0 90px' }}>{Story({}, context)}</div>
   ),
   FeatureFlagsDecorator({ isAppRedesigned: true }),
   IndentsDecorator,

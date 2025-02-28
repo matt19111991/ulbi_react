@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions';
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import type { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 
 import IconSvg from '@/shared/assets/tests/storybook3.svg';
 
@@ -11,10 +11,8 @@ import { Theme } from '@/shared/const/theme';
 
 import { Input } from './Input';
 
-const ColoredDecorator = (Story: ReturnType<StoryFn>) => (
-  <div style={{ color: 'var(--icon-redesigned)' }}>
-    <Story />
-  </div>
+const ColoredDecorator = (Story: StoryFn, context: StoryContext) => (
+  <div style={{ color: 'var(--icon-redesigned)' }}>{Story({}, context)}</div>
 );
 
 const meta = {

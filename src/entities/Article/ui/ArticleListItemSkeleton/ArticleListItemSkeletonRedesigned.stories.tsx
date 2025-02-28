@@ -1,4 +1,4 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import type { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';
 import { IndentsDecorator } from '@/shared/config/storybook/IndentsDecorator/IndentsDecorator';
@@ -10,10 +10,8 @@ import { ArticleView } from '../../model/consts/articleConsts';
 
 import { ArticleListItemSkeleton } from './ArticleListItemSkeleton';
 
-const PlateDecorator = (Story: ReturnType<StoryFn>) => (
-  <div style={{ backgroundColor: 'var(--bg-redesigned)', padding: 8 }}>
-    <Story />
-  </div>
+const PlateDecorator = (Story: StoryFn, context: StoryContext) => (
+  <div style={{ backgroundColor: 'var(--bg-redesigned)', padding: 8 }}>{Story({}, context)}</div>
 );
 
 const meta = {
