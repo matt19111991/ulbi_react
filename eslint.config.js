@@ -65,7 +65,7 @@ module.exports = typescriptEslint.config(
       ...jsxA11yPlugin.configs.recommended.rules,
       ...prettierPlugin.configs.recommended.rules, // ошибки 'Prettier' передаются 'ESLinty' и подчеркиваются
       ...reactPlugin.configs.recommended.rules,
-      ...reactHooksPlugin.configs.recommended.rules,
+      ...reactHooksPlugin.configs['recommended-latest'].rules,
 
       /*
         запретить теневое копирование (вкл.): переменная имеет то же имя, что и переменная в содержащей ее области
