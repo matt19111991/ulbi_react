@@ -14,7 +14,7 @@ import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
 
 export const fetchNextArticlesPage = createAsyncThunk<
   void, // ничего не возвращаем
-  void, // ничего не передаем на вход
+  undefined, // ничего не передаем на вход
   ThunkConfig<string> // передаваемый тип ошибки в конфиг: 'string'
 >('articlesPage/fetchNextArticlesPage', async (_, thunkApi) => {
   const state = thunkApi.getState();

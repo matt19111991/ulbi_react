@@ -10,7 +10,7 @@ import type { User } from '../../types/user';
 
 export const initAuthData = createAsyncThunk<
   User, // возвращаемое значение
-  void, // нет передаваемых аргументов
+  undefined, // нет передаваемых аргументов
   ThunkConfig<string> // передаваемый тип ошибки в конфиг: 'string'
 >('user/initAuthData', async (_, thunkApi) => {
   /*

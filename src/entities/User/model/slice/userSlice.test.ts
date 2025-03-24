@@ -101,7 +101,7 @@ describe('userSlice', () => {
       // при тестировании 'extraReducers' вторым аргументом нужно передавать любую строку (например, 'requestId')
       const reducer = userReducer(
         state as UserSchema,
-        initAuthData.fulfilled(authData, 'requestId'),
+        initAuthData.fulfilled(authData, 'requestId', undefined),
       );
 
       expect(reducer).toEqual({ authData, mounted: true });
@@ -117,7 +117,7 @@ describe('userSlice', () => {
       // при тестировании 'extraReducers' вторым аргументом нужно передавать любую строку (например, 'requestId')
       const reducer = userReducer(
         state as UserSchema,
-        initAuthData.rejected(new Error('Jest test error'), 'requestId'),
+        initAuthData.rejected(new Error('Jest test error'), 'requestId', undefined),
       );
 
       expect(reducer).toEqual({ authData: {}, mounted: true });
