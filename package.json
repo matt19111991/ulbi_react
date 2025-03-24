@@ -184,6 +184,10 @@
     "@react-spring/web": {
       "react": "$react",
       "react-dom": "$react-dom"
+    },
+    "loki": {
+      "react": "^18.3.1",
+      "react-dom": "^18.3.1"
     }
   }
 }
