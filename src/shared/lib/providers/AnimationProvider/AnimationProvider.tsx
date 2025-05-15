@@ -2,14 +2,9 @@ import { createContext, useContext, useEffect, useMemo, useRef, useState } from 
 import type { ReactNode, RefObject } from 'react';
 
 // для корректной типизации библиотек
-import type { AnimatedComponent, WithAnimated } from '@react-spring/web'; // отдельный импорт для корректной работы с 'React v.19'
 type GestureType = typeof import('@use-gesture/react'); // библиотека для свайпов, тача, "drag'n'drop"
 type SpringType = typeof import('@react-spring/web'); // библиотека для анимаций
 // необходимо дополнительно установить библиотеку '@react-spring/rafz'
-
-// для корректной работы с 'React v.19'
-type SpringTypeWithTypedAnimationComponent = SpringType &
-  Record<'a', WithAnimated & Record<'div', AnimatedComponent<'div'>>>;
 
 interface AnimationContextPayload {
   /**
@@ -20,7 +15,7 @@ interface AnimationContextPayload {
   /**
    * Анимация
    */
-  Spring?: SpringTypeWithTypedAnimationComponent;
+  Spring?: SpringType;
 
   /**
    * Компонент с анимацией уже загружен?
@@ -56,14 +51,14 @@ export const AnimationProvider = ({ children }: { children: ReactNode }) => {
 
   // используем 'refs', чтобы был доступ к значениям без лишних перерисовок
   const GestureRef: RefObject<GestureType | undefined> = useRef(undefined); // различные варианты
-  const SpringRef = useRef<SpringTypeWithTypedAnimationComponent>(undefined); // типизации 'ref'
+  const SpringRef = useRef<SpringType>(undefined); // типизации 'ref'
 
   useEffect(() => {
     getAsyncAnimationModules()
       .then(([SpringResolved, GestureResolved]) => {
         // сохраняем результаты импортов (это сами библиотеки)
         GestureRef.current = GestureResolved;
-        SpringRef.current = SpringResolved as unknown as SpringTypeWithTypedAnimationComponent;
+        SpringRef.current = SpringResolved;
 
         setIsLoaded(true);
       })
