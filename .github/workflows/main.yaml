@@ -76,7 +76,7 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
 
       # запускаем скриншотное тестирование (loki)
       - name: Screenshot testing
-        if: always()
+        if: ${{ false }} # отключаем, пока не решены проблемы совместимости loki и Storybook v.9+
         run: npm run test:ui:ci
 
       # запускаем unit тестирование
@@ -86,12 +86,12 @@ jobs: # 'build-and-ui-testing' и 'linting' jobs запускаются пара
 
       # генерируем отчет по скриншотному тестированию (loki)
       - name: Generate HTML report
-        if: always()
+        if: ${{ false }} # отключаем, пока не решены проблемы совместимости loki и Storybook v.9+
         run: npm run test:ui:report
 
       # перемещаем отчеты loki в папку 'reports'
       - name: Move loki reports
-        if: always()
+        if: ${{ false }} # отключаем, пока не решены проблемы совместимости loki и Storybook v.9+
         run: mv .loki reports/
 
       # извлекаем метаданные
