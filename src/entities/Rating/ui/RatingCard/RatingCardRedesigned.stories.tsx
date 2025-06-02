@@ -1,5 +1,5 @@
-import { action } from '@storybook/addon-actions';
-import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
+import { action } from 'storybook/actions';
+import { INITIAL_VIEWPORTS } from 'storybook/viewport';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';

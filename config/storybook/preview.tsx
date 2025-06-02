@@ -1,5 +1,6 @@
-import type { ViewportMap } from '@storybook/addon-viewport';
+import type { ViewportMap } from 'storybook/viewport';
 import type { Preview } from '@storybook/react';
+import 'loki/configure-react';
 
 import type { StateSchema } from '../../src/app/providers/StoreProvider';
 
@@ -24,6 +25,9 @@ export const preview: Preview = {
                                         };
                                   */,
     },
+
+    // у нас свое переключение темы, 'backgrounds' не будет работать, поэтому отключаем это свойство
+    backgrounds: false,
 
     controls: {
       matchers: {

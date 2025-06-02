@@ -1,4 +1,4 @@
-import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
+import { INITIAL_VIEWPORTS } from 'storybook/viewport';
 import type { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 
 import { FeatureFlagsDecorator } from '@/shared/config/storybook/FeatureFlagsDecorator/FeatureFlagsDecorator';

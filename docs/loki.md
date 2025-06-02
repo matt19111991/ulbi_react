@@ -68,7 +68,11 @@
 
 ### Проблемы
 
-Проблемы с `React v.19`: https://github.com/oblador/loki/issues/531
+Проблемы с `React v.19`: https://github.com/oblador/loki/pull/519
++ необходимо добавить `"@storybook/react": "$@storybook/react"` в `overrides`
+  для `loki` в `package.json`
+
+Проблемы со `Storybook v.9+` https://github.com/oblador/loki/pull/541
 
 Имеются проблемы с работой под `Windows`.
 

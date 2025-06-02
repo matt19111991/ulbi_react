@@ -1,5 +1,5 @@
-import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
-import type { ViewportMap } from '@storybook/addon-viewport';
+import { INITIAL_VIEWPORTS } from 'storybook/viewport';
+import type { ViewportMap } from 'storybook/viewport';
 import type { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 
 import type { StateSchema } from '@/app/providers/StoreProvider';
