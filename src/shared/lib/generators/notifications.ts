@@ -22,5 +22,5 @@ export const generateNotifications = (amount: number): Notification[] =>
   new Array(amount).fill(amount).map((_, idx) => ({
     ...notification,
     id: String(idx + 1),
-    title: `${notification.title.split(' ').at(0)} ${idx + 1}`,
+    title: `${notification.title.split(' ')[0]} ${idx + 1}`,
   }));

@@ -98,7 +98,7 @@ const ProfileRating = ({
     return null;
   }
 
-  const rating = storybookRatingEmpty ? { rate: 0 } : data?.at(0);
+  const rating = storybookRatingEmpty ? { rate: 0 } : data?.[0];
 
   return (
     <RatingCard
