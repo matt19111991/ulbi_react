@@ -53,6 +53,11 @@ export default {
   // настройка абсолютных импортов
   modulePaths: ['<rootDir>/src'],
 
+  // Options that will be passed to the testEnvironment
+  testEnvironmentOptions: {
+    globalsCleanup: 'on',
+  },
+
   // Use this configuration option to add custom reporters to 'Jest'
   reporters: [
     'default',
@@ -190,9 +195,6 @@ export default {
 
   // A list of paths to snapshot serializer modules 'Jest' should use for snapshot testing
   // snapshotSerializers: [],
-
-  // Options that will be passed to the testEnvironment
-  // testEnvironmentOptions: {},
 
   // Adds a location field to test results
   // testLocationInResults: false,

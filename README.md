@@ -279,7 +279,8 @@
 
 `npm run lint:scss:fix` - исправление `.scss` файлов `style линтером`
 
-`npm run postinstall` - очистка кэша после установки новых модулей
+`npm run postinstall` - очистка кэша после установки новых модулей и патч для корректной 
+работы `window.location` и `Jest v.30+`
 
 `npm run prettify` - выравнивание кода при помощи `Prettier`
 

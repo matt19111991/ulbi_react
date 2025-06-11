@@ -16,5 +16,7 @@
 
 `generateLokiJsonReport` - скрипт генерации отчетов `loki` для визуализации данных
 
+`makeJestWindowConfigurable` - скрипт для корректной работы `window.location` и `Jest v.30+`
+
 `setFeature` - автоматический перевод `feature` только в одно определенное 
 состояние (`on` или `off`) для всего проекта
