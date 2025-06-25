@@ -85,7 +85,9 @@ const DeprecatedArticleDetails = () => {
         </HStack>
       </VStack>
 
-      {article?.blocks.map((block) => <ArticleBlockPicker block={block} key={block.id} />)}
+      {article?.blocks.map((block) => (
+        <ArticleBlockPicker block={block} key={block.id} />
+      ))}
     </>
   );
 };
@@ -124,7 +126,9 @@ const RedesignedArticleDetails = () => {
         src={article?.img}
       />
 
-      {article?.blocks.map((block) => <ArticleBlockPicker block={block} key={block.id} />)}
+      {article?.blocks.map((block) => (
+        <ArticleBlockPicker block={block} key={block.id} />
+      ))}
     </>
   );
 };
