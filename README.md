@@ -439,7 +439,9 @@
 Оба сборщика адаптированы под основные фичи приложения
 
 Вся конфигурация хранится в:
-- [конфигурация Babel](babel.config.ts)
+- [конфигурация Babel](./config/babel) (конфиги нужно переносить в корень проекта)
+    - [JSON](./config/babel/babel.config.json)
+    - [TS](./config/babel/babel.config.ts)
 - [конфигурация Docker](docker-compose.yaml)
 - [конфигурация Jest](./config/jest)
 - [конфигурация Nginx](./config/nginx)
