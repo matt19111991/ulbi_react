@@ -5,6 +5,9 @@
 # команду 'npm run prepare' можно удалить из 'package.json' после инициализации 'husky',
 # т.к. заново инициализировать 'husky' незачем
 
+# Ошибка 'cannot spawn .husky/pre-commit: No such file or directory' - исправляется запуском команды
+# git config --unset core.hooksPath
+
 # запуск проверок для всех файлов (измененных и неизмененных) перед коммитом:
 npm run build:prod
 npm run lint:ts
