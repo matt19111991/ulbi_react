@@ -61,21 +61,21 @@ export const DynamicModuleLoaderV2 = ({
       здесь результат работы 'Object.entries' приводим к типам явно, т.к 'Object.entries' возвращает
       свои типы, которые нам не подходят
     */
-    (Object.entries(reducers) as Array<[StateSchemaKey, ReducerItem<StateSchemaKey>]>).forEach(
-      ([name, reducer]) => {
-        const mounted = name in state;
+    (
+      Object.entries(reducers) as Array<[StateSchemaKey, Reducer<StateSchema[StateSchemaKey]>]>
+    ).forEach(([name, reducer]) => {
+      const mounted = name in state;
 
-        if (!mounted) {
-          // асинхронно подгружаем редюсер при монтировании компонента
-          rootReducer.inject({
-            reducerPath: name,
-            reducer,
-          });
+      if (!mounted) {
+        // асинхронно подгружаем редюсер при монтировании компонента
+        rootReducer.inject({
+          reducerPath: name,
+          reducer,
+        });
 
-          dispatch({ type: `@INIT ${name} reducer` }); // для индикации подгрузки редюсера
-        }
-      },
-    );
+        dispatch({ type: `@INIT ${name} reducer` }); // для индикации подгрузки редюсера
+      }
+    });
 
     // удаляем редюсер при демонтировании компонента
     return () => {
