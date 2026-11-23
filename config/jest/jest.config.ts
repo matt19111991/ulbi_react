@@ -1,3 +1,5 @@
+import path from 'path';
+
 /*
   Установка '@babel/preset-react' и '@babel/preset-typescript' исправляет ошибку:
     "Jest encountered an unexpected token. Jest failed to parse a file.
@@ -92,6 +94,17 @@ export default {
 
   // The glob patterns 'Jest' uses to detect test files
   testMatch: ['<rootDir>/src/**/*.test.ts?(x)'],
+
+  // A map from regular expressions to paths to transformers
+  transform: {
+    '^.+\\.(js|jsx|ts|tsx)$': [
+      'babel-jest',
+      // 'babel.config.json' лежит не в корне проекта, указываем явно
+      {
+        configFile: path.resolve(import.meta.dirname, '../babel/babel.config.json'),
+      },
+    ],
+  },
 
   // All imported modules in your tests should be mocked automatically
   // automock: false,
@@ -213,9 +226,6 @@ export default {
 
   // This option allows use of a custom test runner
   // testRunner: "jest-circus/runner",
-
-  // A map from regular expressions to paths to transformers
-  // transform: undefined,
 
   // An array of regexp pattern strings that are matched against all source file paths,
   // matched files will skip transformation
