@@ -6,6 +6,8 @@
 
 import type { StorybookConfig } from '@storybook/react-webpack5';
 
+import babelConfig from '../babel/babel.config';
+
 const config: StorybookConfig = {
   addons: [
     /*
@@ -18,6 +20,13 @@ const config: StorybookConfig = {
 
     // '@storybook/addon-links', // можно использовать для навигации между 'stories'
   ],
+
+  /*
+    без этой опции будет ошибка 'Module build failed
+    (from ./node_modules/@storybook/addon-webpack5-compiler-babel/node_modules/babel-loader/lib/index.js):
+    SyntaxError: ./config/storybook/preview.tsx: Unexpected token, expected "from"'
+  */
+  babel: babelConfig,
 
   core: {
     // отключаем телеметрию и сбор анонимных данных (чтобы не было предупреждения в консоли при запуске)
